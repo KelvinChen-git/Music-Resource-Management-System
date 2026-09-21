@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.taffy.music.mapper.MusicResourceMapper">
+
+
+
+    <select id="selectMusicPageWithComplexFilters" resultType="com.taffy.music.domain.MusicResources" parameterType="map">
+
+        SELECT DISTINCT
+
+        mr.musicid,
+
+        mr.additional_metadata,
+
+        mr.album,
+
+        mr.approval_status,
+
+        mr.artist,
+
+        mr.file_path,
+
+        mr.file_size,
+
+        mr.format,
+
+        mr.genre,
+
+        mr.title,
+
+        mr.upload_time,
+
+        mr.categoryid,
+
+        mr.userid,
+
+        mr.is_deleted,
+
+        mr.deleted_at,
+
+        mr.deleted_by,
+
+        mr.retention_period,
+
+        mr.permanent_delete_time,
+
+        mr.play_count,
+
+        mc.category_name AS categoryName
+
+        FROM
+
+        music_resources mr
+
+        LEFT JOIN
+
+        music_categories mc ON mr.categoryid = mc.categoryid
+
+        LEFT JOIN
+
+        music_resource_tags mrt ON mr.musicid = mrt.musicid
+
+        LEFT JOIN
+
+        music_tags mt ON mrt.tagid = mt.tagid
+
+        <where>
+
+            <!-- Keyword Search -->
+
+            <if test="params.keywordParam != null and params.keywordParam != ''">
+
+                AND (
+
+                mr.title LIKE #{params.keywordParam} OR
+
+                mr.artist LIKE #{params.keywordParam} OR
+
+                mr.album LIKE #{params.keywordParam} OR
+
+                mr.genre LIKE #{params.keywordParam} OR
+
+                mr.additional_metadata LIKE #{params.keywordParam} OR
+
+                mr.approval_status LIKE #{params.keywordParam} OR
+
+                mc.category_name LIKE #{params.keywordParam} OR
+
+                mt.tag_name LIKE #{params.keywordParam}
+
+                )
+
+            </if>
+
+
+
+            <!-- Other specific filters -->
+
+            <if test="params.title != null and params.title != ''">
+
+                AND mr.title LIKE CONCAT('%', #{params.title}, '%')
+
+            </if>
+
+            <if test="params.artist != null and params.artist != ''">
+
+                AND mr.artist LIKE CONCAT('%', #{params.artist}, '%')
+
+            </if>
+
+            <if test="params.album != null and params.album != ''">
+
+                AND mr.album LIKE CONCAT('%', #{params.album}, '%')
+
+            </if>
+
+            <if test="params.categoryId != null">
+
+                AND mr.categoryid = #{params.categoryId}
+
+            </if>
+
+            <if test="params.approvalStatus != null and params.approvalStatus != ''">
+
+                AND mr.approval_status = #{params.approvalStatus}
+
+            </if>
+
+
+
+            <!-- User Filters -->
+
+            <if test="params.onlyMine != null and params.onlyMine == true and params.currentUserId != null">
+
+                AND mr.userid = #{params.currentUserId}
+
+            </if>
+
+            <if test="(params.onlyMine == null or params.onlyMine == false) and params.userIdByName != null">
+
+                AND mr.userid = #{params.userIdByName}
+
+            </if>
+
+            <if test="(params.onlyMine == null or params.onlyMine == false) and params.userIdByEmail != null">
+
+                AND mr.userid = #{params.userIdByEmail}
+
+            </if>
+
+
+
+            <!-- Tag ID Filter -->
+
+            <if test="params.tagIds != null and params.tagIds.size() &gt; 0">
+
+                AND mr.musicid IN (
+
+                SELECT DISTINCT mrt_sub.musicid
+
+                FROM music_resource_tags mrt_sub
+
+                WHERE mrt_sub.tagid IN
+
+                <foreach item='item' collection='params.tagIds' open='(' separator=',' close=')'>
+
+                    #{item}
+
+                </foreach>
+
+                )
+
+            </if>
+
+
+
+            <!-- Date Range Filter -->
+
+            <if test="params.startDate != null">
+
+                AND mr.upload_time >= #{params.startDate}
+
+            </if>
+
+            <if test="params.endDate != null">
+
+                <!-- Add 1 day to include the whole end date -->
+
+                AND mr.upload_time &lt; DATE_ADD(#{params.endDate}, INTERVAL 1 DAY)
+
+            </if>
+
+
+
+            <!-- Deleted Status Filter -->
+
+            <if test="params.includeDeleted != null and params.includeDeleted == false">
+
+                AND mr.is_deleted = 0
+
+            </if>
+
+            <if test="params.includeDeleted == null">
+
+                AND mr.is_deleted = 0
+
+            </if>
+
+
+
+        </where>
+
+        <!-- Sorting -->
+
+        <choose>
+
+            <when test="params.orderBy == 'title'">
+
+                <if test="params.orderType == 'desc'">
+
+                    ORDER BY mr.title DESC
+
+                </if>
+
+                <if test="params.orderType != 'desc'">
+
+                    ORDER BY mr.title ASC
+
+                </if>
+
+            </when>
+
+            <when test="params.orderBy == 'artist'">
+
+                <if test="params.orderType == 'desc'">
+
+                    ORDER BY mr.artist DESC
+
+                </if>
+
+                <if test="params.orderType != 'desc'">
+
+                    ORDER BY mr.artist ASC
+
+                </if>
+
+            </when>
+
+            <when test="params.orderBy == 'album'">
+
+                <if test="params.orderType == 'desc'">
+
+                    ORDER BY mr.album DESC
+
+                </if>
+
+                <if test="params.orderType != 'desc'">
+
+                    ORDER BY mr.album ASC
+
+                </if>
+
+            </when>
+
+            <when test="params.orderBy == 'genre'">
+
+                <if test="params.orderType == 'desc'">
+
+                    ORDER BY mr.genre DESC
+
+                </if>
+
+                <if test="params.orderType != 'desc'">
+
+                    ORDER BY mr.genre ASC
+
+                </if>
+
+            </when>
+
+            <when test="params.orderBy == 'playCount'">
+                <if test="params.orderType == 'desc'">
+                    ORDER BY mr.play_count DESC
+                </if>
+                <if test="params.orderType != 'desc'">
+                    ORDER BY mr.play_count ASC
+                </if>
+            </when>
+
+            <when test="params.orderBy == 'fileSize'">
+                <if test="params.orderType == 'desc'">
+                    ORDER BY mr.file_size DESC
+                </if>
+                <if test="params.orderType != 'desc'">
+                    ORDER BY mr.file_size ASC
+                </if>
+            </when>
+
+            <when test="params.orderBy == 'approvalStatus'">
+                <if test="params.orderType == 'desc'">
+                    ORDER BY mr.approval_status DESC
+                </if>
+                <if test="params.orderType != 'desc'">
+                    ORDER BY mr.approval_status ASC
+                </if>
+            </when>
+
+            <when test="params.orderBy == 'deletedAt'">
+                <if test="params.orderType == 'desc'">
+                    ORDER BY mr.deleted_at DESC
+                </if>
+                <if test="params.orderType != 'desc'">
+                    ORDER BY mr.deleted_at ASC
+                </if>
+            </when>
+
+            <when test="params.orderBy == 'categoryId'">
+                <if test="params.orderType == 'desc'">
+                    ORDER BY mr.categoryid DESC
+                </if>
+                <if test="params.orderType != 'desc'">
+                    ORDER BY mr.categoryid ASC
+                </if>
+            </when>
+
+            <when test="params.orderBy == 'categoryName'">
+                <if test="params.orderType == 'desc'">
+                    ORDER BY mc.category_name DESC
+                </if>
+                <if test="params.orderType != 'desc'">
+                    ORDER BY mc.category_name ASC
+                </if>
+            </when>
+
+            <otherwise> <!-- Default sorting -->
+
+                <if test="params.orderType == 'desc'">
+
+                    ORDER BY mr.upload_time DESC
+
+                </if>
+
+                <if test="params.orderType != 'desc'">
+
+                    ORDER BY mr.upload_time ASC
+
+                </if>
+
+            </otherwise>
+
+        </choose>
+
+    </select>
+
+
+
+</mapper> 

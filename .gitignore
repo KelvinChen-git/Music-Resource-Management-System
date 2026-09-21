@@ -1,0 +1,19 @@
+# Frontend dependencies and local configuration
+web/node_modules/
+web/dist/
+web/.env
+web/.env.*
+!web/.env.example
+
+# Backend build output and local configuration
+music/target/
+music/src/main/resources/application.yml
+
+# IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Logs
+*.log
