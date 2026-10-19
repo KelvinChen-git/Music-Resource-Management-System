@@ -1,329 +1,158 @@
 # Music Resource Management System
 
-A full-stack web application for uploading, organizing, discovering, reviewing, playing, and downloading music resources.
+现有 Java / Vue 音乐资源管理应用，正在规划增量升级为 **Music Discovery Platform：多模态音乐检索与片段定位**。
 
-The system provides separate workflows for regular users and administrators, combining resource management, multi-criteria search, role-based access control, approval management, and user interaction features in a unified platform.
+**当前只有管理系统代码；CLAP、片段向量索引、Python 检索模块和检索质量结果尚未实现。** 文档区分源码现状、建议契约和未来目标，避免将规划当作交付。
 
-## Overview
+## 新协作者入口
 
-Managing a growing music collection involves more than storing audio files. Users need to organize resources with categories and tags, locate music through flexible search criteria, track their interactions, and control how files are shared.
+先读 [AGENTS.md](AGENTS.md)，再读 [项目路线](docs/PROJECT.md)、[接口与数据契约](docs/CONTRACTS.md)、[任务状态与交接](docs/STATUS.md)。源码核对基线：`b81f57c79e1cefb96c2055df4ae438aa24fb475c`（2026-10-19）。后续会话以实际 HEAD 和 STATUS 为准。
 
-This project addresses those requirements through a Vue-based frontend, a Spring Boot backend, and a MySQL database. It supports the complete resource lifecycle, from uploading an MP3 file and editing its metadata to administrative approval, playback, download, soft deletion, and recovery.
+## 现有源码
 
-The system was developed between **March 2025 and July 2025** as a full-stack software engineering project.
+| 能力 | 代码入口 | 核验范围 |
+|---|---|---|
+| JWT 登录、注册、账户管理 | `music/src/main/java/com/taffy/music/controller/AuthController.java`、`UserController.java` | 静态确认；邮件和数据库流程未联调 |
+| 资源列表、组合筛选、元数据、审核 | `MusicResourceController.java`、`service/impl/MusicResourceServiceImpl.java`、`resources/mapper/MusicResourceMapper.xml`（均在 `music/src/main/` 下） | 静态确认 |
+| 文件 MD5 检查、分片、续传、合并 | `FileUploadController.java`、`web/src/views/UploadView.vue` | 静态确认；不是音频内容去重 |
+| 分类、标签、回收站与清理 | 对应 controller / service、`web/src/views/` | 静态确认 |
+| 音频播放、文件下载、导出 | `MusicResourceController.java`、`web/src/components/PlayerBar.vue` | 静态确认；访问策略存在待核验差异 |
+| Java 测试源码 | `music/src/test/java/` | 已有测试；本次未能执行到测试阶段 |
 
-## Key Features
+不要将原说明中的“评论、点赞、收藏、播放历史服务端持久化”、完整 Swagger 配置或生产部署状态视为当前已验证能力；核对代码后再补充。播放计数不等于播放历史。
 
-### User Authentication
+### 技术与目录
 
-- User registration and login
-- JWT-based authentication
-- Email verification
-- Password modification
-- Role and account-status management
-- Authenticated access to user-specific resources and actions
-
-### Music Resource Management
-
-- Upload MP3 files up to 20 MB
-- Create and edit music metadata
-- Assign categories and tags
-- View resource details
-- Play music through the web interface
-- Download individual approved resources
-- Export selected resources as a ZIP archive with JSON metadata
-- Soft-delete resources
-- Recover deleted resources
-- Permanently delete resources when authorized
-
-### Search and Filtering
-
-The platform supports combined search across several dimensions:
-
-- Keywords
-- Categories
-- Tags
-- Uploaders
-- Upload dates
-- Approval status
-
-The backend builds queries with MyBatis dynamic SQL rather than maintaining separate hard-coded queries for every filter combination.
-
-Search behavior includes:
-
-- Fuzzy matching across supported text fields
-- Combined keyword, category, and tag filtering
-- Tag-intersection queries
-- Uploader and upload-time filters
-- Approval-status filtering
-- Pagination
-- Clear-filter and reset behavior
-- Explicit no-result feedback
-- Locally cached search history
-- Reactive result updates without a full-page reload
-
-The frontend synchronizes filter state with the page URL, allowing search conditions to remain consistent during navigation and page refreshes.
-
-## User Interaction
-
-Registered users can interact with resources through:
-
-- Comments
-- Likes
-- Favorites
-- Playback history
-- Personal upload management
-- Search-history records
-
-These features connect user activity with the corresponding music resource while keeping authentication and resource visibility rules enforced by the backend.
-
-## Administrative Workflow
-
-Administrators can:
-
-- Review submitted music resources
-- Approve or reject uploads
-- View resources from all uploaders
-- Manage users, roles, and account status
-- Access resources in every approval state
-- Restore or permanently remove deleted records
-- Review metadata before a resource becomes downloadable
-
-Uploaded resources move through an approval workflow:
-
-```text
-Upload → Pending Review → Approved / Rejected
-```
-
-The approval state controls which actions are available to regular users.
-
-## Access-Control Rules
-
-| Resource status | Regular user: Play | Regular user: Download | Administrator |
-|---|---:|---:|---:|
-| Approved | Yes | Yes | Full access |
-| Pending | Yes | No | Full access |
-| Rejected | No | No | Full access |
-
-The frontend provides status-specific prompts, while the backend applies the corresponding authorization rules to protected operations.
-
-Frontend restrictions are used for user guidance; access decisions are enforced by backend endpoints.
-
-## System Architecture
-
-```text
-┌─────────────────────────────────────┐
-│        Vue 3 Web Application        │
-│ Composition API · Pinia · Axios     │
-│ Element Plus                        │
-└──────────────────┬──────────────────┘
-                   │ JSON REST API
-                   ▼
-┌─────────────────────────────────────┐
-│       Spring Boot Application       │
-│ Authentication · Business Logic     │
-│ Validation · Resource Management    │
-└──────────────┬───────────┬──────────┘
-               │           │
-               ▼           ▼
-┌────────────────────┐  ┌────────────────────┐
-│       MyBatis      │  │ Local File Storage │
-│ Dynamic SQL        │  │ Audio and Images   │
-└──────────┬─────────┘  └──────────┬─────────┘
-           │                       │
-           ▼                       │
-┌────────────────────┐             │
-│       MySQL        │◄────────────┘
-│ Metadata and State │
-└────────────────────┘
-```
-
-The frontend communicates with the backend through JSON REST interfaces. Music files and images are stored on the server and accessed through backend-managed URLs, while MySQL stores users, metadata, categories, tags, approval states, and interaction records.
-
-## Technology Stack
-
-| Layer | Technologies |
+| 目录 | 用途 |
 |---|---|
-| Frontend | Vue 3, Composition API, Pinia, Axios, Element Plus |
-| Backend | Java 17, Spring Boot, Spring MVC, MyBatis |
-| Database | MySQL |
-| Authentication | JWT, email verification |
-| API documentation | Swagger |
-| Build tool | Maven |
-| File storage | Server-local storage |
-| Deployment environment | Alibaba Cloud ECS |
+| `music/` | Java 17、Spring Boot 3.4.4；MyBatis Plus 3.5.5 与 JPA 并存；MySQL、Druid、Caffeine、JWT、mp3agic |
+| `music/src/main/resources/db/` | 多份历史 SQL；不是已验证的顺序迁移 |
+| `music/src/test/java/` | JUnit / Mockito 等测试 |
+| `web/` | Vue 3、Pinia、Vue Router、Axios、Element Plus、Vite 6；ES modules JavaScript |
+| `docs/` | 目标、契约、协作状态 |
 
-## Backend Design
+尚无 Python 模块、容器编排、检索 CI 或可执行的模型服务命令。后续新增路径需在文档中标明 implemented / proposed。
 
-### REST API
+## 环境准备
 
-The backend exposes JSON REST interfaces for:
+以下为本地开发配置指导，**不代表已通过后端启动验收**。先完成 STATUS 中的 MUS-001，建立可重复的数据库初始化与配置。
 
-- Authentication and account management
-- Music-resource creation, retrieval, update, and deletion
-- Category and tag management
-- Search and pagination
-- File upload, playback, and download
-- Approval-state transitions
-- Comments, likes, favorites, and playback records
-- Administrative user and resource management
+- JDK 17；Maven wrapper 指向 Maven 3.9.9。首次运行需要能访问 Maven Central。
+- MySQL 8；历史 SQL 使用 `utf8mb4_0900_ai_ci`。
+- Node.js 22 LTS 建议作为团队统一版本（待 MUS-001 锁定）；本次前端构建使用 Node 24.19.0、npm 11.9.0，通过现有 lockfile 安装。
+- 邮件功能需要本地 SMTP 接收器或明确授权的 SMTP 测试账户。当前没有随仓库提供邮件测试服务。
+- Python / FFmpeg / GPU 暂非运行现有前端的前提；模型实验环境在 MUS-002 中锁定。
 
-Swagger is used to document endpoints, inspect request and response structures, and manually validate API behavior during development.
+### 前端
 
-### Dynamic Search
-
-Search conditions are translated into MyBatis dynamic SQL based on the filters supplied by the frontend.
-
-For example, a request may combine:
-
-```text
-keyword + category + multiple tags + uploader + date range + approval status
+```bash
+cd web
+npm ci
+npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
 ```
 
-Only applicable SQL clauses are added to the query. This avoids creating a separate endpoint for every possible filter combination and keeps filtering logic centralized in the backend.
+默认开发地址：`http://127.0.0.1:5173`。构建和预览：
 
-Tag filtering uses the many-to-many relationship between music resources and tags. Combined filters preserve pagination and return results satisfying the selected conditions.
+```bash
+npm run build
+npm run preview -- --host 127.0.0.1 --port 4173 --strictPort
+```
 
-### Data Relationships
+预览仅服务静态构建；Vite 开发代理不等于部署反向代理，完整 API 联调仍需单独配置。
 
-The central domain objects include:
+`web/src/utils/request.js` 使用相对 `/api`，`web/vite.config.js` 将 `/api` 原样代理到 `http://localhost:8080`。本地后端应配置 context path `/api`；controller 本身没有再加 `/api`。不要把路径配置成 `/api/api/...`。
 
-- User
-- Music resource
-- Category
-- Tag
-- Comment
-- Like
-- Favorite
-- Playback record
+`web/src/utils/url.js` 还会检查 `VITE_API_BASE_URL`；若头像路径需要它，可在被 ignore 的 `web/.env.local` 写入 `VITE_API_BASE_URL=http://localhost:8080`。它目前不控制 Axios baseURL，也不改变 Vite proxy target。
 
-A music resource belongs to an uploader and can be associated with a category and multiple tags. Interaction records connect authenticated users with individual resources.
+### 后端本地配置
 
-The resource–tag relationship is modeled separately to support many-to-many associations and multi-tag filtering.
+`music/src/main/resources/application.yml` 被根 `.gitignore` 排除，没有提交。可以自行建立该文件，按下列**候选配置**起步；值、schema 兼容性与启动结果由 MUS-001 验证。
 
-### Resource Lifecycle
+```yaml
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/music_dev_a?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      username: ${MUSIC_DB_USER}
+      password: ${MUSIC_DB_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  sql:
+    init:
+      mode: never
+  servlet:
+    multipart:
+      max-file-size: 32MB
+      max-request-size: 40MB
+  mail:
+    host: 127.0.0.1
+    port: 1025
+    username: ${MUSIC_SMTP_USER:}
+    password: ${MUSIC_SMTP_PASSWORD:}
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+jwt:
+  secret: ${MUSIC_JWT_SECRET}
+  expiration: 86400000
+upload:
+  path: ${MUSIC_UPLOAD_PATH}
+  temp-path: ${MUSIC_UPLOAD_TEMP_PATH}
+  allowed-types: mp3,jpg,jpeg,png
+  chunk-size: 5242880
+```
 
-A music resource passes through several stages:
+说明：`DruidConfig` 绑定的是 `spring.datasource.druid`；JWT 使用 HS512，秘密值需至少 64 字节；`jwt.expiration` 单位为毫秒。上传路径必须是可写绝对路径。multipart 示例约束单次 HTTP 请求，不代表整个分片文件最大大小。
 
-1. A user uploads an MP3 file and enters its metadata.
-2. The backend validates the request and stores the file.
-3. Metadata and file-location information are saved in MySQL.
-4. The resource enters the pending state.
-5. An administrator reviews the submission.
-6. The administrator approves or rejects the resource.
-7. Approved resources become available for playback and download.
-8. Deleted resources remain recoverable until permanent deletion.
+启动前在当前 shell 设置上述变量，使用自己的数据库账户和本地目录。可用 `openssl rand -hex 64` 生成本地 JWT secret；不要把真实值提交到 Git 或交接消息。邮件示例需有监听 1025 的本地 SMTP 服务，否则邮件流程不会成功。
 
-Soft deletion separates accidental removal from irreversible deletion and allows authorized users to recover resources.
+### 数据库前提
 
-## Frontend Design
+**不要直接按文件名依次执行 `db/*.sql`。** 静态发现：
 
-The Vue frontend uses the Composition API to organize page-level logic and reusable state.
+- `music_db.sql` 有先向 `recycle_bin_settings` 插入、后建表的顺序问题；该 INSERT 还涉及最终建表中不存在的通知字段。
+- `schema.sql` 中部分外键使用 `users.user_id` / `music_tags.tag_id` 等，与主导实体和 dump 命名不一致。
+- `MusicResources.additionalMetadata` 实体声明 JSON，dump 使用 TEXT；不能依赖自动 DDL 静默修补。
+- 其他 SQL 可能包含重复建表 / 删表 / ALTER；没有 Flyway / Liquibase 迁移链。
 
-Pinia manages shared application state such as:
+MUS-001 必须在新建的隔离开发库上整理并验证初始化入口，禁止对已有数据盲跑这些脚本。本次仅更新文档，没有修改 SQL。
 
-- Authentication status
-- Current user information
-- Search filters
-- Resource lists
-- Pagination
-- Approval state
-- User-facing notifications
+在已有经过验证的开发库、配置和环境变量后，使用：
 
-Axios handles communication with the backend REST API.
+```bash
+cd music
+sh ./mvnw -B -ntp test
+sh ./mvnw spring-boot:run
+```
 
-Search controls update the visible results without reloading the whole page. Filter values are synchronized with the URL so that navigation does not unexpectedly reset the search state.
+wrapper 当前未设 executable bit，因此使用 `sh ./mvnw`；不要写成 `sh mvnw`。Windows 使用 `mvnw.cmd`。
 
-The interface also provides:
+## 检查与已知基线
 
-- Clear-filter actions
-- Empty-result messages
-- Approval-status prompts
-- Upload validation feedback
-- Role-specific actions
-- Playback and download controls
+| 检查 | 当前状态（2026-10-19） |
+|---|---|
+| `npm ci --ignore-scripts --no-audit --no-fund --fetch-retries=0 --fetch-timeout=30000`（`web/`） | 通过；使用现有 package-lock |
+| `npm run build`（`web/`） | 通过；Vite 报告部分 bundle 超过 500kB 的非阻塞警告 |
+| `sh ./mvnw -B -ntp test`（`music/`） | blocked：Maven Central 域名解析失败，未进入编译 / 测试 |
+| 后端启动、数据库、邮件、登录和上传联调 | 未执行；需本地配置与可靠 schema |
+| 新检索功能和效果 | 未实现 / 未测量 |
 
-## File Handling
+默认 Surefire include 为 `**/*ServiceImplTest.java`，会遗漏如 `MusicServiceTest`、`ChunkCacheServiceTest`。需要检查全部 `*Test` 时另执行 `sh ./mvnw -B -ntp -Dtest='*Test' test` 并记录结果；不把“默认测试通过”解释为全部测试通过。前端暂未定义 `test` / `lint` script。
 
-The system supports MP3 uploads with a maximum file size of 20 MB.
+其他待核验项：上传页实际检查 10GiB，原文档写 20MB，后端限制又依赖本地配置；`/{id}/file` 有 `@Anonymous`，不能从前端禁用按钮推出后端已执行审批限制；标签 XML 当前是任意标签匹配。详情见 CONTRACTS / STATUS。
 
-The backend is responsible for:
+## 两账号协作
 
-- Validating uploaded files
-- Saving audio files and related images
-- Recording their server locations
-- Returning controlled access URLs
-- Streaming files for playback
-- Serving authorized downloads
-- Packaging selected resources into ZIP archives
-- Exporting associated metadata as JSON
+- 两个账号分别授权访问同一仓库，使用独立 clone / worktree；聊天记忆不作为同步渠道。
+- 使用任务分支，推送后通过分支和提交编号交接。工作区有修改时不要直接 pull 或切分支。
+- 当前集成负责人串行维护 STATUS；一个任务一个写入方；共享 API / schema / lockfile 先协调。
+- 同机第二套后端例如 8081、前端 5174、数据库 `music_dev_b`、独立上传目录。当前 Vite target 硬编码 8080，仅改后端端口不够；需在后续配置任务中参数化，或使用不同设备 / 隔离环境。
+- 新索引按环境和版本分目录。生成媒体 / 权重 / 索引前先补齐 ignore 规则。
 
-File operations are connected to database records so that metadata and stored resources remain associated throughout approval, deletion, and recovery workflows.
-
-## API Validation
-
-REST interfaces were documented and manually validated with Swagger.
-
-Validation focused on representative workflows such as:
-
-- Successful and failed authentication
-- Resource creation and metadata updates
-- Combined search filters
-- Pagination
-- Approval-state transitions
-- Role-specific playback and download behavior
-- Soft deletion and recovery
-- Invalid or unauthorized requests
-
-Swagger-based validation verifies endpoint behavior interactively. It should not be interpreted as automated unit or integration test coverage.
-
-## My Contribution
-
-I independently developed the application end to end, including:
-
-- Designing the MySQL data model
-- Implementing the Spring Boot and MyBatis backend
-- Building JSON REST interfaces
-- Implementing JWT authentication and account workflows
-- Developing the Vue 3 and Pinia frontend
-- Building multi-criteria search with MyBatis dynamic SQL
-- Synchronizing frontend filter state with the URL
-- Implementing resource upload, playback, and download
-- Implementing category and tag management
-- Implementing the administrative approval workflow
-- Adding comments, likes, favorites, and playback records
-- Documenting and manually validating APIs with Swagger
-- Deploying the application environment on Alibaba Cloud ECS
-
-## Engineering Challenges
-
-### Supporting flexible combined search
-
-Users may provide only one filter or combine several filters in the same request. Dynamic SQL was used to construct only the necessary query conditions while preserving pagination and consistent results.
-
-### Keeping frontend and backend filter state aligned
-
-Search conditions can become inconsistent when the user navigates between pages or refreshes the browser. The frontend synchronizes reactive filter state with URL parameters and restores the corresponding search state when needed.
-
-### Enforcing approval-dependent actions
-
-Playback and download permissions depend on both the user role and resource status. The system applies these rules in backend operations and mirrors them in the frontend through status-specific controls and messages.
-
-### Managing file and metadata lifecycles
-
-Audio files, images, database metadata, and approval state must remain associated during updates, deletion, and recovery. The resource workflow keeps these elements connected through stored identifiers and backend-managed file URLs.
-
-
-## Possible Future Improvements
-
-- Add automated unit and integration tests
-- Move media files to object storage
-- Add asynchronous media-processing jobs
-- Generate waveform previews and audio metadata automatically
-- Introduce database query and index benchmarks
-- Add structured logging and monitoring
-- Add CI/CD workflows
-- Containerize the frontend, backend, and database
-- Improve accessibility and mobile layouts
-
-These items are future development directions and are not included in the completed feature claims above.
+下一步：在 [STATUS](docs/STATUS.md) 认领 MUS-001，先恢复可重复的旧系统基线，再建立小语料检索闭环。
