@@ -1,0 +1,9 @@
+{
+  "schema": "music-handoff-v1",
+  "account": "a",
+  "published_at": "2026-10-19T21:57:03.357875+00:00",
+  "source_branch": "chore/MUS-008-account-sync",
+  "source_sha": "0ba0a968d135f3199112f2dfa703b70a04d79617",
+  "report_path": "docs/collaboration/account-a/latest.md",
+  "report_sha256": "c37bfd798b4a11ba0a10c11fd6d876407d8dcd47d06938a0dcf9a974257e4f97"
+}
