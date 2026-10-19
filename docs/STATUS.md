@@ -7,7 +7,7 @@
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查：仅 main，`b81f57c79e1cefb96c2055df4ae438aa24fb475c`。当前独立 clone 初始干净，没有继承未提交业务修改。
 - 五份协作文档原先均未发布；已在 `docs/multimodal-collaboration` 应用附件补丁，提交 `8f1fb6b`。逐字节核对与附件相同。原 aa720da 是旧会话提交，不能假设存在于当前 Git 历史。
-- 当前开发分支：`chore/MUS-001-dev-baseline`，基于上述文档分支。最终 SHA 在交接消息给出，后续台账再引用。
+- 当前开发分支：`chore/MUS-001-dev-baseline`，基于上述文档分支。实现提交 `7ab0d39d920a538b28878cf92ecbe90e55994ec3`，本条更新属于后续交接文档提交。
 - GitHub 连接 permissions.push=false；CLI push --dry-run 缺少 HTTPS 凭据（exit 128），没有把任务分支推到远端，未创建 PR、未合并 main。通过 Git bundle / patch 交接也必须由接收者明确导入，不能称 B 已收到。
 
 ## 能力与证据
@@ -35,7 +35,7 @@
 |---|---|---|---|
 | DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用，本地提交 8f1fb6b；远端发布 blocked |
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | 下方确切路径；原生空库、local 启动、全量测试、build、API smoke 已通过；B 审核待交付 |
-| MUS-001-R1 基线与媒体审查 | todo / B（任务已分配，尚未确认接收） | review/MUS-001-B-baseline / 最终交接指定 MUS-001 SHA | 只写 docs/reviews/MUS-001-B.md；读源码和 diff，在自己的 clone / slot B 复核；不改 A 文件或 STATUS |
+| MUS-001-R1 基线与媒体审查 | todo / B（任务已分配，尚未确认接收） | review/MUS-001-B-baseline / 7ab0d39d920a538b28878cf92ecbe90e55994ec3 | 只写 docs/reviews/MUS-001-B.md；读源码和 diff，在自己的 clone / slot B 复核；不改 A 文件或 STATUS |
 | MUS-002 模型 spike / 契约冻结 | todo / A | MUS-001 功能基线后，另建 spike 分支 | services/audio-search/ 与 docs/model-spike.md；准确 checkpoint / 预处理 / 实际输出 / 依赖锁；素材和效果未验证前不冻结 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
 | MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |

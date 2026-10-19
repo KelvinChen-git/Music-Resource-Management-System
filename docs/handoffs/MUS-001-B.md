@@ -6,7 +6,7 @@
 
 - task_id：MUS-001-R1；owner：账号 B；集成负责人 / STATUS 写入方：账号 A。
 - branch：`review/MUS-001-B-baseline`，必须在 B 的独立 clone 中创建。
-- base_sha：使用最终交接消息提供的 MUS-001 交付 SHA；审核前 `git rev-parse HEAD` 与其逐字核对。远端 main 仍是 b81f57c，不含本次修改。
+- base_sha：`7ab0d39d920a538b28878cf92ecbe90e55994ec3`；这是已完成验证的 MUS-001 实现提交，审核前 `git rev-parse HEAD` 与其逐字核对。远端 main 仍是 b81f57c，不含本次修改。
 - depends_on：DOC-001 已应用；MUS-001 实现和验证文件已交付；无需等待模型 spike。
 - allowed_paths：**仅 `docs/reviews/MUS-001-B.md`**。可读所有源代码 / A diff；不得修改 STATUS、共享契约、SQL、Java / Vue 实现、配置、pom 或 lockfile。
 - runtime：自己的 slot B、独立数据库端口 3308 / schema music_dev_b、Java 8081、Vite 5174、独立上传 / 索引。不要连接 A 的 3307、目录或数据库。若工具不足，写 blocked 与原始错误，不编造通过。
@@ -22,15 +22,15 @@ cd Music-B
 git remote set-url origin https://github.com/KelvinChen-git/Music-Resource-Management-System.git
 git status --short --branch
 git rev-parse HEAD
-# 与最终交接中的准确 SHA 相符后：
-git switch -c review/MUS-001-B-baseline
+# 任务文档可能有后续提交，审核源码固定为以下 SHA：
+git switch -c review/MUS-001-B-baseline 7ab0d39d920a538b28878cf92ecbe90e55994ec3
 ```
 
 已有 clone：先检查干净工作区，再从 bundle fetch 到新的 account-a 跟踪 ref；不 reset / clean / stash，不覆盖已存在分支。
 
 ```bash
 git fetch /absolute/path/music-account-a.bundle refs/heads/chore/MUS-001-dev-baseline:refs/remotes/account-a/MUS-001
-git switch -c review/MUS-001-B-baseline refs/remotes/account-a/MUS-001
+git switch -c review/MUS-001-B-baseline 7ab0d39d920a538b28878cf92ecbe90e55994ec3
 ```
 
 依序读 AGENTS → README → PROJECT → CONTRACTS → STATUS，再读 development.md 和 verification/MUS-001.md。
