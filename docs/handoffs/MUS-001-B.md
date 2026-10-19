@@ -7,14 +7,16 @@
 - task_id：MUS-001-R1；owner：账号 B；集成负责人 / STATUS 写入方：账号 A。
 - branch：`review/MUS-001-B-baseline`，必须在 B 的独立 clone 中创建。
 - base_sha：`7ab0d39d920a538b28878cf92ecbe90e55994ec3`；这是已完成验证的 MUS-001 实现提交，审核前 `git rev-parse HEAD` 与其逐字核对。远端 main 仍是 b81f57c，不含本次修改。
-- depends_on：DOC-001 已应用；MUS-001 实现和验证文件已交付；无需等待模型 spike。
-- allowed_paths：**仅 `docs/reviews/MUS-001-B.md`**。可读所有源代码 / A diff；不得修改 STATUS、共享契约、SQL、Java / Vue 实现、配置、pom 或 lockfile。
+- depends_on：DOC-001 已本地应用；MUS-001 实现和验证文件已由 A 保存，B 获取准确交付后执行；无需等待模型 spike。
+- allowed_paths：审核正文仅 `docs/reviews/MUS-001-B.md`；MUS-008 新增交接索引 `docs/collaboration/account-b/latest.md`，由 B 自己创建 / 维护。可读所有源代码 / A diff；不得修改 STATUS、A 的交接、共享契约、SQL、Java / Vue 实现、配置、pom 或 lockfile。
 - runtime：自己的 slot B、独立数据库端口 3308 / schema music_dev_b、Java 8081、Vite 5174、独立上传 / 索引。不要连接 A 的 3307、目录或数据库。若工具不足，写 blocked 与原始错误，不编造通过。
 - next_handoff：报告 commit / 分支、是否推送、复跑证据、严重性和最小建议，交给 A；不要自行合并。
 
 ## 获取交付
 
-当前远端连接无写权限；不能只 clone GitHub main 后开始审查。用户提供的 Git bundle 包含任务分支和基线历史。B 若没有本地仓库，可以从 bundle 克隆：
+MUS-008 已准备固定交接机制，见 [collaboration/README.md](../collaboration/README.md) 与 [BOOTSTRAP_B.md](../collaboration/BOOTSTRAP_B.md)。首次远端发布成功后，B 从 `collab/account-a` 的 handoff.json 获取当前任务分支 / SHA；不再依赖用户逐次搬运文件。原子发布会让本任务准确基线的源码对象也可获取。MUS-001-R1 仍审核上述 7ab0d39，不能把用户导入的 b81f57c 首轮报告当成 R1 完成。
+
+当前远端连接无写权限，固定 feed 尚未发布；不能只 clone GitHub main 后开始审查。以下 bundle 路线仅作启用之前的备用交接。用户提供的 Git bundle 包含任务分支和基线历史。B 若没有本地仓库，可以从 bundle 克隆：
 
 ```bash
 git clone --branch chore/MUS-001-dev-baseline /absolute/path/music-account-a.bundle Music-B
@@ -51,11 +53,12 @@ git switch -c review/MUS-001-B-baseline 7ab0d39d920a538b28878cf92ecbe90e55994ec3
 任务 / owner：MUS-001-R1 / B
 分支 / base SHA / 报告 SHA：
 推送状态（已推送 / 本地已提交 / 失败）：
-只修改的文件：docs/reviews/MUS-001-B.md
+只修改的文件：docs/reviews/MUS-001-B.md，docs/collaboration/account-b/latest.md
+ack_peer_feed_sha（已读 A feed SHA；没有则明确 none）：
 执行命令、退出码、测试数量：
 发现（severity / 证据 / 最小修改边界）：
 未验证 / blocked：
 建议后续任务 / 是否释放文件占用：
 ```
 
-没有向另一账号的自动消息通道；由用户传递本任务和 bundle。B 推送失败时同样导出可导入提交，不声称 A 已收到。
+固定 feed 启用后，B 提交后执行 `python3 scripts/collab.py publish --account b`（旧审核基线用本机提取的脚本），A 下一次 sync 获取；不用假设聊天记录互通或账号常驻运行。启用前 / 推送失败时导出可导入提交作为备用，不声称 A 已收到。

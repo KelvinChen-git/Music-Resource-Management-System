@@ -7,8 +7,9 @@
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查：仅 main，`b81f57c79e1cefb96c2055df4ae438aa24fb475c`。当前独立 clone 初始干净，没有继承未提交业务修改。
 - 五份协作文档原先均未发布；已在 `docs/multimodal-collaboration` 应用附件补丁，提交 `8f1fb6b`。逐字节核对与附件相同。原 aa720da 是旧会话提交，不能假设存在于当前 Git 历史。
-- MUS-001 交付分支：`chore/MUS-001-dev-baseline`（HEAD 1b1faa1），基于上述文档分支。当前 A 工作分支为 `spike/MUS-002-clap-feasibility`，其基线为 1b1faa1。实现提交 `7ab0d39d920a538b28878cf92ecbe90e55994ec3`，本条更新属于后续交接文档提交。
+- MUS-001 交付分支：`chore/MUS-001-dev-baseline`（HEAD 1b1faa1），基于上述文档分支；实现提交 `7ab0d39d920a538b28878cf92ecbe90e55994ec3`。MUS-002 检查点分支为 `spike/MUS-002-clap-feasibility`，基线 1b1faa1，HEAD 6e4140b。本轮 A 当前工作分支为下条 MUS-008，未改动 MUS-002 分支。
 - GitHub 连接 permissions.push=false；CLI push --dry-run 缺少 HTTPS 凭据（exit 128），没有把任务分支推到远端，未创建 PR、未合并 main。通过 Git bundle / patch 交接也必须由接收者明确导入，不能称 B 已收到。
+- MUS-008 工作分支：`chore/MUS-008-account-sync`，base `6e4140bea1a1a6ce728aa224b43cb53d7c31193c`。已接收用户提供的 B 首轮原文，基于 b81f57c，非 MUS-001-R1；[整合说明](collaboration/B-INITIAL-REVIEW.md)。固定 feed 与同步脚本已准备，远端启用 blocked。2026-10-19 本轮再次检查连接 push=false；CLI ls-remote / push --dry-run 现在被 GitHub DNS 阻塞（exit 128），不把旧凭据错误描述为本轮唯一错误。
 
 ## 能力与证据
 
@@ -36,13 +37,14 @@
 |---|---|---|---|
 | DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用，本地提交 8f1fb6b；远端发布 blocked |
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | 下方确切路径；原生空库、local 启动、全量测试、build、API smoke 已通过；B 审核待交付 |
-| MUS-001-R1 基线与媒体审查 | todo / B（任务已分配，尚未确认接收） | review/MUS-001-B-baseline / 7ab0d39d920a538b28878cf92ecbe90e55994ec3 | 只写 docs/reviews/MUS-001-B.md；读源码和 diff，在自己的 clone / slot B 复核；不改 A 文件或 STATUS |
+| MUS-001-R1 基线与媒体审查 | todo / B（任务已分配，尚未确认接收） | review/MUS-001-B-baseline / 7ab0d39d920a538b28878cf92ecbe90e55994ec3 | 审核正文 docs/reviews/MUS-001-B.md；交接索引 docs/collaboration/account-b/latest.md；读源码和 diff，在自己的 clone / slot B 复核；不改 A 文件或 STATUS |
 | MUS-002 模型 spike / 契约冻结 | blocked / A | spike/MUS-002-clap-feasibility / 1b1faa1；已测探针 ab5d6f3 | services/audio-search/ 与 docs/model-spike.md；准确 checkpoint / 预处理 / 实际输出 / 依赖锁；素材和效果未验证前不冻结 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
 | MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |
 | MUS-005 Java 集成与权限 | todo / unassigned | MUS-003 / 004，及媒体权限治理 | 检索 gateway、可见性复核、旧匿名路径治理、片段试听 |
 | MUS-006 评测 | todo / unassigned | MUS-005 | manifest / qrels / dev-test / 基线和原始结果，不预填指标 |
 | MUS-007 恢复 / 扩容 / 演示 | todo / unassigned | MUS-006 | 根据瓶颈推进，不先堆基础设施 |
+| MUS-008 固定交接与同步 | review / A（远端启用 blocked） | chore/MUS-008-account-sync / 6e4140b | scripts/collab.py、scripts/test_collab.py、docs/collaboration/（B latest 除外）、AGENTS / README / STATUS、任务卡 / 本轮验证；双方 clone 的真实 Git 测试通过；首次远端发布及 B 确认未完成 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -50,7 +52,7 @@
 
 扩展到 mapper / 单测的原因是实跑暴露 JSON 返回 null 和三项无效测试前提，详见验证文档。没有更改前端 lockfile 或重写业务服务。B 不在这些路径直接修复；需要扩大范围时先将具体路径交给 A 协调。
 
-B 独占 `docs/reviews/MUS-001-B.md`；A 不创建该报告，以免伪造“已审核”。正式任务见 [handoffs/MUS-001-B.md](handoffs/MUS-001-B.md)。
+B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/latest.md`；A 不创建这两份报告或 B feed。首次报告只导入独立 imports 路径，以免伪造 R1“已审核”。正式任务见 [handoffs/MUS-001-B.md](handoffs/MUS-001-B.md)。
 
 ## 未解决事项
 
@@ -62,13 +64,15 @@ B 独占 `docs/reviews/MUS-001-B.md`；A 不创建该报告，以免伪造“已
 | B-04 | 默认测试遗漏 / 跨版本测试依赖已解决 | 全量 89 tests 通过；不代表全业务 / 全权限覆盖 |
 | B-05 | Druid POM、JSqlParser count 回退、分片重复持久化仍有诊断 | 记录，不扩成全面重构；B 审核影响 |
 | B-06 | 无许可明确的真实音乐 manifest / 查询 / qrels | MUS-002 素材获取与效果评估前提；不能用静音样本替代 |
-| B-07 | 没有 GitHub 写权限 / CLI 凭据 | 本地提交及可导入 bundle；未发给 B、未发布分支 |
+| B-07 | GitHub 连接只读；CLI 先前缺凭据、本轮 DNS 阻塞 | 本地提交及可导入 bundle；未发给 B、未发布分支；需恢复网络与 Git 写入能力 |
 | B-08 | MD5 合并后计算但未校验请求哈希；续传未做进程重启验证 | 后续上传完整性任务，不能宣称全面可靠 |
+| B-09 | B 首轮新增上传无归属、ID / 文件大小窄化、ID3v2 元数据依赖、导出可能仅 20 条、202 envelope 适配等静态发现 | 见 collaboration/B-INITIAL-REVIEW.md；尚未对本轮实现逐项复现，分别纳入 MUS-002/003/005 后续 |
+| B-10 | 两账号尚未采用同一固定远端交接；A 本地提交对 B 不可见 | MUS-008 已准备脚本和规约；先恢复 Git 写权限与网络，A 首次发布，B 一次性配置并主动回执 |
 
 ## 下一检查点与交接
 
-1. A 已提交 MUS-001，导出 bundle；B 获取准确 SHA 后认领审核分支，不把远端 main 当作交付分支。
-2. B 在独立 clone 用 slot B 复跑；写清 passed / failed / blocked 和权限矩阵；只提交自己的报告，不碰 STATUS。
+1. A 已提交 MUS-001 并导出旧检查点 bundle；本轮 MUS-008 将其源码历史纳入固定交接发布。先恢复 Git 网络和写权限，首次 publish 成功后 B 从固定 A feed 获取，不把 main 当交付分支；bundle 只作备用。
+2. B 获取准确 SHA 并主动确认后，在独立 clone 用 slot B 复跑；写清 passed / failed / blocked 和权限矩阵，只提交自己的审核报告与交接索引，不碰 STATUS。A 下一次 sync 检查 B 回执。
 3. A 已完成 MUS-002 离线编码可行性实跑，独立 spike 分支和占用已建立；共享 API / schema 仍须冻结后才让 MUS-003 / 004 并行。
 4. 外部公开检索之前解决媒体绕过；最终合并由用户决定，不直接 push main 或 force push。
 

@@ -11,6 +11,8 @@
 4. `docs/CONTRACTS.md`：现有行为与待实现契约。
 5. `docs/STATUS.md`：任务、占用范围和交接。
 
+固定跨账号入口见 `docs/collaboration/README.md`。远端启用后，读取本地旧台账之前先执行 `python3 scripts/collab.py sync --account a`（B 用 b），或通过 GitHub 读取 `collab/account-a` / `collab/account-b` 分支根目录的 `handoff.json` 与 `latest.md`。按 A feed 的 source_sha 阅读当前台账，不默认 main 或自己的旧 clone 已包含最新状态。旧审核基线缺脚本时按 `docs/collaboration/BOOTSTRAP_B.md` 提取本机副本。
+
 只将有实现证据的功能标为 implemented，有运行证据的检查标为 passed。目标简历中的完成时态、2,000 首、约 70,000 片段、120 条评估查询、300ms P95 或 10% 提升均不是已测成果。
 
 ## 每次开始
@@ -26,6 +28,8 @@
 - 每个账号使用独立 clone 或 worktree；不能同时写同一工作目录。
 - 每个任务明确 owner、允许修改的路径、输入输出和验收条件；同一文件默认仅一个写入方。
 - `docs/STATUS.md` 是唯一任务状态台账；由当前集成负责人串行更新。另一账号先在自己的交接消息中报告状态，由负责人整合，不创建竞争性的“最新进度”。
+- 每次开始及任务检查点同步固定 feed；网络 / 权限失败要明确写 blocked，只继续不依赖新状态的工作。缓存只有上次的时间证据，不能当最新同步；`not_published` 不代表任务已接收。
+- 双方分别维护 `docs/collaboration/account-a/latest.md` / `account-b/latest.md`，只在自己的 feed 写入；读到对方报告后记录 `ack_peer_feed_sha`。历史报告导入与本人主动发布区分，不能冒充对方确认。
 - 公共 API、数据库迁移、依赖锁文件、启动配置和模型版本由集成负责人协调。修改前先更新对应契约并通知依赖任务。
 - 角色移交必须写入台账；记录占用不构成自动文件锁。任务停滞时先确认再接管，不按时间推测另一方已停止。
 - 禁止 force push、擅自合并或删除其他任务分支。默认交付为可审核提交 / PR；由用户决定最终合并。
@@ -65,5 +69,6 @@
 4. 将分支、提交、测试证据和接口变更交给集成负责人；由其更新 STATUS。
 5. 审核针对具体提交。合并后运行受影响的集成检查，避免两边重复完整审计。
 6. 自身 commit SHA 无法提前写进同一次提交：台账记录源码基线和任务状态，交接消息附最终 SHA；后续台账再引用它。
+7. 更新自己的 latest.md 并提交本任务明确文件后，执行 `python3 scripts/collab.py publish --account a`（B 用 b）。它将源码任务分支和自身交接原子推送；失败不得声称已交付。远端发布不等于接收或合并，等待对方 feed 的确认。该约定只在会话运行时执行，不是后台常驻代理。
 
 提交信息用 `docs:`、`feat:`、`fix:`、`test:` 等简短前缀。PR 描述写具体问题、结果和验证，不贴整段聊天。
