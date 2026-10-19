@@ -1,0 +1,33 @@
+{
+  "slot": "b",
+  "base_url": "http://127.0.0.1:5174/api",
+  "completed_at_unix": 1792451975,
+  "functional_checks": [
+    "anonymous profile requires login",
+    "register, login, JWT profile",
+    "new upload reports both missing chunks",
+    "partial upload is resumable with original file ID",
+    "merged upload is reusable by MD5",
+    "MP3 parser reads synthetic ID3 title",
+    "metadata, category and tag filter returns new track",
+    "MP3 duration and sample rate retained",
+    "media response matches merged bytes",
+    "media seek uses actual 206 Range response",
+    "soft delete removes track from normal list",
+    "recycle bin contains deleted track",
+    "recycle restore returns track to list"
+  ],
+  "track_id": "2",
+  "file_id": "2",
+  "synthetic_audio_sha256": "061a4a8b7cc63d52844c59c43c41b34f9144ec674f7431baabdf443fc557eb83",
+  "legacy_exposure_http_status": {
+    "pending_media_anonymous": 200,
+    "static_upload_anonymous": 200,
+    "deleted_media_anonymous": 200
+  },
+  "limits": [
+    "Synthetic fixture, no search quality or perceptual audio assessment.",
+    "Resume request only; restart recovery is not exercised.",
+    "Fixtures remain in this isolated slot. No external email is sent."
+  ]
+}

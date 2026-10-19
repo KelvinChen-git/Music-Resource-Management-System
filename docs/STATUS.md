@@ -7,7 +7,7 @@
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
 - 五份协作文档原先均未发布；已在 `docs/multimodal-collaboration` 应用附件补丁，提交 `8f1fb6b`。逐字节核对与附件相同。原 aa720da 是旧会话提交，不能假设存在于当前 Git 历史。
-- MUS-001 交付分支：`chore/MUS-001-dev-baseline`（HEAD 1b1faa1），基于上述文档分支；实现提交 `7ab0d39d920a538b28878cf92ecbe90e55994ec3`。MUS-002 检查点分支为 `spike/MUS-002-clap-feasibility`，基线 1b1faa1，HEAD 6e4140b。本轮 A 当前工作分支为下条 MUS-008，未改动 MUS-002 分支。
+- MUS-001 交付分支：`chore/MUS-001-dev-baseline`（HEAD 1b1faa1），基于上述文档分支；实现提交 `7ab0d39d920a538b28878cf92ecbe90e55994ec3`。MUS-002 检查点分支为 `spike/MUS-002-clap-feasibility`，基线 1b1faa1，HEAD 6e4140b。A 当前工作分支为 chore/MUS-010-dual-dev-baseline；未改动 MUS-002 分支。
 - A 当前 GitHub 连接仍 permissions.push=false；受管终端 DNS 仍阻塞。用户已在普通 Mac 终端成功发布 A 源码 / feed；B 已从固定入口读取并主动 ack。B 用可写 GitHub 接口顺序发布其源码 / feed；不能声称双方终端自动发布都通过。本次 A ack 仅本地更新、尚未发布。
 - MUS-008 工作分支：chore/MUS-008-account-sync，base 6e4140b，已发布检查点 0ba0a96。本轮 A 接收 B feed 05d4e9fe7c9528923796ef46508cadb05e94bd1b / source 6e4118cc316e95d2ba0f3c1fc1cf7ae15fecefbc，核验报告哈希、源码副本、审核基线和仅两文件 diff；与此前导入的 b81f57c 首轮报告区分。
 
@@ -17,10 +17,10 @@
 |---|---|---|
 | Java / Vue 旧管理系统 | 源码存在，部分流程实跑通过 | 注册登录、标签分类筛选、上传合并、MP3 元数据、软删除恢复 |
 | 前端依赖 / build | passed | Node 22.23.3 / npm 10.9.9；现有 lockfile；非阻塞 bundle 警告 |
-| Java 单测 | passed（A 历史运行）；B blocked | A 默认及显式 *Test 均 9 类 89 tests，零失败 / 错误 / 跳过；B 两种命令均未进入测试，执行数 0 |
+| Java 单测 | passed（当前本机 A/B 各 107） | 用户普通终端两个独立 checkout 均 10 类 107，0 failures / errors / skipped；B 账号此前独立审核测试仍执行 0，两者区分 |
 | 空开发库 / local 启动 | passed（原生 MySQL） | V001 建立 11 表；重复初始化拒绝；Compose 未执行 |
-| API 直连 / 开发代理流程 | passed | 各 13 项合成样本检查，真实 Range 返回 206 |
-| 两账号环境隔离 | 配置及端口拒绝验证通过 | B 独立复跑 slot B、拒绝覆盖、0700/0600、Vite 代理及 strictPort 通过；B 数据库 / 完整服务未启动 |
+| API 直连 / 开发代理流程 | passed（本机 A/B） | 两个独立 checkout 各直连 13 / 代理 13，真实 Range 206；见 MUS-010 四份原始结果 |
+| 两套本地环境隔离 | 实跑 passed | A 复用已有库，独立 B worktree 新建空库各 11 表；六端口同时监听。此本机代跑不冒充 B 账号独立验收 |
 | 旧媒体权限 | 已确认缺陷 | pending、静态上传及软删除后的匿名媒体均可 HTTP 200 读取 |
 | CLAP 文本 / 音频编码 | 可行性 passed | 固定 checkpoint CPU 严格加载，实际 512 维，合成输入，9 项预处理测试；有网 / 缓存离线复跑通过 |
 | Python 检索 / 索引 / 搜索界面 | 未实现 | 只有离线探针；未冻结 discovery-v0 |
@@ -45,7 +45,8 @@
 | MUS-006 评测 | todo / unassigned | MUS-005 | manifest / qrels / dev-test / 基线和原始结果，不预填指标 |
 | MUS-007 恢复 / 扩容 / 演示 | todo / unassigned | MUS-006 | 根据瓶颈推进，不先堆基础设施 |
 | MUS-008 固定交接与同步 | review / A（共享读取可用；A 自动发布 blocked） | chore/MUS-008-account-sync / 6e4140b | A/B feed 均已发布，B 完成 sync / ack，A 本轮直接读取 B；9 项脚本本地 Git 检查通过。B 接口顺序发布不等同原子脚本通过；A 回执待发布 |
-| MUS-009 上传完整性 | blocked / A（实现与单测完成，DB 补验待运行） | fix/MUS-009-upload-integrity / 83b9402 | 单一同步持久化、事务 / 行锁、分片与整文件校验、幂等重试；107 tests 通过。MySQL signal 11 / 回环 Errno 1 阻塞 SQL / 并发 / 进程重启验收；见 verification/MUS-009.md |
+| MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
+| MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -119,7 +120,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 ## MUS-010 前后端 / 两账号开发基线（本轮占用）
 
-- status blocked（构建通过，服务联通被回环权限阻塞）；owner A；branch `chore/MUS-010-dual-dev-baseline`；base `f15d842344f8df0b251f90d65811206efb589555`。优先跑通数据库、Java、Vue 及直连 / 代理 smoke；暂停新业务扩展。
+- status done（本机两套前后端实跑通过）；owner A；branch `chore/MUS-010-dual-dev-baseline`；base `f15d842344f8df0b251f90d65811206efb589555`。优先跑通数据库、Java、Vue 及直连 / 代理 smoke；暂停新业务扩展。
 - allowed_paths：`scripts/baseline.py`、必要的启动辅助测试、README / development / STATUS / A latest、`docs/verification/MUS-010*`。不改业务实现、schema、依赖锁或 B 报告。
 - 验收：隔离 slot、工具可用、空新库初始化 / 已有库不覆盖、后端与 Vite 启动、直连和代理各 13 检查；A/B 各自独立 clone 或 worktree。A 本机代跑 B slot 不算 B 账号独立确认。
 - 当前受管终端 Python socket bind/connect(127.0.0.1) 均 Errno 1，DNS 亦失败；这是本轮已测阻塞。继续完成无需端口的构建与可复现入口，不重复启动 MySQL 崩溃充当进度。
@@ -128,3 +129,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 本机准备独立 B worktree Music-Dev-B-MUS010，供普通终端代跑 slot B；不更改 B 远端报告，不代表 B 已验收。下一步优先取得两个 checkout 的 result.json；暂停新业务和真实语料扩展。
 
 - MUS-010 启动入口提交 e89b4db4496b13ab28ab6944f1db82c600d80066；已实际创建独立 B worktree，并在该目录全新生成 slot b 配置，B 预检仍明确 Errno 1。publish 实际在 ls-remote exit 128 阻塞，未进入推送；远端无本轮新交付。
+
+### MUS-010 普通终端实跑接收（18:18–18:19 America/Chicago）
+
+- 用户运行后，A 读取原始 result.json、逐字比对四份 smoke 日志并核对 Java 汇总；A@699da38、B worktree@e89b4db 的代码只差三份交接 / 验证文档，业务与启动入口相同。
+- 两边各 Java 107 / build passed、11 表、直连 13 / 代理 13。A 复用已有库，B 全新空库初始化；6 个服务端口仍监听。真实结果及哈希见 verification/MUS-010-live-results.json 和四份 smoke JSON。
+- 本机两套开发基线 done；此前受管进程 Errno 1 保留为历史，不推断受管网络已恢复。普通终端已经能正常运行 MySQL，不再把原生崩溃视作本机整体不可用。
+- B 账号独立审核、MUS-009 故障回滚 / 并发 / 进程重启、公开媒体权限和自动远端发布均未因本轮通过而完成。B npm ci 的 20 个依赖漏洞、既有 JSqlParser 优化警告单列待查，不在本轮自动升级依赖或改业务。

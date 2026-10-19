@@ -1,0 +1,107 @@
+{
+  "task": "MUS-010",
+  "execution_origin": "user ordinary macOS Terminal; A agent read and verified local evidence",
+  "slots": {
+    "a": {
+      "status": "passed",
+      "code_sha": "699da38cc44f9d5ff33f26c21336c5d5368ab250",
+      "database": {
+        "database": "reuse_existing",
+        "tables": 11
+      },
+      "java_tests": 107,
+      "java_failures": 0,
+      "java_errors": 0,
+      "java_skipped": 0,
+      "frontend_build": "passed",
+      "npm_ci": "not repeated; existing installation",
+      "smoke": {
+        "smoke-direct": {
+          "functional_checks": 13,
+          "completed_at": "2026-10-19T23:18:02+00:00",
+          "legacy_exposure_http_status": {
+            "pending_media_anonymous": 200,
+            "static_upload_anonymous": 200,
+            "deleted_media_anonymous": 200
+          }
+        },
+        "smoke-proxy": {
+          "functional_checks": 13,
+          "completed_at": "2026-10-19T23:18:02+00:00",
+          "legacy_exposure_http_status": {
+            "pending_media_anonymous": 200,
+            "static_upload_anonymous": 200,
+            "deleted_media_anonymous": 200
+          }
+        }
+      },
+      "urls": {
+        "frontend": "http://127.0.0.1:5173",
+        "backend": "http://127.0.0.1:8080/api"
+      },
+      "source_result": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Resource-Management-System/.local/a/logs/baseline-20261019-181753-81014/result.json",
+      "result_sha256": "1ae8a60017066619f74c47eb8192c81652dc051542b19a61cdb76036f38f5f53",
+      "logs_sha256": {
+        "java-tests.log": "7fce0cc41ede874645e901beb4efaf20fa4e1312ec597b7481356c018c503140",
+        "frontend-build.log": "d2a3585aa2e0adbeb5fc2d5fe59a4f3a9e0e7e56e402e16136c15a5d8f162d51",
+        "backend.log": "31013626c92ca9329ad39b08cd31319215cb5f487126dfb39a5b44bb4f017ca2",
+        "frontend.log": "7a7d7772c790e8cf37c6ccbf4a0309d71856081f53c8043bbe49f5d02b72bc3b",
+        "mysql.log": "b9b59d4c863dd83b706e09d9df2d0ed5b098c0b83d1934f4ec9a47485a57c0e1"
+      }
+    },
+    "b": {
+      "status": "passed",
+      "code_sha": "e89b4db4496b13ab28ab6944f1db82c600d80066",
+      "database": {
+        "database": "initialize_empty",
+        "tables": 11
+      },
+      "java_tests": 107,
+      "java_failures": 0,
+      "java_errors": 0,
+      "java_skipped": 0,
+      "frontend_build": "passed",
+      "npm_ci": "passed",
+      "smoke": {
+        "smoke-direct": {
+          "functional_checks": 13,
+          "completed_at": "2026-10-19T23:19:35+00:00",
+          "legacy_exposure_http_status": {
+            "pending_media_anonymous": 200,
+            "static_upload_anonymous": 200,
+            "deleted_media_anonymous": 200
+          }
+        },
+        "smoke-proxy": {
+          "functional_checks": 13,
+          "completed_at": "2026-10-19T23:19:35+00:00",
+          "legacy_exposure_http_status": {
+            "pending_media_anonymous": 200,
+            "static_upload_anonymous": 200,
+            "deleted_media_anonymous": 200
+          }
+        }
+      },
+      "urls": {
+        "frontend": "http://127.0.0.1:5174",
+        "backend": "http://127.0.0.1:8081/api"
+      },
+      "source_result": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Dev-B-MUS010/.local/b/logs/baseline-20261019-181920-81342/result.json",
+      "result_sha256": "50d02094203c85c026a1117c0e467721010203c1362043c0a57c00026f53537c",
+      "logs_sha256": {
+        "java-tests.log": "ca4786d9d024e689c09043ea93f6e4aa8ff13b1b33e5e64308f9a9d8c9be6c9c",
+        "frontend-build.log": "57e3405a47ef13b4e8d9ae437b6372526099bbf82c81f0a35e0bca6abefa9928",
+        "backend.log": "d1e187e3aa035d5b2c4d6a059018ed85dfa91a18034d22d07622b7c0646d3344",
+        "frontend.log": "98329803a12008f275aba8dc3900db04394e491a83cc041ef51e329388011dec",
+        "mysql.log": "1136df258b351030275ff994036aa10c18eb9f11a9f6a70ffbf121f1d998ab86"
+      }
+    }
+  },
+  "limits": [
+    "Two local isolated worktrees; not an independent B account review.",
+    "Happy-path database CRUD was exercised; real rollback, concurrent upload, process restart recovery not exercised.",
+    "Legacy anonymous media exposures remain HTTP 200; public discovery remains blocked."
+  ],
+  "evidence_collected_at_utc": "2026-10-19T23:21:56.541872+00:00",
+  "log_hash_note": "Hashes describe collection-time contents; running-service logs may append afterwards."
+}

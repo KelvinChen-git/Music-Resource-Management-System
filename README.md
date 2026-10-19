@@ -26,7 +26,7 @@ JWT 账户、分类标签、筛选、分片上传、元数据、审核、播放�
 
 ## 一次启动并验收前后端
 
-在普通本地终端、自己的独立 checkout 根目录运行 `python3 scripts/baseline.py --slot a --keep-running`；B 在另一 checkout 用 b。原生 MySQL、Java / Vue、两条 smoke 流程和私有结果文件由入口串联。已有库不清空，完整运行结果仍需验收；当前受管终端禁止回环端口，不能宣称已跑通。详见 [MUS-010 验证与启动步骤](docs/verification/MUS-010.md)。
+在普通本地终端、自己的独立 checkout 根目录运行 `python3 scripts/baseline.py --slot a --keep-running`；B 在另一 checkout 用 b。原生 MySQL、Java / Vue、两条 smoke 流程和私有结果文件由入口串联。已有库不清空。用户已在普通 macOS 终端跑通 A/B 两套独立工作目录：各 107 项 Java 测试、前端 build、直连 / 代理各 13 项通过；受管终端自身仍限制回环，不代表限制已解除。详见 [MUS-010 验证与启动步骤](docs/verification/MUS-010.md)。
 
 ## 开发启动
 
