@@ -4,7 +4,8 @@
 - 当前任务：MUS-009 上传完整性；branch `fix/MUS-009-upload-integrity`；base `83b94029412d12b52e3fd1e3a0938357b1bde782`。最终源码 SHA 由发布后的 handoff.json 提供。
 - status：blocked（实现与单测完成，真实数据库 / 进程重启待补验）。尚未完成最终合并。
 - ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；B source 6e4118cc316e95d2ba0f3c1fc1cf7ae15fecefbc、审核基线 7ab0d39。
-- 发布状态：本地检查点；A 上次远端 feed 为 d0a8381 / source 0ba0a96。本次将尝试 publish；在成功前不声称 B 已收到新代码或 ack。
+- 实现提交：949603fe45e3f90637dd7dc2578e41f80945afb5；本次仅本地提交。
+- 发布状态：`python3 scripts/collab.py publish --account a` 实际失败于 git ls-remote（exit 128）；单独确认 `Could not resolve host: github.com`。未进入推送，A 上次远端 feed 仍为 d0a8381 / source 0ba0a96；B 尚未收到本次代码或 ack。网络恢复后在本分支重试同一 publish 命令。
 
 ## 实现与证据
 

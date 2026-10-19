@@ -114,3 +114,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B-05 / B-08 已有最小修复及单测，真实 MySQL SQL / 事务回滚、跨请求并发和后端重启仍未验收，不能将 unresolved 直接标为 done。新两阶段 smoke 脚本已建立，HTTP 功能检查实际执行 0。
 - 当前 JDK / Maven 缓存可离线运行；MySQL 8.0.41 初始化原生 signal 11，HTTP 回环 Errno 1 Operation not permitted。未改已有 schema、未重新初始化库。准确证据 / 命令见 verification/MUS-009.md 与 JSON。
 - 下一步由可运行环境补验并请 B 针对本任务最终提交审核；B 未确认，不自动占用其实现路径。媒体权限 / 缓存仍为 P1，公开 discovery 继续阻断。本任务待推送结果见 A latest；最终合并由用户决定。
+
+- MUS-009 实现已本地提交 `949603fe45e3f90637dd7dc2578e41f80945afb5`。实际 publish 在 ls-remote exit 128 阶段失败；单独确认 github.com DNS 无法解析，未推送任何源码 / feed。本地工作检查点不是 B 已收到；网络恢复后在任务分支重试 publish。
