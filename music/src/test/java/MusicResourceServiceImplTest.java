@@ -1,4 +1,11 @@
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
+import org.apache.ibatis.builder.MapperBuilderAssistant;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.io.TempDir;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.taffy.music.domain.*;
 import com.taffy.music.mapper.MusicResourceMapper;
@@ -60,15 +67,20 @@ class MusicResourceServiceImplTest {
     private final Long testUserId = 100L;
     private static final Logger log = LoggerFactory.getLogger(MusicResourceServiceImplTest.class);
 
+    @TempDir
+    Path tempDirectory;
+
+    @BeforeAll
+    static void initializeMybatisMetadata() {
+        TableInfoHelper.initTableInfo(
+            new MapperBuilderAssistant(new MybatisConfiguration(), ""), MusicResources.class);
+    }
+
     @BeforeEach
     void setUp() {
         // 手动注入 baseMapper
         ReflectionTestUtils.setField(musicService, "baseMapper", musicResourceMapper);
         
-        // 其他初始化...
-        testMusic = new MusicResources();
-        testMusic.setMusicid(1L);
-        testMusic.setCategoryid(1L); // 新增此行
         // 初始化测试音乐资源
         testMusic = new MusicResources();
         testMusic.setMusicid(1L);
@@ -85,7 +97,7 @@ class MusicResourceServiceImplTest {
         testFileUpload.setStatus(1);
 
         // 设置上传路径
-        ReflectionTestUtils.setField(musicService, "uploadPath", "src/test/resources");
+        ReflectionTestUtils.setField(musicService, "uploadPath", tempDirectory.toString());
     }
 
     /* 核心功能测试 */
@@ -187,6 +199,10 @@ void getMusicResourceById_ShouldReturnMusicWithCategory() {
     void moveToRecycleBin_ShouldUpdateDeleteStatus() {
         // Arrange
         when(musicResourceMapper.selectById(1L)).thenReturn(testMusic);
+        RecycleBinSettings settings = new RecycleBinSettings();
+        settings.setDefaultRetentionDays(14);
+        when(recycleBinSettingsService.getSettings()).thenReturn(settings);
+        when(musicResourceMapper.updateById(any(MusicResources.class))).thenReturn(1);
         when(recycleBinService.moveToRecycleBin(any(), anyString())).thenReturn(true);
 
         try (MockedStatic<UserContext> userContext = mockStatic(UserContext.class)) {
@@ -198,6 +214,8 @@ void getMusicResourceById_ShouldReturnMusicWithCategory() {
             // Assert
             assertTrue(result);
             assertTrue(testMusic.getIsDeleted());
+            assertEquals(14, testMusic.getRetentionPeriod());
+            assertEquals(testMusic.getDeletedAt().plusDays(14), testMusic.getPermanentDeleteTime());
         }
     }
 
@@ -258,6 +276,8 @@ void getMusicResourceById_ShouldReturnMusicWithCategory() {
         testMusic.setFilePath("nonexistent.mp3");
         when(musicResourceMapper.selectById(1L)).thenReturn(testMusic);
 
+        when(musicResourceMapper.deleteById(1L)).thenReturn(1);
+
         // Act
         boolean result = musicService.deleteMusicResourceConditionally(1L, "test");
 
@@ -267,70 +287,40 @@ void getMusicResourceById_ShouldReturnMusicWithCategory() {
     }
     @Test
     void parseAndSaveMetadata_ShouldHandleMP3File() throws Exception {
-        // ============== 1. 创建临时MP3文件 ==============
-        File mp3File = File.createTempFile("test", ".mp3");
-        try (FileOutputStream fos = new FileOutputStream(mp3File)) {
-            // 写入有效的MP3帧数据（示例）
-            byte[] mp3Data = new byte[] {
-                // ID3v2 Header (10 bytes)
-                (byte)0x49, (byte)0x44, (byte)0x33, (byte)0x03, (byte)0x00,
-                (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00,
-                // MPEG Audio Frame Header (4 bytes)
-                (byte)0xFF, (byte)0xFB, (byte)0x50, (byte)0x00
-            };
-            fos.write(mp3Data);
-            log.info("创建临时MP3文件: {}", mp3File.getAbsolutePath());
+        // Forty complete MPEG-1 Layer III frames, rather than a truncated header.
+        byte[] frame = new byte[417];
+        frame[0] = (byte) 0xff;
+        frame[1] = (byte) 0xfb;
+        frame[2] = (byte) 0x90;
+        Path mp3 = tempDirectory.resolve("synthetic.mp3");
+        try (var output = Files.newOutputStream(mp3)) {
+            for (int i = 0; i < 40; i++) output.write(frame);
         }
-
-        // ============== 2. 配置服务路径和模拟对象 ==============
-        ReflectionTestUtils.setField(musicService, "uploadPath", mp3File.getParent());
-
-        FileUpload testFileUpload = new FileUpload();
-        testFileUpload.setId(1L);
-        testFileUpload.setFilePath(mp3File.getName());
-        testFileUpload.setFileType("mp3");
-        testFileUpload.setStatus(1);
-        testFileUpload.setFileSize(mp3File.length());
-
-        // ============== 3. 模拟依赖调用 ==============
+        testFileUpload.setFilePath(mp3.getFileName().toString());
+        testFileUpload.setFileSize(Files.size(mp3));
         when(fileUploadService.getById(1L)).thenReturn(testFileUpload);
-        when(fileUploadService.getByFilePath(anyString())).thenReturn(testFileUpload);
-
-        MusicCategory mockCategory = new MusicCategory();
-        mockCategory.setCategoryId(1);
-        mockCategory.setCategoryName("TestCategory");
-        when(musicCategoryService.getById(1)).thenReturn(mockCategory);
-
-        when(musicResourceMapper.insert(any())).thenAnswer(invocation -> {
+        MusicCategory category = new MusicCategory();
+        category.setCategoryId(1);
+        when(musicCategoryService.getById(1)).thenReturn(category);
+        when(musicResourceMapper.insert(any(MusicResources.class))).thenAnswer(invocation -> {
             MusicResources entity = invocation.getArgument(0);
-            entity.setMusicid(999L); // 模拟生成ID
+            entity.setMusicid(999L);
             return 1;
         });
-
-        // ============== 4. 执行测试逻辑 ==============
-        try (MockedStatic<UserContext> userContext = mockStatic(UserContext.class)) {
-            userContext.when(UserContext::getCurrentUserId).thenReturn(1001L);
-            when(userService.isAdmin(1001L)).thenReturn(false);
-
+        try (MockedStatic<UserContext> context = mockStatic(UserContext.class)) {
+            context.when(UserContext::getCurrentUserId).thenReturn(testUserId);
             MusicMetadataVO input = new MusicMetadataVO();
             input.setTitle("Test Title");
             input.setArtist("Test Artist");
             input.setCategoryId(1);
-
             MusicMetadataVO result = musicService.parseAndSaveMetadata(1L, input);
-
-            // ============== 5. 验证结果 ==============
-            assertNotNull(result, "返回的元数据不应为空");
-            assertEquals("Test Title", result.getTitle(), "标题应正确解析");
-            assertEquals("Test Artist", result.getArtist(), "艺术家应正确解析");
-
-            // 验证数据库保存操作
-            verify(musicResourceMapper).insert(any(MusicResources.class));
-        } finally {
-            // ============== 6. 清理临时文件 ==============
-            if (mp3File.exists() && !mp3File.delete()) {
-                log.warn("未能删除临时文件: {}", mp3File.getAbsolutePath());
-            }
+            assertEquals("Test Title", result.getTitle());
+            assertEquals("Test Artist", result.getArtist());
+            ArgumentCaptor<MusicResources> inserted = ArgumentCaptor.forClass(MusicResources.class);
+            verify(musicResourceMapper).insert(inserted.capture());
+            assertEquals(testUserId, inserted.getValue().getUserid());
+            assertEquals("pending", inserted.getValue().getApprovalStatus());
+            assertEquals("synthetic.mp3", inserted.getValue().getFilePath());
         }
     }
 }

@@ -11,12 +11,12 @@ import java.io.Serializable;
 public class MusicResourceTags {
     @Id
     @ManyToOne
-    @JoinColumn(name = "music_id")
+    @JoinColumn(name = "musicid")
     private MusicResources music;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "tag_id")
+    @JoinColumn(name = "tagid")
     private MusicTags tag;
 }
 

@@ -50,8 +50,8 @@
 | 文档 | `git diff --check` | 再核对本地链接、示例字段和 fenced code blocks |
 | 前端依赖 | 在 `web/` 执行 `npm ci` | 使用现有 lockfile；不要无故升级依赖 |
 | 前端构建 | 在 `web/` 执行 `npm run build` | 现无 `test`、`lint`、`typecheck` npm script |
-| Java 默认测试 | 在 `music/` 执行 `sh ./mvnw -B -ntp test` | 默认 Surefire 仅选择 `*ServiceImplTest.java` |
-| Java 全部命名测试 | 在 `music/` 执行 `sh ./mvnw -B -ntp -Dtest='*Test' test` | 范围更广，结果须独立记录；Windows 用 `mvnw.cmd` |
+| Java 默认测试 | 在 `music/` 执行 `sh ./mvnw -B -ntp test` | MUS-001 默认选择全部 `*Test.java`，空选择失败 |
+| Java 全部命名测试 | 在 `music/` 执行 `sh ./mvnw -B -ntp -Dtest='*Test' test` | 用于对照默认选择，结果须独立记录；Windows 用 `mvnw.cmd` |
 
 后端配置和数据库前提见 README。无法下载依赖、缺配置或缺数据库时记录 blocked 及原始错误；不得记为 passed，也不据此认定代码测试失败。文档专用修改不需反复运行全套应用测试。
 

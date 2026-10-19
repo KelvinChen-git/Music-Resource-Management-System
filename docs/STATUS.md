@@ -1,99 +1,74 @@
 # 项目状态与交接
 
-最后更新：2026-10-19（America/Chicago）。当前阶段：**P0 前，协作文件已编写；多模态功能未开发。**
+最后更新：2026-10-19（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
-## 当前源码与交付
+## Git 与交付状态
 
-- 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`
-- 核对基线：`main` 上的 `b81f57c79e1cefb96c2055df4ae438aa24fb475c`。
-- 文档任务分支：`docs/multimodal-collaboration`。
-- 本次范围：AGENTS.md、README.md、PROJECT.md、CONTRACTS.md、STATUS.md 共五份；没有修改业务源码 / SQL / 依赖。
-- 交付状态：本地分支和文档提交；当前连接只读，尚未推送到 GitHub，也未创建 PR。最终提交 SHA 由交接消息 / `git log -1` 给出，不在同一提交中循环引用自身。
-- 当前集成负责人：本轮文档由账号 A（本会话）整理；业务开发尚无人认领。开始下一轮时显式指定负责人并更新本节，A / B 角色可互换。
-- 无正在运行的业务开发任务；未认领不是默认授权两个账号同时写全部模块。
+- 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
+- 最新远端检查：仅 main，`b81f57c79e1cefb96c2055df4ae438aa24fb475c`。当前独立 clone 初始干净，没有继承未提交业务修改。
+- 五份协作文档原先均未发布；已在 `docs/multimodal-collaboration` 应用附件补丁，提交 `8f1fb6b`。逐字节核对与附件相同。原 aa720da 是旧会话提交，不能假设存在于当前 Git 历史。
+- 当前开发分支：`chore/MUS-001-dev-baseline`，基于上述文档分支。最终 SHA 在交接消息给出，后续台账再引用。
+- GitHub 连接 permissions.push=false；CLI push --dry-run 缺少 HTTPS 凭据（exit 128），没有把任务分支推到远端，未创建 PR、未合并 main。通过 Git bundle / patch 交接也必须由接收者明确导入，不能称 B 已收到。
 
-## 能力状态
+## 能力与证据
 
 | 内容 | 状态 | 证据 / 限制 |
 |---|---|---|
-| 旧 Java / Vue 管理系统 | 源码存在 | 静态确认 controller / mapper / Vue 页面；未完整运行 |
-| 文件分片 / 续传、审核、回收站 | 源码存在 | 新路线应复用，不能重复宣称为新增检索能力 |
-| 前端安装和生产构建 | 已通过 | 见下方检查记录 |
-| 后端编译 / 测试 / 启动 | 未验证 | 测试命令被依赖下载阻塞；不能判断测试结果 |
-| CLAP / Python 模块 / 片段索引 | 未实现 | 仅 CONTRACTS 中有建议边界 |
-| 2,000 首 / 70,000 片段 / 120 查询 | 计划 / 算例 | 没有实际导入或标注 |
-| nDCG、P95、吞吐和用户收益 | 未测量 | 不可直接写入已完成项目证据 |
+| Java / Vue 旧管理系统 | 源码存在，部分流程实跑通过 | 注册登录、标签分类筛选、上传合并、MP3 元数据、软删除恢复 |
+| 前端依赖 / build | passed | Node 22.23.3 / npm 10.9.9；现有 lockfile；非阻塞 bundle 警告 |
+| Java 单测 | passed | 默认及显式 *Test 均 9 类 89 tests，零失败 / 错误 / 跳过 |
+| 空开发库 / local 启动 | passed（原生 MySQL） | V001 建立 11 表；重复初始化拒绝；Compose 未执行 |
+| API 直连 / 开发代理流程 | passed | 各 13 项合成样本检查，真实 Range 返回 206 |
+| 两账号环境隔离 | 配置及端口拒绝验证通过 | 独立配置 / 密钥 / 端口 / schema / 路径；未在 B 账号运行 |
+| 旧媒体权限 | 已确认缺陷 | pending、静态上传及软删除后的匿名媒体均可 HTTP 200 读取 |
+| CLAP / Python 检索 / 索引 / 搜索界面 | 未实现 | MUS-002 可以先做离线可行性调查；未冻结 discovery-v0 |
+| 30–50 / 2,000 首，约 70,000 片段，120 查询 | 计划 / 算例 | 未导入或标注；合成 smoke 不是音乐语料 |
+| 质量、P95、并发和提升比例 | unmeasured | 不得写作已完成成果 |
 
-## 基线检查记录
+详细命令与机器生成结果见 [verification/MUS-001.md](verification/MUS-001.md)。旧会话网络阻塞只是历史：本轮 Maven 已能下载和实跑。原始默认 75 tests 有 3 errors；修正 fixture 后才得到全量 89 tests 通过。
 
-环境：Linux、OpenJDK 17.0.20、Node 24.19.0、npm 11.9.0。检查代码基线同上。
+## 任务与占用
 
-| 工作目录 | 命令 | 结果 |
-|---|---|---|
-| `web/` | `npm ci --ignore-scripts --no-audit --no-fund --fetch-retries=0 --fetch-timeout=30000` | exit 0；244 packages；没有升级 lockfile |
-| `web/` | `npm run build` | exit 0；Vite 6.2.4；部分 bundle >500kB 警告，无构建错误 |
-| `music/` | `sh ./mvnw -B -ntp test` | exit 1，环境阻塞：无法解析 repo.maven.apache.org，Spring Boot 3.4.4 parent POM 未下载；未进入编译 / 测试 |
-| 仓库根 | `git diff --check`；五文件本地链接、代码围栏、JSON 示例及源码版本引用检查 | 通过；仅五份 Markdown 文档发生变更 |
+状态仅 todo / in_progress / blocked / review / done。A / B 为当前角色；未最终合并不自动代表所有内容完成。
 
-未执行：MySQL 初始化、后端启动、邮件、登录 / 上传 / 播放联调、全部命名测试、Python / 模型实验。根因不明的后端运行兼容性不能写成已通过。
-
-## 优先阻塞与源码差异
-
-| 编号 | 发现 | 首次处理任务 |
-|---|---|---|
-| B-01 | 没有提交 application.yml 或可重复本地配置；Vite proxy 硬编码 8080 | MUS-001 |
-| B-02 | SQL 多套结构不一致；music_db.sql 的 recycle_bin_settings INSERT 顺序 / 字段问题；schema.sql 的 FK 命名问题；JSON / TEXT 差异 | MUS-001 |
-| B-03 | 匿名文件和静态上传路由与原权限描述不一致；需验证审批 / 删除后访问规则 | MUS-001 → MUS-005 |
-| B-04 | 默认 Surefire 只跑 *ServiceImplTest.java，其他 Test 被遗漏；测试依赖存在跨版本组合，兼容性未运行确认 | MUS-001 |
-| B-05 | README 历史描述的评论 / 点赞 / 收藏等未找到对应服务端实现；Swagger 未发现对应依赖 / 配置；20MB 限制与代码不符 | 已在新 README 更正，后续按需核验 |
-| B-06 | 素材、许可、准确 checkpoint、Python 版本 / 包锁 / 硬件未准备 | MUS-002 |
-| B-07 | 根 ignore 尚未覆盖计划中的模型、音频、Python 缓存与索引目录 | MUS-001，在生成这些数据前解决 |
-
-这些是开发输入，不是本次已修复的问题；不要顺手扩大文档 PR 为全面重构。
-
-## 任务台账
-
-状态只用 todo / in_progress / blocked / review / done。owner 未认领时写 unassigned。完成需要提交和验收证据，不能仅凭任务描述改成 done。
-
-| 任务 | 状态 / owner | 依赖 | 修改边界与验收 |
+| 任务 | 状态 / owner | 分支 / 基线 / 依赖 | 允许修改与验收 |
 |---|---|---|---|
-| DOC-001 协作基础 | review / A（本会话） | 无 | 五份文档；本地差异、路径和示例检查；只读连接导致尚未远端发布 |
-| MUS-001 可重复开发基线 | todo / unassigned | DOC-001 应用后 | 配置样例、参数化 proxy / 端口、隔离 schema 初始化、ignore、测试选择；新库恢复旧流程并记录运行结果。触及 web / music / SQL / lockfile 时先认领具体文件 |
-| MUS-002 模型 spike / 契约冻结 | todo / unassigned | MUS-001 | 建议 services/audio-search/；30–50 首素材清单、准确模型与预处理、维度、依赖锁、CONTRACTS 和 fixtures；先验证模型可用 |
-| MUS-003 切片与索引基线 | todo / unassigned | MUS-002 | Python 处理模块及测试；边界音频、可追溯索引、整曲 / 片段精确查询，不修改 Vue |
-| MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面、API adapter 和片段试听；先用明确标注的 fixtures，不修改后端 schema |
-| MUS-005 Java 集成与可见性 | todo / unassigned | MUS-003、MUS-004 | discovery gateway / 内部调用 / 处理状态；库内参考、临时参考上传、权限与删除校验；单一集成负责人协调 |
-| MUS-006 评测与调优 | todo / unassigned | MUS-005 | 标注清单、qrels、评分脚本、原始结果；dev/test、候选库和版本冻结后比较，不先预填效果 |
-| MUS-007 恢复 / 扩容 / 演示 | todo / unassigned | MUS-006 | 持久任务、并发、索引升级 / 回退、数据扩展和演示；基于瓶颈选择基础设施 |
+| DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用，本地提交 8f1fb6b；远端发布 blocked |
+| MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | 下方确切路径；原生空库、local 启动、全量测试、build、API smoke 已通过；B 审核待交付 |
+| MUS-001-R1 基线与媒体审查 | todo / B（任务已分配，尚未确认接收） | review/MUS-001-B-baseline / 最终交接指定 MUS-001 SHA | 只写 docs/reviews/MUS-001-B.md；读源码和 diff，在自己的 clone / slot B 复核；不改 A 文件或 STATUS |
+| MUS-002 模型 spike / 契约冻结 | todo / A | MUS-001 功能基线后，另建 spike 分支 | services/audio-search/ 与 docs/model-spike.md；准确 checkpoint / 预处理 / 实际输出 / 依赖锁；素材和效果未验证前不冻结 |
+| MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
+| MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |
+| MUS-005 Java 集成与权限 | todo / unassigned | MUS-003 / 004，及媒体权限治理 | 检索 gateway、可见性复核、旧匿名路径治理、片段试听 |
+| MUS-006 评测 | todo / unassigned | MUS-005 | manifest / qrels / dev-test / 基线和原始结果，不预填指标 |
+| MUS-007 恢复 / 扩容 / 演示 | todo / unassigned | MUS-006 | 根据瓶颈推进，不先堆基础设施 |
 
-认领记录的最小内容：`task_id / owner / branch / base_sha / allowed_paths / dependencies / acceptance / next_handoff`。当前 owner 与路径占用由集成负责人串行写入；另一账号先报告拟认领范围，避免同时改这张表。
+### MUS-001 A 路径范围（review 检查点）
 
-## 下一步启动指令
+`AGENTS.md`、`README.md`、`docs/PROJECT.md`、`docs/CONTRACTS.md`、`docs/STATUS.md`、`docs/development.md`、`docs/verification/MUS-001*`、`docs/handoffs/MUS-001-B.md`、`.gitignore`、`.nvmrc`、`compose.dev.yml`、`scripts/dev.py`、`scripts/smoke.py`、`music/pom.xml`、`music/src/main/resources/application-local.yml`、`music/src/main/resources/db/baseline/V001__development.sql`、`music/src/main/java/com/taffy/music/domain/MusicResourceTags.java`、`music/src/main/resources/mapper/MusicResourceMapper.xml`、`music/src/test/java/MusicResourceServiceImplTest.java`、`web/vite.config.js`、`web/.env.example`。
 
-1. 在有写权限的本地 clone 应用文档提交，检查 HEAD；不要假设只读会话已推送。
-2. 让账号 B 阅读 AGENTS → README → PROJECT → CONTRACTS → STATUS，并先复述“当前有什么、下一步做什么、哪些只是目标”。
-3. 指定本轮集成负责人，在任务分支认领 MUS-001。
-4. 先审查并整理隔离数据库初始化和本地配置，不向真实数据库运行历史 dump。锁定一套 Node / Java / MySQL 环境。
-5. 在后端依赖可下载的环境重跑默认及全部命名测试，核对 selected tests；完成旧系统 smoke 后再开始模型开发。
-6. MUS-002 契约冻结前不同时开发两套不同检索 API。冻结后 MUS-003 / 004 才适合并行。
+扩展到 mapper / 单测的原因是实跑暴露 JSON 返回 null 和三项无效测试前提，详见验证文档。没有更改前端 lockfile 或重写业务服务。B 不在这些路径直接修复；需要扩大范围时先将具体路径交给 A 协调。
 
-## 固定交接模板
+B 独占 `docs/reviews/MUS-001-B.md`；A 不创建该报告，以免伪造“已审核”。正式任务见 [handoffs/MUS-001-B.md](handoffs/MUS-001-B.md)。
 
-复制以下结构到任务交接消息；负责人将摘要更新到本文件。
+## 未解决事项
 
-```text
-任务 / owner：
-分支 / 基础 SHA / 交付 SHA：
-代码位置或 PR：
-推送状态（本地已提交 / 已推送 / 失败）：
-修改文件与实际完成内容：
-接口 / schema / 配置变更：
-执行命令、退出状态、关键结果：
-未执行检查及原因：
-未完成内容、临时实现、已知问题：
-数据 / 模型 / 索引版本与工件获取方式：
-下一任务、入口文件、依赖：
-是否释放文件占用 / 接任负责人：
-```
+| 编号 | 当前事实 | 后续 |
+|---|---|---|
+| B-01 | 缺配置 / proxy 硬编码已解决；可重复命令已建立 | B 复跑；Compose 仍未实跑 |
+| B-02 | 空库 V001 已验证；历史 SQL 保留，不可顺序执行 | 既有数据库迁移另立任务；分类 ID Java 类型差异待审 |
+| B-03 | 旧匿名媒体 / 静态路径 / 删除后访问问题已实证 | MUS-001-R1 提出矩阵与最小方案，MUS-005 接入前修复 |
+| B-04 | 默认测试遗漏 / 跨版本测试依赖已解决 | 全量 89 tests 通过；不代表全业务 / 全权限覆盖 |
+| B-05 | Druid POM、JSqlParser count 回退、分片重复持久化仍有诊断 | 记录，不扩成全面重构；B 审核影响 |
+| B-06 | 无许可明确的真实音乐 manifest / 查询 / qrels | MUS-002 素材获取与效果评估前提；不能用静音样本替代 |
+| B-07 | 没有 GitHub 写权限 / CLI 凭据 | 本地提交及可导入 bundle；未发给 B、未发布分支 |
+| B-08 | MD5 合并后计算但未校验请求哈希；续传未做进程重启验证 | 后续上传完整性任务，不能宣称全面可靠 |
 
-账号切换：原账号推送后停在明确检查点；接手者先 fetch，再在干净工作区切到准确分支 / SHA。不要自动覆盖本地改动或以聊天里“最新”代替 Git 版本。合并与冲突解决由当前集成负责人负责，审核对准具体 commit。
+## 下一检查点与交接
+
+1. A 完成 MUS-001 本地提交，导出 bundle；B 获取准确 SHA 后认领审核分支，不把远端 main 当作交付分支。
+2. B 在独立 clone 用 slot B 复跑；写清 passed / failed / blocked 和权限矩阵；只提交自己的报告，不碰 STATUS。
+3. A 可离线调查 MUS-002，进入该任务前另建分支并更新占用；共享 API / schema 仍须冻结后才让 MUS-003 / 004 并行。
+4. 外部公开检索之前解决媒体绕过；最终合并由用户决定，不直接 push main 或 force push。
+
+交接必须写：task / owner、branch / base_sha / delivery_sha、推送状态、修改路径、命令及结果、未执行检查 / 原因、未完成内容、模型 / 数据工件位置与哈希、下一任务、文件占用与负责人。额度不足时先提交并停在明确检查点；本地 commit 不等于另一账号已收到。

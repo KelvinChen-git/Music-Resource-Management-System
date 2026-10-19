@@ -8,7 +8,7 @@
 
 ### A1. 路径、鉴权和返回
 
-前端 Axios baseURL 是 `/api`；开发代理指向 8080、不 rewrite。后端需配置 `server.servlet.context-path=/api` 才能对接现有前端；仓库没有提交 application.yml，不能宣称已有默认后端端口。
+前端 Axios baseURL 是 `/api`；开发代理读取 `VITE_PROXY_TARGET`（默认 `http://127.0.0.1:8080`），不 rewrite。MUS-001 的 `application-local.yml` 在显式启用 local profile 后提供 `/api` 和可配置端口；未启用该 profile 的部署仍需自己的配置。
 
 一般 JSON 返回来自 `common/Result.java`：
 
@@ -42,9 +42,11 @@ Axios 成功拦截器返回整个 envelope，调用方通过 `res.data` 取业�
 
 - 普通列表对非管理员清除 username / email / approvalStatus 筛选；管理员与普通用户的 onlyMine 行为也不同。不能给新搜索机械复用未经测试的可见性条件。
 - XML 的 tagIds 条件使用 `IN`：任意标签匹配，不是所有标签交集。日期 endDate 通过加一天包含完整结束日。
-- 文件接口有 `@Anonymous`；`getMusicResourceById` 未额外判断审核或删除状态，静态 `/uploads/**` 也被排除 JWT。原 README 的完整权限矩阵不能当作已执行保证。
+- 文件接口有 `@Anonymous`；`getMusicResourceById` 未额外判断审核或删除状态，静态 `/uploads/**` 也被排除 JWT。MUS-001 实跑确认 pending 媒体、静态上传和软删除后的媒体均能匿名 HTTP 200 读取；旧文件路由真实 Range 请求返回 206。完整权限矩阵仍未成立。
 - `createMusicUrl` 使用 fetch 获取 Blob、没有自动走 Axios JWT；不能假设统一拦截器会保护这条调用。
 - UploadView 检查 10GiB，分片 5MiB；原 README 写 20MB。服务端总文件限制未锁定，还受本地 multipart 配置影响。
+
+MUS-001 列表查询改为显式 JSON resultMap，API smoke 确认 additionalMetadata 中的 duration / sampleRate 可读。VITE_API_BASE_URL 只作为旧头像 helper 的非空开关；helper 实际仍返回相对 `/api/uploads/...`，它不控制 Axios 或代理。
 
 ### A2. 现有数据
 
@@ -59,6 +61,8 @@ Axios 成功拦截器返回整个 envelope，调用方通过 `res.data` 取业�
 | 上传主键 | file_upload.id | 不是 musicid；metadata 流程产生资源，不能将 fileId 直接当 track_id |
 | 文件分片 | file_chunk，(file_id, chunk_index) 唯一索引 | 文件传输块与用于检索的音频时间片段不同 |
 | 标签 | music_tags + music_resource_tags(musicid, tagid) | 新 tag_match 需显式定义 |
+
+MUS-001 的空库入口是 `db/baseline/V001__development.sql`：11 表，additional_metadata 为 JSON，关联表为 musicid / tagid；audit_logs 按 JPA 采用 audit_id / admin_id / music_id。历史 SQL 不再作为初始化命令；这不是已有数据库的迁移方案。JPA 与 MyBatis 的分类 ID Java 类型仍不同（Integer / Long），未启用 Hibernate 自动 DDL / validate，不能从 smoke 推断所有 JPA 仓储路径均通过。
 
 MD5 当前用于文件传输 / 秒传判断，不能证明音频内容相同，也不能代替新内容版本的 SHA-256。
 

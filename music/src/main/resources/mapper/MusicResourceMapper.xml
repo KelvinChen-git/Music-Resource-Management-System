@@ -6,7 +6,14 @@
 
 
 
-    <select id="selectMusicPageWithComplexFilters" resultType="com.taffy.music.domain.MusicResources" parameterType="map">
+    <resultMap id="MusicResourceWithMetadata" type="com.taffy.music.domain.MusicResources" autoMapping="true">
+        <id property="musicid" column="musicid"/>
+        <result property="additionalMetadata" column="additional_metadata"
+                javaType="java.util.Map"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+    </resultMap>
+
+    <select id="selectMusicPageWithComplexFilters" resultMap="MusicResourceWithMetadata" parameterType="map">
 
         SELECT DISTINCT
 

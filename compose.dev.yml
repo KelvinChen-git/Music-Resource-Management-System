@@ -1,0 +1,20 @@
+# Use a separate Compose project and env file for each clone/slot.
+services:
+  mysql:
+    image: mysql:8.0.41
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MUSIC_DB_ROOT_PASSWORD:?run scripts/dev.py setup}
+      MYSQL_DATABASE: ${MUSIC_DB_NAME:?run scripts/dev.py setup}
+      MYSQL_USER: ${MUSIC_DB_USER:?run scripts/dev.py setup}
+      MYSQL_PASSWORD: ${MUSIC_DB_PASSWORD:?run scripts/dev.py setup}
+    ports:
+      - "127.0.0.1:${MUSIC_DB_PORT:?run scripts/dev.py setup}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql -uroot -Nse "SELECT 1"']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+volumes:
+  mysql-data:
