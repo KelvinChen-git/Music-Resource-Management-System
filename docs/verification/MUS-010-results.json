@@ -41,5 +41,14 @@
     "MUS-010-java-test.log": "a315281a7715fe30125128c6d072259b05b7b8d83d49c4d88e029ff5df6e2214",
     "MUS-010-web-build.log": "089a1eb3bc6c31244c56c0a0e116f5b84b2317b6e6d4719bbc8090c06468ac6b",
     "MUS-010-launcher-tests.log": "e719da4902896cc03990cd98799f1dbcc22f91880afd3ce64549d43f759f0c8a"
-  }
+  },
+  "independent_b_worktree": {
+    "checkout": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Dev-B-MUS010",
+    "code_sha": "e89b4db4496b13ab28ab6944f1db82c600d80066",
+    "preflight_status": "blocked",
+    "preflight_error": "Errno 1 Operation not permitted",
+    "config_generated_separately": true,
+    "is_b_account_independent_review": false
+  },
+  "publication": "blocked: git ls-remote exit 128; previously verified github.com DNS resolution failure"
 }

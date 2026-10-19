@@ -12,7 +12,7 @@
 - Java 显式全部 107 tests、Vue production build、原生基线入口 8 项保护测试通过。前端本轮使用已有 node_modules，未重跑 npm ci；不夸大为独立环境安装通过。
 - 新鲜核对 B feed 仍为 05d4e9f；没有新的 B 确认。A/B slot 的 socket bind / connect 在当前受管进程均 Errno 1，服务联通、数据库与直连 / 代理功能实际执行 0。未重新初始化已有库或反复启动崩溃实例。
 - 新 `scripts/baseline.py --slot a|b --keep-running` 串联原生数据库 / Java / Vue / 两条 smoke；每账号独立 checkout，普通终端执行后结果保存到 `.local/<slot>/logs/baseline-*/result.json`，可直接读文件，无需用户搬运输出。完整运行分支未验收，不以脚本存在代替通过。
-- A 准备本机独立 B worktree Music-Dev-B-MUS010 供代跑，不冒充 B 账号验收。详见 [MUS-010 记录](../../verification/MUS-010.md) 与 [机器汇总](../../verification/MUS-010-results.json)。
+- 已在提交 e89b4db4496b13ab28ab6944f1db82c600d80066 创建本机独立 B worktree Music-Dev-B-MUS010，全新生成 slot b 配置；该目录实际预检仍 Errno 1，供普通终端代跑，不冒充 B 账号验收。本轮 publish 再次在 ls-remote exit 128 阻塞，未进入推送。详见 [MUS-010 记录](../../verification/MUS-010.md) 与 [机器汇总](../../verification/MUS-010-results.json)。
 - 下一步先获得两个独立环境的真实 result.json，再补 MUS-009 真实事务失败 / 并发与后端进程重启；媒体权限仍为 P1。本轮不向 B feed 写入或创建其报告。
 
 ## MUS-009 实现与证据

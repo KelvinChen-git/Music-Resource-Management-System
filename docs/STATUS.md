@@ -126,3 +126,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 - MUS-010 本轮 Java 显式全部测试 107、Vue build、启动入口 8 项保护检查通过；完整入口在 A/B 的 socket 预检 Errno 1 停止。真实数据库 / 直连 / 代理功能执行 0，不能将构建通过当联通通过。详见 verification/MUS-010.md / JSON。
 - 本机准备独立 B worktree Music-Dev-B-MUS010，供普通终端代跑 slot B；不更改 B 远端报告，不代表 B 已验收。下一步优先取得两个 checkout 的 result.json；暂停新业务和真实语料扩展。
+
+- MUS-010 启动入口提交 e89b4db4496b13ab28ab6944f1db82c600d80066；已实际创建独立 B worktree，并在该目录全新生成 slot b 配置，B 预检仍明确 Errno 1。publish 实际在 ls-remote exit 128 阻塞，未进入推送；远端无本轮新交付。
