@@ -152,3 +152,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 当前两个普通终端服务仍是旧版本，未自动关闭。真实 HTTP 矩阵已接入 baseline；同一命令重启后将检查144个真实组合、头像和重绑定，A可直接读取本地结果。
 - 补充发现：file_upload 无 owner，未关联上传首次归属 / 抢先绑定与上传写授权仍需 schema / 迁移任务。本次仅对已有资源引用加防重绑定；不能据三入口修复称整个上传权限已安全，公开 discovery 保持阻断。B-03 / B-09 不直接标 done。
 - 证据见 verification/MUS-011.md / JSON。未修改依赖锁、schema、B 报告、模型 / 语料；后续先补真实媒体矩阵和所有权，再补 MUS-009 失败 / 并发 / 重启。
+
+- MUS-011 实现提交 d29ccbb，已在干净工作区将本机独立 B worktree detach 同步到该提交；两个旧服务尚未重启。publish 实际在 git ls-remote exit 128 阻塞，未进入推送，B 账号远端未收到本轮交付。

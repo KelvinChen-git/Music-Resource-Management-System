@@ -3,6 +3,7 @@
 - account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
 - task MUS-011 媒体授权 / 缓存；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`；status review（实现及本地回归通过，真实服务待重启验收）。
 - ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮 GitHub 新鲜读取未见 B 新 feed。B source 6e4118c，reviewed 7ab0d39；不替 B 写报告或确认。
+- 实现检查点 d29ccbb；本机 B worktree 已同步源码，运行中的旧后端尚未重启。本轮 publish 实际在 git ls-remote exit 128 阻塞，未进入推送。
 - 发布边界：A 先前远端 feed d0a8381 / source 0ba0a96；后续 MUS-009/010 和本任务新结果仅本地，受管终端 DNS / 写连接仍阻塞，不声称 B 已收到。最终 source_sha 以成功 publish 后 handoff.json 为准。
 
 ## 实现与验证
