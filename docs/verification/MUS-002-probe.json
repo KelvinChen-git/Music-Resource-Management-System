@@ -1,0 +1,125 @@
+{
+  "status": "passed_feasibility_only",
+  "code_sha": "ab5d6f3697f37ecfbc96c3aa062a7f2b6702ca6d",
+  "source_hashes": {
+    "probe.py": "90df87c284cd6c44443c87e16aa8ae02b9d04393571e3519cb09588e1f342fed",
+    "preprocess.py": "3027f7c027ee1a79fc9e418e24b37bebfc2c1ca28a62001eb55b738c035c57df"
+  },
+  "sdk_source_hashes": {
+    "hook.py": "a9001b213768528d667589e6dd4d7f92f107943a5e1ce3149ee6de1a520f9c15",
+    "training/data.py": "b958fc34aa9cac44103b663374c3c49aee4580dec8740b9dd1e17054c8c6e5dc",
+    "clap_module/model.py": "1b3639cddc977cf304b9c64e359dacf2dfaab49f91c4209bd9d29f6268222ec4",
+    "clap_module/model_configs/HTSAT-base.json": "ea0f275bdd0b780053b80d0351c01a141a4db69b95498a62e4ec1f16bf75ba6f"
+  },
+  "checkpoint": {
+    "repo": "lukewys/laion_clap",
+    "revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "filename": "music_audioset_epoch_15_esc_90.14.pt",
+    "sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "bytes": 2352471003
+  },
+  "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+  "model": {
+    "audio_architecture": "HTSAT-base",
+    "fusion": false,
+    "config": {
+      "embed_dim": 1024,
+      "audio_cfg": {
+        "audio_length": 1024,
+        "clip_samples": 480000,
+        "mel_bins": 64,
+        "sample_rate": 48000,
+        "window_size": 1024,
+        "hop_size": 480,
+        "fmin": 50,
+        "fmax": 14000,
+        "class_num": 527,
+        "model_type": "HTSAT",
+        "model_name": "base"
+      },
+      "text_cfg": {
+        "context_length": 77,
+        "vocab_size": 49408,
+        "width": 512,
+        "heads": 8,
+        "layers": 12,
+        "model_type": "roberta"
+      },
+      "enable_fusion": false,
+      "fusion_type": "None"
+    },
+    "strict_load_missing": [],
+    "strict_load_unexpected": [],
+    "removed_nonlearned_position_ids": true
+  },
+  "environment": {
+    "python": "3.12.10",
+    "os": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "threads": 2,
+    "packages": {
+      "laion-clap": "1.1.7",
+      "torch": "2.6.0",
+      "torchaudio": "2.6.0",
+      "torchvision": "0.21.0",
+      "transformers": "4.51.3",
+      "numpy": "1.26.4",
+      "librosa": "0.11.0",
+      "soundfile": "0.13.1",
+      "soxr": "1.1.0"
+    }
+  },
+  "preprocessing": {
+    "source": "synthetic stereo sine waves, 44100 Hz",
+    "downmix": "arithmetic mean",
+    "resampler": "soxr_hq",
+    "short_window_padding": "right zeros before SDK",
+    "sdk_quantization": "clip [-1,1], float32 -> int16 -> float32",
+    "windows": [
+      {
+        "real_samples": 192000,
+        "padded_samples": 288000,
+        "sample_rate_hz": 48000
+      },
+      {
+        "real_samples": 480000,
+        "padded_samples": 0,
+        "sample_rate_hz": 48000
+      }
+    ]
+  },
+  "outputs": {
+    "audio_shape": [
+      2,
+      512
+    ],
+    "text_shape": [
+      2,
+      512
+    ],
+    "dtype": "float32",
+    "audio_norms": [
+      1.0,
+      1.0
+    ],
+    "text_norms": [
+      1.0,
+      0.9999999403953552
+    ],
+    "repeat_max_abs_difference": 0.0
+  },
+  "single_run_timings_ms": {
+    "load_with_backbone_cache": 2370.973374985624,
+    "audio_batch_two_first": 172.8570419945754,
+    "text_batch_two": 64.43374999798834,
+    "audio_batch_two_repeat": 135.27987501583993
+  },
+  "peak_rss_platform_units": 2089762816,
+  "limits": [
+    "Synthetic inputs only; no music retrieval accuracy or localization judgment.",
+    "Single process timings are not P95, concurrency, or end-to-end API latency.",
+    "No MP3/FFmpeg decoding test; generated waveform preprocessing only.",
+    "discovery-v0 is not frozen; no index or online service was built."
+  ]
+}

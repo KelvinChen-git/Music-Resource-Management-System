@@ -16,6 +16,7 @@
 | `scripts/dev.py` | 生成独立 slot 配置；拒绝覆盖已有配置；只初始化空开发库 |
 | `scripts/smoke.py` | 合成 MP3 的旧业务 API 流程验证；不是检索评测或听感验证 |
 | `docs/` | 当前事实、建议契约、任务边界与交接证据 |
+| `services/audio-search/` | MUS-002 离线 CLAP 可行性探针，非线上检索服务 |
 
 JWT 账户、分类标签、筛选、分片上传、元数据、审核、播放下载与回收站有源码。MUS-001 实跑覆盖注册登录、标签及分类筛选、部分上传续传请求、合并、MP3 元数据、Range 媒体响应、软删除及恢复。未覆盖全部管理 / 审核 / 邮件分支、浏览器人工试听或重启后的上传恢复。
 
@@ -74,10 +75,13 @@ python3 scripts/smoke.py --slot a --via-proxy
 | 原生 MySQL 空库初始化与 local 启动 | 通过；11 表；非空库重复初始化被拒绝 |
 | 后端直连 / Vite 代理 smoke | 各 13 项功能检查通过；Range 实际返回 206 |
 | 两 slot 配置 / strictPort | 配置分离；B 为 8081 / 5174 / 3308；端口冲突拒绝启动 |
-| Compose、真实邮件、全部浏览器交互、CLAP 与检索质量 | 未验证 |
+| CLAP 文本 / 音频 CPU 编码 | 固定音乐 checkpoint 已通过合成输入可行性检查；实际 512 维；9 项预处理测试通过 |
+| Compose、真实邮件、全部浏览器交互、检索质量 | 未验证 |
 
 默认 Surefire 已从仅 `*ServiceImplTest` 改为全部 `*Test.java`，并要求非空选择。可用 `-Dtest='*Test'` 对照。前端无 `test` / `lint` / `typecheck` script。
 
 原始源码默认测试实跑 75 tests 有 3 errors；修正失效 fixture / mock 后才获得上述结果。旧会话 Maven 网络阻塞不再描述为本轮状态。详情见 [验证记录](docs/verification/MUS-001.md)。
 
 源码仍有非阻塞 Druid 1.2.11 POM / JSqlParser count 优化警告，以及分片重复持久化日志；本轮未扩大为依赖或上传服务全面重构。精确后续任务见 [STATUS](docs/STATUS.md)。
+
+MUS-002 的准确 checkpoint、实际环境与限制见 [model-spike.md](docs/model-spike.md)。真实音乐语料与效果验收仍缺，discovery-v0 尚未冻结。
