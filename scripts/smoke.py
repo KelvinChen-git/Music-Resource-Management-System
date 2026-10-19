@@ -28,6 +28,7 @@ def run(slot, via_proxy):
     base = f'http://127.0.0.1:{port}/api'
     token = None
     checks = []
+    security_checks = []
 
     def request(method, path, body=None, binary=None, headers=None, authenticated=True):
         outgoing = dict(headers or {})
@@ -123,11 +124,18 @@ def run(slot, via_proxy):
                                                    authenticated=False)[0]
     recycle = api('GET', '/recycle-bin/list?' + urlencode({'title': prefix}))
     check('recycle bin contains deleted track', len(recycle['records']) == 1)
+    for name, code in exposure.items():
+        if code != 401:
+            raise RuntimeError(f'Media security regression: {name} returned HTTP {code}')
+        security_checks.append(name + ' requires authentication')
+    if request('GET', f'/music-resources/{track_id}/file')[0] != 404:
+        raise RuntimeError('Deleted media remains accessible to its owner')
+    security_checks.append('deleted media is unavailable to owner')
     api('POST', f'/recycle-bin/{recycle["records"][0]["recycleid"]}/restore')
     restored = api('GET', '/music-resources/list?' + urlencode({'title': prefix}))
     check('recycle restore returns track to list', len(restored['records']) == 1)
     return {'slot': slot, 'base_url': base, 'completed_at_unix': int(time.time()),
-            'functional_checks': checks, 'track_id': str(track_id), 'file_id': str(file_id),
+            'functional_checks': checks, 'security_checks': security_checks, 'track_id': str(track_id), 'file_id': str(file_id),
             'synthetic_audio_sha256': hashlib.sha256(audio).hexdigest(),
             'legacy_exposure_http_status': exposure,
             'limits': ['Synthetic fixture, no search quality or perceptual audio assessment.',

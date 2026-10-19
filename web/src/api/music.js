@@ -1,3 +1,4 @@
+import { fetchMedia } from '@/utils/media'
 import request from '@/utils/request'
 
 // 获取音乐资源列表
@@ -105,26 +106,18 @@ export function approveMusic(id) {
 }
 
 // 下载音乐文件
-export function downloadMusic(id, filename) {
-  return request({
-    url: `/music-resources/${id}/file`,
-    method: 'get',
-    responseType: 'blob'
-  }).then(res => {
-    // 创建下载链接
-    const blob = new Blob([res.data], { type: 'audio/mpeg' })
-    const url = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = filename
-    document.body.appendChild(link)
-    link.click()
-    // 清理
-    window.URL.revokeObjectURL(url)
-    document.body.removeChild(link)
-  }).catch(error => {
-    return Promise.reject(new Error(error.message || '下载音乐失败'))
-  })
+export async function downloadMusic(id, filename) {
+  const response = await fetchMedia(`/api/music-resources/${encodeURIComponent(id)}/file`)
+  const blob = await response.blob()
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  try { link.click() } finally {
+    link.remove()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
 }
 
 // 创建音乐播放URL
@@ -134,7 +127,7 @@ export async function createMusicUrl(id, pay = false) {
     if (pay) {
       url += '?pay=1';
     }
-    const response = await fetch(url, {
+    const response = await fetchMedia(url, {
       headers: {
         'Accept': 'audio/mpeg, audio/*'
       }

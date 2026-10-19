@@ -47,6 +47,7 @@
 | MUS-008 固定交接与同步 | review / A（共享读取可用；A 自动发布 blocked） | chore/MUS-008-account-sync / 6e4140b | A/B feed 均已发布，B 完成 sync / ack，A 本轮直接读取 B；9 项脚本本地 Git 检查通过。B 接口顺序发布不等同原子脚本通过；A 回执待发布 |
 | MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
 | MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
+| MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。普通终端新矩阵、上传持久所有权仍未完 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -136,3 +137,18 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 两边各 Java 107 / build passed、11 表、直连 13 / 代理 13。A 复用已有库，B 全新空库初始化；6 个服务端口仍监听。真实结果及哈希见 verification/MUS-010-live-results.json 和四份 smoke JSON。
 - 本机两套开发基线 done；此前受管进程 Errno 1 保留为历史，不推断受管网络已恢复。普通终端已经能正常运行 MySQL，不再把原生崩溃视作本机整体不可用。
 - B 账号独立审核、MUS-009 故障回滚 / 并发 / 进程重启、公开媒体权限和自动远端发布均未因本轮通过而完成。B npm ci 的 20 个依赖漏洞、既有 JSqlParser 优化警告单列待查，不在本轮自动升级依赖或改业务。
+
+## MUS-011 媒体访问与缓存（本轮占用）
+
+- status review（实现及本地回归通过；真实服务矩阵待重启）；owner A；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`。开始时 GitHub 新鲜读取 B feed 仍为 05d4e9f，无新路径占用。
+- allowed_paths：MusicResourceController / FileUploadController、新静态上传控制器；WebMvcConfig / JwtAuthenticationInterceptor / GlobalExceptionHandler；新 MediaAccessService / MediaResponses、MusicResourceServiceImpl 的既有关联元数据重绑定检查及测试；web api/music.js、utils/media.js 及测试、MusicListView / FileListView；scripts/smoke.py / media_access_smoke.py / baseline.py（增加权限实跑验收步骤）；README / CONTRACTS / STATUS / A latest / verification/MUS-011*。
+- 验收：资源 / 原始下载重新校验当前登录用户、审核与删除状态；静态路径不能提供音乐；成功 / 拒绝 / Range / HEAD 不长期缓存，匿名不能计数；保留合法头像和前端携带 JWT 的播放 / 下载；矩阵与基线回归。策略先记入 CONTRACTS A4。
+- 不改 schema、上传归属、依赖锁、B 报告、MUS-002；既有浏览器已下载字节无法追溯收回，不声称 no-store 可清除旧一年缓存。完整 HTTP 实跑仍需普通终端加载新代码，当前两套旧服务不自动重启。
+
+### MUS-011 检查点
+
+- 已实现 CONTRACTS A4：当前账号与审核 / 删除状态、受控真实路径、no-store、静态仅登记头像、ZIP 与既有元数据重绑定检查；播放 / 下载显式 JWT。
+- 全量 Java 266 / 0 failures / errors / skipped（原107 + HTTP155 + 重绑定4），前端 helper6、build、baseline guards8通过。155中144为MockMvc组合，另含实际WebMvcConfig，不冒充TCP / 真库矩阵。
+- 当前两个普通终端服务仍是旧版本，未自动关闭。真实 HTTP 矩阵已接入 baseline；同一命令重启后将检查144个真实组合、头像和重绑定，A可直接读取本地结果。
+- 补充发现：file_upload 无 owner，未关联上传首次归属 / 抢先绑定与上传写授权仍需 schema / 迁移任务。本次仅对已有资源引用加防重绑定；不能据三入口修复称整个上传权限已安全，公开 discovery 保持阻断。B-03 / B-09 不直接标 done。
+- 证据见 verification/MUS-011.md / JSON。未修改依赖锁、schema、B 报告、模型 / 语料；后续先补真实媒体矩阵和所有权，再补 MUS-009 失败 / 并发 / 重启。

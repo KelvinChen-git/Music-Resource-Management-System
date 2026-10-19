@@ -42,8 +42,8 @@ Axios 成功拦截器返回整个 envelope，调用方通过 `res.data` 取业�
 
 - 普通列表对非管理员清除 username / email / approvalStatus 筛选；管理员与普通用户的 onlyMine 行为也不同。不能给新搜索机械复用未经测试的可见性条件。
 - XML 的 tagIds 条件使用 `IN`：任意标签匹配，不是所有标签交集。日期 endDate 通过加一天包含完整结束日。
-- 文件接口有 `@Anonymous`；`getMusicResourceById` 未额外判断审核或删除状态，静态 `/uploads/**` 也被排除 JWT。MUS-001 实跑确认 pending 媒体、静态上传和软删除后的媒体均能匿名 HTTP 200 读取；旧文件路由真实 Range 请求返回 206。完整权限矩阵仍未成立。
-- `createMusicUrl` 使用 fetch 获取 Blob、没有自动走 Axios JWT；不能假设统一拦截器会保护这条调用。
+- 历史文件接口有 `@Anonymous`、静态 uploads 排除 JWT，MUS-001 / 010 实跑确认匿名 200。MUS-011 已改为 A4 的授权 / 缓存规则，并保留授权后的 Resource Range；当前旧进程须重启才能验证新规则，MockMvc 通过不代替真实数据库 / HTTP 矩阵。
+- MUS-011 的 createMusicUrl / 列表与文件下载通过 fetchMedia 显式携带 JWT 获取 Blob；页面地址导航不作为私有音频下载入口。
 - UploadView 检查 10GiB，分片 5MiB；原 README 写 20MB。服务端总文件限制未锁定，还受本地 multipart 配置影响。
 
 MUS-001 列表查询改为显式 JSON resultMap，API smoke 确认 additionalMetadata 中的 duration / sampleRate 可读。VITE_API_BASE_URL 只作为旧头像 helper 的非空开关；helper 实际仍返回相对 `/api/uploads/...`，它不控制 Axios 或代理。
@@ -75,6 +75,25 @@ MD5 当前用于文件传输 / 秒传判断，不能证明音频内容相同，�
 - 合并只接收完整且连续的成功分片，逐片核验磁盘大小 / MD5，最终核验总大小 / fileMd5，再提交完成路径和 status=1。校验失败保持未完成状态（0），保留分片供重试，不返回可用路径。
 - 临时分片只在完成事务提交后清理；失败目标删除。进程在文件落盘与数据库提交之间崩溃可能留下未引用文件，本轮不提供全面垃圾回收或跨文件系统 / 数据库的原子事务。file/status 的进度来自成功分片记录。
 - 消费方仍为现有 UploadView / smoke；无需新增字段或 schema。媒体可见性和上传归属仍属独立未解决事项。
+
+### A4. MUS-011 媒体授权与缓存
+
+资源 `/music-resources/{id}/file` 与原始 `/file/download/{fileId}` 必须有有效 JWT，且当前数据库账号存在并未锁定。每次 GET / HEAD / Range 读取源记录，权限一致：
+
+| 状态 | 普通其他用户 | 上传者 | 管理员 |
+|---|---|---|---|
+| approved 且未删除 | 允许 | 允许 | 允许 |
+| pending 且未删除 | 404 | 允许预览 | 允许审核预览 |
+| rejected 且未删除 | 404 | 404 | 允许审核预览 |
+| deleted / 不存在 / 未知状态 | 404 | 404 | 404 |
+
+匿名 / 无效 JWT 返回真实 HTTP 401；已锁定账号 403，不可见记录 404。原始上传没有 owner 字段，因此按相同 file_path 关联资源后应用同一策略；没有任何关联的已完成上传仅管理员可下载。有关联但资源已删除不能被当成无关联上传绕过。旧 metadata 解析 / 保存接口在引用已有资源的 file_path 前应用同一规则，防止重新绑定成自己的 pending 资源来绕过。尚未绑定资源的上传没有可靠持久 owner，首次归属 / 竞态仍需后续 schema 任务；本次不据此开放公开服务。
+
+取消 `/uploads/**` 的磁盘静态映射。该路径不再提供任何音乐文件（登录也不绕过）；只保留被 users.avatar 引用、无 music_resources 关联、可识别 JPEG / PNG / GIF 且 <=5MiB 的头像图片，供现有 img 显示。任意路径、未登记图片和指向音乐的 avatar 引用不构成公开文件权限。
+
+成功、401 / 403 / 404、HEAD 和 Range 响应均 `Cache-Control: private, no-store`、Vary Authorization、nosniff；不返回旧一年缓存或无条件跨域通配。路径经规范化与真实路径校验，不允许绝对路径、.. 或越出 upload 根目录的符号链接。播放计数在授权和物理文件检查之后，HEAD / Range 不计数。ZIP 音乐导出逐条应用同一可见性与受控路径校验，不能成为拒绝审核 / 删除的替代下载。
+
+Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没有令牌不发媒体请求。媒体下载直接按 fetch 返回的 Blob 处理，避免把 Blob 当作 res.data。接口 URL 和 JWT 不进入 query 参数。已下载或旧缓存的副本不能由本次响应头撤销。
 
 ## B. 建议的公开 discovery-v0 契约（尚未实现）
 

@@ -1,7 +1,8 @@
 package com.taffy.music.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.taffy.music.annotation.Anonymous;
+import com.taffy.music.service.MediaAccessService;
+import com.taffy.music.utils.MediaResponses;
 import com.taffy.music.domain.MusicResources;
 import com.taffy.music.domain.Users;
 import com.taffy.music.service.MusicResourceService;
@@ -52,6 +53,9 @@ public class MusicResourceController {
 
     @Autowired
     private MusicResourceService musicResourceService;
+
+    @Autowired
+    private MediaAccessService mediaAccessService;
 
     @Autowired
     private UserService userService;
@@ -463,54 +467,17 @@ public class MusicResourceController {
      * 获取音乐文件
      */
     @GetMapping("/{id}/file")
-    @Anonymous
-    public ResponseEntity<Resource> getFile(@PathVariable Integer id, @RequestParam(required = false) String fileName, @RequestParam(required = false) String pay) {
-        try {
-            // 播放次数+1
-            if (pay != null && ("1".equals(pay) || "true".equalsIgnoreCase(pay))) {
-                musicResourceService.incrementPlayCount(id.longValue());
-            }
-            MusicResources music = musicResourceService.getMusicResourceById(id);
-            if (music == null) {
-                return ResponseEntity.notFound().build();
-            }
-
-            // 构建文件路径
-            String filePath = uploadPath + File.separator + music.getFilePath();
-            File file = new File(filePath);
-            if (!file.exists()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            // 创建文件资源
-            Resource resource = new FileSystemResource(file);
-            
-            // 如果没有提供文件名，则使用音乐标题
-            if (fileName == null || fileName.trim().isEmpty()) {
-                fileName = music.getTitle() + "." + music.getFormat();
-            }
-            
-            // URL编码文件名
-            String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8)
-                    .replace("+", "%20");
-
-            // 设置响应头
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType("audio/mpeg"))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename*=UTF-8''" + encodedFileName)
-                    .header(HttpHeaders.ACCEPT_RANGES, "bytes")
-                    .header(HttpHeaders.CACHE_CONTROL, "max-age=31536000")
-                    .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*")
-                    .header(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET, HEAD")
-                    .header(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "*")
-                    .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*")
-                    .body(resource);
-        } catch (Exception e) {
-            log.error("获取音乐文件失败", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ResponseEntity<Resource> getFile(@PathVariable Long id, @RequestParam(required = false) String fileName,
+            @RequestParam(required = false) String pay, jakarta.servlet.http.HttpServletRequest request) {
+        MusicResources music = mediaAccessService.requireMusic(id);
+        java.nio.file.Path path = mediaAccessService.requirePath(music.getFilePath());
+        if (!"HEAD".equalsIgnoreCase(request.getMethod()) && request.getHeader("Range") == null && ("1".equals(pay) || "true".equalsIgnoreCase(pay))) {
+            musicResourceService.incrementPlayCount(id);
         }
+        if (fileName == null || fileName.isBlank()) fileName = music.getTitle() + "." + music.getFormat();
+        return MediaResponses.file(path, fileName, MediaType.parseMediaType("audio/mpeg"), true);
     }
-    
+
     /**
      * 将 MusicResources 对象转换为包含上传用户信息的 MusicResourceVO 对象
      */
@@ -717,6 +684,7 @@ public class MusicResourceController {
     @GetMapping("/export-music-files")
     public ResponseEntity<Resource> exportMusicFiles() {
         try {
+            mediaAccessService.requireViewer();
             // 获取当前用户ID
             Long currentUserId = UserContext.getCurrentUserId();
             if (currentUserId == null) {
@@ -754,8 +722,11 @@ public class MusicResourceController {
                 // 遍历所有音乐资源，添加到ZIP中
                 for (MusicResources music : musicList) {
                     // 获取文件路径
-                    String filePath = uploadPath + File.separator + music.getFilePath();
-                    File musicFile = new File(filePath);
+                    MusicResources current = musicResourceService.getById(music.getMusicid());
+                    if (!MediaAccessService.canRead(current, mediaAccessService.requireViewer())) continue;
+                    music = current;
+                    String filePath = music.getFilePath();
+                    File musicFile = mediaAccessService.requirePath(filePath).toFile();
 
                     if (musicFile.exists() && musicFile.isFile()) { // 确保文件存在且是文件
                         // 设置ZIP条目名称 (使用文件名而不是标题+格式，避免特殊字符问题)
@@ -828,12 +799,14 @@ public class MusicResourceController {
                  }
             }
 
+        } catch (org.springframework.web.server.ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("导出音乐文件失败", e);
              // 返回更具体的错误信息给客户端
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("success", false);
-            errorResponse.put("message", "导出音乐文件时发生内部错误: " + e.getMessage());
+            errorResponse.put("message", "导出音乐文件时发生内部错误");
              try {
                  byte[] errorData = objectMapper.writeValueAsBytes(errorResponse);
                  HttpHeaders errorHeaders = new HttpHeaders();

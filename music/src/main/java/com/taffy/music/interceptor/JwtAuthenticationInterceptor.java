@@ -18,6 +18,14 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        UserContext.clear();
+        String path = request.getRequestURI().substring(request.getContextPath().length());
+        if (path.equals("/uploads") || path.startsWith("/uploads/") || path.startsWith("/file/download/")
+                || path.matches("/music-resources/[^/]+/file") || path.equals("/music-resources/export-music-files")) {
+            response.setHeader("Cache-Control", "private, no-store");
+            response.setHeader("Vary", "Authorization");
+            response.setHeader("X-Content-Type-Options", "nosniff");
+        }
         // 检查是否有Anonymous注解
         if (hasAnonymousAnnotation(handler)) {
             // 匿名访问接口，允许通过但尝试提取token

@@ -276,6 +276,7 @@
 </template>
 
 <script setup>
+import { fetchMedia } from '@/utils/media'
 import { ref, onMounted, onUnmounted, reactive } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getFileList, deleteFile, getUploadStatus, parseAndSaveMetadata } from '@/api/file'
@@ -453,7 +454,7 @@ const downloadFile = async (row) => {
     const signal = downloadAbortController.value.signal
     
     // 创建请求
-    const res = await fetch(`/api/file/download/${row.id}`, {
+    const res = await fetchMedia(`/api/file/download/${row.id}`, {
       method: 'GET',
       signal
     })

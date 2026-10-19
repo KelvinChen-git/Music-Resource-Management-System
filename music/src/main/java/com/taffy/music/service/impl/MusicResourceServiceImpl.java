@@ -307,6 +307,17 @@ public class MusicResourceServiceImpl extends ServiceImpl<MusicResourceMapper, M
             throw new RuntimeException("仅支持MP3文件格式");
         }
 
+        // Existing protected bytes cannot be made visible by attaching a new pending resource.
+        List<MusicResources> references = list(new LambdaQueryWrapper<MusicResources>()
+                .eq(MusicResources::getFilePath, fileUpload.getFilePath()));
+        if (!references.isEmpty()) {
+            com.taffy.music.domain.Users viewer = userService.getById(UserContext.getCurrentUserId());
+            if (viewer == null || !Boolean.FALSE.equals(viewer.getIsLocked())
+                    || references.stream().noneMatch(record -> com.taffy.music.service.MediaAccessService.canRead(record, viewer))) {
+                throw new RuntimeException("文件不可用");
+            }
+        }
+
         try {
             // 构建完整的文件路径
             String fullPath = uploadPath + File.separator + fileUpload.getFilePath();

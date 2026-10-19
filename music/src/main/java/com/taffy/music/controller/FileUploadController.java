@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.taffy.music.service.UploadIntegrityService;
+import com.taffy.music.service.MediaAccessService;
+import com.taffy.music.utils.MediaResponses;
 import com.taffy.music.service.FileChunkService;
 import com.taffy.music.service.FileUploadService;
 import com.taffy.music.utils.RateLimiter;
@@ -46,6 +48,9 @@ public class FileUploadController {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private MediaAccessService mediaAccessService;
 
     @Autowired
     private FileChunkService fileChunkService;
@@ -329,54 +334,10 @@ public class FileUploadController {
      * 下载文件
      */
     @GetMapping("/download/{fileId}")
-    public void downloadFile(@PathVariable Long fileId, HttpServletResponse response) {
-        try {
-            FileUpload fileUpload = fileUploadService.getById(fileId);
-            if (fileUpload == null) {
-                writeErrorResponse(response, Result.error("文件不存在"));
-                return;
-            }
-
-            if (fileUpload.getStatus() != 1) {
-                writeErrorResponse(response, Result.error("文件未上传完成"));
-                return;
-            }
-
-            String filePath = uploadProperties.getPath() + "/" + fileUpload.getFilePath();
-            File file = new File(filePath);
-            if (!file.exists()) {
-                writeErrorResponse(response, Result.error("文件不存在"));
-                return;
-            }
-
-            // 设置响应头
-            response.setContentType("application/octet-stream");
-            response.setHeader("Content-Disposition", "attachment;filename=" + 
-                java.net.URLEncoder.encode(fileUpload.getFileName(), "UTF-8"));
-            response.setHeader("Content-Length", String.valueOf(file.length()));
-
-            // 使用限速器输出文件
-            RateLimiter limiter = new RateLimiter(uploadProperties.getDownloadRateLimit());
-            try (InputStream input = new java.io.FileInputStream(file);
-                 OutputStream output = response.getOutputStream()) {
-                limiter.copy(input, output, new byte[8192]);
-            }
-        } catch (Exception e) {
-            log.error("文件下载失败", e);
-            writeErrorResponse(response, Result.error("文件下载失败：" + e.getMessage()));
-        }
-    }
-
-    /**
-     * 写入错误响应
-     */
-    private void writeErrorResponse(HttpServletResponse response, Result<?> result) {
-        try {
-            response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(result));
-        } catch (IOException e) {
-            log.error("返回错误信息失败", e);
-        }
+    public org.springframework.http.ResponseEntity<org.springframework.core.io.Resource> downloadFile(@PathVariable Long fileId) {
+        FileUpload upload = mediaAccessService.requireUpload(fileId);
+        return MediaResponses.file(mediaAccessService.requirePath(upload.getFilePath()), upload.getFileName(),
+                org.springframework.http.MediaType.APPLICATION_OCTET_STREAM, true, uploadProperties.getDownloadRateLimit());
     }
 
     /**

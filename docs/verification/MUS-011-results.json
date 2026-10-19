@@ -1,0 +1,125 @@
+{
+  "task": "MUS-011",
+  "base_sha": "436908938989ba4d331b90e2795a8a5f3f702bb2",
+  "java": {
+    "tests": 266,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "FileChunkServiceImplTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "FileUploadControllerTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "FileUploadServiceImplTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MediaAccessHttpTest",
+      "tests": "155",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MediaMetadataBindingTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicCategoryServiceImplTest",
+      "tests": "10",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicResourceServiceImplTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicServiceTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicTagServiceImplTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "RecycleBinServiceImplTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "UploadIntegrityServiceTest",
+      "tests": "23",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "UserServiceImplTest",
+      "tests": "17",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "new_media_matrix": {
+    "mockmvc_combinations": 144,
+    "actual_webmvc_configuration": "passed",
+    "tcp_and_real_database_matrix": "not executed; old services still running"
+  },
+  "frontend_token_tests": {
+    "tests": 6,
+    "failures": 0
+  },
+  "frontend_build": "passed, unchanged lockfile and existing dependencies",
+  "baseline_bootstrap_guards": {
+    "tests": 8,
+    "failures": 0
+  },
+  "socket_preflight": {
+    "status": "blocked",
+    "error": "[Errno 1] Operation not permitted"
+  },
+  "limits": [
+    "MockMvc runs in process with mocked database services; not a real database/HTTP server test.",
+    "Upload records still lack persistent owner; first resource claim/races and upload write authorization remain open.",
+    "Existing cached/downloaded copies are not retroactively revoked.",
+    "No search/corpus/production readiness claimed."
+  ],
+  "log_sha256": {
+    "MUS-011-all-tests.log": "12f837d24a0c93eeff26b3e3042af5779c6091e1e5cab9cb50e8da1191c023e0",
+    "MUS-011-web-build.log": "18e190ce880c30fb21b7ed59d568fe737ed0650e8d952717d9cb033690e40881",
+    "MUS-011-baseline-guards.log": "e719da4902896cc03990cd98799f1dbcc22f91880afd3ce64549d43f759f0c8a"
+  }
+}

@@ -241,6 +241,14 @@ class Baseline:
             if len(evidence['functional_checks']) != 13:
                 raise RuntimeError(label + ' did not finish all 13 checks.')
             self.result['checks'].append({label: evidence})
+        media_test = ROOT / 'scripts/media_access_smoke.py'
+        if media_test.is_file():
+            path = self.command([sys.executable, str(media_test), '--slot', self.args.slot,
+                                 '--mysql', str(self.client)], 'media-access', timeout=180)
+            evidence = json.loads(path.read_text())
+            if evidence.get('matrix_cases') != 144:
+                raise RuntimeError('Media access matrix did not complete all 144 cases.')
+            self.result['checks'].append({'media-access': evidence})
         self.result['status'] = 'passed'
         self.result['urls'] = {'frontend': web, 'backend': api.rsplit('/auth/profile', 1)[0]}
 

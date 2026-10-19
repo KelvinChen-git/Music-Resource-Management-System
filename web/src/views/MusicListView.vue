@@ -464,32 +464,12 @@ const handlePlay = (row) => {
   }
 };
 
-const handleDownload = (row) => {
-  if (row.approvalStatus === 'rejected' && !userIsAdmin.value) {
-    ElMessage.warning('This music has been blocked by the admin and cannot be downloaded.');
-    return;
-  }
-
+const handleDownload = async (row) => {
   try {
-    const fileName = encodeURIComponent(`${row.title}.${row.format}`);
-    const downloadUrl = `/api/music-resources/${row.musicid}/file?fileName=${fileName}`;
-
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-
-    setTimeout(() => {
-      document.body.removeChild(link);
-    }, 100);
-
-    ElMessage.success('Download started');
+    await downloadMusic(row.musicid, `${row.title}.${row.format}`)
+    ElMessage.success('Download started')
   } catch (error) {
-    console.error('Download failed:', error);
-    ElMessage.error('Download failed');
+    ElMessage.error(error.message || 'Download failed')
   }
 };
 
