@@ -1,0 +1,9 @@
+{
+  "schema": "music-handoff-v1",
+  "account": "b",
+  "published_at": "2026-10-19T22:26:25.577Z",
+  "source_branch": "review/MUS-001-B-baseline",
+  "source_sha": "6e4118cc316e95d2ba0f3c1fc1cf7ae15fecefbc",
+  "report_path": "docs/collaboration/account-b/latest.md",
+  "report_sha256": "31ac8198e0eefac154e1479bb7f46c9f1782cbcdd5f6908911e6d6fd35eca20a"
+}
