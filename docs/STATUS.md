@@ -36,7 +36,7 @@
 | DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用，本地提交 8f1fb6b；远端发布 blocked |
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | 下方确切路径；原生空库、local 启动、全量测试、build、API smoke 已通过；B 审核待交付 |
 | MUS-001-R1 基线与媒体审查 | todo / B（任务已分配，尚未确认接收） | review/MUS-001-B-baseline / 7ab0d39d920a538b28878cf92ecbe90e55994ec3 | 只写 docs/reviews/MUS-001-B.md；读源码和 diff，在自己的 clone / slot B 复核；不改 A 文件或 STATUS |
-| MUS-002 模型 spike / 契约冻结 | todo / A | MUS-001 功能基线后，另建 spike 分支 | services/audio-search/ 与 docs/model-spike.md；准确 checkpoint / 预处理 / 实际输出 / 依赖锁；素材和效果未验证前不冻结 |
+| MUS-002 模型 spike / 契约冻结 | in_progress / A | spike/MUS-002-clap-feasibility / 7ab0d39；MUS-001 功能基线后 | services/audio-search/ 与 docs/model-spike.md；准确 checkpoint / 预处理 / 实际输出 / 依赖锁；素材和效果未验证前不冻结 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
 | MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |
 | MUS-005 Java 集成与权限 | todo / unassigned | MUS-003 / 004，及媒体权限治理 | 检索 gateway、可见性复核、旧匿名路径治理、片段试听 |
@@ -72,3 +72,9 @@ B 独占 `docs/reviews/MUS-001-B.md`；A 不创建该报告，以免伪造“已
 4. 外部公开检索之前解决媒体绕过；最终合并由用户决定，不直接 push main 或 force push。
 
 交接必须写：task / owner、branch / base_sha / delivery_sha、推送状态、修改路径、命令及结果、未执行检查 / 原因、未完成内容、模型 / 数据工件位置与哈希、下一任务、文件占用与负责人。额度不足时先提交并停在明确检查点；本地 commit 不等于另一账号已收到。
+
+## MUS-002 本轮占用
+
+- owner A；branch spike/MUS-002-clap-feasibility；base 为 MUS-001 交接文档提交（`git log -1 chore/MUS-001-dev-baseline`），实现基线 7ab0d39。
+- allowed_paths：`services/audio-search/`、`docs/model-spike.md`、`docs/STATUS.md`、必要的 README / PROJECT / CONTRACTS 事实更新；不修改 MUS-001 已冻结实现或 B 的审核报告。
+- 先验证官方 music checkpoint、预处理和 CPU 编码，记录实际依赖与输出；真实许可语料 / 查询 / qrels 尚缺，不报告音乐效果，不冻结 discovery-v0。

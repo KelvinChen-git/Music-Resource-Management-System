@@ -1,0 +1,11 @@
+# Tested exploratory environment: CPython 3.12, macOS arm64, CPU.
+# Full resolved environment is in requirements-spike-macos-arm64.lock.txt.
+torch==2.6.0
+torchaudio==2.6.0
+torchvision==0.21.0
+laion-clap==1.1.7
+transformers==4.51.3
+numpy==1.26.4
+soundfile==0.13.1
+librosa==0.11.0
+setuptools==80.9.0
