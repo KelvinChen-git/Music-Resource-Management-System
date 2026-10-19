@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.taffy.music.service.ChunkCacheService;
+import com.taffy.music.service.UploadIntegrityService;
 import com.taffy.music.service.FileChunkService;
 import com.taffy.music.service.FileUploadService;
 import com.taffy.music.utils.RateLimiter;
@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.Map;
 
 /**
  * 文件上传控制器
@@ -52,7 +51,7 @@ public class FileUploadController {
     private FileChunkService fileChunkService;
 
     @Autowired
-    private ChunkCacheService chunkCacheService;
+    private UploadIntegrityService uploadIntegrityService;
 
     @Autowired
     private UploadProperties uploadProperties;
@@ -86,6 +85,13 @@ public class FileUploadController {
     @PostMapping("/create")
     public Result<FileUpload> createFile(@RequestBody FileCreateVO vo) {
         try {
+            if (vo.getFileName() == null || !vo.getFileName().contains(".")
+                    || vo.getFileSize() == null || vo.getFileSize() <= 0
+                    || vo.getChunkCount() == null || vo.getChunkCount() <= 0
+                    || vo.getChunkCount() > vo.getFileSize()
+                    || !UploadIntegrityService.validMd5(vo.getFileMd5())) {
+                return Result.error("文件名、大小、分片数量或MD5无效");
+            }
             // 获取文件扩展名
             String fileType = vo.getFileName().substring(vo.getFileName().lastIndexOf(".") + 1).toLowerCase();
             
@@ -98,7 +104,7 @@ public class FileUploadController {
             FileUpload fileUpload = new FileUpload();
             fileUpload.setFileName(vo.getFileName());
             fileUpload.setFileSize(vo.getFileSize());
-            fileUpload.setFileMd5(vo.getFileMd5());
+            fileUpload.setFileMd5(vo.getFileMd5().toLowerCase(java.util.Locale.ROOT));
             fileUpload.setChunkCount(vo.getChunkCount());
             fileUpload.setStatus(0);
             fileUpload.setUploadedChunks(0);
@@ -108,7 +114,7 @@ public class FileUploadController {
             fileUpload.setFileType(fileType);
             fileUpload.setChunkSize(uploadProperties.getChunkSize().intValue());
             
-            fileUploadService.save(fileUpload);
+            if (!fileUploadService.save(fileUpload)) return Result.error("创建文件记录失败");
             return Result.success(fileUpload);
         } catch (Exception e) {
             log.error("创建文件记录失败", e);
@@ -149,165 +155,28 @@ public class FileUploadController {
             @RequestParam MultipartFile chunk,
             @RequestParam String chunkMd5) {
         try {
-            // 检查分片是否已上传（先检查缓存，再检查数据库）
-            List<FileChunk> cachedChunks = chunkCacheService.getCachedChunks(fileId);
-            boolean chunkExists = cachedChunks.stream()
-                    .anyMatch(c -> c.getChunkIndex().equals(chunkIndex));
-            
-            if (!chunkExists && fileChunkService.isChunkUploaded(fileId, chunkIndex)) {
-                return Result.success("分片已存在");
-            }
-
-            // 创建分片目录
-            String datePath = LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            String chunkDir = uploadProperties.getTempPath() + "/" + fileId + "/" + datePath;
-            FileUtil.mkdir(chunkDir);
-
-            // 保存分片
-            String chunkPath = chunkDir + "/" + chunkIndex;
-            File chunkFile = new File(chunkPath);
-            
-            // 使用限速器保存文件
-            RateLimiter limiter = new RateLimiter(uploadProperties.getUploadRateLimit());
-            try (InputStream input = chunk.getInputStream();
-                 OutputStream output = Files.newOutputStream(chunkFile.toPath())) {
-                limiter.copy(input, output, new byte[8192]);
-            }
-
-            // 创建分片信息对象
-            FileChunk fileChunk = new FileChunk();
-            fileChunk.setFileId(fileId);
-            fileChunk.setChunkIndex(chunkIndex);
-            fileChunk.setChunkSize((int) chunk.getSize());
-            fileChunk.setChunkPath(chunkPath);
-            fileChunk.setChunkMd5(chunkMd5);
-            fileChunk.setStatus(1);
-            
-            // 如果这个分片之前没有上传过（既不在缓存中也不在数据库中），才更新计数
-            if (!chunkExists) {
-                // 将分片添加到缓存中，而不是直接保存到数据库
-                chunkCacheService.addChunk(fileId, fileChunk);
-
-                // 更新已上传分片数
-                FileUpload fileUpload = fileUploadService.getById(fileId);
-                fileUpload.setUploadedChunks(fileUpload.getUploadedChunks() + 1);
-                fileUploadService.updateById(fileUpload);
-            } else {
-                log.warn("分片[{}]({})已存在，不重复计数", fileId, chunkIndex);
-            }
-
+            uploadIntegrityService.uploadChunk(fileId, chunkIndex, chunk, chunkMd5);
             return Result.success("分片上传成功");
-        } catch (IOException e) {
+        } catch (IllegalArgumentException e) {
+            return Result.error(e.getMessage());
+        } catch (Exception e) {
             log.error("分片上传失败", e);
             return Result.error("分片上传失败");
         }
     }
 
-    /**
-     * 合并分片
-     */
+    /** 合并经过持久化和完整性校验的分片。 */
     @PostMapping("/merge")
     public Result<FileMergeVO> mergeChunks(@RequestParam Long fileId) {
         try {
-            // 1. 首先确保该文件的所有缓存分片都提交到数据库
-            chunkCacheService.commitFileChunks(fileId);
-
-            // 2. 获取缓存和数据库分片列表
-            List<FileChunk> cachedChunks = chunkCacheService.getCachedChunks(fileId);
-            List<FileChunk> dbChunks = fileChunkService.getChunksByFileId(fileId);
-
-            // 3. 合并去重，优先缓存分片
-            Map<Integer, FileChunk> chunkMap = new java.util.HashMap<>();
-            for (FileChunk chunk : dbChunks) {
-                chunkMap.put(chunk.getChunkIndex(), chunk);
-            }
-            for (FileChunk chunk : cachedChunks) {
-                chunkMap.put(chunk.getChunkIndex(), chunk); // 缓存优先生效
-            }
-            List<FileChunk> allChunks = new ArrayList<>(chunkMap.values());
-            allChunks.sort(java.util.Comparator.comparingInt(FileChunk::getChunkIndex));
-
-            FileUpload fileUpload = fileUploadService.getById(fileId);
-            if (fileUpload == null) {
-                return Result.error("文件不存在");
-            }
-
-            // 检查是否所有分片都已上传
-            int chunkCount = fileUpload.getChunkCount();
-            if (allChunks.size() != chunkCount) {
-                Set<Integer> uploadedIndexes = allChunks.stream().map(FileChunk::getChunkIndex).collect(Collectors.toSet());
-                List<Integer> missingChunks = new ArrayList<>();
-                for (int i = 0; i < chunkCount; i++) {
-                    if (!uploadedIndexes.contains(i)) {
-                        missingChunks.add(i);
-                    }
-                }
-                if (!missingChunks.isEmpty()) {
-                    return Result.error("分片未上传完成，缺少分片: " + missingChunks);
-                }
-            }
-
-            // 创建目标文件目录
-            String dateDir = LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            String targetDir = uploadProperties.getPath() + "/" + dateDir;
-            FileUtil.mkdir(targetDir);
-
-            // 生成唯一文件名用于存储，但保留原始文件名
-            String uniqueFileName = generateUniqueFileName(fileUpload.getFileName());
-            String relativePath = dateDir + "/" + uniqueFileName;
-            String targetPath = uploadProperties.getPath() + "/" + relativePath;
-            File targetFile = FileUtil.touch(targetPath);
-
-            // 按顺序合并分片
-            try (java.io.FileOutputStream fos = new java.io.FileOutputStream(targetFile)) {
-                for (FileChunk chunk : allChunks) {
-                    File chunkFile = new File(chunk.getChunkPath());
-                    if (!chunkFile.exists()) {
-                        log.error("分片文件不存在: {}", chunk.getChunkPath());
-                        return Result.error("分片文件不存在: " + chunk.getChunkPath());
-                    }
-                    try (java.io.FileInputStream fis = new java.io.FileInputStream(chunkFile)) {
-                        byte[] buffer = new byte[8192];
-                        int bytesRead;
-                        while ((bytesRead = fis.read(buffer)) != -1) {
-                            fos.write(buffer, 0, bytesRead);
-                        }
-                    }
-                }
-                fos.flush();
-            }
-
-            // 计算合并后文件的MD5并验证
-            String mergedFileMd5;
-            try {
-                mergedFileMd5 = cn.hutool.crypto.digest.DigestUtil.md5Hex(targetFile);
-            } catch (Exception e) {
-                log.error("计算合并文件MD5失败", e);
-                FileUtil.del(targetFile);
-                return Result.error("文件MD5计算失败: " + e.getMessage());
-            }
-
-            // 更新文件信息
-            fileUpload.setFilePath(relativePath);
-            fileUpload.setStatus(1);
-            fileUpload.setCompleteTime(LocalDateTime.now());
-            fileUploadService.updateById(fileUpload);
-
-            // 清理临时文件和缓存
-            FileUtil.del(uploadProperties.getTempPath() + "/" + fileId);
-            // 清理缓存
-            // 直接移除缓存分片
-            java.lang.reflect.Field field = chunkCacheService.getClass().getDeclaredField("fileChunksMap");
-            field.setAccessible(true);
-            Map<Long, List<FileChunk>> fileChunksMap = (Map<Long, List<FileChunk>>) field.get(chunkCacheService);
-            fileChunksMap.remove(fileId);
-
             FileMergeVO vo = new FileMergeVO();
-            vo.setFilePath(relativePath);
+            vo.setFilePath(uploadIntegrityService.merge(fileId));
             return Result.success("文件合并成功", vo);
+        } catch (IllegalArgumentException e) {
+            return Result.error(e.getMessage());
         } catch (Exception e) {
             log.error("文件合并失败", e);
-            return Result.error("文件合并失败: " + e.getMessage());
+            return Result.error("文件合并失败");
         }
     }
 
@@ -323,19 +192,12 @@ public class FileUploadController {
                 return Result.error("文件不存在");
             }
 
-            // 确保缓存中的分片已提交到数据库
-            chunkCacheService.commitFileChunks(fileId);
-            
-            // 获取已上传的分片
-            List<FileChunk> uploadedChunks = fileChunkService.getChunksByFileId(fileId);
-            
-            // 如果uploadedChunks为空但有上传记录，可能是缓存同步延迟，等待后重试
-            if (uploadedChunks.isEmpty() && fileUpload.getUploadedChunks() > 0) {
-                log.info("文件[{}]分片查询结果为空，等待1秒后重试", fileId);
-                Thread.sleep(1000);
-                uploadedChunks = fileChunkService.getChunksByFileId(fileId);
-            }
-            
+            // Successful persisted records are the only source of resumable progress.
+            List<FileChunk> uploadedChunks = fileChunkService.getChunksByFileId(fileId).stream()
+                .filter(c -> Integer.valueOf(1).equals(c.getStatus())
+                    && c.getChunkIndex() >= 0 && c.getChunkIndex() < fileUpload.getChunkCount())
+                .collect(Collectors.toList());
+
             // 获取已上传的分片索引集合
             Set<Integer> uploadedIndexes = uploadedChunks.stream()
                 .map(FileChunk::getChunkIndex)
@@ -529,19 +391,12 @@ public class FileUploadController {
                 return Result.error("文件不存在");
             }
 
-            // 确保缓存中的分片已提交到数据库
-            chunkCacheService.commitFileChunks(fileId);
-            
-            // 获取已上传的分片
-            List<FileChunk> uploadedChunks = fileChunkService.getChunksByFileId(fileId);
-            
-            // 如果uploadedChunks为空但有上传记录，可能是缓存同步延迟，等待后重试
-            if (uploadedChunks.isEmpty() && fileUpload.getUploadedChunks() > 0) {
-                log.info("文件[{}]分片查询结果为空，等待1秒后重试", fileId);
-                Thread.sleep(1000);
-                uploadedChunks = fileChunkService.getChunksByFileId(fileId);
-            }
-            
+            // Successful persisted records are the only source of resumable progress.
+            List<FileChunk> uploadedChunks = fileChunkService.getChunksByFileId(fileId).stream()
+                .filter(c -> Integer.valueOf(1).equals(c.getStatus())
+                    && c.getChunkIndex() >= 0 && c.getChunkIndex() < fileUpload.getChunkCount())
+                .collect(Collectors.toList());
+
             // 获取已上传的分片索引集合
             List<Integer> uploadedIndexes = uploadedChunks.stream()
                 .map(FileChunk::getChunkIndex)

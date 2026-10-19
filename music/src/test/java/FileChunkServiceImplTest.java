@@ -13,13 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -123,49 +121,6 @@ void getChunksByFileId_ShouldReturnOrderedChunks() {
         // Act & Assert
         assertFalse(fileChunkService.isChunkUploaded(testFileId, 1));
     }
-    //
-    @Test
-    void saveBatch_ShouldReturnTrueOnSuccess() {
-    // ============== 准备数据 ==============
-    FileChunk chunk1 = new FileChunk();
-    FileChunk chunk2 = new FileChunk();
-    List<FileChunk> chunks = Arrays.asList(chunk1, chunk2);
-
-    // ============== 模拟 Mapper 行为 ==============
-    when(fileChunkMapper.insertBatchSomeColumn(ArgumentMatchers.<List<FileChunk>>any()))
-        .thenReturn(chunks.size()); // 返回实际插入的行数
-
-    // ============== 执行测试 ==============
-    boolean result = fileChunkService.saveBatch(chunks);
-
-    // ============== 验证结果 ==============
-    assertTrue(result, "批量保存应返回 true");
-
-    // ============== 验证 Mapper 调用 ==============
-    verify(fileChunkMapper).insertBatchSomeColumn(listCaptor.capture());
-    List<FileChunk> savedChunks = listCaptor.getValue();
-    assertEquals(2, savedChunks.size(), "应保存2个分片");
-    assertTrue(savedChunks.containsAll(chunks), "分片内容应一致");
-}
-
-@Test
-@Transactional
-void saveBatch_ShouldRollbackOnFailure() {
-    // ============== 准备数据 ==============
-    List<FileChunk> chunks = Arrays.asList(chunk1, chunk2);
-
-    // 模拟批量插入时抛出异常
-    doThrow(new RuntimeException("DB Error"))
-        .when(fileChunkMapper).insertBatchSomeColumn(anyList());
-
-    // ============== 执行 & 验证 ==============
-    assertThrows(RuntimeException.class, () -> 
-        fileChunkService.saveBatch(chunks)
-    );
-
-    // 验证事务回滚：确保未实际插入数据
-    verify(fileChunkMapper, never()).insert(any(FileChunk.class));
-}
     /* 测试 isChunkUploaded 方法 */
     @Test
     void isChunkUploaded_ShouldReturnTrueWhenChunkExists() {

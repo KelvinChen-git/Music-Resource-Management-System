@@ -1,0 +1,102 @@
+{
+  "task": "MUS-009",
+  "branch": "fix/MUS-009-upload-integrity",
+  "base_sha": "83b94029412d12b52e3fd1e3a0938357b1bde782",
+  "baseline_negative_regressions": {
+    "tests": 2,
+    "failures": 2,
+    "errors": 0,
+    "expected": "code=200 observed for both invalid chunk hash and save=false"
+  },
+  "unit_suites": [
+    {
+      "name": "FileChunkServiceImplTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "FileUploadControllerTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "FileUploadServiceImplTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicCategoryServiceImplTest",
+      "tests": "10",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicResourceServiceImplTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicServiceTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "MusicTagServiceImplTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "RecycleBinServiceImplTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "UploadIntegrityServiceTest",
+      "tests": "23",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "UserServiceImplTest",
+      "tests": "17",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "unit_total": {
+    "tests": 107,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "integration": {
+    "mysql": "blocked: mysqld 8.0.41 exits with signal 11 during initialization",
+    "api": "blocked: urllib Errno 1 Operation not permitted on loopback",
+    "functional_checks_executed": 0,
+    "process_restart": "not executed",
+    "real_database_rollback_and_concurrency": "not executed"
+  },
+  "log_sha256": {
+    "MUS-009-before-agent.log": "ab25604c7dd9c0966be5298d69167d0b8b72675c87abc25ccc5e8b0b80bae755",
+    "MUS-009-tests-final.log": "acb9e146cdb4dc0589cbe38e497240556cd33395ae4fe5c23d4e15d89a0c3461",
+    "MUS-009-mysql.log": "abfdeabfeac0fd14c0fc41e42f86d6615b29a3144af79eb7de66b936eb52bc98",
+    "MUS-009-api-attempt.log": "618f903528c0efeb0e133c0f94a3ab8bd96919a3c204afdbae0fe8165e5b1766"
+  }
+}

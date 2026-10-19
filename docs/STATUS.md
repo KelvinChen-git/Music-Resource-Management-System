@@ -45,6 +45,7 @@
 | MUS-006 评测 | todo / unassigned | MUS-005 | manifest / qrels / dev-test / 基线和原始结果，不预填指标 |
 | MUS-007 恢复 / 扩容 / 演示 | todo / unassigned | MUS-006 | 根据瓶颈推进，不先堆基础设施 |
 | MUS-008 固定交接与同步 | review / A（共享读取可用；A 自动发布 blocked） | chore/MUS-008-account-sync / 6e4140b | A/B feed 均已发布，B 完成 sync / ack，A 本轮直接读取 B；9 项脚本本地 Git 检查通过。B 接口顺序发布不等同原子脚本通过；A 回执待发布 |
+| MUS-009 上传完整性 | blocked / A（实现与单测完成，DB 补验待运行） | fix/MUS-009-upload-integrity / 83b9402 | 单一同步持久化、事务 / 行锁、分片与整文件校验、幂等重试；107 tests 通过。MySQL signal 11 / 回环 Errno 1 阻塞 SQL / 并发 / 进程重启验收；见 verification/MUS-009.md |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -99,3 +100,17 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B 的配置与前端复跑通过；Maven DNS、缺 MySQL / Docker 导致 Java 测试及后端功能检查实际执行 0。MUS-001-R1 的 done 仅表示审核报告交付与接收，不代表 MUS-001 的独立后端验收完成。
 - P1 媒体三入口与一年缓存风险保持阻断公开 discovery。P2 分片重复持久化 / 批量映射缺口、MD5 未比对需要运行负例，不能用 89 项单测概括为已覆盖。
 - 本轮不新增业务修复或替 B 创建报告；B 两份报告活动占用已释放，其唯一写入方仍为 B。A 继续串行维护台账。后续先补运行证据 / 最小修复，再推进真实许可语料与 MUS-002；MUS-003/004 不提前冻结接口。
+
+## MUS-009 上传完整性（本轮占用）
+
+- status blocked（实现与单测完成；真实数据库补验未通过）；owner A；branch `fix/MUS-009-upload-integrity`；base `83b94029412d12b52e3fd1e3a0938357b1bde782`。B feed 仍为 05d4e9f / source 6e4118c，无新占用冲突。
+- allowed_paths：FileUploadController、FileChunkService / Impl / Mapper、删除旧 ChunkCacheService、新 UploadIntegrityService 及对应 Java 测试；`scripts/upload_integrity_smoke.py`；README、CONTRACTS、STATUS、A latest、`docs/verification/MUS-009*`。不改 B 报告、schema、依赖或锁文件。
+- 验收：分片同步一次写库，写失败无成功 ACK；按实际字节校验分片 / 合并 MD5 与总大小；重复同内容上传不重复计数，冲突内容不覆盖；数据库行锁串行化同文件上传 / 合并，计数和分片同事务；重启后从数据库续传；合并失败保留可重试分片并删除未发布目标。
+- 公共旧路径 / envelope 保留；详见 CONTRACTS A3。上传归属、媒体授权 / 缓存、已有数据库迁移和全面磁盘垃圾回收不在本任务；最终 merge 由用户决定。
+
+### MUS-009 检查点与剩余工作
+
+- 旧 base 负例 2/2 复现：错误分片哈希和 save=false 均 code=200。新实现 clean test 105 通过，补两项边界后全量 107 通过；其中新控制器 2 / 服务 23。已移除旧缓存 5 项和虚构批量映射 2 项测试；不是将 107 全部算新增。
+- B-05 / B-08 已有最小修复及单测，真实 MySQL SQL / 事务回滚、跨请求并发和后端重启仍未验收，不能将 unresolved 直接标为 done。新两阶段 smoke 脚本已建立，HTTP 功能检查实际执行 0。
+- 当前 JDK / Maven 缓存可离线运行；MySQL 8.0.41 初始化原生 signal 11，HTTP 回环 Errno 1 Operation not permitted。未改已有 schema、未重新初始化库。准确证据 / 命令见 verification/MUS-009.md 与 JSON。
+- 下一步由可运行环境补验并请 B 针对本任务最终提交审核；B 未确认，不自动占用其实现路径。媒体权限 / 缓存仍为 P1，公开 discovery 继续阻断。本任务待推送结果见 A latest；最终合并由用户决定。

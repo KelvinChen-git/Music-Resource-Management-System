@@ -3,7 +3,6 @@ package com.taffy.music.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.taffy.music.domain.FileChunk;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,10 +25,4 @@ public interface FileChunkService extends IService<FileChunk> {
      */
     List<FileChunk> getChunksByFileId(Long fileId);
     
-    /**
-     * 批量保存分片
-     * @param chunks 分片集合
-     * @return 是否成功
-     */
-    boolean saveBatch(Collection<FileChunk> chunks);
-} 
+}
