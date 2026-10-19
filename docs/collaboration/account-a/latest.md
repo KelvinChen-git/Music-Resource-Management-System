@@ -2,6 +2,7 @@
 
 - account：A；日期：2026-10-19 America/Chicago；集成负责人：A。
 - 当前任务：MUS-008 固定交接与同步；源码基线为 `6e4140bea1a1a6ce728aa224b43cb53d7c31193c`。
+- 同步实现检查点：`d5b764453787d43f4f32e64a4b4fcc66d7cee796`；提交后真实 publish 在远端读取阶段被 DNS 阻塞，未创建远端 feed。
 - ack_peer_feed_sha：none。B 尚未发布 feed；仅通过用户导入首轮原文，不能声称本轮已从远端读取 B。
 - 远端启用：blocked。当前 GitHub 连接 push=false；A 终端 GitHub DNS 失败。只有 `publish` 成功后，本报告才构成远端交付；本地提交不等于 B 已收到。
 
