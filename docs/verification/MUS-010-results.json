@@ -1,0 +1,45 @@
+{
+  "task": "MUS-010",
+  "base_sha": "f15d842344f8df0b251f90d65811206efb589555",
+  "java_explicit_all_tests": {
+    "tests": 107,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontend_build": {
+    "status": "passed",
+    "node": "22.23.3",
+    "npm": "10.9.9",
+    "npm_ci_this_turn": "not rerun; existing baseline install and unchanged lockfile"
+  },
+  "launcher_guards": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0
+  },
+  "live_baseline": {
+    "a": {
+      "status": "blocked",
+      "stage": "loopback socket preflight",
+      "error": "Errno 1 Operation not permitted",
+      "database_started": false,
+      "api_functional_checks": 0,
+      "proxy_functional_checks": 0
+    },
+    "b": {
+      "status": "blocked",
+      "stage": "loopback socket preflight",
+      "error": "Errno 1 Operation not permitted",
+      "database_started": false,
+      "api_functional_checks": 0,
+      "proxy_functional_checks": 0
+    }
+  },
+  "b_feed_sha": "05d4e9fe7c9528923796ef46508cadb05e94bd1b",
+  "log_sha256": {
+    "MUS-010-java-test.log": "a315281a7715fe30125128c6d072259b05b7b8d83d49c4d88e029ff5df6e2214",
+    "MUS-010-web-build.log": "089a1eb3bc6c31244c56c0a0e116f5b84b2317b6e6d4719bbc8090c06468ac6b",
+    "MUS-010-launcher-tests.log": "e719da4902896cc03990cd98799f1dbcc22f91880afd3ce64549d43f759f0c8a"
+  }
+}

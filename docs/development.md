@@ -108,3 +108,13 @@ smoke 建立随机合成账户、标签及约 1 秒静音 MPEG fixture，保留�
 输出的 legacy_exposure_http_status 是缺陷观测，不是权限通过标记；当前 pending、静态路径和 deleted 的匿名访问都是 200。新 discovery 对外接入前必须解决，不能因为 local profile 限制监听地址就声称权限修复。
 
 生产静态预览只执行 `npm run build` / `npm run preview`；preview 不提供 Vite 开发代理，需要自己的 API 反向代理。SMTP 连接到本地接收器的端口，但仓库未启动 SMTP；密码重置邮件不在本轮验收中。
+
+## MUS-010 一次运行前后端基线
+
+原生 MySQL 路线新增入口（从自己的独立 checkout 根目录）：
+
+```bash
+python3 scripts/baseline.py --slot a --keep-running
+```
+
+B 在独立 clone / worktree 用 `--slot b`。入口识别已有本机工具，依次检查权限 / 配置、Java 测试、前端构建、数据库、后端 / Vite、直连与代理 smoke；已有非空库不重新初始化，只有新 slot / 全新空库可建立基线。Ctrl+C 关闭本次创建的进程，外部已有数据库保留。详细限制、工具路径和最新实跑状态见 [verification/MUS-010.md](verification/MUS-010.md)。当前受管终端在回环权限检查即阻塞，完整入口尚未端到端验收，不能将入口存在当作两端已跑通。

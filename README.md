@@ -24,6 +24,10 @@ JWT 账户、分类标签、筛选、分片上传、元数据、审核、播放�
 
 不能将评论、点赞、收藏、播放历史服务端持久化、完整 Swagger 或生产部署当作已验证能力。
 
+## 一次启动并验收前后端
+
+在普通本地终端、自己的独立 checkout 根目录运行 `python3 scripts/baseline.py --slot a --keep-running`；B 在另一 checkout 用 b。原生 MySQL、Java / Vue、两条 smoke 流程和私有结果文件由入口串联。已有库不清空，完整运行结果仍需验收；当前受管终端禁止回环端口，不能宣称已跑通。详见 [MUS-010 验证与启动步骤](docs/verification/MUS-010.md)。
+
 ## 开发启动
 
 要求：JDK 17、Node **22.23.3**（[.nvmrc](.nvmrc)，本轮 npm 10.9.9）、Python 3.9+、MySQL **8.0.41**。Maven wrapper 指向 3.9.9。首次下载依赖需要联网。

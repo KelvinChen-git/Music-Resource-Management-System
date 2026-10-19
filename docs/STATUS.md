@@ -116,3 +116,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 下一步由可运行环境补验并请 B 针对本任务最终提交审核；B 未确认，不自动占用其实现路径。媒体权限 / 缓存仍为 P1，公开 discovery 继续阻断。本任务待推送结果见 A latest；最终合并由用户决定。
 
 - MUS-009 实现已本地提交 `949603fe45e3f90637dd7dc2578e41f80945afb5`。实际 publish 在 ls-remote exit 128 阶段失败；单独确认 github.com DNS 无法解析，未推送任何源码 / feed。本地工作检查点不是 B 已收到；网络恢复后在任务分支重试 publish。
+
+## MUS-010 前后端 / 两账号开发基线（本轮占用）
+
+- status blocked（构建通过，服务联通被回环权限阻塞）；owner A；branch `chore/MUS-010-dual-dev-baseline`；base `f15d842344f8df0b251f90d65811206efb589555`。优先跑通数据库、Java、Vue 及直连 / 代理 smoke；暂停新业务扩展。
+- allowed_paths：`scripts/baseline.py`、必要的启动辅助测试、README / development / STATUS / A latest、`docs/verification/MUS-010*`。不改业务实现、schema、依赖锁或 B 报告。
+- 验收：隔离 slot、工具可用、空新库初始化 / 已有库不覆盖、后端与 Vite 启动、直连和代理各 13 检查；A/B 各自独立 clone 或 worktree。A 本机代跑 B slot 不算 B 账号独立确认。
+- 当前受管终端 Python socket bind/connect(127.0.0.1) 均 Errno 1，DNS 亦失败；这是本轮已测阻塞。继续完成无需端口的构建与可复现入口，不重复启动 MySQL 崩溃充当进度。
+
+- MUS-010 本轮 Java 显式全部测试 107、Vue build、启动入口 8 项保护检查通过；完整入口在 A/B 的 socket 预检 Errno 1 停止。真实数据库 / 直连 / 代理功能执行 0，不能将构建通过当联通通过。详见 verification/MUS-010.md / JSON。
+- 本机准备独立 B worktree Music-Dev-B-MUS010，供普通终端代跑 slot B；不更改 B 远端报告，不代表 B 已验收。下一步优先取得两个 checkout 的 result.json；暂停新业务和真实语料扩展。
