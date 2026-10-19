@@ -27,6 +27,15 @@ class PreprocessingTest(unittest.TestCase):
         self.assertEqual(info['padded_samples'], 432000)
         self.assertEqual(result.dtype, np.float32)
 
+    def test_ten_second_resample_does_not_overflow_window(self):
+        result, info = prepare_window(np.zeros(441000, dtype=np.float32), 44100)
+        self.assertEqual(info['real_samples'], WINDOW_SAMPLES)
+        self.assertEqual(info['padded_samples'], 0)
+
+    def test_fractional_resample_length_uses_integer_ceiling(self):
+        _, info = prepare_window(np.zeros(2, dtype=np.float32), 44100)
+        self.assertEqual(info['real_samples'], 3)
+
     def test_long_audio_requires_explicit_slicing(self):
         with self.assertRaises(ValueError):
             prepare_window(np.zeros(480001), 48000)

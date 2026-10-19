@@ -18,8 +18,11 @@ def prepare_window(audio, sample_rate):
     if audio.ndim == 2:
         audio = audio.mean(axis=1)
     if sample_rate != SAMPLE_RATE:
+        # Integer arithmetic avoids ceil(48000.00000000001) adding one sample.
+        expected_samples = (len(audio) * SAMPLE_RATE + sample_rate - 1) // sample_rate
         audio = librosa.resample(audio, orig_sr=sample_rate, target_sr=SAMPLE_RATE,
-                                res_type='soxr_hq')
+                                res_type='soxr_hq', fix=False)
+        audio = librosa.util.fix_length(audio, size=expected_samples)
     real_samples = len(audio)
     if real_samples > WINDOW_SAMPLES:
         raise ValueError('resampled window exceeds checkpoint capacity')
