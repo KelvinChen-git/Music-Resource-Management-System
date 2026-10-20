@@ -195,6 +195,10 @@ defineExpose({
           <el-icon><i class="el-icon-headset" /></el-icon>
           <span>Music</span>
         </el-menu-item>
+        <el-menu-item index="/demo-catalog">
+          <el-icon><i class="el-icon-headset" /></el-icon>
+          <span>Demo Catalog</span>
+        </el-menu-item>
         <el-menu-item index="/categories">
           <el-icon><i class="el-icon-menu" /></el-icon>
           <span>Categories</span>

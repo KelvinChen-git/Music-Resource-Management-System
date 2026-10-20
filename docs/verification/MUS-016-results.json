@@ -1,0 +1,49 @@
+{
+  "task": "MUS-016",
+  "status": "passed_a_demo_import",
+  "slot": "a",
+  "imported_audio_tracks": 20,
+  "unique_artists": 20,
+  "imported_bytes": 114244675,
+  "license_policy": "CC BY only and audiodownload_allowed true at original download; unchanged full audio",
+  "full_byte_sha256_matches": 20,
+  "range_206_matches": 20,
+  "repeat_import": {
+    "status": "passed",
+    "resources_after": 20,
+    "distinct_resources_after": 20,
+    "uploads_after": 20,
+    "role": "USER",
+    "provider_downloads_on_repeat": 0,
+    "source_evidence": "saved original selection and per-file download proofs; no claim of fresh provider query on completed-cache verification"
+  },
+  "artist_metadata": {
+    "Post Malone": 10,
+    "Drake": 10,
+    "audio_files_imported": 0,
+    "previews_downloaded": 0,
+    "source": "Apple iTunes Search API, exact artist name matches and official links"
+  },
+  "python_tests": 50,
+  "frontend_build": "passed",
+  "browser_checks": [
+    "ordinary demo account login",
+    "catalog has 20 full tracks and 20 artist references",
+    "What Is Love search returns exactly one imported resource",
+    "Play selected What Is Love; observed 0:40/3:32, then paused at 0:44",
+    "Drake catalog filter returns ten metadata references"
+  ],
+  "manifest_sha256": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+  "logs_sha256": {
+    "MUS-016-import.log": "09d3d0e5232c963a2cc5a31f89135b95d05bc5e1fab2a0b3bfd8158861e69d28",
+    "MUS-016-repeat-import.log": "09d3d0e5232c963a2cc5a31f89135b95d05bc5e1fab2a0b3bfd8158861e69d28",
+    "MUS-016-python-tests.log": "d92d75ca76269f230513884601f502bd279b13edf7d8699279f8ded064dc130d"
+  },
+  "limits": [
+    "20 audio records remain pending and belong to an ordinary dedicated demo account; not globally approved.",
+    "No files imported into local B database.",
+    "Metadata source URLs and local IDs do not copy audio to another clone.",
+    "Backend remains the accepted MUS-014 running instance; MUS-015 Java code not newly started.",
+    "No retrieval-quality or production licensing acceptance claim."
+  ]
+}

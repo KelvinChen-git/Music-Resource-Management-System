@@ -120,3 +120,10 @@ MUS-014 基线新增18项真实上传故障检查，并自动完成“部分上�
 
 
 MUS-014已收到B独立复核的范围内批准及其真库/跨JVM运行补证；详见[接收记录](docs/verification/MUS-014-B-acceptance.json)。MUS-015进一步补上同值头像请求重新校验，Java320通过，新版本真实运行尚未验收；当前服务仍保持已验收的MUS-014版本，见[MUS-015](docs/verification/MUS-015.md)。
+
+
+## 演示音乐
+
+A环境已导入20首Jamendo CC BY完整音乐。打开 http://127.0.0.1:5173/demo-catalog ，侧栏Demo Catalog可查看作者、来源和许可，并进入Music播放。另列Post Malone/Drake各10条资料与官方链接，无其完整音频。本机普通演示账号凭据在忽略文件.local/a/music-catalog/demo-account.json；本次内置浏览器已登录。
+
+重复导入验证：`python3 scripts/import_demo_music.py --slot a --count 20`。Client ID、账号和音频缓存仅存.local，新环境需自己的配置；不把Git清单当作已拥有本地音频。详见[导入验收](docs/verification/MUS-016.md)。

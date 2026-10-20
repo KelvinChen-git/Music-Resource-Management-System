@@ -283,3 +283,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B新卡待准确实现SHA提交后派发；MUS-014已接收approve及独立运行补证，不再等待旧卡认领。
 
 - MUS-015实现d9a2a15791da0db4374c5de093a752a5aa202a25；MUS-015-R1-B/revision1固定审核该SHA，比较feb935ad5c7eb4eb8a11065f3d5c18ed2a93dab1，assigned未认领。MUS-014审核批准已接收，新服务真实验证仍待后续。
+
+## MUS-016 授权演示曲库（用户新增范围，2026-10-20 Chicago）
+
+- owner A，branch feat/MUS-016-demo-music-import，base dbb6312；范围scripts/import_demo_music.py及保护测试、DemoCatalogView/路由/菜单/公开许可元数据清单、own交接和验证文档。无Java/schema/依赖锁变更。
+- 已在A导入20首CC BY原音频/20位作者；逐首完整SHA256与206 Range匹配，真实重复导入后仍20资源/20上传/普通USER，pending未擅自批准。B数据库未导入。
+- Post Malone/Drake各10条资料及官方链接单独展示，不下载其音频/试听/封面。Demo Catalog登录保护，公开JSON无账号凭据/Client ID/JWT。
+- Python50、Vue生产构建通过，浏览器已用演示账号查看20+20、按标题找到1条并播放至0:40/3:32后暂停、Drake筛选10条；目录链接可供用户检查，无需终端重启。
+- 私有缓存/凭据0600留.local，Git只交代码/元数据/结果。MUS-015-R1-B卡仍在途、准确SHA不变，不用本次导入覆盖旧审核任务；MUS-016后续待独立复核。Java015未加载，后端仍014已验收实例。

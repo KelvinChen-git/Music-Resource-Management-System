@@ -52,6 +52,12 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/demo-catalog',
+    name: 'demo-catalog',
+    component: () => import('@/views/DemoCatalogView.vue'),
+    meta: { requiresAuth: true, title: '演示曲库' }
+  },
+  {
     path: '/categories',
     name: 'categories',
     component: () => import('@/views/CategoryListView.vue'),
