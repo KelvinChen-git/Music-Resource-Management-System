@@ -347,7 +347,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 ## MUS-020 Sonora B复核修复（当前占用）
 
-- owner A，branch fix/MUS-020-sonora-review，base c19b64833b78a2cd958959b77a1c9703f2fc9281，in_progress。已验证B feed f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46/source30bbd71ce34d0df6580680180498dc7eb22a19e6、latest hash与仅两报告路径diff，原字节导入MUS-019-B报告。结论request_changes，不称整个UI批准。
+- owner A，branch fix/MUS-020-sonora-review，base c19b64833b78a2cd958959b77a1c9703f2fc9281，review。已验证B feed f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46/source30bbd71ce34d0df6580680180498dc7eb22a19e6、latest hash与仅两报告路径diff，原字节导入MUS-019-B报告。结论request_changes，不称整个UI批准。
 - R1：390px列表长标题撑宽；R2：管理员username/email两入口仍指向新/music导致筛选丢失。范围sonora.css、admin/user/index.vue、必要的导航兼容/测试、README/STATUS/own latest/本任务verification/派发。无后端/schema/依赖更新，不接管B报告。
 - B独立build、5组player和6media检查通过；真实隔离浏览器26项预期行为通过并观察3条失败（R1+R2两入口），8次前期blocked不相加。私有原始证据未交付，A仅核对报告字节，不重算其日志。
 - 本轮5175前端已退出、A8080仍返回匿名401；先恢复前端，再在新副本修复与验收，不要求用户操作终端。
@@ -357,3 +357,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - R1仅收缩列表信息/标题容器；R2仅两管理员入口目标改/manage/music。原版目录、后端、API/schema/依赖不改。
 - A：生产build、5组player、6media、diff检查通过；离线真实CSS长标题390px旧1432→新390，收藏x327–354可点；真实20首手机列表文档384≤390、20控件在视口内。R2实际handler体旧两个目标/music、新/manage/music及query/缺字段保持已检验；router/message为替身，管理员真实HTTP回归仍待B。
 - 5175已由独立会话前端进程恢复，现有A8080保留；普通账号20首/真实Grupo播放正常后暂停。PID/日志在忽略.local，无系统自启动或永久可用承诺。详见verification/MUS-020.md。状态review / 待B增量；没有把mock或离线fixture写成真实管理员全链路。
+
+- MUS-020实现 `802da6bb1ee3f7906a19c963efb5aeac2115d223`；新B卡MUS-020-R1-B/revision1固定该SHA、比较c19b648，assigned未认领；复用R1长标题与R2两管理入口最小真库/浏览器回归，不重复整套019。

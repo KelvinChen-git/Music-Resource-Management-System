@@ -1,30 +1,30 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-019-R1-B",
+  "task_id": "MUS-020-R1-B",
   "assignment_revision": 1,
   "status": "assigned",
   "claimed_by_b": false,
-  "task_card_path": "docs/collaboration/tasks/MUS-019-R1-B.md",
-  "reviewed_sha": "f68b7fbba63ea58ad10dfe326d0197d1cc6b15ce",
-  "comparison_base_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
-  "review_branch": "review/MUS-019-B-sonora-app",
+  "task_card_path": "docs/collaboration/tasks/MUS-020-R1-B.md",
+  "reviewed_sha": "802da6bb1ee3f7906a19c963efb5aeac2115d223",
+  "comparison_base_sha": "c19b64833b78a2cd958959b77a1c9703f2fc9281",
+  "review_branch": "review/MUS-020-B-sonora-findings",
   "allowed_output_paths": [
-    "docs/reviews/MUS-019-B.md",
+    "docs/reviews/MUS-020-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-017-R1-B",
+    "task_id": "MUS-019-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "approve_with_scope_limits_reported_A_formal_acceptance_pending",
-    "source_sha": "082d243161c5774a96d242a473b17c483a77cc4e",
-    "feed_sha": "bb64dcafb37b021e468b207560c8ae98c28b87a3"
+    "verdict": "request_changes_received",
+    "source_sha": "30bbd71ce34d0df6580680180498dc7eb22a19e6",
+    "feed_sha": "f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46"
   },
-  "note": "Read current A handoff.source_sha for assignment. Review fixed implementation SHA. Do not repeat MUS-017 or infer claim from publication.",
+  "note": "Review fixed R1/R2 increment at exact SHA; no inferred claim or approval. Do not repeat completed MUS-019 baseline.",
   "separate_backlog": [
-    "MUS-017 formal A acceptance and E1/E2 backend follow-ups",
-    "MUS-016 importer independent review not covered by this task"
+    "MUS-017 formal A acceptance / E1/E2 backend followups",
+    "MUS-016 independent importer review"
   ]
 }
