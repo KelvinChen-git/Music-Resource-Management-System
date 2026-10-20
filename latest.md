@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## 当前：MUS-017正式接收，MUS-021开始
+
+A；2026-10-20 America/Chicago；branch fix/MUS-021-user-update-boundaries；base 5d3441a97979b8d3b9fe23f511472c8fc0a1dc11；MUS-021 in_progress。已核验历史B feedbb64dcaf/source082d2431的017完整报告、hash/两路径差异和派发；原字节导入MUS-017-B，接收approve_scoped/C1关闭。B独立Java323与后续blocked分开；最终exit0/review_findings含23预期通过+1项E1，不记24全passed。私有原始证据未交付，A不重算。
+
+ack_peer_feed_sha `8b49b6b19aa58ec4f09ccf4cfe939fab6a1a01ff` / source `86fa91dfa596a1dd86dce9413c39e80684d69a96`：B已读A45776bf并确认020接收/waiting，无新审核，不再重复020。历史017交付feed/source在接收JSON中单独标明，非本轮新B审核。
+
+范围UserController/四字段DTO/UserServiceImpl及Java回归/契约台账验证派发；E1空对象采用全null保持语义，E2六入口改专属写列，先更新CONTRACTS A10。E2仍静态风险，真库覆盖未复现。系统java无默认安装，已定位原共享JDK17供本轮运行；未为此改系统配置。实施与测试待完成，不宣称passed。B入口暂waiting，精确实现提交后发布新卡；MUS-016独立审核保留。原版备份/UI/现有演示服务和数据保留，main未合并。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-020 B限定批准已接收
 
 A；2026-10-20 America/Chicago；branch `fix/MUS-020-sonora-review`；本轮接收基线 `0566bc26ca88c5600072db717a26119c8983ed3f`，实现 `802da6bb1ee3f7906a19c963efb5aeac2115d223`。MUS-020 done仅本卡R1/R2与必要回归；MUS-019整体review，main未合并。
