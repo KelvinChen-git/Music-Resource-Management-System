@@ -1,0 +1,148 @@
+{
+  "task": "MUS-011",
+  "recorded_at": "2026-10-20T00:39:43.113992+00:00",
+  "status": "passed",
+  "execution": "ordinary macOS Terminal; isolated local A/B slots",
+  "independent_account_b_review": false,
+  "slots": {
+    "a": {
+      "source_sha": "aa65efa81dc45432b53e688d18272d4de3058c0e",
+      "log_directory": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Resource-Management-System/.local/a/logs/baseline-20261019-184734-83428",
+      "status": "passed",
+      "java": {
+        "tests": 266,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "frontend_build": "passed",
+      "database": "reuse_existing",
+      "database_tables": 11,
+      "checks": {
+        "smoke-direct": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "smoke-proxy": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "media-access": {
+          "matrix_cases": 144,
+          "additional_checks": 8,
+          "http_status_counts": {
+            "401": 36,
+            "200": 24,
+            "206": 12,
+            "404": 72
+          }
+        }
+      },
+      "backend_diagnostics_occurrences": {
+        "SQLSyntaxErrorException": 0,
+        "BindingException": 0,
+        "文件不可用": 3,
+        "JSqlParser": 0
+      },
+      "log_sha256": {
+        "media-access.log": "b5afa85df617a8e88a094d505bf8495776f49e6a4e311a5fc138e2847a9f6861",
+        "backend.log": "459fd8bef5ea7162f2d30f35047431baf8f03524a135f782d3912d0c3c454659",
+        "result.json": "ed31da98425ab74f565cb1da047232a28f00a0353fbd3fb35d192526ffe906b5",
+        "frontend.log": "63cfaac36b47715e47b3d8f8b637bfb408d177fb88c5db79210d3dc4c2a8c215",
+        "mysql.log": "fabdff4724fe8106f813f90f3c803a3e52b212c0198e0cd3bf56642fe0b4c847",
+        "java-tests.log": "8392aaa1878efac89d96614a0c7a911dc2d3aebdd5d965f14d5610bf7f42b178",
+        "smoke-proxy.log": "fe6be4e96c67e5aaafd0c5b0ececd0c38792694b9fef057136304bd8357dcff4",
+        "smoke-direct.log": "6da7a7950ac27c38dd976401c20476671814b2927c28ce4e46bebadee3085b7f",
+        "frontend-build.log": "98edaa214457c7c5ec4c2c9ea86a21966b527fca25cdb0157f5d867511bcc3f2"
+      }
+    },
+    "b": {
+      "source_sha": "d29ccbbd19c754977540b70f5fa0d71ab62f4f1e",
+      "log_directory": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Dev-B-MUS010/.local/b/logs/baseline-20261019-184759-83718",
+      "status": "passed",
+      "java": {
+        "tests": 266,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "frontend_build": "passed",
+      "database": "reuse_existing",
+      "database_tables": 11,
+      "checks": {
+        "smoke-direct": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "smoke-proxy": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "media-access": {
+          "matrix_cases": 144,
+          "additional_checks": 8,
+          "http_status_counts": {
+            "401": 36,
+            "200": 24,
+            "206": 12,
+            "404": 72
+          }
+        }
+      },
+      "backend_diagnostics_occurrences": {
+        "SQLSyntaxErrorException": 0,
+        "BindingException": 0,
+        "文件不可用": 3,
+        "JSqlParser": 0
+      },
+      "log_sha256": {
+        "media-access.log": "679a870eca20c50e1bf2cf743e9085b391c704a97fe72b2dffbf9827bf8b38ac",
+        "backend.log": "ab3c112515c94ff5c75edc01ab82e5c1adb608f3209c6c7346967ceab590f38f",
+        "result.json": "50f8ce05716c43a92883af2b62c02bcd970f5d1ce70c8cb2567ed421d0ad5f7b",
+        "frontend.log": "e68d7424fd910a6e52cd5e9b283c2293dab97bc2e552547b9fcc4f65c643532b",
+        "mysql.log": "5f1882fa28ce105d1d376b0758c4fefc4eca9c9e7d33f41a25646d3955c5770c",
+        "java-tests.log": "c863786ef518df789bda26b823df6c3e262171417bd4129e087b453ffc18895f",
+        "smoke-proxy.log": "0a16179928c1f46f4d55d8b01f1c57ee8d5342682bc63232f214a7a3caf854e3",
+        "smoke-direct.log": "e8dac8822ba5068267526f9d59780bb76a8a32bc2583a04d09bf238034aaf04f",
+        "frontend-build.log": "be2e2e06ab87fe6f6f8b2e7caad3205eeafa4190450394d9e0194e299ac7a023"
+      }
+    }
+  },
+  "limits": [
+    "Synthetic local fixtures; no browser listening or search quality assessment.",
+    "Backend restarted to load code; partial-upload restart recovery was not tested.",
+    "Persistent upload ownership and write authorization remain open.",
+    "GitHub publication is a separate step."
+  ],
+  "log_hash_note": "Hashes capture bytes read at archival time; service logs may continue appending.",
+  "source_difference": {
+    "a": "aa65efa",
+    "b": "d29ccbb",
+    "changed_paths": [
+      "docs/STATUS.md",
+      "docs/collaboration/account-a/latest.md",
+      "docs/verification/MUS-011-results.json"
+    ],
+    "runtime_source_identical": true
+  }
+}

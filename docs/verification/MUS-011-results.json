@@ -96,7 +96,7 @@
   "new_media_matrix": {
     "mockmvc_combinations": 144,
     "actual_webmvc_configuration": "passed",
-    "tcp_and_real_database_matrix": "not executed; old services still running"
+    "tcp_and_real_database_matrix": "passed: 144 combinations plus 8 additional checks in each local slot; see MUS-011-live-results.json"
   },
   "frontend_token_tests": {
     "tests": 6,
@@ -109,7 +109,8 @@
   },
   "socket_preflight": {
     "status": "blocked",
-    "error": "[Errno 1] Operation not permitted"
+    "error": "[Errno 1] Operation not permitted",
+    "scope": "Historical managed-process preflight; ordinary Terminal live runs passed separately"
   },
   "limits": [
     "MockMvc runs in process with mocked database services; not a real database/HTTP server test.",
@@ -123,6 +124,7 @@
     "MUS-011-baseline-guards.log": "e719da4902896cc03990cd98799f1dbcc22f91880afd3ce64549d43f759f0c8a"
   },
   "implementation_commit": "d29ccbb",
-  "local_b_worktree_source": "synchronized to d29ccbb; running backend not restarted",
-  "publication": "blocked before push: git ls-remote exit 128"
+  "local_b_worktree_source": "d29ccbb; restarted and real local matrix passed; not independent B account review",
+  "publication": "blocked before push: git ls-remote exit 128",
+  "live_results": "MUS-011-live-results.json"
 }

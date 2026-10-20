@@ -42,7 +42,7 @@ Axios 成功拦截器返回整个 envelope，调用方通过 `res.data` 取业�
 
 - 普通列表对非管理员清除 username / email / approvalStatus 筛选；管理员与普通用户的 onlyMine 行为也不同。不能给新搜索机械复用未经测试的可见性条件。
 - XML 的 tagIds 条件使用 `IN`：任意标签匹配，不是所有标签交集。日期 endDate 通过加一天包含完整结束日。
-- 历史文件接口有 `@Anonymous`、静态 uploads 排除 JWT，MUS-001 / 010 实跑确认匿名 200。MUS-011 已改为 A4 的授权 / 缓存规则，并保留授权后的 Resource Range；当前旧进程须重启才能验证新规则，MockMvc 通过不代替真实数据库 / HTTP 矩阵。
+- 历史文件接口有 `@Anonymous`、静态 uploads 排除 JWT，MUS-001 / 010 实跑确认匿名 200。MUS-011 已改为 A4 的授权 / 缓存规则，并保留授权后的 Resource Range；2026-10-19 两个本机隔离环境已重启并各通过 144 项真实数据库 / HTTP 矩阵，直连 / 代理匿名入口均为 401；独立 B 账号审核另列。
 - MUS-011 的 createMusicUrl / 列表与文件下载通过 fetchMedia 显式携带 JWT 获取 Blob；页面地址导航不作为私有音频下载入口。
 - UploadView 检查 10GiB，分片 5MiB；原 README 写 20MB。服务端总文件限制未锁定，还受本地 multipart 配置影响。
 

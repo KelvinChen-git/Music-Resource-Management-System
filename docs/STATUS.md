@@ -21,7 +21,7 @@
 | 空开发库 / local 启动 | passed（原生 MySQL） | V001 建立 11 表；重复初始化拒绝；Compose 未执行 |
 | API 直连 / 开发代理流程 | passed（本机 A/B） | 两个独立 checkout 各直连 13 / 代理 13，真实 Range 206；见 MUS-010 四份原始结果 |
 | 两套本地环境隔离 | 实跑 passed | A 复用已有库，独立 B worktree 新建空库各 11 表；六端口同时监听。此本机代跑不冒充 B 账号独立验收 |
-| 旧媒体权限 | 已确认缺陷 | pending、静态上传及软删除后的匿名媒体均可 HTTP 200 读取 |
+| 媒体入口权限 | 本机修复实跑通过 | MUS-011 两套环境匿名三入口均 401；上传所有权与 B 独立审核仍待完成 |
 | CLAP 文本 / 音频编码 | 可行性 passed | 固定 checkpoint CPU 严格加载，实际 512 维，合成输入，9 项预处理测试；有网 / 缓存离线复跑通过 |
 | Python 检索 / 索引 / 搜索界面 | 未实现 | 只有离线探针；未冻结 discovery-v0 |
 | 30–50 / 2,000 首，约 70,000 片段，120 查询 | 计划 / 算例 | 未导入或标注；合成 smoke 不是音乐语料 |
@@ -47,7 +47,7 @@
 | MUS-008 固定交接与同步 | review / A（共享读取可用；A 自动发布 blocked） | chore/MUS-008-account-sync / 6e4140b | A/B feed 均已发布，B 完成 sync / ack，A 本轮直接读取 B；9 项脚本本地 Git 检查通过。B 接口顺序发布不等同原子脚本通过；A 回执待发布 |
 | MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
 | MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
-| MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。普通终端新矩阵、上传持久所有权仍未完 |
+| MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -63,7 +63,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 |---|---|---|
 | B-01 | 缺配置 / proxy 硬编码已解决；可重复命令已建立 | B 复跑；Compose 仍未实跑 |
 | B-02 | 空库 V001 已验证；历史 SQL 保留，不可顺序执行 | 既有数据库迁移另立任务；分类 ID Java 类型差异待审 |
-| B-03 | 旧匿名媒体 / 静态路径 / 删除后访问问题已实证 | MUS-001-R1 提出矩阵与最小方案，MUS-005 接入前修复 |
+| B-03 | 旧匿名媒体 / 静态路径 / 删除后访问问题已实证 | MUS-011 本机两套真实矩阵已通过，三匿名入口均 401；独立复核及上传归属仍待完成 |
 | B-04 | 默认测试遗漏 / 跨版本测试依赖已解决 | 全量 89 tests 通过；不代表全业务 / 全权限覆盖 |
 | B-05 | 分片即时 save 后又 saveBatch；自定义 insertBatchSomeColumn 在项目中没有 SQL / 注入注册 | B R1 与 A 静态核对确认代码缺口；真实 SQL 调用、写失败 / 重启负例待补证。另保留 Druid POM / JSqlParser 诊断，不将所有批量失败归因于重复键 |
 | B-06 | 无许可明确的真实音乐 manifest / 查询 / qrels | MUS-002 素材获取与效果评估前提；不能用静音样本替代 |
@@ -140,17 +140,24 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 ## MUS-011 媒体访问与缓存（本轮占用）
 
-- status review（实现及本地回归通过；真实服务矩阵待重启）；owner A；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`。开始时 GitHub 新鲜读取 B feed 仍为 05d4e9f，无新路径占用。
+- status review（实现及两套本机真实服务矩阵通过；B 独立审核待完成）；owner A；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`。开始时 GitHub 新鲜读取 B feed 仍为 05d4e9f，无新路径占用。
 - allowed_paths：MusicResourceController / FileUploadController、新静态上传控制器；WebMvcConfig / JwtAuthenticationInterceptor / GlobalExceptionHandler；新 MediaAccessService / MediaResponses、MusicResourceServiceImpl 的既有关联元数据重绑定检查及测试；web api/music.js、utils/media.js 及测试、MusicListView / FileListView；scripts/smoke.py / media_access_smoke.py / baseline.py（增加权限实跑验收步骤）；README / CONTRACTS / STATUS / A latest / verification/MUS-011*。
 - 验收：资源 / 原始下载重新校验当前登录用户、审核与删除状态；静态路径不能提供音乐；成功 / 拒绝 / Range / HEAD 不长期缓存，匿名不能计数；保留合法头像和前端携带 JWT 的播放 / 下载；矩阵与基线回归。策略先记入 CONTRACTS A4。
-- 不改 schema、上传归属、依赖锁、B 报告、MUS-002；既有浏览器已下载字节无法追溯收回，不声称 no-store 可清除旧一年缓存。完整 HTTP 实跑仍需普通终端加载新代码，当前两套旧服务不自动重启。
+- 不改 schema、上传归属、依赖锁、B 报告、MUS-002；既有浏览器已下载字节无法追溯收回，不声称 no-store 可清除旧一年缓存。用户已在普通终端重启两套服务，新代码真实矩阵通过。
 
 ### MUS-011 检查点
 
 - 已实现 CONTRACTS A4：当前账号与审核 / 删除状态、受控真实路径、no-store、静态仅登记头像、ZIP 与既有元数据重绑定检查；播放 / 下载显式 JWT。
 - 全量 Java 266 / 0 failures / errors / skipped（原107 + HTTP155 + 重绑定4），前端 helper6、build、baseline guards8通过。155中144为MockMvc组合，另含实际WebMvcConfig，不冒充TCP / 真库矩阵。
-- 当前两个普通终端服务仍是旧版本，未自动关闭。真实 HTTP 矩阵已接入 baseline；同一命令重启后将检查144个真实组合、头像和重绑定，A可直接读取本地结果。
+- 两个普通终端已加载新代码；A aa65efa / 本机 B d29ccbb（仅三份文档不同）。各 266 Java / build、直连和代理各 13 功能 + 4 安全、144 真实组合 + 8 附加检查均通过。A 已直接读取原始日志并核对汇总，无需搬运。
 - 补充发现：file_upload 无 owner，未关联上传首次归属 / 抢先绑定与上传写授权仍需 schema / 迁移任务。本次仅对已有资源引用加防重绑定；不能据三入口修复称整个上传权限已安全，公开 discovery 保持阻断。B-03 / B-09 不直接标 done。
-- 证据见 verification/MUS-011.md / JSON。未修改依赖锁、schema、B 报告、模型 / 语料；后续先补真实媒体矩阵和所有权，再补 MUS-009 失败 / 并发 / 重启。
+- 证据见 verification/MUS-011.md / JSON。未修改依赖锁、schema、B 报告、模型 / 语料；真实媒体矩阵已完成；后续补上传所有权，再补 MUS-009 失败 / 并发 / 重启续传。
 
-- MUS-011 实现提交 d29ccbb，已在干净工作区将本机独立 B worktree detach 同步到该提交；两个旧服务尚未重启。publish 实际在 git ls-remote exit 128 阻塞，未进入推送，B 账号远端未收到本轮交付。
+- MUS-011 实现提交 d29ccbb，已在干净工作区将本机独立 B worktree detach 同步到该提交；两套服务重启后的真实验收已完成。上次 publish 在 git ls-remote exit 128 阻塞，未进入推送；本轮再次发布结果单独记录，成功前不声称 B 已收到。
+
+
+### MUS-011 真实运行归档（2026-10-19 America/Chicago）
+
+- A run baseline-20261019-184734-83428；本机 B run baseline-20261019-184759-83718，整体均 passed。六份原始 JSON 与 MUS-011-live-results.json 已归档；原始日志 / 内嵌 JSON 一致，144 元组唯一且状态正确。每套 36×401 / 72×404 / 24×200 / 12×206。
+- 三个匿名入口由历史 200 变为 401；授权 GET / Range、HEAD / 计数、头像与元数据反重绑定通过。每份后端日志的三个“文件不可用”属预期拒绝用例，无 SQLSyntaxErrorException / BindingException。
+- 仍为 review：本机 B 槽通过不代替 B 账号独立审核；未处理上传持久所有权、首次抢先绑定、上传写授权、事务失败 / 并发和跨进程续传，不代表公开 discovery 可开放。
