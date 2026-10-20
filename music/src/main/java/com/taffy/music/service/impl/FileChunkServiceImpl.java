@@ -24,6 +24,17 @@ public class FileChunkServiceImpl extends ServiceImpl<FileChunkMapper, FileChunk
     }
 
     @Override
+    public List<FileChunk> getChunksByFileIdForUpdate(Long fileId) {
+        // Authentication may already have established a REPEATABLE READ snapshot
+        // before the parent lock was acquired. Use a current read after that lock.
+        LambdaQueryWrapper<FileChunk> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(FileChunk::getFileId, fileId)
+                .orderByAsc(FileChunk::getChunkIndex)
+                .last("FOR UPDATE");
+        return list(wrapper);
+    }
+
+    @Override
     public boolean isChunkUploaded(Long fileId, Integer chunkIndex) {
         LambdaQueryWrapper<FileChunk> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(FileChunk::getFileId, fileId)

@@ -5,6 +5,7 @@ Uses native MySQL. Never clears a database or changes existing credentials.
 A and B must run in separate clones/worktrees; this is not cross-account approval.
 """
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -58,6 +59,8 @@ def port_open(port):
 
 def free_port(port):
     with socket.socket() as probe:
+        # Ignore closed connections in TIME_WAIT while still refusing live listeners.
+        probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         probe.bind(('127.0.0.1', int(port)))
 
 
@@ -281,24 +284,72 @@ class Baseline:
             if evidence.get('status') != 'passed' or evidence.get('check_count') != 11:
                 raise RuntimeError('B finding HTTP regressions did not pass all 11 checks.')
             self.result['checks'].append({'review-findings': evidence})
+        fault = self.command([sys.executable, 'scripts/upload_fault_smoke.py', '--slot', self.args.slot,
+                              '--mysql', str(self.client)], 'upload-faults', timeout=180)
+        evidence = json.loads(fault.read_text())
+        if evidence.get('status') != 'passed' or evidence.get('check_count') != 18:
+            raise RuntimeError('Upload fault checks did not pass all 18 cases.')
+        self.result['checks'].append({'upload-faults': evidence})
+        integrity = [sys.executable, 'scripts/upload_integrity_smoke.py', '--slot', self.args.slot,
+                     '--mysql', str(self.client)]
+        prepared = json.loads(self.command(integrity + ['--phase', 'prepare'],
+                                           'upload-integrity-prepare').read_text())
+        if prepared.get('check_count') != 5:
+            raise RuntimeError('Partial upload checkpoint was not completed.')
+        self.result['checks'].append({'upload-integrity-prepare': prepared})
+        checkpoint = self.state / 'upload-integrity-state.json'
+        checkpoint_hash = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+        if checkpoint_hash != prepared['prepared_state_sha256']:
+            raise RuntimeError('Partial upload checkpoint changed before restart.')
+        self.stop_owned(backend)
+        stopped = time.time()
+        deadline = time.monotonic() + 10
+        while True:
+            try:
+                free_port(self.env['MUSIC_SERVER_PORT'])
+                break
+            except OSError:
+                if time.monotonic() >= deadline:
+                    raise RuntimeError('Owned backend port did not release; no replacement started.')
+                time.sleep(0.2)
+        replacement = self.start(maven + ['spring-boot:run'], 'backend-restarted', cwd=ROOT / 'music')
+        self.wait(replacement, lambda: self.http_ready(api, 401), 'backend-restarted', seconds=180)
+        proof = {'schema': 'music-backend-restart-v1', 'slot': self.args.slot, 'checkout': str(ROOT.resolve()),
+                 'prepared_state_sha256': checkpoint_hash, 'old_backend_launcher_pid': backend.pid,
+                 'new_backend_launcher_pid': replacement.pid, 'old_backend_exit_confirmed': backend.poll() is not None,
+                 'backend_port_released': True, 'new_backend_ready': True,
+                 'stopped_at_unix': stopped, 'restarted_at_unix': time.time()}
+        proof_path = self.logdir / 'restart-proof.json'
+        proof_path.write_text(json.dumps(proof, indent=2) + '\n')
+        resumed = json.loads(self.command(integrity + ['--phase', 'resume', '--restart-proof', str(proof_path)],
+                                          'upload-integrity-resume', timeout=180).read_text())
+        if resumed.get('status') != 'passed' or resumed.get('restart_verified') is not True or resumed.get('check_count') != 11:
+            raise RuntimeError('Restart/concurrent integrity regression did not pass all 11 checks.')
+        self.result['checks'].append({'upload-integrity-resume': resumed, 'restart-proof': proof})
         self.result['status'] = 'passed'
         self.result['urls'] = {'frontend': web, 'backend': api.rsplit('/auth/profile', 1)[0]}
 
-    def stop(self):
-        # Only signal process groups created by this invocation, never discovered services.
-        for process in reversed(self.children):
-            if process.poll() is None:
+    def stop_owned(self, process):
+        if not any(process is child for child in self.children):
+            raise RuntimeError('Refusing to stop an unregistered process.')
+        if process.poll() is None:
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+                process.wait(timeout=15)
+            except ProcessLookupError:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
                 try:
-                    os.killpg(process.pid, signal.SIGTERM)
-                    process.wait(timeout=15)
+                    os.killpg(process.pid, signal.SIGKILL)
                 except ProcessLookupError:
                     pass
-                except subprocess.TimeoutExpired:
-                    try:
-                        os.killpg(process.pid, signal.SIGKILL)
-                    except ProcessLookupError:
-                        pass
-                    process.wait(timeout=5)
+                process.wait(timeout=5)
+        self.children = [child for child in self.children if child is not process]
+
+    def stop(self):
+        # Only signal process groups created by this invocation, never discovered services.
+        for process in reversed(self.children[:]):
+            self.stop_owned(process)
         if self.socketdir:
             try:
                 self.socketdir.rmdir()

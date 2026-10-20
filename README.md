@@ -114,3 +114,6 @@ python3 scripts/baseline.py --slot b --migrate-upload-ownership --keep-running
 ```
 
 该迁移选项只接受隔离开发配置，已升级的库重复运行不会回填 owner 或重建表；空库自动初始化到 V002。新 baseline 会执行原功能与媒体矩阵，再执行上传所有权真实回归。报告与限制见 [MUS-012](docs/verification/MUS-012.md)。两个本机槽不代表 B 账号已独立审核。
+
+
+MUS-014 基线新增18项真实上传故障检查，并自动完成“部分上传 → 停止本次后端 → 新后端就绪 → 续传与并发合并”检查。旧基线若仍在运行，先在各自终端按 Ctrl+C，再用上述命令启动。无需手动执行prepare/resume，也无需复制私有状态；失败状态会保留以便定位，不自动覆盖。当前修复的317 Java / 45 Python通过，真实并发计数回归与跨JVM恢复仍待新基线运行。见 [MUS-014](docs/verification/MUS-014.md)。

@@ -58,7 +58,7 @@ public class UploadIntegrityService {
                 || input.getSize() > Integer.MAX_VALUE || input.getSize() > upload.getFileSize())
             throw new IllegalArgumentException("分片大小或MD5无效");
 
-        List<FileChunk> existing = chunks.getChunksByFileId(fileId);
+        List<FileChunk> existing = chunks.getChunksByFileIdForUpdate(fileId);
         FileChunk previous = existing.stream().filter(c -> index.equals(c.getChunkIndex())).findFirst().orElse(null);
         Path directory = Path.of(properties.getTempPath(), fileId.toString());
         Files.createDirectories(directory);
@@ -93,7 +93,7 @@ public class UploadIntegrityService {
                 accepted = true;
             }
             // Count persisted rows instead of incrementing a stale client/process value.
-            long count = chunks.getChunksByFileId(fileId).stream()
+            long count = chunks.getChunksByFileIdForUpdate(fileId).stream()
                     .filter(c -> Integer.valueOf(1).equals(c.getStatus())).count();
             upload.setUploadedChunks(Math.toIntExact(count));
             upload.setUpdateTime(LocalDateTime.now());
@@ -117,7 +117,7 @@ public class UploadIntegrityService {
             return upload.getFilePath();
         }
         if (!Integer.valueOf(0).equals(upload.getStatus())) throw new IllegalArgumentException("文件不是上传中状态");
-        List<FileChunk> records = chunks.getChunksByFileId(fileId).stream()
+        List<FileChunk> records = chunks.getChunksByFileIdForUpdate(fileId).stream()
                 .sorted(Comparator.comparingInt(FileChunk::getChunkIndex)).toList();
         if (records.size() != upload.getChunkCount()) throw new IllegalArgumentException("分片未上传完成");
         for (int i = 0; i < records.size(); i++) {

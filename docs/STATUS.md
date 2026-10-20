@@ -235,3 +235,20 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - R1旧DELETE410、资源引用1、raw404；R2 createUser400、创建行0、图片匿名401。旧服务复现与新服务结果分别归档，不再把历史受管环境阻塞当当前验收状态。新后端日志无SQLSyntaxErrorException/BindingException/CommunicationsException。
 - 12份原始JSON与MUS-013-live-results.json已归档；服务保持运行，本轮无需重启或搬运。B新feed仍31b564b（旧MUS-012-R1-B完成request_changes），MUS-013-R1-B尚无主动确认/批准，固定reviewed_sha c100fd6和revision1保持不变，只补输入证据。
 - 真实回滚故障注入、跨请求并发与上传中断后的进程恢复仍未执行，后续A任务继续，不能因本次普通重启标为通过。
+
+
+## MUS-014 上传故障与受控重启验收（当前占用）
+
+- owner A；branch test/MUS-014-upload-recovery；base d384a8fc66778ba24344f1ef19507db718872623。ack B feed bbae3797ec5dbafaed7e7bde28bb6951ed2c2db4 / source1534e4d6101c7a8e889fd22fdda036666fa82ac3。
+- B增量复核sourcea6474f48eba669b70c88a24daa0a90cfc01dbc83已读：原R1/R2/R3和profile安全写列已关闭，新增R4脚本清理缺口request_changes；B后续获用户授权实施并交付R4最小修复。A不将其自交付当独立批准。
+- A按B声明哈希导入两个脚本/测试原字节，独立Python39及真实HTTP11通过；B报告和main不改。没有Java/前端变更，不重复其已通过Java317。
+- allowed_paths：scripts/review_findings_smoke.py / test_review_findings_smoke.py（导入B原字节）、新upload_fault_smoke.py及保护测试、upload_integrity_smoke.py、baseline.py及测试；README / CONTRACTS / STATUS / own latest / verification/MUS-014* / own任务派发。本轮并发探针已暴露计数错误，扩展Java范围至FileChunkService / FileChunkServiceImpl / UploadIntegrityService及相关测试；schema SQL和依赖锁不改。
+- 目标：真实写失败回滚及可重试、计数/唯一行、并行上传与合并、部分上传跨JVM重启恢复；新基线自动控制自己的后端重启，不要求用户手动在prepare/resume间搬运状态。
+- B提出的头像同值更新交错仍是静态风险，单列后续多连接验证，不冒称已复现或本批已解决。
+
+### MUS-014 当前验证检查点
+
+- A对运行中的c100fd6业务代码真实并发：file44有12行/12不同分片，持久uploaded_chunks仅10，API却显示12；失败证据已归档，私有JWT状态留.local且移至failed文件，不修写库中计数掩盖故障。
+- 源码判断：身份查询可能在等待父上传锁前建立RR快照，锁后普通分片查询仍读旧快照。修复为持有父锁的事务内FOR UPDATE当前读，覆盖重复判断、计数和合并输入。当前Java317、Python45通过，尚未在新JVM真实复测，不把单元通过当并发缺陷已验收。
+- 真实SQL INSERT/计数更新/合并发布失败与文件写失败、磁盘损坏/重试共18项，在A旧服务c100fd6通过，所有自建CHECK清理完成。不是新Java版本验收，也未模拟整库中断/提交ACK丢失。
+- baseline新增prepare5项、只停止自己登记进程组、确认端口释放、启动新JVM并执行resume11项（12并发上传请求/2并发合并）。重启后真实结果待用户普通终端两槽启动；不在受管Java网络被拒环境中反复尝试。

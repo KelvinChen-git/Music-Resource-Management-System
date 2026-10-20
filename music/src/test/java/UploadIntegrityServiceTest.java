@@ -46,7 +46,7 @@ class UploadIntegrityServiceTest {
         records = new ArrayList<>();
         when(access.requireOwnedLocked(1L)).thenReturn(upload);
         when(uploads.updateById(any())).thenReturn(true);
-        when(chunks.getChunksByFileId(1L)).thenAnswer(call -> new ArrayList<>(records));
+        when(chunks.getChunksByFileIdForUpdate(1L)).thenAnswer(call -> new ArrayList<>(records));
         when(chunks.save(any())).thenAnswer(call -> {
             FileChunk record = call.getArgument(0);
             record.setId((long) records.size() + 1); records.add(record); return true;

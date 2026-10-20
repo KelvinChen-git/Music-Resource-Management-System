@@ -24,5 +24,8 @@ public interface FileChunkService extends IService<FileChunk> {
      * @return 分片列表
      */
     List<FileChunk> getChunksByFileId(Long fileId);
+
+    /** Current read; caller must hold the parent upload row lock in a transaction. */
+    List<FileChunk> getChunksByFileIdForUpdate(Long fileId);
     
 }

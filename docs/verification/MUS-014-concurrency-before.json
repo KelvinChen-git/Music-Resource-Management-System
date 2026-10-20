@@ -1,0 +1,12 @@
+{
+  "runtime_business_sha": "c100fd6510fe1061396be16973a7560ed2b89e7f",
+  "slot": "a",
+  "file_id": 44,
+  "status": "failed",
+  "chunk_rows": 12,
+  "distinct_chunk_indexes": 12,
+  "persisted_uploaded_chunks": 10,
+  "api_uploaded_chunks": 12,
+  "scope": "Real HTTP parallel requests and native MySQL evidence; before fix.",
+  "restart_verified": false
+}
