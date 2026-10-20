@@ -1,25 +1,22 @@
 # 账号 A 最新交接
 
-- account A；2026-10-20 America/Chicago 00:43；task MUS-015；branch fix/MUS-015-avatar-revalidation；status review / new runtime acceptance pending。
-- implementation_sha `d9a2a15791da0db4374c5de093a752a5aa202a25`；comparison_base `feb935ad5c7eb4eb8a11065f3d5c18ed2a93dab1`。本handoff.source_sha还包括后续派发/交接文档。
-- ack_peer_feed_sha `8d1ae4ac5e3640d935ccfec88d9552e9e3baa2dd`；B source `7175ddf1e6e51a994cbfb53506d1a4db411d8c66`。
+- A；2026-10-20 America/Chicago；task MUS-016用户授权演示资源导入；branch feat/MUS-016-demo-music-import；status 本机A导入/前端验证完成，独立审核未完成。
+- ack_peer_feed_sha `8d1ae4ac5e3640d935ccfec88d9552e9e3baa2dd`；B source7175ddf1e6e51a994cbfb53506d1a4db411d8c66（本次导入未另行sync，不推断有新B结论）。
 
-## MUS-014关闭与B独立补证
+## 当前用户新增交付
 
-B已完成MUS-014-R1-B/revision1，approve限定卡范围；reviewed7c973b5、assignment a433e2b、ack A0093ae4。B报告Java317、先前Python45/真实进程保护9，并独立补齐真库fault18/prepare5/新JVM resume11及原全基线；file16为12行/12索引/计数12，实际Java852→1192。
+使用用户提供的Jamendo Client ID，在A开发slot通过既有HTTP API和专用普通USER账号导入20首CC BY完整原音频，原下载明确允许。每首完整SHA256与206 Range核对通过；真实重复运行后数据库仍20资源/20不同musicId、20上传，无提权、直接SQL写入或审核批准。20条保持pending，只有原权限允许者能播放。
 
-A核对feed报告哈希、准确源码仅两B报告差异、原字节导入docs/reviews/MUS-014-B.md。接收记录 docs/verification/MUS-014-B-acceptance.json。B披露Linux私有工具/回环TCP与临时目录适配，原始日志未转交；A不冒称可读取其私有路径、重算原始哈希或仓库无适配Linux通用支持。MUS-014两槽本机实证与B独立补证均完成范围，main未合并。
+Post Malone/Drake各10条资料和官方Apple链接单独展示，无其音频/试听/封面下载。新增Demo Catalog侧栏及/demo-catalog登录保护页，展示每首作者/来源/许可/未改动说明。真实浏览器已登录普通演示账号，目录20+20、Drake筛选10条、What Is Love定位唯一并播放进度至0:40/3:32后暂停。内置浏览器页面保留供用户检查。
 
-## MUS-015实现与验证
+Python50通过、Vue生产构建通过。新导入脚本含隔离slot验证、许可证/下载域名/大小限制、独占运行锁、缓存完整性和逐首HTTP查重；完整缓存复核不重新访问热门榜或下载，不能称为新一轮实时源许可检查。私有来源缓存、音频、Client ID和账号凭据在.local，不入Git；Git公开清单只含允许展示的资料和本机demo ID/校验值。
 
-两个头像更新入口删除同值跳过校验；每个非空avatar均调用原requireAvatar，锁定所属上传、核对完成/未删除，再在原事务写引用。profile仍仅写可编辑列，名称单独修改与管理员清空avatar保留。
+验证 docs/verification/MUS-016.md / MUS-016-results.json。没有Java源码变化或新后端启动；当前后端仍已验收MUS-014。本机B未导入新音频、未切源码/停服务。本次不是多设备音频同步、检索质量或生产验收。
 
-三项新增MockMVC/mapper回归在旧实现52测试中3失败，修复后完整Java320零失败/错误/跳过。它们验证旧profile快照+已删除上传被拒，合法同值仍有FOR UPDATE校验，不代表真实多连接交错复现。无Python/前端/依赖/schema变更，旧45Python/build未无故重跑。
+## 保持原B任务
 
-现有两套服务保持已验收MUS-014版本，尚未加载MUS-015；不停止服务、不要求用户本轮重复重启。新版本真实HTTP与头像多连接交错仍待补证，不能从单元通过推断上线。
+MUS-014-R1-B已接收范围内approve及B独立运行补证，报告原字节导入，私有原始日志不能由A重算。MUS-015头像同值校验已提交d9a2a15，Java320通过，真实多连接验收待后续。
 
-## 新B固定任务
+B固定卡仍MUS-015-R1-B/revision1，reviewed_sha d9a2a15准确完整值见docs/collaboration/tasks/account-b.json；只写docs/reviews/MUS-015-B.md与own latest。新用户导入任务不覆盖在途卡、不代写B已claimed/批准。MUS-016后续独立复核待派发，最终main未合并。
 
-MUS-015-R1-B/revision1，reviewed_sha `d9a2a15791da0db4374c5de093a752a5aa202a25`，当前assigned未认领。固定入口docs/collaboration/tasks/account-b.json；B仅写docs/reviews/MUS-015-B.md与own latest，主动claimed后复核。前MUS-014卡完成，不重复领取；A不代写B批准。
-
-整库中断/commit ACK丢失、物理GC、真实音乐检索与生产验收仍未完成。A不改B报告原文、schema SQL、依赖锁或main。本协议无后台唤醒、无自动最终合并。
+schema SQL、依赖锁和B报告不改；整库中断/commit ACK丢失、物理GC、真实音乐检索效果与生产验收尚未完成。

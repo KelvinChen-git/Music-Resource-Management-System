@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-20T05:42:49.207185+00:00",
-  "source_branch": "fix/MUS-015-avatar-revalidation",
-  "source_sha": "dbb631218b8ee7c87823ce594494b908b2849e32",
+  "published_at": "2026-10-20T06:21:11.334273+00:00",
+  "source_branch": "feat/MUS-016-demo-music-import",
+  "source_sha": "3092ae273e4a448246b8272fd20f3cd7de37dc91",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "34f1e6750b7c7c25155226e0c1472d0ea4e4a21b8ce639368a33cc65f780f232"
+  "report_sha256": "d7cbd20989cabf1a6fc0069eee04a38e1da627df1d6dc6e1b9f2cccf731fda25"
 }
