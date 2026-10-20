@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": [
+    "recognized V001 upgrades and legacy owner remains NULL",
+    "completed migration is repeatable",
+    "same-count substituted table rejected without DDL or version write",
+    "substituted schema remains V001 without owner column",
+    "missing upload column rejected before writes",
+    "DDL committed before marker can be resumed",
+    "non-NULL owner default rejected without writes",
+    "unique owner index rejected without marker write"
+  ],
+  "check_count": 8,
+  "isolation": "new private datadir, unique schema, Unix socket, networking disabled; no existing DB connection",
+  "cleanup": "owned mysqld stopped and temporary directory removed in finally"
+}

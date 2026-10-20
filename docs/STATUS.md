@@ -254,3 +254,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - baseline新增prepare5项、只停止自己登记进程组、确认端口释放、启动新JVM并执行resume11项（12并发上传请求/2并发合并）。重启后真实结果待用户普通终端两槽启动；不在受管Java网络被拒环境中反复尝试。
 
 - 实现提交7c973b5d9eac219e289623e7eb6d44eda73cb09d；新派发MUS-014-R1-B/revision1固定审核该SHA，比较d384a8f，尚未认领。前MUS-013-R1-B已由B完成request_changes并交付R4，不继续显示其为未确认任务。
+
+### MUS-014 两套普通终端真实验收完成（2026-10-19 America/Chicago 23:18）
+
+- A run baseline-20261019-231744-96134/source05c9b6d，本机B baseline-20261019-231754-96494/source7c973b5均passed，仅四份派发/交接文档不同。
+- 各317 Java/build、8迁移、直连/代理各13功能+4安全、媒体144+8、上传65、B发现HTTP11、故障18、prepare5/跨JVM resume11通过；原始JSON与内嵌结果一致，22份原始JSON及MUS-014-live-results.json已归档。
+- 实际Java A96493→96842、B97066→97275；新旧launcher PID、退出/端口释放/就绪、时间及checkpoint哈希一致。新JVM后12并行上传请求/2并行合并验证通过。
+- 再读真库：Afile65/Bfile40均12行/12不同索引/持久计数12/状态1，文件字节一致；故障CHECK均0，私有canonical state和registry均清理。旧file44失败不修写。
+- 服务保持运行，无需再次重启。B feed仍bbae379/source1534e4d，MUS-014-R1-B未主动claimed/批准；审核SHA7c973b5/revision1不变，只补验收输入。不是本会话权限已解除，也不是独立B账号或生产验收。

@@ -1,0 +1,13 @@
+{
+  "schema": "music-backend-restart-v1",
+  "slot": "b",
+  "checkout": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Dev-B-MUS010",
+  "prepared_state_sha256": "37b173a7f739b94c0e747a72fd7628ca63a9393b91b0361b59298d3d80823f25",
+  "old_backend_launcher_pid": 96950,
+  "new_backend_launcher_pid": 97159,
+  "old_backend_exit_confirmed": true,
+  "backend_port_released": true,
+  "new_backend_ready": true,
+  "stopped_at_unix": 1792469893.792743,
+  "restarted_at_unix": 1792469896.338377
+}

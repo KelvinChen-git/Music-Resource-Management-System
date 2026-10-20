@@ -26,7 +26,7 @@
   "note": "Read task at A handoff.source_sha. Review fixed reviewed_sha. Supplemental runtime results do not create a new assignment. No B claim/approval inferred.",
   "supplemental_evidence": {
     "source": "current A handoff.source_sha",
-    "path": "docs/verification/MUS-014.md",
-    "status": "new runtime regression pending ordinary terminal baseline"
+    "path": "docs/verification/MUS-014-live-results.json",
+    "status": "two local slots passed; not independent B approval"
   }
 }

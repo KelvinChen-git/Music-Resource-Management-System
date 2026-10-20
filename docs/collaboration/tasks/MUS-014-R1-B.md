@@ -21,3 +21,6 @@
 A Java317/Python45通过；旧服务fault18、B清理HTTP11通过；新Java真实并发回归及跨JVM续传待普通终端新baseline，不冒充通过。最新补证从当前handoff.source_sha下MUS-014报告读取，不因文档补证重复认领。
 
 可在自身隔离环境运行Python/Java或真库；缺少环境则明确实际数量与blocked，不复制A数字。保留现有B未提交工作，不reset/clean/stash覆盖。业务源码/schema/依赖锁/A文档/任务卡不在B写范围，发现交A处理。提交后 `python3 scripts/collab.py publish --account b`，A直接sync；无后台唤醒、无需用户复制报告正文。main合并仍由用户决定。
+
+
+补充验收输入（不改task_id/revision/审核SHA）：用户普通终端两槽已完成317 Java/build、18故障、prepare5/跨JVM resume11及原回归。实际Java A96493→96842、B97066→97275；只读核验均12行/12索引/持久计数12/字节一致，约束0。见当前A handoff.source_sha下docs/verification/MUS-014-live-results.json及22份原始JSON。上述仍是A本机证据，不能算B执行数量或批准。

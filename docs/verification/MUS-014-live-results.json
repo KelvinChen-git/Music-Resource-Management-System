@@ -1,0 +1,101 @@
+{
+  "task": "MUS-014",
+  "status": "passed_local_two_slots",
+  "verified_at": "2026-10-19 America/Chicago 23:19",
+  "implementation_sha": "7c973b5d9eac219e289623e7eb6d44eda73cb09d",
+  "limits": [
+    "Two local slots, not independent account B review or production acceptance.",
+    "No database outage or transaction-commit acknowledgement loss simulated.",
+    "Avatar same-value update race remains a separate static risk."
+  ],
+  "slots": {
+    "a": {
+      "run_id": "baseline-20261019-231744-96134",
+      "source_sha": "05c9b6ddfd3ac6daf1f362cbdbccd030888ebefd",
+      "status": "passed",
+      "java": {
+        "tests": 317,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "frontend_build": "passed",
+      "database_tables": 11,
+      "migration_guard_checks": 8,
+      "direct_functional": 13,
+      "direct_security": 4,
+      "proxy_functional": 13,
+      "proxy_security": 4,
+      "media_matrix": 144,
+      "media_additional": 8,
+      "upload_ownership_checks": 65,
+      "review_findings_checks": 11,
+      "upload_fault_checks": 18,
+      "integrity_prepare_checks": 5,
+      "integrity_resume_checks": 11,
+      "concurrent_upload_requests": 12,
+      "concurrent_merge_requests": 2,
+      "old_java_pid": 96493,
+      "new_java_pid": 96842,
+      "restart_verified": true,
+      "source_equivalence": "7c973b5 to 05c9b6d differs only in four docs files",
+      "artifacts": {
+        "migration-guard-probe": "MUS-014-a-migration-guard-probe.json",
+        "smoke-direct": "MUS-014-a-smoke-direct.json",
+        "smoke-proxy": "MUS-014-a-smoke-proxy.json",
+        "media-access": "MUS-014-a-media-access.json",
+        "upload-ownership": "MUS-014-a-upload-ownership.json",
+        "review-findings": "MUS-014-a-review-findings.json",
+        "upload-faults": "MUS-014-a-upload-faults.json",
+        "upload-integrity-prepare": "MUS-014-a-upload-integrity-prepare.json",
+        "upload-integrity-resume": "MUS-014-a-upload-integrity-resume.json",
+        "restart-proof": "MUS-014-a-restart-proof.json",
+        "final-integrity-observation": "MUS-014-a-final-integrity-observation.json"
+      }
+    },
+    "b": {
+      "run_id": "baseline-20261019-231754-96494",
+      "source_sha": "7c973b5d9eac219e289623e7eb6d44eda73cb09d",
+      "status": "passed",
+      "java": {
+        "tests": 317,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "frontend_build": "passed",
+      "database_tables": 11,
+      "migration_guard_checks": 8,
+      "direct_functional": 13,
+      "direct_security": 4,
+      "proxy_functional": 13,
+      "proxy_security": 4,
+      "media_matrix": 144,
+      "media_additional": 8,
+      "upload_ownership_checks": 65,
+      "review_findings_checks": 11,
+      "upload_fault_checks": 18,
+      "integrity_prepare_checks": 5,
+      "integrity_resume_checks": 11,
+      "concurrent_upload_requests": 12,
+      "concurrent_merge_requests": 2,
+      "old_java_pid": 97066,
+      "new_java_pid": 97275,
+      "restart_verified": true,
+      "source_equivalence": "7c973b5 to 05c9b6d differs only in four docs files",
+      "artifacts": {
+        "migration-guard-probe": "MUS-014-b-migration-guard-probe.json",
+        "smoke-direct": "MUS-014-b-smoke-direct.json",
+        "smoke-proxy": "MUS-014-b-smoke-proxy.json",
+        "media-access": "MUS-014-b-media-access.json",
+        "upload-ownership": "MUS-014-b-upload-ownership.json",
+        "review-findings": "MUS-014-b-review-findings.json",
+        "upload-faults": "MUS-014-b-upload-faults.json",
+        "upload-integrity-prepare": "MUS-014-b-upload-integrity-prepare.json",
+        "upload-integrity-resume": "MUS-014-b-upload-integrity-resume.json",
+        "restart-proof": "MUS-014-b-restart-proof.json",
+        "final-integrity-observation": "MUS-014-b-final-integrity-observation.json"
+      }
+    }
+  }
+}

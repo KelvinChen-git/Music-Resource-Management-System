@@ -1,0 +1,255 @@
+{
+  "slot": "b",
+  "base_url": "http://127.0.0.1:8081/api",
+  "checks": [
+    "create persists server owner and ignores forged owner",
+    "owner persisted in real database",
+    "foreign MD5 check reveals no ID or path",
+    "administrator MD5 check also private",
+    "anonymous denied GET /file/29",
+    "anonymous denied GET /file/status/29",
+    "anonymous denied GET /file/missing-chunks?fileId=29",
+    "anonymous denied POST /file/merge?fileId=29",
+    "anonymous denied DELETE /file/29",
+    "anonymous denied POST /music-resources/metadata?fileId=29",
+    "anonymous denied POST /file/chunk",
+    "other denied GET /file/29",
+    "other denied GET /file/status/29",
+    "other denied GET /file/missing-chunks?fileId=29",
+    "other denied POST /file/merge?fileId=29",
+    "other denied DELETE /file/29",
+    "other denied POST /music-resources/metadata?fileId=29",
+    "other denied POST /file/chunk",
+    "administrator denied GET /file/29",
+    "administrator denied GET /file/status/29",
+    "administrator denied GET /file/missing-chunks?fileId=29",
+    "administrator denied POST /file/merge?fileId=29",
+    "administrator denied DELETE /file/29",
+    "administrator denied POST /music-resources/metadata?fileId=29",
+    "administrator denied POST /file/chunk",
+    "denied requests leave zero chunks and unchanged upload status",
+    "owner sees persisted resumable first chunk",
+    "owner can download own unbound complete upload",
+    "other cannot download unbound complete upload",
+    "administrator cannot download foreign unbound upload",
+    "owner MD5 reuse stays within owner",
+    "completed file cannot be claimed by 35",
+    "completed file cannot be claimed by 36",
+    "same bytes uploaded by second account get independent owner ID and path",
+    "each account MD5 lookup resolves own record",
+    "lists isolate owners even with matching content",
+    "owner metadata preview works before binding",
+    "linked upload cannot be deleted",
+    "unbound deletion tombstones upload while retaining bytes",
+    "deleted upload management and download unavailable",
+    "legacy former owner denied GET /file/31",
+    "legacy former owner denied GET /file/status/31",
+    "legacy former owner denied GET /file/missing-chunks?fileId=31",
+    "legacy former owner denied POST /file/merge?fileId=31",
+    "legacy former owner denied DELETE /file/31",
+    "legacy former owner denied POST /music-resources/metadata?fileId=31",
+    "legacy former owner denied POST /file/chunk",
+    "legacy record remains unclaimed",
+    "locked owner denied GET /file/29",
+    "locked owner denied GET /file/status/29",
+    "locked owner denied GET /file/missing-chunks?fileId=29",
+    "locked owner denied POST /file/merge?fileId=29",
+    "locked owner denied DELETE /file/29",
+    "locked owner denied POST /music-resources/metadata?fileId=29",
+    "locked owner denied POST /file/chunk",
+    "locked owner cannot /file/list",
+    "locked owner cannot /file/check?fileMd5=e5d668dd39b81799f69c3c6dee661fbf",
+    "locked owner cannot /file/create",
+    "locked owner cannot /file/upload",
+    "owner access restored after unlock",
+    "foreign image cannot be registered as avatar",
+    "foreign image remains nonpublic before owner registers it",
+    "own uploaded avatar remains public",
+    "registered avatar upload cannot be deleted",
+    "deleted account stale JWT denied"
+  ],
+  "check_count": 65,
+  "denials": [
+    {
+      "viewer": "anonymous",
+      "operation": "GET /file/29",
+      "status": 401
+    },
+    {
+      "viewer": "anonymous",
+      "operation": "GET /file/status/29",
+      "status": 401
+    },
+    {
+      "viewer": "anonymous",
+      "operation": "GET /file/missing-chunks?fileId=29",
+      "status": 401
+    },
+    {
+      "viewer": "anonymous",
+      "operation": "POST /file/merge?fileId=29",
+      "status": 401
+    },
+    {
+      "viewer": "anonymous",
+      "operation": "DELETE /file/29",
+      "status": 401
+    },
+    {
+      "viewer": "anonymous",
+      "operation": "POST /music-resources/metadata?fileId=29",
+      "status": 401
+    },
+    {
+      "viewer": "anonymous",
+      "operation": "POST /file/chunk",
+      "status": 401
+    },
+    {
+      "viewer": "other",
+      "operation": "GET /file/29",
+      "status": 404
+    },
+    {
+      "viewer": "other",
+      "operation": "GET /file/status/29",
+      "status": 404
+    },
+    {
+      "viewer": "other",
+      "operation": "GET /file/missing-chunks?fileId=29",
+      "status": 404
+    },
+    {
+      "viewer": "other",
+      "operation": "POST /file/merge?fileId=29",
+      "status": 404
+    },
+    {
+      "viewer": "other",
+      "operation": "DELETE /file/29",
+      "status": 404
+    },
+    {
+      "viewer": "other",
+      "operation": "POST /music-resources/metadata?fileId=29",
+      "status": 404
+    },
+    {
+      "viewer": "other",
+      "operation": "POST /file/chunk",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "GET /file/29",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "GET /file/status/29",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "GET /file/missing-chunks?fileId=29",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "POST /file/merge?fileId=29",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "DELETE /file/29",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "POST /music-resources/metadata?fileId=29",
+      "status": 404
+    },
+    {
+      "viewer": "administrator",
+      "operation": "POST /file/chunk",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "GET /file/31",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "GET /file/status/31",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "GET /file/missing-chunks?fileId=31",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "POST /file/merge?fileId=31",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "DELETE /file/31",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "POST /music-resources/metadata?fileId=31",
+      "status": 404
+    },
+    {
+      "viewer": "legacy former owner",
+      "operation": "POST /file/chunk",
+      "status": 404
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "GET /file/29",
+      "status": 403
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "GET /file/status/29",
+      "status": 403
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "GET /file/missing-chunks?fileId=29",
+      "status": 403
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "POST /file/merge?fileId=29",
+      "status": 403
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "DELETE /file/29",
+      "status": 403
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "POST /music-resources/metadata?fileId=29",
+      "status": 403
+    },
+    {
+      "viewer": "locked owner",
+      "operation": "POST /file/chunk",
+      "status": 403
+    }
+  ],
+  "limits": [
+    "Synthetic isolated fixtures, not independent account B review.",
+    "No fault rollback, concurrent requests, or process restart recovery tested here.",
+    "Legacy uploads quarantined; no inferred owner backfill.",
+    "Physical garbage collection deferred."
+  ]
+}

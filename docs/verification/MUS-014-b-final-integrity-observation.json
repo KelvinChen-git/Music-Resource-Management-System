@@ -1,0 +1,12 @@
+{
+  "slot": "b",
+  "file_id": 40,
+  "status": 1,
+  "persisted_uploaded_chunks": 12,
+  "chunk_count": 12,
+  "chunk_rows": 12,
+  "unique_chunk_indexes": 12,
+  "remaining_fault_constraints": 0,
+  "published_bytes_sha256": "8817b2e216fae0f7f96eff323c774ee693739715473d69cf764293ffff39aae1",
+  "published_bytes_match": true
+}

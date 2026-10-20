@@ -1,0 +1,35 @@
+{
+  "slot": "a",
+  "mode": "verify",
+  "status": "passed",
+  "check_count": 11,
+  "checks": [
+    "rejected original raw bytes unavailable",
+    "foreign legacy delete is gone and moderation reference retained",
+    "anonymous cannot use legacy deletion",
+    "owner cannot use legacy deletion",
+    "admin cannot use legacy deletion",
+    "standard soft delete retains reference and raw denial",
+    "legacy delete cannot erase soft-deleted reference",
+    "soft-deleted bytes cannot be rebound",
+    "unregistered image is private before createUser",
+    "createUser rejects new avatar before insert and image stays private",
+    "fixture cleanup leaves image private"
+  ],
+  "observations": {
+    "R1": {
+      "legacy_delete_http": 410,
+      "resource_rows_after_delete": 1,
+      "raw_http_after_delete": 404
+    },
+    "R2": {
+      "create_user_http": 400,
+      "created_rows": 0,
+      "anonymous_image_http": 401
+    }
+  },
+  "limits": [
+    "Synthetic fixtures; mode observe is old-runtime evidence, not fixed-runtime acceptance.",
+    "No fault rollback, concurrency or restart recovery claim."
+  ]
+}

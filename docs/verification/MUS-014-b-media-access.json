@@ -1,0 +1,1030 @@
+{
+  "slot": "b",
+  "base_url": "http://127.0.0.1:8081/api",
+  "matrix_cases": 144,
+  "checks": [
+    "fresh fixture administrator role",
+    "fixture metadata creates exactly one pending resource",
+    "anonymous, HEAD and Range cannot increment playback",
+    "pending resource cannot be rebound to bypass media policy",
+    "rejected resource cannot be rebound to bypass media policy",
+    "deleted resource cannot be rebound to bypass media policy",
+    "registered PNG avatar remains public",
+    "avatar field cannot expose music"
+  ],
+  "matrix": [
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 206
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 206
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 206
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 206
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "pending",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 206
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 206
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 206
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 206
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 206
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 206
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "approved",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 200
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 206
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 200
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 206
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "rejected",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "anonymous",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 401
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "owner",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "other",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/music-resources/17/file",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/file/download/27",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "GET",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "HEAD",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    },
+    {
+      "state": "deleted",
+      "viewer": "admin",
+      "method": "RANGE",
+      "route": "/uploads/2026-10-19/3c624162-5860-419e-b96c-cdf786da5444.mp3",
+      "status": 404
+    }
+  ],
+  "synthetic_track_id": "17",
+  "limits": [
+    "Local synthetic fixtures only; not search quality.",
+    "Existing cached/downloaded copies cannot be revoked."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "phase": "prepare",
+  "checks": [
+    "bad chunk hash is rejected without progress",
+    "out of range index is rejected",
+    "duplicate chunk is counted once",
+    "conflicting retry preserves progress",
+    "incomplete merge remains unfinished"
+  ],
+  "check_count": 5,
+  "file_id": "65",
+  "prepared_at_unix": 1792469881.634207,
+  "prepared_state_sha256": "8c26835e5b962e7b70b42951a778e98b7799075fa77e00d789594512e9094779",
+  "next": "Baseline stops its owned backend and supplies restart proof; concurrency phase does not claim a restart."
+}

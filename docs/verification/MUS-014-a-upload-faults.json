@@ -1,0 +1,31 @@
+{
+  "slot": "a",
+  "status": "passed",
+  "checks": [
+    "insert failure leaves no chunk row and zero persisted progress",
+    "insert failure removes candidate bytes",
+    "same upload succeeds once after insert fault removal",
+    "duplicate retry still has one row one count one file",
+    "counter update failure rolls back earlier chunk INSERT",
+    "counter failure removes candidate bytes",
+    "counter rollback can retry without stale rows",
+    "filesystem write failure has no successful ACK or persisted progress",
+    "filesystem failure retries on the same upload",
+    "merge publication failure rolls back status path and count",
+    "merge rollback preserves valid source chunk bytes",
+    "merge rollback removes unpublished target file",
+    "merge retries and publishes exact original bytes",
+    "successful merge removes its chunk source after commit",
+    "corrupt persisted chunk cannot complete merge",
+    "corrupt chunk repaired without duplicate row or count",
+    "repaired upload merges to original bytes",
+    "all created fault constraints removed before success"
+  ],
+  "check_count": 18,
+  "scope": "real HTTP + MySQL statement faults + filesystem failures; new synthetic owner only",
+  "limits": [
+    "No transaction-commit acknowledgement loss or database outage simulated.",
+    "No restart evidence from this probe.",
+    "No claim about concurrent human writes to the same isolated slot."
+  ]
+}

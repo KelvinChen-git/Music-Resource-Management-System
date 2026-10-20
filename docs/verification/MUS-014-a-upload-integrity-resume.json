@@ -1,0 +1,26 @@
+{
+  "phase": "resume",
+  "status": "passed",
+  "checks": [
+    "persisted partial upload is available in resume phase",
+    "retry after resume is not recounted",
+    "concurrent uploads past old batch threshold have exact progress",
+    "database has twelve unique chunks and matching persisted counter",
+    "concurrent merges publish one common path",
+    "merge publishes a complete file",
+    "repeated merge returns original path",
+    "published bytes exactly match original",
+    "completed uploads reject more chunks",
+    "wrong whole file hash never completes",
+    "wrong whole file size never completes"
+  ],
+  "check_count": 11,
+  "file_id": "65",
+  "restart_verified": true,
+  "concurrent_upload_requests": 12,
+  "concurrent_merge_requests": 2,
+  "limits": [
+    "Concurrency phase alone does not demonstrate a restarted JVM.",
+    "No database outage or transaction-commit acknowledgement loss simulated."
+  ]
+}
