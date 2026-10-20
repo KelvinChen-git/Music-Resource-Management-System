@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-20T16:22:38.820023+00:00",
+  "published_at": "2026-10-20T18:42:50.422Z",
   "source_branch": "review/MUS-020-B-sonora-findings",
-  "source_sha": "d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688",
+  "source_sha": "86fa91dfa596a1dd86dce9413c39e80684d69a96",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "0005e01029d637667605f79d3c4993deb023fb7a9a5732ed7c98047f0ea65ea4"
+  "report_sha256": "22decacff8aabd6d23660dceefb7f619203303bcbff792871825e16b14b1ef63"
 }
