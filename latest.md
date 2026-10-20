@@ -1,23 +1,25 @@
 # 账号 A 最新交接
 
-- account A；2026-10-19 America/Chicago 23:18；task MUS-014；branch test/MUS-014-upload-recovery；status review：两套本机新版本真实验收完成，B独立审核待完成。
-- implementation_sha `7c973b5d9eac219e289623e7eb6d44eda73cb09d`，A运行source05c9b6d，仅四份交接/派发文档不同。后续交接source以本handoff.source_sha为准。
-- ack_peer_feed_sha `bbae3797ec5dbafaed7e7bde28bb6951ed2c2db4`，B source `1534e4d6101c7a8e889fd22fdda036666fa82ac3`。本轮sync未出现新B认领/批准。
+- account A；2026-10-20 America/Chicago 00:43；task MUS-015；branch fix/MUS-015-avatar-revalidation；status review / new runtime acceptance pending。
+- implementation_sha `d9a2a15791da0db4374c5de093a752a5aa202a25`；comparison_base `feb935ad5c7eb4eb8a11065f3d5c18ed2a93dab1`。本handoff.source_sha还包括后续派发/交接文档。
+- ack_peer_feed_sha `8d1ae4ac5e3640d935ccfec88d9552e9e3baa2dd`；B source `7175ddf1e6e51a994cbfb53506d1a4db411d8c66`。
 
-B a6474f4增量复核关闭原R1/R2/R3/profile写列问题，R4由用户授权B交付1534e4d；A核对哈希原字节导入两文件至1b0eb59，不改B报告。旧并发实证file44为12行/12索引但持久计数10，已保留、不直接修写；Java改为父上传锁后FOR UPDATE当前读。
+## MUS-014关闭与B独立补证
 
-## 新版本真实验收
+B已完成MUS-014-R1-B/revision1，approve限定卡范围；reviewed7c973b5、assignment a433e2b、ack A0093ae4。B报告Java317、先前Python45/真实进程保护9，并独立补齐真库fault18/prepare5/新JVM resume11及原全基线；file16为12行/12索引/计数12，实际Java852→1192。
 
-A baseline-20261019-231744-96134/source05c9b6d，本机B baseline-20261019-231754-96494/source7c973b5均passed。两套各317 Java零失败/错误/跳过、Vue build、8迁移、直连/代理各13功能+4安全、媒体144+8、上传65、B发现HTTP11、故障18、prepare5、跨JVM resume11通过。Python45为此前当前实现测试，无新Python修改。
+A核对feed报告哈希、准确源码仅两B报告差异、原字节导入docs/reviews/MUS-014-B.md。接收记录 docs/verification/MUS-014-B-acceptance.json。B披露Linux私有工具/回环TCP与临时目录适配，原始日志未转交；A不冒称可读取其私有路径、重算原始哈希或仓库无适配Linux通用支持。MUS-014两槽本机实证与B独立补证均完成范围，main未合并。
 
-实际Java A96493→96842，B97066→97275；自己的Maven launcher退出、端口释放、替代就绪、不同PID/时间/checkpoint哈希均核对。续传包含12并发上传请求、2并发合并。不是单纯对象重建或同进程resume。
+## MUS-015实现与验证
 
-再次只读核验Afile65/Bfile40均完成，12行/12不同索引/持久计数12，合并字节准确，故障CHECK0，私有canonical状态/registry已清理。四份新旧后端日志无SQLSyntaxErrorException/BindingException/CommunicationsException/启动失败。
+两个头像更新入口删除同值跳过校验；每个非空avatar均调用原requireAvatar，锁定所属上传、核对完成/未删除，再在原事务写引用。profile仍仅写可编辑列，名称单独修改与管理员清空avatar保留。
 
-22份原始JSON和 docs/verification/MUS-014-live-results.json 已归档，详见MUS-014.md。服务保持运行，用户无需再重启或搬运。本机B槽不是独立B账号审核；本轮也不证明本会话已获得完整进程权限。
+三项新增MockMVC/mapper回归在旧实现52测试中3失败，修复后完整Java320零失败/错误/跳过。它们验证旧profile快照+已删除上传被拒，合法同值仍有FOR UPDATE校验，不代表真实多连接交错复现。无Python/前端/依赖/schema变更，旧45Python/build未无故重跑。
 
-## B固定复核入口
+现有两套服务保持已验收MUS-014版本，尚未加载MUS-015；不停止服务、不要求用户本轮重复重启。新版本真实HTTP与头像多连接交错仍待补证，不能从单元通过推断上线。
 
-MUS-014-R1-B/revision1，reviewed_sha `7c973b5d9eac219e289623e7eb6d44eda73cb09d`，比较d384a8f，仍assigned未认领。固定入口 docs/collaboration/tasks/account-b.json；只写docs/reviews/MUS-014-B.md和own latest。先主动claimed，再复核；新验收证据从当前A handoff.source_sha下读取，不重复领取、不推断已收到或approve。
+## 新B固定任务
 
-整库中断/提交ACK丢失、头像同值更新交错、物理垃圾回收、公开discovery尚未验收；未改schema SQL、依赖锁、B报告或main。
+MUS-015-R1-B/revision1，reviewed_sha `d9a2a15791da0db4374c5de093a752a5aa202a25`，当前assigned未认领。固定入口docs/collaboration/tasks/account-b.json；B仅写docs/reviews/MUS-015-B.md与own latest，主动claimed后复核。前MUS-014卡完成，不重复领取；A不代写B批准。
+
+整库中断/commit ACK丢失、物理GC、真实音乐检索与生产验收仍未完成。A不改B报告原文、schema SQL、依赖锁或main。本协议无后台唤醒、无自动最终合并。
