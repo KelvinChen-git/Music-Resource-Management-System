@@ -125,6 +125,14 @@
   },
   "implementation_commit": "d29ccbb",
   "local_b_worktree_source": "d29ccbb; restarted and real local matrix passed; not independent B account review",
-  "publication": "blocked before push: git ls-remote exit 128",
+  "publication": {
+    "status": "published_and_fetched",
+    "checkpoint_source_sha": "396deda398de56148f8fae1cdacfd3c6462bf307",
+    "checkpoint_feed_sha": "f00c35dc5a760e501adf108b742d3d793f96ee94",
+    "checked_at": "2026-10-20T00:41:15.387379+00:00",
+    "peer_feed_sha": "05d4e9fe7c9528923796ef46508cadb05e94bd1b",
+    "peer_source_sha": "6e4118cc316e95d2ba0f3c1fc1cf7ae15fecefbc",
+    "note": "This publication checkpoint is an ancestor of the final report commit; current published source is recorded in remote handoff.json. No independent B acknowledgement."
+  },
   "live_results": "MUS-011-live-results.json"
 }

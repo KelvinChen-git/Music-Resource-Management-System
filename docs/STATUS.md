@@ -153,7 +153,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 补充发现：file_upload 无 owner，未关联上传首次归属 / 抢先绑定与上传写授权仍需 schema / 迁移任务。本次仅对已有资源引用加防重绑定；不能据三入口修复称整个上传权限已安全，公开 discovery 保持阻断。B-03 / B-09 不直接标 done。
 - 证据见 verification/MUS-011.md / JSON。未修改依赖锁、schema、B 报告、模型 / 语料；真实媒体矩阵已完成；后续补上传所有权，再补 MUS-009 失败 / 并发 / 重启续传。
 
-- MUS-011 实现提交 d29ccbb，已在干净工作区将本机独立 B worktree detach 同步到该提交；两套服务重启后的真实验收已完成。上次 publish 在 git ls-remote exit 128 阻塞，未进入推送；本轮再次发布结果单独记录，成功前不声称 B 已收到。
+- MUS-011 实现提交 d29ccbb，已在干净工作区将本机独立 B worktree detach 同步到该提交；两套服务重启后的真实验收已完成。上次发布阻塞已恢复；本轮 396deda 源码 / 验收报告和 feed f00c35d 已成功发布并 sync 回读核验。远端 B 仍为 05d4e9f / source 6e4118c，不能声称 B 已读取或独立审核。
 
 
 ### MUS-011 真实运行归档（2026-10-19 America/Chicago）
@@ -161,3 +161,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - A run baseline-20261019-184734-83428；本机 B run baseline-20261019-184759-83718，整体均 passed。六份原始 JSON 与 MUS-011-live-results.json 已归档；原始日志 / 内嵌 JSON 一致，144 元组唯一且状态正确。每套 36×401 / 72×404 / 24×200 / 12×206。
 - 三个匿名入口由历史 200 变为 401；授权 GET / Range、HEAD / 计数、头像与元数据反重绑定通过。每份后端日志的三个“文件不可用”属预期拒绝用例，无 SQLSyntaxErrorException / BindingException。
 - 仍为 review：本机 B 槽通过不代替 B 账号独立审核；未处理上传持久所有权、首次抢先绑定、上传写授权、事务失败 / 并发和跨进程续传，不代表公开 discovery 可开放。
+
+- 发布核验：2026-10-19 19:41 America/Chicago，原生 git publish 与 sync 均成功；当前任务分支可由 B 的同步入口获取。最终报告提交继续发布到同一分支，不触碰 main，不代写 B 的报告。
