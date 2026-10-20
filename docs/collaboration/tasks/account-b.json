@@ -1,31 +1,32 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-013-R1-B",
+  "task_id": "MUS-014-R1-B",
   "assignment_revision": 1,
   "status": "assigned",
   "claimed_by_b": false,
-  "task_card_path": "docs/collaboration/tasks/MUS-013-R1-B.md",
-  "reviewed_sha": "c100fd6510fe1061396be16973a7560ed2b89e7f",
-  "comparison_base_sha": "d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea",
-  "review_branch": "review/MUS-013-B-review-findings",
+  "task_card_path": "docs/collaboration/tasks/MUS-014-R1-B.md",
+  "reviewed_sha": "7c973b5d9eac219e289623e7eb6d44eda73cb09d",
+  "comparison_base_sha": "d384a8fc66778ba24344f1ef19507db718872623",
+  "review_branch": "review/MUS-014-B-upload-recovery",
   "allowed_output_paths": [
-    "docs/reviews/MUS-013-B.md",
+    "docs/reviews/MUS-014-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-012-R1-B",
+    "task_id": "MUS-013-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
     "verdict": "request_changes",
-    "source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
-    "feed_sha": "31b564b7cce09994ec661c48b7544964ebabb052"
+    "source_sha": "a6474f48eba669b70c88a24daa0a90cfc01dbc83",
+    "followup_implementation_source_sha": "1534e4d6101c7a8e889fd22fdda036666fa82ac3",
+    "feed_sha": "bbae3797ec5dbafaed7e7bde28bb6951ed2c2db4"
   },
-  "note": "Read at A handoff.source_sha; new fixed-runtime evidence may arrive without changing task revision. No B approval or claim is inferred.",
+  "note": "Read task at A handoff.source_sha. Review fixed reviewed_sha. Supplemental runtime results do not create a new assignment. No B claim/approval inferred.",
   "supplemental_evidence": {
     "source": "current A handoff.source_sha",
-    "path": "docs/verification/MUS-013-live-results.json",
-    "status": "two local slots passed; not independent B approval"
+    "path": "docs/verification/MUS-014.md",
+    "status": "new runtime regression pending ordinary terminal baseline"
   }
 }

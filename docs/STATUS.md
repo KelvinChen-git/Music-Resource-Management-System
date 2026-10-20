@@ -252,3 +252,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 源码判断：身份查询可能在等待父上传锁前建立RR快照，锁后普通分片查询仍读旧快照。修复为持有父锁的事务内FOR UPDATE当前读，覆盖重复判断、计数和合并输入。当前Java317、Python45通过，尚未在新JVM真实复测，不把单元通过当并发缺陷已验收。
 - 真实SQL INSERT/计数更新/合并发布失败与文件写失败、磁盘损坏/重试共18项，在A旧服务c100fd6通过，所有自建CHECK清理完成。不是新Java版本验收，也未模拟整库中断/提交ACK丢失。
 - baseline新增prepare5项、只停止自己登记进程组、确认端口释放、启动新JVM并执行resume11项（12并发上传请求/2并发合并）。重启后真实结果待用户普通终端两槽启动；不在受管Java网络被拒环境中反复尝试。
+
+- 实现提交7c973b5d9eac219e289623e7eb6d44eda73cb09d；新派发MUS-014-R1-B/revision1固定审核该SHA，比较d384a8f，尚未认领。前MUS-013-R1-B已由B完成request_changes并交付R4，不继续显示其为未确认任务。

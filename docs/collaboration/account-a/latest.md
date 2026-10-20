@@ -1,34 +1,17 @@
 # 账号 A 最新交接
 
-- account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
-- task MUS-013 B审核发现修复；branch `fix/MUS-013-b-review-findings`；base `6a29de4cab2da6ac149b816165b5f058612bd133`；status review：两套本机修复后真实运行通过，B增量复核待完成。
-- ack_peer_feed_sha: `31b564b7cce09994ec661c48b7544964ebabb052`；B source `21d002c7592f21a81b8fc715bdc245ad1ae3ee6c`，reviewed_sha d7c9faa，MUS-012-R1-B revision1已主动claimed并review_completed，verdict request_changes。A接受发现，不代写B报告或批准。
-- B独立Python22 / Node6 / build通过，Java0（Maven依赖DNS阻塞）、无独立MySQL/HTTP。A本机双槽旧308/144/65结果不算B执行，也不能覆盖其发现。
+- account A；2026-10-20 UTC；task MUS-014；branch test/MUS-014-upload-recovery；status review / awaiting ordinary-terminal runtime acceptance。
+- 实现SHA `7c973b5d9eac219e289623e7eb6d44eda73cb09d`，比较起点 `d384a8fc66778ba24344f1ef19507db718872623`。当前handoff.source_sha后续仅补派发/交接文档。
+- ack_peer_feed_sha `bbae3797ec5dbafaed7e7bde28bb6951ed2c2db4`；B source1534e4d6101c7a8e889fd22fdda036666fa82ac3。
 
-## 当前修复与证据
+B a6474f4增量复核关闭原R1/R2/R3/profile写列问题，新R4清理缺口request_changes；B后获用户授权交付R4。A核对两声明哈希原字节集成至1b0eb59，独立Python39与真实HTTP11通过，不导入B latest，不冒称B批准。
 
-R1旧DELETE /music/{id}已停用，有效当前账号410，匿名/失效401、锁定403，MusicService不再JPA硬删；保留标准软删除。R2 createUser重新核验当前管理员并在insert前400拒绝非空avatar，空白归一NULL。profile改为仅写可编辑列，避免完整实体回写role/is_locked/password。
+本轮真实并发发现：旧运行c100fd6业务代码file44共12行/12不同索引，持久uploaded_chunks=10但API12。A保留失败证据，不直接修写库中计数。Java已改为父上传锁后FOR UPDATE当前读分片，覆盖重复判断、计数和合并输入；317 Java零失败/错误/跳过，45 Python通过。
 
-R3迁移在DDL/版本登记前验证准确11表集合、file_upload必要列/主键，owner列NULL默认/nullable/非生成、索引列序/非唯一/BTREE；SQL V001/V002不改、不回填。加严检查对现有A V002只读复核通过。
+18项真实故障/回滚/重试在A旧业务服务通过，临时CHECK全部清理；新版本并发修复与跨JVM续传尚未验收。baseline现自动执行prepare5、停止自身后端并核对端口释放、启动新后端、resume11；不要求用户分阶段搬运状态。旧服务保持运行，用户需普通终端两槽Ctrl+C后重跑README命令，A直接读取结果。受管Java回环受限，不反复重启同样候选。
 
-Java **317 / 0 failures / errors / skipped**，Python **28项通过**（baseline9 / collab9 / migration10）。修复前R1/R2在旧普通终端服务用合成数据实测：他人旧DELETE204后主记录0、原始下载200且重绑定成功；createUser登记他人图片后匿名200。测试绕过账号已删除、资源引用恢复并软删除、临时管理员finally降权。
+证据正文 docs/verification/MUS-014.md、故障原始JSON、并发失败JSON与B清理原始JSON已归档。私有JWT仅.local下0600，失败file44状态另名保留。
 
-验证正文 [MUS-013](../../verification/MUS-013.md)、机器汇总 [results](../../verification/MUS-013-results.json)、旧服务真实复现 [JSON](../../verification/MUS-013-a-before-http.json)。这是旧漏洞实证，不是修复后通过。
+新派发 MUS-014-R1-B revision1，reviewed_sha `7c973b5d9eac219e289623e7eb6d44eda73cb09d`，固定入口 docs/collaboration/tasks/account-b.json；B只写docs/reviews/MUS-014-B.md与own latest。先主动claimed再复核，当前尚无B认领/批准证据。不重复已完成MUS-013-R1-B。
 
-## 修复后真实运行通过
-
-普通终端A run baseline-20261019-213038-91461 / sourceda060d5，本机B run baseline-20261019-213013-91055 / sourcec100fd6，均passed；仅8份文档不同，运行源码相同。两套各317 Java / Vue build、8项独立临时库迁移保护、直连和代理各13功能+4安全、媒体144组合+8附加、上传65项、B发现修复后HTTP11项通过。
-
-R1两套均旧删除410、资源行1、raw404，软删除后引用保留且重绑定拒绝；R2两套均createUser400、插入行0、匿名图片401。原始JSON与baseline内嵌汇总一致，媒体元组无重复且状态正确；新后端日志无SQLSyntaxErrorException / BindingException / CommunicationsException。
-
-12份原始JSON及 [真实运行汇总](../../verification/MUS-013-live-results.json) 已归档，A已直接读取，无需搬运。新服务保持运行，本轮无需重启。历史受管进程网络/初始化阻塞不是本轮普通终端验收状态。
-
-## B任务与后续
-
-MUS-012-R1-B已完成request_changes。新派发MUS-013-R1-B revision1，owner B，status assigned未认领。固定入口 `docs/collaboration/tasks/account-b.json`，task_card_path `docs/collaboration/tasks/MUS-013-R1-B.md`；按本handoff.source_sha读取，审核对象固定 `c100fd6510fe1061396be16973a7560ed2b89e7f`，比较d7c9faa。
-
-B分支 `review/MUS-013-B-review-findings`，仅允许 `docs/reviews/MUS-013-B.md` 与 own latest；先发布claimed，再增量复核R1/R2/R3/profile字段更新及新脚本隔离。修复后真实运行证据已补齐，B从当前A handoff.source_sha读取补充资料；独立静态结论与自身运行缺口分开。不重复旧任务，不冒充B已收到或批准。
-
-实现c100fd6已提交，本机B源码已同步，两套服务已重启并完成验收。最终远端source以成功publish的handoff.json为准。
-
-本轮因审核阻断优先修复，事务故障/并发/重启恢复顺延。未知legacy归属、物理清理、公开discovery、main合并仍未完成。B两份原文只读，schema SQL和依赖锁不改。
+本机独立B工作树同步实现版本供普通终端测试，不等于独立B账号审核。未改schema SQL、依赖锁、B报告或main。头像同值更新交错、物理垃圾回收、DB整体中断/提交ACK丢失、公开discovery仍未完成。
