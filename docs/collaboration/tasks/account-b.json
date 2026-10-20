@@ -1,0 +1,17 @@
+{
+  "schema": "music-task-dispatch-v1",
+  "owner": "b",
+  "task_id": "MUS-012-R1-B",
+  "assignment_revision": 1,
+  "status": "assigned",
+  "claimed_by_b": false,
+  "task_card_path": "docs/collaboration/tasks/MUS-012-R1-B.md",
+  "reviewed_sha": "d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea",
+  "review_branch": "review/MUS-012-B-access-ownership",
+  "allowed_output_paths": [
+    "docs/reviews/MUS-012-B.md",
+    "docs/collaboration/account-b/latest.md"
+  ],
+  "claim_channel": "collab/account-b latest.md",
+  "note": "Read this dispatch at the A handoff source_sha. A publishes assignments; only B can acknowledge or complete them. No background runner is created."
+}

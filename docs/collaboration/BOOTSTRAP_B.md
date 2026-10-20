@@ -1,43 +1,27 @@
-# 账号 B 一次性接入
+# 账号 B 一次性接入与固定领取
 
-以下内容可一次性加入 B 的 Music 项目固定指令。**必须先等 A 的远端发布成功；目前尚未发布。** 后续双方会话按固定 Git 位置读取，用户不再逐次复制两边报告。
+A / B 远端固定交接已启用。当前任务入口是 A 发布源码中的 `docs/collaboration/tasks/account-b.json`；每次从 A 的 handoff.source_sha 读取，不能假定 main 或旧 clone 已更新。
 
-> 你是 Music 账号 B。共同仓库为 https://github.com/KelvinChen-git/Music-Resource-Management-System 。开始每次工作先读取远端 `collab/account-a` 分支根目录 `handoff.json` 和 `latest.md`，再按 source_sha 读取 AGENTS.md、README.md、docs/PROJECT.md、docs/CONTRACTS.md、docs/STATUS.md 与任务卡。不要仅依据 main 或旧附件。使用自己的独立 clone 和 slot B。执行 `python3 scripts/collab.py sync --account b`；失败时明确阻塞并保留原工作，不拿缓存冒充最新状态。任务完成或检查点时更新 `docs/collaboration/account-b/latest.md`，写明审核 SHA、测试结果、阻塞、下一步和 ack_peer_feed_sha；提交明确授权文件后执行 `python3 scripts/collab.py publish --account b`。不写 A 的 feed 或 STATUS，不直接 push main、不自动合并。读取失败时继续独立可做的工作，不接管对方文件。
+## 一次性加入 B 项目固定指令
 
-## 首次取得脚本
+> 你是 Music 账号 B。共同仓库为 https://github.com/KelvinChen-git/Music-Resource-Management-System 。每次开始先读取远端 collab/account-a 分支根目录 handoff.json、latest.md；有同步脚本则在自己的独立 clone 执行 python3 scripts/collab.py sync --account b，成功后按 handoff.source_sha 读取 docs/collaboration/tasks/account-b.json 及其 task_card_path。检查自己的 B feed 是否已经领取或完成同一 task_id + assignment_revision，继续在途任务，已完成不重复。新任务先核对 reviewed_sha 和允许写入路径，保留未提交工作，从卡片指定 SHA 创建或继续任务分支。先在自己的 latest.md 回传 claimed，含 task_id、assignment_revision、reviewed_sha、assignment_source_sha、实际 ack_peer_feed_sha，提交允许文件后 publish --account b；完成后再回传审核结论、独立实际命令与结果、阻塞及释放占用。不修改 A 的 STATUS / 任务入口 / feed，不自动合并或推送 main，不按旧附件自行推测下一步。网络 / 环境阻塞如实记录，不能以 A 的测试数字冒充 B 已实跑。缺脚本时先按下述方式只读接入，不覆盖原工作。
 
-第一次可通过 GitHub 读取连接查看固定 A feed；其中 source_branch 应为 A 实际发布的任务分支，source_sha 为准确版本。新建独立 clone 的 B 可以直接 clone 该源码任务分支，随后创建自己的任务分支。
+这段只需设置一次。之后每次启动 B 会话，B 从固定入口取得当时任务；不是后台常驻自动运行。
 
-若已有 B clone，先查看 `git status --short --branch`，保留任何修改；只 fetch，不 reset / stash / clean。第一次 A 发布本任务后可执行：
+## 首次缺少同步脚本
 
-```bash
-git fetch origin refs/heads/chore/MUS-008-account-sync:refs/remotes/account-a/MUS-008
-```
+1. 通过已有 GitHub 读取连接，打开固定 A feed 的 `handoff.json` 和 `latest.md`，记下 source_branch、source_sha，以及这次 A feed 的实际 SHA。不要把凭据发到聊天。
+2. 在独立 B clone 先检查工作区；只 fetch handoff 指向的源分支，校验该 source_sha 可达，不 checkout / reset / clean / stash 覆盖已有工作。不直接沿用旧 MUS-001 审核基线作为当前任务。
+3. 用 `git show` 在准确 source_sha 下读取任务入口 / 卡片和 `scripts/collab.py`。如需本机脚本，提取到被 ignore 的 `.local/collaboration/collab.py`，仅在文件不存在时创建，已有文件先核对不覆盖。该脚本的 root 识别使用当前 git 仓库，因此可以从旧审核基线读取新交接。
+4. 执行 `python3 .local/collaboration/collab.py sync --account b`，成功后只读 receipt.status=fetched 的交接。记录真实 feed SHA；不能把旧缓存当本次成功。
+5. 按本卡 reviewed_sha 建立当前 B 工作分支。卡片基线含正式 `scripts/collab.py` 时，后续用正式路径即可。若未提交修改或已有同名分支，先保留并核对，不擅自覆盖。
 
-在未提交工作区中无需切换分支即可阅读：
+## 当前审核与回传
 
-```bash
-git show refs/remotes/account-a/MUS-008:docs/collaboration/README.md
-git show refs/remotes/account-a/MUS-008:docs/handoffs/MUS-001-B.md
-```
+MUS-012-R1-B审核基线固定为 `d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea`。任务发布所在的A source_sha可能更新，仅按任务入口的revision判断是否需要重新领取，不能把新的A文档提交当成新的审核对象。
 
-MUS-001-R1 的准确审核源码仍固定为 `7ab0d39d920a538b28878cf92ecbe90e55994ec3`。该旧提交没有新同步脚本；可从已核对的 A 发布版本提取一份只用于本机的脚本，再进入准确审核分支：
+具体范围、B分支与交付路径以 [任务卡](tasks/MUS-012-R1-B.md) 为准。只允许 B 创建 / 更新自己的审核报告和 latest；A 没有替 B 创建领取确认。没有独立 Java / MySQL 运行条件时继续静态审核并单列运行blocked，不重复失败命令，不写已经通过。
 
-```bash
-# 仅当不存在同名文件时才创建；若已存在，先核对，不覆盖。
-mkdir -p .local/collaboration
-(set -C; git show refs/remotes/account-a/MUS-008:scripts/collab.py > .local/collaboration/collab.py)
-python3 .local/collaboration/collab.py sync --account b
-# 工作区干净且不存在同名分支时：
-git switch -c review/MUS-001-B-baseline 7ab0d39d920a538b28878cf92ecbe90e55994ec3
-```
+回传使用 `python3 scripts/collab.py publish --account b`（旧基线缺脚本时可用本机提取副本）。原子发布源码任务分支与B feed，成功后A可自行获取；用户无需复制正文。若B只有读权限，领取和报告回传仍blocked，需要其自身运行环境具备Git写权限，不能声称A已收到。
 
-审核报告正文只写 `docs/reviews/MUS-001-B.md`；交接索引另允许写 `docs/collaboration/account-b/latest.md`。后者由 B 自己新建，A 没有替 B 创建。提交后可用本机提取的脚本发布：
-
-```bash
-python3 .local/collaboration/collab.py publish --account b
-```
-
-第一次 B 报告说明已收到 MUS-001-R1、当前环境是否能复跑，以及已读 A feed 的提交号；不会因为原始首次审核已经完成而把 R1 标 done。
-
-如 B 只有 GitHub 读取权限，仍可自动获取 A 的交接，但不能回传。写入配置是一次性前提，未解决前如实记录。原始报告和临时 clone 不能作为共享盘，也不要把机器绝对路径当作另一账号可读位置。
+历史 MUS-001-R1 的目标为7ab0d39，B交付6e4118c / feed05d4e9f，仅是旧任务背景，不再作为当前领取任务。A的macOS路径不是B账号共享盘；B继续使用自己的隔离clone、端口、数据库及上传目录。

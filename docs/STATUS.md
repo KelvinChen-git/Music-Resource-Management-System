@@ -44,11 +44,12 @@
 | MUS-005 Java 集成与权限 | todo / unassigned | MUS-003 / 004，及媒体权限治理 | 检索 gateway、可见性复核、旧匿名路径治理、片段试听 |
 | MUS-006 评测 | todo / unassigned | MUS-005 | manifest / qrels / dev-test / 基线和原始结果，不预填指标 |
 | MUS-007 恢复 / 扩容 / 演示 | todo / unassigned | MUS-006 | 根据瓶颈推进，不先堆基础设施 |
-| MUS-008 固定交接与同步 | review / A（共享读取可用；A 自动发布 blocked） | chore/MUS-008-account-sync / 6e4140b | A/B feed 均已发布，B 完成 sync / ack，A 本轮直接读取 B；9 项脚本本地 Git 检查通过。B 接口顺序发布不等同原子脚本通过；A 回执待发布 |
+| MUS-008 固定交接与同步 | review / A（原生 git 发布 / 同步已验收） | chore/MUS-008-account-sync / 6e4140b | A/B feed 均已发布，B 完成 sync / ack，A 本轮直接读取 B；9 项脚本本地 Git 检查通过。A后续原子publish / sync已成功；B新审核须按独立任务回传确认 |
 | MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
 | MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
 | MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
 | MUS-012 上传持久所有权 | review / A（本机真实 HTTP 通过，独立 B 审核待完成） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，两套本机各 65 上传 / 144 媒体检查已通过 |
+| MUS-012-R1-B 媒体与上传所有权独立审核 | assigned / B（待主动确认） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -189,3 +190,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 两套各 308 Java / Vue build、直连和代理各13功能+4安全、144真实媒体矩阵+8附加项、65真实上传权限检查全部通过。每套35个显式拒绝为7×401 / 7×403 / 21×404，拒绝后计数 / 分片未变；原始JSON与内嵌汇总一致。
 - 两份新后端日志均无 SQLSyntaxErrorException / BindingException / CommunicationsException；用户普通终端已加载新代码，历史候选Java阻塞不再是本轮验收状态。服务保持运行，无需重启或搬运。
 - 八份原始JSON与MUS-012-live-results.json已归档。当前仍review：B账号独立审核未完成；遗留owner隔离、物理垃圾回收及MUS-009故障回滚 / 并发 / 跨进程续传仍单列。服务重启不等于上传中断恢复通过。
+
+
+## B 当前待领取任务：MUS-012-R1-B
+
+- A 发布任务，owner B；assignment_revision 1；reviewed_sha d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea；status assigned，未认领。开始时 sync 的 B feed 仍为05d4e9f / source6e4118c，不冒充B主动确认。
+- 固定任务入口 `docs/collaboration/tasks/account-b.json`，正文 `docs/collaboration/tasks/MUS-012-R1-B.md`；必须按 A handoff.source_sha 读取。任务分支 `review/MUS-012-B-access-ownership` 从 reviewed_sha 创建。
+- B允许写 `docs/reviews/MUS-012-B.md` 与自己的 `docs/collaboration/account-b/latest.md`；业务源码 / schema / 契约 / A STATUS 不归B修改。先回传claimed与实际ack_peer_feed_sha，再审查并回传最终verdict和证据；发现问题交A修复。
+- A下一实现范围为MUS-009故障回滚 / 并发 / 重启恢复，暂未在本轮开启新业务修改；避免在B审核期间重写其准确审核对象。
+- 后续A每次完成交接时维护B固定任务入口：有在途任务保留task_id / revision，不因新A feed重复分配；任务变化显式增加revision或新task_id。B的claimed / completed须来自B feed，不能由A根据时间推断。当前协议无后台唤醒，用户只需首次启动B读取固定入口。

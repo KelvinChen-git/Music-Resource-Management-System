@@ -4,7 +4,7 @@
 
 仓库：<https://github.com/KelvinChen-git/Music-Resource-Management-System>。
 
-**启用状态：实现已准备，远端尚未启用。** 2026-10-19 检查 GitHub 连接 `push=false`；A 终端 GitHub DNS 失败。不能把本地测试通过写成双方已互通。B 首轮报告来自 Linux `/workspace`，A 的 macOS 绝对路径不能作为 B 的共享目录。
+**启用状态：远端交接已启用。** 2026-10-19 A 原生 git publish / sync 已成功，B feed 05d4e9f 可读取；MUS-012 验收已发布为d7c9faa / feed5592274。GitHub读取连接先前push=false不代表原生git当前仍不能写。任务发布仅说明远端可读，B须通过自己的feed主动确认；本机B槽测试不能代替独立B账号审核。B首轮环境为Linux `/workspace`，不能将A的macOS路径当共享目录。
 
 ## 固定位置与归属
 
@@ -15,10 +15,12 @@
 | 源码任务分支 `docs/collaboration/account-a/latest.md` | A | A 用于发布的报告；任务、测试、阻塞、下一步及已读 B feed SHA |
 | 源码任务分支 `docs/collaboration/account-b/latest.md` | B | B 用于发布的报告；包括审核针对的 SHA、运行结果和占用释放 |
 | A 源码任务分支 `docs/STATUS.md` | 当前集成负责人 A | 唯一任务台账；B 通过自己的 feed 汇报，不能直接争写 |
+| A 源码任务分支 `docs/collaboration/tasks/account-b.json` | A | B 当前待领取任务、修订号、固定审核 SHA 与任务卡路径 |
+| A 源码任务分支 `docs/collaboration/tasks/MUS-012-R1-B.md` | A | 当前 B 审核任务的范围、允许路径、验收及回传要求 |
 | `docs/collaboration/imports/` | 导入人，保留来源 | 历史交付原文，不能冒充当前任务审核或对方发布 |
 | 各 clone `.local/collaboration/inbox/account-{a,b}/` | 本机同步程序 | 只读使用的接收缓存；不提交、不当共享目录 |
 
-固定浏览入口（**首次成功发布后才存在**）：
+固定浏览入口：
 
 - [账号 A 交接](https://github.com/KelvinChen-git/Music-Resource-Management-System/blob/collab/account-a/latest.md)
 - [账号 B 交接](https://github.com/KelvinChen-git/Music-Resource-Management-System/blob/collab/account-b/latest.md)
@@ -45,19 +47,30 @@ python3 scripts/collab.py publish --account a
 
 发布成功只表示“远端可读”；收到方在自己的下一份报告中记录 `ack_peer_feed_sha`，才表示已经读取。不根据时间推断对方已停止。原始状态、任务、摘要仍由报告正文表达，不用机器时间判定工作成果。
 
-## 一次性启用
+## 一次性启用（已完成的接入流程）
 
-1. 为 A、B 所用运行环境各配置同一仓库的 Git 读取和任务分支写入权限。GitHub 连接的 `push=false` 是当前连接的访问状态；调整 ChatGPT 的“是否询问”偏好不会增加 GitHub OAuth / 仓库权限。不要把 token、私钥或密码写进聊天、仓库或报告。
+1. 为 A、B 所用运行环境各配置同一仓库的 Git 读取和任务分支写入权限。GitHub 连接的 `push=false` 是当时该连接的访问状态；调整 ChatGPT 的“是否询问”偏好不会增加 GitHub OAuth / 仓库权限。不要把 token、私钥或密码写进聊天、仓库或报告。
 2. A 在 `chore/MUS-008-account-sync` 完成本地提交后执行 `publish --account a`。该操作发布完整 A 源码历史及固定 A feed；成功前 B 从远端 main 仍取不到这些产出。
 3. B 第一次获取 A feed，按 [BOOTSTRAP_B.md](BOOTSTRAP_B.md) 将同步约定加入自己的项目固定指令；以后每次开始 / 检查点 / 结束调用同步命令，无需用户逐次搬运报告。A 不能替独立账号设置项目指令。
 4. B 的首份主动发布确认任务接收，并写 `ack_peer_feed_sha`；A 下次 sync 检查到该确认后更新 STATUS。不能把本次导入的旧报告充当这份确认。
 
 此流程是**任务会话运行时的自动协作约定**。它没有启动后台服务，不会在两个账号都停用时唤醒模型，也不会自动决定合并代码。需要定时检查时另行安排定时任务；不把缓存同步等同持续自主开发。
 
-如终端无法联网但账号有 GitHub 读取连接，可直接读固定分支的 `handoff.json` 和 `latest.md`，再按 `source_sha` 读取源码。发布仍须有 Git 写入能力；当前脚本依赖 Python 3.9+ 和支持原子推送的 Git 远端，GitHub 实际链路待权限 / 网络恢复后验收。
+如终端无法联网但账号有 GitHub 读取连接，可直接读固定分支的 `handoff.json` 和 `latest.md`，再按 `source_sha` 读取源码。发布仍须有 Git 写入能力；当前脚本依赖 Python 3.9+ 和支持原子推送的 Git 远端，原生 GitHub 发布 / 拉取链路已验收；单个账号的新环境仍需分别核对权限。
 
 ## 报告字段
 
 每份 `latest.md` 至少包含：account / task、reviewed_sha（审核时）、本轮修改及验证、未完成或 blocked、占用与允许路径、下一任务、`ack_peer_feed_sha`。`handoff.json` 的 source_sha 由程序在提交后填写，避免在同次提交中自引用最终 SHA。
 
-导入 B 的第一份报告见 [原文](imports/account-b/2026-10-19-baseline-review.md) 和 [整合说明](B-INITIAL-REVIEW.md)。它基于 b81f57c；对 7ab0d39 的 MUS-001-R1 尚未完成。A 本轮不修改 B 独占的 `docs/reviews/MUS-001-B.md` 或伪造 B feed。
+导入 B 的第一份报告见 [原文](imports/account-b/2026-10-19-baseline-review.md) 和 [整合说明](B-INITIAL-REVIEW.md)。它基于 b81f57c；针对 7ab0d39 的 MUS-001-R1已有B交付6e4118c，后端补证仍blocked；当前新审核以固定任务入口为准。A 本轮不修改 B 独占的 `docs/reviews/MUS-001-B.md` 或伪造 B feed。
+
+
+## 固定领取 B 任务
+
+1. B每次开始先sync并校验A feed，再从其handoff.source_sha读取 `docs/collaboration/tasks/account-b.json`，按task_card_path读完整卡片。缺脚本的首次接入见 [BOOTSTRAP_B.md](BOOTSTRAP_B.md)。无需用户每轮复制任务正文。
+2. 派发由A写入，认领和完成由B在自己的feed确认。A派发状态assigned不意味着B已认领；B先发布claimed与task_id、assignment_revision、reviewed_sha、assignment_source_sha、实际ack_peer_feed_sha，再执行任务。
+3. B以task_id + assignment_revision检查自己的历史：在途继续，已完成不重复；A feed变更本身不是新任务。固定reviewed_sha与发布任务卡的source_sha是两种不同输入，不混用。
+4. A每轮结束发布自身结果时同步维护B任务入口。有在途任务就保留；只有确需调整时才增加修订或发布新task_id，并在交接说明原因。无可分配工作则明确waiting，不让B猜测下一步或自行抢占源码。
+5. B完成后发布自己的报告，A下次sync读取、处理发现并串行更新STATUS。B不能修改A固定任务入口、STATUS或擅自扩大写入范围。
+
+当前卡片是 [MUS-012-R1-B](tasks/MUS-012-R1-B.md)。该机制只在会话运行时执行，没有创建轮询进程或定时任务，也不会自动启动B的聊天。首次仍需用户启动B并发一次固定入口指令。
