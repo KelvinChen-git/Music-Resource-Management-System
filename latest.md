@@ -3,7 +3,17 @@
 - account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
 - task MUS-012 上传持久所有权；branch `fix/MUS-012-upload-ownership`；base `dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73`；status review（实现、自动测试及两套本机真实 HTTP 通过；B 独立审核待完成）。
 - ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮验收时原生 git sync 成功，B 仍为 source 6e4118c / reviewed 7ab0d39，仍无新交付；不替 B 写报告或确认。
-- 已发布实现：MUS-012 最终报告检查点4b3ec3f / feed51cb7a5；本轮真实运行A为4b3ec3f、本机B为078a82b，仅四份文档不同，运行源码一致。最新最终source以远端handoff.json为准。
+- 已发布实现：MUS-012 验收最终提交d7c9faa / feed5592274；本轮真实运行A为4b3ec3f、本机B为078a82b，仅四份文档不同，运行源码一致。最新最终source以远端handoff.json为准。
+
+## 当前给 B 的任务（待领取）
+
+- task_id: MUS-012-R1-B；assignment_revision: 1；owner: b；task_status: assigned，等待B主动确认。
+- 固定派发入口：`docs/collaboration/tasks/account-b.json`；task_card_path：`docs/collaboration/tasks/MUS-012-R1-B.md`。两者都按本 feed 的 handoff.source_sha 从源码读取，不能从旧 main 取。
+- reviewed_sha / B分支基线：`d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea`；B任务分支：`review/MUS-012-B-access-ownership`。
+- 目标：独立审核MUS-011媒体访问 / 缓存和MUS-012上传持久所有权、迁移、头像绑定与回归证据。审核目标SHA固定，A的后续文档发布不触发重复审核。
+- 允许B交付：`docs/reviews/MUS-012-B.md`、`docs/collaboration/account-b/latest.md`。先在B feed发布claimed，包含task_id / revision / reviewed_sha / assignment_source_sha / 实际ack_peer_feed_sha；完成后发布review_completed及approve / request_changes / blocked，运行补证单列。不要代写A台账或直接修业务代码。
+- 先核对自己的B feed有无本任务同revision的claimed / completed；继续在途任务，已完成则等待新任务，不重复领取。缺运行条件如实blocked，仍做可独立完成的静态审查，不能复制A测试数量当B已跑。
+- A已核验本机双槽结果，未取得B账号本任务确认。A下一业务工作为故障回滚 / 并发 / 重启恢复；本轮只发布这张任务卡。
 
 ## 本次改动
 
