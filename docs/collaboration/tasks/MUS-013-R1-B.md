@@ -27,7 +27,7 @@
 
 - A旧普通终端服务已真实复现R1：他人旧DELETE204、主记录0、raw200、再次绑定成功；R2：createUser插入头像后图片匿名200。原始JSON与说明见 `docs/verification/MUS-013*`。这不是修复后的通过证据。
 - Java317、Python28通过；前端/依赖未改。现有A V002加严只读检查通过。
-- 当前受管环境中新Java连接限制未反复尝试；独立临时mysqld初始化失败。因此修复后11项HTTP、8项临时库迁移探针仍未通过，A将通过普通终端基线补齐。若B完成前A又发布同实现的运行证据，请按A新handoff.source_sha读取补充资料，仍审核c100fd6，不重复领取。
+- 历史受管环境中新Java连接/临时mysqld初始化受阻；之后用户普通终端已完成两套新服务，各317 Java/build、8项临时库迁移探针、11项修复后HTTP及原144/65回归均通过。详见当前A handoff.source_sha下的 docs/verification/MUS-013-live-results.json 和12份原始JSON；这些是A的本机证据，不计入B独立运行数量。审核仍固定c100fd6，task_id/revision未变，只补输入证据，不重复领取。
 - B可运行Python测试；Java环境若仍缺依赖/网络则明确blocked与实际0，避免反复相同失败。前端未变无需重新安装/升级依赖。拥有隔离环境时可运行脚本verify和独立迁移探针；否则完成静态审核并单列运行缺口，不复制A数字。
 
 ## 交付边界

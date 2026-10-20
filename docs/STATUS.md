@@ -50,7 +50,7 @@
 | MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
 | MUS-012 上传持久所有权 | review / A（本机矩阵通过；B request_changes，待MUS-013复核） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，两套本机各 65 上传 / 144 媒体检查已通过 |
 | MUS-012-R1-B 媒体与上传所有权独立审核 | review_completed / B（request_changes） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
-| MUS-013 B审核发现修复 | review / A（修复后实跑待补） | fix/MUS-013-b-review-findings / 6a29de4；实现c100fd6 | Java317 / Python28通过；R1/R2旧服务已复现，修复后HTTP11 / 临时库8尚未通过 |
+| MUS-013 B审核发现修复 | review / A（本机修复后实跑通过，B增量待复核） | fix/MUS-013-b-review-findings / 6a29de4；实现c100fd6 | Java317 / Python28通过；R1/R2旧服务已复现，两套各修复后HTTP11 / 临时库8已通过 |
 | MUS-013-R1-B 增量复核 | assigned / B（待确认） | review/MUS-013-B-review-findings / c100fd6 | 仅新B审核正文与own latest；复核R1/R2/R3和profile字段更新、脚本隔离 |
 
 ### MUS-001 A 路径范围（review 检查点）
@@ -226,3 +226,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 实现提交c100fd6510fe1061396be16973a7560ed2b89e7f；本机B干净工作树已同步至该提交，原Java进程未重启。新运行证据待普通终端补齐。
 - 新卡MUS-013-R1-B / revision1，owner B，status assigned未认领；固定入口指向tasks/MUS-013-R1-B.md，reviewed_sha为c100fd6，比较d7c9faa。B只写docs/reviews/MUS-013-B.md与own latest，不重新认领已完成旧卡、不代写修复源码。
 - A等待普通终端317 Java / 原基线 / 新8迁移与11HTTP证据，并接收B增量复核；故障/并发/恢复顺延。发布前不声称新卡已收到或已批准。
+
+
+### MUS-013 普通终端修复后验收（2026-10-19 America/Chicago 21:30）
+
+- A run baseline-20261019-213038-91461 / sourceda060d5；本机B run baseline-20261019-213013-91055 / sourcec100fd6均passed，源码仅8份文档不同。
+- 两套各317 Java、Vue build、独立临时库8项、直连与代理各13功能+4安全、媒体144组合+8附加、上传65项、B发现修复后HTTP11项全部通过。原始JSON与内嵌汇总一致，媒体元组唯一且状态正确。
+- R1旧DELETE410、资源引用1、raw404；R2 createUser400、创建行0、图片匿名401。旧服务复现与新服务结果分别归档，不再把历史受管环境阻塞当当前验收状态。新后端日志无SQLSyntaxErrorException/BindingException/CommunicationsException。
+- 12份原始JSON与MUS-013-live-results.json已归档；服务保持运行，本轮无需重启或搬运。B新feed仍31b564b（旧MUS-012-R1-B完成request_changes），MUS-013-R1-B尚无主动确认/批准，固定reviewed_sha c100fd6和revision1保持不变，只补输入证据。
+- 真实回滚故障注入、跨请求并发与上传中断后的进程恢复仍未执行，后续A任务继续，不能因本次普通重启标为通过。

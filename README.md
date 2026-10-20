@@ -93,7 +93,7 @@ python3 scripts/smoke.py --slot a --via-proxy
 MUS-002 的准确 checkpoint、实际环境与限制见 [model-spike.md](docs/model-spike.md)。真实音乐语料与效果验收仍缺，discovery-v0 尚未冻结。
 
 
-**独立审核补充：** B在d7c9faa发现旧硬删除、管理员createUser头像和迁移结构保护缺口。MUS-013源码已修复，Java317 / Python28通过；旧服务中的R1/R2已复现，修复后真实服务与独立临时库验收待普通终端重启。详见 [MUS-013](docs/verification/MUS-013.md)，公开服务仍保持阻断。
+**独立审核补充：** B在d7c9faa发现旧硬删除、管理员createUser头像和迁移结构保护缺口。MUS-013源码已修复，Java317 / Python28通过；旧服务中的R1/R2已复现，两套本机修复后HTTP11项及独立临时库8项均已通过，B增量复核待完成。详见 [MUS-013](docs/verification/MUS-013.md)，公开服务仍保持阻断。
 
 ## MUS-012 上传所有权升级
 

@@ -22,5 +22,10 @@
     "source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
     "feed_sha": "31b564b7cce09994ec661c48b7544964ebabb052"
   },
-  "note": "Read at A handoff.source_sha; new fixed-runtime evidence may arrive without changing task revision. No B approval or claim is inferred."
+  "note": "Read at A handoff.source_sha; new fixed-runtime evidence may arrive without changing task revision. No B approval or claim is inferred.",
+  "supplemental_evidence": {
+    "source": "current A handoff.source_sha",
+    "path": "docs/verification/MUS-013-live-results.json",
+    "status": "two local slots passed; not independent B approval"
+  }
 }

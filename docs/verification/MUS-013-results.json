@@ -12,7 +12,7 @@
       "R3"
     ]
   },
-  "status": "review_pending_fixed_runtime_acceptance",
+  "status": "review_pending_independent_b_incremental_review",
   "java": {
     "tests": 317,
     "failures": 0,
@@ -123,16 +123,25 @@
     "evidence": "MUS-013-a-before-http.json"
   },
   "after_http": {
-    "status": "not_run",
-    "reason": "New Java process previously blocked by managed environment; existing normal-Terminal services still run MUS-012. No repeat attempt.",
-    "expected_checks": 11
+    "status": "passed",
+    "checks_per_slot": 11,
+    "slots": [
+      "a",
+      "b"
+    ],
+    "evidence": "MUS-013-live-results.json"
   },
   "migration": {
     "recognized_existing_v002": "passed (read-only)",
     "unknown_structure_callback_regressions": "passed",
     "disposable_native_mysql_probe": {
-      "status": "blocked",
-      "error": "Disposable MySQL initialization failed; see private native log."
+      "status": "passed",
+      "checks_per_slot": 8,
+      "slots": [
+        "a",
+        "b"
+      ],
+      "historical_managed_initialization_failure": "Recorded before ordinary Terminal runs; not current live acceptance status."
     },
     "expected_disposable_checks": 8
   },
@@ -143,8 +152,6 @@
     "note": "This report is committed before publication; it does not itself prove a push."
   },
   "limits": [
-    "Fixed-runtime HTTP is not passed yet.",
-    "Disposable-native MySQL initialization failed here; no unknown-schema live DDL pass claimed.",
     "No new schema SQL, dependency or main changes.",
     "Fault rollback, concurrent requests and restart recovery remain pending.",
     "B has not approved this fix."
@@ -158,5 +165,6 @@
     "MUS-013-migration-native.log": "0c49bd66bb4a17322b4e1c4b8808cd9774b833b5ef1c3ff2ab4f7c2074525e65"
   },
   "implementation_commit": "c100fd6510fe1061396be16973a7560ed2b89e7f",
-  "local_b_worktree_source": "c100fd6510fe1061396be16973a7560ed2b89e7f"
+  "local_b_worktree_source": "c100fd6510fe1061396be16973a7560ed2b89e7f",
+  "live_results": "MUS-013-live-results.json"
 }
