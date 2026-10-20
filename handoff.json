@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-20T01:37:34.040309+00:00",
+  "published_at": "2026-10-20T01:47:37.403251+00:00",
   "source_branch": "review/MUS-012-B-access-ownership",
-  "source_sha": "65a26e6007455f314c15dc7702312ed5ab46ed53",
+  "source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "5a3731d28f29a7d70cb8c0e1bd908f93eeb3df1cd208232555d159e2f115c7bf"
+  "report_sha256": "f5dfc1dc3dd1d21c88aa45b122d753a700d9d3a063615d0fd231fa9e7d2dcf41"
 }
