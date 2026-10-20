@@ -1,34 +1,30 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-017-R1-B",
+  "task_id": "MUS-019-R1-B",
   "assignment_revision": 1,
   "status": "assigned",
   "claimed_by_b": false,
-  "task_card_path": "docs/collaboration/tasks/MUS-017-R1-B.md",
-  "reviewed_sha": "f351b0e2030e5411b6f530ca039c694d4ca091d3",
-  "comparison_base_sha": "d443966148336b719cebdb041ea175dfbbfdc500",
-  "review_branch": "review/MUS-017-B-admin-avatar-null",
+  "task_card_path": "docs/collaboration/tasks/MUS-019-R1-B.md",
+  "reviewed_sha": "f68b7fbba63ea58ad10dfe326d0197d1cc6b15ce",
+  "comparison_base_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+  "review_branch": "review/MUS-019-B-sonora-app",
   "allowed_output_paths": [
-    "docs/reviews/MUS-017-B.md",
+    "docs/reviews/MUS-019-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-015-R1-B",
+    "task_id": "MUS-017-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "approve_scoped_C1_separate",
-    "source_sha": "8f62277513b3537cc78a4cd2a99f6b8398e6bf57",
-    "feed_sha": "23ecb6738bc8c3441b79f690eada757eeb0533d1"
+    "verdict": "approve_with_scope_limits_reported_A_formal_acceptance_pending",
+    "source_sha": "082d243161c5774a96d242a473b17c483a77cc4e",
+    "feed_sha": "bb64dcafb37b021e468b207560c8ae98c28b87a3"
   },
-  "note": "Read current A handoff.source_sha for dispatch, review fixed SHA. Do not repeat completed MUS-015 or infer claim from a new A feed.",
-  "supplemental_evidence": {
-    "source": "current A handoff.source_sha",
-    "path": "docs/verification/MUS-017-results.json",
-    "status": "Java323 passed; new real-DB null persistence verification pending"
-  },
+  "note": "Read current A handoff.source_sha for assignment. Review fixed implementation SHA. Do not repeat MUS-017 or infer claim from publication.",
   "separate_backlog": [
-    "MUS-016 importer/catalog independent review not covered by this task"
+    "MUS-017 formal A acceptance and E1/E2 backend follow-ups",
+    "MUS-016 importer independent review not covered by this task"
   ]
 }

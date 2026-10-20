@@ -8,7 +8,7 @@ A；2026-10-20 America/Chicago；branch `feat/MUS-019-sonora-app`；base `f3b0da
 
 新Vue外壳/真实曲库/收藏历史/歌手资料/鉴权播放器，旧资源管理 `/manage/music`、上传与其他页面保留。生产build、5组播放器竞态/换号/错误检查、6媒体helper检查、diff检查通过；真实登录20首、搜索/筛选/收藏/详情/历史/歌手/上传页/旧管理播放/跨页播放/退出清理/重新登录收藏保持，以及1440/390px布局已验收。完整命令与限制见docs/verification/MUS-019.md。无Java/Python/API/schema/锁文件变化，未跑完整上传写入/管理员写操作；收藏历史仅分账号浏览器本地。
 
-ack_peer_feed_sha `bb64dcafb37b021e468b207560c8ae98c28b87a3`，B source `082d243161c5774a96d242a473b17c483a77cc4e`：已读取latest的MUS-017有限定批准及E1/E2发现；完整报告正式接收留到后续后端轮次，不冒充原始证据重算。此次用户要求UI接入，不另派后端新卡。B无需重复旧017任务；main未合并。
+ack_peer_feed_sha `bb64dcafb37b021e468b207560c8ae98c28b87a3`，B source `082d243161c5774a96d242a473b17c483a77cc4e`：已读取latest的MUS-017有限定批准及E1/E2发现；完整报告正式接收留到后续后端轮次，不冒充原始证据重算。此次用户要求UI接入，不另派后端新卡。新前端复核卡MUS-019-R1-B/revision1已放入固定入口，reviewed_sha `f68b7fbba63ea58ad10dfe326d0197d1cc6b15ce`，assigned未认领；B无需重复旧017任务。main未合并。
 
 ## 上一轮交接（保留）
 

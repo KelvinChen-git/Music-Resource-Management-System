@@ -326,7 +326,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 ## MUS-019 Sonora 应用副本（当前占用）
 
-- owner A；branch feat/MUS-019-sonora-app；base f3b0da1e97113d28c81aa49be61c5cbcc49eebce；in_progress。用户已批准将设计接入网站并保存开发副本，后续在副本基础上开发。
+- owner A；branch feat/MUS-019-sonora-app；base f3b0da1e97113d28c81aa49be61c5cbcc49eebce；review。用户已批准将设计接入网站并保存开发副本，后续在副本基础上开发。
 - 原目录 Music-Resource-Management-System 保留原 Vue 界面与运行服务；新 worktree Music-Sonora 作为前端开发基线，端口 5175，仅代理现有 A 后端 8080；不启动第二个后端或迁移/复制数据库。
 - allowed_paths：web/src/App.vue、web/src/router/index.js、web/src/components/Sonora*、web/src/stores/sonora*、web/src/stores/musicStore.js（旧管理路由监听边界）、web/src/views/Sonora*、web/src/styles/sonora.css、web/src/utils/sonoraArt.js、web/scripts/verify-sonora-player.mjs、web/index.html、README/PROJECT/STATUS/own latest/本任务验证文档。保留旧管理组件与 API/权限路径，B 的 MUS-017 审核路径不接管。
 - 目标：真实曲库/鉴权播放、搜索筛选、收藏/最近播放、歌手资料、上传和原管理入口；收藏与历史限定当前浏览器及账号，不冒充服务端持久化。
@@ -341,3 +341,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - status review / 已接入，待用户体验；本副本为后续开发基线。新 UI 使用现有 A 后端与曲库，不宣称数据库隔离或生产部署。B feed bb64dcafb37b021e468b207560c8ae98c28b87a3/source082d243161c5774a96d242a473b17c483a77cc4e 的latest已读，其017批准有限定范围；完整报告正式接收与E1/E2后续处理另轮完成，本UI任务不改后端也不冒充验收。
 
 - 集成验收发现旧Pinia管理store离开页面后仍监听全局query，在退出附近记录过一条旧列表失败；将其监听限定在 `/manage/music`，并放到方法定义后，避免新曲库/登录触发旧后台搜索及带参数直达管理页的声明前调用。最终构建另行核验，不把此条旧错误隐去。
+
+- 最终构建再次通过；带keyword直达 `/manage/music` 返回1首What Is Love，再从顶部搜索Energy切回Sonora成功；最终检查时间段无新增warn/error。实现 `f68b7fbba63ea58ad10dfe326d0197d1cc6b15ce`，B增量任务 MUS-019-R1-B / revision1，assigned未认领，仅复核前端与真实媒体边界。MUS-017 B已完成报告，但A正式接收和E1/E2协调仍单列。

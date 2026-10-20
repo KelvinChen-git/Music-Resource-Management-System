@@ -1,4 +1,4 @@
-# Music Resource Management System → Music Discovery Platform
+# SONORA · Music Discovery Platform
 
 ## 当前开发入口：Sonora 副本
 
