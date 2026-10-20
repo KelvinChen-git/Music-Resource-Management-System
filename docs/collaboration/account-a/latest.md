@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-020 B限定批准已接收
+
+A；2026-10-20 America/Chicago；branch `fix/MUS-020-sonora-review`；本轮接收基线 `0566bc26ca88c5600072db717a26119c8983ed3f`，实现 `802da6bb1ee3f7906a19c963efb5aeac2115d223`。MUS-020 done仅本卡R1/R2与必要回归；MUS-019整体review，main未合并。
+
+ack_peer_feed_sha `5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1` / B source `d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688`。本次A/B sync均fetched；B task MUS-020-R1-B/revision1、reviewed802da6b、comparison c19b648、assignment0566bc2及ack A ec6cdbb均匹配。核对latest hash/source字节、仅两B报告差异、web树与锁哈希，原字节导入docs/reviews/MUS-020-B.md，不修改B报告正文/own latest/feed。接收approve_scoped并关闭019 R1/R2，详见verification/MUS-020-B-acceptance.json与STATUS。
+
+B独立报告build、4项实际handler/替身router-message通过；隔离真库/浏览器最终baseline-20261020-171644-11 exit0，16项通过，含390长标题/收藏、手机网格/桌面、真实鉴权播放/跨页暂停、六条管理员Username/Email链路owner total2/1/0与实际XHR/API/UI集合、普通用户路由/keyword及无pageerror。两个准备命令各exit1/blocked、浏览器0项分别保留；193字符压力标题经隔离SQL fixture设置，不是正常metadata API通过。B缺中文字体，私有原始日志/工具/截图未交付，A未重算其原始哈希。B报告自建进程停止/端口释放，GitHub顺序发布并非原子。
+
+本地执行正常，开始工作区干净/准确0566bc2；只读检查原版目录仍design/MUS-018-ui-preview@f3b0da1且干净，5175/music200、8080匿名profile401。本轮只更新台账/A交接/派发入口与原卡接收注记/验证文档和接收JSON，并原字节导入B报告；保留备份、产品代码/后端/API/schema/锁/数据和服务。文档diff/JSON/链接及报告字节检查通过；无代码变化，未重复build/player/media/Java/Python/浏览器套件，B运行不冒充A新执行。
+
+固定入口waiting，MUS-020-R1-B review_completed/approve_scoped已由A接收，B报告占用释放，无新任务，勿重复020。MUS-017正式接收/E1/E2与MUS-016独立审核保留待办；未补完整上传/管理写操作、旧手工深链兼容、跨设备/生产/检索质量。任务提交后publish --account a，最终源码SHA由handoff.source_sha给出；发布不等于B已读新回执或最终合并。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-020 Sonora B复核最小修复
 
 A；2026-10-20 America/Chicago；branch `fix/MUS-020-sonora-review`；base `c19b64833b78a2cd958959b77a1c9703f2fc9281`；review / B增量待复核。implementation_sha `802da6bb1ee3f7906a19c963efb5aeac2115d223`。后续工作目录仍Music-Sonora，原版目录保留。

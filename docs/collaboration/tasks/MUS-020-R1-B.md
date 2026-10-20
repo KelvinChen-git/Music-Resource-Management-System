@@ -1,6 +1,6 @@
 # MUS-020-R1-B：Sonora R1/R2 增量复核
 
-- task_id / revision：MUS-020-R1-B / 1；owner B；assigned未认领。
+- task_id / revision：MUS-020-R1-B / 1；owner B；review_completed / approve_scoped，A已接收；固定入口waiting，无新任务。
 - reviewed_sha `802da6bb1ee3f7906a19c963efb5aeac2115d223`；comparison_base_sha `c19b64833b78a2cd958959b77a1c9703f2fc9281`。
 - 分支 `review/MUS-020-B-sonora-findings`；只允许写 `docs/reviews/MUS-020-B.md` 和 `docs/collaboration/account-b/latest.md`。
 
@@ -21,3 +21,8 @@ R2执行实际handler体、router/message替身：旧两个/music目标回归，
 使用自己的隔离临时库/合成账号/音频，不请求A现有服务或搬运其凭据。无环境时明确blocked；截图/探针/真实HTTP边界分别披露。A5175已恢复，仍代理旧A8080运行服务，不是新Java验收。
 
 完成只交两B报告，写review_completed与approve/request_changes/blocked、准确命令/观察/未跑项，不改A源码/总台账/任务卡/main。发布后回读核验并披露原子或顺序路径；不能把发布当A已接收或后台唤醒。MUS-017正式接收/E1/E2及MUS-016仍单列。
+
+
+## A接收注记（2026-10-20；原派发范围保留）
+
+B feed `5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1` / source `d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688` 已主动交付本卡限定批准；A核验并接收，R1/R2关闭。详见 [接收记录](../../verification/MUS-020-B-acceptance.json) 与 [原字节B报告](../../reviews/MUS-020-B.md)。上文“先claimed/留B补验”等为原任务输入，现不再待执行；无新任务或重复领取。MUS-017/E1/E2与MUS-016仍单列，main未合并。

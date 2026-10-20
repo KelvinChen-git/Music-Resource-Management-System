@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- 当前检查点（2026-10-20 America/Chicago）：本轮从 `fix/MUS-020-sonora-review@0566bc26ca88c5600072db717a26119c8983ed3f` 干净工作区开始，本地执行与 A/B sync 成功。A feed `ec6cdbb737a07fbace25db9ea9be3c4d1b97704a` 指向该源码；B feed `5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1` / source `d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688` 的 MUS-020-R1-B 限定批准已接收。当前状态以本条及文末接收记录为准，下列早期 Git / 网络记录保留为历史。
+
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
 - 五份协作文档原先均未发布；已在 `docs/multimodal-collaboration` 应用附件补丁，提交 `8f1fb6b`。逐字节核对与附件相同。原 aa720da 是旧会话提交，不能假设存在于当前 Git 历史。
@@ -52,6 +54,9 @@
 | MUS-012-R1-B 媒体与上传所有权独立审核 | review_completed / B（request_changes） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
 | MUS-013 B审核发现修复 | review / A（本机修复后实跑通过，B增量待复核） | fix/MUS-013-b-review-findings / 6a29de4；实现c100fd6 | Java317 / Python28通过；R1/R2旧服务已复现，两套各修复后HTTP11 / 临时库8已通过 |
 | MUS-013-R1-B 增量复核 | assigned / B（待确认） | review/MUS-013-B-review-findings / c100fd6 | 仅新B审核正文与own latest；复核R1/R2/R3和profile字段更新、脚本隔离 |
+| MUS-019 Sonora 应用副本 | review / A（R1/R2已由MUS-020关闭） | feat/MUS-019-sonora-app / f68b7fb | 真实Vue新界面保留；不把增量批准外推整站、完整上传或管理写操作 |
+| MUS-020 Sonora R1/R2修复 | done / A（本卡范围已验收，未合并main） | fix/MUS-020-sonora-review / 802da6b | B限定批准已核验接收；仅文档接收，不重做UI |
+| MUS-020-R1-B 增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-020-B-sonora-findings / d8bba9d | 原字节报告与接收记录已归档，固定入口waiting；无新任务派发 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -345,7 +350,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 最终构建再次通过；带keyword直达 `/manage/music` 返回1首What Is Love，再从顶部搜索Energy切回Sonora成功；最终检查时间段无新增warn/error。实现 `f68b7fbba63ea58ad10dfe326d0197d1cc6b15ce`，B增量任务 MUS-019-R1-B / revision1，assigned未认领，仅复核前端与真实媒体边界。MUS-017 B已完成报告，但A正式接收和E1/E2协调仍单列。
 
 
-## MUS-020 Sonora B复核修复（当前占用）
+## MUS-020 Sonora B复核修复（已验收；下列为修复时检查点）
 
 - owner A，branch fix/MUS-020-sonora-review，base c19b64833b78a2cd958959b77a1c9703f2fc9281，review。已验证B feed f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46/source30bbd71ce34d0df6580680180498dc7eb22a19e6、latest hash与仅两报告路径diff，原字节导入MUS-019-B报告。结论request_changes，不称整个UI批准。
 - R1：390px列表长标题撑宽；R2：管理员username/email两入口仍指向新/music导致筛选丢失。范围sonora.css、admin/user/index.vue、必要的导航兼容/测试、README/STATUS/own latest/本任务verification/派发。无后端/schema/依赖更新，不接管B报告。
@@ -359,3 +364,14 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 5175已由独立会话前端进程恢复，现有A8080保留；普通账号20首/真实Grupo播放正常后暂停。PID/日志在忽略.local，无系统自启动或永久可用承诺。详见verification/MUS-020.md。状态review / 待B增量；没有把mock或离线fixture写成真实管理员全链路。
 
 - MUS-020实现 `802da6bb1ee3f7906a19c963efb5aeac2115d223`；新B卡MUS-020-R1-B/revision1固定该SHA、比较c19b648，assigned未认领；复用R1长标题与R2两管理入口最小真库/浏览器回归，不重复整套019。
+
+
+### MUS-020 B限定批准接收（2026-10-20 America/Chicago）
+
+- owner A；接收基线 `0566bc26ca88c5600072db717a26119c8983ed3f`；MUS-020 status done 仅表示 R1/R2 修复与限定验收完成，MUS-019 整体继续 review，不代表 main 合并或整站批准。本轮只写本台账、A latest、B任务入口/原卡接收注记、MUS-020验证文档/接收JSON及原字节导入报告；不改产品代码。
+- A/B 固定入口本次 sync 均 fetched。ack_peer_feed_sha `5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1` / B source `d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688`；B task MUS-020-R1-B/revision1、reviewed `802da6bb1ee3f7906a19c963efb5aeac2115d223`、comparison `c19b64833b78a2cd958959b77a1c9703f2fc9281`、assignment source 0566bc2 与 ack A ec6cdbb 均匹配。B已主动claimed并review_completed/approve，本轮正式接收为approve_scoped。
+- 核验latest的hash及source字节、仅两B报告路径diff、web树/锁哈希声明；原字节导入 [MUS-020-B](reviews/MUS-020-B.md)，不改B latest/feed或原MUS-019-B报告。机器记录 [MUS-020-B-acceptance.json](verification/MUS-020-B-acceptance.json)。MUS-019 R1（390px长标题溢出）与R2（两处管理员查询入口）关闭，本增量无新增阻断发现。
+- B独立报告：build通过，实际handler/替身router-message 4项通过；新隔离clone/slot B/MySQL/JVM/Chromium最终run baseline-20261020-171644-11 exit0，16项增量通过。真实长标题列表document390、收藏x327–354可点击，网格390/桌面1440；鉴权合成音频播放/跨页暂停通过。管理员Username/Email六链路按owner得到2/1/0资源，XHR原参数及API/UI集合一致；普通用户路由边界和普通keyword保留。
+- 两次准备命令171408/171512各exit1/blocked、浏览器0项，原因分别为用户名超20和标题超100字符；最终16项单独记录。193字符压力标题由隔离SQL fixture设置，不冒称正常API允许。B中文字体缺失；私有原始日志/工具/截图未交付，A仅核验报告与声明，未重算其原始证据哈希。B自行停止进程并报告3308/8081/5174释放，顺序GitHub发布并非原子。
+- 本地只读检查：原版 `Music-Resource-Management-System` 仍 `design/MUS-018-ui-preview@f3b0da1e97113d28c81aa49be61c5cbcc49eebce` 且干净，当前分支保留该祖先；5175/music HTTP200、8080匿名profile HTTP401。未重启服务、触碰库/音频或重做UI。
+- 本轮文档检查见交接；不重复运行未改的build/player/media/Java/Python或完整浏览器套件。MUS-017正式接收/E1/E2、MUS-016独立审核继续单列，不自动关闭；完整上传/管理写操作、旧手工深链兼容、跨设备/生产/检索质量未补验。B两报告活动占用释放；固定入口waiting，无新卡，勿重复领取020。提交后按约定发布A回执，最终SHA和发布结果由交接消息给出。

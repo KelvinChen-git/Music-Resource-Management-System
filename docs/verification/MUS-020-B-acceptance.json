@@ -1,0 +1,84 @@
+{
+  "task_id": "MUS-020-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "802da6bb1ee3f7906a19c963efb5aeac2115d223",
+  "comparison_base_sha": "c19b64833b78a2cd958959b77a1c9703f2fc9281",
+  "assignment_source_sha": "0566bc26ca88c5600072db717a26119c8983ed3f",
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-20 America/Chicago",
+  "b_source_sha": "d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688",
+  "b_feed_sha": "5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1",
+  "b_ack_peer_feed_sha": "ec6cdbb737a07fbace25db9ea9be3c4d1b97704a",
+  "b_latest_sha256": "0005e01029d637667605f79d3c4993deb023fb7a9a5732ed7c98047f0ea65ea4",
+  "report_path": "docs/reviews/MUS-020-B.md",
+  "report_sha256": "ccbc38c31b37275f08a7966ff11a0824c20f1b1dff55bb6fb194c3eec39c77c1",
+  "a_verified": [
+    "A/B sync exited 0; both receipts fetched",
+    "feed latest hash and exact source report bytes match",
+    "B source differs from reviewed SHA only in two allowed B report paths",
+    "task/revision/reviewed/comparison/assignment source and ack match dispatch",
+    "B review imported with exact bytes; B latest and feed not modified",
+    "web tree and package-lock hash match B declaration",
+    "original worktree clean at f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "local GET /music on 5175 returned 200; anonymous profile on 8080 returned 401"
+  ],
+  "b_reported": {
+    "build": "passed",
+    "handler_checks_passed": 4,
+    "handler_router_message": "test doubles",
+    "final_run": "baseline-20261020-171644-11",
+    "final_exit_code": 0,
+    "browser_checks_passed": 16,
+    "real_admin_username_email_chains": 6,
+    "owner_totals": [
+      2,
+      1,
+      0
+    ],
+    "mobile_document_width": 390,
+    "desktop_document_width": 1440,
+    "long_title_source": "isolated SQL fixture; 193 characters exceeds normal metadata API limit",
+    "preparation_runs": [
+      {
+        "run": "baseline-20261020-171408-10",
+        "exit_code": 1,
+        "status": "blocked",
+        "browser_checks": 0,
+        "reason": "24-character username exceeds existing limit 20"
+      },
+      {
+        "run": "baseline-20261020-171512-11",
+        "exit_code": 1,
+        "status": "blocked",
+        "browser_checks": 0,
+        "reason": "193-character title exceeds existing limit 100"
+      }
+    ],
+    "browser_result_sha256": "4843819ed52a8e683ea7c8af567184ed4c98815c5f10afe0522e48a6bc72e7fb",
+    "summary_sha256": "d15d40b9e3e03ed128b696f9f4fe336b5205f563aff1608c80e258066e791316",
+    "own_processes_stopped": true,
+    "ports_released": [
+      3308,
+      8081,
+      5174
+    ],
+    "publication": "B reports sequential GitHub source then feed publication, not atomic"
+  },
+  "closed_findings": [
+    "MUS-019 R1: mobile list long-title overflow",
+    "MUS-019 R2: two administrator username/email menu query targets"
+  ],
+  "separate_backlog": [
+    "MUS-017 formal A acceptance / E1/E2 backend followups",
+    "MUS-016 independent importer review"
+  ],
+  "limits": [
+    "Only MUS-020 R1/R2 and necessary regressions approved, not the entire site or historical backlog.",
+    "B private runtime files/tools/screenshots were not transferred; A did not recompute their raw evidence hashes.",
+    "Two preparation failures remain separate from the final 16 passed checks.",
+    "A did not rerun builds, player/media, Java/Python or browser suites for this documentation-only acceptance.",
+    "No main merge, production, full upload/admin write, old manual deep-link compatibility or retrieval quality acceptance."
+  ]
+}

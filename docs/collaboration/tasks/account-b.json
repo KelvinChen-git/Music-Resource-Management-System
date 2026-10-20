@@ -3,8 +3,8 @@
   "owner": "b",
   "task_id": "MUS-020-R1-B",
   "assignment_revision": 1,
-  "status": "assigned",
-  "claimed_by_b": false,
+  "status": "waiting",
+  "claimed_by_b": true,
   "task_card_path": "docs/collaboration/tasks/MUS-020-R1-B.md",
   "reviewed_sha": "802da6bb1ee3f7906a19c963efb5aeac2115d223",
   "comparison_base_sha": "c19b64833b78a2cd958959b77a1c9703f2fc9281",
@@ -22,9 +22,15 @@
     "source_sha": "30bbd71ce34d0df6580680180498dc7eb22a19e6",
     "feed_sha": "f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46"
   },
-  "note": "Review fixed R1/R2 increment at exact SHA; no inferred claim or approval. Do not repeat completed MUS-019 baseline.",
+  "note": "MUS-020-R1-B revision 1 completed and scoped approval accepted by A. No pending assignment; wait for a new task_id/revision. Do not repeat MUS-019 or MUS-020. Separate backlog remains open.",
   "separate_backlog": [
     "MUS-017 formal A acceptance / E1/E2 backend followups",
     "MUS-016 independent importer review"
-  ]
+  ],
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "b_source_sha": "d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688",
+  "b_feed_sha": "5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1",
+  "acceptance_record_path": "docs/verification/MUS-020-B-acceptance.json"
 }
