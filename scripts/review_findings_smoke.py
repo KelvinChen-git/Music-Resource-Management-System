@@ -50,9 +50,11 @@ def run(slot, mode='verify', mysql=None):
         return {'data':data,'headers':{'Content-Type':'multipart/form-data; boundary='+boundary}}
     owner,other,admin=user('owner'),user('other'),user('admin')
     assert admin['email'].startswith(prefix)
-    query(f"UPDATE users SET role='ADMIN' WHERE userid={admin['id']} AND email='{admin['email']}';")
     injected_email=prefix+'-created@example.invalid'
+    primary_error = None
     try:
+        # Protect even an ambiguous promotion failure: the SQL may already have committed.
+        query(f"UPDATE users SET role='ADMIN' WHERE userid={admin['id']} AND email='{admin['email']}';")
         audio=synthetic_mp3(prefix)
         uploaded=api('POST','/file/upload',owner['token'],**multipart(audio,prefix+'.mp3'));fid=int(uploaded['id'])
         api('POST',f'/music-resources/metadata?fileId={fid}',owner['token'],{'title':prefix,'artist':'Synthetic','categoryId':1,'tagIds':[]})
@@ -91,9 +93,33 @@ def run(slot, mode='verify', mysql=None):
         check('fixture cleanup leaves image private',request('GET','/uploads/'+image['filePath'])[0]==401)
         return {'slot':slot,'mode':mode,'status':'passed' if mode=='verify' else 'observed','check_count':len(checks),
             'checks':checks,'observations':observations,'limits':['Synthetic fixtures; mode observe is old-runtime evidence, not fixed-runtime acceptance.','No fault rollback, concurrency or restart recovery claim.']}
+    except BaseException as error:
+        primary_error = error
+        raise
     finally:
-        query(f"DELETE FROM users WHERE email='{injected_email}';")
-        query(f"UPDATE users SET role='USER' WHERE userid={admin['id']} AND email='{admin['email']}';")
+        cleanup_errors = []
+        try:
+            try:
+                query(f"DELETE FROM users WHERE email='{injected_email}';")
+            except Exception as error:
+                cleanup_errors.append(('bypass account deletion', error))
+        finally:
+            # Independent of deletion, including cancellation during that operation.
+            try:
+                query(f"UPDATE users SET role='USER' WHERE userid={admin['id']} AND email='{admin['email']}';")
+            except Exception as error:
+                cleanup_errors.append(('administrator demotion', error))
+        if cleanup_errors:
+            details = '; '.join(f'{stage}: {type(error).__name__}: {error}'
+                                for stage, error in cleanup_errors)
+            message = (f'Synthetic fixture cleanup incomplete (prefix={prefix}, '
+                       f'administrator id={admin["id"]}): {details}')
+            if primary_error is not None:
+                # Keep the original exception/traceback; report every cleanup failure separately.
+                print('ERROR: ' + message, file=sys.stderr)
+            else:
+                # A pending successful return must not escape after incomplete cleanup.
+                raise RuntimeError(message) from cleanup_errors[0][1]
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--slot',choices=['a','b'],required=True)
