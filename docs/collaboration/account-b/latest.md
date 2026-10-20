@@ -5,7 +5,7 @@
 - assignment_revision: 1
 - task_status: review_completed
 - review_verdict: request_changes
-- runtime_supplement: partial_pass / backend_blocked
+- runtime_supplement: java_pass / database_http_blocked
 - owner: B；集成负责人及 STATUS 写入方: A
 - branch: `review/MUS-013-B-review-findings`
 - base_sha / reviewed_sha: `c100fd6510fe1061396be16973a7560ed2b89e7f`
@@ -30,14 +30,22 @@
 ## 验证与未执行项
 
 - Python全量：exit0，28 tests，0失败；2.329s。
-- Maven默认：exit1，repo.maven.apache.org DNS / Spring Boot3.4.4 parent POM解析失败，实际Java0，未编译；未重复同一失败命令。
+- 原审核时Maven默认曾因DNS exit1、Java0；用户要求修复后，在B私有入口按当前环境代理生成settings并启动Maven，现已exit0、13类317 tests，0失败/错误/跳过；原失败与本次通过分开记录。
 - 新迁移/HTTP脚本--help和四脚本py_compile均exit0，仅入口/语法检查。
 - 原R3回调重放：同数量换表由首个SELECT拒绝，0写入；V001表名与保护集合一致。
 - R4清理故障替身探针：复现未尝试降权，非真库遗留账号观测。
 - A的12份修复后原始JSON+旧observe哈希、计数、矩阵与运行源码核对通过；不是B独立HTTP/SQL运行。
 - 前端、依赖、SQL未变，本轮不重复安装/构建或套用上轮B的Node6/build通过。diff --check和两路径审计在发布前执行。
 
-环境OpenJDK17.0.20 / Python3.12.14，缺mysql/mysqld/docker；Java317、真实临时库8、HTTP11、144/65及smoke、故障/并发/重启续传均未由B执行。A本机B槽通过不计入账号B执行数量。
+环境OpenJDK17.0.20 / Python3.12.14；Java317本次已由B独立执行通过。缺mysql/mysqld/docker，真实临时库8、HTTP11、真实媒体144/上传65及smoke、故障/并发/重启续传仍未由B执行。A本机B槽通过不计入账号B执行数量。
+
+## Maven环境修复补证
+
+按用户要求仅修改B忽略目录内本机配置：Maven显式使用当前环境HTTP代理，并在同一次调用内生成settings，避免动态代理端口失效；独立缓存保留。未改pom、wrapper、依赖或锁文件，全局Maven配置不变。
+
+命令python3 .local/b/maven/run.py --with-test-agent -U test，源码ff23271833631305524022924d46daaacfc02a64（运行代码与reviewed_sha一致）；Maven3.9.9 / Java17.0.20，exit0，13类317 tests / 0 failures / errors / skipped，43.513s。Surefire XML已独立求和，日志SHA-256 b3840bc1c41bcfe0ff7180d7f383a0574239a247a29f0f49b102f96c9da2de11。可复用本机入口源码及准确复跑步骤见审核正文补证节。
+
+Java0不再是B当前状态，历史失败保留。真库/HTTP补证仍缺；R4 request_changes不变，无业务修复或新任务认领。
 
 ## 发布与范围
 

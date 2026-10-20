@@ -8,7 +8,7 @@
 - branch: `review/MUS-013-B-review-findings`；日期: 2026-10-19 America/Chicago。
 - claim_source_sha: `0f49505b53810634dd18a3a18470dd12d9c6e0b0`；claim_feed_sha: `c8505d5f753f8daf17d802cf9969100ad9edad41`；先发布领取且已 sync 回读。
 - task_status: review_completed；review_verdict: **request_changes**。
-- runtime_supplement: **partial_pass / backend_blocked**；最终交付 SHA 以 own feed 的 handoff.json 为准。
+- runtime_supplement: **java_pass / database_http_blocked**；原审核时的DNS失败及后续修复分别记录，最终交付SHA以own feed为准。
 
 ## 结论
 
@@ -98,7 +98,7 @@ B 使用本 clone 已存在的 slot B 配置，read_env / validate 未替换；�
 
 具体待测交错：T1 读到旧头像 A 并请求同值 A，暂停；T2 将头像换为 B 并提交；T3 删除已无引用的自有上传 A（逻辑删除）并提交；恢复 T1，它因旧快照相等跳过上传行锁 / deleted 检查，再把 A 写入 users.avatar。建议在 A 已计划的多连接任务用屏障验证最后的 avatar / deleted 状态，再决定锁顺序和同值更新规则。此条是源码推断，**未观察到真实竞态结果，不将其混入本轮11项HTTP或新的已复现R4**；不要求B擅自扩展实现范围。
 
-## B 独立执行与未执行项
+## B 原审核检查点的执行与未执行项（后续补证见下节）
 
 环境：独立 Linux clone / slot B；OpenJDK17.0.20（javac 不在 PATH），Python3.12.14。没有使用 A 的 macOS 工作树、账号或数据库。运行代码为 reviewed_sha；领取提交只新增 own latest。
 
@@ -124,6 +124,65 @@ mysql / mysqld / docker 均缺失，故 B 的真实迁移8、HTTP11、媒体144 
 每套证据含：直连 / 代理各13功能+4安全、144唯一媒体元组+8附加、上传65、临时库8、修复HTTP11。媒体状态逐格核对，计数36×401 / 72×404 / 24×200 / 12×206。修复HTTP observation 均为旧DELETE410、资源行1、raw404，createUser400、插入0、匿名图片401；与旧observe的204 / 行0 / raw200 / 重绑定成功及头像匿名200形成明确前后对照。未把 observe 当 verify。raw / count / hash一致只能证明所归档覆盖，不能证明 R4 异常清理或并发已跑。
 
 未读取 A 全部原始 Java / 后台日志，故未独立重算其后台日志哈希或观察“无SQL异常”；这些仍为 A 汇总事实。B 没有获得真实模型 / 数据 / 索引，也没有搜索质量或性能结论。
+
+## 后续补证：B 本机 Maven 网络已修复，Java317独立通过
+
+用户明确要求修复B的Maven DNS阻塞后，B只调整忽略目录内的本机配置。没有改pom、wrapper、依赖锁、业务代码或A配置；本节补充新运行事实，不把上节曾经执行0项的失败记录改写成当时已通过。
+
+根因：本执行环境提供HTTP/HTTPS代理，普通curl经代理访问Maven Central的准确parent POM返回200；Maven没有自动采用环境代理，原先直接解析repo.maven.apache.org而失败。另外代理端口随执行环境调用变化，跨命令写死一次settings端口会connection refused。修复为在同一调用内从当前HTTPS_PROXY/HTTP_PROXY解析代理，生成B私有settings，再启动Maven；依赖缓存也独立置于.local/b/maven/repository。全局~/.m2/settings.xml不变。
+
+实际命令（仓库根目录）：
+
+```bash
+python3 .local/b/maven/run.py --with-test-agent -U test
+```
+
+Maven3.9.9 / OpenJDK17.0.20，采用项目现有Byte Buddy1.15.11依赖的显式javaagent，不新增或升级依赖。**exit0，13类 / 317 tests，0 failures / 0 errors / 0 skipped，BUILD SUCCESS，Maven耗时43.513s**。已直接读取13份Surefire XML求和，不是复制A的317数字。源码为ff23271833631305524022924d46daaacfc02a64，与本卡reviewed_sha c100fd6相比仅B报告文档不同，运行实现一致。包括MediaAccessHttpTest155、UploadOwnershipHttpTest49、UploadIntegrityServiceTest23等既有回归。
+
+本机日志.local/b/maven/test-runtime-proxy.log的SHA-256：b3840bc1c41bcfe0ff7180d7f383a0574239a247a29f0f49b102f96c9da2de11；机器汇总verification.json与Surefire XML保留在B私有目录。373份POM、164份JAR已缓存；随后独立执行python3 .local/b/maven/run.py -o validate，exit0 / BUILD SUCCESS（0.219s），确认缓存模型可离线读取。无需手改系统DNS或切换第三方仓库。
+
+可复用入口在本机.local/b/maven/run.py，SHA-256为3c35bec0dac762dd95d7d83a41a9c3c36e428814ca5a83524446f247822c5313。该私有文件不作为新增公共脚本提交；在新B工作区需要重建时，将下面源码保存到相同相对路径（先建立已ignore目录）即可。代理在每次调用中重新读取，不复制上一会话的端口；--with-test-agent针对当前冻结依赖版本，依赖基线变化时须重新核对。
+
+```python
+#!/usr/bin/env python3
+"""Run this clone's Maven with the current environment proxy and a B-only cache."""
+import os
+from pathlib import Path
+import subprocess
+import sys
+import urllib.parse
+import xml.etree.ElementTree as E
+
+state = Path(__file__).resolve().parent
+root = state.parents[2]
+proxy_url = os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy') or os.environ.get('HTTP_PROXY')
+settings = E.Element('settings', xmlns='http://maven.apache.org/SETTINGS/1.2.0')
+if proxy_url:
+    value = urllib.parse.urlsplit(proxy_url)
+    if value.scheme != 'http' or not value.hostname or value.username or value.password:
+        raise SystemExit('Expected the environment HTTP proxy without embedded credentials.')
+    proxy = E.SubElement(E.SubElement(settings, 'proxies'), 'proxy')
+    for key, text in {'id': 'music-b-runtime-proxy', 'active': 'true', 'protocol': 'http',
+                      'host': value.hostname, 'port': str(value.port or 80),
+                      'nonProxyHosts': 'localhost|127.0.0.1|[::1]'}.items():
+        E.SubElement(proxy, key).text = text
+E.indent(settings, space='  ')
+path = state / 'settings.xml'
+E.ElementTree(settings).write(path, encoding='UTF-8', xml_declaration=True)
+path.chmod(0o600)
+arguments = sys.argv[1:] or ['test']
+if '--with-test-agent' in arguments:
+    arguments.remove('--with-test-agent')
+    # The existing Spring Boot 3.4.4 test dependency graph uses this agent.
+    agent = state / 'repository/net/bytebuddy/byte-buddy-agent/1.15.11/byte-buddy-agent-1.15.11.jar'
+    arguments.insert(0, '-DargLine=-javaagent:' + str(agent))
+command = ['sh', './mvnw', '-B', '-ntp', '-s', str(path),
+           '-Dmaven.repo.local=' + str(state / 'repository'), *arguments]
+print('Using current runtime proxy and B-only Maven settings/cache.', flush=True)
+raise SystemExit(subprocess.call(command, cwd=root / 'music'))
+```
+
+Java编译/单测的DNS阻塞已解除；真实MySQL、临时库迁移8、TCP/HTTP11、并发/事务故障/跨进程续传仍未由B执行。单元/MockMvc通过不等于真库验收。**R4脚本清理问题的request_changes保持不变**，本次环境修复不修改审核对象或冒充A已修复R4。
 
 ## 交付与下一步
 
