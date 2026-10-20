@@ -48,7 +48,7 @@
 | MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
 | MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
 | MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
-| MUS-012 上传持久所有权 | review / A（真实 Java HTTP blocked） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A V002 已迁移，普通终端新65项回归待执行 |
+| MUS-012 上传持久所有权 | review / A（真实 Java HTTP blocked） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，普通终端新65项回归待执行 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -176,6 +176,8 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 ### MUS-012 实现检查点
 
 - 308 Java（原266 + 新所有权HTTP40 + MD5隔离2）与22 Python（baseline9 / migration4 / collab9）通过。真实持久化不在 MockMvc 中，不能据此称完整验收。
-- A 真库 V002 已加列 / 索引并重复迁移通过，10 条旧上传保持 NULL；B 迁移待同步源码后记录。无 owner 自动回填。头像登记也检查目标账号上传归属，引用上传不允许删除，删除仅逻辑标记、保留字节。
+- A 真库 V002 已加列 / 索引并重复迁移通过，10 条旧上传保持 NULL；本机 B 干净同步至实现提交078a82b后已迁移成功，6条旧上传保持NULL。无 owner 自动回填。头像登记也检查目标账号上传归属，引用上传不允许删除，删除仅逻辑标记、保留字节。
 - 候选 Java 连接 127.0.0.1:3307 被 Operation not permitted 拒绝，未成功启动；18080 候选已停止。原 8080 / 8081 服务仍为 MUS-011。Python / native mysql 可连不代表 Java 可连，新真实65项权限回归未通过。
 - 普通终端新 baseline 将自动执行该回归；原终端各 Ctrl+C 后以 --migrate-upload-ownership --keep-running 运行。A 可直接读取结果，无需搬运。本机 B 槽非 B 账号审核；后续事务故障 / 并发 / 重启续传仍待验证。
+
+- 实现提交078a82b已发布，A feed检查点8ead126；本机B源码一致，两个旧Java PID83691 / 83977仍为旧运行实例。发布/迁移不等于新版本实跑验收，不要求B账号替A搬运输出。

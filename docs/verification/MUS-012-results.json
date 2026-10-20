@@ -125,10 +125,17 @@
       "automatic_backfill": false
     },
     "b": {
-      "status": "pending source sync and explicit migration"
+      "status": "applied_v002",
+      "legacy_null_owner_rows": 6,
+      "automatic_backfill": false
     }
   },
-  "publication": "pending",
+  "publication": {
+    "status": "published",
+    "checkpoint_source_sha": "078a82b4082e192258252bafe617e849ac4925f5",
+    "checkpoint_feed_sha": "8ead1264a276eabdbf9ace52e8889fc9d9930aba",
+    "note": "Final report commit is published afterward; authoritative source is remote handoff.json. No independent B receipt/review."
+  },
   "limits": [
     "Live MySQL migration is not live Java/HTTP acceptance.",
     "MockMvc uses mocked persistence. No live cross-request concurrency or partial-upload restart recovery claimed.",
@@ -139,5 +146,12 @@
   "log_sha256": {
     "MUS-012-java-tests.log": "bda8c54e461a8e6442e3a227cf887207a79ffb6c20d3092eddfbd29a2c5531a6",
     "MUS-012-python-tests.log": "4d96e12e576ad1ebc49f240cff8c61bf657ef1fb35bca19d91efe4b936f11b0a"
+  },
+  "implementation_commit": "078a82b4082e192258252bafe617e849ac4925f5",
+  "local_b_worktree": {
+    "source_sha": "078a82b4082e192258252bafe617e849ac4925f5",
+    "clean_before_switch": true,
+    "running_backend_restarted": false,
+    "independent_account_b_review": false
   }
 }
