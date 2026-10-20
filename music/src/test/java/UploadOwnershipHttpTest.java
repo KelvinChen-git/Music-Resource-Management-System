@@ -226,6 +226,57 @@ class UploadOwnershipHttpTest {
                 w.getSqlSegment().contains("FOR UPDATE")));
     }
 
+    @Test void administratorNullOrOmittedAvatarKeepsReferenceWithoutWritingIt() throws Exception {
+        for (String body : List.of("{\"name\":\"renamed\",\"avatar\":null}", "{\"name\":\"renamed\"}")) {
+            owner.setAvatar("owned.png");
+            clearInvocations(users,files);
+            var response = mvc.perform(auth(put("/users/1").contentType("application/json").content(body),3))
+                    .andReturn().getResponse();
+            var json = new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+            assertEquals(200,json.get("code").asInt());
+            assertEquals("owned.png",json.get("data").get("avatar").asText());
+            verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+                String sql=((com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w).getSqlSet();
+                assertFalse(sql.contains("avatar")); return true;
+            }));
+            verify(users,never()).updateById(any(Users.class));
+            verify(files,never()).getOne(any(Wrapper.class));
+        }
+    }
+
+    @Test void administratorEmptyAvatarWritesExplicitClear() throws Exception {
+        owner.setAvatar("owned.png");
+        var response = mvc.perform(auth(put("/users/1").contentType("application/json")
+                .content("{\"avatar\":\"\"}"),3)).andReturn().getResponse();
+        var json = new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertEquals(200,json.get("code").asInt());
+        assertEquals("",json.get("data").get("avatar").asText());
+        verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+            var changes=(com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w;
+            assertTrue(changes.getSqlSet().contains("avatar"));
+            assertTrue(changes.getParamNameValuePairs().containsValue("")); return true;
+        }));
+        verify(users,never()).updateById(any(Users.class));
+    }
+
+    @Test void administratorNameEditDoesNotRewriteSnapshotSecurityOrOmittedFields() throws Exception {
+        owner.setAvatar("owned.png");owner.setEmail("owner@example.invalid");owner.setRole("ADMIN");
+        owner.setPassword("synthetic-hash");
+        var response = mvc.perform(auth(put("/users/1").contentType("application/json")
+                .content("{\"name\":\"new name\"}"),3)).andReturn().getResponse();
+        var json = new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertEquals("owner@example.invalid",json.get("data").get("email").asText());
+        assertEquals("ADMIN",json.get("data").get("role").asText());
+        verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+            String sql=((com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w).getSqlSet();
+            assertTrue(sql.contains("name"));assertTrue(sql.contains("updated_at"));
+            for (String column : List.of("avatar","email","role","is_locked","password","lock_reason"))
+                assertFalse(sql.contains(column),sql);
+            return true;
+        }));
+        verify(users,never()).updateById(any(Users.class));
+    }
+
     @TestFactory Stream<DynamicTest> legacyDeletionIsUnavailableToEveryIdentity() {
         return Stream.of(0,1,2,3).map(viewer->DynamicTest.dynamicTest("legacy delete/viewer="+viewer,()-> {
             status(delete("/music/42"),viewer,viewer==0?401:410);

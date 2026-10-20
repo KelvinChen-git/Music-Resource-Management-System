@@ -304,3 +304,9 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - owner A，branch fix/MUS-017-admin-avatar-null，base3092ae2。范围UserServiceImpl、UploadOwnershipHttpTest、CONTRACTS/STATUS/README/own交接/verification/MUS-017*/派发；B原报告只导入不改。
 - 契约：avatar缺字段或null保持当前值，空字符串清空，非空路径每次requireAvatar。管理员仅写本次非null提交字段，避免为响应保留旧值而把旧头像/锁/密码等实体状态回写；不改全局NULL写入策略、schema或依赖。
 - 目标确定性持久写列/响应回归；新真库验收单列，现有服务与20首演示音频不停止、不覆盖。
+
+### MUS-017 实现检查点
+
+- 管理员updateUser仅应用/写入非null提交字段，avatar省略/null保持，空字符串明确清除；旧role/email/avatar不因名称编辑回写，锁/密码等安全列不进入UPDATE。返回值不再对null回显已清空；保留读取快照语义，不承诺并发最新响应。
+- 新三项回归在旧实现55测试中3失败；修复后Java323零失败/错误/跳过。新版本真库响应/持久化及受控交错待B补证，不能沿用旧015批准为017批准。
+- 前端/Python/schema/依赖无改动，现有网站、两套旧服务与演示20首音频保留；不要求用户本轮重启。后续卡待准确提交SHA。

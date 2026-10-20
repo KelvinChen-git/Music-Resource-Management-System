@@ -130,6 +130,13 @@ Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没
 - 不提交avatar的仅名称修改继续可用；管理员清空avatar行为保留。legacy NULL owner或已删除/未完成上传不会因相同路径输入而得到认可。
 - 本次确定性MockMVC/mapper回归与真实多连接交错分开记录；HTTP状态/旧管理员业务错误封装保持现状，schema和API字段不变。
 
+### A9. MUS-017 管理员用户编辑的空值与写列
+
+- PUT /users/{id}继续由管理员权限入口控制。name/email/role/avatar缺字段或null均保持已读值；明确avatar:""写入空字符串以解除引用，非空路径每次执行原requireAvatar当前上传校验。
+- 使用局部UPDATE，仅写本次非null提交的name/email/role/avatar及updated_at，不通过完整实体回写未提交头像、锁定、密码或其他安全列。不得为支持清空而全局开启NULL覆盖。
+- 返回对象只应用本次已提交字段，avatar:null不再回显已清空。本返回保持读取快照语义，不额外承诺未提交字段在并发中的最新值；未提交字段不会作为写入值。
+- profile入口行为不变；空字符串清空约定只针对管理员编辑。真库响应/持久值与受控交错验证须单列，不用写列mock替代。
+
 ## B. 建议的公开 discovery-v0 契约（尚未实现）
 
 ### B1. 搜索

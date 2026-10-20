@@ -168,18 +168,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
             throw new RuntimeException("User does not exist");
         }
         
-        user.setName(updatedUser.getName());
-        user.setEmail(updatedUser.getEmail());
-        // Even an equal path must lock and validate its current upload: the user
-        // snapshot may predate another profile change and upload deletion.
+        // Omitted/null fields retain their values. Only an explicit empty avatar
+        // clears the reference; do not globally enable null writes on the entity.
+        if (updatedUser.getName() != null) user.setName(updatedUser.getName());
+        if (updatedUser.getEmail() != null) user.setEmail(updatedUser.getEmail());
         if (StringUtils.hasText(updatedUser.getAvatar()))
             uploadAccessService.requireAvatar(updatedUser.getAvatar(), id);
-        user.setAvatar(updatedUser.getAvatar());
+        if (updatedUser.getAvatar() != null) user.setAvatar(updatedUser.getAvatar());
+        if (updatedUser.getRole() != null) user.setRole(updatedUser.getRole());
         user.setUpdatedAt(LocalDateTime.now());
-        // 更新用户角色
-        user.setRole(updatedUser.getRole());
-        
-        userMapper.updateById(user);
+
+        // Keeping a value in the response must not write an old snapshot back.
+        var changes = new com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, id)
+                .set(updatedUser.getName() != null, Users::getName, updatedUser.getName())
+                .set(updatedUser.getEmail() != null, Users::getEmail, updatedUser.getEmail())
+                .set(updatedUser.getAvatar() != null, Users::getAvatar, updatedUser.getAvatar())
+                .set(updatedUser.getRole() != null, Users::getRole, updatedUser.getRole())
+                .set(Users::getUpdatedAt, user.getUpdatedAt());
+        userMapper.update(null, changes);
         return user;
     }
     

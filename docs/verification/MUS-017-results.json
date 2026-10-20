@@ -1,0 +1,35 @@
+{
+  "task": "MUS-017",
+  "status": "implemented_java_verified_runtime_pending",
+  "before": {
+    "suite": "UploadOwnershipHttpTest",
+    "tests": 55,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0
+  },
+  "after": {
+    "java_tests": 323,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "success"
+  },
+  "contract": {
+    "avatar_omitted": "keep; no avatar UPDATE column",
+    "avatar_null": "keep; no avatar UPDATE column",
+    "avatar_empty_string": "clear via explicit empty UPDATE value",
+    "avatar_nonempty": "validate and lock target-owned complete undeleted upload",
+    "admin_update_columns": "only submitted non-null name/email/role/avatar plus updated_at"
+  },
+  "logs_sha256": {
+    "MUS-017-before-tests.log": "7bdbfde5fa70f59ddedab43b481e8606f38608c2af3f63053d7df06ae8c493e0",
+    "MUS-017-java-tests.log": "89b577441b8175796dc903f73e60a5249eeff553bc6e83335ade786ccce4822b"
+  },
+  "limits": [
+    "New checks are MockMVC/mapper assertions; no new A JVM or MySQL avatar-null run.",
+    "Existing A/B services and demo audio remain running with MUS-014 backend code.",
+    "No global NULL write policy, schema, API field or dependency change.",
+    "B prior scoped approval applies to MUS-015 d9a2a15, not this implementation."
+  ]
+}
