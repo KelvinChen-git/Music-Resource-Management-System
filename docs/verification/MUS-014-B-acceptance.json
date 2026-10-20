@@ -1,0 +1,40 @@
+{
+  "task_id": "MUS-014-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "7c973b5d9eac219e289623e7eb6d44eda73cb09d",
+  "review_status": "review_completed",
+  "verdict": "approve_with_scope_limits",
+  "b_source_sha": "7175ddf1e6e51a994cbfb53506d1a4db411d8c66",
+  "b_feed_sha": "8d1ae4ac5e3640d935ccfec88d9552e9e3baa2dd",
+  "b_ack_peer_feed_sha": "0093ae4030d35b2b7a2dbdc97f431ed95dff2e78",
+  "report_path": "docs/reviews/MUS-014-B.md",
+  "report_sha256": "b4c3ed144bd62fe4a99b578a96698ebd13dde811911b1af405e383ee9035e1d1",
+  "a_verified": [
+    "feed report hash",
+    "source changes only two B reports relative to reviewed SHA",
+    "exact report imported without edits",
+    "reviewed SHA and assignment/ack match"
+  ],
+  "b_reported_independent_runtime": {
+    "java_tests": 317,
+    "python_tests_prior_run": 45,
+    "process_guard_checks_prior_run": 9,
+    "http_fault_checks": 18,
+    "prepare_checks": 5,
+    "cross_jvm_resume_checks": 11,
+    "concurrent_upload_requests": 12,
+    "concurrent_merge_requests": 2,
+    "file_id": 16,
+    "old_java_pid": 852,
+    "new_java_pid": 1192,
+    "chunk_rows": 12,
+    "unique_indices": 12,
+    "persisted_uploaded_chunks": 12,
+    "fault_constraints_remaining": 0
+  },
+  "limits": [
+    "B private raw runtime files were not transferred; A cannot independently recompute their hashes.",
+    "B Linux run used disclosed private tool/transport adaptations; not proof of unmodified cross-platform bootstrap.",
+    "No main merge, production acceptance, database outage or commit ACK loss verification."
+  ]
+}

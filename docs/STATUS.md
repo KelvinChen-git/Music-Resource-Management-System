@@ -1,6 +1,6 @@
 # 项目状态与交接
 
-最后更新：2026-10-19（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-20（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
@@ -262,3 +262,16 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 实际Java A96493→96842、B97066→97275；新旧launcher PID、退出/端口释放/就绪、时间及checkpoint哈希一致。新JVM后12并行上传请求/2并行合并验证通过。
 - 再读真库：Afile65/Bfile40均12行/12不同索引/持久计数12/状态1，文件字节一致；故障CHECK均0，私有canonical state和registry均清理。旧file44失败不修写。
 - 服务保持运行，无需再次重启。B feed仍bbae379/source1534e4d，MUS-014-R1-B未主动claimed/批准；审核SHA7c973b5/revision1不变，只补验收输入。不是本会话权限已解除，也不是独立B账号或生产验收。
+
+### MUS-014 B独立复核及运行补证接收（2026-10-20 00:39 Chicago）
+
+- B feed8d1ae4ac/source7175ddf1，准确审核7c973b5、assignment sourcea433e2b、ack A0093ae4；MUS-014-R1-B/revision1 review_completed，approve限定本卡范围。
+- A核对feed哈希与源码仅两B报告差异，原字节导入docs/reviews/MUS-014-B.md。B独立报告Java317、先前Python45/真实进程保护9，并补齐真库18故障、prepare5/跨JVM resume11、12并发上传/2合并；file16持久12行/12索引/计数12。
+- B环境通过私有Linux工具路径/Unix socket转回环TCP/临时目录适配完成，未改业务/SQL/验收断言。其私有原始日志未交付，A仅核对已提交报告与哈希声明，不宣称重算B原始证据或无适配Linux通用支持。
+- 两槽本机实证与B独立报告均完成MUS-014范围；main未合并，整库中断/ACK丢失、头像交错、GC和公开检索仍单列。机器接收记录MUS-014-B-acceptance.json。
+
+## MUS-015 头像同值请求重新校验（当前占用）
+
+- owner A，branch fix/MUS-015-avatar-revalidation，base a433e2b；allowed_paths：UserServiceImpl及UploadOwnershipHttpTest、CONTRACTS/STATUS/README/own latest/verification/MUS-015*、own派发卡。B报告原字节导入单独提交，不改B正文。
+- 删除“与已读avatar相同则跳过requireAvatar”的快捷分支，profile与管理员目标更新均需校验每个非空头像的归属/完成/未删除状态并持有上传行锁；保持名称单独修改与管理员清空头像行为。profile仍仅写可编辑列。
+- 静态交错：T1读avatar A，T2改B，T3删除已解除引用A，T1旧同值A写回。新增确定性HTTP/mapper场景验证旧快照+已删除上传拒绝写入；不把MockMVC/mapper模拟当真实多连接复现。真实交错验证及新版本HTTP待后续补证。
