@@ -2,9 +2,9 @@
 
 - account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
 - task MUS-011 媒体授权 / 缓存；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`；status review（实现、本地回归及两套本机真实矩阵通过；B 独立审核待完成）。
-- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；此前实现轮 GitHub 读取未见 B 新 feed；本次未刷新 B 远端进度。B source 6e4118c，reviewed 7ab0d39；不替 B 写报告或确认。
-- 实现检查点 d29ccbb；本机 B worktree 已同步并重启。A aa65efa / 本机 B d29ccbb 运行源码相同，仅三份文档不同。此前 publish 在 git ls-remote exit 128 阻塞，本轮发布结果待另行记录。
-- 发布边界：A 先前远端 feed d0a8381 / source 0ba0a96；后续 MUS-009/010 和本任务新结果仅本地，受管终端 DNS / 写连接仍阻塞，不声称 B 已收到。最终 source_sha 以成功 publish 后 handoff.json 为准。
+- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮原生 git sync 成功，B feed 仍为该值，未见新交付。B source 6e4118c，reviewed 7ab0d39；不替 B 写报告或确认。
+- 实现检查点 d29ccbb；本机 B worktree 已同步并重启。A aa65efa / 本机 B d29ccbb 运行源码相同，仅三份文档不同。此前发布阻塞已恢复；本轮源码与验收报告已成功发布，并经 sync 拉取核验。
+- 发布检查点：source 396deda398de56148f8fae1cdacfd3c6462bf307 / feed f00c35dc5a760e501adf108b742d3d793f96ee94，2026-10-19 19:41 America/Chicago sync 已回读核验；MUS-009/010/011 源码历史及验收报告已进入远端任务分支。当前最终 source_sha 以远端 handoff.json 为准。远端可获取不表示 B 已读取或审核。
 
 ## 实现与验证
 
