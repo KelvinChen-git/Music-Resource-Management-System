@@ -1,0 +1,58 @@
+{
+  "task_id": "MUS-017-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "f351b0e2030e5411b6f530ca039c694d4ca091d3",
+  "comparison_base_sha": "d443966148336b719cebdb041ea175dfbbfdc500",
+  "assignment_source_sha": "d34f282a499b3e93c94f90c83c38d35dcb21ca3a",
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-20 America/Chicago",
+  "b_source_sha": "082d243161c5774a96d242a473b17c483a77cc4e",
+  "b_feed_sha": "bb64dcafb37b021e468b207560c8ae98c28b87a3",
+  "b_ack_peer_feed_sha": "35c357212f6ee12a255dae934d43ac8bf84768c0",
+  "report_path": "docs/reviews/MUS-017-B.md",
+  "report_sha256": "4fee2bc5937f82031defd5de499c3551d7518f498a7b3292d7cc857381ae9c44",
+  "a_verified": [
+    "historical feed/source latest exact bytes and SHA256",
+    "only two allowed B report paths differ from reviewed SHA",
+    "assignment/revision/reviewed SHA and B ack match historical dispatch",
+    "exact B report imported without edits"
+  ],
+  "b_reported": {
+    "old_tests": 55,
+    "old_expected_failures": 3,
+    "java_tests_passed": 323,
+    "java_run_later_blocked": true,
+    "final_run": "baseline-20261020-154132-16",
+    "final_exit_code": 0,
+    "final_status": "review_findings",
+    "expected_business_checks_passed": 23,
+    "separate_E1_observations": 1,
+    "controlled_sql_fixture_interleaving": true,
+    "three_normal_http_participant_race": false
+  },
+  "closed_findings": [
+    "MUS-015 C1: administrator avatar:null false cleared response"
+  ],
+  "followup": [
+    {
+      "id": "E1",
+      "priority": "P3",
+      "evidence": "B real HTTP empty object produced business500; prior origin statically confirmed",
+      "task": "MUS-021"
+    },
+    {
+      "id": "E2",
+      "priority": "P2 static risk",
+      "evidence": "six other full entity writes; real concurrent overwrite not reproduced",
+      "task": "MUS-021"
+    }
+  ],
+  "limits": [
+    "Historical MUS-017 delivery imported; not a new B review or current feed source.",
+    "B private logs/tools not transferred; A cannot recompute their hashes.",
+    "Java323 came from a command subsequently blocked; final23 plus E1 are not 24 all passed.",
+    "No main merge, running A service upgrade or production acceptance."
+  ]
+}

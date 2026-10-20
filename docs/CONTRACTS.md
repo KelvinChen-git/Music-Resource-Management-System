@@ -137,6 +137,13 @@ Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没
 - 返回对象只应用本次已提交字段，avatar:null不再回显已清空。本返回保持读取快照语义，不额外承诺未提交字段在并发中的最新值；未提交字段不会作为写入值。
 - profile入口行为不变；空字符串清空约定只针对管理员编辑。真库响应/持久值与受控交错验证须单列，不用写列mock替代。
 
+### A10. MUS-021 用户请求边界与专属写列（本轮实现目标）
+
+- 管理员PUT /users/{id}使用独立输入DTO，仅接受name/email/avatar/role；其他字段继续忽略，不由body userid改变路径目标。`{}`与全null输入均保持业务字段，仅沿用updated_at更新。原权限入口、响应快照及旧HTTP200业务envelope保持，不全局移除Users身份注解或改变NULL策略。
+- lockUser仅写is_locked/lock_time/unlock_time/updated_at；lockUserWithReason再写本次非null lock_reason。新上锁明确将旧unlock_time清NULL；unlockUser仅写is_locked/unlock_time/updated_at，继续保留既有锁原因/锁时间。
+- changePassword、resetUserPassword、resetPassword仅写password/updated_at；校验、编码、返回及验证码成功后失效行为保留。六入口均以本次目标userid为WHERE，不回写读取快照中的头像/邮箱/角色/其他安全列。
+- 本项限制写入列，不能据此宣称旧密码并发请求、验证码消费、权限撤销竞争或三个正常HTTP参与者竞争已解决；真实多连接验收须单列。消费者仍原前端，不新增浏览器API字段；B在准确实现SHA上补限定审核。
+
 ## B. 建议的公开 discovery-v0 契约（尚未实现）
 
 ### B1. 搜索

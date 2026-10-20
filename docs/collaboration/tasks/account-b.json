@@ -22,9 +22,9 @@
     "source_sha": "30bbd71ce34d0df6580680180498dc7eb22a19e6",
     "feed_sha": "f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46"
   },
-  "note": "MUS-020-R1-B revision 1 completed and scoped approval accepted by A. No pending assignment; wait for a new task_id/revision. Do not repeat MUS-019 or MUS-020. Separate backlog remains open.",
+  "note": "MUS-020 completed and scoped approval accepted. B read A receipt. Waiting while A implements MUS-021; no new review assigned yet. Do not repeat MUS-017/019/020.",
   "separate_backlog": [
-    "MUS-017 formal A acceptance / E1/E2 backend followups",
+    "MUS-021 E1/E2 implementation in progress; exact-SHA review will be assigned after commit",
     "MUS-016 independent importer review"
   ],
   "review_status": "review_completed",

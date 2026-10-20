@@ -375,3 +375,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 两次准备命令171408/171512各exit1/blocked、浏览器0项，原因分别为用户名超20和标题超100字符；最终16项单独记录。193字符压力标题由隔离SQL fixture设置，不冒称正常API允许。B中文字体缺失；私有原始日志/工具/截图未交付，A仅核验报告与声明，未重算其原始证据哈希。B自行停止进程并报告3308/8081/5174释放，顺序GitHub发布并非原子。
 - 本地只读检查：原版 `Music-Resource-Management-System` 仍 `design/MUS-018-ui-preview@f3b0da1e97113d28c81aa49be61c5cbcc49eebce` 且干净，当前分支保留该祖先；5175/music HTTP200、8080匿名profile HTTP401。未重启服务、触碰库/音频或重做UI。
 - 本轮文档检查见交接；不重复运行未改的build/player/media/Java/Python或完整浏览器套件。MUS-017正式接收/E1/E2、MUS-016独立审核继续单列，不自动关闭；完整上传/管理写操作、旧手工深链兼容、跨设备/生产/检索质量未补验。B两报告活动占用释放；固定入口waiting，无新卡，勿重复领取020。提交后按约定发布A回执，最终SHA和发布结果由交接消息给出。
+
+
+## MUS-017正式接收与MUS-021占用（2026-10-20 America/Chicago）
+
+- A从干净 `5d3441a97979b8d3b9fe23f511472c8fc0a1dc11` 创建 `fix/MUS-021-user-update-boundaries`；新任务MUS-021 owner A、in_progress。允许路径：UserController、新AdminUpdateUserDTO、UserServiceImpl、对应Java回归、CONTRACTS/STATUS/README必要事实、A latest、MUS-017接收/MUS-021验证文档及A任务派发。无UI/schema/依赖升级，不重启现有MUS-014演示服务，不合并main。
+- 本次sync A feed45776bf/source5d3441a；最新B feed `8b49b6b19aa58ec4f09ccf4cfe939fab6a1a01ff` / source `86fa91dfa596a1dd86dce9413c39e80684d69a96` 已主动ack A45776bf，确认020关闭/waiting；不因已读确认再派020或触发回执循环。
+- 正式接收历史MUS-017-R1-B/revision1：B feedbb64dcaf/source082d2431、reviewedf351b0e、comparisond443966、assignmentd34f282及ack A35c3572匹配；hash/source字节与仅两B报告diff已核验。原字节导入 [MUS-017-B](reviews/MUS-017-B.md)，[机器接收记录](verification/MUS-017-B-acceptance.json)。approve_scoped，C1关闭；MUS-017限定范围验收完成，现有A运行版本不因接收升级。
+- B报告Java323来自后续blocked命令；独立最终命令exit0/status review_findings，23预期业务检查通过及1项E1差异单列，不写24全passed。旧55/3预期失败、SQL fixture受控交错与performance_schema锁证据保留；不是三个正常HTTP参与者竞争。私有日志/工具未交付，A不重算其原始哈希。
+- E1/P3：空对象在实体身份反序列化时业务500；选择与全null相同的“保持字段”语义，仅updated_at可更新，以专用四字段DTO解除实体身份绑定，不改全局Jackson/NULL策略。E2/P2静态风险：lockUser/unlockUser/changePassword/lockUserWithReason/resetUserPassword/resetPassword六处完整实体写入，改为各自实际变更列；未复现真库并发覆盖前不声称已证实漏洞。契约先更新，精确实现提交后派B增量真库复核。
+- B固定入口暂waiting；MUS-016导入器独立审核另列。原版备份和现有曲库/服务保留；本轮不触碰真实邮件或用户数据。
