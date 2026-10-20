@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-20T15:21:40.370019+00:00",
+  "published_at": "2026-10-20T15:42:47.276753+00:00",
   "source_branch": "review/MUS-019-B-sonora-app",
-  "source_sha": "74804ada8ceb8d93e65b7f9408581cf7baeabf33",
+  "source_sha": "30bbd71ce34d0df6580680180498dc7eb22a19e6",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "fa2d1083fabbbbb2f0b8f94ce407a4ceda4dc752f9a83c0a38d91e9347a1365f"
+  "report_sha256": "0863e90a28bb25809523e1911c9149c6b6246cb76cda18f561c0b281bfdfe141"
 }
