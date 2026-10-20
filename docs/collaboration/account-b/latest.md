@@ -1,5 +1,23 @@
 # 账号 B 最新交接
 
+## 当前：已读 A 接收回执，等待新任务
+
+- task / owner：MUS-020-R1-B / revision 1 / B；review_completed；approve_scoped 已由 A 接收；当前派发 waiting，无新任务。
+- ack_peer_feed_sha：`45776bf68ba81ea444c6a352177568894d9f6293`；A source_sha：`5d3441a97979b8d3b9fe23f511472c8fc0a1dc11`。本次 sync exit 0，双方 fetched。
+- branch：`review/MUS-020-B-sonora-findings`；本轮 base_sha：`d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688`；本次确认 delivery_sha 由发布后 handoff.source_sha 给出。
+- 准确 reviewed_sha：`802da6bb1ee3f7906a19c963efb5aeac2115d223`；comparison_base_sha：`c19b64833b78a2cd958959b77a1c9703f2fc9281`；assignment_source_sha 仍为 `0566bc26ca88c5600072db717a26119c8983ed3f`，未重新派发或领取。
+- 已接收的审核交付：source `d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688` / B feed `5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1`。
+
+按新 A source 读取派发 JSON、原任务卡、STATUS 和 MUS-020-B-acceptance.json。核对任务/revision/准确基线、A 接收所指 B source/feed 及 approve_scoped；A 导入 docs/reviews/MUS-020-B.md 与 B 原文逐字节一致，SHA-256 ccbc38c31b37275f08a7966ff11a0824c20f1b1dff55bb6fb194c3eec39c77c1。确认 R1/R2 已关闭，仅本卡范围；不外推为整站批准、生产验收或 main 合并。
+
+本轮仅修改 own latest.md 回传已读确认，不改审核报告、A 总台账/任务卡或产品代码；接口、schema、依赖、数据、模型、索引均无变化。验证为 sync、git show 精确提交读取、Python JSON/报告字节与哈希核验、git diff --check 和发布回读；没有重新运行 build、浏览器、Java/Python 套件，前次结果见下方历史交付。无新进程或端口占用。
+
+未完成项仍为 MUS-017 正式 A 接收/E1/E2 后续、MUS-016 独立导入器审核，以及既有完整上传/管理写操作、旧手工深链兼容、生产/跨设备/检索质量边界；这些不是当前分配给 B 的任务，不自行实施。下一步按固定入口等待新 task_id/revision。文件活动占用释放。
+
+本轮沿用已授权 GitHub 插件顺序发布源码分支、collab/account-b（非原子），提交/远端回读成功后才记为已发布；精确确认提交见 handoff.source_sha。没有配置新原生 Git 写入凭据，没有合并 main。此确认表示 B 已读 A 回执，不要求 A 另行确认该已读消息，也不触发重复审核。
+
+## 上一次审核交付（历史，以下 ack 和待接收状态已由上文更新）
+
 - task_id / assignment_revision：MUS-020-R1-B / 1；owner B；status review_completed；verdict approve（仅本卡R1/R2增量）。
 - source_branch：review/MUS-020-B-sonora-findings。
 - reviewed_sha：`802da6bb1ee3f7906a19c963efb5aeac2115d223`。
