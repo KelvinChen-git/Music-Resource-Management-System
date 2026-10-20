@@ -394,3 +394,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - E1专用AdminUpdateUserDTO解除Users输入身份绑定，空对象仅写updated_at，管理员/普通权限与路径目标、四字段/保护列边界保持；E2六入口均改专属LambdaUpdateWrapper，密码仅password/updated_at、锁定仅本操作列。新上锁显式清unlock_time，解锁保留锁原因/时间。无全局NULL/schema/依赖/UI变更，契约A10。
 - 修复前定向64项：7 failures/1 error/0 skipped；两项空对象MockMVC业务500及六入口mapper写列边界失败/错误，codeReset旧mock返回0导致原异常；不是旧并发覆盖真库复现。修复后默认和显式*Test两个独立命令均14类332项零失败/错误/跳过，选择逐类一致；新9项，旧3fixture适配mapper调用。共享JDK逐命令JAVA_HOME，未改系统Java。见 [MUS-021验证](verification/MUS-021.md) / [结果JSON](verification/MUS-021-results.json)。
 - 六入口测试捕获wrapper赋值并应用到合成并发状态，校验目标/专属列和未改字段保留；不把它称作HTTP/MySQL并发。B精确实现提交后补真库响应/受控时序；现有A/B演示仍旧MUS-014，不重启、不触碰真实邮箱/数据。MUS-016独立审核继续待办。
+
+
+### MUS-021准确提交与派发
+
+- implementation_sha `0f12212123616809ea0a917e43fc11e5f564ab46`；源码比较基线 `a9655750b6a4a5df07c2d64abd7f809fdd1e5978`，任务起点5d3441a。新卡MUS-021-R1-B/revision1 assigned未认领，固定入口已更新；B仅写新报告与own latest，补E1/E2真库/受控交错，不重复020或全部UI。
+- 提交前检查点A/B sync均fetched，B仍8b49b6b/source86fa91d；本地只读检查备份干净f3b0da1、新5175/music200、旧8080匿名profile401。MUS-017限定批准已正式接收，MUS-016独立审核待后续。本轮没有新后端启动或用户/曲库/邮件写入。
+- 文档链接/fence、JSON/源码哈希/原字节报告、git diff --check均通过；UI/schema/POM/依赖/Python路径未改。实现提交与本派发文档提交后按约定原子publish；结果和最终source SHA以发布回读及最终交接为准。

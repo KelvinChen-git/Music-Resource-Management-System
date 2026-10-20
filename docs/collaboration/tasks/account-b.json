@@ -1,36 +1,31 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-020-R1-B",
+  "task_id": "MUS-021-R1-B",
   "assignment_revision": 1,
-  "status": "waiting",
-  "claimed_by_b": true,
-  "task_card_path": "docs/collaboration/tasks/MUS-020-R1-B.md",
-  "reviewed_sha": "802da6bb1ee3f7906a19c963efb5aeac2115d223",
-  "comparison_base_sha": "c19b64833b78a2cd958959b77a1c9703f2fc9281",
-  "review_branch": "review/MUS-020-B-sonora-findings",
+  "status": "assigned",
+  "claimed_by_b": false,
+  "task_card_path": "docs/collaboration/tasks/MUS-021-R1-B.md",
+  "reviewed_sha": "0f12212123616809ea0a917e43fc11e5f564ab46",
+  "comparison_base_sha": "a9655750b6a4a5df07c2d64abd7f809fdd1e5978",
+  "review_branch": "review/MUS-021-B-user-update-boundaries",
   "allowed_output_paths": [
-    "docs/reviews/MUS-020-B.md",
+    "docs/reviews/MUS-021-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-019-R1-B",
+    "task_id": "MUS-020-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "request_changes_received",
-    "source_sha": "30bbd71ce34d0df6580680180498dc7eb22a19e6",
-    "feed_sha": "f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46"
+    "verdict": "approve_scoped_accepted",
+    "source_sha": "d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688",
+    "feed_sha": "5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1",
+    "b_read_receipt_source_sha": "86fa91dfa596a1dd86dce9413c39e80684d69a96",
+    "b_read_receipt_feed_sha": "8b49b6b19aa58ec4f09ccf4cfe939fab6a1a01ff"
   },
-  "note": "MUS-020 completed and scoped approval accepted. B read A receipt. Waiting while A implements MUS-021; no new review assigned yet. Do not repeat MUS-017/019/020.",
+  "note": "New exact-SHA E1/E2 increment. MUS-017 scoped approval formally accepted; do not repeat MUS-017/019/020. B claim must come from its feed. Do not touch A services/demo data.",
   "separate_backlog": [
-    "MUS-021 E1/E2 implementation in progress; exact-SHA review will be assigned after commit",
     "MUS-016 independent importer review"
-  ],
-  "review_status": "review_completed",
-  "verdict": "approve_scoped",
-  "a_acceptance": "accepted",
-  "b_source_sha": "d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688",
-  "b_feed_sha": "5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1",
-  "acceptance_record_path": "docs/verification/MUS-020-B-acceptance.json"
+  ]
 }
