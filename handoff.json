@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-20T06:37:44.749167+00:00",
+  "published_at": "2026-10-20T06:46:02.099718+00:00",
   "source_branch": "review/MUS-017-B-admin-avatar-null",
-  "source_sha": "067f6c3d6517da0852a10d6396fdc23161102525",
+  "source_sha": "082d243161c5774a96d242a473b17c483a77cc4e",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "73316ab5b6005d857e0a1c2c341544d2823be760f0a73b5e7cef072d0c2ac8ad"
+  "report_sha256": "1aa5486502174a7ebbbe35a68f0436a6289588213a1f300536983915dab4bbf2"
 }
