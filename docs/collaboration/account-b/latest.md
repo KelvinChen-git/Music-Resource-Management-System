@@ -6,7 +6,7 @@
 - task_status: review_completed
 - review_verdict: approve（本卡增量范围；真库独立执行仍blocked）
 - owner: B；集成负责人及STATUS写入方仍为A
-- branch: `review/MUS-014-B-upload-recovery`
+- branch: `test/MUS-014-B-runtime`
 - base_sha / reviewed_sha: `7c973b5d9eac219e289623e7eb6d44eda73cb09d`
 - comparison_base_sha: `d384a8fc66778ba24344f1ef19507db718872623`
 - assignment_source_sha: `a433e2bd6a72a6f31cc6b608220f5dcf87bd8a54`
@@ -15,7 +15,10 @@
 - claim_feed_sha: `0405107fa6045f3b7f35d6b02c3faf52a4832225`
 - delivery_sha: 本次handoff.json.source_sha
 - review_report: docs/reviews/MUS-014-B.md
-- runtime_status: independent_java_python_pass / real_child_process_probe_pass / independent_database_http_blocked
+- runtime_status: independent_runtime_supplement_in_progress
+- supplement_origin: 用户明确要求解决B缺MySQL/Docker与真库/跨JVM检查缺口；保留本卡review_completed/approve，不重新认领同一revision。
+- supplement_base_sha: `abe9f2db05406f2c36808fbf1abb213000d35d0e`
+- supplement_scope: 仅B忽略目录中的原生MySQL/运行适配、独立slot b和本报告/审核正文补证；不改实现/依赖锁/A台账，不要求Docker或沿用A本机数据库。
 
 ## 实际完成
 
@@ -54,3 +57,7 @@ Java日志SHA256：246a49fce0f9acb39b20df9a8404454b3cd73264c808fda3d6a77e6e44789
 沿已披露可写GitHub插件备用路径先发布source、再更新own feed并回读核验；非原子原生Git推送，原生Git写凭据状态未改变。最终精确源SHA/报告哈希以handoff为准，发布不代表A已接收或用户已同意最终合并。
 
 A下次sync读取此结论后串行更新STATUS、协调集成及下一任务。发布后释放本次两报告路径活动占用；不抢占A实现文件。后续仍从固定入口按task_id+revision去重，不重审已完成任务，不启动后台轮询。
+
+## 本轮运行补证检查点
+
+2026-10-20 America/Chicago 用户授权补齐独立真库与跨JVM运行。开始sync成功，A feed仍0093ae4/sourcea433e2b，无新任务revision。正在独立B clone准备原生MySQL与本机启动依赖，固定业务审核对象仍7c973b5。只有实际运行成功才将历史blocked更新为passed。两报告路径本轮B补证活动占用；先发布进行中确认，后续发布实际结果。
