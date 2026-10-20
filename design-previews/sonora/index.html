@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SONORA — 音乐空间 · UI 预览</title>
+<style>
+:root{--bg:#131414;--panel:#1b1c1c;--panel2:#222323;--line:#303130;--text:#f3f0e9;--muted:#92958f;--accent:#efba79;--side:218px;--player:88px;color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft Yahei",sans-serif;font-size:14px}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{color:inherit;cursor:pointer}button:disabled{opacity:.3;cursor:default}button,a{touch-action:manipulation}button{border:0;background:transparent}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:4px}svg.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.icon.small{width:17px;height:17px}.sr-only{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden}.icon-btn{display:inline-flex;justify-content:center;align-items:center;border-radius:50%;width:36px;height:36px;color:#a4a7a1;transition:.2s}.icon-btn:hover{background:#ffffff0d;color:var(--text)}.icon-btn.selected{color:var(--accent)}.sidebar{position:fixed;inset:0 auto var(--player) 0;width:var(--side);padding:35px 17px 20px;border-right:1px solid var(--line);background:#171818;z-index:40;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:0 14px 36px}.brandmark{position:relative;width:31px;height:31px;border:1.4px solid var(--accent);border-radius:50%}.brandmark:before,.brandmark:after{content:"";position:absolute;border:1px solid var(--accent);border-radius:50%;inset:5px}.brandmark:after{inset:11px;background:var(--accent)}.wordmark{font-size:20px;font-weight:650;letter-spacing:3px}.wordmark small{display:block;margin-top:5px;font-size:9px;letter-spacing:3.5px;color:var(--muted);font-weight:400}.navlabel{padding:12px 15px 10px;text-transform:uppercase;font-size:10px;letter-spacing:2px;color:#696d67}.nav{display:flex;flex-direction:column;gap:5px}.navbtn{display:flex;align-items:center;gap:13px;width:100%;padding:12px 15px;text-align:left;color:#9da29b;border-radius:7px;font-size:13px;transition:.2s}.navbtn .num{margin-left:auto;font-size:10px;color:#81867f}.navbtn:hover{background:#ffffff05;color:var(--text)}.navbtn.active{background:#efba7913;color:var(--accent)}.navbtn.active .num{color:var(--accent)}.nav-rule{height:1px;background:var(--line);margin:23px 14px 8px}.playlist-dot{width:7px;height:7px;border-radius:2px;background:#9d7f67;margin:0 6px}.playlist-dot.blue{background:#788a9c}.playlist-dot.green{background:#879584}.side-bottom{margin-top:auto;padding:20px 15px 0}.storage{font-size:11px;color:#868b82;display:flex;justify-content:space-between}.storage-line{height:3px;background:#30332f;margin:12px 0 9px;border-radius:5px}.storage-line:before{content:"";display:block;width:23%;height:100%;background:#a9967c}.storage-note{font-size:10px;color:#62685f}.side-bottom a{display:flex;align-items:center;gap:9px;color:#858b81;margin-top:25px;font-size:12px}.workspace{margin-left:var(--side);padding-bottom:calc(var(--player) + 25px);min-height:100vh}.topbar{height:83px;display:flex;align-items:center;padding:0 38px;gap:22px;border-bottom:1px solid #ffffff05}.breadcrumbs{font-size:12px;display:flex;gap:12px;color:#737970;white-space:nowrap}.breadcrumbs strong{font-weight:400;color:#e1e3dc}.search{height:38px;max-width:382px;min-width:180px;margin-left:auto;background:#1c1e1c;border:1px solid #2c302a;border-radius:7px;display:flex;gap:11px;align-items:center;padding:0 12px;color:#798073}.search input{border:0;outline:none;background:none;width:100%;font-size:11px;color:var(--text)}.search input::placeholder{color:#7d8477}.search kbd{white-space:nowrap;font-size:10px;border:1px solid #3d4237;border-radius:3px;padding:1px 4px;color:#7d8477}.preview-pill{border:1px solid #484031;border-radius:20px;font-size:10px;color:#c4aa86;padding:5px 9px;white-space:nowrap}.preview-pill:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-right:6px}.avatar{border-radius:50%;width:31px;height:31px;background:#aaa48d;color:#24271f;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}.main{max-width:1450px;margin:auto;padding:34px 38px 0}.pageintro{display:flex;align-items:center;justify-content:space-between;margin-bottom:27px}.eyebrow{font-size:9px;letter-spacing:2.2px;color:#798273;text-transform:uppercase;margin:0 0 11px}.pageintro h1{font-size:29px;font-weight:550;letter-spacing:-.8px;margin:0 0 9px}.pageintro p{margin:0;color:#878f80;font-size:12px}.upload-btn,.primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:5px;background:var(--accent);color:#2e2418;font-weight:600;padding:11px 15px;font-size:11px;transition:.2s}.upload-btn:hover,.primary:hover{background:#ffd49f;transform:translateY(-1px)}.hero-layout{display:grid;grid-template-columns:minmax(0,1fr) 242px;gap:18px;margin-bottom:33px}.hero{position:relative;min-height:260px;border-radius:10px;overflow:hidden;background:#c8b392;color:#252a24;isolation:isolate}.hero:after{content:"";position:absolute;inset:0;z-index:-1;opacity:.15;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.5' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}.hero-copy{position:relative;z-index:2;padding:31px 32px;width:61%}.hero .eyebrow{color:#536052;font-size:9px;letter-spacing:2.3px}.hero h2{font-size:37px;line-height:1.27;font-weight:600;margin:18px 0 13px;letter-spacing:-1.8px}.hero p{font-size:11px;line-height:1.9;color:#5c6356;max-width:270px}.hero-actions{display:flex;align-items:center;gap:19px;margin-top:21px}.hero .primary{background:#252d25;color:#f2eddf;padding:11px 15px;border-radius:5px}.hero .primary:hover{background:#45513d}.hero-link{font-size:10px;color:#374034;display:flex;align-items:center;gap:4px}.hero-art{position:absolute;width:300px;height:300px;right:-36px;top:5px;transform:rotate(-17deg);z-index:1}.record{width:244px;height:244px;border-radius:50%;position:absolute;right:0;top:24px;background:repeating-radial-gradient(circle at center,#262b25 0px,#262b25 2px,#394136 3px,#262b25 4px);box-shadow:12px 24px 38px #313b2a5c;border:5px solid #242923}.record:before{content:"";position:absolute;inset:77px;border-radius:50%;background:#e7ce9e;border:3px solid #9e8c6b;box-shadow:0 0 0 1px #e5d1b0}.record:after{content:"";position:absolute;inset:114px;border-radius:50%;background:#1e281e;box-shadow:0 0 0 12px #303e2d1a}.sleeve{position:absolute;width:178px;height:201px;top:30px;left:-8px;border:1px solid #82927a;background:#8b9b81;box-shadow:6px 10px 18px #26332138;overflow:hidden}.sleeve .circle{position:absolute;left:35px;top:24px;width:104px;height:104px;background:#e8d7b1;border-radius:50%}.sleeve .hill{position:absolute;width:200px;height:160px;background:#41543f;left:-65px;top:98px;border-radius:50%;transform:rotate(-24deg)}.sleeve .hill.second{background:#627759;left:10px;top:125px;transform:rotate(24deg)}.sleeve small{position:absolute;left:14px;bottom:13px;z-index:2;letter-spacing:2px;color:#e1dfc9;font-size:8px}.hero-bottom{position:absolute;bottom:15px;right:22px;display:flex;align-items:center;gap:7px;font-size:8px;letter-spacing:1.2px;color:#596250}.hero-bottom span{display:block;width:16px;height:1px;background:#56604e}.feature-stack{display:flex;flex-direction:column;gap:14px}.feature{position:relative;flex:1;background:#242721;border:1px solid #30382a;border-radius:9px;padding:20px;overflow:hidden;cursor:pointer;transition:.2s;text-align:left}.feature:hover{border-color:#7d876a}.feature .eyebrow{font-size:8px;letter-spacing:1.6px;color:#969e87;margin:0 0 10px}.feature h3{font-size:18px;font-weight:500;margin:0 0 6px;letter-spacing:-.4px}.feature p{font-size:10px;color:#a6ae99;margin:0}.feature svg.icon{position:absolute;right:18px;bottom:23px;color:#b5c2a2}.feature.alt{background:#24232a;border-color:#34313e}.feature.alt .eyebrow{color:#a59aaf}.feature.alt p{color:#9f96a9}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:19px}.section-heading h2{font-size:17px;letter-spacing:-.3px;font-weight:550;margin:0;display:flex;align-items:center;gap:10px}.count-badge{font-size:9px;border:1px solid #383f31;color:#8d9980;border-radius:4px;padding:2px 5px;font-weight:400}.section-heading .link{font-size:10px;color:#89927f}.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:21px;gap:16px}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{font-size:10px;padding:7px 13px;border:1px solid #33382e;border-radius:20px;color:#8f9885;transition:.2s}.chip:hover{color:var(--text);border-color:#727e61}.chip.active{background:#e1e4d9;color:#303b2b;border-color:#e1e4d9}.viewtools{display:flex;align-items:center;gap:9px;flex-shrink:0}.sort{font-size:10px;color:#9ca590;background:#171a15;border:1px solid #30382a;border-radius:5px;padding:6px 8px;max-width:110px}.viewtoggle{display:flex;border:1px solid #30372b;border-radius:5px;padding:2px;gap:1px}.viewtoggle button{width:27px;height:25px;display:flex;align-items:center;justify-content:center;color:#717e63;border-radius:3px}.viewtoggle button.active{background:#353f2c;color:#d8e0cb}.viewtoggle svg.icon{width:13px;height:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:23px 18px}.album{position:relative;min-width:0;cursor:pointer;animation:arrive .4s both}.album .art-wrap{position:relative;aspect-ratio:1;overflow:hidden;border-radius:8px;background:#333}.album svg.cover{display:block;width:100%;height:100%;transition:transform .45s ease}.album:hover svg.cover{transform:scale(1.04)}.art-shade{position:absolute;inset:0;background:linear-gradient(transparent 50%,#0008);opacity:0;transition:.25s}.album:hover .art-shade{opacity:1}.album-play{position:absolute;bottom:13px;right:13px;width:39px;height:39px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--accent);color:#332717;opacity:0;transform:translateY(7px);transition:.2s;box-shadow:0 4px 14px #0004}.album:hover .album-play,.album:focus-within .album-play,.album.playing .album-play{opacity:1;transform:none}.album-play .icon{width:18px;height:18px;fill:currentColor;stroke-width:0}.album-like{position:absolute;top:9px;right:9px;background:#1119;border:1px solid #ffffff15;width:27px;height:27px;opacity:0}.album:hover .album-like,.album:focus-within .album-like,.album-like.selected{opacity:1}.album-like .icon{width:13px;height:13px}.album-like.selected .icon{fill:var(--accent);stroke:var(--accent)}.album-info{padding:12px 0 0}.album-title{display:flex;align-items:center;gap:6px}.album-title button{font-size:12px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0;text-align:left;flex:1;line-height:1.5}.album-sub{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px;color:#7f8b72;font-size:10px}.album-sub .artist{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.track-time{color:#626f56;white-space:nowrap;font-size:9px;letter-spacing:.3px}.eq{display:flex;gap:2px;align-items:flex-end;height:10px;flex-shrink:0}.eq i{width:2px;background:var(--accent);height:6px;animation:eq .7s ease-in-out infinite alternate}.eq i:nth-child(2){height:10px;animation-delay:.3s}.eq i:nth-child(3){height:4px;animation-delay:.1s}.listmode{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}.listmode .album{display:flex;align-items:center;gap:16px;padding:12px 8px;border-bottom:1px solid #ffffff07}.listmode .album:hover{background:#ffffff03}.listmode .art-wrap{width:49px;height:49px;aspect-ratio:auto;flex-shrink:0;border-radius:4px}.listmode .album-info{padding:0;flex:1}.listmode .album-sub{max-width:430px}.listmode .album-like{position:static;opacity:1;flex-shrink:0;margin-right:8px;order:3}.listmode .art-wrap .album-like{display:none}.listmode .album-play{width:30px;height:30px;bottom:9px;right:9px}.listmode .art-shade{opacity:1}.empty{text-align:center;padding:65px 20px;color:#7f8d71;grid-column:1/-1;border:1px dashed #394430;border-radius:8px}.empty h3{color:#d4decb;font-size:17px;font-weight:450}.loadmore{display:block;margin:27px auto 0;font-size:11px;color:#8f9c80;padding:10px 28px;border:1px solid #3b4731;border-radius:5px}.loadmore:hover{color:var(--accent);border-color:var(--accent)}.library-footer{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:22px 0 5px;margin-top:34px;font-size:9px;color:#626f56;letter-spacing:.3px}.library-footer b{font-weight:400;color:#8d987f}.player{height:var(--player);position:fixed;bottom:0;left:0;right:0;border-top:1px solid #383b33;background:#1b1e18ed;backdrop-filter:blur(25px);z-index:80;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:25px;padding:14px 25px;align-items:center}.now{display:flex;gap:13px;align-items:center;min-width:0}.now-art{height:54px;width:54px;border-radius:5px;overflow:hidden;flex-shrink:0;cursor:pointer}.now-art .cover{width:100%;height:100%}.now-info{min-width:0}.now-title{font-size:11px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-bottom:6px}.now-artist{font-size:9px;color:#8a967a}.now .like-now{margin-left:8px}.transport{display:flex;align-items:center;justify-content:center;gap:16px}.transport>.icon-btn{width:24px;height:24px}.transport .big-play{width:32px;height:32px;background:#e2e5d9;color:#25301d;display:flex;align-items:center;justify-content:center;border-radius:50%}.big-play .icon{fill:currentColor;stroke:none;width:15px;height:15px}.progress{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:8px;color:#778368;font-variant-numeric:tabular-nums;min-width:0}.progress span{width:25px;flex-shrink:0}.progress span:last-child{text-align:right}input[type=range]{accent-color:var(--accent);cursor:pointer;height:3px;min-width:0}.progress input{width:100%;margin:0}.player-right{display:flex;align-items:center;justify-content:flex-end;gap:12px}.player-right input{width:75px}.preview-note{font-size:8px;color:#738064;border:1px solid #3c472f;border-radius:3px;padding:4px 6px;white-space:nowrap}.artist-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 28px}.artist-card{padding:24px;position:relative;overflow:hidden;border:1px solid #3b3b34;border-radius:10px;background:#282b25;cursor:pointer}.artist-card h2{font-size:27px;font-weight:500;position:relative;z-index:1;margin:20px 0 8px;letter-spacing:-1px}.artist-card p{color:#9ba68e;font-size:10px;position:relative;z-index:1}.artist-card .initials{position:absolute;right:3px;top:-12px;font-size:130px;letter-spacing:-13px;line-height:1.2;color:#61735244;font-family:Georgia,serif}.artist-card:nth-child(2){background:#28252b}.artist-card:nth-child(2) .initials{color:#9d7b9b33}.references{border:1px solid #30392a;border-radius:9px;overflow:hidden}.reference{display:flex;align-items:center;gap:17px;padding:16px 19px;border-bottom:1px solid #ffffff07}.reference:last-child{border:0}.reference .index{font-size:10px;color:#5d6d50;width:18px;font-variant-numeric:tabular-nums}.reference .ref-title{font-size:12px;flex:1}.reference small{display:block;margin-top:5px;color:#7e8b70;font-size:10px}.reference a{font-size:10px;color:#bdad90;white-space:nowrap}.reference a:hover{color:var(--accent)}.modalback{position:fixed;inset:0;background:#0009;backdrop-filter:blur(7px);z-index:100;display:flex;align-items:center;justify-content:center;padding:22px}.hidden{display:none!important}.modal{width:540px;max-width:100%;max-height:88vh;overflow:auto;border:1px solid #454839;background:#21251d;border-radius:14px;padding:28px;box-shadow:0 30px 100px #0006}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.modal-head h2{font-weight:500;font-size:21px;margin:0}.dropzone{border:1px dashed #5b654d;border-radius:9px;text-align:center;padding:35px 20px;background:#292e23;display:block;cursor:pointer}.dropzone .icon{width:29px;height:29px;color:var(--accent);margin-bottom:15px}.dropzone strong{display:block;font-weight:450;font-size:15px;margin-bottom:9px}.dropzone small{color:#8d9a7d;font-size:11px}.modal .hint{color:#8a977a;line-height:1.8;font-size:11px;margin:18px 0}.modal-actions{display:flex;justify-content:flex-end;gap:13px;margin-top:25px}.secondary{font-size:11px;padding:10px 16px;border:1px solid #536044;border-radius:5px;color:#b5c1a6}.filelist{padding-top:12px;max-height:170px;overflow:auto}.file-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #ffffff09;font-size:11px;gap:12px}.file-row span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-row span:last-child{color:#8b9c77;white-space:nowrap}.drawerback{position:fixed;inset:0;background:#0007;z-index:90}.drawer{position:fixed;right:0;top:0;bottom:var(--player);width:360px;max-width:100%;background:#20241b;border-left:1px solid #4b553f;z-index:95;padding:23px;overflow:auto;box-shadow:-20px 0 70px #0005}.drawer .modal-head{margin-bottom:20px}.drawer-art{aspect-ratio:1;border-radius:9px;overflow:hidden;margin-bottom:22px}.drawer-art .cover{height:100%;width:100%}.drawer h2{font-size:24px;line-height:1.3;font-weight:500;letter-spacing:-.5px;margin:0 0 9px}.drawer-artist{color:#a3b093;margin-bottom:22px;font-size:12px}.detail-line{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #ffffff09;gap:20px;color:#829570;font-size:11px}.detail-line span:last-child{color:#d4dfc9;text-align:right;max-width:210px;overflow-wrap:anywhere}.license{background:#2d3624;border:1px solid #4a593c;border-radius:6px;padding:14px;margin:20px 0;font-size:10px;color:#a4b68d;line-height:1.9}.license a{color:#e2c69e}.drawer .primary{width:100%;margin-top:7px}.toast{position:fixed;bottom:calc(var(--player) + 18px);left:50%;transform:translate(-50%,15px);padding:12px 20px;background:#e8dec9;color:#292e22;box-shadow:0 10px 35px #0004;border-radius:6px;font-size:11px;z-index:130;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-menu{display:none}.mobile-dim{display:none}.queue-list{display:flex;flex-direction:column}.queue-track{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #ffffff09;text-align:left;width:100%;color:#b7c4a8;font-size:11px}.queue-art{width:38px;height:38px;border-radius:4px;overflow:hidden;flex-shrink:0}.queue-art .cover{width:100%;height:100%}.queue-track small{display:block;margin-top:5px;font-size:9px;color:#7c8b6c}.queue-track .icon{margin-left:auto;color:var(--accent)}@keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes eq{from{transform:scaleY(.4)}to{transform:scaleY(1)}}@media(min-width:1550px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}.hero-layout{grid-template-columns:minmax(0,1fr) 300px}.hero-art{right:35px}.hero{min-height:285px}.hero-copy{padding:35px 39px}.hero h2{font-size:42px}}@media(max-width:1120px){:root{--side:184px}.wordmark{font-size:17px}.brand{gap:8px;padding-left:8px}.sidebar{padding-left:11px;padding-right:11px}.topbar{padding:0 25px;gap:16px}.main{padding:28px 25px 0}.breadcrumbs{display:none}.hero-layout{grid-template-columns:minmax(0,1fr) 196px}.hero-copy{padding:28px 25px;width:67%}.hero-art{right:-94px;opacity:.8}.hero h2{font-size:32px}.feature{padding:17px}.feature h3{font-size:16px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.preview-pill{display:none}.player{grid-template-columns:1fr 1.1fr .6fr;gap:15px}.preview-note{display:none}.player-right{gap:3px}.player-right input{width:53px}}@media(max-width:760px){:root{--side:0px;--player:77px}.sidebar{width:218px;transform:translateX(-100%);transition:transform .25s;bottom:var(--player);padding-top:30px}.sidebar.open{transform:none}.mobile-dim.open{display:block;position:fixed;inset:0;background:#0008;z-index:35}.mobile-menu{display:flex;width:28px;height:28px;align-items:center;justify-content:center;flex-shrink:0}.topbar{height:69px;padding:0 20px;gap:15px}.topbar .search{margin-left:0;flex:1;max-width:none;min-width:0}.search kbd{display:none}.main{padding:25px 20px 0}.pageintro{margin-bottom:23px}.pageintro h1{font-size:25px}.pageintro p{font-size:10px;line-height:1.8;max-width:230px}.upload-btn{padding:10px;width:35px;height:35px}.upload-btn span{display:none}.hero-layout{grid-template-columns:minmax(0,1fr);margin-bottom:29px}.feature-stack{display:grid;grid-template-columns:1fr 1fr;gap:12px}.feature{min-height:111px;padding:17px}.feature h3{font-size:16px}.feature .eyebrow{font-size:8px}.feature svg.icon{width:14px;height:14px;right:14px;bottom:18px}.hero{min-height:259px}.hero-copy{width:67%;padding:28px 24px}.hero h2{font-size:33px}.hero p{max-width:220px}.hero-art{right:-50px;opacity:.83}.hero-bottom{font-size:7px}.toolbar{align-items:flex-start;flex-wrap:wrap;gap:14px}.viewtools{margin-left:auto}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 15px}.album-title button{font-size:12px}.album-sub{font-size:10px}.album-play{opacity:1;transform:none;width:34px;height:34px;bottom:10px;right:10px}.album-like{opacity:1}.album .art-shade{opacity:.4}.player{grid-template-columns:1fr auto;gap:14px;padding:12px 18px}.now-art{width:47px;height:47px}.now-title{font-size:11px;max-width:185px}.now-artist{font-size:9px}.now .like-now{display:none}.player-right{display:none}.transport{gap:10px}.transport>.icon-btn:nth-child(1),.transport>.icon-btn:nth-child(2),.transport>.icon-btn:last-child{display:none}.transport>.icon-btn:nth-child(4){order:2}.transport .big-play{width:35px;height:35px}.progress{display:none}.artist-grid{gap:12px}.artist-card{padding:18px}.artist-card h2{font-size:22px}.artist-card .initials{font-size:100px}.artist-card p{line-height:1.8;font-size:9px}.library-footer{font-size:8px;gap:15px;line-height:1.8}.drawer{bottom:var(--player)}.toast{max-width:90%;width:max-content;text-align:center;font-size:10px}.modal{padding:22px}.dropzone{padding:27px 17px}.reference{padding:15px 12px;gap:10px}.reference .ref-title{font-size:11px}.reference a{font-size:9px}}@media(max-width:480px){.hero-copy{width:100%;padding:26px 22px 45px}.hero h2{font-size:30px;letter-spacing:-1px}.hero p{max-width:260px}.hero-art{right:-145px;top:68px;opacity:.16}.hero-actions{gap:19px}.hero-actions button{white-space:nowrap}.hero-bottom{right:18px;bottom:15px}.feature{padding:17px 14px}.feature h3{font-size:15px;line-height:1.6}.feature p{max-width:120px;line-height:1.6}.feature .eyebrow{font-size:7px;letter-spacing:1px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.3"/><rect x="14" y="3" width="7" height="7" rx="1.3"/><rect x="3" y="14" width="7" height="7" rx="1.3"/><rect x="14" y="14" width="7" height="7" rx="1.3"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.3 5.7c-2-2-5.2-2-7.3 0l-1 1-1-1c-2-2-5.3-2-7.3 0s-2 5.3 0 7.3L12 21l8.3-8c2-2 2-5.3 0-7.3Z"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol><symbol id="i-artist" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M3 21v-2a7 7 0 0 1 14 0v2m1-15a4 4 0 0 1 0 8m3 7v-2a7 7 0 0 0-2-5"/></symbol><symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 13 8-13 8Z"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></symbol><symbol id="i-next" viewBox="0 0 24 24"><path d="m5 5 10 7L5 19Zm13 0v14"/></symbol><symbol id="i-prev" viewBox="0 0 24 24"><path d="m19 5-10 7 10 7ZM6 5v14"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5h.1M3 12h.1M3 19h.1"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol><symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9Zm12-1a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol><symbol id="i-shuffle" viewBox="0 0 24 24"><path d="m3 5 3 0c5 0 7 14 12 14h3m-4-4 4 4-4 3M3 19h3c5 0 7-14 12-14h3m-4-3 4 3-4 4"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="M3 10V7a2 2 0 0 1 2-2h15m-4-3 4 3-4 4M21 14v3a2 2 0 0 1-2 2H4m4 3-4-3 4-4"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L20 5"/></symbol></defs></svg>
+<div class="mobile-dim" id="mobileDim"></div>
+<aside class="sidebar" id="sidebar" aria-label="主导航"><a href="#" class="brand" id="brandHome"><span class="brandmark"></span><span class="wordmark">SONORA<small>YOUR SOUND ARCHIVE</small></span></a><div class="navlabel">你的音乐空间</div><nav class="nav">
+<button class="navbtn active" data-page="library"><svg class="icon"><use href="#i-grid"/></svg>音乐曲库<span class="num" id="sideCount"></span></button>
+<button class="navbtn" data-page="artists"><svg class="icon"><use href="#i-artist"/></svg>歌手与专辑</button>
+<button class="navbtn" data-page="favorites"><svg class="icon"><use href="#i-heart"/></svg>我的收藏<span class="num" id="favCount"></span></button>
+<button class="navbtn" data-page="recent"><svg class="icon"><use href="#i-clock"/></svg>最近播放</button>
+</nav><div class="nav-rule"></div><div class="navlabel">心情选集</div><nav class="nav"><button class="navbtn playlist" data-genre="电子"><span class="playlist-dot"></span>深夜回放</button><button class="navbtn playlist" data-genre="流行"><span class="playlist-dot blue"></span>日落慢行</button><button class="navbtn playlist" data-genre="民谣"><span class="playlist-dot green"></span>周末的空白</button></nav>
+<div class="side-bottom"><div class="storage"><span>本地音乐空间</span><span>114 MB</span></div><div class="storage-line"></div><div class="storage-note">独立 UI 原型 · 不写入现有曲库</div><a href="#" id="sideUpload"><svg class="icon small"><use href="#i-upload"/></svg>添加新的声音</a></div></aside>
+<div class="workspace"><header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="展开导航"><svg class="icon"><use href="#i-menu"/></svg></button><div class="breadcrumbs"><span>我的空间</span><span>/</span><strong id="breadcrumb">音乐曲库</strong></div><label class="search"><svg class="icon small"><use href="#i-search"/></svg><input type="search" id="search" placeholder="搜索歌曲、歌手或专辑" aria-label="搜索歌曲、歌手或专辑"><kbd>⌘ K</kbd></label><span class="preview-pill">设计预览</span><div class="avatar" aria-label="当前空间">K</div></header>
+<main class="main"><section class="pageintro"><div><div class="eyebrow">A SPACE FOR YOUR SOUND</div><h1 id="pageTitle">把喜欢的声音，留在这里。</h1><p id="pageSubtitle">从一首歌开始，慢慢建立属于你的音乐世界。</p></div><button class="upload-btn" id="uploadButton" aria-label="导入音乐"><svg class="icon small"><use href="#i-upload"/></svg><span>导入音乐</span></button></section>
+<section class="hero-layout" id="heroLayout"><div class="hero"><div class="hero-copy"><div class="eyebrow">THE EVENING COLLECTION · VOL. 01</div><h2>音量调低一点，<br>世界慢下来。</h2><p>把忙碌留在门外。<br>让温柔的人声与松弛的节拍，陪你度过这一刻。</p><div class="hero-actions"><button class="primary" id="heroPlay"><svg class="icon small" style="fill:currentColor;stroke:none"><use href="#i-play"/></svg>播放精选</button><button class="hero-link" id="heroBrowse">浏览曲库<svg class="icon small"><use href="#i-arrow"/></svg></button></div></div><div class="hero-art" aria-hidden="true"><div class="record"></div><div class="sleeve"><div class="circle"></div><div class="hill"></div><div class="hill second"></div><small>SLOWER / SOFTER</small></div></div><div class="hero-bottom"><span></span> CURATED WITH CARE</div></div><div class="feature-stack"><button class="feature" id="newArrivals"><div class="eyebrow">FRESH IN YOUR LIBRARY</div><h3>新声音，刚刚抵达。</h3><p>探索最近添加的音乐</p><svg class="icon"><use href="#i-arrow"/></svg></button><button class="feature alt" id="artistFeature"><div class="eyebrow">ARTIST SPOTLIGHT</div><h3>熟悉的声音。</h3><p>Post Malone &amp; Drake · 歌曲资料</p><svg class="icon"><use href="#i-arrow"/></svg></button></div></section>
+<section id="collection"><div class="section-heading"><h2 id="sectionTitle">全部音乐 <span class="count-badge" id="trackCount"></span></h2><button class="link" id="clearFilters">清除筛选</button></div><div class="toolbar" id="toolbar"><div class="chips" id="genreChips"><button class="chip active" data-genre="全部">全部</button><button class="chip" data-genre="流行">流行</button><button class="chip" data-genre="电子">电子</button><button class="chip" data-genre="民谣">民谣</button><button class="chip" data-genre="嘻哈">嘻哈</button></div><div class="viewtools"><select class="sort" id="sort" aria-label="歌曲排序"><option value="recent">最近添加</option><option value="name">名称 A → Z</option><option value="duration">时长最短</option></select><div class="viewtoggle"><button class="active" id="gridView" aria-label="封面视图"><svg class="icon"><use href="#i-grid"/></svg></button><button id="listView" aria-label="列表视图"><svg class="icon"><use href="#i-list"/></svg></button></div></div></div><div id="artistArea" class="hidden"></div><div class="grid" id="tracks"></div><button class="loadmore" id="loadMore">展开更多音乐</button></section><footer class="library-footer"><span><b>SONORA</b> &nbsp; 好的音乐，值得被认真收藏。</span><span>交互概念预览 · 播放状态为演示</span></footer></main></div>
+<footer class="player" aria-label="播放器"><div class="now"><button class="now-art" id="nowArt" aria-label="查看当前歌曲详情"></button><div class="now-info"><div class="now-title" id="nowTitle"></div><div class="now-artist" id="nowArtist"></div></div><button class="icon-btn like-now" id="nowLike" aria-label="收藏当前歌曲"><svg class="icon small"><use href="#i-heart"/></svg></button></div><div class="player-center"><div class="transport"><button class="icon-btn" id="shuffle" aria-label="随机播放"><svg class="icon small"><use href="#i-shuffle"/></svg></button><button class="icon-btn" id="previous" aria-label="上一首"><svg class="icon small"><use href="#i-prev"/></svg></button><button class="big-play" id="play" aria-label="播放"><svg class="icon"><use href="#i-play"/></svg></button><button class="icon-btn" id="next" aria-label="下一首"><svg class="icon small"><use href="#i-next"/></svg></button><button class="icon-btn" id="repeat" aria-label="循环播放"><svg class="icon small"><use href="#i-repeat"/></svg></button></div><div class="progress"><span id="elapsed">0:00</span><input type="range" min="0" max="100" value="0" id="progress" aria-label="播放进度"><span id="totalTime"></span></div></div><div class="player-right"><span class="preview-note">界面演示</span><button class="icon-btn" id="mute" aria-label="静音"><svg class="icon small"><use href="#i-volume"/></svg></button><input type="range" min="0" max="100" value="70" id="volume" aria-label="音量"><button class="icon-btn" id="queue" aria-label="打开播放队列"><svg class="icon small"><use href="#i-list"/></svg></button></div></footer>
+<div class="modalback hidden" id="uploadModal" role="dialog" aria-modal="true" aria-labelledby="uploadTitle"><div class="modal"><div class="modal-head"><h2 id="uploadTitle">给曲库，添一点新声音。</h2><button class="icon-btn" id="closeUpload" aria-label="关闭上传弹窗"><svg class="icon"><use href="#i-close"/></svg></button></div><label class="dropzone" id="dropzone" tabindex="0"><svg class="icon"><use href="#i-upload"/></svg><strong>把音乐拖到这里，或点击选择</strong><small>MP3 / FLAC / WAV · 可多选</small><input type="file" id="fileInput" multiple accept=".mp3,.flac,.wav" class="sr-only"></label><div class="filelist" id="fileList"></div><p class="hint">这是独立设计原型。选择的文件只在本页展示，不会上传，也不会更改你现有的曲库。</p><div class="modal-actions"><button class="secondary" id="cancelUpload">取消</button><button class="primary" id="confirmUpload" disabled>预览导入清单</button></div></div></div>
+<div class="drawerback hidden" id="drawerBack"></div><aside class="drawer hidden" id="drawer" role="dialog" aria-modal="true" aria-label="歌曲详情"><div class="modal-head"><span class="eyebrow" id="drawerLabel">TRACK DETAILS</span><button class="icon-btn" id="closeDrawer" aria-label="关闭详情"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="drawerContent"></div></aside><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const DATA={
+  "tracks": [
+    {
+      "title": "What Is Love",
+      "artist": "Melanie Ungar",
+      "album": "What Is Love",
+      "durationSeconds": 212,
+      "sourceUrl": "https://www.jamendo.com/track/1204669",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 1,
+      "genre": "民谣",
+      "cover": 0
+    },
+    {
+      "title": "Energy",
+      "artist": "Pokki DJ",
+      "album": "Energy",
+      "durationSeconds": 230,
+      "sourceUrl": "https://www.jamendo.com/track/1129271",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 2,
+      "genre": "电子",
+      "cover": 1
+    },
+    {
+      "title": "26 Spyhnx ( House Mix )",
+      "artist": "Hasenchat",
+      "album": "Techno Trax - Episode 3",
+      "durationSeconds": 394,
+      "sourceUrl": "https://www.jamendo.com/track/1212705",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 3,
+      "genre": "流行",
+      "cover": 2
+    },
+    {
+      "title": "Stitches ft. Shane MauX",
+      "artist": "Lilly Wolf",
+      "album": "This Painted Life",
+      "durationSeconds": 270,
+      "sourceUrl": "https://www.jamendo.com/track/1093607",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 4,
+      "genre": "电子",
+      "cover": 3
+    },
+    {
+      "title": "Dance with me",
+      "artist": "Manhat10",
+      "album": "Take It (EP)",
+      "durationSeconds": 204,
+      "sourceUrl": "https://www.jamendo.com/track/1215805",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 6,
+      "genre": "电子",
+      "cover": 5
+    },
+    {
+      "title": "Leave and Never Look Back",
+      "artist": "madelyn munsell",
+      "album": "Adventures",
+      "durationSeconds": 249,
+      "sourceUrl": "https://www.jamendo.com/track/1174817",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 7,
+      "genre": "流行",
+      "cover": 6
+    },
+    {
+      "title": "Abitude",
+      "artist": "Abi",
+      "album": "The Abi Story",
+      "durationSeconds": 154,
+      "sourceUrl": "https://www.jamendo.com/track/705190",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 8,
+      "genre": "流行",
+      "cover": 7
+    },
+    {
+      "title": "Rurik",
+      "artist": "Ivan Tregub (BER)",
+      "album": "Slavs 2018",
+      "durationSeconds": 289,
+      "sourceUrl": "https://www.jamendo.com/track/1504684",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 9,
+      "genre": "电子",
+      "cover": 0
+    },
+    {
+      "title": "Horizons",
+      "artist": "Train Room",
+      "album": "Train Room",
+      "durationSeconds": 219,
+      "sourceUrl": "https://www.jamendo.com/track/1321406",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 10,
+      "genre": "民谣",
+      "cover": 1
+    },
+    {
+      "title": "\"Feel Like Giving Up\" by Mallz, K.Sparks & Persia",
+      "artist": "Cartel",
+      "album": "\"Feel Like Giving Up\" by Mallz, K.Sparks & Persia",
+      "durationSeconds": 250,
+      "sourceUrl": "https://www.jamendo.com/track/1133831",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 11,
+      "genre": "嘻哈",
+      "cover": 2
+    },
+    {
+      "title": "Pipistrelle [trip hop]",
+      "artist": "Hardcore Scm",
+      "album": "Hardcore Scm - 2014",
+      "durationSeconds": 283,
+      "sourceUrl": "https://www.jamendo.com/track/1196260",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 12,
+      "genre": "电子",
+      "cover": 3
+    },
+    {
+      "title": "Heritage Place",
+      "artist": "Josh Woodward",
+      "album": "The Simple Life",
+      "durationSeconds": 241,
+      "sourceUrl": "https://www.jamendo.com/track/162024",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 13,
+      "genre": "流行",
+      "cover": 4
+    },
+    {
+      "title": "Gnarly (feat. Devyn Rush)",
+      "artist": "David Amber",
+      "album": "David Amber and Friends, Vol. 1",
+      "durationSeconds": 196,
+      "sourceUrl": "https://www.jamendo.com/track/1243462",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 14,
+      "genre": "流行",
+      "cover": 5
+    },
+    {
+      "title": "Make Believe",
+      "artist": "Felixjd",
+      "album": "Y  Love House",
+      "durationSeconds": 283,
+      "sourceUrl": "https://www.jamendo.com/track/366748",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 15,
+      "genre": "电子",
+      "cover": 6
+    },
+    {
+      "title": "Martin Oakson- Summer Soon (Original Mix)",
+      "artist": "Martin Oakson",
+      "album": "Summer Soon EP",
+      "durationSeconds": 225,
+      "sourceUrl": "https://www.jamendo.com/track/985809",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 16,
+      "genre": "流行",
+      "cover": 7
+    },
+    {
+      "title": "Paris La Nuit",
+      "artist": "A Virtual Friend",
+      "album": "Paris La Nuit",
+      "durationSeconds": 258,
+      "sourceUrl": "https://www.jamendo.com/track/1217479",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 17,
+      "genre": "流行",
+      "cover": 0
+    },
+    {
+      "title": "Fire",
+      "artist": "Seth Power",
+      "album": "Magnolia Soul",
+      "durationSeconds": 212,
+      "sourceUrl": "https://www.jamendo.com/track/1483587",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 18,
+      "genre": "流行",
+      "cover": 1
+    },
+    {
+      "title": "Wake Up",
+      "artist": "Square a Saw",
+      "album": "Wake Up",
+      "durationSeconds": 162,
+      "sourceUrl": "https://www.jamendo.com/track/1672835",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 19,
+      "genre": "电子",
+      "cover": 2
+    },
+    {
+      "title": "Grupo",
+      "artist": "BrunoXe",
+      "album": "Animo",
+      "durationSeconds": 86,
+      "sourceUrl": "https://www.jamendo.com/track/603648",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "license": "CC BY 3.0",
+      "id": 20,
+      "genre": "流行",
+      "cover": 3
+    }
+  ],
+  "artistTracks": [
+    {
+      "title": "Circles",
+      "artist": "Post Malone",
+      "album": "Hollywood's Bleeding",
+      "sourceUrl": "https://music.apple.com/us/album/circles/1477880265?i=1477880561&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Pour Me A Drink (feat. Blake Shelton)",
+      "artist": "Post Malone",
+      "album": "F-1 Trillion",
+      "sourceUrl": "https://music.apple.com/us/album/pour-me-a-drink-feat-blake-shelton/1752531522?i=1752531909&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Take What You Want (feat. Ozzy Osbourne & Travis Scott)",
+      "artist": "Post Malone",
+      "album": "Hollywood's Bleeding",
+      "sourceUrl": "https://music.apple.com/us/album/take-what-you-want-feat-ozzy-osbourne-travis-scott/1477880265?i=1477880568&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Losers (feat. Jelly Roll)",
+      "artist": "Post Malone",
+      "album": "F-1 Trillion",
+      "sourceUrl": "https://music.apple.com/us/album/losers-feat-jelly-roll/1752531522?i=1752531960&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Paranoid",
+      "artist": "Post Malone",
+      "album": "beerbongs & bentleys",
+      "sourceUrl": "https://music.apple.com/us/album/paranoid/1373516902?i=1373516907&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Hollywood's Bleeding",
+      "artist": "Post Malone",
+      "album": "Hollywood's Bleeding",
+      "sourceUrl": "https://music.apple.com/us/album/hollywoods-bleeding/1477880265?i=1477880487&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Guy For That (feat. Luke Combs)",
+      "artist": "Post Malone",
+      "album": "F-1 Trillion",
+      "sourceUrl": "https://music.apple.com/us/album/guy-for-that-feat-luke-combs/1752531522?i=1752531955&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Better Now",
+      "artist": "Post Malone",
+      "album": "beerbongs & bentleys",
+      "sourceUrl": "https://music.apple.com/us/album/better-now/1373504837?i=1373506180&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Blame It On Me",
+      "artist": "Post Malone",
+      "album": "beerbongs & bentleys",
+      "sourceUrl": "https://music.apple.com/us/album/blame-it-on-me/1373516902?i=1373517317&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Yours",
+      "artist": "Post Malone",
+      "album": "F-1 Trillion",
+      "sourceUrl": "https://music.apple.com/us/album/yours/1752531522?i=1752532218&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "In My Feelings",
+      "artist": "Drake",
+      "album": "Scorpion",
+      "sourceUrl": "https://music.apple.com/us/album/in-my-feelings/1406109769?i=1406109901&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Hotline Bling",
+      "artist": "Drake",
+      "album": "Views",
+      "sourceUrl": "https://music.apple.com/us/album/hotline-bling/1440842556?i=1440843974&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Finesse",
+      "artist": "Drake",
+      "album": "Scorpion",
+      "sourceUrl": "https://music.apple.com/us/album/finesse/1418213110?i=1418213392&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "One Dance (feat. Wizkid & Kyla)",
+      "artist": "Drake",
+      "album": "Views",
+      "sourceUrl": "https://music.apple.com/us/album/one-dance-feat-wizkid-kyla/1440841363?i=1440841384&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Hold On, We're Going Home (feat. Majid Jordan)",
+      "artist": "Drake",
+      "album": "Nothing Was the Same (Deluxe)",
+      "sourceUrl": "https://music.apple.com/us/album/hold-on-were-going-home-feat-majid-jordan/1440829462?i=1440829630&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Blem",
+      "artist": "Drake",
+      "album": "More Life",
+      "sourceUrl": "https://music.apple.com/us/album/blem/1440891750?i=1440892397&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Summer Games",
+      "artist": "Drake",
+      "album": "Scorpion",
+      "sourceUrl": "https://music.apple.com/us/album/summer-games/1418213110?i=1418213381&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Find Your Love",
+      "artist": "Drake",
+      "album": "Thank Me Later",
+      "sourceUrl": "https://music.apple.com/us/album/find-your-love/1440762388?i=1440762795&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Signs",
+      "artist": "Drake",
+      "album": "Signs - Single",
+      "sourceUrl": "https://music.apple.com/us/album/signs/1444620506?i=1444620510&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    },
+    {
+      "title": "Massive",
+      "artist": "Drake",
+      "album": "Honestly, Nevermind",
+      "sourceUrl": "https://music.apple.com/us/album/massive/1630230040?i=1630230657&uo=4",
+      "source": "Apple iTunes catalog",
+      "audioImported": false
+    }
+  ]
+}
+;
+const $=id=>document.getElementById(id);
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icon=(name,cls='')=>`<svg class="icon ${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+const fmt=n=>Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');
+const palettes=[['#ddd0b4','#75907c','#263f34'],['#ce7e4d','#303f49','#e8c282'],['#677c8b','#d8c7a3','#2b3f50'],['#a594ac','#e0cbc2','#3a354a'],['#c2aa7c','#5f6856','#e9ddc1'],['#799389','#d3d1b0','#263d38'],['#c3aab5','#5c4859','#ecd5c4'],['#bac1c4','#656f79','#e2d9c9']];
+function art(t){const p=palettes[t.cover%8],id='a'+t.id;let shape='';switch(t.cover%6){case 0:shape=`<circle cx="135" cy="95" r="57" fill="${p[1]}"/><path d="M-20 265Q40 80 130 180T310 90V300H0" fill="${p[2]}"/><path d="M-20 290Q100 130 180 240T330 170V300H0" fill="${p[1]}"/>`;break;case 1:shape=`<circle cx="150" cy="143" r="100" fill="${p[1]}"/><circle cx="150" cy="143" r="70" fill="${p[0]}"/><circle cx="150" cy="143" r="42" fill="${p[2]}"/><circle cx="150" cy="143" r="6" fill="${p[1]}"/><path d="M0 270 300 50v50L0 320" fill="${p[2]}" opacity=".45"/>`;break;case 2:shape=`<path d="M72 260V115a78 78 0 0 1 156 0v145" fill="${p[1]}"/><path d="M97 260V118a53 53 0 0 1 106 0v142" fill="${p[0]}"/><path d="M123 260V120a27 27 0 0 1 54 0v140" fill="${p[2]}"/><circle cx="242" cy="62" r="19" fill="${p[2]}"/>`;break;case 3:shape=`<path d="M-10 30Q90 110 310 10v80Q90 190-10 110Z" fill="${p[1]}"/><path d="M-10 140Q160 220 310 120v90Q160 310-10 230Z" fill="${p[2]}"/><path d="M-10 270Q160 190 310 260v80H-10" fill="${p[1]}"/>`;break;case 4:shape=`<rect x="65" y="45" width="170" height="202" fill="${p[1]}"/><circle cx="150" cy="146" r="62" fill="${p[0]}"/><circle cx="150" cy="146" r="38" fill="${p[2]}"/><path d="M150 45v202M65 146h170" stroke="${p[0]}" opacity=".4"/><circle cx="150" cy="146" r="8" fill="${p[0]}"/>`;break;default:shape=`<circle cx="150" cy="144" r="96" fill="${p[1]}"/><path d="M0 180h300v120H0" fill="${p[2]}"/><path d="M0 200q150-85 300 0M0 220q150-85 300 0M0 240q150-85 300 0M0 260q150-85 300 0" fill="none" stroke="${p[0]}" stroke-width="1" opacity=".5"/>`;}
+return `<svg class="cover" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(t.title)} 概念封面"><defs><filter id="${id}"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".09"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter></defs><rect width="300" height="300" fill="${p[0]}"/>${shape}<rect width="300" height="300" filter="url(#${id})" opacity=".28"/><text x="17" y="24" fill="${p[2]}" font-family="Arial,sans-serif" font-size="8" letter-spacing="2">SONORA / ARCHIVE ${String(t.id).padStart(2,'0')}</text><text x="17" y="283" fill="${t.cover%6===0||t.cover%6===3||t.cover%6===5?p[0]:p[2]}" font-family="Arial,sans-serif" font-size="8" letter-spacing="1.4">${esc(t.artist.toUpperCase().slice(0,30))}</text></svg>`}
+const tracks=DATA.tracks;
+let page='library',genre='全部',layout='grid',limit=8,current=tracks[0],playing=false,position=0,loop=false,shuffle=false,selectedArtist='',files=[];
+let favorites;try{favorites=new Set(JSON.parse(localStorage.getItem('sonora-preview-favorites-v1')||'[]'))}catch{favorites=new Set()}
+let recent=[];
+function saveLikes(){try{localStorage.setItem('sonora-preview-favorites-v1',JSON.stringify([...favorites]))}catch{}$('favCount').textContent=favorites.size||'';updatePlayer();}
+function toggleLike(id){favorites.has(id)?favorites.delete(id):favorites.add(id);saveLikes();render();toast(favorites.has(id)?'已加入你的收藏':'已从收藏移除');}
+function card(t,i){const active=current.id===t.id&&playing;return `<article class="album ${active?'playing':''}" style="animation-delay:${Math.min(i,8)*35}ms"><div class="art-wrap">${art(t)}<div class="art-shade"></div><button class="icon-btn album-like ${favorites.has(t.id)?'selected':''}" data-like="${t.id}" aria-label="${favorites.has(t.id)?'取消收藏':'收藏'} ${esc(t.title)}" aria-pressed="${favorites.has(t.id)}">${icon('heart')}</button><button class="album-play" data-play="${t.id}" aria-label="${active?'暂停':'播放'} ${esc(t.title)}">${icon(active?'pause':'play')}</button></div><div class="album-info"><div class="album-title"><button data-detail="${t.id}">${esc(t.title)}</button>${active?'<span class="eq" aria-label="正在播放"><i></i><i></i><i></i></span>':''}</div><div class="album-sub"><span class="artist">${esc(t.artist)}</span><span class="track-time">${fmt(t.durationSeconds)}</span></div></div>${layout==='list'?`<button class="icon-btn album-like ${favorites.has(t.id)?'selected':''}" data-like="${t.id}" aria-label="${favorites.has(t.id)?'取消收藏':'收藏'} ${esc(t.title)}" aria-pressed="${favorites.has(t.id)}">${icon('heart')}</button>`:''}</article>`}
+function filtered(){let items=tracks.filter(t=>(page!=='favorites'||favorites.has(t.id))&&(page!=='recent'||recent.includes(t.id))&&(genre==='全部'||t.genre===genre));const q=$('search').value.toLowerCase().trim();items=items.filter(t=>(t.title+' '+t.artist+' '+t.album).toLowerCase().includes(q));if($('sort').value==='name')items.sort((a,b)=>a.title.localeCompare(b.title));else if($('sort').value==='duration')items.sort((a,b)=>a.durationSeconds-b.durationSeconds);else if(page==='recent')items.sort((a,b)=>recent.indexOf(a.id)-recent.indexOf(b.id));return items}
+function render(){document.querySelectorAll('.navbtn[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.genre===genre));$('sideCount').textContent=tracks.length;$('favCount').textContent=favorites.size||'';
+const artistPage=page==='artists';$('heroLayout').classList.toggle('hidden',page!=='library'||$('search').value.trim()!=='');$('toolbar').classList.toggle('hidden',artistPage);$('artistArea').classList.toggle('hidden',!artistPage);$('tracks').className=layout==='list'?'grid listmode':'grid';
+const titles={library:['把喜欢的声音，留在这里。','从一首歌开始，慢慢建立属于你的音乐世界。','音乐曲库'],favorites:['喜欢，就再听一遍。','把心动的旋律，收藏成自己的小小宇宙。','我的收藏'],recent:['让昨天的心情，再响一次。','那些刚刚陪伴过你的声音，都在这里。','最近播放'],artists:['有些声音，一听就认得。','从熟悉的歌手，走进更多音乐故事。','歌手与专辑']};const title=titles[page];$('pageTitle').textContent=title[0];$('pageSubtitle').textContent=title[1];$('breadcrumb').textContent=title[2];
+if(artistPage){renderArtists();$('tracks').innerHTML='';$('loadMore').classList.add('hidden');$('sectionTitle').innerHTML='歌手聚焦 <span class="count-badge">02</span>';return;}
+const items=filtered();$('sectionTitle').innerHTML=(page==='favorites'?'我的收藏':page==='recent'?'最近播放':'全部音乐')+` <span class="count-badge">${String(items.length).padStart(2,'0')}</span>`;$('tracks').innerHTML=items.length?items.slice(0,limit).map(card).join(''):`<div class="empty">${icon(page==='favorites'?'heart':'search')}<h3>${page==='favorites'?'让第一首心动的歌，住进这里。':page==='recent'?'你的第一段音乐旅程，即将开始。':'这里暂时没有匹配的音乐。'}</h3><p>${page==='favorites'?'点击封面上的爱心即可收藏。':page==='recent'?'选择一首歌曲，点击播放试试。':'试着换一个关键词，或清除筛选。'}</p></div>`;$('loadMore').classList.toggle('hidden',items.length<=limit);$('loadMore').textContent=`展开更多音乐 · 还有 ${Math.max(0,items.length-limit)} 首`;
+$('tracks').querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>selectTrack(+b.dataset.play));$('tracks').querySelectorAll('[data-like]').forEach(b=>b.onclick=()=>toggleLike(+b.dataset.like));$('tracks').querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>showDetail(tracks.find(t=>t.id===+b.dataset.detail)));}
+function switchPage(next){page=next;genre='全部';limit=8;$('search').value='';selectedArtist='';render();$('sidebar').classList.remove('open');$('mobileDim').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'})}
+function renderArtists(){const artistList=['Post Malone','Drake'];const q=$('search').value.toLowerCase().trim();const refs=DATA.artistTracks.filter(t=>(!selectedArtist||t.artist===selectedArtist)&&(t.title+' '+t.artist+' '+t.album).toLowerCase().includes(q));$('artistArea').innerHTML=`<div class="artist-grid">${artistList.map((a,i)=>`<button class="artist-card" data-artist="${a}" style="${selectedArtist===a?'border-color:var(--accent)':''}"><div class="eyebrow">ARTIST / ${String(i+1).padStart(2,'0')}</div><span class="initials" aria-hidden="true">${i?'DR':'PM'}</span><h2>${a}</h2><p>10 条歌曲资料 &nbsp; · &nbsp; ${selectedArtist===a?'点击显示全部':'查看歌曲档案'} ${icon('arrow','small')}</p></button>`).join('')}</div><p style="font-size:10px;color:#81916f;line-height:1.8;margin-bottom:17px">歌曲资料与官方页面链接。此处没有导入这两位歌手的完整音频。</p><div class="references">${refs.length?refs.map((t,i)=>`<div class="reference"><span class="index">${String(i+1).padStart(2,'0')}</span><div class="ref-title">${esc(t.title)}<small>${esc(t.artist)} &nbsp; / &nbsp; ${esc(t.album)}</small></div><a href="${esc(t.sourceUrl)}" target="_blank" rel="noopener noreferrer">官方页面 ↗</a></div>`).join(''):'<div class="empty">没有找到匹配的歌曲资料。</div>'}</div>`;$('artistArea').querySelectorAll('[data-artist]').forEach(b=>b.onclick=()=>{selectedArtist=selectedArtist===b.dataset.artist?'':b.dataset.artist;renderArtists()})}
+function selectTrack(id){const t=tracks.find(t=>t.id===id);if(!t)return;if(current.id===id)playing=!playing;else{current=t;position=0;playing=true}if(playing)recent=[id,...recent.filter(n=>n!==id)].slice(0,tracks.length);updatePlayer();render()}
+function updatePlayer(){$('nowArt').innerHTML=art(current);$('nowTitle').textContent=current.title;$('nowArtist').textContent=current.artist;$('totalTime').textContent=fmt(current.durationSeconds);$('elapsed').textContent=fmt(position);$('progress').value=position/current.durationSeconds*100;$('play').innerHTML=icon(playing?'pause':'play');$('play').setAttribute('aria-label',playing?'暂停':'播放');$('nowLike').classList.toggle('selected',favorites.has(current.id));$('nowLike').setAttribute('aria-pressed',favorites.has(current.id))}
+function advance(delta){let at=tracks.findIndex(t=>t.id===current.id);if(shuffle){at=Math.floor(Math.random()*tracks.length)}else at=(at+delta+tracks.length)%tracks.length;current=tracks[at];position=0;playing=true;recent=[current.id,...recent.filter(n=>n!==current.id)];updatePlayer();render()}
+let toastTimer;function toast(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2500)}
+let priorFocus;function openDrawer(){if($('drawer').classList.contains('hidden'))priorFocus=document.activeElement;$('drawerBack').classList.remove('hidden');$('drawer').classList.remove('hidden');$('closeDrawer').focus()}
+function closeDrawer(){$('drawerBack').classList.add('hidden');$('drawer').classList.add('hidden');priorFocus?.focus()}
+function showDetail(t){$('drawerLabel').textContent='TRACK DETAILS';$('drawerContent').innerHTML=`<div class="drawer-art">${art(t)}</div><h2>${esc(t.title)}</h2><div class="drawer-artist">${esc(t.artist)}</div><div class="detail-line"><span>专辑</span><span>${esc(t.album)}</span></div><div class="detail-line"><span>风格</span><span>${esc(t.genre)}</span></div><div class="detail-line"><span>时长</span><span>${fmt(t.durationSeconds)}</span></div><div class="detail-line"><span>音频格式</span><span>MP3</span></div><div class="license">${icon('check','small')} &nbsp; ${esc(t.license)} 授权音乐<br>作者：${esc(t.artist)} · 原音频未修改<br><a href="${esc(t.sourceUrl)}" target="_blank" rel="noopener noreferrer">来源页面 ↗</a> &nbsp; <a href="${esc(t.licenseUrl)}" target="_blank" rel="noopener noreferrer">查看许可 ↗</a></div><button class="primary" id="detailPlay">${icon('play','small')} 播放界面演示</button>`;$('detailPlay').onclick=()=>{selectTrack(t.id);toast('这是播放状态预览，不会播放或修改现有歌曲')};openDrawer()}
+function showQueue(){$('drawerLabel').textContent='UP NEXT / 播放队列';const at=tracks.findIndex(t=>t.id===current.id);const queue=[...tracks.slice(at),...tracks.slice(0,at)];$('drawerContent').innerHTML=`<h2 style="font-size:23px;margin-bottom:20px">接下来，继续好听。</h2><div class="queue-list">${queue.map(t=>`<button class="queue-track" data-queue="${t.id}"><div class="queue-art">${art(t)}</div><span>${esc(t.title)}<small>${esc(t.artist)}</small></span>${t.id===current.id?icon('play','small'):''}</button>`).join('')}</div>`;$('drawerContent').querySelectorAll('[data-queue]').forEach(b=>b.onclick=()=>{selectTrack(+b.dataset.queue);showQueue()});openDrawer()}
+function openUpload(){priorFocus=document.activeElement;$('uploadModal').classList.remove('hidden');$('closeUpload').focus()}
+function closeUpload(){$('uploadModal').classList.add('hidden');priorFocus?.focus()}
+function renderFiles(){$('fileList').innerHTML=files.map(f=>`<div class="file-row"><span>${esc(f.name)}</span><span>${(f.size/1024/1024).toFixed(1)} MB</span></div>`).join('');$('confirmUpload').disabled=!files.length;$('confirmUpload').textContent=files.length?`预览 ${files.length} 首导入清单`:'预览导入清单'}
+document.querySelectorAll('.navbtn[data-page]').forEach(b=>b.onclick=()=>switchPage(b.dataset.page));document.querySelectorAll('.playlist').forEach(b=>b.onclick=()=>{switchPage('library');genre=b.dataset.genre;render();$('collection').scrollIntoView({behavior:'smooth',block:'start'})});document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{genre=b.dataset.genre;limit=8;render()});$('search').oninput=()=>{limit=8;render()};$('sort').onchange=()=>render();$('clearFilters').onclick=()=>{genre='全部';$('search').value='';$('sort').value='recent';limit=8;render()};$('gridView').onclick=()=>setLayout('grid');$('listView').onclick=()=>setLayout('list');function setLayout(next){layout=next;$('gridView').classList.toggle('active',next==='grid');$('listView').classList.toggle('active',next==='list');render()}
+$('loadMore').onclick=()=>{limit+=8;render()};$('play').onclick=()=>selectTrack(current.id);$('previous').onclick=()=>advance(-1);$('next').onclick=()=>advance(1);$('heroPlay').onclick=()=>{if(current.id!==tracks[0].id){current=tracks[0];position=0;playing=false}selectTrack(current.id);toast('播放状态演示已开始 · 不连接现有后端')};$('heroBrowse').onclick=()=>$('collection').scrollIntoView({behavior:'smooth'});$('newArrivals').onclick=()=>{switchPage('library');$('collection').scrollIntoView({behavior:'smooth'})};$('artistFeature').onclick=()=>switchPage('artists');$('nowLike').onclick=()=>toggleLike(current.id);$('nowArt').onclick=()=>showDetail(current);$('progress').oninput=e=>{position=+e.target.value/100*current.durationSeconds;updatePlayer()};$('shuffle').onclick=()=>{shuffle=!shuffle;$('shuffle').classList.toggle('selected',shuffle);toast(shuffle?'随机播放已开启':'已恢复顺序播放')};$('repeat').onclick=()=>{loop=!loop;$('repeat').classList.toggle('selected',loop);toast(loop?'单曲循环已开启':'单曲循环已关闭')};$('mute').onclick=()=>{$('volume').value=+$('volume').value?0:70;$('mute').classList.toggle('selected',!+$('volume').value);toast(+$('volume').value?'预览音量已恢复':'预览已静音')};$('queue').onclick=showQueue;
+$('uploadButton').onclick=openUpload;$('sideUpload').onclick=e=>{e.preventDefault();openUpload()};$('closeUpload').onclick=closeUpload;$('cancelUpload').onclick=closeUpload;$('uploadModal').onclick=e=>{if(e.target===$('uploadModal'))closeUpload()};$('fileInput').onchange=e=>{files=[...e.target.files];renderFiles()};$('dropzone').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('fileInput').click()}};$('dropzone').ondragover=e=>{e.preventDefault();$('dropzone').style.borderColor='var(--accent)'};$('dropzone').ondragleave=()=>$('dropzone').style.borderColor='';$('dropzone').ondrop=e=>{e.preventDefault();files=[...e.dataTransfer.files].filter(f=>/\.(mp3|flac|wav)$/i.test(f.name));$('dropzone').style.borderColor='';renderFiles();if(!files.length)toast('请选择 MP3、FLAC 或 WAV 音乐文件')};$('confirmUpload').onclick=()=>{toast(`已预览 ${files.length} 首文件 · 没有上传或写入数据`);closeUpload()};$('closeDrawer').onclick=closeDrawer;$('drawerBack').onclick=closeDrawer;$('mobileMenu').onclick=()=>{$('sidebar').classList.toggle('open');$('mobileDim').classList.toggle('open')};$('mobileDim').onclick=()=>{$('sidebar').classList.remove('open');$('mobileDim').classList.remove('open')};$('brandHome').onclick=e=>{e.preventDefault();switchPage('library')};document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('search').focus()}if(e.key==='Escape'){closeDrawer();closeUpload();$('sidebar').classList.remove('open');$('mobileDim').classList.remove('open')}if(e.key==='Tab'){let dialog=!$('uploadModal').classList.contains('hidden')?$('uploadModal'):!$('drawer').classList.contains('hidden')?$('drawer'):null;if(dialog){const els=[...dialog.querySelectorAll('button:not(:disabled),a[href],input:not([type=file]),[tabindex="0"]')].filter(el=>el.offsetParent!==null);if(els.length){const first=els[0],last=els[els.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}}}});
+setInterval(()=>{if(!playing)return;position+=1;if(position>=current.durationSeconds){if(loop)position=0;else return advance(1)}$('elapsed').textContent=fmt(position);$('progress').value=position/current.durationSeconds*100},1000);
+updatePlayer();render();
+</script>
+</body></html>

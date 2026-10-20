@@ -312,3 +312,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 前端/Python/schema/依赖无改动，现有网站、两套旧服务与演示20首音频保留；不要求用户本轮重启。后续卡待准确提交SHA。
 
 - MUS-017实现f351b0e2030e5411b6f530ca039c694d4ca091d3，新卡MUS-017-R1-B/revision1固定该SHA、比较d443966148336b719cebdb041ea175dfbbfdc500，assigned未认领；旧015已按B实际完成接收。用户演示数据和在跑服务保持。
+
+
+## MUS-018 独立 UI 设计预览
+
+- owner A；branch `design/MUS-018-ui-preview`；base `d34f282a499b3e93c94f90c83c38d35dcb21ca3a`；status review（待用户确认视觉方案）。允许路径 `design-previews/sonora/`、本台账及 own latest。
+- 交付自包含静态 HTML，原创 SVG 概念封面，曲库/歌手/收藏/最近播放、搜索筛选排序、详情、队列、文件选择和模拟播放器。无 backend fetch、音频播放或真实上传；19 首精选资料与 20 条外部歌手资料。
+- 已检查 1440 / 660 / 390px 布局、搜索/收藏/列表/详情/歌手/导入弹窗/播放状态；修复手机主视觉重叠、列表收藏按钮状态与抽屉焦点恢复；浏览器未记录 JS error，静态脚本语法及 diff 检查另见提交验证。
+- 不替换 web/、不发布现有站点、不重启服务、不变更数据库，不要求用户操作终端。B 的 MUS-017-R1-B 卡保持；设计确认前不派发替换页面任务。
+
+- 本检查点已同步 B feed `0748515936eb5cb41446279acc29e52725781c1e` / source `067f6c3d6517da0852a10d6396fdc23161102525`，其最新报告明确 claimed MUS-017-R1-B，尚未完成，不外推批准。原静态脚本 `node --check`、`git diff --check` 通过。
