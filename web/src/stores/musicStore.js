@@ -92,72 +92,6 @@ export const useMusicStore = defineStore('music', () => {
     )
   })
 
-  // 监听路由参数变化，更新搜索条件并触发搜索
-  watch(
-    () => route.query,
-    (query) => {
-      // Ensure query parameters are strings for comparison or default to empty string
-      const queryTitle = query.title?.toString() ?? '';
-      const queryArtist = query.artist?.toString() ?? '';
-      const queryAlbum = query.album?.toString() ?? '';
-      const queryCategoryId = query.categoryId ? parseInt(query.categoryId, 10) : null;
-      const queryUsername = query.username?.toString() ?? '';
-      const queryEmail = query.email?.toString() ?? '';
-      const queryApprovalStatus = query.approvalStatus?.toString() ?? null;
-      const queryTagIdsStr = query.tagIds?.toString() ?? '';
-      const queryKeyword = query.keyword?.toString() ?? '';
-      const currentTagIdsStr = (searchForm.value.tagIds || []).join(',');
-
-      let needsSearch = false;
-
-      if (queryTitle !== searchForm.value.title) {
-        searchForm.value.title = queryTitle;
-        needsSearch = true;
-      }
-      if (queryArtist !== searchForm.value.artist) {
-        searchForm.value.artist = queryArtist;
-        needsSearch = true;
-      }
-      if (queryAlbum !== searchForm.value.album) {
-        searchForm.value.album = queryAlbum;
-        needsSearch = true;
-      }
-      if (queryCategoryId !== searchForm.value.categoryId) {
-        searchForm.value.categoryId = queryCategoryId;
-        needsSearch = true;
-      }
-      if (queryUsername !== searchForm.value.username) {
-        searchForm.value.username = queryUsername;
-        needsSearch = true;
-      }
-      if (queryEmail !== searchForm.value.email) {
-        searchForm.value.email = queryEmail;
-        needsSearch = true;
-      }
-      if (queryApprovalStatus !== searchForm.value.approvalStatus) {
-        searchForm.value.approvalStatus = queryApprovalStatus;
-        needsSearch = true;
-      }
-      if (queryTagIdsStr !== currentTagIdsStr) {
-         if (queryTagIdsStr) {
-             searchForm.value.tagIds = queryTagIdsStr.split(',').map(id => parseInt(id, 10)).filter(Number.isFinite);
-         } else {
-             searchForm.value.tagIds = [];
-         }
-         needsSearch = true;
-      }
-      if (queryKeyword !== searchForm.value.keyword) {
-        searchForm.value.keyword = queryKeyword;
-        needsSearch = true;
-      }
-
-      if (needsSearch) {
-        handleSearch();
-      }
-    },
-    { immediate: true, deep: true } // Use deep watch
-  )
-
   // 获取音乐列表数据
   const fetchMusicList = async () => {
     try {
@@ -599,6 +533,76 @@ export const useMusicStore = defineStore('music', () => {
       return isoString; // Return original string in case of error
     }
   }
+
+  // 监听路由参数变化，更新搜索条件并触发搜索
+  watch(
+    () => [route.path, route.query],
+    ([path, query]) => {
+      // The retained management store must not react to Sonora library or auth navigation.
+      if (path !== '/manage/music') return
+
+      // Ensure query parameters are strings for comparison or default to empty string
+      const queryTitle = query.title?.toString() ?? '';
+      const queryArtist = query.artist?.toString() ?? '';
+      const queryAlbum = query.album?.toString() ?? '';
+      const queryCategoryId = query.categoryId ? parseInt(query.categoryId, 10) : null;
+      const queryUsername = query.username?.toString() ?? '';
+      const queryEmail = query.email?.toString() ?? '';
+      const queryApprovalStatus = query.approvalStatus?.toString() ?? null;
+      const queryTagIdsStr = query.tagIds?.toString() ?? '';
+      const queryKeyword = query.keyword?.toString() ?? '';
+      const currentTagIdsStr = (searchForm.value.tagIds || []).join(',');
+
+      let needsSearch = false;
+
+      if (queryTitle !== searchForm.value.title) {
+        searchForm.value.title = queryTitle;
+        needsSearch = true;
+      }
+      if (queryArtist !== searchForm.value.artist) {
+        searchForm.value.artist = queryArtist;
+        needsSearch = true;
+      }
+      if (queryAlbum !== searchForm.value.album) {
+        searchForm.value.album = queryAlbum;
+        needsSearch = true;
+      }
+      if (queryCategoryId !== searchForm.value.categoryId) {
+        searchForm.value.categoryId = queryCategoryId;
+        needsSearch = true;
+      }
+      if (queryUsername !== searchForm.value.username) {
+        searchForm.value.username = queryUsername;
+        needsSearch = true;
+      }
+      if (queryEmail !== searchForm.value.email) {
+        searchForm.value.email = queryEmail;
+        needsSearch = true;
+      }
+      if (queryApprovalStatus !== searchForm.value.approvalStatus) {
+        searchForm.value.approvalStatus = queryApprovalStatus;
+        needsSearch = true;
+      }
+      if (queryTagIdsStr !== currentTagIdsStr) {
+         if (queryTagIdsStr) {
+             searchForm.value.tagIds = queryTagIdsStr.split(',').map(id => parseInt(id, 10)).filter(Number.isFinite);
+         } else {
+             searchForm.value.tagIds = [];
+         }
+         needsSearch = true;
+      }
+      if (queryKeyword !== searchForm.value.keyword) {
+        searchForm.value.keyword = queryKeyword;
+        needsSearch = true;
+      }
+
+      if (needsSearch) {
+        handleSearch();
+      }
+    },
+    { immediate: true, deep: true } // Use deep watch
+  )
+
 
   // 初始化
   const initialize = () => {

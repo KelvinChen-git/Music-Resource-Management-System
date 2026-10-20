@@ -1,5 +1,18 @@
 # 账号 A 最新交接
 
+## 当前：MUS-019 Sonora 应用开发副本
+
+A；2026-10-20 America/Chicago；branch `feat/MUS-019-sonora-app`；base `f3b0da1e97113d28c81aa49be61c5cbcc49eebce`；review / 已接入可用，待用户体验。
+
+用户已批准应用MUS-018设计并另存开发副本。后续前端工作目录 **Music-Sonora**，原 Music-Resource-Management-System / design/MUS-018-ui-preview 保留，旧web未改。新5175的构建版本代理现有A8080，后端运行仍MUS-014，不启动新库或Java进程。
+
+新Vue外壳/真实曲库/收藏历史/歌手资料/鉴权播放器，旧资源管理 `/manage/music`、上传与其他页面保留。生产build、5组播放器竞态/换号/错误检查、6媒体helper检查、diff检查通过；真实登录20首、搜索/筛选/收藏/详情/历史/歌手/上传页/旧管理播放/跨页播放/退出清理/重新登录收藏保持，以及1440/390px布局已验收。完整命令与限制见docs/verification/MUS-019.md。无Java/Python/API/schema/锁文件变化，未跑完整上传写入/管理员写操作；收藏历史仅分账号浏览器本地。
+
+ack_peer_feed_sha `bb64dcafb37b021e468b207560c8ae98c28b87a3`，B source `082d243161c5774a96d242a473b17c483a77cc4e`：已读取latest的MUS-017有限定批准及E1/E2发现；完整报告正式接收留到后续后端轮次，不冒充原始证据重算。此次用户要求UI接入，不另派后端新卡。B无需重复旧017任务；main未合并。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-018 独立 UI 预览
 
 A；2026-10-20 UTC；branch `design/MUS-018-ui-preview`；base `d34f282a499b3e93c94f90c83c38d35dcb21ca3a`；review / 等用户确认设计。仅新增 `design-previews/sonora/` 与更新 A 交接/台账。

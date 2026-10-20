@@ -1,5 +1,31 @@
 # Music Resource Management System → Music Discovery Platform
 
+## 当前开发入口：Sonora 副本
+
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录、`feat/MUS-019-sonora-app` 分支**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+
+新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
+
+在本副本 `web/` 目录开发：
+
+```sh
+VITE_DEV_PORT=5175 VITE_PROXY_TARGET=http://127.0.0.1:8080 npm run dev
+```
+
+稳定浏览构建版本（先停止占用 5175 的本副本进程）：
+
+```sh
+npm run build
+VITE_DEV_PORT=5175 VITE_PROXY_TARGET=http://127.0.0.1:8080 npm run preview -- --host 127.0.0.1 --port 5175 --strictPort
+```
+
+使用 `.nvmrc` 的 Node 22；本机工具包位于相邻 `.music-tools/node-v22.23.3-darwin-arm64/bin`。首次安装仍用当前 lockfile 的 `npm ci`，不升级依赖。备份精确源码为 `f3b0da1e97113d28c81aa49be61c5cbcc49eebce`，此提交内的 `web/` 就是原版；新分支也保留该祖先。
+
+新 `/music` 是封面曲库；旧完整资源管理在 `/manage/music`；上传、分类、标签、回收站、个人资料及管理员入口沿用原组件和权限。收藏与播放历史仅保存在本浏览器，按账号 ID 分隔，未实现跨设备同步。播放器使用现有 JWT 媒体 helper 获取音频，页面切换继续播放；退出或换账号清理音频和队列。曲库按后端每页 20 首加载，封面区域分批展开；风格与排序只作用于已加载曲目，页面会提示未全部加载的情况。
+
+验证与边界见 [MUS-019](docs/verification/MUS-019.md)。下文原有后端/双账号基线文档仍保留，不意味着本副本已配置了第二套数据库。
+
+
 保留 Java / MySQL / Vue 管理系统，增量开发多模态音乐检索与片段定位。
 
 **当前多模态检索尚未实现。** 已建立 MUS-001 本地功能基线；模型、索引、小语料、质量和性能指标仍需逐项验证。2,000 首、约 70,000 片段、120 查询、300ms P95 和 10% 提升均不是现有成果。

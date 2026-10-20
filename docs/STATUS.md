@@ -322,3 +322,22 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 不替换 web/、不发布现有站点、不重启服务、不变更数据库，不要求用户操作终端。B 的 MUS-017-R1-B 卡保持；设计确认前不派发替换页面任务。
 
 - 本检查点已同步 B feed `0748515936eb5cb41446279acc29e52725781c1e` / source `067f6c3d6517da0852a10d6396fdc23161102525`，其最新报告明确 claimed MUS-017-R1-B，尚未完成，不外推批准。原静态脚本 `node --check`、`git diff --check` 通过。
+
+
+## MUS-019 Sonora 应用副本（当前占用）
+
+- owner A；branch feat/MUS-019-sonora-app；base f3b0da1e97113d28c81aa49be61c5cbcc49eebce；in_progress。用户已批准将设计接入网站并保存开发副本，后续在副本基础上开发。
+- 原目录 Music-Resource-Management-System 保留原 Vue 界面与运行服务；新 worktree Music-Sonora 作为前端开发基线，端口 5175，仅代理现有 A 后端 8080；不启动第二个后端或迁移/复制数据库。
+- allowed_paths：web/src/App.vue、web/src/router/index.js、web/src/components/Sonora*、web/src/stores/sonora*、web/src/stores/musicStore.js（旧管理路由监听边界）、web/src/views/Sonora*、web/src/styles/sonora.css、web/src/utils/sonoraArt.js、web/scripts/verify-sonora-player.mjs、web/index.html、README/PROJECT/STATUS/own latest/本任务验证文档。保留旧管理组件与 API/权限路径，B 的 MUS-017 审核路径不接管。
+- 目标：真实曲库/鉴权播放、搜索筛选、收藏/最近播放、歌手资料、上传和原管理入口；收藏与历史限定当前浏览器及账号，不冒充服务端持久化。
+
+### MUS-019 实现与验收
+
+- 新副本完整 Vue 应用接入 Sonora：新 App 外壳、主曲库/收藏/历史/歌手页、鉴权真实音频播放器。原管理页移至 `/manage/music`，原组件与业务 API 保留。原目录 git 工作区保持干净，旧 5173 与新 5175 均 HTTP200。当前新 5175 使用构建产物，避免开发依赖首次优化触发页面刷新。
+- 已通过 `npm ci`（lockfile 未改）、生产 build、5 组播放器边界/竞态/账号隔离验证、原媒体 helper 6 项检查与 diff check；无 Java/Python/schema 变动，不重复跑不受影响的后端全套。
+- 真实浏览器：演示账号登录读取20首；What Is Love 真实时长212.022653秒，播放到7.293254秒、readyState4、无音频错误后暂停；原管理页Grupo真实播放86.0122秒时长，跨页仍在播放。搜索/空结果/风格/收藏/列表/历史/详情授权链接/歌手20条及Drake10条/上传页面/资源表格/退出清理/重新登录保留收藏已检查。没有新上传、编辑、删除、审核或迁移用户数据；播放计数正常增加。
+- 桌面1440与手机390断点通过，手机文档宽384不超过视口390；保存截图。浏览器错误与旧管理store监听的修正见后续补充。脚本第一轮关闭时曾出现Vite依赖扫描噪声，修正无发现扫描配置后5组检查再次exit0且无扫描错误；不隐去首轮诊断。
+- npm ci 报原 lockfile 的59项依赖审计提示（11 low/12 moderate/34 high/2 critical），未为本UI任务擅自升级；build仍有既有>500kB chunk提示。完整新增上传链路、管理写操作及管理员浏览器场景本轮未重跑。
+- status review / 已接入，待用户体验；本副本为后续开发基线。新 UI 使用现有 A 后端与曲库，不宣称数据库隔离或生产部署。B feed bb64dcafb37b021e468b207560c8ae98c28b87a3/source082d243161c5774a96d242a473b17c483a77cc4e 的latest已读，其017批准有限定范围；完整报告正式接收与E1/E2后续处理另轮完成，本UI任务不改后端也不冒充验收。
+
+- 集成验收发现旧Pinia管理store离开页面后仍监听全局query，在退出附近记录过一条旧列表失败；将其监听限定在 `/manage/music`，并放到方法定义后，避免新曲库/登录触发旧后台搜索及带参数直达管理页的声明前调用。最终构建另行核验，不把此条旧错误隐去。

@@ -5,6 +5,8 @@ import RecycleBinView from '@/views/RecycleBinView.vue'
 import TagListView from '@/views/TagListView.vue'
 
 const routes = [
+  ...['favorites','recent','artists'].map(path => ({path: '/'+path, name: path, component: () => import('@/views/SonoraLibrary.vue'), meta: {requiresAuth: true, title: {favorites:'我的收藏',recent:'最近播放',artists:'歌手与专辑'}[path]}})),
+  {path:'/manage/music', name:'manage-music', component: () => import('@/views/MusicListView.vue'), meta:{requiresAuth:true,title:'资源管理'}},
   {
     path: '/login',
     name: 'Login',
@@ -48,8 +50,8 @@ const routes = [
   {
     path: '/music',
     name: 'music',
-    component: () => import('@/views/MusicListView.vue'),
-    meta: { requiresAuth: true }
+    component: () => import('@/views/SonoraLibrary.vue'),
+    meta: { requiresAuth: true, title: '音乐曲库' }
   },
   {
     path: '/demo-catalog',
@@ -114,7 +116,7 @@ router.beforeEach(async (to, from, next) => {
   const hasToken = userStore.token
   
   // 设置页面标题
-  document.title = to.meta.title ? `${to.meta.title} - Taffy Music` : 'Taffy Music'
+  document.title = to.meta.title ? `${to.meta.title} · SONORA` : 'SONORA · 音乐空间'
   
   if (hasToken) {
     if (to.path === '/login') {
