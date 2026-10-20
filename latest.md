@@ -1,5 +1,13 @@
 # 账号 A 最新交接
 
+## 当前：MUS-018 独立 UI 预览
+
+A；2026-10-20 UTC；branch `design/MUS-018-ui-preview`；base `d34f282a499b3e93c94f90c83c38d35dcb21ca3a`；review / 等用户确认设计。仅新增 `design-previews/sonora/` 与更新 A 交接/台账。
+
+自包含 HTML、桌面/手机截图和 README；深色唱片风格，可交互曲库/收藏/歌手/详情/队列/导入弹窗；播放为模拟状态。桌面、窄窗口和手机已检查，浏览器无 JS error。未改 web/、API、数据库或在跑服务。本轮 sync 读取 B feed `0748515936eb5cb41446279acc29e52725781c1e` / source `067f6c3d6517da0852a10d6396fdc23161102525`：B 已主动 claimed MUS-017-R1-B，尚未完成验证；无新设计审核任务，也未冒充 B 批准。脚本 node --check 与 git diff --check 通过。用户确认后才安排接入现有前端。
+
+## 上一轮后端交接（保留）
+
 - A；2026-10-20 America/Chicago 01:31；task MUS-017；branch fix/MUS-017-admin-avatar-null；status review / new runtime acceptance pending。
 - implementation_sha `f351b0e2030e5411b6f530ca039c694d4ca091d3`；comparison_base `d443966148336b719cebdb041ea175dfbbfdc500`。后续handoff.source_sha只补交接/派发及015接收状态文档。
 - ack_peer_feed_sha `23ecb6738bc8c3441b79f690eada757eeb0533d1`；B source `8f62277513b3537cc78a4cd2a99f6b8398e6bf57`。
