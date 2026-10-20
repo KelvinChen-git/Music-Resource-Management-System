@@ -48,7 +48,7 @@
 | MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
 | MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
 | MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
-| MUS-012 上传持久所有权 | review / A（真实 Java HTTP blocked） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，普通终端新65项回归待执行 |
+| MUS-012 上传持久所有权 | review / A（本机真实 HTTP 通过，独立 B 审核待完成） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，两套本机各 65 上传 / 144 媒体检查已通过 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -168,12 +168,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 ## MUS-012 上传持久所有权（当前占用）
 
-- owner A；branch fix/MUS-012-upload-ownership；base dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73；status review（实现 / 自动测试通过，真实 HTTP 被 Java SocketException 阻塞）。开始 sync 确认 B feed 仍为 05d4e9f，未见新占用。
+- owner A；branch fix/MUS-012-upload-ownership；base dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73；status review（实现、自动测试及两套本机真实 HTTP 通过；B 独立审核待完成）。开始 sync 确认 B feed 仍为 05d4e9f，未见新占用。
 - allowed_paths：FileUpload / FileUploadController / FileUploadServiceImpl、新 UploadAccessService、UploadIntegrityService、MediaAccessService、MusicResourceServiceImpl / metadata controller 异常传递、对应测试；UserServiceImpl / AuthController 的头像绑定校验与测试；db/baseline/V002*、scripts/dev.py / baseline.py / 迁移及权限回归脚本与测试；README / CONTRACTS / STATUS / A latest / verification/MUS-012*。
 - 契约见 A5；目标为所有上传操作隔离、首次绑定防抢先、旧记录隔离且可安全迁移、原媒体读取回归。保留 B 报告、依赖锁、main；真实事务故障 / 并发 / 重启恢复后续单列，不冒充本批通过。
 
 
-### MUS-012 实现检查点
+### MUS-012 实现检查点（真实验收前的历史记录）
 
 - 308 Java（原266 + 新所有权HTTP40 + MD5隔离2）与22 Python（baseline9 / migration4 / collab9）通过。真实持久化不在 MockMvc 中，不能据此称完整验收。
 - A 真库 V002 已加列 / 索引并重复迁移通过，10 条旧上传保持 NULL；本机 B 干净同步至实现提交078a82b后已迁移成功，6条旧上传保持NULL。无 owner 自动回填。头像登记也检查目标账号上传归属，引用上传不允许删除，删除仅逻辑标记、保留字节。
@@ -181,3 +181,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 普通终端新 baseline 将自动执行该回归；原终端各 Ctrl+C 后以 --migrate-upload-ownership --keep-running 运行。A 可直接读取结果，无需搬运。本机 B 槽非 B 账号审核；后续事务故障 / 并发 / 重启续传仍待验证。
 
 - 实现提交078a82b已发布，A feed检查点8ead126；本机B源码一致，两个旧Java PID83691 / 83977仍为旧运行实例。发布/迁移不等于新版本实跑验收，不要求B账号替A搬运输出。
+
+
+### MUS-012 真实验收完成（2026-10-19 America/Chicago）
+
+- A run baseline-20261019-201252-87403 / source4b3ec3f；本机 B run baseline-20261019-201303-87689 / source078a82b，整体均 passed。两个版本仅四份文档不同，运行源码一致。
+- 两套各 308 Java / Vue build、直连和代理各13功能+4安全、144真实媒体矩阵+8附加项、65真实上传权限检查全部通过。每套35个显式拒绝为7×401 / 7×403 / 21×404，拒绝后计数 / 分片未变；原始JSON与内嵌汇总一致。
+- 两份新后端日志均无 SQLSyntaxErrorException / BindingException / CommunicationsException；用户普通终端已加载新代码，历史候选Java阻塞不再是本轮验收状态。服务保持运行，无需重启或搬运。
+- 八份原始JSON与MUS-012-live-results.json已归档。当前仍review：B账号独立审核未完成；遗留owner隔离、物理垃圾回收及MUS-009故障回滚 / 并发 / 跨进程续传仍单列。服务重启不等于上传中断恢复通过。

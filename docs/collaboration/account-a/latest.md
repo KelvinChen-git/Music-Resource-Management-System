@@ -1,9 +1,9 @@
 # 账号 A 最新交接
 
 - account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
-- task MUS-012 上传持久所有权；branch `fix/MUS-012-upload-ownership`；base `dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73`；status review（实现及自动测试通过，新源码真实 HTTP 验收 blocked）。
-- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮开始原生 git sync 成功，B 仍为 source 6e4118c / reviewed 7ab0d39，无新交付；不替 B 写报告或确认。
-- 已发布前批：MUS-011 最终 dbdcae2 / feed a74abe3，本机 B 同步入口已拉取。两套本机 266 Java / 144 真媒体矩阵通过属该旧版本，不代替本任务新结果。
+- task MUS-012 上传持久所有权；branch `fix/MUS-012-upload-ownership`；base `dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73`；status review（实现、自动测试及两套本机真实 HTTP 通过；B 独立审核待完成）。
+- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮验收时原生 git sync 成功，B 仍为 source 6e4118c / reviewed 7ab0d39，仍无新交付；不替 B 写报告或确认。
+- 已发布实现：MUS-012 最终报告检查点4b3ec3f / feed51cb7a5；本轮真实运行A为4b3ec3f、本机B为078a82b，仅四份文档不同，运行源码一致。最新最终source以远端handoff.json为准。
 
 ## 本次改动
 
@@ -17,12 +17,14 @@ V001 不变，V002 只加 nullable owner 列与索引。旧记录保留 NULL，�
 
 Java **308 / 0 failures / errors / skipped**：原266 + 新HTTP40 + MD5隔离2。Python全量22通过（baseline9 / migration4 / collab9），脚本 py_compile / --help 通过。前端与依赖未改，未单独重复 build。验证正文见 [MUS-012](../../verification/MUS-012.md)。
 
-候选 Java 连接本机 MySQL 报 SocketException: Operation not permitted，Druid / JPA 未初始化，端口18080未就绪；候选已停止。Python / native MySQL可连不代表 Java 可连，Maven BUILD SUCCESS 也不表示服务启动成功。**新65项真实上传权限检查执行未通过，不能提前标 passed**。原普通终端两套服务保留 MUS-011 版本。
+两个普通终端已于20:12–20:13加载新代码，结果均passed：各308 Java / Vue build、后端直连与Vite代理各13功能+4安全、144真实媒体矩阵+8附加项、65真实上传权限检查通过。原始JSON与内嵌结果一致，媒体矩阵无重复且状态正确；每套上传检查35个显式拒绝为7×401 / 7×403 / 21×404，拒绝后分片与计数未变。
 
-源码与两库已准备好；两个原终端各 Ctrl+C，在各自目录运行 `python3 scripts/baseline.py --slot a --migrate-upload-ownership --keep-running` / `--slot b`。新 baseline 会自动补原功能、媒体144矩阵和新上传65检查；A 直接读取本地报告，不需用户搬运。已升级库重复选项无回填 / 重建。
+真实检查覆盖owner落库、伪造owner、跨账号与管理员拒绝、同MD5隔离上传、续传合并、首次绑定、NULL owner、锁定/删除账号旧JWT、头像绑定与公开访问、引用保护和逻辑删除。两份后端日志均无SQLSyntaxErrorException / BindingException / CommunicationsException。
+
+[真实运行汇总](../../verification/MUS-012-live-results.json) 与八份原始JSON已归档。历史受管候选Java网络阻塞未妨碍普通终端实跑；两套新服务保持运行，本轮无需再重启，A已直接读取报告，无需搬运。本机B槽通过不等于B账号读取或独立审核。
 
 ## 下一步与边界
 
-先接收新版本真实矩阵，再补 MUS-009 事务失败 / 并发 / 重启续传。未知 legacy 归属人工迁移与物理垃圾回收仍待独立任务。B 账号独立审核尚未进行，不把本机 B 工作树测试当账号 B 确认；不开放公开 discovery、不合并 main、不升级依赖、不写 B 独占报告。
+新版本真实矩阵已接收；接下来补 MUS-009 事务失败 / 并发 / 重启续传。未知 legacy 归属人工迁移与物理垃圾回收仍待独立任务。B 账号独立审核尚未进行，不把本机 B 工作树测试当账号 B 确认；不开放公开 discovery、不合并 main、不升级依赖、不写 B 独占报告。
 
 本次实现提交078a82b4082e192258252bafe617e849ac4925f5已发布，feed检查点8ead1264a276eabdbf9ace52e8889fc9d9930aba；最终报告提交继续发布到同一任务分支，source_sha以远端handoff.json为准。发布不代表B已读取或审核。

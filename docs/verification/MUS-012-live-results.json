@@ -1,0 +1,159 @@
+{
+  "task": "MUS-012",
+  "status": "passed",
+  "recorded_at": "2026-10-20T01:14:36.595964+00:00",
+  "execution": "ordinary macOS Terminal; isolated local A/B slots",
+  "independent_account_b_review": false,
+  "slots": {
+    "a": {
+      "source_sha": "4b3ec3f142e993851da605cd8c38fa378ddb1958",
+      "log_directory": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Resource-Management-System/.local/a/logs/baseline-20261019-201252-87403",
+      "status": "passed",
+      "java": {
+        "tests": 308,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "frontend_build": "passed",
+      "database": {
+        "action": "reuse_existing",
+        "tables": 11
+      },
+      "checks": {
+        "smoke-direct": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "smoke-proxy": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "media-access": {
+          "matrix_cases": 144,
+          "additional_checks": 8
+        },
+        "upload-ownership": {
+          "checks": 65,
+          "explicit_denials": 35,
+          "denial_status_counts": {
+            "401": 7,
+            "403": 7,
+            "404": 21
+          }
+        }
+      },
+      "backend_diagnostics_occurrences": {
+        "SQLSyntaxErrorException": 0,
+        "BindingException": 0,
+        "CommunicationsException": 0
+      },
+      "log_sha256": {
+        "media-access.log": "d8d6d4b3bbdd3501a3d061f54edfaadb6e7851fd4c5dd333cc32a3206fe3e199",
+        "backend.log": "bd955ba8b2f00ae40e56dc98afb475572b4bee80e8b300c4b2a2b45b24a3f2bf",
+        "result.json": "9f624d265209918300dc9794a90830eb9eb8e641a05826de08de5d8b5a60b21f",
+        "frontend.log": "f19e2efe25b22b72404a00378c20c0f41b7a4a1437899ba358c78de9dda1543a",
+        "mysql.log": "fc0b36008ff1f18077e1fef2d261f48d8622006f255042395c105f6cadf2e651",
+        "upload-ownership.log": "3d2aa998d6716f989173099d078a56aee63774f117ce7b94f5609deabaa3101a",
+        "java-tests.log": "a15b0f83b87e55f14af0cd5cacf4a0de9a039858a7a554f9e5baee384c315d07",
+        "smoke-proxy.log": "0710c748ff025fe2e504efadd04d8014e4866664714dca3971ecc143e85484c7",
+        "smoke-direct.log": "93499c99d8e35c1dc79f39eb72b2f1e472fe75ef7df0d6b357d1051ee211ef52",
+        "frontend-build.log": "354571964936466ebe16238b930d4b6148745169fcb6afcdebbec22258c0402f"
+      }
+    },
+    "b": {
+      "source_sha": "078a82b4082e192258252bafe617e849ac4925f5",
+      "log_directory": "/Users/kelvin/.codex/.chatgpt-projects/g-p-6ad68529d7488191b5c3a558f6b04c89/Music-Dev-B-MUS010/.local/b/logs/baseline-20261019-201303-87689",
+      "status": "passed",
+      "java": {
+        "tests": 308,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "frontend_build": "passed",
+      "database": {
+        "action": "reuse_existing",
+        "tables": 11
+      },
+      "checks": {
+        "smoke-direct": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "smoke-proxy": {
+          "functional_checks": 13,
+          "security_checks": 4,
+          "anonymous_statuses": {
+            "pending_media_anonymous": 401,
+            "static_upload_anonymous": 401,
+            "deleted_media_anonymous": 401
+          }
+        },
+        "media-access": {
+          "matrix_cases": 144,
+          "additional_checks": 8
+        },
+        "upload-ownership": {
+          "checks": 65,
+          "explicit_denials": 35,
+          "denial_status_counts": {
+            "401": 7,
+            "403": 7,
+            "404": 21
+          }
+        }
+      },
+      "backend_diagnostics_occurrences": {
+        "SQLSyntaxErrorException": 0,
+        "BindingException": 0,
+        "CommunicationsException": 0
+      },
+      "log_sha256": {
+        "media-access.log": "ae8ff93212c42a831b59126b7e4403c46f8992406ae5cabb66347256da4f8b4b",
+        "backend.log": "689751161db506db0f0f9a489d2a40e34c55d5c4cd0a037c42b850da2553637d",
+        "result.json": "93b00aacb3a200e673e5f68f512f0797b46e79051cf304bdfe963e863e76dcc7",
+        "frontend.log": "21e3c08ae559eeb4335f6f44b42f2b8e28fe26e2239a152b61ffd77b21a24898",
+        "mysql.log": "27042d17925a2b46d69ea99e484a74c08a5b97c706df20cdae41a0607405c2bd",
+        "upload-ownership.log": "0039a43a49662a9efc03b9939c933f003c8f67878808e024822655e5a92cf4d4",
+        "java-tests.log": "cb351f899ee86a44774ae04a22ebf14a4e52d908a9d96a5a9e59727514948391",
+        "smoke-proxy.log": "7a909271fe8f0119e68f3be39e298db4ea6d355bbc8476d0f04b6651874a9938",
+        "smoke-direct.log": "57ccaf81d3b205e9877b746811a2e4fec7323db27a854ad84ee61b5bea6ee5e4",
+        "frontend-build.log": "98edaa214457c7c5ec4c2c9ea86a21966b527fca25cdb0157f5d867511bcc3f2"
+      }
+    }
+  },
+  "limits": [
+    "Synthetic fixtures only; no browser listening or search quality assessment.",
+    "Backend restarted to load new code, not partial-upload restart recovery.",
+    "Fault rollback and cross-request concurrency not exercised.",
+    "Legacy owner remains unknown and quarantined; physical garbage collection deferred."
+  ],
+  "log_hash_note": "Hashes capture bytes at archival time; running service logs can append.",
+  "source_difference": {
+    "a": "4b3ec3f",
+    "b": "078a82b",
+    "changed_paths": [
+      "docs/STATUS.md",
+      "docs/collaboration/account-a/latest.md",
+      "docs/verification/MUS-012-results.json",
+      "docs/verification/MUS-012.md"
+    ],
+    "runtime_source_identical": true
+  }
+}

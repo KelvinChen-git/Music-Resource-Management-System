@@ -1,7 +1,7 @@
 {
   "task": "MUS-012",
   "base_sha": "dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73",
-  "status": "review_pending_live_acceptance",
+  "status": "review_pending_independent_b_review",
   "java": {
     "tests": 308,
     "failures": 0,
@@ -111,12 +111,24 @@
     "scope": "baseline 9, migration 4, collaboration 9"
   },
   "live_http": {
-    "status": "blocked",
-    "expected_upload_checks": 65,
-    "error": "Java child SocketException: Operation not permitted connecting 127.0.0.1:3307; candidate backend never became ready. Python/native mysql can connect.",
-    "candidate_port": 18080,
-    "candidate_stopped": true,
-    "old_a_b_services": "left running on prior MUS-011 code; not restarted"
+    "status": "passed",
+    "slots": [
+      "a",
+      "b"
+    ],
+    "upload_checks_per_slot": 65,
+    "media_matrix_per_slot": 144,
+    "additional_media_checks_per_slot": 8,
+    "direct_smoke_per_slot": {
+      "functional": 13,
+      "security": 4
+    },
+    "proxy_smoke_per_slot": {
+      "functional": 13,
+      "security": 4
+    },
+    "evidence": "MUS-012-live-results.json",
+    "historical_managed_java_block": "Java child SocketException was a previous managed-environment result; ordinary Terminal runs passed separately."
   },
   "migration": {
     "a": {
@@ -137,7 +149,6 @@
     "note": "Final report commit is published afterward; authoritative source is remote handoff.json. No independent B receipt/review."
   },
   "limits": [
-    "Live MySQL migration is not live Java/HTTP acceptance.",
     "MockMvc uses mocked persistence. No live cross-request concurrency or partial-upload restart recovery claimed.",
     "Unknown legacy ownership is quarantined; no automatic claims.",
     "Physical bytes/chunks retained on upload tombstone; garbage collection deferred.",
@@ -151,7 +162,8 @@
   "local_b_worktree": {
     "source_sha": "078a82b4082e192258252bafe617e849ac4925f5",
     "clean_before_switch": true,
-    "running_backend_restarted": false,
+    "running_backend_restarted": true,
     "independent_account_b_review": false
-  }
+  },
+  "live_results": "MUS-012-live-results.json"
 }
