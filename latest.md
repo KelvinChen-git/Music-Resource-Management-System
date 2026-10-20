@@ -1,28 +1,28 @@
 # 账号 A 最新交接
 
-- account：A；日期：2026-10-19 America/Chicago；集成负责人：A。
-- 当前任务：MUS-008 固定交接与同步；源码基线为 `6e4140bea1a1a6ce728aa224b43cb53d7c31193c`。
-- 同步实现检查点：`d5b764453787d43f4f32e64a4b4fcc66d7cee796`；提交后真实 publish 在远端读取阶段被 DNS 阻塞，未创建远端 feed。
-- ack_peer_feed_sha：none。B 尚未发布 feed；仅通过用户导入首轮原文，不能声称本轮已从远端读取 B。
-- 远端启用：blocked。当前 GitHub 连接 push=false；A 终端 GitHub DNS 失败。只有 `publish` 成功后，本报告才构成远端交付；本地提交不等于 B 已收到。
+- account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
+- task MUS-011 媒体授权 / 缓存；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`；status review（实现、本地回归及两套本机真实矩阵通过；B 独立审核待完成）。
+- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；此前实现轮 GitHub 读取未见 B 新 feed；本次未刷新 B 远端进度。B source 6e4118c，reviewed 7ab0d39；不替 B 写报告或确认。
+- 实现检查点 d29ccbb；本机 B worktree 已同步并重启。A aa65efa / 本机 B d29ccbb 运行源码相同，仅三份文档不同。此前 publish 在 git ls-remote exit 128 阻塞，本轮发布结果待另行记录。
+- 发布边界：A 先前远端 feed d0a8381 / source 0ba0a96；后续 MUS-009/010 和本任务新结果仅本地，受管终端 DNS / 写连接仍阻塞，不声称 B 已收到。最终 source_sha 以成功 publish 后 handoff.json 为准。
 
-## 已完成与当前证据
+## 实现与验证
 
-1. 五份协作文档已本地应用。MUS-001 在 `7ab0d39d920a538b28878cf92ecbe90e55994ec3` 完成实现；89 项 Java 测试、前端 build、空开发库和直连 / 代理各 13 项合成业务检查通过；Compose 未实跑，媒体权限缺陷未修复。
-2. MUS-002 在 `6e4140b` 检查点：固定 CLAP CPU 文本 / 音频编码与缓存离线复跑通过，实际 512 维；真实许可音乐、Python 解码和检索质量仍未验收，没有索引或新搜索界面，不报告 P95 / nDCG 成果。
-3. 已接收 B 的 b81f57c 首轮审核原文并逐项整合。它不是 MUS-001-R1 的审核；见 `docs/collaboration/B-INITIAL-REVIEW.md`。
-4. 新增 `scripts/collab.py`：读双方固定 feed 和源提交；提交后原子发布自身任务源码与交接。脚本不改工作区或数据库、不自动合并。验证结果见 `docs/verification/MUS-008.md`。
+三媒体入口按当前数据库账号、审核 / 删除状态授权，音乐静态路径停止供文件，仅保留有登记且不关联音乐的有效头像。ZIP 与既有 file_path 元数据重新绑定也检查可见性，路径 / 缓存 / HEAD / Range 均受控，播放计数在授权后；Vue 播放与两种下载显式 JWT。策略见 CONTRACTS A4。
 
-## 给 B 的任务
+Java 全量 **266 tests，0 failures / errors / skipped**：历史107 + 新HTTP155（144个MockMvc矩阵组合 / 11个边界和真实WebMvcConfig）+ 新重绑定4。前端helper6 / build、baseline保护8通过。新脚本 py_compile / --help 通过；mock 数据服务不算真实 SQL / TCP 测试。
 
-- task：MUS-001-R1；branch：`review/MUS-001-B-baseline`。
-- reviewed/base_sha：`7ab0d39d920a538b28878cf92ecbe90e55994ec3`，不要只审核远端 main。
-- 允许写：`docs/reviews/MUS-001-B.md` 和 `docs/collaboration/account-b/latest.md`；使用独立 clone / slot B；不改 STATUS、Java / Vue、SQL、配置、依赖锁或 A 的交接。
-- 先读 `docs/handoffs/MUS-001-B.md`、`docs/collaboration/README.md`、`docs/collaboration/BOOTSTRAP_B.md`；审核准确源码与完整证据，环境阻塞如实记录。
-- 首次发布请确认任务接收并记录本次 A 的 feed SHA。B 旧报告发现的新问题已纳入后续，不需要重复修复或重新发布原文冒充 R1。
+[验证正文](../../verification/MUS-011.md) 与 [机器汇总](../../verification/MUS-011-results.json) 保存本轮证据。历史受管进程 socket 预检 Errno 1；普通终端已于 18:47–18:48 重启并完成新版本实跑，证据单独记录在 [真实运行汇总](../../verification/MUS-011-live-results.json)。
 
-## 占用与下一步
+两个本机隔离环境各通过 266 Java / production build、直连与代理各 13 功能 + 4 安全、144 个真实媒体矩阵 + 8 附加检查。原始 JSON 与 baseline 汇总一致，组合无重复，全部状态符合策略；匿名 pending / 静态音乐 / deleted 均 401，合法 GET / Range 为 200 / 206，私有和 deleted 资源按身份拒绝。头像、计数与重绑定检查通过。六份不含凭据的原始 JSON 已归档，无需用户搬运。
 
-A 独占 MUS-008 的 `scripts/collab.py`、`scripts/test_collab.py`、`docs/collaboration/`（B 自身 latest 除外）、AGENTS / README / STATUS 与本轮验证文件；不接管 B 的审核报告。MUS-002 仍由 A 持有，其独立 spike 不在本轮改实现。共享 API / schema 尚未冻结，MUS-003/004 不提前并行开发。
+这里的 B 只是本机隔离工作树，不能代表 B 账号独立审核或已接收本次源代码。服务重启加载代码也不等于上传中断后的恢复验证。没有人工浏览器试听结论。
 
-下一步先启用 Git 远端交付并取得 B 确认；A 继续准备合法音乐语料和查询。发布成功不是自动合并授权，main 不变。
+## 限制与下一步
+
+- **上传持久所有权仍缺**：file_upload 无 owner，首次绑定 / 抢先认领及上传写操作授权仍需 schema / 迁移任务。现有资源的重绑定绕过已加检查，不能据此称整个上传系统授权完成；公开 discovery 继续阻断。
+- 已下载或旧一年缓存的副本不能由 no-store 追溯收回。浏览器人工播放 / 下载 / 头像尚未实测。
+- 真实矩阵已接收；接下来做所有权和 MUS-009 真实事务失败 / 并发 / 进程重启；MUS-010 两套本机开发基线已经通过，B 账号独立审核仍单列。
+- 依赖20个漏洞、JSqlParser诊断另行处理，本批不自动升级依赖。模型仍只有合成 CLAP 编码可行性，真实许可语料 / 检索 / 界面 / 效果未完成。
+
+允许路径与事实边界见 STATUS 本任务卡；未改 schema、依赖锁、B 独占报告、MUS-002。最终合并由用户决定。
