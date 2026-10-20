@@ -244,6 +244,49 @@ class UploadOwnershipHttpTest {
         }
     }
 
+    @Test void administratorEmptyObjectKeepsFieldsAndOnlyTouchesTimestamp() throws Exception {
+        owner.setAvatar("owned.png");owner.setEmail("owner@example.invalid");owner.setName("owner");
+        var response=mvc.perform(auth(put("/users/1").contentType("application/json").content("{}"),3))
+                .andReturn().getResponse();
+        var json=new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertEquals(200,json.get("code").asInt(),response.getContentAsString());
+        assertEquals("owned.png",json.get("data").get("avatar").asText());
+        assertEquals("owner@example.invalid",json.get("data").get("email").asText());
+        verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+            var changes=(com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w;
+            assertTrue(changes.getSqlSet().startsWith("updated_at="));
+            assertFalse(changes.getSqlSet().contains(","));return true;
+        }));
+        verify(users,never()).updateById(any(Users.class));
+        verify(files,never()).getOne(any(Wrapper.class));
+    }
+
+    @Test void ordinaryUserEmptyObjectStillUsesAdministratorPermissionCheck() throws Exception {
+        var response=mvc.perform(auth(put("/users/1").contentType("application/json").content("{}"),1))
+                .andReturn().getResponse();
+        var json=new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertEquals(403,json.get("code").asInt(),response.getContentAsString());
+        verify(users,never()).update(any(),any(Wrapper.class));
+    }
+
+    @Test void administratorInputCannotSetProtectedFieldsOrOverridePathTarget() throws Exception {
+        owner.setPassword("original-hash");owner.setIsLocked(false);
+        var response=mvc.perform(auth(put("/users/1").contentType("application/json")
+                .content("{\"userid\":2,\"name\":\"renamed\",\"password\":\"forged\",\"isLocked\":true,\"lockReason\":\"forged\"}"),3))
+                .andReturn().getResponse();
+        var json=new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertEquals(200,json.get("code").asInt());
+        assertEquals(1,json.get("data").get("userid").asLong());
+        assertEquals("original-hash",owner.getPassword());assertFalse(owner.getIsLocked());
+        verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+            var changes=(com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w;
+            assertTrue(changes.getSqlSegment().contains("userid"));
+            assertTrue(changes.getParamNameValuePairs().containsValue(1L));
+            assertFalse(changes.getSqlSet().contains("password"));
+            assertFalse(changes.getSqlSet().contains("is_locked"));return true;
+        }));
+    }
+
     @Test void administratorEmptyAvatarWritesExplicitClear() throws Exception {
         owner.setAvatar("owned.png");
         var response = mvc.perform(auth(put("/users/1").contentType("application/json")

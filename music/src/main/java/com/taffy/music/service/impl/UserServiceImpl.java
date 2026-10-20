@@ -1,6 +1,7 @@
 package com.taffy.music.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.taffy.music.dto.ChangePasswordDTO;
 import com.taffy.music.dto.LoginDTO;
@@ -252,7 +253,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         user.setLockTime(LocalDateTime.now());
         user.setUnlockTime(null);
         user.setUpdatedAt(LocalDateTime.now());
-        userMapper.updateById(user);
+        userMapper.update(null, new LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, id)
+                .set(Users::getIsLocked, true)
+                .set(Users::getLockTime, user.getLockTime())
+                .set(Users::getUnlockTime, null)
+                .set(Users::getUpdatedAt, user.getUpdatedAt()));
     }
     
     @Override
@@ -266,7 +272,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         user.setIsLocked(false);
         user.setUnlockTime(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
-        userMapper.updateById(user);
+        userMapper.update(null, new LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, id)
+                .set(Users::getIsLocked, false)
+                .set(Users::getUnlockTime, user.getUnlockTime())
+                .set(Users::getUpdatedAt, user.getUpdatedAt()));
     }
     
     @Override
@@ -318,7 +328,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         user.setUpdatedAt(LocalDateTime.now());
         
         // 更新用户
-        return userMapper.updateById(user) > 0;
+        return userMapper.update(null, new LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, userId)
+                .set(Users::getPassword, user.getPassword())
+                .set(Users::getUpdatedAt, user.getUpdatedAt())) > 0;
     }
     
     @Override
@@ -374,7 +387,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         user.setLockTime(LocalDateTime.now());
         user.setUnlockTime(null);
         user.setUpdatedAt(LocalDateTime.now());
-        userMapper.updateById(user);
+        userMapper.update(null, new LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, id)
+                .set(Users::getIsLocked, true)
+                .set(reason != null, Users::getLockReason, reason)
+                .set(Users::getLockTime, user.getLockTime())
+                .set(Users::getUnlockTime, null)
+                .set(Users::getUpdatedAt, user.getUpdatedAt()));
     }
     
     @Override
@@ -389,7 +408,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setUpdatedAt(LocalDateTime.now());
         
-        return userMapper.updateById(user) > 0;
+        return userMapper.update(null, new LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, userId)
+                .set(Users::getPassword, user.getPassword())
+                .set(Users::getUpdatedAt, user.getUpdatedAt())) > 0;
     }
     
     private boolean isEmailExists(String email) {
@@ -496,7 +518,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         // 5. Update user's password in DB
         user.setPassword(encodedPassword);
         user.setUpdatedAt(LocalDateTime.now());
-        boolean updateSuccess = this.updateById(user);
+        boolean updateSuccess = userMapper.update(null, new LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, user.getUserid())
+                .set(Users::getPassword, encodedPassword)
+                .set(Users::getUpdatedAt, user.getUpdatedAt())) > 0;
 
         if (updateSuccess) {
             log.info("Password successfully reset for user ID: {}", user.getUserid());
@@ -528,4 +553,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
 
         mailSender.send(message);
     }
-} 
+}

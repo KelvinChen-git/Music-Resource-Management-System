@@ -6,6 +6,7 @@ import com.taffy.music.common.Result;
 import com.taffy.music.domain.Users;
 import com.taffy.music.domain.MusicResources;
 import com.taffy.music.dto.LockUserDTO;
+import com.taffy.music.dto.AdminUpdateUserDTO;
 import com.taffy.music.service.UserService;
 import com.taffy.music.service.MusicResourceService;
 import com.taffy.music.utils.UserContext;
@@ -177,7 +178,7 @@ public class UserController {
      * Update user information
      */
     @PutMapping("/{id}")
-    public Result<Users> updateUser(@PathVariable Long id, @RequestBody Users updatedUser) {
+    public Result<Users> updateUser(@PathVariable Long id, @RequestBody AdminUpdateUserDTO updatedUser) {
         // Check permission
         Result<Users> permissionCheck = checkAdminPermission();
         if (permissionCheck != null) {
@@ -185,7 +186,9 @@ public class UserController {
         }
         
         try {
-            Users user = userService.updateUser(id, updatedUser);
+            Users changes = new Users();
+            BeanUtils.copyProperties(updatedUser, changes);
+            Users user = userService.updateUser(id, changes);
             return Result.success("User information updated successfully", user);
         } catch (Exception e) {
             return Result.error("Failed to update user information: " + e.getMessage());

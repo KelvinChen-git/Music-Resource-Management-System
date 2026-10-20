@@ -1,0 +1,74 @@
+{
+  "task_id": "MUS-021",
+  "owner": "a",
+  "branch": "fix/MUS-021-user-update-boundaries",
+  "source_baseline": "a9655750b6a4a5df07c2d64abd7f809fdd1e5978",
+  "date": "2026-10-20 America/Chicago",
+  "runtime": "shared local JDK17.0.20.1+1; JAVA_HOME set per command; default system java unavailable",
+  "commands": {
+    "before-tests": "cd music && JAVA_HOME=<shared-JDK17> sh ./mvnw -B -ntp -Dtest=UserWriteBoundaryTest,UploadOwnershipHttpTest test",
+    "java-tests": "cd music && JAVA_HOME=<shared-JDK17> sh ./mvnw -B -ntp test",
+    "java-all-named-tests": "cd music && JAVA_HOME=<shared-JDK17> sh ./mvnw -B -ntp -Dtest='*Test' test"
+  },
+  "runs": {
+    "before-tests": {
+      "path": ".local/mus021/before-tests.log",
+      "sha256": "21e85a927b0fbc8ed2f59350762324421599fa9b7bfef092d09823059d00814c",
+      "tests": 64,
+      "failures": 7,
+      "errors": 1,
+      "skipped": 0,
+      "exit_code": 1
+    },
+    "java-tests": {
+      "path": ".local/mus021/java-tests.log",
+      "sha256": "3bb5d6b5ac5555105b5846bb482b27241500ad29a5b5ee9fd501a8ab609d77ee",
+      "tests": 332,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "java-all-named-tests": {
+      "path": ".local/mus021/java-all-named-tests.log",
+      "sha256": "f4d4a320442cc15fca55aa799672a4bfa53aeba04796c2ab708d909df5174275",
+      "tests": 332,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    }
+  },
+  "same_default_and_named_selection": true,
+  "selected_test_classes": {
+    "MusicTagServiceImplTest": 12,
+    "MusicCategoryServiceImplTest": 10,
+    "UserServiceImplTest": 17,
+    "FileUploadControllerTest": 2,
+    "MusicServiceTest": 9,
+    "UploadIntegrityServiceTest": 23,
+    "MediaAccessHttpTest": 155,
+    "FileUploadServiceImplTest": 9,
+    "UploadOwnershipHttpTest": 58,
+    "MediaMetadataBindingTest": 4,
+    "UserWriteBoundaryTest": 6,
+    "FileChunkServiceImplTest": 5,
+    "RecycleBinServiceImplTest": 11,
+    "MusicResourceServiceImplTest": 11
+  },
+  "source_sha256": {
+    "music/src/main/java/com/taffy/music/controller/UserController.java": "3702b105910ff8651174ad3720e2d1048df29ef745ecbf788202496ea95dbeac",
+    "music/src/main/java/com/taffy/music/dto/AdminUpdateUserDTO.java": "b2182636d5fd0aac0af84ba1af551a98c3ad8bb7b0e495e80440a29a239b6792",
+    "music/src/main/java/com/taffy/music/service/impl/UserServiceImpl.java": "b87ae590489c3e4610c66392ba6dadf9f41a1e1db9d6786f5010b1d8bfc91505",
+    "music/src/test/java/UploadOwnershipHttpTest.java": "c0b76631a65075f1984e2cf82d9f4a28e2363b0892ab5ec71e4e6559c1415e9b",
+    "music/src/test/java/UserServiceImplTest.java": "ae67e2830cce53ca9253ddad1ec0a8f6c79a23845897c47211faee33ce5043f5",
+    "music/src/test/java/UserWriteBoundaryTest.java": "cb07ec8129bca2674810217ee52fd1ea72f538fbf9cd7976da74f779c761906a"
+  },
+  "limits": [
+    "Old 64 negative check run had 7 failures and 1 error: two MockMVC empty-object binding failures plus six operation boundary failures/errors; codeReset threw on default mock update result. Not a real database race.",
+    "New six-operation boundary harness applies captured mapper assignments to synthetic concurrent state; no real MySQL or TCP/JVM concurrency verified by A.",
+    "No running service restart or demo data writes.",
+    "No UI/Python/schema/dependency changes; corresponding suites not rerun.",
+    "Existing Druid POM warning retained; BUILD SUCCESS and process exit0 are actual outcomes."
+  ]
+}

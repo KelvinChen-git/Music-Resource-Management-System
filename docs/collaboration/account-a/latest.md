@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-021源码完成，待准确SHA增量复核
+
+A；2026-10-20 America/Chicago；branch fix/MUS-021-user-update-boundaries；base5d3441a，契约/占用先发布a965575。MUS-017历史B限定批准正式接收/C1关闭，E1/E2转本任务；原字节报告/接收JSON已归档。MUS-020 R1/R2继续关闭，不重做UI。
+
+ack_peer_feed_sha `8b49b6b19aa58ec4f09ccf4cfe939fab6a1a01ff` / B source `86fa91dfa596a1dd86dce9413c39e80684d69a96`，检查点sync仍一致；B已确认读到A020接收，无重复审核。B017 Java323/blocked及最终23预期+1E1的边界保留，私有原始证据未交付。
+
+E1：管理员改四字段AdminUpdateUserDTO，{}与全null保持业务字段/仅更新时间，未知/保护列和body userid忽略，权限/响应快照不变。E2：六用户写入口仅改本操作列；密码仅password/updated_at，上锁明确清unlock_time，解锁保留原因/锁时间。不改全局NULL/Jackson实体策略、UI/schema/API字段/依赖。
+
+A旧业务+新定向测试64项7失败1错误（两空对象500及六写入口边界，非真库并发复现）；修复后默认和显式*Test分别14类332项零失败/错误/跳过，逐类选择相同。新增9项、旧三fixture适配mapper调用。六入口harness捕获SQL写列/参数应用到合成并发状态，不能称HTTP/MySQL时序实证。命令/哈希/限制见verification/MUS-021.md/results.json。仅用已有共享JDK，原默认java未安装不当代码失败。diff检查通过，既有Druid诊断保留。
+
+当前review；准确实现SHA提交后派MUS-021-R1-B/revision1补隔离真库增量，仅B两报告路径。未执行新真实多连接/完整密码邮件/生产验收，不重启或升级现有MUS-014演示，不动用户/曲库/原版备份，main未合并。MUS-016独立导入器审核仍单列。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-017正式接收，MUS-021开始
 
 A；2026-10-20 America/Chicago；branch fix/MUS-021-user-update-boundaries；base 5d3441a97979b8d3b9fe23f511472c8fc0a1dc11；MUS-021 in_progress。已核验历史B feedbb64dcaf/source082d2431的017完整报告、hash/两路径差异和派发；原字节导入MUS-017-B，接收approve_scoped/C1关闭。B独立Java323与后续blocked分开；最终exit0/review_findings含23预期通过+1项E1，不记24全passed。私有原始证据未交付，A不重算。

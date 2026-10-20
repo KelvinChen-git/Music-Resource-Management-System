@@ -164,7 +164,7 @@ void changePassword_ShouldUpdatePassword_WhenOldPasswordCorrect() {
         when(passwordEncoder.encode("newPassword")).thenReturn("encodedNewPassword");
         
         // 模拟用户更新
-        when(userMapper.updateById(any(Users.class))).thenReturn(1);
+        when(userMapper.update(isNull(),any(com.baomidou.mybatisplus.core.conditions.Wrapper.class))).thenReturn(1);
 
         // 调用方法
         boolean result = userService.changePassword(changePasswordDTO);
@@ -265,7 +265,7 @@ void updateCurrentUserInfo_ShouldUpdateUserInfo() {
         userService.lockUser(1L);
 
         assertTrue(testUser.getIsLocked());
-        verify(userMapper, times(1)).updateById(testUser);
+        verify(userMapper, times(1)).update(isNull(),any(com.baomidou.mybatisplus.core.conditions.Wrapper.class));
     }
 
     @Test
@@ -276,7 +276,7 @@ void updateCurrentUserInfo_ShouldUpdateUserInfo() {
         userService.unlockUser(1L);
 
         assertFalse(testUser.getIsLocked());
-        verify(userMapper, times(1)).updateById(testUser);
+        verify(userMapper, times(1)).update(isNull(),any(com.baomidou.mybatisplus.core.conditions.Wrapper.class));
     }
 
     @Test

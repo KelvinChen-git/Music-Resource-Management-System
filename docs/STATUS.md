@@ -54,6 +54,8 @@
 | MUS-012-R1-B 媒体与上传所有权独立审核 | review_completed / B（request_changes） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
 | MUS-013 B审核发现修复 | review / A（本机修复后实跑通过，B增量待复核） | fix/MUS-013-b-review-findings / 6a29de4；实现c100fd6 | Java317 / Python28通过；R1/R2旧服务已复现，两套各修复后HTTP11 / 临时库8已通过 |
 | MUS-013-R1-B 增量复核 | assigned / B（待确认） | review/MUS-013-B-review-findings / c100fd6 | 仅新B审核正文与own latest；复核R1/R2/R3和profile字段更新、脚本隔离 |
+| MUS-017 管理员NULL头像 | done / A（B限定批准正式接收，未升级演示服务） | fix/MUS-017-admin-avatar-null / f351b0e | C1关闭；23预期真库业务项+E1单列，E1/E2转MUS-021 |
+| MUS-021 用户写入边界 | review / A（源码/确定性回归完成，真库增量待B） | fix/MUS-021-user-update-boundaries / 5d3441a；契约a965575 | 四字段DTO接受空对象；六用户写入口专属写列；默认/显式各332 Java通过 |
 | MUS-019 Sonora 应用副本 | review / A（R1/R2已由MUS-020关闭） | feat/MUS-019-sonora-app / f68b7fb | 真实Vue新界面保留；不把增量批准外推整站、完整上传或管理写操作 |
 | MUS-020 Sonora R1/R2修复 | done / A（本卡范围已验收，未合并main） | fix/MUS-020-sonora-review / 802da6b | B限定批准已核验接收；仅文档接收，不重做UI |
 | MUS-020-R1-B 增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-020-B-sonora-findings / d8bba9d | 原字节报告与接收记录已归档，固定入口waiting；无新任务派发 |
@@ -304,7 +306,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B真实受控SQL/HTTP旧快照中两入口拒绝已删除旧A，保留B；performance_schema确认等待用户写入时上传X锁仍持有。不是三正常HTTP参与者全流程竞争。私有原始日志不在A，A不重算其哈希。
 - 新登记C1：管理员avatar:null响应null但真库保留旧头像，属于P2既有差异；旧空字符串确实清空。批准不涵盖NULL语义。A以MUS-017明确并修复，MUS-015新Java尚未在A本机重新启动。
 
-## MUS-017 管理员更新NULL头像语义（当前占用）
+## MUS-017 管理员更新NULL头像语义（已限定验收；下列为历史实现检查点）
 
 - owner A，branch fix/MUS-017-admin-avatar-null，base3092ae2。范围UserServiceImpl、UploadOwnershipHttpTest、CONTRACTS/STATUS/README/own交接/verification/MUS-017*/派发；B原报告只导入不改。
 - 契约：avatar缺字段或null保持当前值，空字符串清空，非空路径每次requireAvatar。管理员仅写本次非null提交字段，避免为响应保留旧值而把旧头像/锁/密码等实体状态回写；不改全局NULL写入策略、schema或依赖。
@@ -385,3 +387,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B报告Java323来自后续blocked命令；独立最终命令exit0/status review_findings，23预期业务检查通过及1项E1差异单列，不写24全passed。旧55/3预期失败、SQL fixture受控交错与performance_schema锁证据保留；不是三个正常HTTP参与者竞争。私有日志/工具未交付，A不重算其原始哈希。
 - E1/P3：空对象在实体身份反序列化时业务500；选择与全null相同的“保持字段”语义，仅updated_at可更新，以专用四字段DTO解除实体身份绑定，不改全局Jackson/NULL策略。E2/P2静态风险：lockUser/unlockUser/changePassword/lockUserWithReason/resetUserPassword/resetPassword六处完整实体写入，改为各自实际变更列；未复现真库并发覆盖前不声称已证实漏洞。契约先更新，精确实现提交后派B增量真库复核。
 - B固定入口暂waiting；MUS-016导入器独立审核另列。原版备份和现有曲库/服务保留；本轮不触碰真实邮件或用户数据。
+
+
+### MUS-021实现与检查点
+
+- E1专用AdminUpdateUserDTO解除Users输入身份绑定，空对象仅写updated_at，管理员/普通权限与路径目标、四字段/保护列边界保持；E2六入口均改专属LambdaUpdateWrapper，密码仅password/updated_at、锁定仅本操作列。新上锁显式清unlock_time，解锁保留锁原因/时间。无全局NULL/schema/依赖/UI变更，契约A10。
+- 修复前定向64项：7 failures/1 error/0 skipped；两项空对象MockMVC业务500及六入口mapper写列边界失败/错误，codeReset旧mock返回0导致原异常；不是旧并发覆盖真库复现。修复后默认和显式*Test两个独立命令均14类332项零失败/错误/跳过，选择逐类一致；新9项，旧3fixture适配mapper调用。共享JDK逐命令JAVA_HOME，未改系统Java。见 [MUS-021验证](verification/MUS-021.md) / [结果JSON](verification/MUS-021-results.json)。
+- 六入口测试捕获wrapper赋值并应用到合成并发状态，校验目标/专属列和未改字段保留；不把它称作HTTP/MySQL并发。B精确实现提交后补真库响应/受控时序；现有A/B演示仍旧MUS-014，不重启、不触碰真实邮箱/数据。MUS-016独立审核继续待办。
