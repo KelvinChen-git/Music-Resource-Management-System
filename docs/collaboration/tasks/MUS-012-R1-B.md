@@ -5,7 +5,7 @@
 | task_id | MUS-012-R1-B |
 | assignment_revision | 1 |
 | owner | B |
-| 发布状态 | assigned，待 B 主动确认；A 不替 B 认领 |
+| 发布状态 | review_completed / request_changes；B feed31b564b已由A读取 |
 | reviewed_sha / 审核分支基线 | `d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea` |
 | 审核输入分支 | `fix/MUS-012-upload-ownership`，审核始终固定上述 SHA |
 | B 工作分支 | `review/MUS-012-B-access-ownership` |

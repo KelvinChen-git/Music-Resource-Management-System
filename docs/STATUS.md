@@ -50,6 +50,8 @@
 | MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
 | MUS-012 上传持久所有权 | review / A（本机矩阵通过；B request_changes，待MUS-013复核） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，两套本机各 65 上传 / 144 媒体检查已通过 |
 | MUS-012-R1-B 媒体与上传所有权独立审核 | review_completed / B（request_changes） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
+| MUS-013 B审核发现修复 | review / A（修复后实跑待补） | fix/MUS-013-b-review-findings / 6a29de4；实现c100fd6 | Java317 / Python28通过；R1/R2旧服务已复现，修复后HTTP11 / 临时库8尚未通过 |
+| MUS-013-R1-B 增量复核 | assigned / B（待确认） | review/MUS-013-B-review-findings / c100fd6 | 仅新B审核正文与own latest；复核R1/R2/R3和profile字段更新、脚本隔离 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -192,7 +194,7 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 八份原始JSON与MUS-012-live-results.json已归档。当前仍review：B账号独立审核未完成；遗留owner隔离、物理垃圾回收及MUS-009故障回滚 / 并发 / 跨进程续传仍单列。服务重启不等于上传中断恢复通过。
 
 
-## B 当前待领取任务：MUS-012-R1-B
+## B 首次固定领取任务：MUS-012-R1-B（已完成，当前见MUS-013新卡）
 
 - A 发布任务，owner B；assignment_revision 1；reviewed_sha d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea；status assigned，未认领。开始时 sync 的 B feed 仍为05d4e9f / source6e4118c，不冒充B主动确认。
 - 固定任务入口 `docs/collaboration/tasks/account-b.json`，正文 `docs/collaboration/tasks/MUS-012-R1-B.md`；必须按 A handoff.source_sha 读取。任务分支 `review/MUS-012-B-access-ownership` 从 reviewed_sha 创建。
@@ -217,3 +219,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 旧服务中R1/R2已由A用合成fixture真实复现：他人旧DELETE204、主记录0、原始文件200、重新绑定成功；createUser插入avatar后图片匿名200。该绕过账号已删除，恢复资源引用并软删除，临时管理员降权；不是固定版本验收。
 - Java317 / 0失败错误跳过，Python28通过；现有V002加严校验只读通过。独立临时MySQL初始化在当前受管进程失败，8项真库探针尚未执行，且没有连接现有库。新11项修复后HTTP验收未执行，不能以旧308/65/144矩阵概括。
 - 新baseline已接入独立临时数据库8检查、修复后HTTP11检查，普通终端两端重启后自动运行。故障/并发/重启任务仍待后续，不冒充本批通过。
+
+
+### MUS-013 实现提交与新复核派发
+
+- 实现提交c100fd6510fe1061396be16973a7560ed2b89e7f；本机B干净工作树已同步至该提交，原Java进程未重启。新运行证据待普通终端补齐。
+- 新卡MUS-013-R1-B / revision1，owner B，status assigned未认领；固定入口指向tasks/MUS-013-R1-B.md，reviewed_sha为c100fd6，比较d7c9faa。B只写docs/reviews/MUS-013-B.md与own latest，不重新认领已完成旧卡、不代写修复源码。
+- A等待普通终端317 Java / 原基线 / 新8迁移与11HTTP证据，并接收B增量复核；故障/并发/恢复顺延。发布前不声称新卡已收到或已批准。

@@ -18,9 +18,9 @@ A / B 远端固定交接已启用。当前任务入口是 A 发布源码中的 `
 
 ## 当前审核与回传
 
-MUS-012-R1-B审核基线固定为 `d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea`。任务发布所在的A source_sha可能更新，仅按任务入口的revision判断是否需要重新领取，不能把新的A文档提交当成新的审核对象。
+MUS-012-R1-B已完成request_changes；当前MUS-013-R1-B审核基线固定为 `c100fd6510fe1061396be16973a7560ed2b89e7f`。任务发布所在的A source_sha可能更新，仅按任务入口的revision判断是否需要重新领取，不能把新的A文档提交当成新的审核对象。
 
-具体范围、B分支与交付路径以 [任务卡](tasks/MUS-012-R1-B.md) 为准。只允许 B 创建 / 更新自己的审核报告和 latest；A 没有替 B 创建领取确认。没有独立 Java / MySQL 运行条件时继续静态审核并单列运行blocked，不重复失败命令，不写已经通过。
+具体范围、B分支与交付路径以 [任务卡](tasks/MUS-013-R1-B.md) 为准。只允许 B 创建 / 更新自己的审核报告和 latest；A 没有替 B 创建领取确认。没有独立 Java / MySQL 运行条件时继续静态审核并单列运行blocked，不重复失败命令，不写已经通过。
 
 回传使用 `python3 scripts/collab.py publish --account b`（旧基线缺脚本时可用本机提取副本）。原子发布源码任务分支与B feed，成功后A可自行获取；用户无需复制正文。若B只有读权限，领取和报告回传仍blocked，需要其自身运行环境具备Git写权限，不能声称A已收到。
 

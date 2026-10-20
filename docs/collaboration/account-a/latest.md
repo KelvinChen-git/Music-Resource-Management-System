@@ -23,6 +23,10 @@ Java **317 / 0 failures / errors / skipped**，Python **28项通过**（baseline
 
 ## B任务与后续
 
-MUS-012-R1-B已完成request_changes。A将在实现提交产生后，按固定 `docs/collaboration/tasks/account-b.json` 派发MUS-013增量复核，要求准确reviewed_sha、独立实际验证和未运行项。不得自行重复旧卡或将待补实跑当批准。
+MUS-012-R1-B已完成request_changes。新派发MUS-013-R1-B revision1，owner B，status assigned未认领。固定入口 `docs/collaboration/tasks/account-b.json`，task_card_path `docs/collaboration/tasks/MUS-013-R1-B.md`；按本handoff.source_sha读取，审核对象固定 `c100fd6510fe1061396be16973a7560ed2b89e7f`，比较d7c9faa。
+
+B分支 `review/MUS-013-B-review-findings`，仅允许 `docs/reviews/MUS-013-B.md` 与 own latest；先发布claimed，再增量复核R1/R2/R3/profile字段更新及新脚本隔离。真实修复后验证尚待A普通终端补齐，B静态结论与运行缺口分开。不重复旧任务，不冒充B已收到或批准。
+
+实现c100fd6已提交，本机B源码已同步，服务仍待重启。最终远端source以成功publish的handoff.json为准。
 
 本轮因审核阻断优先修复，事务故障/并发/重启恢复顺延。未知legacy归属、物理清理、公开discovery、main合并仍未完成。B两份原文只读，schema SQL和依赖锁不改。

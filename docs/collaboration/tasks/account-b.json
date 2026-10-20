@@ -1,20 +1,26 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-012-R1-B",
+  "task_id": "MUS-013-R1-B",
   "assignment_revision": 1,
-  "status": "review_completed",
-  "claimed_by_b": true,
-  "task_card_path": "docs/collaboration/tasks/MUS-012-R1-B.md",
-  "reviewed_sha": "d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea",
-  "review_branch": "review/MUS-012-B-access-ownership",
+  "status": "assigned",
+  "claimed_by_b": false,
+  "task_card_path": "docs/collaboration/tasks/MUS-013-R1-B.md",
+  "reviewed_sha": "c100fd6510fe1061396be16973a7560ed2b89e7f",
+  "comparison_base_sha": "d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea",
+  "review_branch": "review/MUS-013-B-review-findings",
   "allowed_output_paths": [
-    "docs/reviews/MUS-012-B.md",
+    "docs/reviews/MUS-013-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
-  "note": "Read this dispatch at the A handoff source_sha. A publishes assignments; only B can acknowledge or complete them. No background runner is created.",
-  "review_verdict": "request_changes",
-  "delivery_source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
-  "delivery_feed_sha": "31b564b7cce09994ec661c48b7544964ebabb052"
+  "previous_task": {
+    "task_id": "MUS-012-R1-B",
+    "assignment_revision": 1,
+    "status": "review_completed",
+    "verdict": "request_changes",
+    "source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
+    "feed_sha": "31b564b7cce09994ec661c48b7544964ebabb052"
+  },
+  "note": "Read at A handoff.source_sha; new fixed-runtime evidence may arrive without changing task revision. No B approval or claim is inferred."
 }

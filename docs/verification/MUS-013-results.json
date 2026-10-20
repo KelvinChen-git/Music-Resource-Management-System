@@ -137,7 +137,11 @@
     "expected_disposable_checks": 8
   },
   "profile_update": "Explicit editable-column update; no live race execution claimed.",
-  "publication": "pending",
+  "publication": {
+    "source_branch": "fix/MUS-013-b-review-findings",
+    "authoritative_record": "collab/account-a/handoff.json after successful publication",
+    "note": "This report is committed before publication; it does not itself prove a push."
+  },
   "limits": [
     "Fixed-runtime HTTP is not passed yet.",
     "Disposable-native MySQL initialization failed here; no unknown-schema live DDL pass claimed.",
@@ -152,5 +156,7 @@
     "MUS-013-existing-migration.json": "32be06aa18b87216c430cd79e7747eb50fb22acbe1206f542ae9db73818babf3",
     "MUS-013-migration-probe.json": "f90c19644867077cec5609d2cfae412e31cbe5bda6a9f9836084fa52fe424071",
     "MUS-013-migration-native.log": "0c49bd66bb4a17322b4e1c4b8808cd9774b833b5ef1c3ff2ab4f7c2074525e65"
-  }
+  },
+  "implementation_commit": "c100fd6510fe1061396be16973a7560ed2b89e7f",
+  "local_b_worktree_source": "c100fd6510fe1061396be16973a7560ed2b89e7f"
 }
