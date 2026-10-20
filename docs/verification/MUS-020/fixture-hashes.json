@@ -1,0 +1,7 @@
+{
+  "before.html": "a2e87469a0df9372d0ddbda4950d23cb69c20c048a1e05b8dc563e5162d03e0c",
+  "before.css": "c13e736c1252a207cfd4991c4124c95dccaac067c418c7871a277639dc8c9f99",
+  "after.html": "a90d1bba325431b304694ed6ec5c67bc011c218ac6388ffdd93fde6441c6e287",
+  "after.css": "6b86eb39556a8c5b90a627df3dfef5e295e3b7ec7694fab49c4189a0057ec2d6",
+  "check-admin-navigation.mjs": "8d28ab4094fabd965b7c9b2cef1474403e90f3afbe9fb3c8b980e02f80a677a4"
+}

@@ -1,0 +1,24 @@
+{
+  "scope": "Offline product-CSS fixture with long title, plus real authenticated 20-track list",
+  "before": {
+    "documentWidth": 1432,
+    "favoriteLeft": 1404.9765625,
+    "favoriteRight": 1431.9765625,
+    "width": 390
+  },
+  "after": {
+    "documentWidth": 390,
+    "favoriteLeft": 327,
+    "favoriteRight": 354,
+    "titleScrollWidth": 1296,
+    "titleWidth": 218,
+    "width": 390
+  },
+  "actualMobile": {
+    "allFavoriteControlsWithinViewport": true,
+    "documentWidth": 384,
+    "maxTitleLength": 100,
+    "rows": 20,
+    "width": 390
+  }
+}

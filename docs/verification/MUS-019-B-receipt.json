@@ -1,0 +1,13 @@
+{
+  "peer_feed_sha": "f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46",
+  "peer_source_sha": "30bbd71ce34d0df6580680180498dc7eb22a19e6",
+  "reviewed_sha": "f68b7fbba63ea58ad10dfe326d0197d1cc6b15ce",
+  "verdict": "request_changes",
+  "imported_report_sha256": "f9379a51c125bf9c11b82b0d25597e5cb439082796a1dea30014eb93f21ac651",
+  "peer_latest_sha256": "0863e90a28bb25809523e1911c9149c6b6246cb76cda18f561c0b281bfdfe141",
+  "source_changed_paths": [
+    "docs/collaboration/account-b/latest.md",
+    "docs/reviews/MUS-019-B.md"
+  ],
+  "evidence_limit": "Only delivered report/latest bytes verified; private logs/screenshots not delivered and not rehashed by A."
+}

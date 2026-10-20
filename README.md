@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录、`feat/MUS-019-sonora-app` 分支**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前增量修复分支 `fix/MUS-020-sonora-review`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -156,3 +156,5 @@ A环境已导入20首Jamendo CC BY完整音乐。打开 http://127.0.0.1:5173/de
 
 
 管理员用户编辑的MUS-017候选约定：头像省略或null保持，空字符串清空，非空路径校验；按提交字段局部写入，避免旧头像/安全字段回写。Java323通过，尚待新版本真库验收；现有服务未重启。详见[MUS-017](docs/verification/MUS-017.md)。
+
+MUS-020 已接收B的两项request_changes并作最小修复：手机长标题列表明确允许信息列收缩；管理员按用户名/邮箱查音乐改至 `/manage/music`。复核与运行边界见 [MUS-020](docs/verification/MUS-020.md)，新B增量卡按准确实现SHA派发。

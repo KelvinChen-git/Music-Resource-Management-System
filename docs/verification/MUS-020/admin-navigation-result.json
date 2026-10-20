@@ -1,0 +1,51 @@
+{
+  "scope": "Execute actual handler bodies with router/message substitutes; not a real admin HTTP/browser test",
+  "before": [
+    {
+      "method": "searchMusicByUsername",
+      "target": {
+        "path": "/music",
+        "query": {
+          "username": "Other + QA"
+        }
+      },
+      "correctManagementRoute": false,
+      "missingValueBlocked": true
+    },
+    {
+      "method": "searchMusicByEmail",
+      "target": {
+        "path": "/music",
+        "query": {
+          "email": "other+qa@example.invalid"
+        }
+      },
+      "correctManagementRoute": false,
+      "missingValueBlocked": true
+    }
+  ],
+  "after": [
+    {
+      "method": "searchMusicByUsername",
+      "target": {
+        "path": "/manage/music",
+        "query": {
+          "username": "Other + QA"
+        }
+      },
+      "correctManagementRoute": true,
+      "missingValueBlocked": true
+    },
+    {
+      "method": "searchMusicByEmail",
+      "target": {
+        "path": "/manage/music",
+        "query": {
+          "email": "other+qa@example.invalid"
+        }
+      },
+      "correctManagementRoute": true,
+      "missingValueBlocked": true
+    }
+  ]
+}

@@ -645,7 +645,7 @@ export default {
     // Expose new methods
     const searchMusicByUsername = (user) => {
       if (user?.name) {
-        router.push({ path: '/music', query: { username: user.name } })
+        router.push({ path: '/manage/music', query: { username: user.name } })
       } else {
         ElMessage.warning('Cannot search: Username is missing.')
       }
@@ -653,7 +653,7 @@ export default {
 
     const searchMusicByEmail = (user) => {
       if (user?.email) {
-        router.push({ path: '/music', query: { email: user.email } })
+        router.push({ path: '/manage/music', query: { email: user.email } })
       } else {
         ElMessage.warning('Cannot search: Email is missing.')
       }
