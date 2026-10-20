@@ -1,0 +1,156 @@
+{
+  "task": "MUS-013",
+  "base_sha": "6a29de4cab2da6ac149b816165b5f058612bd133",
+  "peer_review": {
+    "feed_sha": "31b564b7cce09994ec661c48b7544964ebabb052",
+    "source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
+    "reviewed_sha": "d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea",
+    "verdict": "request_changes",
+    "findings": [
+      "R1",
+      "R2",
+      "R3"
+    ]
+  },
+  "status": "review_pending_fixed_runtime_acceptance",
+  "java": {
+    "tests": 317,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "RecycleBinServiceImplTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MediaAccessHttpTest",
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicServiceTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "UserServiceImplTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileChunkServiceImplTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MediaMetadataBindingTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileUploadControllerTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "UploadIntegrityServiceTest",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileUploadServiceImplTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicCategoryServiceImplTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicResourceServiceImplTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "UploadOwnershipHttpTest",
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicTagServiceImplTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "python": {
+    "tests": 28,
+    "failures": 0,
+    "scope": "baseline9, collaboration9, migration10"
+  },
+  "before_http": {
+    "status": "reproduced_on_previous_runtime",
+    "source_sha": "4b3ec3f142e993851da605cd8c38fa378ddb1958",
+    "evidence": "MUS-013-a-before-http.json"
+  },
+  "after_http": {
+    "status": "not_run",
+    "reason": "New Java process previously blocked by managed environment; existing normal-Terminal services still run MUS-012. No repeat attempt.",
+    "expected_checks": 11
+  },
+  "migration": {
+    "recognized_existing_v002": "passed (read-only)",
+    "unknown_structure_callback_regressions": "passed",
+    "disposable_native_mysql_probe": {
+      "status": "blocked",
+      "error": "Disposable MySQL initialization failed; see private native log."
+    },
+    "expected_disposable_checks": 8
+  },
+  "profile_update": "Explicit editable-column update; no live race execution claimed.",
+  "publication": "pending",
+  "limits": [
+    "Fixed-runtime HTTP is not passed yet.",
+    "Disposable-native MySQL initialization failed here; no unknown-schema live DDL pass claimed.",
+    "No new schema SQL, dependency or main changes.",
+    "Fault rollback, concurrent requests and restart recovery remain pending.",
+    "B has not approved this fix."
+  ],
+  "log_sha256": {
+    "MUS-013-java-tests.log": "eabf811c91f52175df8944d1cefa133ecb70f5d573b12cd11ae8664836dfa734",
+    "MUS-013-python-tests.log": "02f85afae3279f3d01be33027fc8f6c54fa00c082e24cd00d57aab029b3ab3cd",
+    "MUS-013-before-http.json": "697cd831ea6ea9b053262f03ce1eb1be1c6511666543a066a59a2cff34464029",
+    "MUS-013-existing-migration.json": "32be06aa18b87216c430cd79e7747eb50fb22acbe1206f542ae9db73818babf3",
+    "MUS-013-migration-probe.json": "f90c19644867077cec5609d2cfae412e31cbe5bda6a9f9836084fa52fe424071",
+    "MUS-013-migration-native.log": "0c49bd66bb4a17322b4e1c4b8808cd9774b833b5ef1c3ff2ab4f7c2074525e65"
+  }
+}

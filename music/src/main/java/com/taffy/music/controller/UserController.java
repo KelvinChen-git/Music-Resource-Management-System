@@ -84,6 +84,8 @@ public class UserController {
         try {
             Users createdUser = userService.createUser(user);
             return Result.success("User created successfully", createdUser);
+        } catch (org.springframework.web.server.ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             return Result.error("Failed to create user: " + e.getMessage());
         }

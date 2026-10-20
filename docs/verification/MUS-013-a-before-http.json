@@ -1,0 +1,28 @@
+{
+  "slot": "a",
+  "mode": "observe",
+  "status": "observed",
+  "check_count": 3,
+  "checks": [
+    "rejected original raw bytes unavailable",
+    "unregistered image is private before createUser",
+    "fixture cleanup leaves image private"
+  ],
+  "observations": {
+    "R1": {
+      "legacy_delete_http": 204,
+      "resource_rows_after_delete": 0,
+      "raw_http_after_delete": 200,
+      "rebind_succeeded": true
+    },
+    "R2": {
+      "create_user_http": 200,
+      "created_rows": 1,
+      "anonymous_image_http": 200
+    }
+  },
+  "limits": [
+    "Synthetic fixtures; mode observe is old-runtime evidence, not fixed-runtime acceptance.",
+    "No fault rollback, concurrency or restart recovery claim."
+  ]
+}

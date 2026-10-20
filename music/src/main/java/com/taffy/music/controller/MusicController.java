@@ -12,6 +12,9 @@ public class MusicController {
 
     private final MusicService musicService;
 
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.taffy.music.service.MediaAccessService mediaAccessService;
+
     public MusicController(MusicService musicService) {
         this.musicService = musicService;
     }
@@ -37,6 +40,7 @@ public class MusicController {
     // 删除音乐资源
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMusic(@PathVariable Long id) {
+        mediaAccessService.requireViewer();
         musicService.deleteMusic(id);
         return ResponseEntity.noContent().build();
     }

@@ -73,9 +73,14 @@ class UploadOwnershipHttpTest {
         var interceptor = new JwtAuthenticationInterceptor(); ReflectionTestUtils.setField(interceptor,"jwtUtil",jwt);
         var profileService = new com.taffy.music.service.impl.UserServiceImpl();
         ReflectionTestUtils.setField(profileService,"userMapper",users);
+        ReflectionTestUtils.setField(profileService,"baseMapper",users);
         ReflectionTestUtils.setField(profileService,"uploadAccessService",access);
         var profile = new AuthController();ReflectionTestUtils.setField(profile,"userService",profileService);
-        mvc = MockMvcBuilders.standaloneSetup(controller,resource,profile).setControllerAdvice(new GlobalExceptionHandler())
+        var legacy = new MusicController(new MusicService(mock(com.taffy.music.repositories.MusicResourceRepository.class)));
+        ReflectionTestUtils.setField(legacy,"mediaAccessService",new MediaAccessService(
+                mock(MusicResourceService.class),files,profileService,properties));
+        var administration = new UserController(profileService,new com.fasterxml.jackson.databind.ObjectMapper());
+        mvc = MockMvcBuilders.standaloneSetup(controller,resource,profile,legacy,administration).setControllerAdvice(new GlobalExceptionHandler())
                 .addInterceptors(interceptor).build();
     }
     @AfterEach void clear() { UserContext.clear(); }
@@ -159,19 +164,22 @@ class UploadOwnershipHttpTest {
     @Test void avatarCannotPublishAnotherOwnersPrivateImage() throws Exception {
         upload.setStatus(1);upload.setFilePath("private.png");upload.setOwnerUserId(2L);
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"private.png\"}"),1,404);
-        verify(users,never()).updateById(any(Users.class));
+        verify(users,never()).update(isNull(),any(Wrapper.class));
     }
     @Test void avatarCannotClaimLegacyOrIncompleteImage() throws Exception {
         upload.setStatus(1);upload.setFilePath("legacy.png");upload.setOwnerUserId(null);
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"legacy.png\"}"),1,404);
         upload.setOwnerUserId(1L);upload.setStatus(0);
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"legacy.png\"}"),1,404);
-        verify(users,never()).updateById(any(Users.class));
+        verify(users,never()).update(isNull(),any(Wrapper.class));
     }
     @Test void ownCompleteImageCanBecomeAvatarAndThenCannotBeDeleted() throws Exception {
         upload.setStatus(1);upload.setFilePath("owned.png");
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"owned.png\"}"),1,200);
-        verify(users).updateById(argThat((Users u)->"owned.png".equals(u.getAvatar())));
+        verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+            String sql=((com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w).getSqlSet();
+            assertTrue(sql.contains("avatar"));assertFalse(sql.contains("role"));assertFalse(sql.contains("is_locked"));return true;
+        }));
         when(users.selectList(any(Wrapper.class))).thenReturn(List.of(owner));
         status(delete("/file/9"),1,409);verify(files,never()).removeById(anyLong());
     }
@@ -179,5 +187,41 @@ class UploadOwnershipHttpTest {
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"track.mp3\"}"),1,404);
         owner.setIsLocked(true);
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"owned.png\"}"),1,403);
+    }
+
+    @TestFactory Stream<DynamicTest> legacyDeletionIsUnavailableToEveryIdentity() {
+        return Stream.of(0,1,2,3).map(viewer->DynamicTest.dynamicTest("legacy delete/viewer="+viewer,()-> {
+            status(delete("/music/42"),viewer,viewer==0?401:410);
+            verify(files,never()).removeById(anyLong());
+        }));
+    }
+    @Test void legacyDeleteRechecksLockedAndRemovedAccounts() throws Exception {
+        owner.setIsLocked(true);status(delete("/music/42"),1,403);
+        when(users.selectById(1L)).thenReturn(null);status(delete("/music/42"),1,401);
+    }
+    @Test void administratorCannotCreateNewUserWithAnyExistingAvatar() throws Exception {
+        status(post("/users").contentType("application/json")
+                .content("{\"name\":\"fixture\",\"email\":\"new@example.invalid\",\"avatar\":\"private.png\"}"),3,400);
+        verify(users,never()).insert(any(Users.class));
+    }
+    @Test void administratorCreationRechecksCurrentLock() throws Exception {
+        admin.setIsLocked(true);
+        status(post("/users").contentType("application/json").content("{\"name\":\"fixture\"}"),3,403);
+        verify(users,never()).insert(any(Users.class));
+    }
+    @Test void blankAvatarOnNewUserIsNormalizedToNull() throws Exception {
+        status(post("/users").contentType("application/json")
+                .content("{\"name\":\"fixture\",\"avatar\":\"  \"}"),3,200);
+        verify(users).insert(argThat((Users u)->u.getAvatar()==null));
+    }
+    @Test void profileWritesOnlyEditableFieldsEvenWhenSnapshotContainsSecurityState() throws Exception {
+        owner.setRole("ADMIN");owner.setIsLocked(false);owner.setPassword("synthetic-hash");
+        status(put("/auth/profile").contentType("application/json").content("{\"name\":\"new name\"}"),1,200);
+        verify(users).update(isNull(),argThat((Wrapper<Users> w)-> {
+            String sql=((com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>)w).getSqlSet();
+            assertTrue(sql.contains("name"));assertFalse(sql.contains("role"));
+            assertFalse(sql.contains("is_locked"));assertFalse(sql.contains("password"));return true;
+        }));
+        verify(users,never()).updateById(any(Users.class));
     }
 }

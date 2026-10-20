@@ -72,16 +72,11 @@ class MusicServiceTest {
     }
 
     @Test
-    void deleteMusic_ShouldCallRepositoryDelete() {
-        // Arrange
-        Long musicId = 1L;
-        doNothing().when(musicResourceRepository).deleteById(musicId);
-
-        // Act
-        musicService.deleteMusic(musicId);
-
-        // Assert
-        verify(musicResourceRepository).deleteById(musicId);
+    void deleteMusicCannotEraseModerationReferences() {
+        var failure = assertThrows(org.springframework.web.server.ResponseStatusException.class,
+                () -> musicService.deleteMusic(1L));
+        assertEquals(410, failure.getStatusCode().value());
+        verifyNoInteractions(musicResourceRepository);
     }
 
     @Test

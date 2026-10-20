@@ -1,40 +1,28 @@
 # 账号 A 最新交接
 
 - account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
-- task MUS-012 上传持久所有权；branch `fix/MUS-012-upload-ownership`；base `dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73`；status review（实现、自动测试及两套本机真实 HTTP 通过；B 独立审核待完成）。
-- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮验收时原生 git sync 成功，B 仍为 source 6e4118c / reviewed 7ab0d39，仍无新交付；不替 B 写报告或确认。
-- 已发布实现：MUS-012 验收最终提交d7c9faa / feed5592274；本轮真实运行A为4b3ec3f、本机B为078a82b，仅四份文档不同，运行源码一致。最新最终source以远端handoff.json为准。
+- task MUS-013 B审核发现修复；branch `fix/MUS-013-b-review-findings`；base `6a29de4cab2da6ac149b816165b5f058612bd133`；status review，修复后真实运行待补。
+- ack_peer_feed_sha: `31b564b7cce09994ec661c48b7544964ebabb052`；B source `21d002c7592f21a81b8fc715bdc245ad1ae3ee6c`，reviewed_sha d7c9faa，MUS-012-R1-B revision1已主动claimed并review_completed，verdict request_changes。A接受发现，不代写B报告或批准。
+- B独立Python22 / Node6 / build通过，Java0（Maven依赖DNS阻塞）、无独立MySQL/HTTP。A本机双槽旧308/144/65结果不算B执行，也不能覆盖其发现。
 
-## 当前给 B 的任务（待领取）
+## 当前修复与证据
 
-- task_id: MUS-012-R1-B；assignment_revision: 1；owner: b；task_status: assigned，等待B主动确认。
-- 固定派发入口：`docs/collaboration/tasks/account-b.json`；task_card_path：`docs/collaboration/tasks/MUS-012-R1-B.md`。两者都按本 feed 的 handoff.source_sha 从源码读取，不能从旧 main 取。
-- reviewed_sha / B分支基线：`d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea`；B任务分支：`review/MUS-012-B-access-ownership`。
-- 目标：独立审核MUS-011媒体访问 / 缓存和MUS-012上传持久所有权、迁移、头像绑定与回归证据。审核目标SHA固定，A的后续文档发布不触发重复审核。
-- 允许B交付：`docs/reviews/MUS-012-B.md`、`docs/collaboration/account-b/latest.md`。先在B feed发布claimed，包含task_id / revision / reviewed_sha / assignment_source_sha / 实际ack_peer_feed_sha；完成后发布review_completed及approve / request_changes / blocked，运行补证单列。不要代写A台账或直接修业务代码。
-- 先核对自己的B feed有无本任务同revision的claimed / completed；继续在途任务，已完成则等待新任务，不重复领取。缺运行条件如实blocked，仍做可独立完成的静态审查，不能复制A测试数量当B已跑。
-- A已核验本机双槽结果，未取得B账号本任务确认。A下一业务工作为故障回滚 / 并发 / 重启恢复；本轮只发布这张任务卡。
+R1旧DELETE /music/{id}已停用，有效当前账号410，匿名/失效401、锁定403，MusicService不再JPA硬删；保留标准软删除。R2 createUser重新核验当前管理员并在insert前400拒绝非空avatar，空白归一NULL。profile改为仅写可编辑列，避免完整实体回写role/is_locked/password。
 
-## 本次改动
+R3迁移在DDL/版本登记前验证准确11表集合、file_upload必要列/主键，owner列NULL默认/nullable/非生成、索引列序/非唯一/BTREE；SQL V001/V002不改、不回填。加严检查对现有A V002只读复核通过。
 
-契约先记入 CONTRACTS A5。新上传持久保存 owner_user_id，按当前数据库有效账号隔离 create / upload、MD5 check / list、详情 / 进度 / 缺片、分片 / 合并 / 删除、metadata 首次解析与绑定；管理员不能代操作他人上传。首绑定 / 写操作在上传行锁内检查所有者，保留审核 / 删除的反重绑定检查。新头像绑定只接受目标账号自己的完整图片上传，避免 profile 将他人图片公开。
+Java **317 / 0 failures / errors / skipped**，Python **28项通过**（baseline9 / collab9 / migration10）。R1/R2在旧普通终端服务用合成数据实测：他人旧DELETE204后主记录0、原始下载200且重绑定成功；createUser登记他人图片后匿名200。测试绕过账号已删除、资源引用恢复并软删除、临时管理员finally降权。
 
-删除未引用的自有上传只逻辑删除并保留字节 / 分片，音乐（含 deleted）或头像引用返回 409。已有音乐媒体继续按审核可见性读取；无引用完整上传仅持久 owner 下载，旧 NULL owner 不构成可认领上传。
+验证正文 [MUS-013](../../verification/MUS-013.md)、机器汇总 [results](../../verification/MUS-013-results.json)、旧服务真实复现 [JSON](../../verification/MUS-013-a-before-http.json)。这是旧漏洞实证，不是修复后通过。
 
-V001 不变，V002 只加 nullable owner 列与索引。旧记录保留 NULL，不凭 MD5 / 音乐引用推断 owner；要继续旧上传需重新上传。空库升至 V002，已有 V001 需显式开发迁移选项，无重建表 / 回填 / 凭据变更。A 真库已成功迁移，10 条旧上传保持 NULL；本机 B 已由干净工作树同步至实现提交078a82b并成功迁移，6条旧上传保持NULL；具体事实见 [机器汇总](../../verification/MUS-012-results.json)。
+## 当前运行边界
 
-## 验证与阻塞
+原两套普通终端仍运行MUS-012，新Java受管启动限制没有反复尝试。独立临时MySQL初始化在受管环境失败，未连接现有数据库；未知结构真库探针仍blocked。新baseline已自动加入8项独立临时库探针和11项修复后HTTP负例，普通终端A/B各Ctrl+C后在原目录运行 `python3 scripts/baseline.py --slot a --migrate-upload-ownership --keep-running` / `--slot b`。
 
-Java **308 / 0 failures / errors / skipped**：原266 + 新HTTP40 + MD5隔离2。Python全量22通过（baseline9 / migration4 / collab9），脚本 py_compile / --help 通过。前端与依赖未改，未单独重复 build。验证正文见 [MUS-012](../../verification/MUS-012.md)。
+原Java/Vue/媒体/上传回归照常执行，结果自动存各slot日志，A直接读取；不要把Maven构建成功当应用启动、不要把普通重启当未完成上传恢复。
 
-两个普通终端已于20:12–20:13加载新代码，结果均passed：各308 Java / Vue build、后端直连与Vite代理各13功能+4安全、144真实媒体矩阵+8附加项、65真实上传权限检查通过。原始JSON与内嵌结果一致，媒体矩阵无重复且状态正确；每套上传检查35个显式拒绝为7×401 / 7×403 / 21×404，拒绝后分片与计数未变。
+## B任务与后续
 
-真实检查覆盖owner落库、伪造owner、跨账号与管理员拒绝、同MD5隔离上传、续传合并、首次绑定、NULL owner、锁定/删除账号旧JWT、头像绑定与公开访问、引用保护和逻辑删除。两份后端日志均无SQLSyntaxErrorException / BindingException / CommunicationsException。
+MUS-012-R1-B已完成request_changes。A将在实现提交产生后，按固定 `docs/collaboration/tasks/account-b.json` 派发MUS-013增量复核，要求准确reviewed_sha、独立实际验证和未运行项。不得自行重复旧卡或将待补实跑当批准。
 
-[真实运行汇总](../../verification/MUS-012-live-results.json) 与八份原始JSON已归档。历史受管候选Java网络阻塞未妨碍普通终端实跑；两套新服务保持运行，本轮无需再重启，A已直接读取报告，无需搬运。本机B槽通过不等于B账号读取或独立审核。
-
-## 下一步与边界
-
-新版本真实矩阵已接收；接下来补 MUS-009 事务失败 / 并发 / 重启续传。未知 legacy 归属人工迁移与物理垃圾回收仍待独立任务。B 账号独立审核尚未进行，不把本机 B 工作树测试当账号 B 确认；不开放公开 discovery、不合并 main、不升级依赖、不写 B 独占报告。
-
-本次实现提交078a82b4082e192258252bafe617e849ac4925f5已发布，feed检查点8ead1264a276eabdbf9ace52e8889fc9d9930aba；最终报告提交继续发布到同一任务分支，source_sha以远端handoff.json为准。发布不代表B已读取或审核。
+本轮因审核阻断优先修复，事务故障/并发/重启恢复顺延。未知legacy归属、物理清理、公开discovery、main合并仍未完成。B两份原文只读，schema SQL和依赖锁不改。

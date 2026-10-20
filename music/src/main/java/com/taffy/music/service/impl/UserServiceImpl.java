@@ -149,6 +149,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
     @Override
     @Transactional
     public Users createUser(Users user) {
+        Users viewer = uploadAccessService.requireViewer();
+        if (!"ADMIN".equals(viewer.getRole()))
+            throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.FORBIDDEN, "需要管理员权限");
+        if (StringUtils.hasText(user.getAvatar()))
+            throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.BAD_REQUEST, "新建用户不能预设头像，请由该账号上传后登记");
+        user.setAvatar(null);
         user.setCreatedAt(LocalDateTime.now());
         userMapper.insert(user);
         return user;
@@ -333,7 +339,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         }
         
         user.setUpdatedAt(LocalDateTime.now());
-        userMapper.updateById(user);
+        // Only editable columns are written: a profile read must never overwrite a
+        // concurrent role change, lock, password reset or other security state.
+        var changes = new com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<Users>()
+                .eq(Users::getUserid, userId)
+                .set(StringUtils.hasText(updateUserInfoDTO.getName()), Users::getName, user.getName())
+                .set(StringUtils.hasText(updateUserInfoDTO.getAvatar()), Users::getAvatar, user.getAvatar())
+                .set(Users::getUpdatedAt, user.getUpdatedAt());
+        userMapper.update(null, changes);
         
         // 转换为VO并返回
         UserVO userVO = new UserVO();

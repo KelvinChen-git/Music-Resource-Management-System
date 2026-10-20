@@ -3,8 +3,8 @@
   "owner": "b",
   "task_id": "MUS-012-R1-B",
   "assignment_revision": 1,
-  "status": "assigned",
-  "claimed_by_b": false,
+  "status": "review_completed",
+  "claimed_by_b": true,
   "task_card_path": "docs/collaboration/tasks/MUS-012-R1-B.md",
   "reviewed_sha": "d7c9faa7c13ae8531fdd50f2e2d566cef1fa09ea",
   "review_branch": "review/MUS-012-B-access-ownership",
@@ -13,5 +13,8 @@
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
-  "note": "Read this dispatch at the A handoff source_sha. A publishes assignments; only B can acknowledge or complete them. No background runner is created."
+  "note": "Read this dispatch at the A handoff source_sha. A publishes assignments; only B can acknowledge or complete them. No background runner is created.",
+  "review_verdict": "request_changes",
+  "delivery_source_sha": "21d002c7592f21a81b8fc715bdc245ad1ae3ee6c",
+  "delivery_feed_sha": "31b564b7cce09994ec661c48b7544964ebabb052"
 }

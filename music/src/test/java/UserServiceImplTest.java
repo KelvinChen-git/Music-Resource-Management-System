@@ -60,6 +60,11 @@ class UserServiceImplTest {
 
     private Users testUser;
 
+    @org.junit.jupiter.api.BeforeAll static void initializeUserMetadata() {
+        com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableInfo(
+            new org.apache.ibatis.builder.MapperBuilderAssistant(new com.baomidou.mybatisplus.core.MybatisConfiguration(), "users"), Users.class);
+    }
+
     @BeforeEach
     void setUp() {
         testUser = new Users();
@@ -231,7 +236,7 @@ void updateCurrentUserInfo_ShouldUpdateUserInfo() {
         when(userMapper.selectById(1L)).thenReturn(testUser);
         
         // 模拟用户更新
-        when(userMapper.updateById(any(Users.class))).thenReturn(1);
+        when(userMapper.update(isNull(), any(com.baomidou.mybatisplus.core.conditions.Wrapper.class))).thenReturn(1);
 
         // 调用方法
         UserVO result = userService.updateCurrentUserInfo(updateUserInfoDTO);

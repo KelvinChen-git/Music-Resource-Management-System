@@ -234,6 +234,14 @@ class Baseline:
         self.command(['npm', 'run', 'build'], 'frontend-build', cwd=ROOT / 'web')
         self.result['checks'].append('Java tests and frontend production build')
         self.database()
+        probe = ROOT / 'scripts/migration_guard_probe.py'
+        if probe.is_file():
+            path = self.command([sys.executable, str(probe), '--mysql-base', str(self.mysql_base),
+                                 '--slot', self.args.slot], 'migration-guard-probe', timeout=180)
+            evidence = json.loads(path.read_text())
+            if evidence.get('status') != 'passed' or evidence.get('check_count') != 8:
+                raise RuntimeError('Disposable migration guard probe did not pass all 8 checks.')
+            self.result['checks'].append({'migration-guard-probe': evidence})
         backend = self.start(maven + ['spring-boot:run'], 'backend', cwd=ROOT / 'music')
         api = 'http://127.0.0.1:' + self.env['MUSIC_SERVER_PORT'] + '/api/auth/profile'
         self.wait(backend, lambda: self.http_ready(api, 401), 'backend', seconds=180)
@@ -265,6 +273,14 @@ class Baseline:
             if evidence.get('check_count', 0) < 60:
                 raise RuntimeError('Upload ownership checks did not complete.')
             self.result['checks'].append({'upload-ownership': evidence})
+        review_test = ROOT / 'scripts/review_findings_smoke.py'
+        if review_test.is_file():
+            path = self.command([sys.executable, str(review_test), '--slot', self.args.slot,
+                                 '--mysql', str(self.client)], 'review-findings', timeout=180)
+            evidence = json.loads(path.read_text())
+            if evidence.get('status') != 'passed' or evidence.get('check_count') != 11:
+                raise RuntimeError('B finding HTTP regressions did not pass all 11 checks.')
+            self.result['checks'].append({'review-findings': evidence})
         self.result['status'] = 'passed'
         self.result['urls'] = {'frontend': web, 'backend': api.rsplit('/auth/profile', 1)[0]}
 

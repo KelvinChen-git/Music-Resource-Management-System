@@ -48,8 +48,8 @@
 | MUS-009 上传完整性 | blocked / A（正常 SQL 已补证；故障 / 并发 / 重启验收未完） | fix/MUS-009-upload-integrity / 83b9402 | 107 tests 通过，MUS-010 两环境正常上传 / 合并实跑通过；失败回滚、并发与进程重启仍待真实验证 |
 | MUS-010 两套前后端开发基线 | done / A（本机运行验收） | chore/MUS-010-dual-dev-baseline / f15d842 | 普通终端 A/B 独立 worktree 各 107 tests、build、11 表、直连 13 / 代理 13；六端口监听。B 账号独立审核 / 远端发布另列，不代表 main 合并 |
 | MUS-011 媒体授权 / 缓存 | review / A | fix/MUS-011-media-access / 4369089 | 266 Java（含 144 个模拟 HTTP 组合）、6 前端 helper、build、8 启动保护通过；原始下载 / ZIP / 静态 / 元数据重绑定均校验。本机 A/B 各 144 真实矩阵 + 8 附加检查通过；上传持久所有权、B 独立审核待完成 |
-| MUS-012 上传持久所有权 | review / A（本机真实 HTTP 通过，独立 B 审核待完成） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，两套本机各 65 上传 / 144 媒体检查已通过 |
-| MUS-012-R1-B 媒体与上传所有权独立审核 | assigned / B（待主动确认） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
+| MUS-012 上传持久所有权 | review / A（本机矩阵通过；B request_changes，待MUS-013复核） | fix/MUS-012-upload-ownership / dbdcae2 | 308 Java / 22 Python 通过；owner / MD5 / 首次绑定 / 头像隔离；A/B V002 已迁移且旧 owner 保持 NULL，两套本机各 65 上传 / 144 媒体检查已通过 |
+| MUS-012-R1-B 媒体与上传所有权独立审核 | review_completed / B（request_changes） | review/MUS-012-B-access-ownership / d7c9faa | 仅 B 审核正文与自身 latest；任务卡由 A 发布，B 独立记录运行 / 阻塞，不将本机 B 槽当其确认 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -199,3 +199,21 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B允许写 `docs/reviews/MUS-012-B.md` 与自己的 `docs/collaboration/account-b/latest.md`；业务源码 / schema / 契约 / A STATUS 不归B修改。先回传claimed与实际ack_peer_feed_sha，再审查并回传最终verdict和证据；发现问题交A修复。
 - A下一实现范围为MUS-009故障回滚 / 并发 / 重启恢复，暂未在本轮开启新业务修改；避免在B审核期间重写其准确审核对象。
 - 后续A每次完成交接时维护B固定任务入口：有在途任务保留task_id / revision，不因新A feed重复分配；任务变化显式增加revision或新task_id。B的claimed / completed须来自B feed，不能由A根据时间推断。当前协议无后台唤醒，用户只需首次启动B读取固定入口。
+
+
+## MUS-013 B审核发现修复（当前占用）
+
+- owner A；branch fix/MUS-013-b-review-findings；base6a29de4cab2da6ac149b816165b5f058612bd133。ack B feed31b564b7cce09994ec661c48b7544964ebabb052 / source21d002c7592f21a81b8fc715bdc245ad1ae3ee6c，reviewed d7c9faa，verdict request_changes。
+- MUS-012-R1-B已由B主动claimed并完成，运行补证partial_pass / backend_blocked；A承认B的Python22 / Node6 / build独立运行、Java0（Maven DNS阻塞），不把A的真库结果计入B。
+- 接受R1旧JPA硬删、R2管理员createUser头像、R3迁移结构保护三项发现；前两项先作为静态确认，真实HTTP复现单列。附加profile完整实体回写风险作同范围最小字段更新，不声称已复现并发故障。
+- allowed_paths：MusicController / MusicService、UserController / UserServiceImpl，相关Java测试；scripts/upload_ownership_migration.py / baseline.py及测试、新替代入口回归脚本；README / CONTRACTS / STATUS / own latest / verification/MUS-013* / collaboration/tasks增量卡。B两份报告只读，不覆盖、不伪造批准；依赖锁、schema SQL、main不修改。
+- 故障回滚 / 并发 / 重启续传先让位这些审核阻断修复，后续继续。新复核卡必须针对准确修复SHA发布，不能让B审核尚未提交的HEAD。
+
+
+### MUS-013 修复与验证检查点
+
+- R1停用旧DELETE /music/{id}，有效账号410，当前账号校验保留；MusicService不再调用JPA硬删。R2新建用户重新核验管理员并拒绝预设avatar，空白归一NULL；profile只写name/avatar/updated_at。
+- R3迁移在写入前校验准确11表集合、file_upload必要列/主键和owner列默认/可空/非生成与索引顺序/非唯一/BTREE。V001/V002 SQL不改。
+- 旧服务中R1/R2已由A用合成fixture真实复现：他人旧DELETE204、主记录0、原始文件200、重新绑定成功；createUser插入avatar后图片匿名200。该绕过账号已删除，恢复资源引用并软删除，临时管理员降权；不是固定版本验收。
+- Java317 / 0失败错误跳过，Python28通过；现有V002加严校验只读通过。独立临时MySQL初始化在当前受管进程失败，8项真库探针尚未执行，且没有连接现有库。新11项修复后HTTP验收未执行，不能以旧308/65/144矩阵概括。
+- 新baseline已接入独立临时数据库8检查、修复后HTTP11检查，普通终端两端重启后自动运行。故障/并发/重启任务仍待后续，不冒充本批通过。

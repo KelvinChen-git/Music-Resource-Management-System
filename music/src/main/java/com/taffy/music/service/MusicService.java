@@ -24,7 +24,8 @@ public class MusicService {
     // 删除音乐资源
     @Transactional
     public void deleteMusic(Long musicID) {
-        musicResourcesRepository.deleteById(musicID);
+        throw new org.springframework.web.server.ResponseStatusException(
+                org.springframework.http.HttpStatus.GONE, "旧删除接口已停用，请使用音乐资源软删除接口");
     }
 
     // 获取按歌曲名称首字母排序的音乐列表
