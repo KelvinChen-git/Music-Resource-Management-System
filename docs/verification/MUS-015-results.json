@@ -1,0 +1,34 @@
+{
+  "task": "MUS-015",
+  "status": "implemented_unit_verified_runtime_pending",
+  "branch": "fix/MUS-015-avatar-revalidation",
+  "before": {
+    "suite": "UploadOwnershipHttpTest",
+    "tests": 52,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "MockMVC and mapper state emulation, not real MySQL concurrency"
+  },
+  "after": {
+    "java_tests": 320,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "success"
+  },
+  "logs_sha256": {
+    "MUS-015-before-tests.log": "cafffe684c7c42a98f6764b403b991ac4f00ee798991d46f9a7ce4072774e467",
+    "MUS-015-java-tests.log": "df81df8f7d43b9f885397bf0038290f199d86cbb078b0938356ecbe5d514a98f"
+  },
+  "new_cases": [
+    "stale same-avatar profile refuses tombstoned upload before update",
+    "administrator stale same-avatar refuses tombstoned target upload before update",
+    "valid same-avatar profile and administrator both perform upload locking validation"
+  ],
+  "limits": [
+    "No new JVM or real multi-connection avatar race tested.",
+    "Existing live services still use MUS-014 business code.",
+    "No schema/API fields/dependencies changed; no main merge."
+  ]
+}

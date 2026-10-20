@@ -189,6 +189,43 @@ class UploadOwnershipHttpTest {
         status(put("/auth/profile").contentType("application/json").content("{\"avatar\":\"owned.png\"}"),1,403);
     }
 
+    // Emulate a stale profile snapshot after its old upload was tombstoned.
+    // These HTTP/mapper regressions are deterministic, not a real DB race.
+    @Test void sameAvatarFromStaleProfileCannotRebindDeletedUpload() throws Exception {
+        owner.setAvatar("old.png");
+        upload.setFilePath("old.png"); upload.setStatus(1); upload.setDeleted(true);
+        status(put("/auth/profile").contentType("application/json")
+                .content("{\"avatar\":\"old.png\"}"),1,404);
+        verify(users,never()).update(any(),any(Wrapper.class));
+        verify(users,never()).updateById(any(Users.class));
+    }
+
+    @Test void administratorSameAvatarCannotRebindDeletedTargetUpload() throws Exception {
+        owner.setAvatar("old.png");
+        upload.setFilePath("old.png"); upload.setStatus(1); upload.setDeleted(true);
+        var response = mvc.perform(auth(put("/users/1").contentType("application/json")
+                .content("{\"name\":\"owner\",\"role\":\"USER\",\"avatar\":\"old.png\"}"),3))
+                .andReturn().getResponse();
+        // The legacy administration controller wraps service errors in HTTP 200.
+        var body = new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertNotEquals(200,body.get("code").asInt());
+        verify(users,never()).updateById(any(Users.class));
+    }
+
+    @Test void validSameAvatarIsRevalidatedForProfileAndAdministrator() throws Exception {
+        owner.setAvatar("owned.png");
+        upload.setFilePath("owned.png"); upload.setStatus(1);
+        status(put("/auth/profile").contentType("application/json")
+                .content("{\"avatar\":\"owned.png\"}"),1,200);
+        var response = mvc.perform(auth(put("/users/1").contentType("application/json")
+                .content("{\"name\":\"owner\",\"role\":\"USER\",\"avatar\":\"owned.png\"}"),3))
+                .andReturn().getResponse();
+        var body = new com.fasterxml.jackson.databind.ObjectMapper().readTree(response.getContentAsString());
+        assertEquals(200,body.get("code").asInt());
+        verify(files,times(2)).getOne(argThat((Wrapper<FileUpload> w)->
+                w.getSqlSegment().contains("FOR UPDATE")));
+    }
+
     @TestFactory Stream<DynamicTest> legacyDeletionIsUnavailableToEveryIdentity() {
         return Stream.of(0,1,2,3).map(viewer->DynamicTest.dynamicTest("legacy delete/viewer="+viewer,()-> {
             status(delete("/music/42"),viewer,viewer==0?401:410);

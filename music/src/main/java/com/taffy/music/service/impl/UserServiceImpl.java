@@ -170,8 +170,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         
         user.setName(updatedUser.getName());
         user.setEmail(updatedUser.getEmail());
-        if (!java.util.Objects.equals(user.getAvatar(), updatedUser.getAvatar())
-                && StringUtils.hasText(updatedUser.getAvatar()))
+        // Even an equal path must lock and validate its current upload: the user
+        // snapshot may predate another profile change and upload deletion.
+        if (StringUtils.hasText(updatedUser.getAvatar()))
             uploadAccessService.requireAvatar(updatedUser.getAvatar(), id);
         user.setAvatar(updatedUser.getAvatar());
         user.setUpdatedAt(LocalDateTime.now());
@@ -333,8 +334,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         }
         
         if (StringUtils.hasText(updateUserInfoDTO.getAvatar())) {
-            if (!java.util.Objects.equals(user.getAvatar(), updateUserInfoDTO.getAvatar()))
-                uploadAccessService.requireAvatar(updateUserInfoDTO.getAvatar(), userId);
+            uploadAccessService.requireAvatar(updateUserInfoDTO.getAvatar(), userId);
             user.setAvatar(updateUserInfoDTO.getAvatar());
         }
         

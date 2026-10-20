@@ -275,3 +275,9 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - owner A，branch fix/MUS-015-avatar-revalidation，base a433e2b；allowed_paths：UserServiceImpl及UploadOwnershipHttpTest、CONTRACTS/STATUS/README/own latest/verification/MUS-015*、own派发卡。B报告原字节导入单独提交，不改B正文。
 - 删除“与已读avatar相同则跳过requireAvatar”的快捷分支，profile与管理员目标更新均需校验每个非空头像的归属/完成/未删除状态并持有上传行锁；保持名称单独修改与管理员清空头像行为。profile仍仅写可编辑列。
 - 静态交错：T1读avatar A，T2改B，T3删除已解除引用A，T1旧同值A写回。新增确定性HTTP/mapper场景验证旧快照+已删除上传拒绝写入；不把MockMVC/mapper模拟当真实多连接复现。真实交错验证及新版本HTTP待后续补证。
+
+### MUS-015 实现检查点
+
+- 两处同值avatar跳过校验已移除，仍调用现有requireAvatar/上传行FOR UPDATE并在原事务写引用。profile可编辑列限制、名称单独更新、管理员空值清除均保留，无schema/API字段变更。
+- 新三项MockMVC/mapper确定性回归在旧代码52测试中3失败，修复后全量Java320零失败/错误/跳过。不是旧缺陷真实多连接复现，也不是新版本真实HTTP验收；现有服务仍MUS-014，本轮不停止、不要求用户再重启。
+- B新卡待准确实现SHA提交后派发；MUS-014已接收approve及独立运行补证，不再等待旧卡认领。
