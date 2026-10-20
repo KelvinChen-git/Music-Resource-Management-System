@@ -1,32 +1,31 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-014-R1-B",
+  "task_id": "MUS-015-R1-B",
   "assignment_revision": 1,
   "status": "assigned",
   "claimed_by_b": false,
-  "task_card_path": "docs/collaboration/tasks/MUS-014-R1-B.md",
-  "reviewed_sha": "7c973b5d9eac219e289623e7eb6d44eda73cb09d",
-  "comparison_base_sha": "d384a8fc66778ba24344f1ef19507db718872623",
-  "review_branch": "review/MUS-014-B-upload-recovery",
+  "task_card_path": "docs/collaboration/tasks/MUS-015-R1-B.md",
+  "reviewed_sha": "d9a2a15791da0db4374c5de093a752a5aa202a25",
+  "comparison_base_sha": "feb935ad5c7eb4eb8a11065f3d5c18ed2a93dab1",
+  "review_branch": "review/MUS-015-B-avatar-revalidation",
   "allowed_output_paths": [
-    "docs/reviews/MUS-014-B.md",
+    "docs/reviews/MUS-015-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-013-R1-B",
+    "task_id": "MUS-014-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "request_changes",
-    "source_sha": "a6474f48eba669b70c88a24daa0a90cfc01dbc83",
-    "followup_implementation_source_sha": "1534e4d6101c7a8e889fd22fdda036666fa82ac3",
-    "feed_sha": "bbae3797ec5dbafaed7e7bde28bb6951ed2c2db4"
+    "verdict": "approve_with_scope_limits",
+    "source_sha": "7175ddf1e6e51a994cbfb53506d1a4db411d8c66",
+    "feed_sha": "8d1ae4ac5e3640d935ccfec88d9552e9e3baa2dd"
   },
-  "note": "Read task at A handoff.source_sha. Review fixed reviewed_sha. Supplemental runtime results do not create a new assignment. No B claim/approval inferred.",
+  "note": "Read at A handoff.source_sha; fixed reviewed_sha. No B claim inferred. Prior task accepted, do not claim it again.",
   "supplemental_evidence": {
     "source": "current A handoff.source_sha",
-    "path": "docs/verification/MUS-014-live-results.json",
-    "status": "two local slots passed; not independent B approval"
+    "path": "docs/verification/MUS-015-results.json",
+    "status": "Java320 passed; real database avatar interleaving unverified"
   }
 }

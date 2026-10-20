@@ -117,3 +117,6 @@ python3 scripts/baseline.py --slot b --migrate-upload-ownership --keep-running
 
 
 MUS-014 基线新增18项真实上传故障检查，并自动完成“部分上传 → 停止本次后端 → 新后端就绪 → 续传与并发合并”检查。旧基线若仍在运行，先在各自终端按 Ctrl+C，再用上述命令启动。无需手动执行prepare/resume，也无需复制私有状态；失败状态会保留以便定位，不自动覆盖。当前修复的317 Java / 45 Python通过；2026-10-19 23:18两套普通终端基线已通过真实并发计数回归与跨JVM续传（各18故障、prepare5、resume11），服务保持运行，无需再次重启。见 [MUS-014](docs/verification/MUS-014.md)。
+
+
+MUS-014已收到B独立复核的范围内批准及其真库/跨JVM运行补证；详见[接收记录](docs/verification/MUS-014-B-acceptance.json)。MUS-015进一步补上同值头像请求重新校验，Java320通过，新版本真实运行尚未验收；当前服务仍保持已验收的MUS-014版本，见[MUS-015](docs/verification/MUS-015.md)。

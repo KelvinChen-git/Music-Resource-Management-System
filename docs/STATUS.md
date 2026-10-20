@@ -281,3 +281,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 两处同值avatar跳过校验已移除，仍调用现有requireAvatar/上传行FOR UPDATE并在原事务写引用。profile可编辑列限制、名称单独更新、管理员空值清除均保留，无schema/API字段变更。
 - 新三项MockMVC/mapper确定性回归在旧代码52测试中3失败，修复后全量Java320零失败/错误/跳过。不是旧缺陷真实多连接复现，也不是新版本真实HTTP验收；现有服务仍MUS-014，本轮不停止、不要求用户再重启。
 - B新卡待准确实现SHA提交后派发；MUS-014已接收approve及独立运行补证，不再等待旧卡认领。
+
+- MUS-015实现d9a2a15791da0db4374c5de093a752a5aa202a25；MUS-015-R1-B/revision1固定审核该SHA，比较feb935ad5c7eb4eb8a11065f3d5c18ed2a93dab1，assigned未认领。MUS-014审核批准已接收，新服务真实验证仍待后续。
