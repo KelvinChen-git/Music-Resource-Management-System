@@ -30,5 +30,13 @@
     "No new JVM or real multi-connection avatar race tested.",
     "Existing live services still use MUS-014 business code.",
     "No schema/API fields/dependencies changed; no main merge."
-  ]
+  ],
+  "independent_review": {
+    "status": "approve_scoped",
+    "source_sha": "8f62277513b3537cc78a4cd2a99f6b8398e6bf57",
+    "feed_sha": "23ecb6738bc8c3441b79f690eada757eeb0533d1",
+    "acceptance_record": "MUS-015-B-acceptance.json",
+    "runtime_scope": "B independent controlled SQL/HTTP interleaving and separate lock evidence; original blocked run retained",
+    "followup": "C1 -> MUS-017"
+  }
 }

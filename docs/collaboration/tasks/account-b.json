@@ -1,31 +1,34 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-015-R1-B",
+  "task_id": "MUS-017-R1-B",
   "assignment_revision": 1,
   "status": "assigned",
   "claimed_by_b": false,
-  "task_card_path": "docs/collaboration/tasks/MUS-015-R1-B.md",
-  "reviewed_sha": "d9a2a15791da0db4374c5de093a752a5aa202a25",
-  "comparison_base_sha": "feb935ad5c7eb4eb8a11065f3d5c18ed2a93dab1",
-  "review_branch": "review/MUS-015-B-avatar-revalidation",
+  "task_card_path": "docs/collaboration/tasks/MUS-017-R1-B.md",
+  "reviewed_sha": "f351b0e2030e5411b6f530ca039c694d4ca091d3",
+  "comparison_base_sha": "d443966148336b719cebdb041ea175dfbbfdc500",
+  "review_branch": "review/MUS-017-B-admin-avatar-null",
   "allowed_output_paths": [
-    "docs/reviews/MUS-015-B.md",
+    "docs/reviews/MUS-017-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-014-R1-B",
+    "task_id": "MUS-015-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "approve_with_scope_limits",
-    "source_sha": "7175ddf1e6e51a994cbfb53506d1a4db411d8c66",
-    "feed_sha": "8d1ae4ac5e3640d935ccfec88d9552e9e3baa2dd"
+    "verdict": "approve_scoped_C1_separate",
+    "source_sha": "8f62277513b3537cc78a4cd2a99f6b8398e6bf57",
+    "feed_sha": "23ecb6738bc8c3441b79f690eada757eeb0533d1"
   },
-  "note": "Read at A handoff.source_sha; fixed reviewed_sha. No B claim inferred. Prior task accepted, do not claim it again.",
+  "note": "Read current A handoff.source_sha for dispatch, review fixed SHA. Do not repeat completed MUS-015 or infer claim from a new A feed.",
   "supplemental_evidence": {
     "source": "current A handoff.source_sha",
-    "path": "docs/verification/MUS-015-results.json",
-    "status": "Java320 passed; real database avatar interleaving unverified"
-  }
+    "path": "docs/verification/MUS-017-results.json",
+    "status": "Java323 passed; new real-DB null persistence verification pending"
+  },
+  "separate_backlog": [
+    "MUS-016 importer/catalog independent review not covered by this task"
+  ]
 }

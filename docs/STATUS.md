@@ -310,3 +310,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 管理员updateUser仅应用/写入非null提交字段，avatar省略/null保持，空字符串明确清除；旧role/email/avatar不因名称编辑回写，锁/密码等安全列不进入UPDATE。返回值不再对null回显已清空；保留读取快照语义，不承诺并发最新响应。
 - 新三项回归在旧实现55测试中3失败；修复后Java323零失败/错误/跳过。新版本真库响应/持久化及受控交错待B补证，不能沿用旧015批准为017批准。
 - 前端/Python/schema/依赖无改动，现有网站、两套旧服务与演示20首音频保留；不要求用户本轮重启。后续卡待准确提交SHA。
+
+- MUS-017实现f351b0e2030e5411b6f530ca039c694d4ca091d3，新卡MUS-017-R1-B/revision1固定该SHA、比较d443966148336b719cebdb041ea175dfbbfdc500，assigned未认领；旧015已按B实际完成接收。用户演示数据和在跑服务保持。
