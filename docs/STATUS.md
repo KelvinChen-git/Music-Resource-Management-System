@@ -291,3 +291,16 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - Post Malone/Drake各10条资料及官方链接单独展示，不下载其音频/试听/封面。Demo Catalog登录保护，公开JSON无账号凭据/Client ID/JWT。
 - Python50、Vue生产构建通过，浏览器已用演示账号查看20+20、按标题找到1条并播放至0:40/3:32后暂停、Drake筛选10条；目录链接可供用户检查，无需终端重启。
 - 私有缓存/凭据0600留.local，Git只交代码/元数据/结果。MUS-015-R1-B卡仍在途、准确SHA不变，不用本次导入覆盖旧审核任务；MUS-016后续待独立复核。Java015未加载，后端仍014已验收实例。
+
+### MUS-015 B复核接收与C1（2026-10-20 Chicago 01:28）
+
+- B feed23ecb673/source8f622775，固定审核d9a2a15、assignment dbb6312、ack Ac618062；MUS-015-R1-B/revision1 review_completed/approve仅同值条件及既有空字符串行为。
+- A核对feed哈希、B仅两报告路径差异、原字节导入docs/reviews/MUS-015-B.md；接收记录MUS-015-B-acceptance.json。B独立Java320、旧52测试/3预期失败；一轮后续blocked命令内16业务检查完成，另两入口锁专项2项独立exit0。不把跨命令18项说成一次全passed。
+- B真实受控SQL/HTTP旧快照中两入口拒绝已删除旧A，保留B；performance_schema确认等待用户写入时上传X锁仍持有。不是三正常HTTP参与者全流程竞争。私有原始日志不在A，A不重算其哈希。
+- 新登记C1：管理员avatar:null响应null但真库保留旧头像，属于P2既有差异；旧空字符串确实清空。批准不涵盖NULL语义。A以MUS-017明确并修复，MUS-015新Java尚未在A本机重新启动。
+
+## MUS-017 管理员更新NULL头像语义（当前占用）
+
+- owner A，branch fix/MUS-017-admin-avatar-null，base3092ae2。范围UserServiceImpl、UploadOwnershipHttpTest、CONTRACTS/STATUS/README/own交接/verification/MUS-017*/派发；B原报告只导入不改。
+- 契约：avatar缺字段或null保持当前值，空字符串清空，非空路径每次requireAvatar。管理员仅写本次非null提交字段，避免为响应保留旧值而把旧头像/锁/密码等实体状态回写；不改全局NULL写入策略、schema或依赖。
+- 目标确定性持久写列/响应回归；新真库验收单列，现有服务与20首演示音频不停止、不覆盖。

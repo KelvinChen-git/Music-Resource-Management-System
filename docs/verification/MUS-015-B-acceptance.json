@@ -1,0 +1,36 @@
+{
+  "task_id": "MUS-015-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "d9a2a15791da0db4374c5de093a752a5aa202a25",
+  "verdict": "approve_scoped",
+  "b_source_sha": "8f62277513b3537cc78a4cd2a99f6b8398e6bf57",
+  "b_feed_sha": "23ecb6738bc8c3441b79f690eada757eeb0533d1",
+  "report_sha256": "cde1a740e67c904c159a2952253aa8bb81c3363f2470a4aa95669ffcdc9ff6b1",
+  "a_verified": [
+    "exact report bytes imported",
+    "handoff report hash",
+    "only B two report paths differ from reviewed SHA",
+    "assignment_source_sha and ack_peer_feed_sha match prior dispatch"
+  ],
+  "b_reported": {
+    "java_tests": 320,
+    "old_regression_tests": 52,
+    "old_expected_failures": 3,
+    "completed_business_checks_in_blocked_run": 16,
+    "standalone_lock_checks_passed": 2,
+    "controlled_sql_fixture_interleaving": true,
+    "three_http_participant_race": false
+  },
+  "followup": {
+    "id": "C1",
+    "priority": "P2 existing behavior",
+    "finding": "administrator avatar:null responds null but DB retains old avatar; empty string actually clears",
+    "a_task": "MUS-017"
+  },
+  "limits": [
+    "A cannot read/recompute B private raw evidence files.",
+    "16 completed business checks came from a later-blocked command; do not relabel that command passed.",
+    "Lock checks were a separate successful command.",
+    "No main merge or production acceptance."
+  ]
+}
