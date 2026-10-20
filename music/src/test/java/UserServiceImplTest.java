@@ -51,6 +51,9 @@ class UserServiceImplTest {
     @Mock
     private RecycleBinService recycleBinService; // Mock RecycleBinService
 
+    @Mock
+    private com.taffy.music.service.UploadAccessService uploadAccessService;
+
     @InjectMocks
     private UserServiceImpl userService;
     

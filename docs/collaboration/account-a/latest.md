@@ -1,28 +1,26 @@
 # 账号 A 最新交接
 
 - account A；2026-10-19 America/Chicago；集成负责人 / STATUS 写入方 A。
-- task MUS-011 媒体授权 / 缓存；branch `fix/MUS-011-media-access`；base `436908938989ba4d331b90e2795a8a5f3f702bb2`；status review（实现、本地回归及两套本机真实矩阵通过；B 独立审核待完成）。
-- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮原生 git sync 成功，B feed 仍为该值，未见新交付。B source 6e4118c，reviewed 7ab0d39；不替 B 写报告或确认。
-- 实现检查点 d29ccbb；本机 B worktree 已同步并重启。A aa65efa / 本机 B d29ccbb 运行源码相同，仅三份文档不同。此前发布阻塞已恢复；本轮源码与验收报告已成功发布，并经 sync 拉取核验。
-- 发布检查点：source 396deda398de56148f8fae1cdacfd3c6462bf307 / feed f00c35dc5a760e501adf108b742d3d793f96ee94，2026-10-19 19:41 America/Chicago sync 已回读核验；MUS-009/010/011 源码历史及验收报告已进入远端任务分支。当前最终 source_sha 以远端 handoff.json 为准。远端可获取不表示 B 已读取或审核。
+- task MUS-012 上传持久所有权；branch `fix/MUS-012-upload-ownership`；base `dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73`；status review（实现及自动测试通过，新源码真实 HTTP 验收 blocked）。
+- ack_peer_feed_sha：05d4e9fe7c9528923796ef46508cadb05e94bd1b；本轮开始原生 git sync 成功，B 仍为 source 6e4118c / reviewed 7ab0d39，无新交付；不替 B 写报告或确认。
+- 已发布前批：MUS-011 最终 dbdcae2 / feed a74abe3，本机 B 同步入口已拉取。两套本机 266 Java / 144 真媒体矩阵通过属该旧版本，不代替本任务新结果。
 
-## 实现与验证
+## 本次改动
 
-三媒体入口按当前数据库账号、审核 / 删除状态授权，音乐静态路径停止供文件，仅保留有登记且不关联音乐的有效头像。ZIP 与既有 file_path 元数据重新绑定也检查可见性，路径 / 缓存 / HEAD / Range 均受控，播放计数在授权后；Vue 播放与两种下载显式 JWT。策略见 CONTRACTS A4。
+契约先记入 CONTRACTS A5。新上传持久保存 owner_user_id，按当前数据库有效账号隔离 create / upload、MD5 check / list、详情 / 进度 / 缺片、分片 / 合并 / 删除、metadata 首次解析与绑定；管理员不能代操作他人上传。首绑定 / 写操作在上传行锁内检查所有者，保留审核 / 删除的反重绑定检查。新头像绑定只接受目标账号自己的完整图片上传，避免 profile 将他人图片公开。
 
-Java 全量 **266 tests，0 failures / errors / skipped**：历史107 + 新HTTP155（144个MockMvc矩阵组合 / 11个边界和真实WebMvcConfig）+ 新重绑定4。前端helper6 / build、baseline保护8通过。新脚本 py_compile / --help 通过；mock 数据服务不算真实 SQL / TCP 测试。
+删除未引用的自有上传只逻辑删除并保留字节 / 分片，音乐（含 deleted）或头像引用返回 409。已有音乐媒体继续按审核可见性读取；无引用完整上传仅持久 owner 下载，旧 NULL owner 不构成可认领上传。
 
-[验证正文](../../verification/MUS-011.md) 与 [机器汇总](../../verification/MUS-011-results.json) 保存本轮证据。历史受管进程 socket 预检 Errno 1；普通终端已于 18:47–18:48 重启并完成新版本实跑，证据单独记录在 [真实运行汇总](../../verification/MUS-011-live-results.json)。
+V001 不变，V002 只加 nullable owner 列与索引。旧记录保留 NULL，不凭 MD5 / 音乐引用推断 owner；要继续旧上传需重新上传。空库升至 V002，已有 V001 需显式开发迁移选项，无重建表 / 回填 / 凭据变更。A 真库已成功迁移，10 条旧上传保持 NULL；本机 B 后续同步 / 迁移事实见 [机器汇总](../../verification/MUS-012-results.json)。
 
-两个本机隔离环境各通过 266 Java / production build、直连与代理各 13 功能 + 4 安全、144 个真实媒体矩阵 + 8 附加检查。原始 JSON 与 baseline 汇总一致，组合无重复，全部状态符合策略；匿名 pending / 静态音乐 / deleted 均 401，合法 GET / Range 为 200 / 206，私有和 deleted 资源按身份拒绝。头像、计数与重绑定检查通过。六份不含凭据的原始 JSON 已归档，无需用户搬运。
+## 验证与阻塞
 
-这里的 B 只是本机隔离工作树，不能代表 B 账号独立审核或已接收本次源代码。服务重启加载代码也不等于上传中断后的恢复验证。没有人工浏览器试听结论。
+Java **308 / 0 failures / errors / skipped**：原266 + 新HTTP40 + MD5隔离2。Python全量22通过（baseline9 / migration4 / collab9），脚本 py_compile / --help 通过。前端与依赖未改，未单独重复 build。验证正文见 [MUS-012](../../verification/MUS-012.md)。
 
-## 限制与下一步
+候选 Java 连接本机 MySQL 报 SocketException: Operation not permitted，Druid / JPA 未初始化，端口18080未就绪；候选已停止。Python / native MySQL可连不代表 Java 可连，Maven BUILD SUCCESS 也不表示服务启动成功。**新65项真实上传权限检查执行未通过，不能提前标 passed**。原普通终端两套服务保留 MUS-011 版本。
 
-- **上传持久所有权仍缺**：file_upload 无 owner，首次绑定 / 抢先认领及上传写操作授权仍需 schema / 迁移任务。现有资源的重绑定绕过已加检查，不能据此称整个上传系统授权完成；公开 discovery 继续阻断。
-- 已下载或旧一年缓存的副本不能由 no-store 追溯收回。浏览器人工播放 / 下载 / 头像尚未实测。
-- 真实矩阵已接收；接下来做所有权和 MUS-009 真实事务失败 / 并发 / 进程重启；MUS-010 两套本机开发基线已经通过，B 账号独立审核仍单列。
-- 依赖20个漏洞、JSqlParser诊断另行处理，本批不自动升级依赖。模型仍只有合成 CLAP 编码可行性，真实许可语料 / 检索 / 界面 / 效果未完成。
+两个原终端各 Ctrl+C，在各自目录运行 `python3 scripts/baseline.py --slot a --migrate-upload-ownership --keep-running` / `--slot b`。新 baseline 会自动补原功能、媒体144矩阵和新上传65检查；A 直接读取本地报告，不需用户搬运。已升级库重复选项无回填 / 重建。
 
-允许路径与事实边界见 STATUS 本任务卡；未改 schema、依赖锁、B 独占报告、MUS-002。最终合并由用户决定。
+## 下一步与边界
+
+先接收新版本真实矩阵，再补 MUS-009 事务失败 / 并发 / 重启续传。未知 legacy 归属人工迁移与物理垃圾回收仍待独立任务。B 账号独立审核尚未进行，不把本机 B 工作树测试当账号 B 确认；不开放公开 discovery、不合并 main、不升级依赖、不写 B 独占报告。

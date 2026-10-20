@@ -58,8 +58,10 @@ def setup(slot):
     print(f'Backend {8080 + offset}; frontend {5173 + offset}; MySQL {3307 + offset}.')
 
 
-def init_db(slot, mysql):
+def database_query(slot, mysql):
     values = read_env(slot)
+    from baseline import validate
+    validate(slot, values)
     # A whitelist guards the generated fresh-database workflow against wrong targets.
     if values['MUSIC_DB_NAME'] != f'music_dev_{slot}':
         raise RuntimeError('Refusing to initialize a database outside the selected dev slot.')
@@ -79,26 +81,38 @@ def init_db(slot, mysql):
     def query(sql):
         return subprocess.run(command, cwd=ROOT, input=sql, text=True, env=environment,
                               check=True, capture_output=True).stdout.strip()
+    return query
+
+
+def init_db(slot, mysql):
+    query = database_query(slot, mysql)
+    values = read_env(slot)
     count = query('SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE();')
     if count != '0':
         raise RuntimeError(f'Refusing nonempty {values["MUSIC_DB_NAME"]} ({count} tables). '
                            'No DROP, overwrite, or repair was attempted.')
     query(SQL.read_text())
+    from upload_ownership_migration import migrate
+    migrate(lambda sql: query(sql).splitlines())
     print(f'Initialized {values["MUSIC_DB_NAME"]}; SQL SHA256={hashlib.sha256(SQL.read_bytes()).hexdigest()}')
     print(query('SELECT version, description FROM development_schema_version;'))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=['setup', 'init-db'])
+    parser.add_argument('action', choices=['setup', 'init-db', 'migrate-uploads'])
     parser.add_argument('--slot', choices=['a', 'b'], required=True)
     parser.add_argument('--mysql', help='Native MySQL client executable; otherwise use Compose.')
     args = parser.parse_args()
     try:
         if args.action == 'setup':
             setup(args.slot)
-        else:
+        elif args.action == 'init-db':
             init_db(args.slot, args.mysql)
+        else:
+            from upload_ownership_migration import migrate
+            query = database_query(args.slot, args.mysql)
+            print(json.dumps(migrate(lambda sql: query(sql).splitlines()), indent=2))
     except subprocess.CalledProcessError as exc:
         print(f'ERROR: MySQL command failed (exit {exc.returncode}). {exc.stderr.strip()}', file=sys.stderr)
         return 1

@@ -50,6 +50,9 @@ public class MusicResourceServiceImpl extends ServiceImpl<MusicResourceMapper, M
     @Autowired
     private FileUploadService fileUploadService;
 
+    @Autowired
+    private com.taffy.music.service.UploadAccessService uploadAccessService;
+
     @Lazy
     @Autowired
     private UserService userService;
@@ -292,7 +295,7 @@ public class MusicResourceServiceImpl extends ServiceImpl<MusicResourceMapper, M
     @Transactional
     public MusicMetadataVO parseAndSaveMetadata(Long fileId, MusicMetadataVO metadata) {
         // 获取文件信息
-        FileUpload fileUpload = fileUploadService.getById(fileId);
+        FileUpload fileUpload = uploadAccessService.requireOwnedLocked(fileId);
         if (fileUpload == null) {
             throw new RuntimeException("文件不存在");
         }
@@ -309,7 +312,7 @@ public class MusicResourceServiceImpl extends ServiceImpl<MusicResourceMapper, M
 
         // Existing protected bytes cannot be made visible by attaching a new pending resource.
         List<MusicResources> references = list(new LambdaQueryWrapper<MusicResources>()
-                .eq(MusicResources::getFilePath, fileUpload.getFilePath()));
+                .eq(MusicResources::getFilePath, fileUpload.getFilePath()).last("FOR UPDATE"));
         if (!references.isEmpty()) {
             com.taffy.music.domain.Users viewer = userService.getById(UserContext.getCurrentUserId());
             if (viewer == null || !Boolean.FALSE.equals(viewer.getIsLocked())

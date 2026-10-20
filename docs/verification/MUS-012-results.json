@@ -1,0 +1,143 @@
+{
+  "task": "MUS-012",
+  "base_sha": "dbdcae2cbbce4aeb7ee25418f9c3464de63ebe73",
+  "status": "review_pending_live_acceptance",
+  "java": {
+    "tests": 308,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "RecycleBinServiceImplTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MediaAccessHttpTest",
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicServiceTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "UserServiceImplTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileChunkServiceImplTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MediaMetadataBindingTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileUploadControllerTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "UploadIntegrityServiceTest",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileUploadServiceImplTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicCategoryServiceImplTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicResourceServiceImplTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "UploadOwnershipHttpTest",
+      "tests": 40,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "MusicTagServiceImplTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "new_regression_tests": {
+    "upload_ownership_http": 40,
+    "md5_owner_lookup": 2
+  },
+  "python": {
+    "tests": 22,
+    "failures": 0,
+    "scope": "baseline 9, migration 4, collaboration 9"
+  },
+  "live_http": {
+    "status": "blocked",
+    "expected_upload_checks": 65,
+    "error": "Java child SocketException: Operation not permitted connecting 127.0.0.1:3307; candidate backend never became ready. Python/native mysql can connect.",
+    "candidate_port": 18080,
+    "candidate_stopped": true,
+    "old_a_b_services": "left running on prior MUS-011 code; not restarted"
+  },
+  "migration": {
+    "a": {
+      "status": "applied_v002",
+      "legacy_null_owner_rows": 10,
+      "automatic_backfill": false
+    },
+    "b": {
+      "status": "pending source sync and explicit migration"
+    }
+  },
+  "publication": "pending",
+  "limits": [
+    "Live MySQL migration is not live Java/HTTP acceptance.",
+    "MockMvc uses mocked persistence. No live cross-request concurrency or partial-upload restart recovery claimed.",
+    "Unknown legacy ownership is quarantined; no automatic claims.",
+    "Physical bytes/chunks retained on upload tombstone; garbage collection deferred.",
+    "Not independent account B review; no main merge or public discovery readiness."
+  ],
+  "log_sha256": {
+    "MUS-012-java-tests.log": "bda8c54e461a8e6442e3a227cf887207a79ffb6c20d3092eddfbd29a2c5531a6",
+    "MUS-012-python-tests.log": "4d96e12e576ad1ebc49f240cff8c61bf657ef1fb35bca19d91efe4b936f11b0a"
+  }
+}

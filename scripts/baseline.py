@@ -61,10 +61,14 @@ def free_port(port):
         probe.bind(('127.0.0.1', int(port)))
 
 
-def schema_action(count, versions):
+def schema_action(count, versions, migrate=False):
     if count == 0:
         return 'initialize_empty'
-    if count != 11 or versions != ['1']:
+    if count == 11 and versions == ['1']:
+        if migrate:
+            return 'migrate_upload_ownership'
+        raise RuntimeError('V001 uploads require explicit --migrate-upload-ownership; data preserved.')
+    if count != 11 or versions != ['1', '2']:
         raise RuntimeError('Existing database is incomplete or unexpected; preserved without repair or overwrite.')
     return 'reuse_existing'
 
@@ -108,7 +112,7 @@ class Baseline:
         self.socketdir = None
         revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
         self.result = {'slot': args.slot, 'checkout': str(ROOT), 'code_sha': revision, 'status': 'running', 'checks': [],
-                       'limits': ['Synthetic legacy fixtures only; media permissions remain unresolved.',
+                       'limits': ['Synthetic fixtures; no production readiness or independent account review.',
                                   'Not an independent confirmation from the other account.']}
 
     def command(self, command, label, cwd=None, input_text=None, environment=None, timeout=300):
@@ -188,10 +192,14 @@ class Baseline:
                 self.query(sql, root_socket=address, password='')
         count = int(self.query('SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE();')[0])
         versions = self.query('SELECT version FROM development_schema_version ORDER BY version;') if count else []
-        action = schema_action(count, versions)
+        action = schema_action(count, versions, self.args.migrate_upload_ownership)
         if action == 'initialize_empty':
             # dev.init_db independently checks emptiness again and never drops existing tables.
             init_db(self.args.slot, str(self.client))
+        from upload_ownership_migration import migrate, validate_structure
+        if action == 'migrate_upload_ownership':
+            self.result['checks'].append({'upload_ownership_migration': migrate(self.query)})
+        validate_structure(self.query)
         count = int(self.query('SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE();')[0])
         if count != 11:
             raise RuntimeError('Development baseline requires exactly 11 tables.')
@@ -249,6 +257,14 @@ class Baseline:
             if evidence.get('matrix_cases') != 144:
                 raise RuntimeError('Media access matrix did not complete all 144 cases.')
             self.result['checks'].append({'media-access': evidence})
+        ownership_test = ROOT / 'scripts/upload_ownership_smoke.py'
+        if ownership_test.is_file():
+            path = self.command([sys.executable, str(ownership_test), '--slot', self.args.slot,
+                                 '--mysql', str(self.client)], 'upload-ownership', timeout=180)
+            evidence = json.loads(path.read_text())
+            if evidence.get('check_count', 0) < 60:
+                raise RuntimeError('Upload ownership checks did not complete.')
+            self.result['checks'].append({'upload-ownership': evidence})
         self.result['status'] = 'passed'
         self.result['urls'] = {'frontend': web, 'backend': api.rsplit('/auth/profile', 1)[0]}
 
@@ -280,6 +296,7 @@ def main():
     parser.add_argument('--mysql-base', help='Native MySQL directory containing bin/mysql and bin/mysqld')
     parser.add_argument('--offline', action='store_true', help='Use cached Maven/npm dependencies')
     parser.add_argument('--check', action='store_true', help='Preflight only; do not start or initialize services')
+    parser.add_argument('--migrate-upload-ownership', action='store_true', help='Explicitly apply additive V002 to an existing isolated V001 database')
     parser.add_argument('--keep-running', action='store_true', help='Keep owned services running until Ctrl+C after checks')
     args = parser.parse_args()
     state = ROOT / '.local' / args.slot

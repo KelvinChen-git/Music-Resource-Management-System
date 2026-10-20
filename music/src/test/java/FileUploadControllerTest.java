@@ -18,10 +18,12 @@ class FileUploadControllerTest {
     FileUploadController controller;
     FileUploadService uploads;
     FileChunkService chunks;
+    com.taffy.music.service.UploadAccessService access;
 
     @BeforeEach void setup() {
         uploads = mock(FileUploadService.class);
         chunks = mock(FileChunkService.class);
+        access = mock(com.taffy.music.service.UploadAccessService.class);
         UploadProperties properties = new UploadProperties();
         properties.setTempPath(root.resolve("chunks").toString());
         properties.setPath(root.resolve("uploads").toString());
@@ -31,11 +33,11 @@ class FileUploadControllerTest {
         ReflectionTestUtils.setField(controller, "fileChunkService", chunks);
         ReflectionTestUtils.setField(controller, "uploadProperties", properties);
         ReflectionTestUtils.setField(controller, "uploadIntegrityService",
-                new UploadIntegrityService(uploads, chunks, properties));
+                new UploadIntegrityService(uploads, chunks, properties, access));
         FileUpload file = new FileUpload();
         file.setId(1L); file.setChunkCount(2); file.setFileSize(6L);
         file.setStatus(0); file.setUploadedChunks(0);
-        when(uploads.getOne(any(com.baomidou.mybatisplus.core.conditions.Wrapper.class))).thenReturn(file);
+        when(access.requireOwnedLocked(1L)).thenReturn(file);
     }
 
     @Test void incorrectChunkHashMustNotBeAcknowledged() {

@@ -18,14 +18,19 @@ class BaselineGuardsTest(unittest.TestCase):
 
     def test_valid_slot_and_existing_schema_can_be_reused(self):
         baseline.validate('a', self.env)
-        self.assertEqual('reuse_existing', baseline.schema_action(11, ['1']))
+        self.assertEqual('reuse_existing', baseline.schema_action(11, ['1', '2']))
 
     def test_only_completely_empty_schema_can_be_initialized(self):
         self.assertEqual('initialize_empty', baseline.schema_action(0, []))
-        for count, versions in [(1, []), (10, ['1']), (11, []), (11, ['2']), (12, ['1'])]:
+        for count, versions in [(1, []), (10, ['1']), (11, []), (11, ['2']), (12, ['1']), (11, ['1'])]:
             with self.subTest(count=count, versions=versions):
                 with self.assertRaises(RuntimeError):
                     baseline.schema_action(count, versions)
+
+    def test_existing_v001_requires_explicit_migration(self):
+        self.assertEqual('migrate_upload_ownership', baseline.schema_action(11, ['1'], migrate=True))
+        with self.assertRaises(RuntimeError):
+            baseline.schema_action(10, ['1'], migrate=True)
 
     def test_wrong_database_or_account_is_refused(self):
         for key in ['MUSIC_DB_NAME', 'MUSIC_DB_USER']:

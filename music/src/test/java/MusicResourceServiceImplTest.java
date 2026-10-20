@@ -51,6 +51,9 @@ class MusicResourceServiceImplTest {
     private UserService userService;
 
     @Mock
+    private com.taffy.music.service.UploadAccessService uploadAccessService;
+
+    @Mock
     private RecycleBinService recycleBinService;
 
     @Mock
@@ -169,7 +172,7 @@ void getMusicResourceById_ShouldReturnMusicWithCategory() {
     void parseAndSaveMetadata_ShouldRejectNonMP3File() {
         // Arrange
         testFileUpload.setFileType("wav");
-        when(fileUploadService.getById(1L)).thenReturn(testFileUpload);
+        when(uploadAccessService.requireOwnedLocked(1L)).thenReturn(testFileUpload);
 
         // Act & Assert
         assertThrows(RuntimeException.class, 
@@ -298,7 +301,7 @@ void getMusicResourceById_ShouldReturnMusicWithCategory() {
         }
         testFileUpload.setFilePath(mp3.getFileName().toString());
         testFileUpload.setFileSize(Files.size(mp3));
-        when(fileUploadService.getById(1L)).thenReturn(testFileUpload);
+        when(uploadAccessService.requireOwnedLocked(1L)).thenReturn(testFileUpload);
         MusicCategory category = new MusicCategory();
         category.setCategoryId(1);
         when(musicCategoryService.getById(1)).thenReturn(category);

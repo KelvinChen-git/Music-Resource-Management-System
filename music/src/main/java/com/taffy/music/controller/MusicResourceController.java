@@ -392,6 +392,8 @@ public class MusicResourceController {
             // 调用服务解析和保存元数据
             MusicMetadataVO result = musicResourceService.parseAndSaveMetadata(fileId, metadata);
             return Result.success(result);
+        } catch (org.springframework.web.server.ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("解析音乐元数据失败", e);
             return Result.error("解析音乐元数据失败：" + e.getMessage());

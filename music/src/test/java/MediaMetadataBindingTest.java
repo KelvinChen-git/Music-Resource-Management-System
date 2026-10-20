@@ -29,7 +29,9 @@ class MediaMetadataBindingTest {
         ReflectionTestUtils.setField(service,"userService",users);
         FileUpload upload = new FileUpload();
         upload.setStatus(1); upload.setFileType("mp3"); upload.setFilePath("protected.mp3");
-        when(files.getById(9L)).thenReturn(upload);
+        var access = mock(com.taffy.music.service.UploadAccessService.class);
+        ReflectionTestUtils.setField(service,"uploadAccessService",access);
+        when(access.requireOwnedLocked(9L)).thenReturn(upload);
         MusicResources record = new MusicResources();
         record.setUserid(owner?1L:2L); record.setApprovalStatus(status); record.setIsDeleted(deleted);
         when(mapper.selectList(any(Wrapper.class))).thenReturn(List.of(record));

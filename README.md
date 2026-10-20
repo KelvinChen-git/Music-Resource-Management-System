@@ -69,7 +69,7 @@ python3 scripts/smoke.py --slot a --via-proxy
 - local 后端只绑定 127.0.0.1，context path 为 `/api`。Vite 将相对 `/api` 原样转发，读取 `VITE_PROXY_TARGET`；`VITE_DEV_PORT` 冲突即失败。
 - 配置、密钥、上传、数据库和索引放在被 ignore 的 `.local/<slot>/`。每账号独立 clone，不能共享写入数据库、上传或索引。
 - `VITE_API_BASE_URL` 仅是旧头像 helper 的非空开关；该 helper 实际返回相对 `/api/uploads/...`。它不控制 Axios baseURL 或代理。
-- **媒体权限本机实跑通过**：MUS-011 已实现三入口 / ZIP 授权与 no-store、受控头像及前端 JWT；本机 A/B 隔离环境各通过 144 项真实媒体权限矩阵，直连 / 代理匿名入口均为 401。B 账号独立审核待完成。上传记录持久所有权仍缺，公开 discovery 继续阻断。历史匿名 200 证据及当前验收边界见 [MUS-011](docs/verification/MUS-011.md)。
+- **媒体权限本机实跑通过**：MUS-011 已实现三入口 / ZIP 授权与 no-store、受控头像及前端 JWT；本机 A/B 隔离环境各通过 144 项真实媒体权限矩阵，直连 / 代理匿名入口均为 401。B 账号独立审核待完成。MUS-012 已加入上传所有权及头像绑定检查，308 项 Java / 22 项 Python 测试通过；新源码真实服务验收待普通终端重启，公开 discovery 继续阻断。历史匿名 200 证据及当前验收边界见 [MUS-011](docs/verification/MUS-011.md)。
 - 初始化 SQL 仅适用于空开发库。没有提供既有数据库迁移，不向已有库运行历史 dump。
 
 ## 本轮验证
@@ -91,3 +91,24 @@ python3 scripts/smoke.py --slot a --via-proxy
 源码仍有非阻塞 Druid 1.2.11 POM / JSqlParser count 优化警告。MUS-009 本地任务已修复分片重复写库和哈希未校验，保留旧接口；当前全量 Java 107 tests 通过，真实数据库 / 并发 / 进程重启验收因环境阻塞待补，不属于上表历史 89 项证据。见 [上传完整性验证](docs/verification/MUS-009.md) 与 [STATUS](docs/STATUS.md)。
 
 MUS-002 的准确 checkpoint、实际环境与限制见 [model-spike.md](docs/model-spike.md)。真实音乐语料与效果验收仍缺，discovery-v0 尚未冻结。
+
+
+## MUS-012 上传所有权升级
+
+新上传按当前数据库账号保存 `owner_user_id`。文件列表、MD5 秒传 / 续传、详情、分片 / 合并 / 删除与元数据绑定只处理自己的上传；不能登记他人的图片为头像。已有音乐的媒体读取继续按审核状态控制。
+
+V001 保留不变，V002 为加列与索引迁移。旧上传保留 NULL owner 并隔离，不能自动认领；已有关联音乐仍按媒体策略读取。需要继续旧上传时重新上传新记录。删除自有未引用上传只做逻辑删除，物理清理待后续任务；音乐 / 头像引用会阻止删除。
+
+已有两个普通终端在各自 checkout 中 Ctrl+C 后运行：
+
+```bash
+# A checkout
+python3 scripts/baseline.py --slot a --migrate-upload-ownership --keep-running
+```
+
+```bash
+# 本机独立 B checkout
+python3 scripts/baseline.py --slot b --migrate-upload-ownership --keep-running
+```
+
+该迁移选项只接受隔离开发配置，已升级的库重复运行不会回填 owner 或重建表；空库自动初始化到 V002。新 baseline 会执行原功能与媒体矩阵，再执行上传所有权真实回归。报告与限制见 [MUS-012](docs/verification/MUS-012.md)。两个本机槽不代表 B 账号已独立审核。

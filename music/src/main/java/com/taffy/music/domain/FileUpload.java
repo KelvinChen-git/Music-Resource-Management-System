@@ -17,6 +17,10 @@ public class FileUpload {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    /** NULL marks a legacy upload with unknown ownership; never claim it implicitly. */
+    @TableField("owner_user_id")
+    private Long ownerUserId;
     
     /**
      * 文件名
@@ -102,4 +106,4 @@ public class FileUpload {
     @TableLogic
     @TableField("deleted")
     private Boolean deleted;
-} 
+}

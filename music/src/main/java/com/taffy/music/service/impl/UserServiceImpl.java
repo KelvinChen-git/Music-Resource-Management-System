@@ -56,6 +56,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
     
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private com.taffy.music.service.UploadAccessService uploadAccessService;
     
     @Autowired
     private MusicResourceService musicResourceService;
@@ -161,6 +164,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         
         user.setName(updatedUser.getName());
         user.setEmail(updatedUser.getEmail());
+        if (!java.util.Objects.equals(user.getAvatar(), updatedUser.getAvatar())
+                && StringUtils.hasText(updatedUser.getAvatar()))
+            uploadAccessService.requireAvatar(updatedUser.getAvatar(), id);
         user.setAvatar(updatedUser.getAvatar());
         user.setUpdatedAt(LocalDateTime.now());
         // 更新用户角色
@@ -321,6 +327,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Users> implements U
         }
         
         if (StringUtils.hasText(updateUserInfoDTO.getAvatar())) {
+            if (!java.util.Objects.equals(user.getAvatar(), updateUserInfoDTO.getAvatar()))
+                uploadAccessService.requireAvatar(updateUserInfoDTO.getAvatar(), userId);
             user.setAvatar(updateUserInfoDTO.getAvatar());
         }
         

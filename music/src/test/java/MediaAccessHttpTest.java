@@ -161,7 +161,10 @@ class MediaAccessHttpTest {
         status(f.perform("/file/download/9", 3), 404);
         when(f.music.list(any(Wrapper.class))).thenReturn(List.of());
         status(f.perform("/file/download/9", 1), 404);
-        status(f.perform("/file/download/9", 3), 200);
+        status(f.perform("/file/download/9", 3), 404); // legacy unknown owner is quarantined
+        f.upload.setOwnerUserId(1L);
+        status(f.perform("/file/download/9", 1), 200);
+        status(f.perform("/file/download/9", 3), 404);
         f.upload.setDeleted(true);
         status(f.perform("/file/download/9", 3), 404);
     }
@@ -225,6 +228,7 @@ class MediaAccessHttpTest {
         context.registerBean(JwtUtil.class, () -> f.jwt);
         context.registerBean(JwtAuthenticationInterceptor.class);
         context.registerBean(MediaAccessService.class, () -> f.access);
+        context.registerBean(UploadAccessService.class, () -> mock(UploadAccessService.class));
         context.registerBean(MusicResourceService.class, () -> f.music);
         context.registerBean(FileUploadService.class, () -> f.uploads);
         context.registerBean(UserService.class, () -> f.users);

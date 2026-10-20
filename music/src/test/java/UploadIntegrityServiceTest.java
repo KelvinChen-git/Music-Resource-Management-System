@@ -25,6 +25,7 @@ class UploadIntegrityServiceTest {
     @TempDir Path root;
     FileUploadService uploads;
     FileChunkService chunks;
+    com.taffy.music.service.UploadAccessService access;
     UploadProperties properties;
     UploadIntegrityService service;
     FileUpload upload;
@@ -33,16 +34,17 @@ class UploadIntegrityServiceTest {
     @BeforeEach void setup() {
         uploads = mock(FileUploadService.class);
         chunks = mock(FileChunkService.class);
+        access = mock(com.taffy.music.service.UploadAccessService.class);
         properties = new UploadProperties();
         properties.setTempPath(root.resolve("chunks").toString());
         properties.setPath(root.resolve("uploads").toString());
-        service = new UploadIntegrityService(uploads, chunks, properties);
+        service = new UploadIntegrityService(uploads, chunks, properties, access);
         upload = new FileUpload();
         upload.setId(1L); upload.setStatus(0); upload.setUploadedChunks(0);
         upload.setFileName("fixture.mp3"); upload.setFileSize(6L);
         upload.setChunkCount(2); upload.setFileMd5(DigestUtil.md5Hex("abcdef"));
         records = new ArrayList<>();
-        when(uploads.getOne(any(Wrapper.class))).thenReturn(upload);
+        when(access.requireOwnedLocked(1L)).thenReturn(upload);
         when(uploads.updateById(any())).thenReturn(true);
         when(chunks.getChunksByFileId(1L)).thenAnswer(call -> new ArrayList<>(records));
         when(chunks.save(any())).thenAnswer(call -> {
@@ -94,7 +96,7 @@ class UploadIntegrityServiceTest {
     @Test void retryAfterServiceRecreationDoesNotDuplicateOrTrustCounter() throws Exception {
         send(0, "abc");
         upload.setUploadedChunks(99);
-        service = new UploadIntegrityService(uploads, chunks, properties);
+        service = new UploadIntegrityService(uploads, chunks, properties, access);
         send(0, "abc");
         assertEquals(1, records.size()); assertEquals(1, upload.getUploadedChunks());
         verify(chunks, times(1)).save(any());

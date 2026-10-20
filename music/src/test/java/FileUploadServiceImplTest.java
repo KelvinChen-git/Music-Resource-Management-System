@@ -30,6 +30,7 @@ class FileUploadServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        com.taffy.music.utils.UserContext.setContext(1L, "fixture@example.invalid");
         // 1. 初始化测试数据
         testFileUpload = new FileUpload();
         testFileUpload.setId(1L);
@@ -46,6 +47,8 @@ class FileUploadServiceImplTest {
         // 3. 使用Spring测试工具注入mock依赖
         ReflectionTestUtils.setField(fileUploadService, "baseMapper", fileUploadMapper);
     }
+
+    @org.junit.jupiter.api.AfterEach void clearContext() { com.taffy.music.utils.UserContext.clear(); }
 
     @Test
 void getByFileMd5_ShouldReturnFileUpload_WhenExists() {
@@ -154,4 +157,22 @@ void incrementUploadedChunks_ShouldReturnTrue_WhenFileExists() {
     assertEquals(6, mockFile.getUploadedChunks());
     verify(fileUploadMapper).updateById(mockFile);
 }
+
+    @Test void md5LookupAlwaysBindsCurrentOwner() {
+        com.baomidou.mybatisplus.core.metadata.TableInfoHelper.initTableInfo(
+            new org.apache.ibatis.builder.MapperBuilderAssistant(new com.baomidou.mybatisplus.core.MybatisConfiguration(), "ownership"), FileUpload.class);
+        when(fileUploadMapper.selectOne(any(LambdaQueryWrapper.class), anyBoolean())).thenAnswer(call -> {
+            LambdaQueryWrapper<FileUpload> query = call.getArgument(0);
+            assertTrue(query.getSqlSegment().contains("owner_user_id"));
+            assertTrue(query.getParamNameValuePairs().containsValue(1L));
+            return testFileUpload;
+        });
+        assertNotNull(fileUploadService.getByFileMd5("a".repeat(32)));
+    }
+    @Test void md5LookupWithoutIdentityDoesNotQueryDatabase() {
+        com.taffy.music.utils.UserContext.clear();
+        assertThrows(org.springframework.web.server.ResponseStatusException.class,
+                () -> fileUploadService.getByFileMd5("a".repeat(32)));
+        verifyNoInteractions(fileUploadMapper);
+    }
 }

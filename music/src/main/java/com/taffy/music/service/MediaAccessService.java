@@ -64,7 +64,8 @@ public class MediaAccessService {
                 || !Boolean.FALSE.equals(upload.getDeleted())) throw unavailable();
         List<MusicResources> references = music.list(new LambdaQueryWrapper<MusicResources>()
                 .eq(MusicResources::getFilePath, upload.getFilePath()));
-        boolean permitted = references.isEmpty() ? "ADMIN".equals(viewer.getRole())
+        boolean permitted = references.isEmpty() ? upload.getOwnerUserId() != null
+                && upload.getOwnerUserId().equals(viewer.getUserid())
                 : references.stream().anyMatch(record -> canRead(record, viewer));
         if (!permitted) throw unavailable();
         return upload;

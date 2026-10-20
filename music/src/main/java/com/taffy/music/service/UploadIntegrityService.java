@@ -31,11 +31,13 @@ public class UploadIntegrityService {
     private final FileUploadService uploads;
     private final FileChunkService chunks;
     private final UploadProperties properties;
+    private final UploadAccessService access;
 
-    public UploadIntegrityService(FileUploadService uploads, FileChunkService chunks, UploadProperties properties) {
+    public UploadIntegrityService(FileUploadService uploads, FileChunkService chunks, UploadProperties properties, UploadAccessService access) {
         this.uploads = uploads;
         this.chunks = chunks;
         this.properties = properties;
+        this.access = access;
     }
 
     public static boolean validMd5(String value) {
@@ -43,12 +45,7 @@ public class UploadIntegrityService {
     }
 
     private FileUpload lockUpload(Long fileId) {
-        if (fileId == null || fileId <= 0) throw new IllegalArgumentException("文件ID无效");
-        // Existing unique (file_id, chunk_index) remains a second line of defence.
-        FileUpload upload = uploads.getOne(new LambdaQueryWrapper<FileUpload>()
-                .eq(FileUpload::getId, fileId).last("FOR UPDATE"));
-        if (upload == null) throw new IllegalArgumentException("文件不存在");
-        return upload;
+        return access.requireOwnedLocked(fileId);
     }
 
     @Transactional(rollbackFor = Exception.class)

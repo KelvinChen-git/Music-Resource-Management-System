@@ -144,8 +144,8 @@ def run(slot, mysql=None, via_proxy=False):
         api('PUT','/auth/profile',owner['token'],{'avatar':avatar})
         status,headers,body=request('GET','/uploads/'+avatar)
         check('registered PNG avatar remains public',status==200 and body==png and headers.get('content-type','').startswith('image/png'))
-        api('PUT','/auth/profile',owner['token'],{'avatar':relative})
-        check('avatar field cannot expose music',request('GET','/uploads/'+relative)[0]==401)
+        status,_,payload=request('PUT','/auth/profile',owner['token'],{'avatar':relative})
+        check('avatar field cannot expose music',(status!=200 or json.loads(payload).get('code')!=200) and request('GET','/uploads/'+relative)[0]==401)
         api('PUT','/auth/profile',owner['token'],{'avatar':avatar})
         return {'slot':slot,'base_url':base,'matrix_cases':len(rows),'checks':checks,'matrix':rows,
                 'synthetic_track_id':str(music_id),'limits':['Local synthetic fixtures only; not search quality.',

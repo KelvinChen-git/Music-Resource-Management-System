@@ -70,6 +70,8 @@ public class AuthController {
         try {
             UserVO userVO = userService.updateCurrentUserInfo(updateUserInfoDTO);
             return Result.success("Profile updated successfully", userVO);
+        } catch (org.springframework.web.server.ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             return Result.error(e.getMessage());
         }

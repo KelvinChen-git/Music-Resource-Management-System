@@ -19,7 +19,11 @@ public class FileUploadServiceImpl extends ServiceImpl<FileUploadMapper, FileUpl
     @Override
     public FileUpload getByFileMd5(String fileMd5) {
         LambdaQueryWrapper<FileUpload> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(FileUpload::getFileMd5, fileMd5);
+        Long owner = com.taffy.music.utils.UserContext.getCurrentUserId();
+        if (owner == null) throw new org.springframework.web.server.ResponseStatusException(
+                org.springframework.http.HttpStatus.UNAUTHORIZED, "请先登录");
+        wrapper.eq(FileUpload::getOwnerUserId, owner).eq(FileUpload::getFileMd5, fileMd5).in(FileUpload::getStatus, 0, 1)
+                .orderByDesc(FileUpload::getStatus).orderByDesc(FileUpload::getId).last("LIMIT 1");
         return getOne(wrapper);
     }
     

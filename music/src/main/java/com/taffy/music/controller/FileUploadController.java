@@ -3,10 +3,12 @@ package com.taffy.music.controller;
 import cn.hutool.core.io.FileUtil;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.taffy.music.service.UploadIntegrityService;
+import com.taffy.music.service.UploadAccessService;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.transaction.annotation.Transactional;
 import com.taffy.music.service.MediaAccessService;
 import com.taffy.music.utils.MediaResponses;
 import com.taffy.music.service.FileChunkService;
@@ -50,6 +52,9 @@ public class FileUploadController {
     private FileUploadService fileUploadService;
 
     @Autowired
+    private UploadAccessService uploadAccessService;
+
+    @Autowired
     private MediaAccessService mediaAccessService;
 
     @Autowired
@@ -90,6 +95,7 @@ public class FileUploadController {
     @PostMapping("/create")
     public Result<FileUpload> createFile(@RequestBody FileCreateVO vo) {
         try {
+            Long owner = uploadAccessService.requireViewer().getUserid();
             if (vo.getFileName() == null || !vo.getFileName().contains(".")
                     || vo.getFileSize() == null || vo.getFileSize() <= 0
                     || vo.getChunkCount() == null || vo.getChunkCount() <= 0
@@ -107,6 +113,7 @@ public class FileUploadController {
             }
 
             FileUpload fileUpload = new FileUpload();
+            fileUpload.setOwnerUserId(owner);
             fileUpload.setFileName(vo.getFileName());
             fileUpload.setFileSize(vo.getFileSize());
             fileUpload.setFileMd5(vo.getFileMd5().toLowerCase(java.util.Locale.ROOT));
@@ -121,6 +128,8 @@ public class FileUploadController {
             
             if (!fileUploadService.save(fileUpload)) return Result.error("创建文件记录失败");
             return Result.success(fileUpload);
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("创建文件记录失败", e);
             return Result.error("创建文件记录失败");
@@ -132,6 +141,7 @@ public class FileUploadController {
      */
     @GetMapping("/check")
     public Result<FileCheckVO> checkFile(@RequestParam String fileMd5) {
+        uploadAccessService.requireViewer();
         FileUpload fileUpload = fileUploadService.getByFileMd5(fileMd5);
         FileCheckVO vo = new FileCheckVO();
         if (fileUpload != null && fileUpload.getStatus() == 1) {
@@ -164,6 +174,8 @@ public class FileUploadController {
             return Result.success("分片上传成功");
         } catch (IllegalArgumentException e) {
             return Result.error(e.getMessage());
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("分片上传失败", e);
             return Result.error("分片上传失败");
@@ -179,6 +191,8 @@ public class FileUploadController {
             return Result.success("文件合并成功", vo);
         } catch (IllegalArgumentException e) {
             return Result.error(e.getMessage());
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("文件合并失败", e);
             return Result.error("文件合并失败");
@@ -192,7 +206,7 @@ public class FileUploadController {
     public Result<List<Integer>> getMissingChunks(@RequestParam Long fileId) {
         try {
             // 获取文件信息
-            FileUpload fileUpload = fileUploadService.getById(fileId);
+            FileUpload fileUpload = uploadAccessService.requireOwned(fileId);
             if (fileUpload == null) {
                 return Result.error("文件不存在");
             }
@@ -220,6 +234,8 @@ public class FileUploadController {
                     fileId, fileUpload.getChunkCount(), uploadedChunks.size(), missingChunks.size());
             
             return Result.success(missingChunks);
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("获取缺失分片失败", e);
             return Result.error("获取缺失分片失败：" + e.getMessage());
@@ -245,6 +261,7 @@ public class FileUploadController {
             }
             // 使用 QueryWrapper
             QueryWrapper<FileUpload> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("owner_user_id", uploadAccessService.requireViewer().getUserid());
             queryWrapper.eq("deleted", 0); // 添加删除标记条件
             if (fileName != null && !fileName.trim().isEmpty()) {
                 queryWrapper.like("file_name", fileName.trim());
@@ -257,13 +274,20 @@ public class FileUploadController {
             }
             // 动态排序逻辑
             boolean isAsc = "asc".equalsIgnoreCase(orderType);
-            // 简单的驼峰转下划线
-            String column = com.baomidou.mybatisplus.core.toolkit.StringUtils.camelToUnderline(orderBy);
+            // Map UI sort keys to fixed SQL identifiers.
+            java.util.Map<String, String> columns = java.util.Map.of(
+                    "createTime", "create_time", "completeTime", "complete_time", "fileName", "file_name",
+                    "fileType", "file_type", "fileSize", "file_size", "status", "status");
+            String column = columns.getOrDefault(orderBy, "create_time");
+            pageSize = Math.max(1L, pageSize);
+            current = Math.max(1L, current);
             // 添加白名单校验，防止SQL注入
             queryWrapper.orderBy(true, isAsc, column);
             Page<FileUpload> page = new Page<>(current, pageSize, true);
             Page<FileUpload> result = fileUploadService.page(page, queryWrapper);
             return Result.success(result);
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("获取文件列表失败", e);
             return Result.error("获取文件列表失败");
@@ -273,36 +297,15 @@ public class FileUploadController {
     /**
      * 删除文件
      */
+    @Transactional(rollbackFor = Exception.class)
     @DeleteMapping("/{fileId}")
     public Result<Void> deleteFile(@PathVariable("fileId") Long fileId) {
-        try {
-            FileUpload fileUpload = fileUploadService.getById(fileId);
-            if (fileUpload == null) {
-                return Result.error("文件不存在");
-            }
-
-            // 删除物理文件
-            if (fileUpload.getStatus() == 1) { // 已完成的文件
-                String fullPath = uploadProperties.getPath() + "/" + fileUpload.getFilePath();
-                FileUtil.del(new File(fullPath));
-            } else { // 未完成的文件，删除临时目录
-                FileUtil.del(uploadProperties.getTempPath() + "/" + fileId);
-            }
-
-            // 删除分片记录
-            fileChunkService.remove(new LambdaQueryWrapper<FileChunk>()
-                    .eq(FileChunk::getFileId, fileId));
-
-            // 更新时间并删除文件记录
-            fileUpload.setUpdateTime(LocalDateTime.now());
-            fileUploadService.updateById(fileUpload);
-            fileUploadService.removeById(fileId);
-
-            return Result.success();
-        } catch (Exception e) {
-            log.error("删除文件失败", e);
-            return Result.error("删除文件失败：" + e.getMessage());
-        }
+        FileUpload upload = uploadAccessService.requireOwnedLocked(fileId);
+        uploadAccessService.requireUnreferenced(upload);
+        // Retain bytes/chunks: no destructive filesystem work before DB commit, and legacy
+        // shared paths must not destroy another upload or a recoverable music resource.
+        if (!fileUploadService.removeById(fileId)) throw new IllegalStateException("删除文件记录失败");
+        return Result.success();
     }
 
     /**
@@ -311,11 +314,13 @@ public class FileUploadController {
     @GetMapping("/{fileId}")
     public Result<FileUpload> getFileDetail(@PathVariable Long fileId) {
         try {
-            FileUpload fileUpload = fileUploadService.getById(fileId);
+            FileUpload fileUpload = uploadAccessService.requireOwned(fileId);
             if (fileUpload == null) {
                 return Result.error("文件不存在");
             }
             return Result.success(fileUpload);
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("获取文件详情失败", e);
             return Result.error("获取文件详情失败");
@@ -347,7 +352,7 @@ public class FileUploadController {
     public Result<FileUploadStatusVO> getUploadStatus(@PathVariable Long fileId) {
         try {
             // 获取文件信息
-            FileUpload fileUpload = fileUploadService.getById(fileId);
+            FileUpload fileUpload = uploadAccessService.requireOwned(fileId);
             if (fileUpload == null) {
                 return Result.error("文件不存在");
             }
@@ -391,6 +396,8 @@ public class FileUploadController {
             vo.setUpdateTime(fileUpload.getUpdateTime());
             
             return Result.success(vo);
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("获取文件上传状态失败", e);
             return Result.error("获取文件上传状态失败：" + e.getMessage());
@@ -405,6 +412,7 @@ public class FileUploadController {
     @PostMapping("/upload")
     public Result<FileUpload> uploadSingleFile(@RequestParam("file") MultipartFile file) {
         try {
+            Long owner = uploadAccessService.requireViewer().getUserid();
             // 1. 获取文件信息
             String originalFilename = file.getOriginalFilename();
             long fileSize = file.getSize();
@@ -467,6 +475,7 @@ public class FileUploadController {
 
             // 7. 创建数据库记录
             FileUpload fileUpload = new FileUpload();
+            fileUpload.setOwnerUserId(owner);
             fileUpload.setFileName(originalFilename);
             fileUpload.setFileSize(fileSize);
             fileUpload.setFileMd5(fileMd5);
@@ -480,12 +489,19 @@ public class FileUploadController {
             fileUpload.setUpdateTime(LocalDateTime.now());
             fileUpload.setCompleteTime(LocalDateTime.now());
 
-            fileUploadService.save(fileUpload);
+            try {
+                if (!fileUploadService.save(fileUpload)) throw new IllegalStateException("创建文件记录失败");
+            } catch (RuntimeException failure) {
+                FileUtil.del(targetFile);
+                throw failure;
+            }
 
             log.info("文件上传成功: {}, 路径: {}", originalFilename, relativePath);
             // 8. 返回成功结果
             return Result.success(fileUpload);
 
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             log.error("普通文件上传处理失败", e);
             return Result.error("文件上传失败: " + e.getMessage());
