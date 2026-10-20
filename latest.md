@@ -1,5 +1,20 @@
 # 账号 A 最新交接
 
+## 当前：MUS-020 Sonora B复核最小修复
+
+A；2026-10-20 America/Chicago；branch `fix/MUS-020-sonora-review`；base `c19b64833b78a2cd958959b77a1c9703f2fc9281`；review / B增量待复核。implementation_sha `802da6bb1ee3f7906a19c963efb5aeac2115d223`。后续工作目录仍Music-Sonora，原版目录保留。
+
+ack_peer_feed_sha `f9fc32ec4e49b7876e0387f58c9f7a1fd7a7af46` / source `30bbd71ce34d0df6580680180498dc7eb22a19e6`：核验latest hash、source正文及仅两B报告路径，原字节导入MUS-019-B。明确接收request_changes；B26预期项通过与R1/R2三失败观察、8次前期失败分别保留，不改写为全UI批准，不重算未交付私有原始日志。
+
+R1修列表flex项min-width:0与标题可收缩；R2仅将管理员username/email两入口转/manage/music，参数/权限/API不改。A build、player5组/media6项、diff检查通过；390长标题离线CSS fixture1432→390且收藏可点；真实20首列表384≤390、20收藏控件在内。R2实际handler体对比旧/新目标、保留query/缺字段通过，非真管理员HTTP；该全链路留B新卡。细节与截图verification/MUS-020.md。
+
+5175启动时已退出，已恢复独立会话前端构建服务；A8080/原曲库仍保留，普通演示20首与真实播放通过后暂停。无Java/Python/schema/依赖升级/DB迁移/权限扩大/系统自启动。MUS-017正式接收/E1/E2及MUS-016独立审核仍另列，main未合并。
+
+新卡MUS-020-R1-B/revision1已放固定入口，reviewed_sha `802da6bb1ee3f7906a19c963efb5aeac2115d223`，comparison_base c19b648，assigned未认领；B按准确SHA补R1/R2最小增量，不重复已完成019基线。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-019 Sonora 应用开发副本
 
 A；2026-10-20 America/Chicago；branch `feat/MUS-019-sonora-app`；base `f3b0da1e97113d28c81aa49be61c5cbcc49eebce`；review / 已接入可用，待用户体验。
