@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
+import { safeCatalogLink as safeLink } from '@/utils/catalogLinks'
 
 const user = useUserStore()
 const catalog = ref({ audioTracks: [] })
@@ -12,12 +13,6 @@ const matches = (track) => `${track.title} ${track.artist} ${track.album}`.toLow
 const audio = computed(() => catalog.value.audioTracks.filter(matches))
 const artistTracks = computed(() => references.value.filter(matches))
 const isOwner = computed(() => String(user.userInfo?.userid) === String(catalog.value.ownerId))
-const safeLink = (value) => {
-  try {
-    const url = new URL(value)
-    return url.protocol === 'https:' && ['www.jamendo.com', 'creativecommons.org', 'music.apple.com', 'itunes.apple.com'].includes(url.hostname) ? url.href : ''
-  } catch { return '' }
-}
 onMounted(async () => {
   try {
     const responses = await Promise.all([fetch('/demo-catalog.json'), fetch('/artist-references.json')])

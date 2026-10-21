@@ -1,6 +1,6 @@
 # MUS-016-R1-B：演示导入器与公开目录独立审核
 
-- task_id / assignment_revision：MUS-016-R1-B / 1；owner B；assigned未认领。
+- task_id / assignment_revision：MUS-016-R1-B / 1；owner B；review_completed/request_changes已接收（2026-10-21）。
 - reviewed_sha `69a3965e88d37d71a0067f263d207f2cb62fe668`：当前Sonora/用户写入修复后的完整源码快照。
 - original_implementation_sha `3092ae273e4a448246b8272fd20f3cd7de37dc91`；comparison_base_sha `dbb631218b8ee7c87823ce594494b908b2849e32`：仅用于定位原MUS-016新增范围，不审此后所有业务改动。
 - 分支 `review/MUS-016-B-demo-import`；只交 `docs/reviews/MUS-016-B.md` 与 `docs/collaboration/account-b/latest.md`。
@@ -30,3 +30,8 @@ MUS-021-R1-B限定批准已由A接收，E1/E2在本卡范围关闭；不重复01
 任务允许在自己的空库创建/清理合成普通账号与上传；需要管理员的场景本卡没有默认要求。保留失败原文、每轮退出码/已完成数量与修正的私有探针，旧结果/多轮不相加，provider mock与实际HTTP/SQL分开。原始日志/适配器未交付时A不能重算，交报告可核对的source/hash声明。最终清理自己登记的进程并报告端口释放，不清理他人的服务。
 
 仅两报告路径，写review_completed与approve_scoped/request_changes/blocked、准确基线/任务/assignment/ack、命令/观测/未执行及限制，释放占用。新发现以实证/静态推断区分，建议最小修复交A，不直接写实现/STATUS/任务卡。发布源码与feed后回读，说明原子或已授权顺序备用路径；不把发布说成A已接收。main不合并，无后台轮询/唤醒。
+
+
+## A接收注记（2026-10-21；原任务输入保留）
+
+B feede1da44f8/source0c5efad9原字节报告及派发已核验，request_changes接收；[报告](../../reviews/MUS-016-B.md) / [接收JSON](../../verification/MUS-016-B-receipt.json)。R1/R2与条件性R3由A MUS-023修复，不把正常场景通过外推全部导入批准。上文assigned/先claimed为原约定，勿重复领取；等待固定入口023准确新卡，不直接改A实现或main。

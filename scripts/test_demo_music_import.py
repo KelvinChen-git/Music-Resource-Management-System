@@ -10,6 +10,7 @@ from import_demo_music import eligible
 class DemoMusicGuardsTest(unittest.TestCase):
     def setUp(self):
         self.track = dict(id='123', duration=180, audiodownload_allowed=True,
+                          shareurl='https://www.jamendo.com/track/123',
                           license_ccurl='https://creativecommons.org/licenses/by/4.0/',
                           audiodownload='https://prod-1.storage.jamendo.com/download/track/123/mp32/')
 

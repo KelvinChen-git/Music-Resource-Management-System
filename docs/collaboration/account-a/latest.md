@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## 当前：MUS-023导入器最小修复完成，待增量真库复核
+
+A；2026-10-21 America/Chicago；branch fix/MUS-023-demo-import-recovery；baseebae5eb，契约/接收先发布81566b1。ack_peer_feed_sha e1da44f8786bd5f10a7afe631e6cefaf0e619180 / source0c5efad944e8f546498d7791019060ca5967b40b；检查点sync一致。MUS-016-R1-B review_completed/request_changes正式接收，原字节报告/receipt已归档，不改B own latest/feed；不是已发生A秘密泄漏或证明错误。
+
+R1保存凭据不再等同注册成功：mode600 pending/confirmed和指纹，pending先login，仅旧接口明确身份拒绝才同凭据register，confirmed失败不注册；丢响应可login确认，其他错误保留。profile USER/目标一致才confirmed。R2完整证明schema/size/SHA/source/license匹配，坏证明保留且失败，旧http CC同准确路径可兼容，不需重新查源。R3公开来源按已校验ID构造canonical HTTPS，页面去userinfo/异常端口/query/fragment，Apple只保留有效i；只替换helper调用，不改布局/现有公共JSON。
+
+A首轮新临时fixture漏建.local/a（11方法14 errors，未触达产品）保留；修fixture后的旧业务11方法10 failures/2 errors含subTest，非真库证据。第一版定向16通过；新增状态保护后全scripts62零失败/错误、链接8、前端build通过，既有chunk>500kB提示保留。恢复测试实际run/_run但provider/本地API都是urlopen transport fixture，无真HTTP/JVM/SQL或MP3解码；旧5保护fixture补shareurl必需字段。原A20份选曲/证明只读20/20匹配，无API/提供方请求，不读账号/Client ID文件、无原数据写入。源码/日志/限制见verification/MUS-023.md/results.json。
+
+当前review；实现提交后派MUS-023-R1-B/revision1准确增量，只交新B报告/own latest，最小真HTTP/MySQL补证，勿重复016全矩阵/021/022。Java/schema/依赖锁/真实账号/曲库不改，无后端重启，原备份干净f3b0da1、新5175/music200、旧8080匿名profile401，main未合并。未重复Java/player/media/浏览器完整套件；MUS-022成果/51空标签保留，试听审阅入口暂缓本轮修复。最终JSON/hash/链接/fence/diff核验后提交publish，最终SHA由handoff给出。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-016 request_changes已接收，MUS-023最小修复开始
 
 A；2026-10-21 America/Chicago；branch fix/MUS-023-demo-import-recovery；baseebae5eb9fba158152aa8f3061b25fb93f502e95a；in_progress。ack_peer_feed_sha e1da44f8786bd5f10a7afe631e6cefaf0e619180 / B source0c5efad944e8f546498d7791019060ca5967b40b。核验latest hash/source/仅两报告/准确派发，原字节导入MUS-016-B及receipt，不改B own latest/feed。

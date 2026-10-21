@@ -1,0 +1,93 @@
+{
+  "task_id": "MUS-023",
+  "owner": "a",
+  "branch": "fix/MUS-023-demo-import-recovery",
+  "task_base_sha": "ebae5eb9fba158152aa8f3061b25fb93f502e95a",
+  "source_baseline": "81566b1634aa19cb8493d2c2740c6d002a75ba4e",
+  "date": "2026-10-21 America/Chicago",
+  "status": "passed_a_regressions_only",
+  "source_sha256": {
+    "scripts/import_demo_music.py": "6dca7a1a1f934209083405390355bbbe6e89566affcbbf90bc7859b4bd8d7901",
+    "scripts/test_demo_music_import.py": "233f596ce0f7ac30b5ff034570ad162c18d4e26a0228a292083e44bae3c597bc",
+    "scripts/test_demo_import_recovery.py": "22ad2b880e20b9f9a9a8a8d3ae4ec70fc8c770652b6e0d8104d877022d538290",
+    "web/src/views/DemoCatalogView.vue": "ce21ab37e8ddc357ec9b860a516219abec7e87a186e943bf5ebfda0e3752d792",
+    "web/src/utils/catalogLinks.js": "e0643d076f2402ec86ca34224cdd90d8e13439ca5eb731f3cff9dfd579bcb893",
+    "web/src/utils/catalogLinks.test.js": "0ffc1e6febadf5c7158de82f8df1e95c1842e346785933c4bf46ba14197c3ed9"
+  },
+  "a_runs": [
+    {
+      "command": "python3 -m unittest discover -s scripts -p test_demo_import_recovery.py -v (initial fixture)",
+      "exit_code": 1,
+      "tests": 11,
+      "failures": 0,
+      "errors": 14,
+      "cause": "temporary fixture did not create .local/a; no product behavior reached"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p test_demo_import_recovery.py -v (correct fixture, old product)",
+      "exit_code": 1,
+      "tests": 11,
+      "failures": 10,
+      "errors": 2,
+      "limits": "unittest subtest failures can exceed test-method count; synthetic provider/local API urlopen transport, no real HTTP/DB"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_demo*.py' -v (first fixed product)",
+      "exit_code": 0,
+      "tests": 16,
+      "limits": "before extra new account-state boundary test"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+      "exit_code": 0,
+      "tests": 62,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "command": "node --test web/src/utils/catalogLinks.test.js",
+      "runtime": "existing Node22.23.3",
+      "exit_code": 0,
+      "tests": 8,
+      "failures": 0
+    },
+    {
+      "command": "npm run build (web/)",
+      "runtime": "existing Node22.23.3, unchanged lockfile",
+      "exit_code": 0,
+      "warning": "existing chunk >500kB"
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p 'test_*.py' -v (final source after redundant guard cleanup)",
+      "exit_code": 0,
+      "tests": 62,
+      "failures": 0,
+      "errors": 0,
+      "not_added_to_prior_run_counts": true
+    }
+  ],
+  "read_only_existing_cache": {
+    "selected_tracks": 20,
+    "eligible_and_full_proof_check_passed": 20,
+    "api_requests": 0,
+    "audio_proof_writes": 0,
+    "source": "existing A original worktree cache; no account/client-ID files read, no new provider lookup"
+  },
+  "negative_before_test_source_sha256": "925b8dcac2cc454dcf3d555cb7b28e8262942be4e96c7d7b360cc4ba9e254755",
+  "logs_sha256": {
+    "catalog-links-tests.log": "b3d34b9f775fb1235e141a9eb44477a349ba2979d6d79429515072afd133f0ea",
+    "targeted-tests.log": "ff08561c76064397933e06dee2c3e8e5e4ae8bde918dc3494c1edba16ab9b895",
+    "before-tests.log": "fb87197714fc31dbed102ad0cb695fe30b915ed9ebeaab4216a24587a28b61af",
+    "python-tests.log": "353abeb3fc09b2fb1b3d1a271d9bc3e3fd37f62b81db5bea4d13bc314482d11f",
+    "fixture-setup-failure.log": "c6cf5abd81041f22a2462f15efad499ddebd275ce09fdb90419e4514a608ca2f",
+    "frontend-build.log": "2deae530db58a1456c2a8f7a4b982311fc4017329d0718aa1850954f6cee61b7",
+    "python-tests-final.log": "39d766b3d739ecb98bd89754646321316849d32c5820fd2d23489c335cae3d98"
+  },
+  "limits": [
+    "A recovery tests invoke real importer run/_run but provider and local API transport are synthetic urlopen fixtures, not real HTTP/JVM/MySQL or MP3 decoding.",
+    "Existing20 proof validation is a read-only compatibility check, not a new import or fresh source license validation.",
+    "No full browser/player/media/Java rerun; only scoped links8 and frontend build.",
+    "B016 original findings remain request_changes pending new exact-SHA review; no claim of existing A leak or proof corruption.",
+    "No source audio/public JSON/DB/Java/schema/dependency-lock changes; no backend restart, main merge or production acceptance."
+  ]
+}

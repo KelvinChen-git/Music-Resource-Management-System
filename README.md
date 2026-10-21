@@ -164,3 +164,6 @@ MUS-017的B限定批准已正式接收，C1关闭；E1空对象与E2其他用户
 
 
 MUS-022离线实跑：20首MP3、933候选片段、8英文文字和3库内参考完成512维编码及整曲/片段精确排序；23项测试和工件校验通过。51个探索标注对仍全null，未计算质量或P95、不冻结discovery-v0，生成向量仅ignore目录。命令/证据/限制见 [MUS-022](docs/verification/MUS-022.md)。现有网页/演示后端与原版备份保留。
+
+
+MUS-016首次B审核已返回request_changes。MUS-023源码补上pending/confirmed账号恢复、缓存证明完整绑定与canonical公开来源/目录链接；62 Python/8链接检查及前端构建通过，新的真HTTP/SQL增量复核待B。原版备份/既有20首证明及MUS-022结果保留，没有重跑真实A导入或升级后端。见 [MUS-023](docs/verification/MUS-023.md)。

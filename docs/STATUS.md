@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-21 America/Chicago）：A在 `spike/MUS-022-real-corpus-probe` 从2c12213继续，真实运行源码 `ef8588a76a3c068bf5f281efd59a33ce95820d94`；20首MP3/933片段/8文字/3参考的离线候选链路及23测试通过。51探索候选对标签全null，无质量/线上检索验收，MUS-002剩余效果/契约冻结仍blocked。B固定MUS-016-R1-B保持assigned未主动认领；latest B仍c32868c6/source0d4d98fe。原版备份/演示服务保留，main未合并；下列旧Git/网络/实现检查点保留为历史，当前以本条及文末为准。
+- 当前检查点（2026-10-21 America/Chicago）：A在 `fix/MUS-023-demo-import-recovery` 从ebae5eb继续；B MUS-016-R1-B request_changes已核验接收（feede1da44f8/source0c5efad9），R1/R2及条件性R3按MUS-023修复。源码/62 Python/8链接/build通过，新的真HTTP/MySQL增量待B；MUS-022离线20首/933片段保留且51标签仍空。原版备份/后端保留，main未合并；当前状态以本条及文末为准，旧记录保留为历史。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -41,6 +41,7 @@
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | A 的空库、local 启动、测试、build、smoke 通过；B 静态审核 / 前端 / 隔离通过，独立后端运行补证 blocked |
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
+| MUS-023 演示导入恢复/来源边界 | review / A（源码/回归完成，B增量待审） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
 | MUS-022 真实小语料离线探针 | review / A（链路实跑完成，质量未评） | spike/MUS-022-real-corpus-probe / ef8588a | 20首/933片段/8文字/3参考；23测试，51候选标签全null；离线工件不提交 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
 | MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |
@@ -58,8 +59,8 @@
 | MUS-017 管理员NULL头像 | done / A（B限定批准正式接收，未升级演示服务） | fix/MUS-017-admin-avatar-null / f351b0e | C1关闭；23预期真库业务项+E1单列，E1/E2转MUS-021 |
 | MUS-021 用户写入边界 | done / A（B限定批准已接收，未升级演示服务） | fix/MUS-021-user-update-boundaries / 0f12212 | B默认332 Java及24真库增量通过；E1/E2本卡关闭，边界见接收JSON |
 | MUS-021-R1-B 用户写入增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-021-B-user-update-boundaries / 0d4d98f | 原字节报告/接收JSON已归档；固定入口转016，勿重复领取 |
-| MUS-016 授权演示导入 | review / A（独立审核已派发） | 原实现3092ae2；本次审核输入69a3965 | 导入器/保护测试/公开目录与原实现字节相同；不触碰A曲库 |
-| MUS-016-R1-B 导入器独立审核 | review / B（assigned，待主动认领） | review/MUS-016-B-demo-import / 69a3965 | 只交新B报告与own latest；许可声明过滤、秘密隔离、重复/失败恢复及目录边界 |
+| MUS-016 授权演示导入 | review / A（B request_changes，修复见MUS-023） | 原实现3092ae2；本次审核输入69a3965 | 导入器/保护测试/公开目录与原实现字节相同；不触碰A曲库 |
+| MUS-016-R1-B 导入器独立审核 | done / B（review_completed / request_changes已接收） | review/MUS-016-B-demo-import / 69a3965 | 只交新B报告与own latest；许可声明过滤、秘密隔离、重复/失败恢复及目录边界 |
 | MUS-019 Sonora 应用副本 | review / A（R1/R2已由MUS-020关闭） | feat/MUS-019-sonora-app / f68b7fb | 真实Vue新界面保留；不把增量批准外推整站、完整上传或管理写操作 |
 | MUS-020 Sonora R1/R2修复 | done / A（本卡范围已验收，未合并main） | fix/MUS-020-sonora-review / 802da6b | B限定批准已核验接收；仅文档接收，不重做UI |
 | MUS-020-R1-B 增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-020-B-sonora-findings / d8bba9d | 原字节报告与接收记录已归档；020已关闭，固定入口见本轮016派发 |
@@ -446,3 +447,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 允许scripts/import_demo_music.py及保护/恢复测试、DemoCatalogView与独立安全链接helper/测试（不改布局）、README/CONTRACTS/STATUS/own latest/verification/MUS-023*/016接收和新派发。无Java/schema/依赖锁/公共JSON/原音频/现有数据库更新；不重做UI、不升级演示后端、不合并main。
 - 先更新行为契约：凭据保存不等于注册完成；pending用相同凭据先login，只有明确原接口身份拒绝时尝试register，模糊网络/服务器失败保留现场；成功login/profile USER后confirmed。缓存证明严格核对结构/大小/SHA/来源/许可，失败不覆盖。公开Jamendo来源按已核对ID构造canonical HTTPS URL，页面外链无userinfo/敏感query/fragment，Apple仅保留必要数字i参数。
 - B固定旧016卡标review_completed/request_changes，等待A准确实现后派MUS-023-R1-B新卡。原MUS-022/51空标签及审阅入口计划暂缓于本轮审核修复，不自动填标签。
+
+
+### MUS-023实现/验证检查点
+
+- pending/confirmed恢复及credential指纹，只有旧login明确身份拒绝可register同一凭据；profile普通USER/目标确认后confirmed。完整下载证明schema/size/hash/source/license严格匹配，错误保留；Jamendo来源按ID canonical化、页面外链去敏感query/fragment/userinfo，Apple保留合法i，目录布局/公开JSON不改。契约A11。
+- A首轮新fixture未建.local/a导致11方法14 errors，未触达产品；修fixture后旧业务11方法10 failures/2 errors（含subTest）触达边界。第一版修复定向16通过；增加账号状态保护后全scripts62通过，Node链接8、前端build通过。提供方和本地API均替身，非真HTTP/JVM/SQL；旧5保护fixture补shareurl新必需字段，不隐藏旧基线失败。原日志/源码hash见MUS-023-results.json。
+- 原A20条选曲/完整下载证明只读20/20匹配，新verify不做API/提供方请求或重写，不指认已有证明错误。原版备份干净f3b0da1、5175/music200、原8080匿名profile401；无Java/schema/依赖锁/真实账号/曲库改动，不重启后端或合并main；未重复无关Java/player/media完整套件。
+- 旧016卡已完成request_changes，新实现精确SHA提交后派MUS-023-R1-B/revision1补最小真库增量。MUS-022质量/人工标签不自动通过，原可试听标注入口留后续。
