@@ -1,0 +1,69 @@
+{
+  "task_id": "MUS-016-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "69a3965e88d37d71a0067f263d207f2cb62fe668",
+  "assignment_source_sha": "ebae5eb9fba158152aa8f3061b25fb93f502e95a",
+  "b_ack_peer_feed_sha": "596642d75c8d3186650f7c6790313d3f371b5553",
+  "b_source_sha": "0c5efad944e8f546498d7791019060ca5967b40b",
+  "b_feed_sha": "e1da44f8786bd5f10a7afe631e6cefaf0e619180",
+  "review_status": "review_completed",
+  "verdict": "request_changes_received",
+  "report_path": "docs/reviews/MUS-016-B.md",
+  "report_sha256": "16566f87e707bfc34c87e141c4a2863b52054972a7e1730d8fb925d656ad8485",
+  "a_verified": [
+    "latest hash/source bytes",
+    "only two B report paths differ from reviewed SHA",
+    "assignment/task/revision/ack match",
+    "exact report imported without edits"
+  ],
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "evidence": "B real local HTTP/SQL: credentials persisted but request not sent; rerun login only cannot recover",
+      "task": "MUS-023"
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "evidence": "B synthetic cached proof size/source/license mismatch accepted with correct audio SHA",
+      "task": "MUS-023"
+    },
+    {
+      "id": "R3",
+      "priority": "P3 conditional",
+      "evidence": "B synthetic source shareurl with client-ID canary reached public JSON and safeLink preserved query; no real provider or existing A leak shown",
+      "task": "MUS-023"
+    }
+  ],
+  "b_reported": {
+    "repository_guard_tests": 5,
+    "frontend_extracted_checks": 9,
+    "java_tests_executed": 0,
+    "compile_only": true,
+    "main_run": "baseline-20261021-075843-10",
+    "main_exit_code": 0,
+    "main_status": "review_findings",
+    "main_scenarios": 13,
+    "main_run_calls": 26,
+    "expected_assertions_including_lock_cleanup": 52,
+    "findings": 3,
+    "supplement_run": "baseline-20261021-080006-10",
+    "supplement_exit_code": 0,
+    "supplement_checks": 4,
+    "first_blocked_run": "baseline-20261021-075629-11",
+    "first_blocked_exit_code": 1,
+    "first_console_completed_checks": 40,
+    "first_console_findings": 2,
+    "provider_responses": "private urlopen fixture",
+    "local_api": "real HTTP/MySQL",
+    "private_raw_evidence_transferred": false
+  },
+  "limits": [
+    "A did not recompute B private raw logs/tools/DB hashes.",
+    "Main52 includes26 lock assertions and is not52 approved independent business scenarios; supplemental4/first40 are separate.",
+    "Normal fixtures and existing public JSON had no reported real secrets; R3 is conditional provider input boundary.",
+    "No claim that A existing download proofs are wrong or original audio unlicensed.",
+    "No new MUS-022 approval, full UI/build/Java tests, real provider licensing, kill-process persistence, production or main merge."
+  ]
+}

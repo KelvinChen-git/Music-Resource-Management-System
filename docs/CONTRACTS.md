@@ -144,6 +144,13 @@ Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没
 - changePassword、resetUserPassword、resetPassword仅写password/updated_at；校验、编码、返回及验证码成功后失效行为保留。六入口均以本次目标userid为WHERE，不回写读取快照中的头像/邮箱/角色/其他安全列。
 - 本项限制写入列，不能据此宣称旧密码并发请求、验证码消费、权限撤销竞争或三个正常HTTP参与者竞争已解决；真实多连接验收须单列。消费者仍原前端，不新增浏览器API字段；B在准确实现SHA上补限定审核。
 
+### A11. MUS-023 演示导入恢复与公开链接（本轮实现目标）
+
+- 私有demo-account.json保留同一凭据，新增.local/<slot>/music-catalog/demo-account-state.json（0600）记录pending/confirmed及凭据指纹/确认目标。legacy凭据首次兼容按pending确认；confirmed登录失败不重新注册。pending先login，只有旧/auth/login明确Invalid email or password业务拒绝才用同一凭据register；网络/其他业务错误不猜测账号不存在。注册响应丢失可再login确认，拒绝/不确定则保留pending，不删除凭据或生成第二账号。profile确认为USER并核对目标后才confirmed，不改变注册/登录API。
+- 缓存下载证明须为完整结构，实际字节长度/SHA与证明和选曲记录一致；source/CC BY许可按明确规范化规则匹配，不一致即失败并保留原字节/证明，不重新造证明掩盖。旧http CC许可等价为https相同准确版本；不要求缓存重跑实时查询提供方。
+- Jamendo公开来源仅按验证过的track ID构造https://www.jamendo.com/track/{id}；原来源须为该HTTPS主机与匹配track路径且无userinfo/异常端口，query/fragment不公开。许可必须准确CC BY路径、无userinfo/query/fragment；页面四允许主机继续限定HTTPS，无userinfo/意外端口，移除query/fragment，Apple官方曲目仅保留单一数字i查询参数。
+- 新本地状态先由ignore覆盖，不提交账号/原音频/缓存/生成目录；不改已存在公开catalog或A曲库，不将B的条件性fixture结果称为真实泄漏或法律结论。独立真HTTP/SQL补验与替身回归分开记录。
+
 ## B. 建议的公开 discovery-v0 契约（尚未实现）
 
 ### B1. 搜索

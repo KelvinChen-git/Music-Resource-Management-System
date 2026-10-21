@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## 当前：MUS-016 request_changes已接收，MUS-023最小修复开始
+
+A；2026-10-21 America/Chicago；branch fix/MUS-023-demo-import-recovery；baseebae5eb9fba158152aa8f3061b25fb93f502e95a；in_progress。ack_peer_feed_sha e1da44f8786bd5f10a7afe631e6cefaf0e619180 / B source0c5efad944e8f546498d7791019060ca5967b40b。核验latest hash/source/仅两报告/准确派发，原字节导入MUS-016-B及receipt，不改B own latest/feed。
+
+接收R1/P2注册前失败无法恢复、R2/P2缓存证明size/source/license未校验、R3/P3条件性来源query公开边界。B主52含26锁断言/3发现，补4和首轮blocked40/2单列；5保护/9提取代码组通过，Java仅compile；提供方mock/本地HTTP真库的边界及私有证据未交付保留。未指认A原证明错误或真实Client ID泄漏。MUS-022真实离线结果及51空标签仍有效，不扩为B已批准。
+
+允许导入器/恢复测试、目录安全链接helper及测试/最小调用替换，契约/台账/接收/验证/派发文档；不改UI布局/Java/schema/依赖锁/公共JSON/原数据/服务。CONTRACTS A11先记录pending/confirmed相同凭据恢复、严格下载证明匹配与canonical公开来源/页面链接规则。旧016任务review_completed/request_changes，固定入口waiting，准确实现后派023新卡；不重复领取或让B直接改实现。主线可试听审阅入口暂缓于本轮修复，不预填人工标签。原版备份保留，main未合并。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-022真实小语料离线链路实跑完成
 
 A；2026-10-21 America/Chicago；branch spike/MUS-022-real-corpus-probe；base2c122130f2fc7f848f81d53e6719809ef6ab9811；implementation/run_sha `ef8588a76a3c068bf5f281efd59a33ce95820d94`，运行时工作区干净。status review：仅离线处理/候选排序验收，无质量/生产结论。

@@ -436,3 +436,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 8文字查询的整曲/片段top5候选并集形成51对，标注包relevance/人工区间/annotator全部null；参考来自候选本身，自匹配不代表held-out质量。无人工qrels/质量指标/模型对比结论，002仍blocked于效果与冻结，不提前实现未定003/004/API。
 - 新工件只在本副本.local/a/mus022；Git不提交原音频/模型/生成索引，现有20资源仍owner/pending离线范围，无实时数据库权限刷新，不能进入共享discovery。许可只匹配原下载记录，非实时源复核。Java/Vue/Python依赖锁/API/schema不改，无关Maven/前端套件不重复。
 - 检查点sync B仍c32868c6/source0d4d98fe，固定MUS-016-R1-B/revision1保持assigned未主动认领，未被本任务覆盖。原版备份干净f3b0da1、5175/music200、原8080匿名profile401，main未合并。下一步人工候选判断/失败分析，再做模型效果/方案对照和契约冻结；B016审核发现另行接收。
+
+
+## MUS-023 导入器B审核发现修复（2026-10-21；当前占用）
+
+- owner A；branch fix/MUS-023-demo-import-recovery；baseebae5eb9fba158152aa8f3061b25fb93f502e95a；in_progress。B feede1da44f8/source0c5efad9、reviewed69a3965、assignmentebae5eb/ack A596642d7已核验，原字节导入MUS-016-B与接收JSON。MUS-016-R1-B review_completed/request_changes已接收，不再assigned未认领。
+- R1/P2注册请求前失败后的凭据恢复、R2/P2证明size/source/license绑定、R3/P3条件性上游来源query公开风险，全部按最小修复处理。不声称A原证明错误/现有公开JSON秘密泄漏；MUS-022已逐份核对的离线工件继续保留，无新质量结论。
+- B主矩阵52预期断言含26锁检查及3发现，status review_findings；补验4、首轮blocked内console40/2另列，不相加。5保护与9提取代码组通过、Java仅compile未测；提供方为fixture，本地HTTP/MySQL真实，私有原始证据未交付，A不重算。
+- 允许scripts/import_demo_music.py及保护/恢复测试、DemoCatalogView与独立安全链接helper/测试（不改布局）、README/CONTRACTS/STATUS/own latest/verification/MUS-023*/016接收和新派发。无Java/schema/依赖锁/公共JSON/原音频/现有数据库更新；不重做UI、不升级演示后端、不合并main。
+- 先更新行为契约：凭据保存不等于注册完成；pending用相同凭据先login，只有明确原接口身份拒绝时尝试register，模糊网络/服务器失败保留现场；成功login/profile USER后confirmed。缓存证明严格核对结构/大小/SHA/来源/许可，失败不覆盖。公开Jamendo来源按已核对ID构造canonical HTTPS URL，页面外链无userinfo/敏感query/fragment，Apple仅保留必要数字i参数。
+- B固定旧016卡标review_completed/request_changes，等待A准确实现后派MUS-023-R1-B新卡。原MUS-022/51空标签及审阅入口计划暂缓于本轮审核修复，不自动填标签。
