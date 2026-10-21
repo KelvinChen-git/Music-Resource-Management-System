@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-21 America/Chicago）：本轮从 `fix/MUS-021-user-update-boundaries@69a3965e88d37d71a0067f263d207f2cb62fe668` 干净工作区开始；本地执行与A/B sync成功。B feed `c32868c6a5c74dca5961b53e6bf2a846978e3ada` / source `0d4d98fed6f5e876c9a87ab95c1d7e56b4332280` 的MUS-021限定批准已核验接收，E1/E2本卡关闭。下一B任务为MUS-016-R1-B导入器独立审核，准确输入69a3965；未合并main或升级现有演示服务。下列早期Git/网络与旧检查点保留为历史，当前状态以本条及文末为准。
+- 当前检查点（2026-10-21 America/Chicago）：A在 `spike/MUS-022-real-corpus-probe` 从2c12213继续，真实运行源码 `ef8588a76a3c068bf5f281efd59a33ce95820d94`；20首MP3/933片段/8文字/3参考的离线候选链路及23测试通过。51探索候选对标签全null，无质量/线上检索验收，MUS-002剩余效果/契约冻结仍blocked。B固定MUS-016-R1-B保持assigned未主动认领；latest B仍c32868c6/source0d4d98fe。原版备份/演示服务保留，main未合并；下列旧Git/网络/实现检查点保留为历史，当前以本条及文末为准。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -24,9 +24,9 @@
 | API 直连 / 开发代理流程 | passed（本机 A/B） | 两个独立 checkout 各直连 13 / 代理 13，真实 Range 206；见 MUS-010 四份原始结果 |
 | 两套本地环境隔离 | 实跑 passed | A 复用已有库，独立 B worktree 新建空库各 11 表；六端口同时监听。此本机代跑不冒充 B 账号独立验收 |
 | 媒体入口权限 | 本机修复实跑通过 | MUS-011 两套环境匿名三入口均 401；上传所有权与 B 独立审核仍待完成 |
-| CLAP 文本 / 音频编码 | 可行性 passed | 固定 checkpoint CPU 严格加载，实际 512 维，合成输入，9 项预处理测试；有网 / 缓存离线复跑通过 |
-| Python 检索 / 索引 / 搜索界面 | 未实现 | 只有离线探针；未冻结 discovery-v0 |
-| 30–50 / 2,000 首，约 70,000 片段，120 查询 | 计划 / 算例 | 未导入或标注；合成 smoke 不是音乐语料 |
+| CLAP 文本 / 音频编码 | 离线链路passed，质量unmeasured | MUS-022真实20首MP3/933片段、8文字/3参考，固定checkpoint严格加载512维；23测试通过 |
+| Python离线候选 / 线上检索 | 离线候选已实跑，线上未实现 | 已有解码/候选窗口/精确排序探针，无Java gateway/共享索引/多模态页面；discovery-v0未冻结 |
+| 研究语料与标注 | 20首真实输入已处理；其余仍计划 | 933实际片段、8探索文字/3同源参考；人工qrels无；30–50/2,000首、70,000片段/120查询仍计划或算例 |
 | 质量、P95、并发和提升比例 | unmeasured | 不得写作已完成成果 |
 
 详细命令与机器生成结果见 [verification/MUS-001.md](verification/MUS-001.md)。旧会话网络阻塞只是历史：本轮 Maven 已能下载和实跑。原始默认 75 tests 有 3 errors；修正 fixture 后才得到全量 89 tests 通过。
@@ -40,7 +40,8 @@
 | DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用并包含于远端 A 源码历史；main 未合并 |
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | A 的空库、local 启动、测试、build、smoke 通过；B 静态审核 / 前端 / 隔离通过，独立后端运行补证 blocked |
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
-| MUS-002 模型 spike / 契约冻结 | blocked / A | spike/MUS-002-clap-feasibility / 1b1faa1；已测探针 ab5d6f3 | services/audio-search/ 与 docs/model-spike.md；准确 checkpoint / 预处理 / 实际输出 / 依赖锁；素材和效果未验证前不冻结 |
+| MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
+| MUS-022 真实小语料离线探针 | review / A（链路实跑完成，质量未评） | spike/MUS-022-real-corpus-probe / ef8588a | 20首/933片段/8文字/3参考；23测试，51候选标签全null；离线工件不提交 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
 | MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |
 | MUS-005 Java 集成与权限 | todo / unassigned | MUS-003 / 004，及媒体权限治理 | 检索 gateway、可见性复核、旧匿名路径治理、片段试听 |
@@ -425,3 +426,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 已只读定位原版目录本地20份MP3/20份下载证明、现有固定checkpoint/CLAP venv/HF缓存；原音频/证明/权重只读共享，所有新工件写当前副本已ignore的.local/a/mus022，不改原版工作区或数据库。现有soundfile能列出MP3解码格式，真实解码尚待运行，不记为已验收。
 - 验收：逐首内容/来源声明/原下载证明匹配，MP3实际解码时长/声道/采样率及无效文件/短尾段边界；使用既有候选10s/5s规则和固定模型，在当前20首范围生成整曲聚合/片段精确排序及少量文字/参考音频探索查询。所有结果绑定源码/输入/模型/pipeline/工件哈希，拒绝覆盖旧run。
 - 排序结果无人工qrels，仅用于看候选/失败和后续标注；不写质量提升/P95/正式评测通过，不把候选离线向量当线上索引或最终模型选择。素材下载时声明不冒充本轮实时许可复核。若真实语料/效果仍不足，MUS-002不冻结，003/004不并行实施未定API。
+
+
+### MUS-022运行完成检查点
+
+- implementation/run_sha `ef8588a76a3c068bf5f281efd59a33ce95820d94`，运行时工作区干净。原20份MP3/20下载证明只读校验，内容hash/size/source/license一致；20首全为44100Hz MP3，真实解码4722246ms，候选10s/5s共933片段/20补零末段。前后重校输入，原版数据/模型/服务不改。
+- 固定原checkpoint restricted/strict加载，实际933片段+20整曲均值聚合+8英文探索+3库内参考共964个有限归一化512维向量。11组top5整曲/片段精确排序，按每曲最大score与IoU>0.5抑制；所有933边界与向量/工件/源码hash独立复核通过。
+- 23测试exit0（原9+新增14），MP3由20首真实run补验；run-01 exit0/passed_offline_pipeline_only。再次同output exit1/FileExistsError为预期拒绝，工件hash未变，不算第二次成功。仅一次CPU总约79.6秒含构建，不是查询P95。详细 [MUS-022](verification/MUS-022.md) / [结果JSON](verification/MUS-022-results.json)。
+- 8文字查询的整曲/片段top5候选并集形成51对，标注包relevance/人工区间/annotator全部null；参考来自候选本身，自匹配不代表held-out质量。无人工qrels/质量指标/模型对比结论，002仍blocked于效果与冻结，不提前实现未定003/004/API。
+- 新工件只在本副本.local/a/mus022；Git不提交原音频/模型/生成索引，现有20资源仍owner/pending离线范围，无实时数据库权限刷新，不能进入共享discovery。许可只匹配原下载记录，非实时源复核。Java/Vue/Python依赖锁/API/schema不改，无关Maven/前端套件不重复。
+- 检查点sync B仍c32868c6/source0d4d98fe，固定MUS-016-R1-B/revision1保持assigned未主动认领，未被本任务覆盖。原版备份干净f3b0da1、5175/music200、原8080匿名profile401，main未合并。下一步人工候选判断/失败分析，再做模型效果/方案对照和契约冻结；B016审核发现另行接收。

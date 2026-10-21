@@ -1,0 +1,139 @@
+{
+  "status": "passed_offline_pipeline_only",
+  "code_sha": "ef8588a76a3c068bf5f281efd59a33ce95820d94",
+  "working_tree_dirty": false,
+  "source_hashes": {
+    "corpus.py": "0e579011bf2b5b7c643d3d0fa541b2b9a379f7887b0b384d8751960b651b8c0d",
+    "corpus_probe.py": "c344fdfbcf9c741e1e65c47b4c0fc471674a6337efae11f1204d53b8df4152cd",
+    "preprocess.py": "3027f7c027ee1a79fc9e418e24b37bebfc2c1ca28a62001eb55b738c035c57df",
+    "probe.py": "90df87c284cd6c44443c87e16aa8ae02b9d04393571e3519cb09588e1f342fed"
+  },
+  "input_catalog_sha256": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+  "artifact_sha256": {
+    "corpus-manifest.json": "3099ec3fc8f5046e01c54eb69563b8cbc3b374c1d8189655cddf76eee5e67372",
+    "queries.json": "41d524140b43b49fce935af66c0150ccfd5177533d88633b1c88d94e19f1010f",
+    "rankings.json": "72fbdc2852d2d4fe05f50f961d838217e6bf7ac119f58e669d499d948f48a626",
+    "segments.json": "0b3e1bd42c5c89c161143fb017848843548eb9eb4fea7fd4d34dd8922f018bb3",
+    "vectors.npz": "45f495b0f71a094ddfe07358178f2dc1325c06d04a3f5a942b8f2c7fcba394ef"
+  },
+  "model": {
+    "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "audio_architecture": "HTSAT-base",
+    "fusion": false,
+    "dimension": 512,
+    "strict_missing": [],
+    "strict_unexpected": [],
+    "removed_nonlearned_position_ids": true
+  },
+  "pipeline_version": "candidate-soundfile-soxr-mono-zero-10s-hop5s-v1",
+  "preprocessing": {
+    "sample_rate_hz": 48000,
+    "window_samples": 480000,
+    "hop_samples": 240000,
+    "downmix": "channel arithmetic mean",
+    "resampler": "whole-track soxr_hq with integer-ceiling sample count",
+    "padding": "right zeros before SDK",
+    "sdk_quantization": "clip [-1,1], float32 -> int16 -> float32"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "system": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "threads": 2,
+    "soundfile_library": "1.2.2",
+    "packages": {
+      "laion-clap": "1.1.7",
+      "torch": "2.6.0",
+      "numpy": "1.26.4",
+      "soundfile": "0.13.1",
+      "librosa": "0.11.0",
+      "soxr": "1.1.0",
+      "transformers": "4.51.3"
+    }
+  },
+  "counts": {
+    "tracks": 20,
+    "segments": 933,
+    "text_queries": 8,
+    "reference_queries": 3,
+    "padded_tail_segments": 20,
+    "decoded_duration_ms": 4722246
+  },
+  "text_token_lengths": [
+    13,
+    12,
+    12,
+    12,
+    13,
+    13,
+    13,
+    14
+  ],
+  "single_run_timings_ms": {
+    "model_load": 2634.6571249887347,
+    "decode_resample": 4503.113540937193,
+    "audio_encoding_including_reference": 70850.13720672578,
+    "text_encoding": 195.98329201107845,
+    "total": 79554.7984589939
+  },
+  "peak_rss_platform_units": 1896235008,
+  "limits": [
+    "No human relevance labels, held-out test set, localization ground truth or quality metric.",
+    "Reference clips come from candidate tracks; self matches are not held-out retrieval evidence.",
+    "Whole-track is normalized mean of window embeddings, not a full-song encoder.",
+    "Single-process timings are not P95/concurrency/Java/browser latency.",
+    "Recorded license declarations were matched, not refreshed or legally revalidated.",
+    "No database/permission refresh, API, shared index, service or discovery-v0 freeze."
+  ],
+  "a_postrun_verification": {
+    "artifact_hashes_and_source_hashes": "passed",
+    "all_933_sample_and_ms_bounds": "passed",
+    "vectors": {
+      "segment": [
+        933,
+        512
+      ],
+      "whole_track": [
+        20,
+        512
+      ],
+      "text_query": [
+        8,
+        512
+      ],
+      "reference_query": [
+        3,
+        512
+      ],
+      "finite_float32_unit_norm": "passed"
+    },
+    "exact_track_max_ranking": "passed",
+    "overwrite_guard": {
+      "exit_code": 1,
+      "expected_error": "FileExistsError",
+      "existing_artifacts_sha256_unchanged": true
+    },
+    "tests": {
+      "command": "python -m unittest discover -s services/audio-search -p 'test_*.py' -v",
+      "count": 23,
+      "exit_code": 0
+    },
+    "label_pack": {
+      "path": ".local/a/mus022/label-pack.json",
+      "sha256": "877b7219c239386cc75a97382617fa735433928ec9d76331ce4faa5b2300fd47",
+      "text_queries": 8,
+      "candidate_pairs": 51,
+      "labels_all_null": true
+    },
+    "private_run_dir": ".local/a/mus022/run-01",
+    "logs_sha256": {
+      "run-01.log": "4cef0800a7d8e28e56f42ed3783cea5654a1b45a4989bd7440f3762fbca5c201",
+      "overwrite-guard.log": "81459f23c23ac3bca7f061220c0b1f5b96f2a5cd7b9477c8937992f7d1a6b667",
+      "tests.log": "d8ce4ae954651cc0322599155d6d7e1ed30b95579b78f2fd73ac796749b93031"
+    },
+    "test_source_sha256": "541c612fad884a4e91485476bba671c0382ec535bc8aec952d8d3982107dbc12"
+  }
+}

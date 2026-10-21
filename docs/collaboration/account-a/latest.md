@@ -1,5 +1,21 @@
 # 账号 A 最新交接
 
+## 当前：MUS-022真实小语料离线链路实跑完成
+
+A；2026-10-21 America/Chicago；branch spike/MUS-022-real-corpus-probe；base2c122130f2fc7f848f81d53e6719809ef6ab9811；implementation/run_sha `ef8588a76a3c068bf5f281efd59a33ce95820d94`，运行时工作区干净。status review：仅离线处理/候选排序验收，无质量/生产结论。
+
+ack_peer_feed_sha c32868c6a5c74dca5961b53e6bf2a846978e3ada / source0d4d98fed6f5e876c9a87ab95c1d7e56b4332280，开始/检查点sync一致；MUS-016-R1-B/revision1仍assigned未主动claimed，原卡/准确输入保持，不因本新A feed重复派发或替换。
+
+真实读取20首原演示MP3/原下载证明，逐首内容/size/source/license与公开catalog匹配，前后重校，未写原版。实际解码全44100Hz MP3、4722246ms，候选10s/5s共933片段（20补零末段），端点不含零填充。固定原checkpoint restricted/strict加载，933片段+20整曲聚合+8英文文字+3库内参考共964个有限归一化512维向量，11组整曲/片段精确候选排序。不是整曲一次模型输入，无Java网关/共享搜索服务或UI改动。
+
+23测试exit0、完整run-01 exit0/passed_offline_pipeline_only；独立校验全部边界/工件hash/向量及track-max分数通过，重复同output exit1/FileExistsError为保护负例，工件未变。CPU一次约79.6s含构建，不是检索P95或并发。8文字候选池51对，relevance/人工区间/annotator全null；参考来自候选，自匹配不证明held-out质量。日志/环境/源码/模型/数据及工件指纹见verification/MUS-022.md/results.json，新向量/排序/空标签包仅本副本.local/a/mus022不进Git。
+
+002真实解码/语料处理缺口已有证据，仍blocked于人工qrels/效果对照和discovery-v0冻结；003/004不提前实现未定API。原20首仍owner/pending的离线读取，不做实时权限刷新或本轮源许可复核。Java/Vue/数据库/API/schema/依赖锁不变，无关Maven/前端套件未重跑；备份干净f3b0da1、5175/music200、8080匿名profile401、原MUS-014后端保留，main未合并。最终文档/JSON/hash/diff检查后提交publish，最终source SHA由handoff给出；发布不等于B016已认领或本探针已获B批准。
+
+下一步可对51个候选对听音频作独立人工标注/失败分析，再比较整曲与片段效果和候选模型；空标签不是评测成果。继续等待B016固定入口交付，不启动后台轮询。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-022真实小语料离线探针开始
 
 A；2026-10-21 America/Chicago；branch spike/MUS-022-real-corpus-probe；base2c122130f2fc7f848f81d53e6719809ef6ab9811；in_progress。ack_peer_feed_sha c32868c6a5c74dca5961b53e6bf2a846978e3ada / source0d4d98fed6f5e876c9a87ab95c1d7e56b4332280；B016未主动claimed，固定派发保持，不重复或替换。
