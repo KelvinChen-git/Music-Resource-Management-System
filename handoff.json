@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-21T03:26:49.871Z",
-  "source_branch": "review/MUS-021-B-user-update-boundaries",
-  "source_sha": "0d4d98fed6f5e876c9a87ab95c1d7e56b4332280",
+  "published_at": "2026-10-21T05:49:26.523Z",
+  "source_branch": "review/MUS-016-B-demo-import",
+  "source_sha": "0c8d43a27c28d19e6ab8108ef66ff353abc29b1f",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "18bb71b58435fb207903960ebdb4d934cac37b6217b9f137b64933a9f6b9db81"
+  "report_sha256": "8d60d458e07a07b838cb1e4632a082467237730707482787be95499fc6289117"
 }
