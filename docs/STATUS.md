@@ -455,3 +455,9 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - A首轮新fixture未建.local/a导致11方法14 errors，未触达产品；修fixture后旧业务11方法10 failures/2 errors（含subTest）触达边界。第一版修复定向16通过；增加账号状态保护后全scripts62通过，Node链接8、前端build通过。提供方和本地API均替身，非真HTTP/JVM/SQL；旧5保护fixture补shareurl新必需字段，不隐藏旧基线失败。原日志/源码hash见MUS-023-results.json。
 - 原A20条选曲/完整下载证明只读20/20匹配，新verify不做API/提供方请求或重写，不指认已有证明错误。原版备份干净f3b0da1、5175/music200、原8080匿名profile401；无Java/schema/依赖锁/真实账号/曲库改动，不重启后端或合并main；未重复无关Java/player/media完整套件。
 - 旧016卡已完成request_changes，新实现精确SHA提交后派MUS-023-R1-B/revision1补最小真库增量。MUS-022质量/人工标签不自动通过，原可试听标注入口留后续。
+
+
+### MUS-023准确提交与新卡
+
+- implementation_sha `ab8205827456ec6aeab3bcb289722a236e644f6b`，comparison_base `81566b1634aa19cb8493d2c2740c6d002a75ba4e`，任务起点ebae5eb。新B卡MUS-023-R1-B/revision1 assigned未认领，固定入口替换已完成016任务，不重复原全矩阵；R1/R2/R3在B增量前仍待独立验收，不先写closed。
+- 检查点sync B仍e1da44f8/source0c5efad9；A完成JSON/hash/原报告字节/链接/fence/diff校验，Java/公共目录/依赖锁/MUS-022/原B报告未变。原版备份/后端保持，main未合并。提交后原子publish并回读，最终source SHA由handoff/交接消息提供。

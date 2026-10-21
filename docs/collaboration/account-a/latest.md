@@ -8,7 +8,7 @@ R1保存凭据不再等同注册成功：mode600 pending/confirmed和指纹，pe
 
 A首轮新临时fixture漏建.local/a（11方法14 errors，未触达产品）保留；修fixture后的旧业务11方法10 failures/2 errors含subTest，非真库证据。第一版定向16通过；新增状态保护后全scripts62零失败/错误、链接8、前端build通过，既有chunk>500kB提示保留。恢复测试实际run/_run但provider/本地API都是urlopen transport fixture，无真HTTP/JVM/SQL或MP3解码；旧5保护fixture补shareurl必需字段。原A20份选曲/证明只读20/20匹配，无API/提供方请求，不读账号/Client ID文件、无原数据写入。源码/日志/限制见verification/MUS-023.md/results.json。
 
-当前review；实现提交后派MUS-023-R1-B/revision1准确增量，只交新B报告/own latest，最小真HTTP/MySQL补证，勿重复016全矩阵/021/022。Java/schema/依赖锁/真实账号/曲库不改，无后端重启，原备份干净f3b0da1、新5175/music200、旧8080匿名profile401，main未合并。未重复Java/player/media/浏览器完整套件；MUS-022成果/51空标签保留，试听审阅入口暂缓本轮修复。最终JSON/hash/链接/fence/diff核验后提交publish，最终SHA由handoff给出。
+当前review；implementation_sha `ab8205827456ec6aeab3bcb289722a236e644f6b`，comparison_base `81566b1634aa19cb8493d2c2740c6d002a75ba4e`。新卡MUS-023-R1-B/revision1 assigned未认领，固定入口已更新，只交新B报告/own latest，最小真HTTP/MySQL补证，勿重复016全矩阵/021/022。Java/schema/依赖锁/真实账号/曲库不改，无后端重启，原备份干净f3b0da1、新5175/music200、旧8080匿名profile401，main未合并。未重复Java/player/media/浏览器完整套件；MUS-022成果/51空标签保留，试听审阅入口暂缓本轮修复。JSON/hash/原报告字节/链接/fence/diff已核验，产品外路径保持；提交后publish并回读，最终SHA由handoff给出，发布不等于B已认领或批准。
 
 ## 上一轮交接（保留）
 

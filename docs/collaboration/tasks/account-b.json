@@ -1,45 +1,33 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-016-R1-B",
+  "task_id": "MUS-023-R1-B",
   "assignment_revision": 1,
-  "status": "waiting",
-  "claimed_by_b": true,
-  "task_card_path": "docs/collaboration/tasks/MUS-016-R1-B.md",
-  "reviewed_sha": "69a3965e88d37d71a0067f263d207f2cb62fe668",
-  "comparison_base_sha": "dbb631218b8ee7c87823ce594494b908b2849e32",
-  "original_implementation_sha": "3092ae273e4a448246b8272fd20f3cd7de37dc91",
-  "review_branch": "review/MUS-016-B-demo-import",
+  "status": "assigned",
+  "claimed_by_b": false,
+  "task_card_path": "docs/collaboration/tasks/MUS-023-R1-B.md",
+  "reviewed_sha": "ab8205827456ec6aeab3bcb289722a236e644f6b",
+  "comparison_base_sha": "81566b1634aa19cb8493d2c2740c6d002a75ba4e",
+  "review_branch": "review/MUS-023-B-demo-import-recovery",
   "allowed_output_paths": [
-    "docs/reviews/MUS-016-B.md",
+    "docs/reviews/MUS-023-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md",
-  "unchanged_import_scope_sha256": {
-    "scripts/import_demo_music.py": "406403808c5dc7b41ace3c87691b554510fa8a340088d978c5038f85c2028db8",
-    "scripts/test_demo_music_import.py": "1773c001c550d32cb9182c11ec4764623fa7ef7b10e4a470bde87486239e69aa",
-    "web/public/demo-catalog.json": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
-    "web/public/artist-references.json": "73078c7d55ced2233b85a1bcfcf25bebf76d00379a01329aaa29d99c57e2a0e0",
-    "web/src/views/DemoCatalogView.vue": "2cf7094753cd7746ce813efbb3ec0e260e084002ef631be64dbdf8d393eb28ae"
-  },
   "previous_task": {
-    "task_id": "MUS-021-R1-B",
+    "task_id": "MUS-016-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "approve_scoped_accepted",
-    "reviewed_sha": "0f12212123616809ea0a917e43fc11e5f564ab46",
-    "source_sha": "0d4d98fed6f5e876c9a87ab95c1d7e56b4332280",
-    "feed_sha": "c32868c6a5c74dca5961b53e6bf2a846978e3ada",
-    "acceptance_record_path": "docs/verification/MUS-021-B-acceptance.json"
+    "verdict": "request_changes_received",
+    "reviewed_sha": "69a3965e88d37d71a0067f263d207f2cb62fe668",
+    "source_sha": "0c5efad944e8f546498d7791019060ca5967b40b",
+    "feed_sha": "e1da44f8786bd5f10a7afe631e6cefaf0e619180",
+    "receipt_record_path": "docs/verification/MUS-016-B-receipt.json"
   },
-  "note": "MUS-016 review completed/request_changes received. A implementing MUS-023 R1/R2/R3; wait for new exact-SHA task. Do not repeat MUS-016 or implement product fixes.",
+  "note": "Exact MUS-023 minimal R1/R2/R3 increment; do not repeat complete MUS-016 or claim MUS-022 quality approval. A tests synthetic transport; supplement real local HTTP/SQL in isolated B environment. Do not touch A services/data/credentials.",
   "separate_backlog": [
-    "No main merge or existing demo backend upgrade",
-    "Multimodal retrieval/model/corpus evaluation remains unimplemented or unmeasured as documented"
-  ],
-  "review_status": "review_completed",
-  "verdict": "request_changes_received",
-  "b_source_sha": "0c5efad944e8f546498d7791019060ca5967b40b",
-  "b_feed_sha": "e1da44f8786bd5f10a7afe631e6cefaf0e619180",
-  "receipt_record_path": "docs/verification/MUS-016-B-receipt.json"
+    "MUS-022 human relevance and interval judgments / model comparisons / discovery-v0 freeze",
+    "Listening/review workspace postponed until importer fixes coordinated",
+    "No main merge or existing backend upgrade"
+  ]
 }
