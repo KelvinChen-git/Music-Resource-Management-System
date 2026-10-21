@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-21T05:43:36.505670+00:00",
-  "source_branch": "spike/MUS-022-real-corpus-probe",
-  "source_sha": "ebae5eb9fba158152aa8f3061b25fb93f502e95a",
+  "published_at": "2026-10-21T06:14:01.584821+00:00",
+  "source_branch": "fix/MUS-023-demo-import-recovery",
+  "source_sha": "81566b1634aa19cb8493d2c2740c6d002a75ba4e",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "15438173ab7f5cde7881bf0c26e9775cd2219eb1932af9a81881418f2139b2c7"
+  "report_sha256": "237a210a8ecba8f7c5dd46eb15fb0cfa82aec561a35c9349b101a2f0b5d927c5"
 }
