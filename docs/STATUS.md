@@ -416,3 +416,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 前置offline clean缺插件exit1/测试0；首轮探针误解析匿名401空body导致exit1/blocked，其中Java332和5业务完成单列。最终24与前5不相加、两轮Java不相加，B显式*Test未新跑。进程停止与3308/8081释放为B报告事实；顺序GitHub发布非原子。
 - 下一卡MUS-016-R1-B/revision1，reviewed69a3965，原实现3092ae2/比较dbb6312，仅审导入器/既有保护测试/公开目录及路由兼容所需片段；输入脚本/测试/两个JSON/视图相对原实现字节未变。assigned未认领，B只写新报告和own latest，不重领017/019/020/021、不直接修实现。不访问A服务/缓存/凭据/曲库，隔离合成源fixture与真实本地HTTP须分别标明。
 - 本地只读：备份仍干净f3b0da1，5175/music200、8080匿名profile401。文档专用本轮不重复Maven/UI/Python套件；完成JSON/hash/链接/fence/diff检查后提交发布回执与新卡。未合并main，权限撤销/验证码原子消费/同密码竞争/生产与检索质量仍单列。
+
+
+## MUS-022真实小语料离线探针（2026-10-21；当前占用）
+
+- owner A；branch spike/MUS-022-real-corpus-probe；base2c122130f2fc7f848f81d53e6719809ef6ab9811；in_progress。允许services/audio-search/中的离线解码/候选窗口/探针及测试、独立探索查询fixture，docs/model-spike/STATUS/PROJECT/README必要事实、own latest和verification/MUS-022*。不改Java/Vue/依赖锁/公共API/schema，不提前冻结discovery-v0或开放搜索。
+- 本轮sync B仍c32868c6/source0d4d98fe，MUS-016-R1-B未有主动认领，固定卡保持task/revision/准确输入，不覆盖。A不修改或重复执行导入器，不写B两报告。
+- 已只读定位原版目录本地20份MP3/20份下载证明、现有固定checkpoint/CLAP venv/HF缓存；原音频/证明/权重只读共享，所有新工件写当前副本已ignore的.local/a/mus022，不改原版工作区或数据库。现有soundfile能列出MP3解码格式，真实解码尚待运行，不记为已验收。
+- 验收：逐首内容/来源声明/原下载证明匹配，MP3实际解码时长/声道/采样率及无效文件/短尾段边界；使用既有候选10s/5s规则和固定模型，在当前20首范围生成整曲聚合/片段精确排序及少量文字/参考音频探索查询。所有结果绑定源码/输入/模型/pipeline/工件哈希，拒绝覆盖旧run。
+- 排序结果无人工qrels，仅用于看候选/失败和后续标注；不写质量提升/P95/正式评测通过，不把候选离线向量当线上索引或最终模型选择。素材下载时声明不冒充本轮实时许可复核。若真实语料/效果仍不足，MUS-002不冻结，003/004不并行实施未定API。
