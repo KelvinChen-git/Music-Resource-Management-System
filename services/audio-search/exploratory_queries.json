@@ -1,0 +1,15 @@
+{
+  "version": "mus022-exploratory-en-v1",
+  "split": "exploratory_unjudged",
+  "note": "Authored for candidate inspection, not annotated relevance or held-out evaluation.",
+  "queries": [
+    {"query_id": "exp-01", "text": "Energetic electronic dance music with a strong beat."},
+    {"query_id": "exp-02", "text": "Calm acoustic guitar music for a quiet evening."},
+    {"query_id": "exp-03", "text": "A rock song with distorted electric guitars and drums."},
+    {"query_id": "exp-04", "text": "Soft piano music with a slow and reflective mood."},
+    {"query_id": "exp-05", "text": "A rhythmic hip hop track with rapped vocals."},
+    {"query_id": "exp-06", "text": "A bright pop song with singing and a catchy chorus."},
+    {"query_id": "exp-07", "text": "Jazz music with a swinging rhythm and saxophone."},
+    {"query_id": "exp-08", "text": "Orchestral music that builds tension for an action scene."}
+  ]
+}
