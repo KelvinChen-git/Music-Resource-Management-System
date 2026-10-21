@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## 当前：MUS-022真实小语料离线探针开始
+
+A；2026-10-21 America/Chicago；branch spike/MUS-022-real-corpus-probe；base2c122130f2fc7f848f81d53e6719809ef6ab9811；in_progress。ack_peer_feed_sha c32868c6a5c74dca5961b53e6bf2a846978e3ada / source0d4d98fed6f5e876c9a87ab95c1d7e56b4332280；B016未主动claimed，固定派发保持，不重复或替换。
+
+A推进独立离线主线：只读校验已有20首演示音频与下载证明，MP3解码/候选10s-5s切片/固定CLAP/整曲及片段精确排序探索；services/audio-search和相应文档/测试为A范围，导入器/Java/Vue/数据库/API/依赖锁不改。新工件仅当前副本.local/a/mus022，原版音频/模型/缓存只读共享，不写原版备份。
+
+已确认20文件/20证明/既有venv、checkpoint/HF缓存可定位，soundfile列出MP3格式；尚未运行真实完整链路。无人工qrels，候选排序不冒充质量评测或冻结discovery-v0；不生成上线服务，不宣称检索指标。实际结果/限制后续补证，main未合并，原演示服务保留。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-021限定批准接收，MUS-016首次独立审核已派发
 
 A；2026-10-21 America/Chicago；branch fix/MUS-021-user-update-boundaries；接收基线 `69a3965e88d37d71a0067f263d207f2cb62fe668`，MUS-021实现0f12212。MUS-021 done仅E1/E2本卡范围，原版备份/UI/现有MUS-014演示服务保留，main未合并。
