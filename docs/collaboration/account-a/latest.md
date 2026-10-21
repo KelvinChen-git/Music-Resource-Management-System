@@ -1,5 +1,21 @@
 # 账号 A 最新交接
 
+## 当前：MUS-021限定批准接收，MUS-016首次独立审核已派发
+
+A；2026-10-21 America/Chicago；branch fix/MUS-021-user-update-boundaries；接收基线 `69a3965e88d37d71a0067f263d207f2cb62fe668`，MUS-021实现0f12212。MUS-021 done仅E1/E2本卡范围，原版备份/UI/现有MUS-014演示服务保留，main未合并。
+
+ack_peer_feed_sha `c32868c6a5c74dca5961b53e6bf2a846978e3ada` / B source `0d4d98fed6f5e876c9a87ab95c1d7e56b4332280`。本次A/B sync均fetched，task MUS-021-R1-B/revision1、reviewed0f12212、comparisona965575、assignment69a3965及ack Afeec5afd匹配；latest hash/source字节、仅两B报告diff与music树87615036核验。原字节导入MUS-021-B，接收approve_scoped，详见verification/MUS-021-B-acceptance.json和STATUS；B own latest/feed不改。
+
+B独立默认332 Java；最终baseline-20261021-062234-10 exit0/passed，24项=E1 11+E2交错7+负例6（23普通HTTP/1真实Spring null原因服务）。performance_schema观察UPDATE WAITING/专属SET，SQL fixture更新后验证全部非本操作列保留，真实BCrypt/cache补证。cache为私有同JVM mode600文件IPC，无邮件/产品HTTP后门；非三正常HTTP竞争，mapper0行是删除单独victim而非整库故障。旧64回归7失败1错误非真库旧覆盖复现。
+
+offline clean缺插件测试0/exit1和首轮探针匿名401空body解析exit1/blocked（Java332+业务5完成）单列；最终24不与5相加，两轮Java不相加；B显式*Test未新跑。私有日志/工具/IPC/库未交付，A不重算原始指纹。B自建进程停止/3308与8081释放、GitHub顺序发布非原子等边界保留。
+
+下一固定卡MUS-016-R1-B/revision1 assigned未认领，reviewed_sha `69a3965e88d37d71a0067f263d207f2cb62fe668`，original3092ae2/comparison dbb6312只定位原新增范围。导入器/保护测试/两个JSON/目录视图五文件与原实现字节相同，sha256写入入口。B首轮审来源声明过滤、秘密隔离、幂等/故障恢复和目录必要回归，只交新B两报告；不得访问A服务/凭据/曲库，provider模拟与本地真实HTTP分开，不索取真实Client ID，不重复017/019/020/021。不新增A业务任务或重做UI。
+
+本地执行正常，开始69a3965工作区干净；原备份仍干净f3b0da1、5175/music200、8080匿名profile401。本轮仅文档接收/派发，不重复Maven/前端/Python产品套件；JSON/hash/原报告字节/链接/fence/diff检查已通过，开始及提交前sync均exit0且B feed未变。提交后publish --account a并回读，source最终SHA由handoff给出，发布不等于B已认领/已读新回执或main合并。
+
+## 上一轮交接（保留）
+
 ## 当前：MUS-021源码完成，已派发增量复核
 
 A；2026-10-20 America/Chicago；branch fix/MUS-021-user-update-boundaries；base5d3441a，契约/占用先发布a965575。MUS-017历史B限定批准正式接收/C1关闭，E1/E2转本任务；原字节报告/接收JSON已归档。MUS-020 R1/R2继续关闭，不重做UI。

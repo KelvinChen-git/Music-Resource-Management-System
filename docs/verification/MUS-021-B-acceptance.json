@@ -1,0 +1,87 @@
+{
+  "task_id": "MUS-021-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "0f12212123616809ea0a917e43fc11e5f564ab46",
+  "comparison_base_sha": "a9655750b6a4a5df07c2d64abd7f809fdd1e5978",
+  "assignment_source_sha": "69a3965e88d37d71a0067f263d207f2cb62fe668",
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-21 America/Chicago",
+  "b_source_sha": "0d4d98fed6f5e876c9a87ab95c1d7e56b4332280",
+  "b_feed_sha": "c32868c6a5c74dca5961b53e6bf2a846978e3ada",
+  "b_ack_peer_feed_sha": "feec5afd7f605d73e8a55114ea794ff4bf4ea4d0",
+  "report_path": "docs/reviews/MUS-021-B.md",
+  "report_sha256": "c3079eb71ee4f2af166400cc4cb1df9643ee1ef7c2e8ac3e621f5392bf5580c3",
+  "b_latest_sha256": "18bb71b58435fb207903960ebdb4d934cac37b6217b9f137b64933a9f6b9db81",
+  "a_verified": [
+    "successful A/B sync and source reachability",
+    "feed/source latest bytes and SHA256 match",
+    "B delta contains only two allowed report paths",
+    "task/revision/reviewed/comparison/assignment and ack match exact dispatch",
+    "exact B review imported without edits",
+    "music tree matches declared 8761503685932be8c7ab7bd2ad94e357860ecf3d"
+  ],
+  "b_reported": {
+    "old_regression": {
+      "tests": 64,
+      "failures": 7,
+      "errors": 1,
+      "exit_code": 1,
+      "real_database_race": false
+    },
+    "default_java_tests": 332,
+    "default_java_classes": 14,
+    "explicit_named_test_selection_rerun": false,
+    "final_run": "baseline-20261021-062234-10",
+    "final_exit_code": 0,
+    "final_status": "passed",
+    "incremental_checks": 24,
+    "e1_http_sql_checks": 11,
+    "e2_controlled_interleavings": 7,
+    "guard_checks": 6,
+    "normal_http_checks": 23,
+    "spring_service_null_reason_checks": 1,
+    "observed_update_waits_and_set_columns": true,
+    "sql_fixture_participant": true,
+    "three_normal_http_participant_race": false,
+    "private_same_jvm_cache_fixture": true,
+    "real_email_sent": false,
+    "preparation_failures": [
+      {
+        "command": "offline clean test",
+        "exit_code": 1,
+        "tests_executed": 0,
+        "cause": "missing cached maven-clean-plugin 3.4.1"
+      },
+      {
+        "run": "baseline-20261021-062148-218",
+        "exit_code": 1,
+        "status": "blocked",
+        "java_tests_passed": 332,
+        "completed_business_checks": 5,
+        "cause": "private probe tried to parse empty anonymous401 body as JSON"
+      }
+    ],
+    "own_processes_stopped": true,
+    "ports_released": [
+      3308,
+      8081
+    ],
+    "result_sha256": "59a9543c4e4b96f939fb01d81bc843f50f4d6fa99f669ad0e0d79f3951f16ee2",
+    "evidence_summary_sha256": "fa855aa0527bedff643fd06bd10575cc329626f991e73605736dbf09dcf99cec",
+    "publication": "sequential source then feed through GitHub, not atomic"
+  },
+  "closed_findings": [
+    "MUS-017 E1 empty-object binding error",
+    "MUS-017 E2 six user write entry points: scoped persisted-column boundary verified on fixed version"
+  ],
+  "limits": [
+    "A did not receive B private raw logs/tools/IPC/database and did not recompute their hashes.",
+    "Old E2 full-entity concurrent overwrite was not reproduced on a real old JVM; new-version controlled interleavings verified persisted-column behavior.",
+    "Final24 not added to earlier5, nor two Java332 runs summed; explicit Test selector was not rerun by B.",
+    "Seven interleavings used SQL fixture control; null-reason branch is one real Spring service call, not HTTP.",
+    "Mapper zero affected rows came from deletion of one isolated victim fixture, not a database outage or commit failure.",
+    "No running A service upgrade, main merge, production, permission-revocation race, atomic code consumption, same-password concurrent request, database outage or commit ACK-loss acceptance."
+  ]
+}

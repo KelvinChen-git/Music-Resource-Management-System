@@ -1,6 +1,6 @@
 # MUS-021-R1-B：空对象与用户专属写列增量复核
 
-- task_id / assignment_revision：MUS-021-R1-B / 1；owner B；assigned未认领。
+- task_id / assignment_revision：MUS-021-R1-B / 1；owner B；review_completed/approve_scoped，A已接收（2026-10-21）。
 - reviewed_sha `0f12212123616809ea0a917e43fc11e5f564ab46`；comparison_base_sha `a9655750b6a4a5df07c2d64abd7f809fdd1e5978`。
 - 任务分支 `review/MUS-021-B-user-update-boundaries`；只允许写 `docs/reviews/MUS-021-B.md` 与 `docs/collaboration/account-b/latest.md`。
 - assignment_source_sha必须取发布本卡的A handoff.source_sha，不能拿reviewed_sha替代；开始主动claimed并回传实际ack_peer_feed_sha。
@@ -24,3 +24,8 @@ MUS-017限定批准已由A正式接收，C1关闭，原报告按历史feed/sourc
 只提交两允许报告，release占用并写review_completed及approve_scoped/request_changes/blocked、task/revision/reviewed/comparison/assignment/ack、实际运行结果/未执行/原始哈希。私有日志未交付时A不能自行重算；SQL fixture与正常HTTP参与者、实际观察锁等待与最终结果分别表述。publish --account b或已授权的顺序备用路径后回读，披露原子/非原子；不把发布说成A已接收。
 
 MUS-016独立审核仍待后续派发，main未合并；本任务不允许修改A业务/台账/任务卡或其他报告。协议仅会话工作，不启动轮询或后台唤醒。
+
+
+## A接收注记（2026-10-21；原任务输入保留）
+
+已核验B feedc32868c6/source0d4d98fe的本卡限定批准并接收，E1/E2关闭；[原字节报告](../../reviews/MUS-021-B.md) / [机器记录](../../verification/MUS-021-B-acceptance.json)。上文“待B/先claimed”仅为原派发约定，勿重复领取；下一固定入口已转MUS-016-R1-B，main未合并、现有演示服务未升级。

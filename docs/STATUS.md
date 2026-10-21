@@ -1,10 +1,10 @@
 # 项目状态与交接
 
-最后更新：2026-10-20（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-21（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-20 America/Chicago）：本轮从 `fix/MUS-020-sonora-review@0566bc26ca88c5600072db717a26119c8983ed3f` 干净工作区开始，本地执行与 A/B sync 成功。A feed `ec6cdbb737a07fbace25db9ea9be3c4d1b97704a` 指向该源码；B feed `5c0cebf85a20d14ccf0cdfe132a0f08d1d513fa1` / source `d8bba9d9199f802a3b5ceb0e7de0c2ab564f9688` 的 MUS-020-R1-B 限定批准已接收。当前状态以本条及文末接收记录为准，下列早期 Git / 网络记录保留为历史。
+- 当前检查点（2026-10-21 America/Chicago）：本轮从 `fix/MUS-021-user-update-boundaries@69a3965e88d37d71a0067f263d207f2cb62fe668` 干净工作区开始；本地执行与A/B sync成功。B feed `c32868c6a5c74dca5961b53e6bf2a846978e3ada` / source `0d4d98fed6f5e876c9a87ab95c1d7e56b4332280` 的MUS-021限定批准已核验接收，E1/E2本卡关闭。下一B任务为MUS-016-R1-B导入器独立审核，准确输入69a3965；未合并main或升级现有演示服务。下列早期Git/网络与旧检查点保留为历史，当前状态以本条及文末为准。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -55,10 +55,13 @@
 | MUS-013 B审核发现修复 | review / A（本机修复后实跑通过，B增量待复核） | fix/MUS-013-b-review-findings / 6a29de4；实现c100fd6 | Java317 / Python28通过；R1/R2旧服务已复现，两套各修复后HTTP11 / 临时库8已通过 |
 | MUS-013-R1-B 增量复核 | assigned / B（待确认） | review/MUS-013-B-review-findings / c100fd6 | 仅新B审核正文与own latest；复核R1/R2/R3和profile字段更新、脚本隔离 |
 | MUS-017 管理员NULL头像 | done / A（B限定批准正式接收，未升级演示服务） | fix/MUS-017-admin-avatar-null / f351b0e | C1关闭；23预期真库业务项+E1单列，E1/E2转MUS-021 |
-| MUS-021 用户写入边界 | review / A（源码/确定性回归完成，真库增量待B） | fix/MUS-021-user-update-boundaries / 5d3441a；契约a965575 | 四字段DTO接受空对象；六用户写入口专属写列；默认/显式各332 Java通过 |
+| MUS-021 用户写入边界 | done / A（B限定批准已接收，未升级演示服务） | fix/MUS-021-user-update-boundaries / 0f12212 | B默认332 Java及24真库增量通过；E1/E2本卡关闭，边界见接收JSON |
+| MUS-021-R1-B 用户写入增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-021-B-user-update-boundaries / 0d4d98f | 原字节报告/接收JSON已归档；固定入口转016，勿重复领取 |
+| MUS-016 授权演示导入 | review / A（独立审核已派发） | 原实现3092ae2；本次审核输入69a3965 | 导入器/保护测试/公开目录与原实现字节相同；不触碰A曲库 |
+| MUS-016-R1-B 导入器独立审核 | review / B（assigned，待主动认领） | review/MUS-016-B-demo-import / 69a3965 | 只交新B报告与own latest；许可声明过滤、秘密隔离、重复/失败恢复及目录边界 |
 | MUS-019 Sonora 应用副本 | review / A（R1/R2已由MUS-020关闭） | feat/MUS-019-sonora-app / f68b7fb | 真实Vue新界面保留；不把增量批准外推整站、完整上传或管理写操作 |
 | MUS-020 Sonora R1/R2修复 | done / A（本卡范围已验收，未合并main） | fix/MUS-020-sonora-review / 802da6b | B限定批准已核验接收；仅文档接收，不重做UI |
-| MUS-020-R1-B 增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-020-B-sonora-findings / d8bba9d | 原字节报告与接收记录已归档，固定入口waiting；无新任务派发 |
+| MUS-020-R1-B 增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-020-B-sonora-findings / d8bba9d | 原字节报告与接收记录已归档；020已关闭，固定入口见本轮016派发 |
 
 ### MUS-001 A 路径范围（review 检查点）
 
@@ -401,3 +404,15 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - implementation_sha `0f12212123616809ea0a917e43fc11e5f564ab46`；源码比较基线 `a9655750b6a4a5df07c2d64abd7f809fdd1e5978`，任务起点5d3441a。新卡MUS-021-R1-B/revision1 assigned未认领，固定入口已更新；B仅写新报告与own latest，补E1/E2真库/受控交错，不重复020或全部UI。
 - 提交前检查点A/B sync均fetched，B仍8b49b6b/source86fa91d；本地只读检查备份干净f3b0da1、新5175/music200、旧8080匿名profile401。MUS-017限定批准已正式接收，MUS-016独立审核待后续。本轮没有新后端启动或用户/曲库/邮件写入。
 - 文档链接/fence、JSON/源码哈希/原字节报告、git diff --check均通过；UI/schema/POM/依赖/Python路径未改。实现提交与本派发文档提交后按约定原子publish；结果和最终source SHA以发布回读及最终交接为准。
+
+
+## MUS-021 B限定批准接收与下一审核（2026-10-21 America/Chicago）
+
+- owner A；本轮接收基线69a3965，允许路径STATUS/CONTRACTS必要事实/README、A latest、021原卡/验证/接收JSON及原字节B报告导入、新016卡/固定入口。不改业务/UI/schema/依赖/数据，无新进程或服务升级。
+- A/B sync均fetched：A feedfeec5afd/source69a3965；ack_peer_feed_sha `c32868c6a5c74dca5961b53e6bf2a846978e3ada` / B source `0d4d98fed6f5e876c9a87ab95c1d7e56b4332280`。MUS-021-R1-B/revision1已主动claimed并review_completed/approve_scoped；reviewed0f12212、comparisona965575、assignment69a3965/ack Afeec5afd均匹配。
+- 核验latest hash/source字节、仅两B报告路径diff及music树87615036；原字节归档 [MUS-021-B](reviews/MUS-021-B.md) 与 [接收JSON](verification/MUS-021-B-acceptance.json)，不改B latest/feed。E1/E2在本卡范围关闭，不将旧E2静态风险称为旧JVM真库漏洞已复现。
+- B独立默认冷编译332 Java；最终baseline-20261021-062234-10 exit0/status passed，24项=E1 HTTP/SQL11+E2受控交错7+负例6。23正常HTTP、1真实Spring null原因分支。performance_schema实际观察UPDATE行WAITING/专属SET，fixture并发更新后独立SQL验证全部非本操作列保留；BCrypt与实际缓存成功/失败行为补证。
+- cache由同JVM私有mode600 IPC设置/查询，无新产品HTTP后门或邮件；七交错有SQL fixture参与，不是三个正常HTTP竞争。删除单独合成victim产生mapper0行分支，不代表整库中断/提交失败。私有日志/工具/库未交付，A未重算其原始哈希。
+- 前置offline clean缺插件exit1/测试0；首轮探针误解析匿名401空body导致exit1/blocked，其中Java332和5业务完成单列。最终24与前5不相加、两轮Java不相加，B显式*Test未新跑。进程停止与3308/8081释放为B报告事实；顺序GitHub发布非原子。
+- 下一卡MUS-016-R1-B/revision1，reviewed69a3965，原实现3092ae2/比较dbb6312，仅审导入器/既有保护测试/公开目录及路由兼容所需片段；输入脚本/测试/两个JSON/视图相对原实现字节未变。assigned未认领，B只写新报告和own latest，不重领017/019/020/021、不直接修实现。不访问A服务/缓存/凭据/曲库，隔离合成源fixture与真实本地HTTP须分别标明。
+- 本地只读：备份仍干净f3b0da1，5175/music200、8080匿名profile401。文档专用本轮不重复Maven/UI/Python套件；完成JSON/hash/链接/fence/diff检查后提交发布回执与新卡。未合并main，权限撤销/验证码原子消费/同密码竞争/生产与检索质量仍单列。
