@@ -1,10 +1,10 @@
 # 项目状态与交接
 
-最后更新：2026-10-21（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-22（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-21 America/Chicago）：A在`feat/MUS-025-listening-review`，起点6fef7d9；B MUS-024限定批准已接收。MUS-025增量接入本地包试听/人评草稿入口，先写CONTRACTS E2，真实51标签仍null，原版/后端保留，main不合并。
+- 当前检查点（2026-10-22 America/Chicago）：MUS-024 B限定批准已接收；A在`feat/MUS-025-listening-review`完成试听审阅入口，准确实现cdc2fc5、21项helper检查/build及实际浏览器增量通过，新B025卡待认领。真实51对仍全null；备份/原布局/现有MUS-014后端保留，main未合并。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,7 +42,8 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
-| MUS-025 试听审阅入口 | in_progress / A | feat/MUS-025-listening-review / 6fef7d9 | 增量Vue路由/本地包/JWT及内容验证试听/分账号草稿导出，不改原布局或后端 |
+| MUS-025 试听审阅入口 | review / A（实现/本机验收完成，B待确认） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，真实51全null |
+| MUS-025-R1-B 试听审阅复核 | assigned / B（待主动认领） | review/MUS-025-B-listening-review / cdc2fc5 | 仅新B报告/own latest；隔离合成数据、HTTP/浏览器，不访问A或代填真人标签 |
 | MUS-024 探索人工标注包 | done / A（B限定批准已接收） | feat/MUS-024-judgment-pack / 1e83454 | 标准库CLI/17新增检查，全离线40通过；8查询51对全null，无试听新页面/人评/质量结论 |
 | MUS-024-R1-B 标注包完整性复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-024-B-judgment-pack / 1e83454 | 仅新报告/own latest，合成fixture验证；不得称复算A私有工件或模型质量 |
 | MUS-023-R1-B 导入恢复增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-023-B-demo-import-recovery / 00f10a6 | 原字节报告/接收JSON已归档，勿重复领取 |
@@ -488,3 +489,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - B feed `76b8244407e9f27f3edbaa113437c1575902e966` / source `b15ead23e0a9f7ebb91b9d5344559c4d46353877`，reviewed1e83454/comparison3c7552a/assignment6fef7d9/ack A43748a0匹配。latest字节/hash/仅两报告核验，MUS-024-B原字节与接收JSON归档，approve_scoped正式接收。B17标准库检查、83 CLI（4成功79预期拒绝）、独立7合成曲目/12候选，不累加A40，不冒充复算A私有51或真人标注；私有日志未传A不重算。
 - MUS-025 owner A；base6fef7d9；允许web/src/views/ReviewWorkspace.vue、web/src/utils/reviewPack.js/reviewAudio.js及对应test、router单一路由、App侧栏单入口，以及README/CONTRACTS/STATUS/A latest/verification/MUS-025*/B派发；同时允许024接收文档/原字节报告。草稿/QA/导出仅ignore的.local/a/mus025，本地原包/音频/索引不改，不写B feed/own latest。
 - E2先约定仅本地包/既有JWT媒体读取、SHA字节核对、逐次重鉴权、竞态/退出回收与分账号草稿/人工字段显式输入。无Java/Python处理器/schema/依赖锁/公开JSON/API改动，不预填51人评、不重做UI/升级后端或合并main。B入口waiting，准确源码后再派；现有MUS-002仍等质量/冻结。
+
+
+### MUS-025完成与准确派发（2026-10-22）
+
+- implementation `cdc2fc5c00dbc4c2889068023d9d37ce8744a532`；comparison/scope `133fecbcda96585a09d6e0cf67af608c768c9151`；初版1fbaac8。新/research/review登录路由、侧栏单入口、新view及两个helper/对应测试，原UI/播放器/媒体helper不重写。包本地<=2MiB/严格字段重复键整数/owner/内容指纹，草稿按owner+dataset且显式恢复，部分导出兼容固定run CLI。每次现有JWT媒体GET、完整SHA字节核验才建Blob，seek/终点停止/切换取消回收；成功音频才允许取点。
+- 新15（8包7音频）通过；加既有6media为21通过，最终补verified断言再21通过，不相加。固定Node22 build通过，>500kB旧warning保留。首轮浏览器发现错误SHA拒播后取点仍enabled，cdc2fc5已修、补断言/build/实际拒播disabled复验。一次QA过早goto中断登录等待timeout，按正常UI等登录后通过，非产品认证失败。
+- 原8查询51包实际导入0/51、Energy28真实55–65s Blob试听/终点1:05释放，最终build再验证起播55.118844s/230.478526s时长、取点、在1:02退出清包/音频、匿名深链登录保护、重登不残留包；错owner文件拒绝保留原判断、错SHA实际授权音频无src/取点disabled。390 scroll384、1440 scroll1434，截图已查看，最终warn/error空。
+- 正/0评分、1–2s区间、越界13s拒绝、草稿刷新显式恢复与导出仅独立6合成曲目/12候选，在初版1fbaac8验证；两个实际浏览器导出对各自合成run CLI通过。最终真实浏览器导出原run CLI通过0/51、0人工区间，旧7工件及原024包SHA未变，无自动真人标签或质量指标。
+- 同账号退出/重登已验；真实第二账号/撤权矩阵、真实两播放器竞争、存储quota故障未新验，假音频/网络检查与真实HTTP分别记录。剪辑为浏览器事件/计时非采样精度，当前已交付字节不能追溯撤销；来源最终须CLI固定run核验，不把自洽包当可信来源/权限。详情verification/MUS-025.md/results.json。
+- B仍feed76b82444/sourceb15ead23，024 approve_scoped已接收，固定入口MUS-025-R1-B/revision1 assigned未认领，准确reviewedcdc2fc5/comparison133fecb，只交新B报告/own latest，不重复024/模型/导入/UI全面审核。现有后端/Java/Python处理器/schema/依赖锁/公共JSON/原备份/账号曲库不改，无新服务/迁移/资源写操作，main未合并。文档/JSON/hash/链接/diff后提交publish并回读，发布不等于B已接收。

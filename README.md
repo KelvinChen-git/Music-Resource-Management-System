@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前增量分支 `feat/MUS-024-judgment-pack`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前增量分支 `feat/MUS-025-listening-review`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -168,4 +168,6 @@ MUS-022离线实跑：20首MP3、933候选片段、8英文文字和3库内参考
 
 MUS-016首次B审核已返回request_changes。MUS-023源码补上pending/confirmed账号恢复、缓存证明完整绑定与canonical公开来源/目录链接；62 Python/8链接检查及前端构建通过，新的真HTTP/SQL增量已获B限定批准。原版备份/既有20首证明及MUS-022结果保留，没有重跑真实A导入或升级后端。见 [MUS-023](docs/verification/MUS-023.md)。
 
-MUS-023已接收B限定批准，关闭MUS-016对应R1/R2/条件性R3；B真实本地HTTP/SQL补证与提供方替身边界见[接收记录](docs/verification/MUS-023-B-acceptance.json)。MUS-024已实现本地探索标注包生成/校验，17新增检查及全离线40项通过，实际8查询51对全null；B工具复核已派发，UI与演示后端保持。使用步骤见[MUS-024](docs/verification/MUS-024.md)。
+MUS-023已接收B限定批准，关闭MUS-016对应R1/R2/条件性R3；B真实本地HTTP/SQL补证与提供方替身边界见[接收记录](docs/verification/MUS-023-B-acceptance.json)。MUS-024已实现本地探索标注包生成/校验，17新增检查及全离线40项通过，实际8查询51对全null；B工具限定批准已接收，原UI布局与演示后端保持。使用步骤见[MUS-024](docs/verification/MUS-024.md)。
+
+MUS-025新增[本机试听审阅入口](http://127.0.0.1:5175/research/review)：用标注包归属账号导入`.local/a/mus024/review-pack.json`，现有JWT媒体与完整SHA/字节验证后试听片段，人工评分/区间、分账号本机草稿及JSON导出。21项helper检查/build和本机浏览器增量通过，B独立复核待完成；真实51条仍全null，无质量结论。原Sonora布局/管理页/后端保留，使用步骤与限制见[MUS-025](docs/verification/MUS-025.md)。

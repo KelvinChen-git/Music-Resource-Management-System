@@ -1,8 +1,8 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": null,
-  "status": "waiting",
+  "task_id": "MUS-025-R1-B",
+  "status": "assigned",
   "claimed_by_b": false,
   "previous_task": {
     "task_id": "MUS-024-R1-B",
@@ -14,5 +14,15 @@
     "feed_sha": "76b8244407e9f27f3edbaa113437c1575902e966",
     "acceptance_record_path": "docs/verification/MUS-024-B-acceptance.json"
   },
-  "note": "MUS-024 scoped approval received; A reserves MUS-025 listening/review route. New exact-SHA card after implementation. Do not repeat 024 or fabricate human labels."
+  "note": "New exact-SHA listening/judgment view review, isolated synthetic audio/HTTP/browser only; MUS-024 approval received, do not repeat it. No A service/data access or human-quality claims.",
+  "assignment_revision": 1,
+  "task_card_path": "docs/collaboration/tasks/MUS-025-R1-B.md",
+  "reviewed_sha": "cdc2fc5c00dbc4c2889068023d9d37ce8744a532",
+  "comparison_base_sha": "133fecbcda96585a09d6e0cf67af608c768c9151",
+  "review_branch": "review/MUS-025-B-listening-review",
+  "allowed_output_paths": [
+    "docs/reviews/MUS-025-B.md",
+    "docs/collaboration/account-b/latest.md"
+  ],
+  "claim_channel": "collab/account-b latest.md"
 }

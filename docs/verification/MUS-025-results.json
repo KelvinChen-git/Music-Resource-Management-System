@@ -1,0 +1,186 @@
+{
+  "task_id": "MUS-025",
+  "status": "implemented_review_pending",
+  "implementation_sha": "cdc2fc5c00dbc4c2889068023d9d37ce8744a532",
+  "comparison_base_sha": "133fecbcda96585a09d6e0cf67af608c768c9151",
+  "initial_implementation_sha": "1fbaac845d2f78cd00d5eb3715748986cd29b83b",
+  "environment": {
+    "node": "22.23.3",
+    "browser": "Codex IAB on local macOS",
+    "backend": "existing A MUS-014, unchanged",
+    "new_dependencies": false
+  },
+  "source_hashes": {
+    "web/src/utils/reviewPack.js": "2fd937d5f0bf94c9df7ba58a61c63e996ddcd54673ea1e0634740494db8c6994",
+    "web/src/utils/reviewAudio.js": "0da0be1e8fd3e6e3f93383d69834ff3bfa5a13136033618d0863dd86545ce624",
+    "web/src/views/ReviewWorkspace.vue": "0b6fde684568d5a716f664c123818b95381c12464375326038d5abef2b7b718b",
+    "web/src/utils/reviewPack.test.js": "751645dbb28f0ed6bace5863067970d36c3188af90aad6e760c2a9766923cc2b",
+    "web/src/utils/reviewAudio.test.js": "c2fed7898d2452d773b015682fd344f0abf3ff180c90620fcad5612b26269c29",
+    "web/src/router/index.js": "9102ba0212eaa19762200b92b5a7a33e70a53c8f5cea5432c1bc2f0028a55847",
+    "web/src/App.vue": "212797c382dba6aa7237875d3537b6366c306ec0cbd1c02b0e4ede5f926150c9"
+  },
+  "tests": {
+    "new_pack_tests": 8,
+    "new_audio_tests": 7,
+    "first_new_total": 15,
+    "existing_media_helper_tests": 6,
+    "final_combined_total": 21,
+    "final_exit_code": 0,
+    "combined_not_added_to_new15": true,
+    "test_source_uncommitted_then_committed_same_bytes": true,
+    "log_sha256": "17ee5ad56e5efe6020abb41e41162764e35e39753627f5825a94476e2b189e2b"
+  },
+  "build": {
+    "final_exit_code": 0,
+    "run_from_clean_implementation_commit": true,
+    "known_warning": "bundle above500kB",
+    "log_sha256": "1c3b7f05afa178626999f678a8a0c5fcaf7a8e8480981c45f21540d0f423bf22",
+    "npm_ci_rerun": false
+  },
+  "browser": {
+    "synthetic_flow_source": "1fbaac845d2f78cd00d5eb3715748986cd29b83b",
+    "critical_final_rechecks_source": "cdc2fc5c00dbc4c2889068023d9d37ce8744a532",
+    "real_package": {
+      "text_queries": 8,
+      "candidate_pairs": 51,
+      "judged": 0,
+      "unjudged": 51,
+      "synthetic_labels_added_to_real_package": false
+    },
+    "real_media": {
+      "normal_existing_user_login": true,
+      "endpoint": "GET /api/music-resources/28/file",
+      "pay_parameter": false,
+      "source_blob_created_after_content_check": true,
+      "observed_browser_duration_seconds": 230.478526,
+      "clip_ms": [
+        55000,
+        65000
+      ],
+      "observed_start_seconds": 55.118844,
+      "end_state": "stopped at displayed1:05; audio src removed",
+      "capture_only_after_success": true,
+      "logout_observed_while_playing_at_displayed": "1:02"
+    },
+    "synthetic_flow": [
+      "explicit score0 counted as judged, eleven null remain",
+      "refresh then reimport starts at zero; explicit restore returns one score0",
+      "positive3 score and manual1s-2s interval;13s invalid for12s track rejected",
+      "second candidate explicit0; export contains two judged/one range and ten null",
+      "wrong-owner import rejected, existing partial package preserved"
+    ],
+    "content_mismatch": {
+      "fixture": "same real track with self-consistent package fingerprint but wrong content SHA",
+      "outcome": "rejected before blob/play, no audio src; capture controls disabled on final build"
+    },
+    "logout_route": {
+      "package_memory_cleared": true,
+      "audio_nodes_after_login_redirect": 0,
+      "anonymous_url": "/login?redirect=/research/review",
+      "relogin_empty_until_explicit_file_import": true,
+      "different_real_account_login_tested": false
+    },
+    "preparation_issue": {
+      "kind": "QA navigation race",
+      "observation": "first relogin navigated before login response completed; heading wait timed out",
+      "resolution": "wait for normal app account menu before continuing; normal UI relogin passed",
+      "product_failure_claimed": false
+    },
+    "viewports": [
+      {
+        "viewport_width": 390,
+        "scroll_width": 384
+      },
+      {
+        "viewport_width": 1440,
+        "scroll_width": 1434
+      }
+    ],
+    "final_warn_error_console_entries": 0,
+    "viewport_override_reset": true,
+    "cli_validation_of_browser_exports": {
+      "browser-zero-cli.log": {
+        "status": "validated_unverified_judgments",
+        "split": "exploratory_only_not_held_out",
+        "queries": 2,
+        "candidate_pairs": 12,
+        "judged": 1,
+        "unjudged": 11,
+        "relevance_counts": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "human_intervals": 0,
+        "dataset_sha256": "83275411fbe39b27fa97e7490dd42c2036ea7c858c85f8078cd603cab5bf5cef",
+        "identity_or_listening_verified": false
+      },
+      "browser-partial-cli.log": {
+        "status": "validated_unverified_judgments",
+        "split": "exploratory_only_not_held_out",
+        "queries": 2,
+        "candidate_pairs": 12,
+        "judged": 2,
+        "unjudged": 10,
+        "relevance_counts": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "human_intervals": 1,
+        "dataset_sha256": "83275411fbe39b27fa97e7490dd42c2036ea7c858c85f8078cd603cab5bf5cef",
+        "identity_or_listening_verified": false
+      },
+      "browser-real-null-cli.log": {
+        "status": "validated_unverified_judgments",
+        "split": "exploratory_only_not_held_out",
+        "queries": 8,
+        "candidate_pairs": 51,
+        "judged": 0,
+        "unjudged": 51,
+        "relevance_counts": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "human_intervals": 0,
+        "dataset_sha256": "38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0",
+        "identity_or_listening_verified": false
+      }
+    },
+    "screenshots_sha256": {
+      "review-mobile.png": "ce34c2c8ab310c5618df37f3ae0ff0d0575979b74253685ded58e2c9ebca547e",
+      "review-desktop.png": "19d9b9d2ab6561da54677563528887bd502a0a2e07a7b13ea7f320cbe1dd28ac",
+      "review-desktop-viewport.png": "0961349b82689f2acbc16ec7a5d62d33194f2ac79857c87475d58e4ac19a28a9"
+    }
+  },
+  "private_artifacts_sha256": {
+    "qa-synthetic.json": "7d2a57690575e6512c83fbf29b4b2d33b2765384dee38cecaab136cbc4bea667",
+    "qa-wrong-content.json": "5af8dca0007c857f8ec88b0757e015a598c38c1cc11af9c4caef025d28d9c52f",
+    "qa-wrong-owner.json": "d35c8b9f721c22ffa3ca7bd22238be55991bdea1aa46d66ecad2cc4a1636a351",
+    "browser-synthetic-zero.json": "da2e50cc2170a2f0eeb0dfbf3f3487e301e9be89728a66c5c1b35bdb50fac4b7",
+    "browser-synthetic-partial.json": "8d8baa63177b8f918d4d8a4ccb9dc1885eea747f59f838ddd2882a60790b5912",
+    "browser-real-null.json": "dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd"
+  },
+  "preserved": {
+    "original_backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "original_backup_working_tree_clean": true,
+    "original_seven_mus022_hashes_and_mus024_pack_unchanged": true,
+    "main_merged": false,
+    "public_json_or_java_python_schema_locks_modified": false
+  },
+  "limits": [
+    "Browser checks are UI/audio-state observations, not packet-level JWT-header capture; unchanged media helper has six unit tests.",
+    "Same browser account logout/relogin tested; actual second-account login and real permission-revocation HTTP matrix are not newly tested.",
+    "Pending/cancel/late play promise races and two-player pause hook covered with fake audio/fetch, not a real two-player browser competition.",
+    "First synthetic workflow used1fbaac8; final cdc2fc5 changes only verified capture state and range error message, with21 checks and critical real-media/logout/layout/export rechecks.",
+    "Browser checks structure/self-consistency, not trusted run authenticity; final CLI must reconstruct pinned source. A self-consistent forged content hash was rejected by actual media hash check.",
+    "All positive/zero test labels are synthetic; all51 real judgments remain null. No human identity/listening/quality/P95/held-out/discovery-v0 freeze.",
+    "Existing delivered audio bytes cannot be revoked retroactively; each start fetches fresh authorized content. Clip timing uses browser events/timers, not sample-accurate editing.",
+    "No audio/model/vector copy or re-encoding, backend restart, database migration, account/resource write operation, public service or UI redesign.",
+    "No npm ci/lock upgrade/Maven/full model suite rerun; independent B scoped review pending."
+  ]
+}
