@@ -1,8 +1,8 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": null,
-  "status": "waiting",
+  "task_id": "MUS-024-R1-B",
+  "status": "assigned",
   "claimed_by_b": false,
   "previous_task": {
     "task_id": "MUS-023-R1-B",
@@ -14,9 +14,19 @@
     "feed_sha": "1391d53a467462fea03658dc6aa48712dc0a0f4e",
     "acceptance_record_path": "docs/verification/MUS-023-B-acceptance.json"
   },
-  "note": "MUS-023 scoped approval received. Do not repeat 016/023 or claim MUS-022 quality approval. A prepares MUS-024 judgment pack; exact implementation will receive a separate card.",
+  "note": "New exact-SHA standard-library judgment-pack integrity review. Previous MUS-023 scoped approval received; do not repeat 016/023. No A private run/audio or model quality review.",
   "separate_backlog": [
     "Human relevance/interval judgments, model comparisons and discovery-v0 freeze",
     "No main merge or existing backend upgrade"
-  ]
+  ],
+  "assignment_revision": 1,
+  "task_card_path": "docs/collaboration/tasks/MUS-024-R1-B.md",
+  "reviewed_sha": "1e83454474413fb6c58a73d82ace579656749bc0",
+  "comparison_base_sha": "3c7552ad2071847959eecf520956690dc083411e",
+  "review_branch": "review/MUS-024-B-judgment-pack",
+  "allowed_output_paths": [
+    "docs/reviews/MUS-024-B.md",
+    "docs/collaboration/account-b/latest.md"
+  ],
+  "claim_channel": "collab/account-b latest.md"
 }

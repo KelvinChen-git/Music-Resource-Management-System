@@ -1,0 +1,96 @@
+{
+  "task_id": "MUS-024",
+  "status": "implemented_review_pending",
+  "implementation_sha": "1e83454474413fb6c58a73d82ace579656749bc0",
+  "comparison_base_sha": "3c7552ad2071847959eecf520956690dc083411e",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "macOS arm64",
+    "new_dependencies": false
+  },
+  "source_hashes": {
+    "services/audio-search/review_pack.py": "b9070f2ed73d97cc52f75bd4dcdb02cb9917ce6268ef29bdb81081d0dc2f3b24",
+    "services/audio-search/test_review_pack.py": "a27e513d0135ea91b5ce421014756fd5c599b6c7dc5f475792a72c199d0c22c5"
+  },
+  "tests": {
+    "initial_targeted": {
+      "methods": 17,
+      "passed": 16,
+      "errors": 1,
+      "cause": "synthetic tempfile root used /var alias; product REPO is resolved /private path; fixed fixture root.resolve only",
+      "raw_log_saved": false
+    },
+    "targeted_after_fixture_fix": {
+      "methods": 17,
+      "exit_code": 0,
+      "log_sha256": "d40491bf61b453bfe84967f0e8811a53e8c4bcbdcbfa0194b9575a571df87ce3"
+    },
+    "audio_search_full": {
+      "methods": 40,
+      "exit_code": 0,
+      "includes_targeted17": true,
+      "log_sha256": "b07d8afdcc33e43309a7ba479d5010ef929eb6ce354603b5396f6d40188f6105",
+      "command": "env PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=.local/a/mus024/numba-cache ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest discover -s services/audio-search -p test_*.py -v"
+    },
+    "run_before_implementation_commit": true,
+    "working_tree_dirty_with_two_new_source_files": true,
+    "source_bytes_match_implementation_commit": true
+  },
+  "actual_run": {
+    "build_exit_code": 0,
+    "validate_exit_code": 0,
+    "source_report_sha256": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+    "private_output": ".local/a/mus024/review-pack.json",
+    "pack_sha256": "dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd",
+    "pack_bytes": 43475,
+    "mode": "0600",
+    "summary": {
+      "status": "validated_unverified_judgments",
+      "split": "exploratory_only_not_held_out",
+      "queries": 8,
+      "candidate_pairs": 51,
+      "judged": 0,
+      "unjudged": 51,
+      "relevance_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0",
+      "identity_or_listening_verified": false
+    },
+    "candidate_pairs_equal_original": 51,
+    "original_seven_artifact_hashes_unchanged": true,
+    "original_hashes": {
+      "corpus-manifest.json": "3099ec3fc8f5046e01c54eb69563b8cbc3b374c1d8189655cddf76eee5e67372",
+      "queries.json": "41d524140b43b49fce935af66c0150ccfd5177533d88633b1c88d94e19f1010f",
+      "rankings.json": "72fbdc2852d2d4fe05f50f961d838217e6bf7ac119f58e669d499d948f48a626",
+      "segments.json": "0b3e1bd42c5c89c161143fb017848843548eb9eb4fea7fd4d34dd8922f018bb3",
+      "vectors.npz": "45f495b0f71a094ddfe07358178f2dc1325c06d04a3f5a942b8f2c7fcba394ef",
+      "run-01/report.json": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+      "label-pack.json": "877b7219c239386cc75a97382617fa735433928ec9d76331ce4faa5b2300fd47"
+    },
+    "overwrite_guard": {
+      "exit_code": 1,
+      "expected_error": "FileExistsError",
+      "pack_unchanged": true
+    },
+    "logs_sha256": {
+      "build-pack.log": "23fb6da75905249feb9f2cf1c1f4405a82d94a1aaedd3e2f062c2406b4f458f1",
+      "validate-pack.log": "9e144d707410b0a2f4600d822d09f9bb994056d88c3f70fcb52a65981bacb6d2",
+      "overwrite-guard.log": "bc09ce8d4b7af61580ec0f38794c9b8e1ad93435183ca014c28f56a78c723345"
+    },
+    "execution_working_tree_dirty": false
+  },
+  "limits": [
+    "No human listened or supplied labels; all 51 real pairs remain null. Synthetic tests use separate six-track fixtures.",
+    "Validation checks shape and pinned recorded provenance, not annotator identity or listening; user supplied timestamps are unverified.",
+    "Model intervals remain visible; candidate pool is exploratory/biased and not blind or held-out.",
+    "No current audio download/hash, live permission/provider/license refresh, model rerun, qrels quality metric, P95 or discovery-v0 freeze. Content hash/bytes are recorded manifest bindings, not authorization.",
+    "No Java/Vue/UI/API/schema/lockfile/public catalog changes, backend restart/upgrade, database mutation, main merge or original backup changes.",
+    "Power-loss/fsync/partial-write recovery and hostile concurrent filesystem mutation are not tested. Existing partial output is preserved and refuses overwrite.",
+    "No unrelated Maven/frontend/importer suite rerun; B independent review still pending."
+  ]
+}
