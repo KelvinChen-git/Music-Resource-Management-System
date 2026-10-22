@@ -3,7 +3,7 @@ import { sha256, reviewId, checkRange } from './reviewPack.js'
 /** Each start reacquires authorized bytes. No cached URL can resume across starts. */
 export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () => {}, urls = URL }) {
   let generation = 0, request = null, objectUrl = '', timer = null, teardown = () => {}
-  const state = { phase: 'idle', positionMs: 0, trackId: '', error: '' }
+  const state = { phase: 'idle', positionMs: 0, trackId: '', verified: false, error: '' }
   const emit = (patch) => { Object.assign(state, patch); onState({ ...state }) }
   function stop(reset = true) {
     generation++; request?.abort(); request = null
@@ -11,7 +11,7 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
     audio.pause(); audio.removeAttribute('src'); audio.load()
     if (objectUrl) urls.revokeObjectURL(objectUrl)
     objectUrl = ''
-    emit({ phase: 'idle', error: '', ...(reset ? { positionMs: 0, trackId: '' } : {}) })
+    emit({ phase: 'idle', error: '', ...(reset ? { positionMs: 0, trackId: '', verified: false } : {}) })
   }
   async function start(row, range = [0, row.duration_ms]) {
     stop(); const ticket = generation
@@ -74,14 +74,14 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
           else update()
         }, Math.max(1, range[1] - audio.currentTime * 1000))
       }
-      const failed = () => { if (current()) { stop(false); emit({ phase: 'error', error: '音频播放失败，请重新试听。' }) } }
+      const failed = () => { if (current()) { stop(); emit({ phase: 'error', error: '音频播放失败，请重新试听。' }) } }
       audio.addEventListener('timeupdate', update); audio.addEventListener('ended', finish); audio.addEventListener('error', failed)
       teardown = () => { audio.removeEventListener('timeupdate', update); audio.removeEventListener('ended', finish); audio.removeEventListener('error', failed) }
       await audio.play()
       if (!current()) return
-      emit({ phase: 'playing' }); update()
+      emit({ phase: 'playing', verified: true }); update()
     } catch (error) {
-      if (current()) { stop(false); emit({ phase: 'error', error: error.message || '试听失败，请检查登录、权限或网络。' }) }
+      if (current()) { stop(); emit({ phase: 'error', error: error.message || '试听失败，请检查登录、权限或网络。' }) }
     }
   }
   return { start, stop }

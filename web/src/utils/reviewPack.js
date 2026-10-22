@@ -22,7 +22,7 @@ export function reviewId(value) {
 export function validAlias(value) { return typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$/.test(value) }
 export function checkRange(range, duration) {
   ensure(Array.isArray(range) && range.length === 2, '人工区间需填写起点与终点。')
-  int(range[0], 0, duration - 1); int(range[1], range[0] + 1, duration)
+  ensure(Number.isSafeInteger(range[0]) && Number.isSafeInteger(range[1]) && range[0] >= 0 && range[0] < range[1] && range[1] <= duration, '区间超出曲目时长，或起止时间无效。')
 }
 function checkHuman(row) {
   if (row.relevance === null) {

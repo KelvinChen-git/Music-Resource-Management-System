@@ -23,7 +23,7 @@ async function setup(t,fetcher=async()=>new Response(bytes)){
 }
 test('fresh authorized request each play, verified blob, seek, end stop and URL release',async t=>{
   const s=await setup(t);await s.control.start(s.row,[5000,10000])
-  assert.equal(s.audio.currentTime,5);assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.created.length,1)
+  assert.equal(s.audio.currentTime,5);assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.created.length,1);assert.equal(s.states.at(-1).verified,true)
   assert.deepEqual(s.calls,['/api/music-resources/27/file']);assert.equal(s.globalPauses,1)
   s.audio.currentTime=10;s.audio.dispatchEvent(new Event('timeupdate'))
   assert.equal(s.audio.paused,true);assert.equal(s.states.at(-1).positionMs,10000);assert.deepEqual(s.revoked,['blob:1'])
@@ -33,7 +33,7 @@ test('fresh authorized request each play, verified blob, seek, end stop and URL 
 test('hash mismatch, incomplete/oversize bodies and declared length mismatch never create URL',async t=>{
   for(const [body,headers] of [[new Uint8Array([4,3,2,1]),{}],[bytes.slice(0,3),{}],[new Uint8Array([1,2,3,4,5]),{}],[bytes,{'content-length':'5'}]]){
     const s=await setup(t,async()=>new Response(body,{headers}));await s.control.start(s.row)
-    assert.equal(s.created.length,0);assert.equal(s.audio.plays,0);assert.equal(s.states.at(-1).phase,'error')
+    assert.equal(s.created.length,0);assert.equal(s.audio.plays,0);assert.equal(s.states.at(-1).phase,'error');assert.equal(s.states.at(-1).verified,false);assert.equal(s.states.at(-1).trackId,'')
   }
 })
 test('permission/network rejection never plays, and is retryable via fresh fetch',async t=>{

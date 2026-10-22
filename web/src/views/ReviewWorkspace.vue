@@ -9,13 +9,14 @@ import { loadReviewPack, exportReviewPack, loadReviewDraft, reviewDraftKey, revi
 const user = useUserStore(), player = useSonoraPlayer()
 const pack = ref(null), queryIndex = ref(0), candidateIndex = ref(0), alias = ref('')
 const message = ref(''), draft = ref(null), audioElement = ref(null), input = ref(null)
-const playback = ref({ phase: 'idle', positionMs: 0, trackId: '', error: '' })
+const playback = ref({ phase: 'idle', positionMs: 0, trackId: '', verified: false, error: '' })
 const rangeStart = ref(''), rangeEnd = ref(''), importing = ref(false)
 const counts = computed(() => pack.value ? reviewCounts(pack.value) : { total: 0, judged: 0, unjudged: 0 })
 const query = computed(() => pack.value?.queries[queryIndex.value])
 const row = computed(() => query.value?.candidates[candidateIndex.value])
 const canJudge = computed(() => validAlias(alias.value))
 const busy = computed(() => playback.value.phase === 'loading')
+const canCapture = computed(() => playback.value.verified && playback.value.trackId === row.value?.track_id)
 const rates = ['0 · 不相关', '1 · 弱相关', '2 · 相关', '3 · 高度相关']
 let controller, epoch = 0, editVersion = 0
 const downloads = new Map()
@@ -116,7 +117,7 @@ function clearRange() {
   row.value.human_intervals_ms = null; row.value.annotator = alias.value; row.value.judged_at = stamp(); persist()
 }
 function capture(which) {
-  if (playback.value.trackId !== row.value?.track_id) return
+  if (!canCapture.value) return
   const value = seconds(playback.value.positionMs)
   if (which === 'start') rangeStart.value = value
   else rangeEnd.value = value
@@ -157,7 +158,7 @@ async function download() {
           <div class="suggestions"><h3>模型建议片段</h3><div class="actions"><button v-for="(range, index) in row.model_suggested_intervals_ms" :key="index" type="button" @click="play(range)">试听 {{ seconds(range[0]) }}–{{ seconds(range[1]) }} 秒</button></div><p v-if="!row.model_suggested_intervals_ms.length" class="hint">本候选没有建议片段，可试听整曲。</p></div>
           <fieldset class="ratings" :disabled="!canJudge"><legend>与当前描述的相关性</legend><label v-for="(label, value) in rates" :key="value"><input type="radio" name="relevance" :value="value" :checked="row.relevance === value" @change="judge(value)">{{ label }}</label></fieldset>
           <div class="judgment"><span>{{ row.relevance === null ? '尚未判断' : `当前判断：${rates[row.relevance]} · ${row.annotator}` }}</span><button type="button" :disabled="row.relevance === null" @click="clearJudgment">清除本条判断</button></div>
-          <div class="human-range"><h3>人工相关区间（可选）</h3><p class="hint">只记录你实际确认的区间。保存会替换本条现有人工区间。</p><p v-if="row.human_intervals_ms" class="saved-ranges">已记录：{{ row.human_intervals_ms.map(range => `${seconds(range[0])}–${seconds(range[1])} 秒`).join('、') }}</p><div class="range-fields"><label>起点（秒）<input v-model="rangeStart" inputmode="decimal" aria-label="人工起点（秒）" placeholder="0.000"></label><button type="button" :disabled="playback.trackId !== row.track_id" @click="capture('start')">取当前起点</button><label>终点（秒）<input v-model="rangeEnd" inputmode="decimal" aria-label="人工终点（秒）" placeholder="0.000"></label><button type="button" :disabled="playback.trackId !== row.track_id" @click="capture('end')">取当前终点</button></div><div class="actions"><button type="button" :disabled="!canJudge || !(row.relevance > 0)" @click="setRange">保存人工区间</button><button type="button" :disabled="!canJudge || !row.human_intervals_ms" @click="clearRange">清除人工区间</button></div></div>
+          <div class="human-range"><h3>人工相关区间（可选）</h3><p class="hint">只记录你实际确认的区间。保存会替换本条现有人工区间。</p><p v-if="row.human_intervals_ms" class="saved-ranges">已记录：{{ row.human_intervals_ms.map(range => `${seconds(range[0])}–${seconds(range[1])} 秒`).join('、') }}</p><div class="range-fields"><label>起点（秒）<input v-model="rangeStart" inputmode="decimal" aria-label="人工起点（秒）" placeholder="0.000"></label><button type="button" :disabled="!canCapture" @click="capture('start')">取当前起点</button><label>终点（秒）<input v-model="rangeEnd" inputmode="decimal" aria-label="人工终点（秒）" placeholder="0.000"></label><button type="button" :disabled="!canCapture" @click="capture('end')">取当前终点</button></div><div class="actions"><button type="button" :disabled="!canJudge || !(row.relevance > 0)" @click="setRange">保存人工区间</button><button type="button" :disabled="!canJudge || !row.human_intervals_ms" @click="clearRange">清除人工区间</button></div></div>
         </article>
       </div><p class="hint footnote">草稿只保存在本浏览器并按账号与候选包隔离。导出前可保留未完成条目；最终交接需用固定运行校验，不作为正式测试集或质量结论。</p>
     </template><audio ref="audioElement" preload="none" aria-hidden="true"></audio>
