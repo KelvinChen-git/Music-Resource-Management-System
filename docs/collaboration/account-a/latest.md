@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## 当前：MUS-023限定批准接收，MUS-024探索标注包开始
+
+A；2026-10-21 America/Chicago；branch feat/MUS-024-judgment-pack；baseec6317c；in_progress。ack_peer_feed_sha `1391d53a467462fea03658dc6aa48712dc0a0f4e` / B source `00f10a6bb04ac6dbf64927a55d90f72f94022e54`。准确任务/revision/reviewed/comparison/assignment/ack、latest字节hash/两报告delta/Java树核验，MUS-023-B原字节归档，接收approve_scoped，仅关闭016 R1/R2/条件性R3。详情verification/MUS-023-B-acceptance.json；私有B原始证据未交付不重算，历史request_changes保留，无整体生产或模型批准。
+
+MUS-024范围services/audio-search/review_pack.py及测试、契约E1/台账/验证/本交接和后续固定派发。先做可重复本地标注包生成及严格校验，绑定原MUS-022 run/corpus/catalog/owner/音频，人工标签不预填；不改UI/API/Java/数据库/依赖，原模型/音频/旧工件只读。现有51标签仍null、无质量/held-out结论；B入口waiting，准确实现后再派。
+
+本地执行/Git正常，起点工作区干净，原备份干净f3b0da1、新5175/music200、旧8080匿名profile401；演示后端仍MUS-014，main未合并。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-023导入器最小修复完成，待增量真库复核
 
 A；2026-10-21 America/Chicago；branch fix/MUS-023-demo-import-recovery；baseebae5eb，契约/接收先发布81566b1。ack_peer_feed_sha e1da44f8786bd5f10a7afe631e6cefaf0e619180 / source0c5efad944e8f546498d7791019060ca5967b40b；检查点sync一致。MUS-016-R1-B review_completed/request_changes正式接收，原字节报告/receipt已归档，不改B own latest/feed；不是已发生A秘密泄漏或证明错误。

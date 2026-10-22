@@ -1,6 +1,6 @@
 # MUS-023-R1-B：导入恢复/证明绑定/公开来源增量复核
 
-- task_id / assignment_revision：MUS-023-R1-B / 1；owner B；assigned未认领。
+- task_id / assignment_revision：MUS-023-R1-B / 1；owner B；review_completed / approve_scoped，A已接收；勿重复领取。
 - reviewed_sha `ab8205827456ec6aeab3bcb289722a236e644f6b`；comparison_base_sha `81566b1634aa19cb8493d2c2740c6d002a75ba4e`（已接收016报告、业务修改前）。
 - 分支 `review/MUS-023-B-demo-import-recovery`；只允许写 `docs/reviews/MUS-023-B.md` 与 `docs/collaboration/account-b/latest.md`。
 - assignment_source_sha取发布本卡的A handoff.source_sha，不能用reviewed_sha替代；先主动claimed并回传实际ack_peer_feed_sha/任务/revision/准确输入。
@@ -29,3 +29,7 @@ A定向旧业务早期11方法subset为10 failures/2 errors（含subTest），�
 A旧证明“20匹配”不是B新实跑，R3仍是条件性输入公开风险而非已发生外部泄漏；不可把fixture内容称真实提供方/A已泄密或证明错误。每轮失败与已完成检查、成功命令分别记录，不累加伪装全passed；无私有原始日志交付时A不能重算其指纹。最终停止自己登记进程、确认端口释放，释放报告占用。
 
 只交两B报告：review_completed与approve_scoped/request_changes/blocked，准确task/revision/reviewed/comparison/assignment/ack、命令/真实计数/未执行/源fixture边界。提交后publish或既有授权GitHub顺序备用路径并回读，披露原子/非原子，不把发布当A接收。main不合并，不建后台轮询。51人工标签仍null，试听审阅入口留下一独立任务。
+
+## A接收
+
+B source `00f10a6bb04ac6dbf64927a55d90f72f94022e54` / feed `1391d53a467462fea03658dc6aa48712dc0a0f4e` 已核验并原字节归档，接收范围仅R1/R2/条件性R3与必要回归。见 [接收记录](../../verification/MUS-023-B-acceptance.json)。旧016 request_changes保留历史，本卡对应发现关闭，不代表整个导入器或模型质量批准。

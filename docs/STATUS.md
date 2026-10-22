@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-21 America/Chicago）：A在 `fix/MUS-023-demo-import-recovery` 从ebae5eb继续；B MUS-016-R1-B request_changes已核验接收（feede1da44f8/source0c5efad9），R1/R2及条件性R3按MUS-023修复。源码/62 Python/8链接/build通过，新的真HTTP/MySQL增量待B；MUS-022离线20首/933片段保留且51标签仍空。原版备份/后端保留，main未合并；当前状态以本条及文末为准，旧记录保留为历史。
+- 当前检查点（2026-10-21 America/Chicago）：A在`feat/MUS-024-judgment-pack`，起点ec6317c；B MUS-023限定批准已核验接收，016 R1/R2/条件性R3关闭。MUS-024准备可重复生成/校验的本地探索标注包，人工标签仍空；不改UI/后端/数据，原版保留，main未合并。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -41,7 +41,9 @@
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | A 的空库、local 启动、测试、build、smoke 通过；B 静态审核 / 前端 / 隔离通过，独立后端运行补证 blocked |
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
-| MUS-023 演示导入恢复/来源边界 | review / A（源码/回归完成，B增量待审） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
+| MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
+| MUS-024 探索人工标注包 | in_progress / A | feat/MUS-024-judgment-pack / ec6317c | 本地CLI生成/校验，绑定原run/owner/音频，标签全null，不改UI或冻结检索API |
+| MUS-023-R1-B 导入恢复增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-023-B-demo-import-recovery / 00f10a6 | 原字节报告/接收JSON已归档，勿重复领取 |
 | MUS-022 真实小语料离线探针 | review / A（链路实跑完成，质量未评） | spike/MUS-022-real-corpus-probe / ef8588a | 20首/933片段/8文字/3参考；23测试，51候选标签全null；离线工件不提交 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
 | MUS-004 搜索界面 | todo / unassigned | MUS-002 | web discovery 页面；先明确 fixtures，禁止自行假设 API |
@@ -59,7 +61,7 @@
 | MUS-017 管理员NULL头像 | done / A（B限定批准正式接收，未升级演示服务） | fix/MUS-017-admin-avatar-null / f351b0e | C1关闭；23预期真库业务项+E1单列，E1/E2转MUS-021 |
 | MUS-021 用户写入边界 | done / A（B限定批准已接收，未升级演示服务） | fix/MUS-021-user-update-boundaries / 0f12212 | B默认332 Java及24真库增量通过；E1/E2本卡关闭，边界见接收JSON |
 | MUS-021-R1-B 用户写入增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-021-B-user-update-boundaries / 0d4d98f | 原字节报告/接收JSON已归档；固定入口转016，勿重复领取 |
-| MUS-016 授权演示导入 | review / A（B request_changes，修复见MUS-023） | 原实现3092ae2；本次审核输入69a3965 | 导入器/保护测试/公开目录与原实现字节相同；不触碰A曲库 |
+| MUS-016 授权演示导入 | review / A（首审历史保留，对应R1/R2/R3由023关闭） | 原实现3092ae2；本次审核输入69a3965 | 导入器/保护测试/公开目录与原实现字节相同；不触碰A曲库 |
 | MUS-016-R1-B 导入器独立审核 | done / B（review_completed / request_changes已接收） | review/MUS-016-B-demo-import / 69a3965 | 只交新B报告与own latest；许可声明过滤、秘密隔离、重复/失败恢复及目录边界 |
 | MUS-019 Sonora 应用副本 | review / A（R1/R2已由MUS-020关闭） | feat/MUS-019-sonora-app / f68b7fb | 真实Vue新界面保留；不把增量批准外推整站、完整上传或管理写操作 |
 | MUS-020 Sonora R1/R2修复 | done / A（本卡范围已验收，未合并main） | fix/MUS-020-sonora-review / 802da6b | B限定批准已核验接收；仅文档接收，不重做UI |
@@ -461,3 +463,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 - implementation_sha `ab8205827456ec6aeab3bcb289722a236e644f6b`，comparison_base `81566b1634aa19cb8493d2c2740c6d002a75ba4e`，任务起点ebae5eb。新B卡MUS-023-R1-B/revision1 assigned未认领，固定入口替换已完成016任务，不重复原全矩阵；R1/R2/R3在B增量前仍待独立验收，不先写closed。
 - 检查点sync B仍e1da44f8/source0c5efad9；A完成JSON/hash/原报告字节/链接/fence/diff校验，Java/公共目录/依赖锁/MUS-022/原B报告未变。原版备份/后端保持，main未合并。提交后原子publish并回读，最终source SHA由handoff/交接消息提供。
+
+
+## MUS-023限定批准接收与MUS-024占用（2026-10-21）
+
+- A核验B feed `1391d53a467462fea03658dc6aa48712dc0a0f4e` / source `00f10a6bb04ac6dbf64927a55d90f72f94022e54`：latest hash/源字节/仅两报告差异、准确reviewed ab82058/comparison81566b1/assignmentec6317c/ack A6577bed匹配，原字节归档MUS-023-B及接收JSON。R1/R2/条件性R3本卡关闭，旧016 request_changes保留历史；不外推整个导入器、许可法律或模型质量。
+- B相关Python17/Node22链接8通过；最终真实本地HTTP/SQL15组fixture、39次导入、84断言（39锁清理+45其他），源提供方/MP3为替身；首轮JAVA_HOME缺链接blocked业务0独立保留。其他business500/nonUSER为响应fixture，数据库拒绝/锁定/改密真实。B无Java单测/全62/build新运行，私有证据未传A不重算，详情见接收JSON。
+- MUS-024 owner A，branch feat/MUS-024-judgment-pack，baseec6317c。允许services/audio-search/review_pack.py、test_review_pack.py、README/CONTRACTS/STATUS/A latest、verification/MUS-024*及B派发；本次同时允许023接收文档及原报告导入。先冻结CONTRACTS E1，生成包/校验人工字段/防候选串改、测试与实际51空标签包校验；新工件只在本副本.local/a/mus024。
+- 无Java/Vue/schema/API/依赖/公开JSON修改，无音频复制、模型重跑、旧包覆盖/自动人评或质量指标。B固定入口waiting，待准确源码后新卡；B两报告释放，不接管其feed。不升级演示后端，不改备份/原曲库，不合并main。

@@ -1,0 +1,67 @@
+{
+  "task_id": "MUS-023-R1-B",
+  "assignment_revision": 1,
+  "reviewed_sha": "ab8205827456ec6aeab3bcb289722a236e644f6b",
+  "comparison_base_sha": "81566b1634aa19cb8493d2c2740c6d002a75ba4e",
+  "assignment_source_sha": "ec6317cce9c178a27063fcbb8c2ef3c4953727b5",
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-21 America/Chicago",
+  "b_source_sha": "00f10a6bb04ac6dbf64927a55d90f72f94022e54",
+  "b_feed_sha": "1391d53a467462fea03658dc6aa48712dc0a0f4e",
+  "b_ack_peer_feed_sha": "6577bed0dea8389f94215efdb50a4ad02c4e769f",
+  "report_path": "docs/reviews/MUS-023-B.md",
+  "report_sha256": "fcdc2501e3613c0501143fcd57d543dbc3751bc623dd1461101a4e3e325e4988",
+  "b_latest_sha256": "864fd59dc6bb6157303fbe57bfa4d30027154e17c89d47859bb386d13a588bae",
+  "a_verified": [
+    "Successful A/B sync and source reachability",
+    "Feed/source latest bytes and SHA256 match",
+    "B delta limited to two allowed report files",
+    "Exact task/revision/reviewed/comparison/assignment/ack match",
+    "B review imported byte for byte",
+    "music tree unchanged: 8761503685932be8c7ab7bd2ad94e357860ecf3d"
+  ],
+  "b_reported": {
+    "python_relevant_tests": 17,
+    "node22_link_tests": 8,
+    "final_run": "baseline-20261022-051143-11",
+    "final_exit_code": 0,
+    "final_status": "passed",
+    "fixture_groups": 15,
+    "actual_import_runs": 39,
+    "assertions": 84,
+    "lock_cleanup_assertions": 39,
+    "other_assertions": 45,
+    "real_local_http_sql": true,
+    "provider_audio_fixture": true,
+    "initial_blocked_run": {
+      "run": "baseline-20261022-051042-23",
+      "exit_code": 1,
+      "business_checks": 0,
+      "cause": "private JAVA_HOME/bin/java symlink missing"
+    },
+    "java_unit_tests_run": false,
+    "a_full_scripts62_or_build_rerun": false,
+    "own_processes_stopped": true,
+    "ports_released": [
+      3308,
+      8081
+    ],
+    "result_sha256": "08ee3f77e659f288bef920c679d12fdc287879c3dc81e04a291096c65532a0a7",
+    "evidence_sha256": "a0a02ba546d0e7d4cebad68ea1fae8cc12fc4ab6765ae6edcdb814b86b310e85",
+    "publication": "sequential source then feed, not atomic"
+  },
+  "closed_findings": [
+    "MUS-016 R1 registration recovery with same credentials",
+    "MUS-016 R2 complete cache proof binding",
+    "MUS-016 R3 conditional public source/link canonicalization"
+  ],
+  "limits": [
+    "A did not receive B private raw logs/tools/audio/database or recompute their hashes.",
+    "Provider HTTPS and MP3 are synthetic fixtures; ordinary local APIs are real Java/MySQL. Other-business500 and nonUSER are response fixtures, network failures injected before transport.",
+    "84 assertions are not 84 independent HTTP scenarios; Node runs and blocked/successful runs are not added together.",
+    "No real provider/license/legal conclusion, production, power-loss/fsync/kill, database outage or commit ACK-loss acceptance.",
+    "No A service upgrade, UI redesign, main merge or MUS-022 quality approval; 51 labels remain null."
+  ]
+}

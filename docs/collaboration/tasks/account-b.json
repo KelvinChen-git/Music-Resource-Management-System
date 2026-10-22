@@ -1,33 +1,22 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-023-R1-B",
-  "assignment_revision": 1,
-  "status": "assigned",
+  "task_id": null,
+  "status": "waiting",
   "claimed_by_b": false,
-  "task_card_path": "docs/collaboration/tasks/MUS-023-R1-B.md",
-  "reviewed_sha": "ab8205827456ec6aeab3bcb289722a236e644f6b",
-  "comparison_base_sha": "81566b1634aa19cb8493d2c2740c6d002a75ba4e",
-  "review_branch": "review/MUS-023-B-demo-import-recovery",
-  "allowed_output_paths": [
-    "docs/reviews/MUS-023-B.md",
-    "docs/collaboration/account-b/latest.md"
-  ],
-  "claim_channel": "collab/account-b latest.md",
   "previous_task": {
-    "task_id": "MUS-016-R1-B",
+    "task_id": "MUS-023-R1-B",
     "assignment_revision": 1,
     "status": "review_completed",
-    "verdict": "request_changes_received",
-    "reviewed_sha": "69a3965e88d37d71a0067f263d207f2cb62fe668",
-    "source_sha": "0c5efad944e8f546498d7791019060ca5967b40b",
-    "feed_sha": "e1da44f8786bd5f10a7afe631e6cefaf0e619180",
-    "receipt_record_path": "docs/verification/MUS-016-B-receipt.json"
+    "verdict": "approve_scoped_received",
+    "reviewed_sha": "ab8205827456ec6aeab3bcb289722a236e644f6b",
+    "source_sha": "00f10a6bb04ac6dbf64927a55d90f72f94022e54",
+    "feed_sha": "1391d53a467462fea03658dc6aa48712dc0a0f4e",
+    "acceptance_record_path": "docs/verification/MUS-023-B-acceptance.json"
   },
-  "note": "Exact MUS-023 minimal R1/R2/R3 increment; do not repeat complete MUS-016 or claim MUS-022 quality approval. A tests synthetic transport; supplement real local HTTP/SQL in isolated B environment. Do not touch A services/data/credentials.",
+  "note": "MUS-023 scoped approval received. Do not repeat 016/023 or claim MUS-022 quality approval. A prepares MUS-024 judgment pack; exact implementation will receive a separate card.",
   "separate_backlog": [
-    "MUS-022 human relevance and interval judgments / model comparisons / discovery-v0 freeze",
-    "Listening/review workspace postponed until importer fixes coordinated",
+    "Human relevance/interval judgments, model comparisons and discovery-v0 freeze",
     "No main merge or existing backend upgrade"
   ]
 }

@@ -144,7 +144,7 @@ Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没
 - changePassword、resetUserPassword、resetPassword仅写password/updated_at；校验、编码、返回及验证码成功后失效行为保留。六入口均以本次目标userid为WHERE，不回写读取快照中的头像/邮箱/角色/其他安全列。
 - 本项限制写入列，不能据此宣称旧密码并发请求、验证码消费、权限撤销竞争或三个正常HTTP参与者竞争已解决；真实多连接验收须单列。消费者仍原前端，不新增浏览器API字段；B在准确实现SHA上补限定审核。
 
-### A11. MUS-023 演示导入恢复与公开链接（源码已实现；真库增量待审）
+### A11. MUS-023 演示导入恢复与公开链接（B范围内真库增量已验收）
 
 - 私有demo-account.json保留同一凭据，新增.local/<slot>/music-catalog/demo-account-state.json（0600）记录pending/confirmed及凭据指纹/确认目标。legacy凭据首次兼容按pending确认；confirmed登录失败不重新注册。pending先login，只有旧/auth/login明确Invalid email or password业务拒绝才用同一凭据register；网络/其他业务错误不猜测账号不存在。注册响应丢失可再login确认，拒绝/不确定则保留pending，不删除凭据或生成第二账号。profile确认为USER并核对目标后才confirmed，不改变注册/登录API。
 - 缓存下载证明须为完整结构，实际字节长度/SHA与证明和选曲记录一致；source/CC BY许可按明确规范化规则匹配，不一致即失败并保留原字节/证明，不重新造证明掩盖。旧http CC许可等价为https相同准确版本；不要求缓存重跑实时查询提供方。
@@ -266,6 +266,13 @@ ID 为十进制字符串（兼容 Java Long，不在浏览器中依赖超过安�
 - 超参数在 dev 选；test 只评估，不回流用于改参数。生成的参考变体与原曲分组，防止基线间候选或划分不一致。
 - 性能分别记录解码、编码、检索 / 过滤 / 排序、完整 Java API、浏览器端到端耗时。说明预热、硬件、并发、请求数、语料量、是否复用 query cache；失败请求单列。
 - 每条结果绑定 code_sha、manifest_hash、config、model_version、index_version 和原始输出位置。没有运行证据的项写 planned / unmeasured，不补造数字。
+
+### E1. MUS-024探索标注包（先冻结本地格式，非discovery-v0）
+
+- Python标准库CLI从已完成MUS-022运行生成包；必须显式给出期望report SHA256，核对catalog与manifest/queries/rankings/segments工件hash，绑定owner、track/content SHA/字节数/实测时长、来源/许可、模型/pipeline及源码SHA。只取文字查询两基线top5并集，按track ID排序且去分数，模型建议区间独立保留。旧v1包与原运行只读。
+- schema为`sonora-judgment-pack-v1`，split固定`exploratory_only_not_held_out`。初始relevance/human_intervals_ms/annotator/judged_at均null；null是未判断，0是明确不相关，不能转换或补默认0。人工相关性仅整数0/1/2/3；已判断需手工填匿名标注代号、UTC时间，人工区间为可选有限个不重叠整数毫秒左闭右开区间，0<=start<end<=实测时长，不复制模型区间。
+- 校验必须重新由运行重建不可变候选与音频绑定，拒绝改候选、重复/未知ID、变更split/owner/hash/文本/来源或时间。内容指纹不包含人工字段；校验不认证标注人身份、不替代真人听音，不自动导出质量/Recall/IoU。模型建议可见，存在提示偏差，不是盲评或held-out。
+- 新输出只在当前checkout已ignore的.local内以0600独占创建，拒绝覆盖；不复制音频、权重或向量，不写公共JSON/数据库/API，不改变旧媒体权限。后续试听入口需每次经现有JWT媒体API鉴权并核对音频SHA/字节，不能把本包当可播放授权或静态路径白名单。
 
 ## F. 契约变更
 
