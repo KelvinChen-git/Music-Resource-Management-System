@@ -1,6 +1,6 @@
 # MUS-024-R1-B：探索标注包完整性复核
 
-- task_id / assignment_revision：MUS-024-R1-B / 1；owner B；assigned未认领。
+- task_id / assignment_revision：MUS-024-R1-B / 1；owner B；review_completed / approve_scoped已由A接收，勿重复领取。
 - reviewed_sha `1e83454474413fb6c58a73d82ace579656749bc0`；comparison_base_sha `3c7552ad2071847959eecf520956690dc083411e`。
 - 分支`review/MUS-024-B-judgment-pack`；仅写`docs/reviews/MUS-024-B.md`和`docs/collaboration/account-b/latest.md`。
 - assignment_source_sha取发布本卡的A handoff.source_sha；先主动claimed，回传准确task/revision/reviewed/comparison/assignment及ack_peer_feed_sha，再执行复核。
@@ -19,3 +19,7 @@ MUS-023限定批准已由A正式接收，旧016对应R1/R2/条件性R3关闭，�
 不访问A服务/数据库/凭据/缓存/音频、不请求真实账号或人工标注个人信息、不改A台账/产品/依赖/锁/公共JSON，不创建服务器/定时任务或合并main。新工件只在自己的忽略目录，合成标注代号明确test。保留失败命令及已完成检查，不累加伪装成功。
 
 最终两报告写review_completed、approve_scoped/request_changes/blocked、准确命令/计数/源SHA/各边界和占用释放；提交后publish并回读，备用顺序发布要披露非原子。发布不等于A接收；无后台轮询，勿把A feed变化当重复领取依据。
+
+## A接收
+
+B feed `76b8244407e9f27f3edbaa113437c1575902e966` / source `b15ead23e0a9f7ebb91b9d5344559c4d46353877` 已核验，原字节报告及[接收JSON](../../verification/MUS-024-B-acceptance.json)已归档。限定工具/合成数据范围，不外推真实51对人评或质量。

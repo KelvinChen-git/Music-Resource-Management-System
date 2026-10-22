@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-21 America/Chicago）：A在`feat/MUS-024-judgment-pack`，起点ec6317c；B MUS-023限定批准已核验接收，016 R1/R2/条件性R3关闭。MUS-024本地标注包生成/校验已实现，40项离线测试通过，51对实际包全null，准确提交1e83454待B复核；不改UI/后端/数据，原版保留，main未合并。
+- 当前检查点（2026-10-21 America/Chicago）：A在`feat/MUS-025-listening-review`，起点6fef7d9；B MUS-024限定批准已接收。MUS-025增量接入本地包试听/人评草稿入口，先写CONTRACTS E2，真实51标签仍null，原版/后端保留，main不合并。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,8 +42,9 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
-| MUS-024 探索人工标注包 | review / A（工具完成，B复核待确认） | feat/MUS-024-judgment-pack / 1e83454 | 标准库CLI/17新增检查，全离线40通过；8查询51对全null，无试听新页面/人评/质量结论 |
-| MUS-024-R1-B 标注包完整性复核 | assigned / B（待主动认领） | review/MUS-024-B-judgment-pack / 1e83454 | 仅新报告/own latest，合成fixture验证；不得称复算A私有工件或模型质量 |
+| MUS-025 试听审阅入口 | in_progress / A | feat/MUS-025-listening-review / 6fef7d9 | 增量Vue路由/本地包/JWT及内容验证试听/分账号草稿导出，不改原布局或后端 |
+| MUS-024 探索人工标注包 | done / A（B限定批准已接收） | feat/MUS-024-judgment-pack / 1e83454 | 标准库CLI/17新增检查，全离线40通过；8查询51对全null，无试听新页面/人评/质量结论 |
+| MUS-024-R1-B 标注包完整性复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-024-B-judgment-pack / 1e83454 | 仅新报告/own latest，合成fixture验证；不得称复算A私有工件或模型质量 |
 | MUS-023-R1-B 导入恢复增量复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-023-B-demo-import-recovery / 00f10a6 | 原字节报告/接收JSON已归档，勿重复领取 |
 | MUS-022 真实小语料离线探针 | review / A（链路实跑完成，质量未评） | spike/MUS-022-real-corpus-probe / ef8588a | 20首/933片段/8文字/3参考；23测试，51候选标签全null；离线工件不提交 |
 | MUS-003 切片与索引 | todo / unassigned | MUS-002 | 冻结契约后的 Python 模块，边界测试与精确检索 |
@@ -480,3 +481,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 定向17通过；首轮16通过1 error为macOS临时目录/var别名fixture，修fixture根路径resolve后通过。原音频模块全40通过（含17，不相加），不涉及CLAP编码/HTTP；真实数据build/validate在干净1e83454各exit0，8查询51对全null，与原包候选集合一致。重复build exit1/FileExistsError预期拒绝，原7工件hash及正式包字节不变。正式包43475字节/0600，仅ignore目录；见verification/MUS-024.md/results.json。
 - 无人工听音/质量/held-out或新试听页面，包只绑定记录，不刷新当前音频/权限/许可，不是媒体授权。后续仍需JWT媒体读取与内容校验；MUS-002质量/冻结仍blocked。Java/Vue/schema/API/锁/公开JSON/原备份/曲库/服务不改，未重复无关Java/build/导入器套件，main未合并。
 - 检查点sync A fb8c7d5c/source3c7552a、B仍1391d53a/source00f10a6b，023限定批准已接收；新MUS-024-R1-B/revision1 assigned未主动认领，准确reviewed1e83454/comparison3c7552a，只B报告/own latest。B用独立合成fixture补CLI/完整性，不要求A私有51包或重复模型/导入/UI审核。提交本派发后publish并回读，发布不等于B已接收。
+
+
+## MUS-024接收与MUS-025占用（2026-10-21）
+
+- B feed `76b8244407e9f27f3edbaa113437c1575902e966` / source `b15ead23e0a9f7ebb91b9d5344559c4d46353877`，reviewed1e83454/comparison3c7552a/assignment6fef7d9/ack A43748a0匹配。latest字节/hash/仅两报告核验，MUS-024-B原字节与接收JSON归档，approve_scoped正式接收。B17标准库检查、83 CLI（4成功79预期拒绝）、独立7合成曲目/12候选，不累加A40，不冒充复算A私有51或真人标注；私有日志未传A不重算。
+- MUS-025 owner A；base6fef7d9；允许web/src/views/ReviewWorkspace.vue、web/src/utils/reviewPack.js/reviewAudio.js及对应test、router单一路由、App侧栏单入口，以及README/CONTRACTS/STATUS/A latest/verification/MUS-025*/B派发；同时允许024接收文档/原字节报告。草稿/QA/导出仅ignore的.local/a/mus025，本地原包/音频/索引不改，不写B feed/own latest。
+- E2先约定仅本地包/既有JWT媒体读取、SHA字节核对、逐次重鉴权、竞态/退出回收与分账号草稿/人工字段显式输入。无Java/Python处理器/schema/依赖锁/公开JSON/API改动，不预填51人评、不重做UI/升级后端或合并main。B入口waiting，准确源码后再派；现有MUS-002仍等质量/冻结。

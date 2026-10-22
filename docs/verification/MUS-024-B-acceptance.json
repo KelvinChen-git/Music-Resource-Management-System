@@ -1,0 +1,43 @@
+{
+  "task_id": "MUS-024-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-21 America/Chicago",
+  "reviewed_sha": "1e83454474413fb6c58a73d82ace579656749bc0",
+  "comparison_base_sha": "3c7552ad2071847959eecf520956690dc083411e",
+  "assignment_source_sha": "6fef7d9a461ad322a169918ca8ff0dd62728359f",
+  "b_ack_peer_feed_sha": "43748a0b1f5a29bd944d6a5e613fcd2dde3523e1",
+  "b_feed_sha": "76b8244407e9f27f3edbaa113437c1575902e966",
+  "b_source_sha": "b15ead23e0a9f7ebb91b9d5344559c4d46353877",
+  "report_path": "docs/reviews/MUS-024-B.md",
+  "report_sha256": "0d3e9f7ae49ccf33fec213785a82018753a9ed7361d1821df353fc070bfb22d2",
+  "b_latest_sha256": "531968abaaed62f6a676a00176e8796aa4a76bbf9b0c5a4d836f1850e5c42ecf",
+  "a_verified": [
+    "feed/source latest bytes and hash",
+    "only two allowed B report paths",
+    "exact task/revision/reviewed/comparison/assignment/ack match",
+    "exact B review imported"
+  ],
+  "b_reported": {
+    "standard_library_tests": 17,
+    "independent_cli_calls": 83,
+    "cli_successes": 4,
+    "expected_exit1_rejections": 79,
+    "unexpected_failures": 0,
+    "synthetic_tracks": 7,
+    "text_queries": 2,
+    "excluded_audio_queries": 1,
+    "candidate_pairs": 12,
+    "dataset_sha256": "5b43d841e1f79f6bd778fc85381bdea7c40ed4d7c6aa54792bdc27658f62d731",
+    "publication": "sequential source then feed, not atomic"
+  },
+  "limits": [
+    "No private B raw evidence received or hashes recomputed by A.",
+    "B synthetic CLI counts are not added to 17 tests or A40, and do not reproduce A private51.",
+    "No real audio/listening/identity/quality/P95/held-out or discovery-v0 freeze.",
+    "No current media authorization/license refresh; no power-loss/fsync/hostile concurrent filesystem tests.",
+    "No Java/Vue/SDK/model/real database or browser tests by B this increment."
+  ]
+}
