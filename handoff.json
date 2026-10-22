@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-22T04:58:28.235562+00:00",
+  "published_at": "2026-10-22T05:17:25.106841+00:00",
   "source_branch": "feat/MUS-025-listening-review",
-  "source_sha": "133fecbcda96585a09d6e0cf67af608c768c9151",
+  "source_sha": "c382cbc412accd090429c836314e6a3d0b9d78fc",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "3eca685e8363018aca5bb043321d8ff707cd1c662a142e803a082b965514989f"
+  "report_sha256": "9e8edf740b043808c07ad86ec9d0c88a42acf31fe08cac623c9cbf1ec4ff4acf"
 }

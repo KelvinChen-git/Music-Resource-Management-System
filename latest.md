@@ -1,10 +1,22 @@
 # 账号 A 最新交接
 
-## 当前：MUS-024限定批准接收，MUS-025试听审阅开始
+## 当前：MUS-025试听审阅完成，MUS-024限定批准已接收
 
-A；2026-10-21 America/Chicago；branch feat/MUS-025-listening-review；base6fef7d9；in_progress。ack_peer_feed_sha `76b8244407e9f27f3edbaa113437c1575902e966` / B source `b15ead23e0a9f7ebb91b9d5344559c4d46353877`。准确派发/ack、latest字节hash/仅两报告delta核验，024-B原字节和acceptance JSON归档；限定工具/合成fixture批准，真实51仍null。B17标准库与83CLI（4成功79预期拒绝）、7合成/12候选单列，不累加A40、不重算B私有证据或称真人人评。
+A；2026-10-22 America/Chicago；branch feat/MUS-025-listening-review；base6fef7d9；review。implementation `cdc2fc5c00dbc4c2889068023d9d37ce8744a532`，comparison/scope `133fecbcda96585a09d6e0cf67af608c768c9151`，初版1fbaac8。最终文档SHA由handoff.source_sha给出。
 
-MUS-025仅现有Vue加登录保护试听审阅入口、本地包校验、既有JWT媒体及完整SHA字节核对、账号隔离草稿和JSON导出；E2先更新。允许新view/helper/test及router/App最小入口/文档。无新检索API或后端/schema/依赖/原音频/公共JSON修改，不改原布局或合并main，真实标签不自动填。B入口waiting，准确源码后再派。
+ack_peer_feed_sha `76b8244407e9f27f3edbaa113437c1575902e966` / B source `b15ead23e0a9f7ebb91b9d5344559c4d46353877`；开始/检查点sync均fetched。024准确task/revision/reviewed1e83454/comparison3c7552a/assignment6fef7d9/ack A43748a0、latest字节hash/仅两报告delta已核验；原字节导入024-B及acceptanceJSON，限定工具/合成fixture批准已接收。B17及独立83CLI（4成功79预期拒绝）不累加A40，不称复算A私有51或真人判断；私有B原始证据未传不重算。
+
+025在现有Sonora仅加/research/review登录路由、侧栏一项与新view/helper/test；本地包结构/owner/自洽指纹、JWT现有媒体及完整SHA字节验证、片段试听/取点、显式人工评分/区间、按owner+dataset草稿及显式恢复/导出。初始评分/人工范围/代号不预填，退出清内存/音频，最终交接仍需原run CLI。原布局/播放器队列/管理页与后端保持，无新搜索API或schema/依赖/公共JSON改变。
+
+Node22新15通过，加既有6media为21通过；最终verified补断言后21通过，不相加；最终干净cdc2fc5 build通过，旧>500kB warning。初版浏览器发现SHA拒播后取点仍enabled，已修为成功播放verified后才可取点，单位断言及最终真实拒播disabled通过。一次QA登录未等HTTP就goto导致heading timeout，正常UI等待重登后通过，失败保留。
+
+真实51包0已判断/51未判断；Energy28经原8080/5175实际55–65s试听，初次终点1:05且src释放，最终起播55.118844s/时长230.478526s，取点和1:02播放中退出清理、匿名深链登录保护/重登不残包通过。错owner文件保留旧合成判断，错SHA实际媒体无src且取点disabled。390 scroll384/1440 scroll1434，截图视觉核对，最终warn/error空/viewport恢复。
+
+1fbaac8上独立6合成曲目/12候选验证0/3分、1–2s人工区间、13s越界拒绝、草稿刷新后显式恢复及部分导出；导出分别对自建run CLI通过。最终真实浏览器导出对原run CLI通过0/51、0区间，原MUS-022七工件和024正式包SHA未变。所有测试标签均synthetic，真实51仍全null，没有真人听音质量、held-out/P95或discovery-v0冻结；MUS-002仍待人评/效果比较。截图/QA包/日志只在.local/a/mus025，详情verification/MUS-025.md/results.json。
+
+未新测真实第二账号/撤权矩阵、存储quota或两个真实播放器竞争；pending/late-play取消和pause hook为fake audio/fetch，JWT header为既有6helper验证，实际浏览器音频状态非抓包。已交付字节不能追溯撤销，片段事件/计时非采样精度；自洽包不认证原run或当前权限，需CLI及每次媒体授权。
+
+新MUS-025-R1-B/revision1 assigned未主动认领，准确reviewedcdc2fc5/comparison133fecb，只新报告/own latest，B用自己的隔离普通账号/合成音频补浏览器HTTP，不访问A或重复024/整个模型/导入器审核。备份干净f3b0da1、5175研究入口200、8080匿名profile401，原MUS-014后端未重启/升级；未做账号/资源写操作、迁移或main合并。无理由不重复Maven/CLAP/全离线/依赖安装。提交后原子publish并回读，发布不等于B已领取或批准，无后台轮询。
 
 ## 上一轮交接（保留）
 
