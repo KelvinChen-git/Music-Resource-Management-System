@@ -1,12 +1,18 @@
 # 账号 A 最新交接
 
-## 当前：MUS-023限定批准接收，MUS-024探索标注包开始
+## 当前：MUS-024探索标注包完成，MUS-023限定批准已接收
 
-A；2026-10-21 America/Chicago；branch feat/MUS-024-judgment-pack；baseec6317c；in_progress。ack_peer_feed_sha `1391d53a467462fea03658dc6aa48712dc0a0f4e` / B source `00f10a6bb04ac6dbf64927a55d90f72f94022e54`。准确任务/revision/reviewed/comparison/assignment/ack、latest字节hash/两报告delta/Java树核验，MUS-023-B原字节归档，接收approve_scoped，仅关闭016 R1/R2/条件性R3。详情verification/MUS-023-B-acceptance.json；私有B原始证据未交付不重算，历史request_changes保留，无整体生产或模型批准。
+A；2026-10-21 America/Chicago；branch feat/MUS-024-judgment-pack；baseec6317c；review。implementation `1e83454474413fb6c58a73d82ace579656749bc0`，comparison/scope `3c7552ad2071847959eecf520956690dc083411e`，最终文档source SHA由handoff给出。
 
-MUS-024范围services/audio-search/review_pack.py及测试、契约E1/台账/验证/本交接和后续固定派发。先做可重复本地标注包生成及严格校验，绑定原MUS-022 run/corpus/catalog/owner/音频，人工标签不预填；不改UI/API/Java/数据库/依赖，原模型/音频/旧工件只读。现有51标签仍null、无质量/held-out结论；B入口waiting，准确实现后再派。
+ack_peer_feed_sha `1391d53a467462fea03658dc6aa48712dc0a0f4e` / B source `00f10a6bb04ac6dbf64927a55d90f72f94022e54`，开始/检查点sync均fetched。MUS-023 reviewedab82058/assignmentec6317c/ack6577bed匹配、报告字节/hash/两文件delta/Java树核验；原字节归档并正式接收approve_scoped，关闭016 R1/R2/条件性R3。B最终15组fixture/39导入/84断言（39锁清理+45其他）、相关Python17/Node22链接8，提供方与部分响应替身/真实本地HTTPSQL界限保留；首轮JAVA_HOME缺链接blocked业务0单列。私有原始证据未传A不重算，未外推整个导入器或质量。
 
-本地执行/Git正常，起点工作区干净，原备份干净f3b0da1、新5175/music200、旧8080匿名profile401；演示后端仍MUS-014，main未合并。
+MUS-024标准库CLI从固定report及四工件/catalog生成并严格校验候选，绑定owner/音频SHA字节时长/来源许可/模型pipeline；去分数、按ID排，模型建议与人工字段分开，null不变0。人工四字段评分整数/匿名代号/UTC时间/可选合法区间；不可变候选串改拒绝。生成只允许本副本.local、0600、独占创建，不覆盖旧包，无依赖/API/UI改动。
+
+定向17通过；初次16通过1 error为macOS tempfile /var别名fixture，修fixture resolve后通过。全音频模块40通过含原23+新增17，不与17相加。干净1e83454上实际build/validate各exit0：8文字/51候选/0已判断/51未判断/0人工区间，与旧包候选集合一致。重复build exit1/FileExistsError预期拒绝，正式包和原7工件hash未变；43475字节/0600，包SHA dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd，datasetSHA 38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0。证据/命令/限制见verification/MUS-024.md/results.json，生成包/日志只在.local/a/mus024。
+
+没有真人判断、盲评/held-out/质量指标/P95或模型冻结，也没有新试听页面。包的内容身份来自原manifest，不是当前媒体授权/许可刷新；后续试听仍需JWT接口与播放前SHA字节核对。MUS-002仍blocked于质量/冻结，未实施未定检索API。Java/Vue/数据库/schema/依赖锁/公共JSON/原版/现有服务保持，不重跑模型或无关Java/build/导入器套件，不合并main。
+
+新卡MUS-024-R1-B/revision1 assigned未主动认领，reviewed1e83454/comparison3c7552a，只写新B审核报告/own latest；独立合成fixture补CLI/完整性，不访问A私有音频/51包或声称质量人评，不重复023。原版备份仍f3b0da1；本次提交后原子publish并回读，最终SHA见handoff，发布不等于B已接收或批准，无后台轮询。
 
 ## 上一轮交接（保留）
 

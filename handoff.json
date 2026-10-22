@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-22T04:34:33.685575+00:00",
+  "published_at": "2026-10-22T04:43:52.580463+00:00",
   "source_branch": "feat/MUS-024-judgment-pack",
-  "source_sha": "3c7552ad2071847959eecf520956690dc083411e",
+  "source_sha": "6fef7d9a461ad322a169918ca8ff0dd62728359f",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "a2101044d579c4c29228356788b225072b4d8e40127f76e48c91a08bd309ebf8"
+  "report_sha256": "5c93b8ba913b0a2adaf48813be17ed446fdc2208341a09f1f575b8d03e9c15aa"
 }
