@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## 当前：MUS-024限定批准接收，MUS-025试听审阅开始
+
+A；2026-10-21 America/Chicago；branch feat/MUS-025-listening-review；base6fef7d9；in_progress。ack_peer_feed_sha `76b8244407e9f27f3edbaa113437c1575902e966` / B source `b15ead23e0a9f7ebb91b9d5344559c4d46353877`。准确派发/ack、latest字节hash/仅两报告delta核验，024-B原字节和acceptance JSON归档；限定工具/合成fixture批准，真实51仍null。B17标准库与83CLI（4成功79预期拒绝）、7合成/12候选单列，不累加A40、不重算B私有证据或称真人人评。
+
+MUS-025仅现有Vue加登录保护试听审阅入口、本地包校验、既有JWT媒体及完整SHA字节核对、账号隔离草稿和JSON导出；E2先更新。允许新view/helper/test及router/App最小入口/文档。无新检索API或后端/schema/依赖/原音频/公共JSON修改，不改原布局或合并main，真实标签不自动填。B入口waiting，准确源码后再派。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-024探索标注包完成，MUS-023限定批准已接收
 
 A；2026-10-21 America/Chicago；branch feat/MUS-024-judgment-pack；baseec6317c；review。implementation `1e83454474413fb6c58a73d82ace579656749bc0`，comparison/scope `3c7552ad2071847959eecf520956690dc083411e`，最终文档source SHA由handoff给出。
