@@ -5,6 +5,7 @@ import RecycleBinView from '@/views/RecycleBinView.vue'
 import TagListView from '@/views/TagListView.vue'
 
 const routes = [
+  { path: '/research/review', name: 'listening-review', component: () => import('@/views/ReviewWorkspace.vue'), meta: { requiresAuth: true, title: '试听审阅' } },
   ...['favorites','recent','artists'].map(path => ({path: '/'+path, name: path, component: () => import('@/views/SonoraLibrary.vue'), meta: {requiresAuth: true, title: {favorites:'我的收藏',recent:'最近播放',artists:'歌手与专辑'}[path]}})),
   {path:'/manage/music', name:'manage-music', component: () => import('@/views/MusicListView.vue'), meta:{requiresAuth:true,title:'资源管理'}},
   {
@@ -161,4 +162,4 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-export default router 
+export default router
