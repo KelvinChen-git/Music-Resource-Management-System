@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## 当前：MUS-026审阅播放控制修复开始
+
+A；2026-10-24 America/Chicago；branch fix/MUS-026-review-player-controls；basec382cbc；in_progress。ack_peer_feed_sha `0907de0959bae0e8de3f9110caaefd536243106d` / B source `7c93a512817b5a82f89ddf746ec54265016cfc16`。025限定批准已核验接收，原字节/acceptance归档；B21/build、37浏览器/4导出CLI/前期失败及私有证据边界保留，不代表新增体验需求已覆盖。
+
+用户反馈整曲试听无底栏曲目信息、页面不能手动seek。026先E3，修改审阅helper/view与现有store/footer最小接线及测试，登记临时控制会话；保留原队列，seek限整曲/选定片段，暂停继续重新鉴权校验，换候选/离页/退出清理。无Java/Python/API/schema/依赖/原数据变更，不改用户标注或备份、不合并main。B入口waiting，准确实现后新卡。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-025试听审阅完成，MUS-024限定批准已接收
 
 A；2026-10-22 America/Chicago；branch feat/MUS-025-listening-review；base6fef7d9；review。implementation `cdc2fc5c00dbc4c2889068023d9d37ce8744a532`，comparison/scope `133fecbcda96585a09d6e0cf67af608c768c9151`，初版1fbaac8。最终文档SHA由handoff.source_sha给出。
