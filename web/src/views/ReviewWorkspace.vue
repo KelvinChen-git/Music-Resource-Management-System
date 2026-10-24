@@ -11,6 +11,7 @@ const pack = ref(null), queryIndex = ref(0), candidateIndex = ref(0), alias = re
 const message = ref(''), draft = ref(null), audioElement = ref(null), input = ref(null)
 const playback = ref({ phase: 'idle', positionMs: 0, trackId: '', verified: false, error: '' })
 const rangeStart = ref(''), rangeEnd = ref(''), importing = ref(false)
+const seekPreview = ref(null)
 const counts = computed(() => pack.value ? reviewCounts(pack.value) : { total: 0, judged: 0, unjudged: 0 })
 const query = computed(() => pack.value?.queries[queryIndex.value])
 const row = computed(() => query.value?.candidates[candidateIndex.value])
@@ -18,7 +19,7 @@ const canJudge = computed(() => validAlias(alias.value))
 const busy = computed(() => playback.value.phase === 'loading')
 const canCapture = computed(() => playback.value.verified && playback.value.trackId === row.value?.track_id)
 const rates = ['0 · 不相关', '1 · 弱相关', '2 · 相关', '3 · 高度相关']
-let controller, epoch = 0, editVersion = 0
+let controller, binding = null, epoch = 0, editVersion = 0
 const downloads = new Map()
 function session() {
   const stored = localStorage.getItem('token') || sessionStorage.getItem('token')
@@ -29,10 +30,11 @@ function stamp() { return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z') }
 function seconds(ms) { return (ms / 1000).toFixed(3) }
 function time(ms) { const total = Math.floor(ms / 1000); return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}` }
 function resetSelection() {
-  controller?.stop(); rangeStart.value = ''; rangeEnd.value = ''
+  releasePlayback(); rangeStart.value = ''; rangeEnd.value = ''
 }
+function releasePlayback() { const previous = binding; binding = null; previous?.release(); controller?.stop(); seekPreview.value = null }
 function clearSession() {
-  epoch++; editVersion++; controller?.stop(); pack.value = null; draft.value = null
+  epoch++; editVersion++; releasePlayback(); pack.value = null; draft.value = null
   alias.value = ''; queryIndex.value = candidateIndex.value = 0
   rangeStart.value = rangeEnd.value = ''; importing.value = false
   message.value = '请在当前账号下重新导入标注包。'
@@ -41,17 +43,16 @@ function clearSession() {
 }
 function storageChanged(event) { if (['token', 'userInfo'].includes(event.key) || event.key === null) clearSession() }
 watch(() => [user.userId, user.token], clearSession, { flush: 'sync' })
-watch(() => player.playing, playing => { if (playing) controller?.stop(false) }, { flush: 'sync' })
 watch([queryIndex, candidateIndex], resetSelection, { flush: 'sync' })
 onMounted(() => {
-  controller = createReviewAudio({ audio: audioElement.value, fetchMedia, onState: value => { playback.value = value }, beforePlay: () => player.audio?.pause() })
+  controller = createReviewAudio({ audio: audioElement.value, fetchMedia, onState: value => { playback.value = value; binding?.update(value) } })
   window.addEventListener('storage', storageChanged)
 })
 onBeforeUnmount(() => { clearSession(); window.removeEventListener('storage', storageChanged) })
 async function importFile(event) {
   const file = event.target.files?.[0]; event.target.value = ''
   if (!file) return
-  const ticket = ++epoch; editVersion++; controller?.stop(); importing.value = true; message.value = ''; draft.value = null
+  const ticket = ++epoch; editVersion++; releasePlayback(); importing.value = true; message.value = ''; draft.value = null
   try {
     const { owner, token } = session()
     if (file.size > 2 * 1024 * 1024) throw new Error('文件超过 2 MiB。')
@@ -86,7 +87,7 @@ async function restore() {
   try {
     const { owner } = session(), saved = await loadReviewDraft(draft.value.raw, pack.value, owner)
     if (ticket !== epoch) return
-    controller?.stop(); pack.value = saved; draft.value = null; editVersion++
+    releasePlayback(); pack.value = saved; draft.value = null; editVersion++
     rangeStart.value = rangeEnd.value = ''; message.value = '已恢复同一候选包的本机草稿。'
   } catch (error) { message.value = error.message }
 }
@@ -123,9 +124,15 @@ function capture(which) {
   else rangeEnd.value = value
 }
 async function play(range) {
-  try { session(); await controller.start(row.value, range) }
+  try {
+    session(); releasePlayback()
+    const candidate = row.value, bounds = range || [0, candidate.duration_ms]
+    binding = player.registerReview({ musicid: candidate.track_id, title: candidate.title, artist: candidate.artist }, bounds, controller)
+    await controller.start(candidate, bounds)
+  }
   catch (error) { message.value = error.message }
 }
+function seek(value) { seekPreview.value = null; return controller.seek(Number(value)) }
 async function download() {
   const accountEpoch = epoch, version = editVersion
   try {
@@ -154,7 +161,9 @@ async function download() {
       <div class="review-columns"><nav class="candidate-list" aria-label="候选曲目"><button v-for="(item, index) in query.candidates" :key="item.track_id" type="button" :class="{ selected: candidateIndex === index }" :aria-pressed="candidateIndex === index" @click="candidateIndex = index"><strong>{{ item.title }}</strong><span>{{ item.artist }}</span><small>{{ item.relevance === null ? '尚未判断' : rates[item.relevance] }}</small></button></nav>
         <article v-if="row" class="candidate-detail"><p class="eyebrow">CANDIDATE {{ candidateIndex + 1 }} / {{ query.candidates.length }}</p><h2>{{ row.title }}</h2><p>{{ row.artist }} · {{ time(row.duration_ms) }}</p><div class="source-links"><a :href="row.source_url" target="_blank" rel="noopener noreferrer">来源</a><a :href="row.license_url" target="_blank" rel="noopener noreferrer">CC BY 许可</a></div>
           <div class="actions"><button type="button" @click="play()">{{ busy ? '重新获取并试听整曲' : '试听整曲' }}</button><button type="button" :disabled="!['playing','loading'].includes(playback.phase)" @click="controller.stop(false)">停止试听</button></div>
-          <p class="playback" role="status">{{ busy ? '正在获取并校验音频…' : playback.phase === 'playing' ? '试听中' : '已停止' }} · {{ time(playback.positionMs) }}</p><p v-if="playback.error" class="error" role="alert">{{ playback.error }}</p>
+          <div class="review-progress"><span>{{ time(playback.positionMs) }}</span><input type="range" :min="playback.rangeStartMs || 0" :max="playback.rangeEndMs || 1" step="100" :value="seekPreview ?? playback.positionMs" :disabled="!playback.verified || busy" aria-label="试听进度" @input="seekPreview=Number($event.target.value)" @change="seek($event.target.value)" @pointercancel="seekPreview=null"><span>{{ time(playback.rangeEndMs || 0) }}</span></div>
+          <div class="actions"><button type="button" :disabled="!playback.verified || busy" @click="controller.toggle()">{{ playback.phase === 'playing' ? '暂停试听' : '继续试听' }}</button><small class="hint" v-if="playback.rangeEndMs">可拖动范围：{{ seconds(playback.rangeStartMs) }}–{{ seconds(playback.rangeEndMs) }} 秒</small></div>
+          <p class="playback" role="status">{{ busy ? '正在获取并校验音频…' : playback.phase === 'playing' ? '试听中' : playback.phase === 'paused' ? '已暂停' : '已停止' }} · {{ time(playback.positionMs) }}</p><p v-if="playback.error" class="error" role="alert">{{ playback.error }}</p>
           <div class="suggestions"><h3>模型建议片段</h3><div class="actions"><button v-for="(range, index) in row.model_suggested_intervals_ms" :key="index" type="button" @click="play(range)">试听 {{ seconds(range[0]) }}–{{ seconds(range[1]) }} 秒</button></div><p v-if="!row.model_suggested_intervals_ms.length" class="hint">本候选没有建议片段，可试听整曲。</p></div>
           <fieldset class="ratings" :disabled="!canJudge"><legend>与当前描述的相关性</legend><label v-for="(label, value) in rates" :key="value"><input type="radio" name="relevance" :value="value" :checked="row.relevance === value" @change="judge(value)">{{ label }}</label></fieldset>
           <div class="judgment"><span>{{ row.relevance === null ? '尚未判断' : `当前判断：${rates[row.relevance]} · ${row.annotator}` }}</span><button type="button" :disabled="row.relevance === null" @click="clearJudgment">清除本条判断</button></div>
@@ -166,6 +175,6 @@ async function download() {
 </template>
 
 <style scoped>
-.review-workspace{max-width:1180px;margin:auto;color:var(--text,#eee);overflow-wrap:anywhere}.review-heading,.review-summary,.actions,.judgment,.source-links{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.review-heading{justify-content:space-between}.review-heading h1{font-size:30px;margin:8px 0}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--accent,#b5e853)}p{line-height:1.6}.hint,.review-heading>div>p:last-child,.candidate-detail>p,.candidate-list span{color:var(--muted,#9a9aa0);font-size:13px}.file-input{display:none}button,input,select{font:inherit}button{background:#282b27;border:1px solid #42473b;color:#eee;padding:10px 14px;border-radius:8px;cursor:pointer;white-space:normal}button:hover:not(:disabled),button.selected{border-color:#b5e853;background:#303b22}button:disabled{opacity:.45;cursor:default}input,select{background:#151713;border:1px solid #45493f;border-radius:6px;padding:9px;color:#eee;max-width:100%;min-width:0}input:focus,select:focus,button:focus-visible{outline:2px solid #b5e853;outline-offset:2px}.notice,.review-empty,.review-summary{background:#22251f;border:1px solid #3c4234;border-radius:10px;padding:16px;margin:20px 0}.review-empty{padding:40px 24px}.review-summary{justify-content:space-between}.review-summary label{display:flex;align-items:center;gap:10px}.query-select{display:grid;gap:8px;margin-top:24px}.query-select select{width:100%;text-overflow:ellipsis}.query-title{font-size:20px;line-height:1.5}.review-columns{display:grid;grid-template-columns:minmax(180px,260px) minmax(0,1fr);gap:20px;align-items:start}.candidate-list{display:grid;gap:8px;min-width:0}.candidate-list button{text-align:left;display:grid;gap:6px;min-width:0}.candidate-list strong,.candidate-detail h2{overflow-wrap:anywhere}.candidate-list small{color:#b6d48c}.candidate-detail{min-width:0;border:1px solid #383b32;border-radius:12px;padding:24px;background:#1b1d19}.candidate-detail h2{font-size:26px;margin:10px 0}.source-links{margin-bottom:20px}.source-links a{color:#b5e853}.playback{font-variant-numeric:tabular-nums}.suggestions,.human-range{border-top:1px solid #3b3e34;margin-top:22px;padding-top:10px}h3{font-size:15px}.ratings{display:flex;flex-wrap:wrap;gap:14px;border:1px solid #434b37;border-radius:8px;padding:14px;margin:24px 0 14px}.ratings label{display:flex;align-items:center;gap:6px;font-size:13px}.ratings input{accent-color:#b5e853}.judgment{justify-content:space-between;font-size:13px}.range-fields{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin:16px 0}.range-fields label{display:grid;gap:7px;font-size:13px}.range-fields button{align-self:end}.error{color:#f6a39c}.saved-ranges{font-size:13px;color:#c5dea6}.footnote{margin-top:24px}.restore{margin-bottom:10px}
+.review-workspace{max-width:1180px;margin:auto;color:var(--text,#eee);overflow-wrap:anywhere}.review-heading,.review-summary,.actions,.judgment,.source-links{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.review-heading{justify-content:space-between}.review-heading h1{font-size:30px;margin:8px 0}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--accent,#b5e853)}p{line-height:1.6}.hint,.review-heading>div>p:last-child,.candidate-detail>p,.candidate-list span{color:var(--muted,#9a9aa0);font-size:13px}.file-input{display:none}button,input,select{font:inherit}button{background:#282b27;border:1px solid #42473b;color:#eee;padding:10px 14px;border-radius:8px;cursor:pointer;white-space:normal}button:hover:not(:disabled),button.selected{border-color:#b5e853;background:#303b22}button:disabled{opacity:.45;cursor:default}input,select{background:#151713;border:1px solid #45493f;border-radius:6px;padding:9px;color:#eee;max-width:100%;min-width:0}input:focus,select:focus,button:focus-visible{outline:2px solid #b5e853;outline-offset:2px}.notice,.review-empty,.review-summary{background:#22251f;border:1px solid #3c4234;border-radius:10px;padding:16px;margin:20px 0}.review-empty{padding:40px 24px}.review-summary{justify-content:space-between}.review-summary label{display:flex;align-items:center;gap:10px}.query-select{display:grid;gap:8px;margin-top:24px}.query-select select{width:100%;text-overflow:ellipsis}.query-title{font-size:20px;line-height:1.5}.review-columns{display:grid;grid-template-columns:minmax(180px,260px) minmax(0,1fr);gap:20px;align-items:start}.candidate-list{display:grid;gap:8px;min-width:0}.candidate-list button{text-align:left;display:grid;gap:6px;min-width:0}.candidate-list strong,.candidate-detail h2{overflow-wrap:anywhere}.candidate-list small{color:#b6d48c}.candidate-detail{min-width:0;border:1px solid #383b32;border-radius:12px;padding:24px;background:#1b1d19}.candidate-detail h2{font-size:26px;margin:10px 0}.source-links{margin-bottom:20px}.source-links a{color:#b5e853}.playback{font-variant-numeric:tabular-nums}.review-progress{display:flex;align-items:center;gap:12px;margin:18px 0;font-size:12px;font-variant-numeric:tabular-nums}.review-progress input{flex:1;width:100%;padding:0;accent-color:#b5e853}.suggestions,.human-range{border-top:1px solid #3b3e34;margin-top:22px;padding-top:10px}h3{font-size:15px}.ratings{display:flex;flex-wrap:wrap;gap:14px;border:1px solid #434b37;border-radius:8px;padding:14px;margin:24px 0 14px}.ratings label{display:flex;align-items:center;gap:6px;font-size:13px}.ratings input{accent-color:#b5e853}.judgment{justify-content:space-between;font-size:13px}.range-fields{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin:16px 0}.range-fields label{display:grid;gap:7px;font-size:13px}.range-fields button{align-self:end}.error{color:#f6a39c}.saved-ranges{font-size:13px;color:#c5dea6}.footnote{margin-top:24px}.restore{margin-bottom:10px}
 @media(max-width:720px){.review-columns{grid-template-columns:minmax(0,1fr)}.candidate-list{grid-template-columns:repeat(2,minmax(0,1fr))}.candidate-list button{padding:10px}.candidate-detail{padding:16px}.review-heading h1{font-size:26px}.review-summary{align-items:flex-start}.review-summary label{width:100%;flex-wrap:wrap}.review-summary input{flex:1}.range-fields{gap:9px}.ratings{gap:14px 18px}.actions button{padding:10px}.judgment button{margin-left:auto}}
 </style>

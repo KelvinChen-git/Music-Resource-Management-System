@@ -18,6 +18,8 @@ export const useSonoraPlayer = defineStore('sonora-player', () => {
   const shuffle = ref(false)
   const favorites = ref([])
   const recent = ref([])
+  const reviewSession = shallowRef(null)
+  let reviewControls = null
   let generation = 0
   let objectUrl = ''
   const key = (kind) => `sonora:${user.userId || 'guest'}:${kind}:v1`
@@ -31,6 +33,7 @@ export const useSonoraPlayer = defineStore('sonora-player', () => {
     try { localStorage.setItem(key(kind), JSON.stringify(value)) } catch { /* Playback works without storage. */ }
   }
   function reset() {
+    releaseReview()
     generation++
     audio.value?.pause()
     if (audio.value) { audio.value.removeAttribute('src'); audio.value.load() }
@@ -46,7 +49,8 @@ export const useSonoraPlayer = defineStore('sonora-player', () => {
     reset()
     favorites.value = read('favorites')
     recent.value = read('recent')
-  }, { immediate: true })
+  }, { immediate: true, flush: 'sync' })
+  watch(() => user.token, releaseReview, { flush: 'sync' })
   const favoriteSet = computed(() => new Set(favorites.value))
   function toggleFavorite(song) {
     const id = String(song.musicid)
@@ -54,7 +58,39 @@ export const useSonoraPlayer = defineStore('sonora-player', () => {
     save('favorites', favorites.value)
   }
   function attach(element) { audio.value = element; if (element) element.volume = volume.value / 100 }
+  function releaseReview() {
+    const previous = reviewControls
+    reviewControls = null; reviewSession.value = null
+    previous?.stop()
+  }
+  function registerReview(song, range, controls) {
+    releaseReview()
+    // Invalidate ordinary fetch/play work before the review can acquire audio.
+    const wasLoading = loading.value
+    generation++; audio.value?.pause(); playing.value = loading.value = false
+    if (wasLoading) {
+      // A cancelled song switch must not resume the older bytes under its new title.
+      if (audio.value) { audio.value.removeAttribute('src'); audio.value.load() }
+      if (objectUrl) URL.revokeObjectURL(objectUrl)
+      objectUrl = ''; position.value = duration.value = 0
+    }
+    const ticket = Symbol('review')
+    reviewControls = { ...controls, ticket }
+    reviewSession.value = { song, phase: 'loading', positionMs: range[0], rangeStartMs: range[0], rangeEndMs: range[1], verified: false, error: '' }
+    controls.setVolume(volume.value)
+    return {
+      update(snapshot) { if (reviewControls?.ticket === ticket) reviewSession.value = { ...reviewSession.value, ...snapshot } },
+      release() { if (reviewControls?.ticket === ticket) releaseReview() }
+    }
+  }
+  function toggleReview() { return reviewControls?.toggle() }
+  function seekReview(percent) {
+    const session = reviewSession.value
+    if (!session?.verified || !Number.isFinite(Number(percent))) return
+    return reviewControls?.seek(session.rangeStartMs + Math.max(0, Math.min(100, Number(percent))) / 100 * (session.rangeEndMs - session.rangeStartMs))
+  }
   async function play(song, context = []) {
+    releaseReview()
     const ticket = ++generation
     audio.value?.pause()
     playing.value = false
@@ -91,6 +127,7 @@ export const useSonoraPlayer = defineStore('sonora-player', () => {
     }
   }
   async function advance(direction = 1) {
+    if (reviewSession.value) return
     if (!queue.value.length) return
     const at = queue.value.findIndex(item => String(item.musicid) === String(current.value?.musicid))
     const next = shuffle.value && queue.value.length > 1
@@ -103,13 +140,20 @@ export const useSonoraPlayer = defineStore('sonora-player', () => {
       audio.value.currentTime = Math.max(0, Math.min(duration.value, Number(value) / 100 * duration.value))
     }
   }
-  function setVolume(value) { volume.value = Number(value); if (audio.value) audio.value.volume = volume.value / 100 }
+  function setVolume(value) {
+    if (!Number.isFinite(Number(value))) return
+    volume.value = Math.max(0, Math.min(100, Number(value)))
+    if (audio.value) audio.value.volume = volume.value / 100
+    reviewControls?.setVolume(volume.value)
+  }
   function sync() {
     if (!audio.value) return
+    if (reviewSession.value) { audio.value.pause(); playing.value = false; return }
     position.value = audio.value.currentTime || 0
     duration.value = Number.isFinite(audio.value.duration) ? audio.value.duration : 0
     playing.value = !audio.value.paused && !audio.value.ended
   }
   return { audio, current, queue, playing, loading, error, position, duration, volume, loop, shuffle,
-    favorites, recent, favoriteSet, toggleFavorite, attach, play, toggle, advance, seek, setVolume, sync, reset }
+    favorites, recent, favoriteSet, toggleFavorite, attach, play, toggle, advance, seek, setVolume, sync, reset,
+    reviewSession, registerReview, releaseReview, toggleReview, seekReview }
 })

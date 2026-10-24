@@ -64,3 +64,29 @@ test('wall time during stalled playback does not pretend a clip was played',asyn
   assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.audio.paused,false)
   s.audio.currentTime=0.03;s.audio.dispatchEvent(new Event('timeupdate'));assert.equal(s.states.at(-1).phase,'idle')
 })
+test('live seek changes the actual audio, clamps to clip bounds and ends at the selected endpoint',async t=>{
+  const s=await setup(t);await s.control.start(s.row,[5000,10000])
+  await s.control.seek(8000);assert.equal(s.audio.currentTime,8);assert.equal(s.states.at(-1).positionMs,8000)
+  await s.control.seek(6000);assert.equal(s.audio.currentTime,6)
+  await s.control.seek(-100);assert.equal(s.audio.currentTime,5)
+  assert.equal(s.calls.length,1)
+  await s.control.seek(99000);assert.equal(s.states.at(-1).positionMs,10000);assert.equal(s.audio.src,'');assert.equal(s.audio.paused,true)
+})
+test('pause saves position and releases bytes; paused seek stays paused and resume fetches afresh',async t=>{
+  const s=await setup(t);await s.control.start(s.row,[5000,10000]);s.audio.currentTime=6.5;s.control.pause()
+  assert.equal(s.states.at(-1).phase,'paused');assert.equal(s.states.at(-1).positionMs,6500);assert.equal(s.audio.src,'')
+  await s.control.seek(7000);assert.equal(s.calls.length,2);assert.equal(s.audio.paused,true);assert.equal(s.audio.src,'');assert.equal(s.states.at(-1).positionMs,7000)
+  await s.control.toggle();assert.equal(s.calls.length,3);assert.equal(s.audio.currentTime,7);assert.equal(s.audio.paused,false)
+  s.control.stop();await s.control.toggle();assert.equal(s.calls.length,3)
+})
+test('a resume permission failure clears verified state and never reuses the old blob',async t=>{
+  let n=0;const s=await setup(t,async()=>{if(++n===2)throw new Error('Media access denied');return new Response(bytes)})
+  await s.control.start(s.row);s.control.pause();await s.control.toggle()
+  assert.equal(s.created.length,1);assert.equal(s.states.at(-1).verified,false);assert.equal(s.states.at(-1).phase,'error');assert.equal(s.audio.src,'')
+  await s.control.toggle();assert.equal(s.calls.length,3);assert.equal(s.created.length,2)
+})
+test('seeking a pending load cancels its generation and late bytes cannot move the new playhead',async t=>{
+  const first=later();let n=0;const s=await setup(t,()=>++n===1?first.promise:Promise.resolve(new Response(bytes)))
+  const pending=s.control.start(s.row);await s.control.seek(7000);first.resolve(new Response(bytes));await pending
+  assert.equal(s.audio.currentTime,7);assert.equal(s.created.length,1);assert.equal(s.signals[0].aborted,true)
+})
