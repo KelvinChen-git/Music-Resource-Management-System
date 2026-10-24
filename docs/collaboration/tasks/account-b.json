@@ -1,8 +1,8 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": null,
-  "status": "waiting",
+  "task_id": "MUS-026-R1-B",
+  "status": "assigned",
   "claimed_by_b": false,
   "previous_task": {
     "task_id": "MUS-025-R1-B",
@@ -14,5 +14,15 @@
     "feed_sha": "0907de0959bae0e8de3f9110caaefd536243106d",
     "acceptance_record_path": "docs/verification/MUS-025-B-acceptance.json"
   },
-  "note": "MUS-025 approval received. User-reported footer metadata and manual seek assigned to A MUS-026. New exact card after implementation; no repeat025."
+  "note": "New exact-SHA review footer/progress controls increment; original025 approval received. Preserve queue/content auth and original labels, use isolated synthetic runtime; no A service access or repeat full025.",
+  "assignment_revision": 1,
+  "task_card_path": "docs/collaboration/tasks/MUS-026-R1-B.md",
+  "reviewed_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
+  "comparison_base_sha": "0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c",
+  "review_branch": "review/MUS-026-B-review-controls",
+  "allowed_output_paths": [
+    "docs/reviews/MUS-026-B.md",
+    "docs/collaboration/account-b/latest.md"
+  ],
+  "claim_channel": "collab/account-b latest.md"
 }

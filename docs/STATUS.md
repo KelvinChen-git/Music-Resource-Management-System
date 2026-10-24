@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-24 America/Chicago）：B025限定批准已核验接收；用户反馈审阅音频未显示于底栏、不能手动seek，A在fix/MUS-026-review-player-controls修复。先更新E3，保留原队列/鉴权内容校验/片段终点/备份/后端，main不合并。
+- 当前检查点（2026-10-24 America/Chicago）：025 B限定批准已接收；用户反馈的底栏缺曲目信息/页面不能seek由MUS-026修复，准确实现d766dcd、31检查/build及真实桌面/手机增量通过。新B026卡待主动认领；原队列/逐次鉴权/片段终点/标签与备份保留，后端/main未改。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,7 +42,8 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
-| MUS-026 审阅底栏/进度控制 | in_progress / A | fix/MUS-026-review-player-controls / c382cbc | reviewAudio、ReviewWorkspace、sonoraPlayer store/component及必要测试/文档；两处控同一审阅音频，保留原队列/安全边界 |
+| MUS-026 审阅底栏/进度控制 | review / A（实现/本机增量完成，B待确认） | fix/MUS-026-review-player-controls / d766dcd | 两处控同一已验证音频，31检查/build及真实桌面/手机seek通过，原队列与标签保留 |
+| MUS-026-R1-B 播放控制复核 | assigned / B（待主动认领） | review/MUS-026-B-review-controls / d766dcd | 仅新报告/own latest；独立合成环境补真实队列/控制链，不重复025全套 |
 | MUS-025 试听审阅入口 | done / A（B原范围限定批准已接收；新体验问题转026） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，真实51全null |
 | MUS-025-R1-B 试听审阅复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-025-B-listening-review / cdc2fc5 | 仅新B报告/own latest；隔离合成数据、HTTP/浏览器，不访问A或代填真人标签 |
 | MUS-024 探索人工标注包 | done / A（B限定批准已接收） | feat/MUS-024-judgment-pack / 1e83454 | 标准库CLI/17新增检查，全离线40通过；8查询51对全null，无试听新页面/人评/质量结论 |
@@ -507,3 +508,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - owner A，basec382cbc；B feed 0907de0959bae0e8de3f9110caaefd536243106d/source7c93a512817b5a82f89ddf746ec54265016cfc16、准确reviewedcdc2fc5/assignmentc382cbc/ackc674c707匹配，latest hash/只两报告核验，025-B原字节及接收JSON归档。B21/build、最终37浏览器断言/4导出CLI通过，预期4HTTP console error/0 pageerror及前期失败边界保留，不累加或复算私有证据。原批准不覆盖用户新要求。
 - 新026允许web/src/utils/reviewAudio.js及test、views/ReviewWorkspace.vue、stores/sonoraPlayer.js及新增test、components/SonoraPlayer.vue；契约/台账/README/A latest/verification/MUS-026*/B派发；同时025接收文档/原报告。无Java/Python/schema/API/依赖锁/公共JSON变更，用户现有标注与原包只读，不预填人评。
 - 原因：审阅独立audio无底栏状态登记且页面无range input。先E3：临时控制会话接现有底栏，整曲/片段手动seek、暂停后逐次鉴权继续，片段边界/旧响应隔离/原队列保留。B入口waiting，精确实现后新卡；备份/旧服务保持，main不合并。
+
+
+### MUS-026完成与准确派发（2026-10-24）
+
+- implementation `d766dcd09df3cc1e54130ca80aefb946985ee2b3`，comparison/scope `0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c`。临时review会话向现有底栏提供曲目/状态/时间及控制，页面range input/暂停继续；保留普通队列，审阅时禁用普通前后首/循环/随机。活动已验证音频内seek，暂停释放/seek保持暂停/继续新GET校验；seek限整曲或片段范围，终点停止后重播从范围起点。
+- 固定Node22最终31通过（8包11音频6媒体6真实Pinia-store替身边界）；旧21/初30不累加。普通pending/旧publish/账号/token/取消切歌错标题字节等回归通过。干净实现build通过，旧500kB warning保留，无依赖升级。
+- 实际Energy28整曲底栏标题/歌手/模式；页面键盘跳23s/底栏10%，底栏跳转audio54.633564/page54600ms，暂停src释放/从77.718596附近继续，暂停鼠标选中间页面1:55/底栏50%。片段55–65s可跳56s，底栏拖终点1:05释放，再从55.111655s重播；错误SHA拒播/两处进度disabled，离页恢复普通空底栏。
+- 手机390 scroll384，实际seek23s/暂停0:23且底栏Energy；桌面1440 scroll1434，截图已视觉核对，最终warn/error空。一次resize后slider超时，快照在/manage/music，原因未确证；重新进入/导入/读新状态后通过，原失败保留不算产品路由缺陷。音量仅UI切换与store转发证据，CUA代理未暴露实际audio.volume。
+- 非空队列/迟到普通响应仅store替身验证，未新真实双播放器/撤权矩阵，B按新卡补最小增量。原51包SHA与人工字段/用户草稿未写，QA0/51；备份干净f3b0da1、原后端MUS-014保持。无Java/Python/schema/API/依赖锁/公共JSON/模型或原音频改变，无main合并；细节见verification/MUS-026.md/results.json。
+- 检查点B仍0907de09/source7c93a512（025原批准），新MUS-026-R1-B/revision1 assigned未认领，准确reviewedd766dcd/comparison0ae63f9。只B两报告，独立合成HTTP/浏览器，不访问A或重复整个025。文档JSON/hash/链接/fence/diff检查后提交publish并回读，发布不等于B已接收/批准。

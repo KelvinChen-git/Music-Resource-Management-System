@@ -1,0 +1,108 @@
+{
+  "task_id": "MUS-026",
+  "status": "implemented_review_pending",
+  "implementation_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
+  "comparison_base_sha": "0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c",
+  "source_hashes": {
+    "web/src/utils/reviewAudio.js": "47cdebfe96fbdfabb3a73d4bb64b7fbf4bbb2fc3121fe680b7e069bb177582a3",
+    "web/src/utils/reviewAudio.test.js": "37dbb78344da452786f581f7b0877e9a6fbf8054a543d799916089cd127edf26",
+    "web/src/views/ReviewWorkspace.vue": "5e32219c2462199c21ab1af9363850b1aa2de78e8c9914212e9a2086bcdca5ea",
+    "web/src/stores/sonoraPlayer.js": "920938c59f959e43181de13d4ccf9bc3ca6e378ad46fd13b2b579a9587422463",
+    "web/src/stores/sonoraPlayer.test.js": "ebe4aa454911382ece17f7588121f0202e92590a6a826d7d43d736c8371b0252",
+    "web/src/components/SonoraPlayer.vue": "40b6ee98ac5df236cc056869ca5371db24490afb8ed2c583b56e3e347b42f837"
+  },
+  "tests": {
+    "node_version": "22.23.3",
+    "final_count": 31,
+    "pack": 8,
+    "audio": 11,
+    "media_helper": 6,
+    "pinia_store": 6,
+    "final_exit_code": 0,
+    "log_sha256": "3661680d0e2e412dbd06fd085f5dbed5492ec5f484858499d9756330cffdefde",
+    "earlier_existing21_and_intermediate30_not_added": true,
+    "test_source_before_commit_then_committed_same_bytes": true
+  },
+  "build": {
+    "final_exit_code": 0,
+    "clean_implementation_sha": true,
+    "log_sha256": "a09dbbe95d52e4a81984873ad9c7301f049a4b21337b0c81311b0bd8c6b9f99b",
+    "existing_bundle500kb_warning": true,
+    "npm_ci_or_lock_change": false
+  },
+  "browser": {
+    "source_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
+    "real_media_track": "28",
+    "footer_song": "Energy / Pokki DJ · 试听审阅",
+    "whole_range_ms": [
+      0,
+      230478
+    ],
+    "page_keyboard_seek_observed_seconds": 23,
+    "footer_seek_observed_seconds": 54.633564,
+    "matching_page_slider_ms": 54600,
+    "paused_seek_and_resume_observed_seconds": 77.718596,
+    "mouse_page_seek_paused_display": "1:55",
+    "matching_footer_percent": "50",
+    "clip_range_ms": [
+      55000,
+      65000
+    ],
+    "clip_page_seek_observed_seconds": 56,
+    "footer_seek_end_display": "1:05",
+    "clip_end_src_released": true,
+    "clip_replay_observed_seconds": 55.111655,
+    "pause_releases_src_and_preserves_position": true,
+    "wrong_sha": {
+      "message": "音频内容指纹不匹配，已停止试听。",
+      "src_attached": false,
+      "page_seek_enabled": false,
+      "footer_seek_enabled": false
+    },
+    "leave_review_footer": "empty ordinary player restored",
+    "mobile": {
+      "viewport": 390,
+      "scroll_width": 384,
+      "actual_seek_seconds": 23,
+      "paused_display": "0:23",
+      "footer_song_visible": true
+    },
+    "desktop": {
+      "viewport": 1440,
+      "scroll_width": 1434
+    },
+    "real_labels_edited": false,
+    "final_real_package_judged": 0,
+    "final_real_package_pairs": 51,
+    "console_warn_error_entries": 0,
+    "volume_controls": "mute/unmute UI state switched and restored70; direct HTMLAudioElement.volume unavailable in CUA read-only proxy, not claimed as measured audio gain",
+    "preparation_failure": {
+      "observation": "after viewport change, slider action timed out; fresh snapshot showed /manage/music rather than review",
+      "cause": "not established",
+      "resolution": "re-entered research route, imported original package, read fresh state; mobile seek/pause passed",
+      "product_route_bug_claimed": false
+    },
+    "screenshots_sha256": {
+      "desktop-controls.png": "becfec756ae419437d6d91ace524dc87682ca66e08c1098342d4c8d6ce0ec9a3",
+      "mobile-controls.png": "9106a54dc9c58102499e2acce7bdf4eb12ea167b96d317c6d291eddfa89049bc"
+    },
+    "viewport_reset": true
+  },
+  "preserved": {
+    "original_backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "backup_clean": true,
+    "original_pack_sha256": "dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd",
+    "original_pack_unchanged": true,
+    "user_labels_drafts_not_written": true,
+    "backend": "existing A MUS-014 unchanged",
+    "main_merged": false
+  },
+  "limits": [
+    "Real ordinary queue preservation/pending-library timing, stale publishers/token/account guards tested with actual Pinia/Vue and substituted API/user/audio; not repeated with two real browser audio sources.",
+    "No new live permission-revocation matrix; denied resume and old response races use fake fetch/audio, existing media helper6 covers fresh JWT headers. B to supplement isolated real resume denial.",
+    "Review seeking is bounded to selected range; paused seek validates fresh bytes and stays paused. Browser events/timers are not sample accurate.",
+    "No human labels, quality/P95/held-out/model freeze, Python/index/model/audio copy or original catalog changes.",
+    "No Java/API/schema/lockfile/backend restart or ordinary play-count GET invoked in A browser QA; no unrelated suites rerun.",
+    "B025 scoped approval accepted separately; it does not approve new026 controls. Private B raw evidence not received or recomputed."
+  ]
+}
