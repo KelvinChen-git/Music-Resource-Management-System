@@ -1,6 +1,6 @@
 # MUS-025-R1-B：试听与判断工作区增量复核
 
-- task_id / assignment_revision：MUS-025-R1-B / 1；owner B；assigned未认领。
+- task_id / assignment_revision：MUS-025-R1-B / 1；owner B；review_completed / approve_scoped已接收，勿重复领取。
 - reviewed_sha `cdc2fc5c00dbc4c2889068023d9d37ce8744a532`；comparison_base_sha `133fecbcda96585a09d6e0cf67af608c768c9151`。初版1fbaac8仅说明验证历史，审核对象是cdc2fc5。
 - 分支`review/MUS-025-B-listening-review`；仅写`docs/reviews/MUS-025-B.md`与`docs/collaboration/account-b/latest.md`。
 - assignment_source_sha取发布本卡A handoff.source_sha；先claimed并回传准确task/revision/reviewed/comparison/assignment/ack，再审。MUS-024限定批准已接收，勿重复领取。
@@ -19,3 +19,7 @@
 不访问A8080/5175/3307、私有run/账号/缓存/曲库；不发邮件、不改原数据/权限、不复制真实媒体到web/public，不新增检索服务/API或合并main。只运行自己登记的隔离服务，结束停止并核对端口释放。生成包/标注/工具/截图仅自己的.local，报告只两文件。
 
 最终review_completed及approve_scoped/request_changes/blocked、准确SHA/命令/分组计数/每次失败/fixture与真实HTTP界限、未测/私有证据边界、占用释放。提交后publish并回读；顺序备用发布披露非原子，发布不等于A接收；无后台轮询。
+
+## A接收（2026-10-24）
+
+B feed `0907de0959bae0e8de3f9110caaefd536243106d` / source `7c93a512817b5a82f89ddf746ec54265016cfc16` 原字节核验接收，见[接收JSON](../../verification/MUS-025-B-acceptance.json)。用户新增底部显示与手动seek要求转MUS-026，不冒充025已覆盖。

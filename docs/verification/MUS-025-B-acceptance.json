@@ -1,0 +1,48 @@
+{
+  "task_id": "MUS-025-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-24 America/Chicago",
+  "reviewed_sha": "cdc2fc5c00dbc4c2889068023d9d37ce8744a532",
+  "comparison_base_sha": "133fecbcda96585a09d6e0cf67af608c768c9151",
+  "assignment_source_sha": "c382cbc412accd090429c836314e6a3d0b9d78fc",
+  "b_ack_peer_feed_sha": "c674c7073b0bb05e93deecc16c867846ca630012",
+  "b_feed_sha": "0907de0959bae0e8de3f9110caaefd536243106d",
+  "b_source_sha": "7c93a512817b5a82f89ddf746ec54265016cfc16",
+  "report_path": "docs/reviews/MUS-025-B.md",
+  "report_sha256": "a5cdccb79cc658169292391b00e66cd7901de06f5c8adb861090992a93c6e8dd",
+  "b_latest_sha256": "7abceaebc3306c5eedd4ced11ee4a92bca91557f0d1371b4ccaae182207463ec",
+  "a_verified": [
+    "feed/source latest bytes and hash",
+    "only two allowed B report files",
+    "exact dispatch and ack match",
+    "exact review imported"
+  ],
+  "b_reported": {
+    "node_tests": 21,
+    "npm_ci_build": "passed existing lockfile",
+    "final_run": "baseline-20261022-143336-11",
+    "final_exit_code": 0,
+    "browser_assertions": 37,
+    "browser_exports_cli_validated": 4,
+    "expected_http_console_errors": 4,
+    "uncaught_pageerrors": 0,
+    "isolated_accounts": 2,
+    "synthetic_uploads": 2,
+    "ports_released": [
+      3308,
+      8081,
+      5174
+    ],
+    "publication": "sequential non-atomic source then feed"
+  },
+  "limits": [
+    "Private B raw evidence not received or hashes recomputed by A.",
+    "37 assertions not independent HTTP scenarios or added to earlier runs/Node21/A counts.",
+    "Browser preparation and four earlier blocked runs retained in exact report; product unchanged during B review.",
+    "No A private51 reproduction, real human labels/model quality/P95/held-out/freeze.",
+    "Scoped025 approval does not cover new user-reported footer/seek usability requirement; MUS-026 tracks it."
+  ]
+}
