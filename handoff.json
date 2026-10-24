@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-24T05:31:03.058538+00:00",
+  "published_at": "2026-10-24T05:47:36.525664+00:00",
   "source_branch": "fix/MUS-026-review-player-controls",
-  "source_sha": "0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c",
+  "source_sha": "d90bfcb7be6454f7cff0aa82943b0e7a0d2f6882",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "724eba5a323fc27102d0ed96396f794da1267ff54d1faa2e3c95cec8bc03a6fc"
+  "report_sha256": "4819fcd93dd671c82a37dec6a42117a8172e75e6d091c49957c19427679fdf05"
 }

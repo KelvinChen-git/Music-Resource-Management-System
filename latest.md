@@ -1,10 +1,20 @@
 # 账号 A 最新交接
 
-## 当前：MUS-026审阅播放控制修复开始
+## 当前：MUS-026审阅底栏/进度修复完成
 
-A；2026-10-24 America/Chicago；branch fix/MUS-026-review-player-controls；basec382cbc；in_progress。ack_peer_feed_sha `0907de0959bae0e8de3f9110caaefd536243106d` / B source `7c93a512817b5a82f89ddf746ec54265016cfc16`。025限定批准已核验接收，原字节/acceptance归档；B21/build、37浏览器/4导出CLI/前期失败及私有证据边界保留，不代表新增体验需求已覆盖。
+A；2026-10-24 America/Chicago；branch fix/MUS-026-review-player-controls；basec382cbc；review。implementation `d766dcd09df3cc1e54130ca80aefb946985ee2b3`，comparison/scope `0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c`，最终文档SHA由handoff给出。
 
-用户反馈整曲试听无底栏曲目信息、页面不能手动seek。026先E3，修改审阅helper/view与现有store/footer最小接线及测试，登记临时控制会话；保留原队列，seek限整曲/选定片段，暂停继续重新鉴权校验，换候选/离页/退出清理。无Java/Python/API/schema/依赖/原数据变更，不改用户标注或备份、不合并main。B入口waiting，准确实现后新卡。
+ack_peer_feed_sha `0907de0959bae0e8de3f9110caaefd536243106d` / B source `7c93a512817b5a82f89ddf746ec54265016cfc16`；开始/检查点均fetched。025准确reviewedcdc2fc5/assignmentc382cbc/ackc674c707、latest字节hash/仅两报告已核验，原字节025-B及acceptance归档；B21/npm ci-build、最终37浏览器/4导出CLI、预期4HTTP console error/0 pageerror和全部早期blocked边界保留，不相加/不重算私有证据。原批准不覆盖新体验要求。
+
+用户报告整曲不在底栏显示且页面不能seek。026新增临时review控制会话，底栏显示候选/歌手/模式和时间，暂停继续/进度音量转给同一审阅audio；原普通队列不丢，审阅时禁用普通切歌/随机/循环，主动普通选曲接管，离页/退出/新候选释放。页面新增range与暂停继续，整曲0..duration或片段start..end限界，seek重设终点计时；暂停保位释放，暂停seek新GET保持暂停、继续再鉴权/完整SHA字节校验；终点后继续从范围起点重播。普通pending/晚响应/旧review绑定隔离，取消普通切歌时不允许新标题配旧字节。
+
+Node22最终31通过（8包11音频6媒体6真实Vue/Pinia-store边界替身），旧21/中间30不相加；干净d766dcd build通过，既有>500kB warning。真实Energy28整曲底栏显示，页面seek23s/底栏10%，底栏seek与实际audio54.633564/page54600ms同步；暂停释放src，暂停seek后仍不播，再从77.718596s附近继续；鼠标点中间页面1:55/底栏50%。片段55–65s跳56s、拖终点显示1:05且src释放，再播55.111655s；错SHA实际媒体拒播、两处seek disabled，离页恢复原普通空底栏。
+
+手机390 scroll384、实际seek23s/暂停0:23且底栏Energy；桌面1440 scroll1434，截图视觉核对，最终warn/error空、viewport恢复。一次resize后slider超时，新快照在/manage/music，原因未确证，不推导产品路由问题；重新进入/导入/读新状态通过，保留失败。音量只记录UI静音/取消恢复70与store转发，CUA代理未提供实际volume值。
+
+非空普通队列/旧响应/账号token边界在store替身验证，未新做真实双源竞争/撤权矩阵；B补最小独立真实链，不把Node当浏览器。原包SHA/人工字段与用户草稿未写，QA保持0/51；无质量/模型/P95/held-out结论。截图/日志只.local/a/mus026，验证命令/范围/限制见verification/MUS-026.md/results.json。原备份干净f3b0da1、旧MUS-014后端保留；无Java/Python/API/schema/锁/公共JSON/原音频/模型变化，未重启后端、不合并main，不重复无关Maven/模型/依赖安装。
+
+新MUS-026-R1-B/revision1 assigned未主动认领，准确reviewedd766dcd/comparison0ae63f9，只交新B报告/own latest，独立合成环境补真实控制/队列/最小拒绝继续，不访问A或重复025全37。提交后原子publish并回读，最终SHA见handoff，发布不等于B已领取/批准，无后台轮询。
 
 ## 上一轮交接（保留）
 
