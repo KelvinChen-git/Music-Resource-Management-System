@@ -42,7 +42,8 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
-| MUS-027 评分入口提示 | in_progress / A | fix/MUS-027-review-rating-entry / d90bfcb | 仅ReviewWorkspace代号入口/校验提示和必要文档，合成包浏览器评分/导出验收 |
+| MUS-027 评分入口提示 | review / A（实现及本机验证完成） | fix/MUS-027-review-rating-entry / 2ed661d | 就近必填代号/明确校验；8包检查/build、17浏览器断言及合成导出CLI通过 |
+| MUS-027-R1-B 评分入口复核 | assigned / B（待主动认领） | review/MUS-027-B-rating-entry / 2ed661d | 仅新报告/own latest，合成包验证评分/草稿/导出小增量 |
 | MUS-026 审阅底栏/进度控制 | done / A（B限定批准已接收） | fix/MUS-026-review-player-controls / d766dcd | 两处控同一已验证音频，31检查/build及真实桌面/手机seek通过，原队列与标签保留 |
 | MUS-026-R1-B 播放控制复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-026-B-review-controls / d766dcd | 仅新报告/own latest；独立合成环境补真实队列/控制链，不重复025全套 |
 | MUS-025 试听审阅入口 | done / A（B原范围限定批准已接收；新体验问题转026） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，真实51全null |
@@ -526,3 +527,9 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - owner A；base d90bfcb；允许 `web/src/views/ReviewWorkspace.vue`、README/CONTRACTS/STATUS/A latest、verification/MUS-027*及B派发；另导入026原字节B报告与接收JSON。不改评分格式/规则、媒体/播放器/后端/依赖/原包，不代填真人标签。
 - B feed dc5ec6ce/source dd049fdf、reviewed d766dcd/comparison0ae63f9/assignment d90bfcb/ack76249e30匹配，latest字节/hash、仅两报告已核验。026限定批准接收；B31/build、最终30浏览器/1导出CLI及1预期404/0pageerror均为B报告，不复算私有证据或累加。旧失败和N1开发浮层观察保留，N1非本次评分入口范围。
 - 代码证据：fieldset因空/非法alias整体disabled，唯一代号输入在远处页顶。先约定E2评分区就近必填代号/具体格式提示，合法后启用0..3，填写本身不生成判断；清除或非法代号不清空已有判断。B入口暂waiting，准确实现后派新卡。
+
+### MUS-027完成与准确派发
+
+- implementation `2ed661daff6e66856cdef6a6789a9edea7a2dc5d`，comparison `a945927d45d982e7bda22cc7a84dce930787b52f`；仅ReviewWorkspace产品文件，匿名代号移到评分旁，空值/非法明确说明，单独禁用radio不禁用输入。原规则/人工动作/草稿/播放器/备份/后端保留。
+- 固定Node22包8检查/build通过，17浏览器断言通过；桌面/390真实指针评分、键盘、清除、切换、刷新后显式恢复及格式提示已验。合成导出固定run CLI通过：0和3各一，其余10null，无真人标签或质量结论。End键未选择值不计成功，Space/箭头通过；手机后续合成草稿改2与桌面导出分开。
+- 真实原包SHA/51null不变，原版备份干净f3b0da1；warn/error空，viewport恢复。日志/截图仅.local/a/mus027，未动用户真实草稿。B新卡MUS-027-R1-B/rev1 assigned未认领；准确SHA小增量，不重复026媒体/权限/模型/Java全套。详见verification/MUS-027.md/results.json。

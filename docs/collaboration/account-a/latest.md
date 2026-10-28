@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-027评分入口修复完成，026限定批准已接收
+
+A；2026-10-27 America/Chicago；branch fix/MUS-027-review-rating-entry；review。implementation `2ed661daff6e66856cdef6a6789a9edea7a2dc5d`，comparison/scope `a945927d45d982e7bda22cc7a84dce930787b52f`，最终文档SHA见handoff。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / B source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`。026准确派发/ack/latest字节hash/两报告核验并接收限定批准，原字节报告及receipt归档。B31/build、最终30浏览器/1CLI、1预期404/0pageerror及早期失败/N1保留，不复算私有证据、不外推本新修复。
+
+用户评分框不能选根因为空/非法alias整体禁用fieldset而输入在页顶。027只改ReviewWorkspace：代号输入移到评分旁，空/非法格式具体提示和aria关联；输入保持可编辑，只有radio禁用；合法即启用，填代号不会自动打分。原包/草稿/显式人工规则/音频播放器不改，E2补充已先发布。
+
+Node22包8检查/build最终exit0，既有>500kB warning；17真实浏览器断言通过，鼠标/键盘0/3、清除/切曲不补分、非法/清空保留已有判断、显式草稿恢复、桌面/390无溢出及手机点2已验。End键原生不选值不计通过，Space/ArrowRight通过。实际桌面导出固定合成run CLI通过：2查询12对、0/3各一其余10null、无区间/身份或听音验证；手机后续改2仅合成草稿，不与该导出混同。截图已视觉查看，warn/error空，viewport复原。
+
+原024包SHA dc69d46d…及51null不变，未触碰用户真实草稿；备份干净f3b0da1，后端仍原运行版本，不改Java/Python/API/schema/锁/公共JSON/模型，不合并main。QA仅ignore的.local/a/mus027，源码/日志/截图hash及边界见verification/MUS-027.md/results.json。不重复无关Maven/媒体/模型完整审计。
+
+新MUS-027-R1-B/rev1 assigned未主动认领，准确reviewed2ed661d/comparisona945927，B仅新报告/own latest，自有隔离合成标注流程，允许披露API/user边界替身而不冒充真实鉴权；不访问A或重跑026。提交后原子publish并回读，发布不等于B领取/批准。无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-027评分入口修复开始，026限定批准接收
 
 A；2026-10-27 America/Chicago；branch fix/MUS-027-review-rating-entry；base d90bfcb；in_progress。

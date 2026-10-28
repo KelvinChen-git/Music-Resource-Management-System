@@ -1,0 +1,45 @@
+{
+  "task": "MUS-027",
+  "implementation_sha": "2ed661daff6e66856cdef6a6789a9edea7a2dc5d",
+  "comparison_base_sha": "a945927d45d982e7bda22cc7a84dce930787b52f",
+  "status": "passed_scoped_local_checks_b_review_pending",
+  "node_tests": 8,
+  "build": "exit0, existing lock, existing >500kB warning",
+  "browser_checks": 17,
+  "browser_runtime": "existing 5175 production preview; real Vue DOM, isolated synthetic metadata pack; no media playback needed",
+  "browser_export_cli": {
+    "exit_code": 0,
+    "queries": 2,
+    "pairs": 12,
+    "judged": 2,
+    "unjudged": 10,
+    "ratings": [
+      0,
+      3
+    ],
+    "human_intervals": 0,
+    "identity_or_listening_verified": false
+  },
+  "dataset_sha256": "8d896524e3f24578c8f4e17f5fa9b5c6ecfe2f3bf4070936a8e267f68e525dc4",
+  "console_warn_error": [],
+  "real_pack_sha256": "dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd",
+  "real_pack_null_count": 51,
+  "original_backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+  "hashes": {
+    "web/src/views/ReviewWorkspace.vue": "75703a7f5c35988719964f5fdf2730f3288755c2dc12fd5e16f7d5e236b5447b",
+    ".local/a/mus027/logs/review-pack-tests.log": "45876207d05841589db5d5c4ab6c3d6ac73c2b58f5dbc74495dbba3aa0d8104c",
+    ".local/a/mus027/logs/build-final.log": "2703819c51e5c86295a17d2c737193dd77a4a54ccbaaf0138e8ec6376c02ffb3",
+    ".local/a/mus027/browser-checks.json": "effe97a27057a62457955cd536546646d58e725cedbde7052a1a3fd39d6dcfca",
+    ".local/a/mus027/browser-export.json": "e6b7cbb24834d31c4aa01e6ad90b539764c83b95c471aa094fd7530319c570dd",
+    ".local/a/mus027/logs/cli-export.log": "f30febadad0d4866286b34db7bbe389edd4972615e79459bb7eb8c8ff617f13e",
+    ".local/a/mus027/desktop-rating.png": "a82c4937650acf927347a43cf1322657ca41a1b01947061da84214b642453c3e",
+    ".local/a/mus027/mobile-rating.png": "f73a5c6c3767243c6ecae6e4983fdce578b930e10baceb436eb5e0243a235a3b"
+  },
+  "limits": [
+    "No real labels filled or existing user drafts accessed.",
+    "No playback/permissions full audit, Maven, CLAP, backend upgrade or main merge.",
+    "Native radio End key did not select a value; Space/ArrowRight and pointer passed.",
+    "Desktop export contains synthetic 0 and 3; later mobile changed second rating to 2 in synthetic draft only.",
+    "Layout screenshots only browser viewport, not physical mobile compatibility."
+  ]
+}
