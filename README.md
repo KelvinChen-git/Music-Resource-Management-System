@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前修复分支 `fix/MUS-027-review-rating-entry`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-030-diagnostic-review-pack`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -179,3 +179,5 @@ MUS-027将必填匿名标注代号移到相关度选项上方，空值/格式错
 MUS-028接收用户完成的首轮相关度标注：8查询/20曲/51对全部已判，0/1/2/3=19/13/9/10；固定运行校验通过，原字节副本仅本机私有归档，原空白包保留。无人工定位区间，未计算模型质量/held-out指标；见[MUS-028接收汇总](docs/verification/MUS-028.md)。
 
 MUS-029完成两模式首次探索比较：原8描述上整曲/片段P@5=0.40/0.45，pooled nDCG@5=0.8299/0.9062，38检查和固定输入实跑通过。只适用于已判候选池，非held-out/全库Recall或定位精度，不调整阈值/训练；原标注/UI/后端保持。方法、低分诊断及未判109对边界见[MUS-029](docs/verification/MUS-029.md)。
+
+MUS-030已准备独立补充诊断包`.local/a/mus030/diagnostic-review-pack.json`：五条较弱描述共67个新组合、18首不同音乐，全null；原51判断保留。现有试听页支持导入/手动定位/独立草稿，不显示模型建议；53 Python/39 Node/build及真实浏览器增量通过。使用步骤见[MUS-030](docs/verification/MUS-030.md)，完成后导出新JSON交回，不重复旧组合。

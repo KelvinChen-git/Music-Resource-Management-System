@@ -64,3 +64,10 @@ python3 services/audio-search/evaluate_review.py \
 ```
 
 上述为A本机固定工件，B用自己的合成fixture/独立目录，不要求接收A原始标签。已有output拒绝覆盖，重复实跑需新文件名；结果仅本checkout的.local、0600，stdout只有聚合摘要，原输入只读。实际38检查和首次8query探索结果/失败/限制见[MUS-029](../../docs/verification/MUS-029.md)。模型建议可见、同20曲小池，非held-out；不以此调参/训练、冻结模型或报告10%提升。
+
+
+## 未入池诊断包（MUS-030）
+
+`diagnostic_pack.py build|validate`同时固定report、已完整标注E1基包SHA及显式query IDs，从校验过的完整manifest减各query旧池；输出独立新schema/指纹，人工字段初始null、无模型建议/分数，不修改原包。新包只用于补齐当前曲库判断，E4评估不会直接接收它。原路径0600独占、只.local，CLI只打印汇总；完整命令与实际5query/67对见[MUS-030](../../docs/verification/MUS-030.md)。浏览器原E1规则保留，新schema支持每query<=100；最终来源仍需CLI。
+
+标准库相关检查：`PYTHONPATH=services/audio-search python3 -m unittest test_review_pack test_evaluate_review test_diagnostic_pack -v`，实际53通过。不加载CLAP或音频，不对诊断新对自动打分、融合、训练或作held-out结论。

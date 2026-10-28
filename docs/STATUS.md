@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-28 America/Chicago）：用户完成首轮探索标注，MUS-028已接收；MUS-029探索比较完成；MUS-030准备五弱描述的67对独立诊断包，正式模型验收仍未完；51/51已判、20曲/8查询，非held-out或正式质量结论。MUS-027 B固定卡仍assigned，原版/后端/main保持。
+- 当前检查点（2026-10-28 America/Chicago）：用户完成首轮探索标注，MUS-028已接收；MUS-029探索比较完成；MUS-030五弱描述67对独立诊断包已就绪，待用户判断，正式模型验收仍未完；51/51已判、20曲/8查询，非held-out或正式质量结论。MUS-027 B固定卡仍assigned，原版/后端/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,7 +42,7 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实处理，028已收51探索判断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
-| MUS-030 诊断补标包 | in_progress / A | codex/MUS-030-diagnostic-review-pack / 5c9c55f | 新标准库补集CLI/测试、新schema导入适配与提示；原51标签/播放器/后端保留 |
+| MUS-030 诊断补标包 | review / A（工具/包就绪，67真人判断待完成） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
 | MUS-028 首轮标注接收 | done / A（格式/来源绑定验收，非模型质量验收） | codex/MUS-028-label-receipt / df50001 | 51/51已判，0/1/2/3=19/13/9/10；原字节私有归档/固定run校验通过，0人工区间 |
 | MUS-027 评分入口提示 | review / A（实现及本机验证完成） | fix/MUS-027-review-rating-entry / 2ed661d | 就近必填代号/明确校验；8包检查/build、17浏览器断言及合成导出CLI通过 |
@@ -571,3 +571,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - owner A；base5c9c55f。允许新services/audio-search/diagnostic_pack.py、test_diagnostic_pack.py；web/src/utils/reviewPack.js、新diagnosticPack.test.js及views/ReviewWorkspace.vue必要提示；README/模块README/PROJECT/CONTRACTS/STATUS/A latest/verification/MUS-030*。旧review_pack/evaluate_review/媒体/播放器/API/Java/schema/依赖/公共目录不改。
 - 先E5明确独立schema、基包双SHA/补集重建、5个弱query显式选择、无旧已判对/模型建议、每query<=100，旧E1仍<=10；新指纹/草稿隔离，仅本机.private.ignore生成0600，不覆盖旧包或代填判断。
 - 根agent负责Python实现和台账；前端代理独占reviewPack.js/新diagnosticPack.test.js/ReviewWorkspace.vue；测试代理仅test_diagnostic_pack.py。同会话协作非B审核。B027固定卡保持原字节assigned，sync双方fetched，B仍dc5ec6ce/source dd049fdf，不按时间接管或替换。
+
+### MUS-030包与试听入口就绪
+
+- implementation `4e8115c3c19f836359a52860f9fda7820dd6088d`，comparison/scope f07b76893bc9b7964432939818e8d070d815a7f3。新标准库CLI/独立测试，前端helper严格新schema/提示及新测试；旧E1上限/媒体/播放器/评分/草稿行为保持。
+- 已产出.local/a/mus030/diagnostic-review-pack.json，5query 13/13/15/14/12=67全null、18不同曲目，无旧已判对；44966bytes/0600，SHA b706492f…，dataset77cf9d56…；基包SHA774c2083…及原51判断不变。
+- Python53（旧38+新15）、Node39（旧31+新8）/build通过，不与独立定向重复相加；真实浏览器20断言及合成2判断1区间/真实0-67导出CLI均通过。原51包兼容导入51/51；What Is Love试听、暂停释放/21.2s暂停seek、底栏一致，390/1440无横溢，截图已看，warn/error空/viewport恢复。首次seek读到loading后按后续实际暂停态复核，未把中间态当最终完成。
+- 原run/catalog/空白包/完成标签与原下载前后SHA不变；原用户草稿未写，最终独立页面导入0/67待用户，评分未代填。完整命令/哈希/限制见verification/MUS-030.md/results.json。无Java/API/schema/依赖锁/公共目录/模型或后端变更、不重启、不重做UI/合并main，备份干净f3b0da1。
+- B027固定卡保持原assigned，030尚无独立B批准；同会话只读代理/测试代理路径隔离，不混称B。当前仅67判断待用户供给；补完才判断漏召回/覆盖问题，非盲评/held-out，不自动融合、训练/定阈值/扩库。

@@ -1,0 +1,143 @@
+{
+  "task_id": "MUS-030",
+  "date": "2026-10-28 America/Chicago",
+  "status": "implemented_package_ready_human_judgments_pending",
+  "implementation_sha": "4e8115c3c19f836359a52860f9fda7820dd6088d",
+  "comparison_base_sha": "f07b76893bc9b7964432939818e8d070d815a7f3",
+  "schema": "sonora-diagnostic-pack-v1",
+  "dataset_sha256": "77cf9d56c83de4dc2d63e71294e5b842a1ea028df1ae99de8ace28dfff6c4f70",
+  "base_judgments_sha256": "774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869",
+  "base_dataset_sha256": "38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0",
+  "source_report_sha256": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+  "pack_path": ".local/a/mus030/diagnostic-review-pack.json",
+  "pack_sha256": "b706492fe1f810ef19f0d7253062bd6f1331bad04cde5e1d596b8ad2c068cf2e",
+  "pack_bytes": 44966,
+  "pack_mode": "0600",
+  "queries": 5,
+  "candidate_pairs": 67,
+  "distinct_tracks": 18,
+  "judged": 0,
+  "unjudged": 67,
+  "per_query": [
+    {
+      "query_id": "exp-02",
+      "text": "Calm acoustic guitar music for a quiet evening.",
+      "new_pairs": 13,
+      "old_pairs_excluded": 7
+    },
+    {
+      "query_id": "exp-03",
+      "text": "A rock song with distorted electric guitars and drums.",
+      "new_pairs": 13,
+      "old_pairs_excluded": 7
+    },
+    {
+      "query_id": "exp-04",
+      "text": "Soft piano music with a slow and reflective mood.",
+      "new_pairs": 15,
+      "old_pairs_excluded": 5
+    },
+    {
+      "query_id": "exp-07",
+      "text": "Jazz music with a swinging rhythm and saxophone.",
+      "new_pairs": 14,
+      "old_pairs_excluded": 6
+    },
+    {
+      "query_id": "exp-08",
+      "text": "Orchestral music that builds tension for an action scene.",
+      "new_pairs": 12,
+      "old_pairs_excluded": 8
+    }
+  ],
+  "original51_unchanged": true,
+  "original_run_catalog_and_null_pack_unchanged": true,
+  "tests": {
+    "python": {
+      "total": 53,
+      "existing": 38,
+      "new": 15,
+      "exit_code": 0
+    },
+    "node": {
+      "total": 39,
+      "existing": 31,
+      "new": 8,
+      "exit_code": 0
+    },
+    "build": {
+      "exit_code": 0,
+      "lock_unchanged": true,
+      "existing_chunk_warning": true
+    },
+    "independent_same_session_checks": "complement arithmetic/provenance/code and Python to Node roundtrip; not account B review"
+  },
+  "browser": {
+    "checks": 20,
+    "production_preview_port": 5175,
+    "synthetic": {
+      "queries": 1,
+      "candidates": 14,
+      "judged": 2,
+      "unjudged": 12,
+      "ratings": {
+        "0": 1,
+        "3": 1
+      },
+      "human_intervals": 1,
+      "export_fixed_cli_exit_code": 0
+    },
+    "real": {
+      "queries": 5,
+      "candidates": 67,
+      "judged": 0,
+      "unjudged": 67,
+      "first_query_candidates": 13,
+      "third_query_candidates": 15,
+      "old_completed51_imported_without_edits": true,
+      "track": "What Is Love",
+      "track_id": "27",
+      "paused_seek_position_ms": 21200,
+      "blob_released_on_pause": true,
+      "export_equals_original_object": true,
+      "export_fixed_cli_exit_code": 0,
+      "viewport_widths": [
+        390,
+        1440
+      ],
+      "viewport_reset": true,
+      "horizontal_overflow": false
+    },
+    "console_warn_error": [],
+    "separate_tab_left_ready_for_user": true
+  },
+  "hashes": {
+    "services/audio-search/diagnostic_pack.py": "78990626fdc0980ef48e57abc2a74fd507e407e4dc3cbcc99b9ed09160b22366",
+    "services/audio-search/test_diagnostic_pack.py": "cb0e0d718ecf9d609f49ecd118e36f27b0cc328eaee5e47683d6ea50e9f84c35",
+    "web/src/utils/reviewPack.js": "667c292d2994cdac79c9cee9f28a600b99404080b07f97b0ab5fee502b668cd1",
+    "web/src/utils/diagnosticPack.test.js": "0baa68c12ac0bd718b6e4c608f1d52296238c346eb7dc4e930a66ba9ba4536ac",
+    "web/src/views/ReviewWorkspace.vue": "b6a3e01113e019c7cb3394bc53e0042377b6855358e9b7f3ad19c3257e3d59d9",
+    ".local/a/mus030/diagnostic-review-pack.json": "b706492fe1f810ef19f0d7253062bd6f1331bad04cde5e1d596b8ad2c068cf2e",
+    ".local/a/mus030/browser-real-null.json": "b706492fe1f810ef19f0d7253062bd6f1331bad04cde5e1d596b8ad2c068cf2e",
+    ".local/a/mus030/browser-synthetic-partial.json": "354d7c6c805c10ee4cd17a64fe4151a0fcfdfea3a362a8dde7b1a571c5ceecea",
+    ".local/a/mus030/logs/python-final.log": "d5f4d9518b7ddd8a5de9be04ec896c15dfaec95580bca18f950d717c20afacda",
+    ".local/a/mus030/logs/node-final.log": "ef01ff5034c3bf4aae3348ba3c825c312ba557def1a90ddccfe96cb9dbe92369",
+    ".local/a/mus030/logs/build-final.log": "b5d16e6767f983e23c657bc951a84c836379661676c3c689b2c0c9975639838c",
+    ".local/a/mus030/logs/build-final-pack.log": "399c984eeef527f81cc8ff6469df20fa6a08f6b7f0d4fc6793efb7bf5272aa80",
+    ".local/a/mus030/logs/validate-final-pack.log": "d067cb3239f81f3255949fd818930ebe33d91feb1610e25d95225b8c9a82a5ae",
+    ".local/a/mus030/logs/overwrite-refused.log": "aaaad94addf122357fd4dd4455c7976a8ccd1664417777c8b8be12206ee9aedd",
+    ".local/a/mus030/logs/browser-real-cli.log": "d067cb3239f81f3255949fd818930ebe33d91feb1610e25d95225b8c9a82a5ae",
+    ".local/a/mus030/logs/browser-synthetic-cli.log": "4c780f7eee630e32545c392088af8207a6b5f40a2dae83b4d1c676c1cfa2334b",
+    ".local/a/mus030/browser-checks.json": "8a4f7da5d0d21dd6d193c60631509a49e077cca73fe524949b09bc66e2dd7054",
+    ".local/a/mus030/desktop-diagnostic.png": "85d6ce1877feae8e02ad9f9e39ea5319a3ebe659b94c7da3665133bb5f29b7db",
+    ".local/a/mus030/mobile-diagnostic.png": "a1212705a7bf6566f084e1c0f3447358bd728c123fd2434271aa06ee5c699b7a"
+  },
+  "limits": [
+    "No new human labels inferred; real67 remains null.",
+    "No model hints in diagnostic pack, but prior judgments were visible so this is not blind or held-out.",
+    "Browser validates shape and self-consistent fingerprint; CLI is required to verify exact complement/run/base.",
+    "No automatic merge/evaluation/coverage conclusion before user supplies diagnostic judgments.",
+    "No new Java/API/schema/lockfile/media-store/player behavior, backend restart, model run or main merge.",
+    "B027 fixed task unchanged and still assigned; no B030 independent approval."
+  ]
+}
