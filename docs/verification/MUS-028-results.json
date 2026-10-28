@@ -1,0 +1,152 @@
+{
+  "task_id": "MUS-028",
+  "status": "received_validated_archived",
+  "received_on": "2026-10-28 America/Chicago",
+  "source_code_sha": "df50001bc1e0490cfdf10ed2ea25971b17980731",
+  "submitted_file_sha256": "774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869",
+  "submitted_bytes": 44495,
+  "archive_path": ".local/a/mus028/received-judgments.json",
+  "archive_mode": "0o600",
+  "archive_exact_bytes": true,
+  "validation": {
+    "status": "validated_unverified_judgments",
+    "split": "exploratory_only_not_held_out",
+    "queries": 8,
+    "candidate_pairs": 51,
+    "judged": 51,
+    "unjudged": 0,
+    "relevance_counts": {
+      "0": 19,
+      "1": 13,
+      "2": 9,
+      "3": 10
+    },
+    "human_intervals": 0,
+    "dataset_sha256": "38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0",
+    "identity_or_listening_verified": false
+  },
+  "distinct_tracks": 20,
+  "distinct_content_hashes": 20,
+  "ratings_ge_2_pairs": 19,
+  "per_query": [
+    {
+      "query_id": "exp-01",
+      "text": "Energetic electronic dance music with a strong beat.",
+      "candidate_pairs": 6,
+      "ratings": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3
+      },
+      "relevance_ge_2": 5
+    },
+    {
+      "query_id": "exp-02",
+      "text": "Calm acoustic guitar music for a quiet evening.",
+      "candidate_pairs": 7,
+      "ratings": {
+        "0": 5,
+        "1": 1,
+        "2": 1,
+        "3": 0
+      },
+      "relevance_ge_2": 1
+    },
+    {
+      "query_id": "exp-03",
+      "text": "A rock song with distorted electric guitars and drums.",
+      "candidate_pairs": 7,
+      "ratings": {
+        "0": 3,
+        "1": 3,
+        "2": 0,
+        "3": 1
+      },
+      "relevance_ge_2": 1
+    },
+    {
+      "query_id": "exp-04",
+      "text": "Soft piano music with a slow and reflective mood.",
+      "candidate_pairs": 5,
+      "ratings": {
+        "0": 2,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "relevance_ge_2": 1
+    },
+    {
+      "query_id": "exp-05",
+      "text": "A rhythmic hip hop track with rapped vocals.",
+      "candidate_pairs": 7,
+      "ratings": {
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 3
+      },
+      "relevance_ge_2": 4
+    },
+    {
+      "query_id": "exp-06",
+      "text": "A bright pop song with singing and a catchy chorus.",
+      "candidate_pairs": 5,
+      "ratings": {
+        "0": 0,
+        "1": 0,
+        "2": 2,
+        "3": 3
+      },
+      "relevance_ge_2": 5
+    },
+    {
+      "query_id": "exp-07",
+      "text": "Jazz music with a swinging rhythm and saxophone.",
+      "candidate_pairs": 6,
+      "ratings": {
+        "0": 3,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "relevance_ge_2": 1
+    },
+    {
+      "query_id": "exp-08",
+      "text": "Orchestral music that builds tension for an action scene.",
+      "candidate_pairs": 8,
+      "ratings": {
+        "0": 5,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "relevance_ge_2": 1
+    }
+  ],
+  "provenance": {
+    "report_sha256": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+    "dataset_sha256": "38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0",
+    "original_null_pack_sha256": "dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd",
+    "original_null_pack_unchanged": true
+  },
+  "same_session_readonly_crosscheck": "matched existing CLI and independent counts; not account B review",
+  "logs": {
+    "validate_sha256": "f6398765c93b1c0c46ae87b8eed01cb935ed7444d49a695a5bc5c14701b2089a"
+  },
+  "initial_attempt": {
+    "exit_code": 1,
+    "error": "FileNotFoundError: .local/a/mus022/catalog.json",
+    "resolution": "Used documented catalog web/public/demo-catalog.json; original and archive validate exit0."
+  },
+  "limits": [
+    "User supplied completed judgments; validator does not authenticate annotator or verify listening.",
+    "Exploratory pooled candidates from same20 tracks,8 prompts; model suggestions visible; not blind or held-out.",
+    "No human intervals supplied; cannot measure localization IoU.",
+    "No ranking metrics/Recall/P95/model-quality claim, model rerun, live media/permission/license refresh or training.",
+    "Raw alias/owner/timestamps/individual judgments remain private .local only; original download untouched.",
+    "No app/backend/schema/lockfile/API changes, main merge or B027 reassignment."
+  ]
+}

@@ -1,10 +1,10 @@
 # 项目状态与交接
 
-最后更新：2026-10-27（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-28（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-27 America/Chicago）：026 B限定批准已接收；评分禁用原因是匿名代号入口远离评分区，MUS-027将必填代号和校验提示放到评分旁。保留人工判断规则、原备份与后端，不合并main。
+- 当前检查点（2026-10-28 America/Chicago）：用户完成首轮探索标注，MUS-028接收/校验/本机私有归档完成；51/51已判、20曲/8查询，非held-out或正式质量结论。MUS-027 B固定卡仍assigned，原版/后端/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -26,7 +26,7 @@
 | 媒体入口权限 | 本机修复实跑通过 | MUS-011 两套环境匿名三入口均 401；上传所有权与 B 独立审核仍待完成 |
 | CLAP 文本 / 音频编码 | 离线链路passed，质量unmeasured | MUS-022真实20首MP3/933片段、8文字/3参考，固定checkpoint严格加载512维；23测试通过 |
 | Python离线候选 / 线上检索 | 离线候选已实跑，线上未实现 | 已有解码/候选窗口/精确排序探针，无Java gateway/共享索引/多模态页面；discovery-v0未冻结 |
-| 研究语料与标注 | 20首真实输入已处理；其余仍计划 | 933实际片段、8探索文字/3同源参考；人工qrels无；30–50/2,000首、70,000片段/120查询仍计划或算例 |
+| 研究语料与标注 | 20首真实输入已处理；其余仍计划 | 933实际片段、8探索文字/3同源参考；MUS-028接收51探索人工判断，0人工区间，非held-out；30–50/2,000首、70,000片段/120查询仍计划或算例 |
 | 质量、P95、并发和提升比例 | unmeasured | 不得写作已完成成果 |
 
 详细命令与机器生成结果见 [verification/MUS-001.md](verification/MUS-001.md)。旧会话网络阻塞只是历史：本轮 Maven 已能下载和实跑。原始默认 75 tests 有 3 errors；修正 fixture 后才得到全量 89 tests 通过。
@@ -40,13 +40,14 @@
 | DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用并包含于远端 A 源码历史；main 未合并 |
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | A 的空库、local 启动、测试、build、smoke 通过；B 静态审核 / 前端 / 隔离通过，独立后端运行补证 blocked |
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
-| MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
+| MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实处理，028已收51探索判断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
+| MUS-028 首轮标注接收 | done / A（格式/来源绑定验收，非模型质量验收） | codex/MUS-028-label-receipt / df50001 | 51/51已判，0/1/2/3=19/13/9/10；原字节私有归档/固定run校验通过，0人工区间 |
 | MUS-027 评分入口提示 | review / A（实现及本机验证完成） | fix/MUS-027-review-rating-entry / 2ed661d | 就近必填代号/明确校验；8包检查/build、17浏览器断言及合成导出CLI通过 |
 | MUS-027-R1-B 评分入口复核 | assigned / B（待主动认领） | review/MUS-027-B-rating-entry / 2ed661d | 仅新报告/own latest，合成包验证评分/草稿/导出小增量 |
 | MUS-026 审阅底栏/进度控制 | done / A（B限定批准已接收） | fix/MUS-026-review-player-controls / d766dcd | 两处控同一已验证音频，31检查/build及真实桌面/手机seek通过，原队列与标签保留 |
 | MUS-026-R1-B 播放控制复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-026-B-review-controls / d766dcd | 仅新报告/own latest；独立合成环境补真实队列/控制链，不重复025全套 |
-| MUS-025 试听审阅入口 | done / A（B原范围限定批准已接收；新体验问题转026） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，真实51全null |
+| MUS-025 试听审阅入口 | done / A（B原范围限定批准已接收；新体验问题转026） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，原51空白包保留；已填副本见028 |
 | MUS-025-R1-B 试听审阅复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-025-B-listening-review / cdc2fc5 | 仅新B报告/own latest；隔离合成数据、HTTP/浏览器，不访问A或代填真人标签 |
 | MUS-024 探索人工标注包 | done / A（B限定批准已接收） | feat/MUS-024-judgment-pack / 1e83454 | 标准库CLI/17新增检查，全离线40通过；8查询51对全null，无试听新页面/人评/质量结论 |
 | MUS-024-R1-B 标注包完整性复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-024-B-judgment-pack / 1e83454 | 仅新报告/own latest，合成fixture验证；不得称复算A私有工件或模型质量 |
@@ -533,3 +534,16 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - implementation `2ed661daff6e66856cdef6a6789a9edea7a2dc5d`，comparison `a945927d45d982e7bda22cc7a84dce930787b52f`；仅ReviewWorkspace产品文件，匿名代号移到评分旁，空值/非法明确说明，单独禁用radio不禁用输入。原规则/人工动作/草稿/播放器/备份/后端保留。
 - 固定Node22包8检查/build通过，17浏览器断言通过；桌面/390真实指针评分、键盘、清除、切换、刷新后显式恢复及格式提示已验。合成导出固定run CLI通过：0和3各一，其余10null，无真人标签或质量结论。End键未选择值不计成功，Space/箭头通过；手机后续合成草稿改2与桌面导出分开。
 - 真实原包SHA/51null不变，原版备份干净f3b0da1；warn/error空，viewport恢复。日志/截图仅.local/a/mus027，未动用户真实草稿。B新卡MUS-027-R1-B/rev1 assigned未认领；准确SHA小增量，不重复026媒体/权限/模型/Java全套。详见verification/MUS-027.md/results.json。
+
+
+## MUS-028首轮标注接收占用（2026-10-28）
+
+- owner A；base df50001；允许README/PROJECT/STATUS/A latest与verification/MUS-028*。用户文件只读、原字节副本/含人工字段的明细和日志仅ignore的.local/a/mus028，先核对ignore再创建0600。不得修改评分/人工区间/原024空白包；无应用源码/契约/schema/依赖/API变更。
+- 既有validate对固定run/report/catalog核对，不新增评分器/训练/阈值或正式质量指标；同会话子代理只读复核不冒充独立B验收。B固定MUS-027-R1-B保持原assigned卡，不能用本接收替换或宣称已认领。
+- 首次误用不存在的.local/a/mus022/catalog.json导致exit1/FileNotFound；改回文档的web/public/demo-catalog.json后exit0，保留错误及最终结果，不算产品校验失败。
+
+### MUS-028接收完成
+
+- 用户提交及私有原字节归档SHA774c2083…/44495 bytes一致，副本0600、目录0700；既有固定run/report/catalog CLI对原件及归档exit0。8查询/20曲/51对全部有合法判断；0/1/2/3=19/13/9/10，无人工区间。原空白包及原运行不变，原下载不改，个人代号/逐条记录不入Git。
+- 同会话子代理只读复核一致，不是B独立审核。仅汇总/receipt证据文档，未计算模型指标或定位IoU，不能把19/51当Precision/Recall/准确率；未做阈值/训练/线上权限刷新。详见verification/MUS-028.md/results.json。MUS-002仍blocked于模型/效果对照及冻结，后续评测需定义口径、保留本轮，扩库另建版本。
+- 本轮无源码/API/schema/依赖/服务改变，不重跑无关应用测试；备份干净f3b0da1，不合并main。B固定027卡原字节保留、仍assigned未认领；检查点同步后发布本机接收汇总，不向B传原始私有标注或外推027批准。

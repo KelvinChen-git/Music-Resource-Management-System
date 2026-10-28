@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-028首轮探索标注接收完成
+
+A；2026-10-28 America/Chicago；branch codex/MUS-028-label-receipt；base/source-code df50001bc1e0490cfdf10ed2ea25971b17980731；done仅接收/格式与固定来源绑定验收。最终文档SHA由handoff.source_sha给出。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / B source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`。开始sync fetched；B仍原026已接收报告，固定MUS-027-R1-B/rev1卡原字节保持assigned，未宣称认领/批准或替换派发。无新B任务：这次只有本机私有人评接收及非敏感汇总。
+
+用户已交完整51判断文件；既有review_pack.validate对原下载及原字节归档、固定run-01/catalog/report exit0。8查询/20不同曲目及内容哈希/51对，51已判0未判；0/1/2/3=19/13/9/10，无人工区间。SHA774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869、44495bytes；归档仅ignore的.local/a/mus028/received-judgments.json、0600/目录0700，源下载及原024空白包SHA不变。个人代号/owner/逐条时间判断不入Git/公共JSON/API，不向B传原始标签。
+
+同会话只读子代理复核CLI与统计一致，不冒充账号B审核。首次误用不存在的私有catalog路径exit1/FileNotFound，改回文档web/public/demo-catalog.json后exit0，保留准备错误。用户声明完成与CLI无法认证身份/听音事实分开记录。
+
+19条>=2只是候选池分布，不能称Precision/Recall/准确率；模型建议可见、同20曲8描述、两基线top5并集、非盲评/held-out，0人工区间不能计算定位IoU。未做模型指标/阈值/训练/模型重跑/P95/实时权限许可刷新。后续应定义探索评测口径，回到固定rankings比较整曲/片段及检查低分和曲库覆盖；扩库另建版本，保留本轮判断，MUS-002效果/冻结仍blocked。
+
+只改README/PROJECT/STATUS/A latest及verification/MUS-028*，汇总/日志哈希与命令见接收文档及results.json；无应用源码/接口/schema/锁/数据库/服务改动，无关前端/Maven/模型测试不重复。原备份干净f3b0da1，后端保留，不重做UI/合并main。提交后publish并回读，远端仅汇总不等于B拥有A私有原件，未启动后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-027评分入口修复完成，026限定批准已接收
 
 A；2026-10-27 America/Chicago；branch fix/MUS-027-review-rating-entry；review。implementation `2ed661daff6e66856cdef6a6789a9edea7a2dc5d`，comparison/scope `a945927d45d982e7bda22cc7a84dce930787b52f`，最终文档SHA见handoff。
