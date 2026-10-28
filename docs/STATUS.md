@@ -1,10 +1,10 @@
 # 项目状态与交接
 
-最后更新：2026-10-24（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-27（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-24 America/Chicago）：025 B限定批准已接收；用户反馈的底栏缺曲目信息/页面不能seek由MUS-026修复，准确实现d766dcd、31检查/build及真实桌面/手机增量通过。新B026卡待主动认领；原队列/逐次鉴权/片段终点/标签与备份保留，后端/main未改。
+- 当前检查点（2026-10-27 America/Chicago）：026 B限定批准已接收；评分禁用原因是匿名代号入口远离评分区，MUS-027将必填代号和校验提示放到评分旁。保留人工判断规则、原备份与后端，不合并main。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,8 +42,9 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实解码编码；缺人工qrels/效果对照，模型及discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
-| MUS-026 审阅底栏/进度控制 | review / A（实现/本机增量完成，B待确认） | fix/MUS-026-review-player-controls / d766dcd | 两处控同一已验证音频，31检查/build及真实桌面/手机seek通过，原队列与标签保留 |
-| MUS-026-R1-B 播放控制复核 | assigned / B（待主动认领） | review/MUS-026-B-review-controls / d766dcd | 仅新报告/own latest；独立合成环境补真实队列/控制链，不重复025全套 |
+| MUS-027 评分入口提示 | in_progress / A | fix/MUS-027-review-rating-entry / d90bfcb | 仅ReviewWorkspace代号入口/校验提示和必要文档，合成包浏览器评分/导出验收 |
+| MUS-026 审阅底栏/进度控制 | done / A（B限定批准已接收） | fix/MUS-026-review-player-controls / d766dcd | 两处控同一已验证音频，31检查/build及真实桌面/手机seek通过，原队列与标签保留 |
+| MUS-026-R1-B 播放控制复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-026-B-review-controls / d766dcd | 仅新报告/own latest；独立合成环境补真实队列/控制链，不重复025全套 |
 | MUS-025 试听审阅入口 | done / A（B原范围限定批准已接收；新体验问题转026） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，真实51全null |
 | MUS-025-R1-B 试听审阅复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-025-B-listening-review / cdc2fc5 | 仅新B报告/own latest；隔离合成数据、HTTP/浏览器，不访问A或代填真人标签 |
 | MUS-024 探索人工标注包 | done / A（B限定批准已接收） | feat/MUS-024-judgment-pack / 1e83454 | 标准库CLI/17新增检查，全离线40通过；8查询51对全null，无试听新页面/人评/质量结论 |
@@ -518,3 +519,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 手机390 scroll384，实际seek23s/暂停0:23且底栏Energy；桌面1440 scroll1434，截图已视觉核对，最终warn/error空。一次resize后slider超时，快照在/manage/music，原因未确证；重新进入/导入/读新状态后通过，原失败保留不算产品路由缺陷。音量仅UI切换与store转发证据，CUA代理未暴露实际audio.volume。
 - 非空队列/迟到普通响应仅store替身验证，未新真实双播放器/撤权矩阵，B按新卡补最小增量。原51包SHA与人工字段/用户草稿未写，QA0/51；备份干净f3b0da1、原后端MUS-014保持。无Java/Python/schema/API/依赖锁/公共JSON/模型或原音频改变，无main合并；细节见verification/MUS-026.md/results.json。
 - 检查点B仍0907de09/source7c93a512（025原批准），新MUS-026-R1-B/revision1 assigned未认领，准确reviewedd766dcd/comparison0ae63f9。只B两报告，独立合成HTTP/浏览器，不访问A或重复整个025。文档JSON/hash/链接/fence/diff检查后提交publish并回读，发布不等于B已接收/批准。
+
+
+## MUS-027占用与026接收（2026-10-27）
+
+- owner A；base d90bfcb；允许 `web/src/views/ReviewWorkspace.vue`、README/CONTRACTS/STATUS/A latest、verification/MUS-027*及B派发；另导入026原字节B报告与接收JSON。不改评分格式/规则、媒体/播放器/后端/依赖/原包，不代填真人标签。
+- B feed dc5ec6ce/source dd049fdf、reviewed d766dcd/comparison0ae63f9/assignment d90bfcb/ack76249e30匹配，latest字节/hash、仅两报告已核验。026限定批准接收；B31/build、最终30浏览器/1导出CLI及1预期404/0pageerror均为B报告，不复算私有证据或累加。旧失败和N1开发浮层观察保留，N1非本次评分入口范围。
+- 代码证据：fieldset因空/非法alias整体disabled，唯一代号输入在远处页顶。先约定E2评分区就近必填代号/具体格式提示，合法后启用0..3，填写本身不生成判断；清除或非法代号不清空已有判断。B入口暂waiting，准确实现后派新卡。

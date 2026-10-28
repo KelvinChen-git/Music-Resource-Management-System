@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## 当前：MUS-027评分入口修复开始，026限定批准接收
+
+A；2026-10-27 America/Chicago；branch fix/MUS-027-review-rating-entry；base d90bfcb；in_progress。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / B source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`。026任务/准确SHA/派发/ack、latest字节hash及仅两报告核验，原字节报告与acceptance归档。限定批准已接收，B31/build、最终30浏览器/1导出CLI及1预期404/0pageerror分开记录，保留失败/N1，不重算私有证据。
+
+用户评分框不能选：空alias使评分fieldset禁用，而输入在页顶。027仅改ReviewWorkspace就近必填代号/格式提示，保留人工动作/匿名代号/草稿/包完整性，E2先记录。允许路径/占用见STATUS；原备份/51真实标签/播放器/后端/依赖/main不改。B入口waiting，准确SHA后派最小增量，不重复026。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-026审阅底栏/进度修复完成
 
 A；2026-10-24 America/Chicago；branch fix/MUS-026-review-player-controls；basec382cbc；review。implementation `d766dcd09df3cc1e54130ca80aefb946985ee2b3`，comparison/scope `0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c`，最终文档SHA由handoff给出。

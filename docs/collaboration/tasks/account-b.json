@@ -1,28 +1,18 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "task_id": "MUS-026-R1-B",
-  "status": "assigned",
+  "status": "waiting",
   "claimed_by_b": false,
+  "task_id": null,
   "previous_task": {
-    "task_id": "MUS-025-R1-B",
+    "task_id": "MUS-026-R1-B",
     "assignment_revision": 1,
+    "reviewed_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
     "status": "review_completed",
     "verdict": "approve_scoped_received",
-    "reviewed_sha": "cdc2fc5c00dbc4c2889068023d9d37ce8744a532",
-    "source_sha": "7c93a512817b5a82f89ddf746ec54265016cfc16",
-    "feed_sha": "0907de0959bae0e8de3f9110caaefd536243106d",
-    "acceptance_record_path": "docs/verification/MUS-025-B-acceptance.json"
+    "source_sha": "dd049fdf6cf1ddb253cb88972cffb472a1e1b457",
+    "feed_sha": "dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42",
+    "acceptance_record_path": "docs/verification/MUS-026-B-acceptance.json"
   },
-  "note": "New exact-SHA review footer/progress controls increment; original025 approval received. Preserve queue/content auth and original labels, use isolated synthetic runtime; no A service access or repeat full025.",
-  "assignment_revision": 1,
-  "task_card_path": "docs/collaboration/tasks/MUS-026-R1-B.md",
-  "reviewed_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
-  "comparison_base_sha": "0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c",
-  "review_branch": "review/MUS-026-B-review-controls",
-  "allowed_output_paths": [
-    "docs/reviews/MUS-026-B.md",
-    "docs/collaboration/account-b/latest.md"
-  ],
-  "claim_channel": "collab/account-b latest.md"
+  "note": "026 scoped approval received. A implements MUS-027 inline alias/rating entry; exact SHA task follows. Do not repeat026 or change product."
 }

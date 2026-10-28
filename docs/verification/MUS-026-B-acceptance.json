@@ -1,0 +1,40 @@
+{
+  "task_id": "MUS-026-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-27 America/Chicago",
+  "reviewed_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
+  "comparison_base_sha": "0ae63f9d6a4632ffbfa1c0cedc017aad6cea862c",
+  "assignment_source_sha": "d90bfcb7be6454f7cff0aa82943b0e7a0d2f6882",
+  "b_ack_peer_feed_sha": "76249e30de6457eb33ab41a60aa58076815dfeb5",
+  "b_feed_sha": "dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42",
+  "b_source_sha": "dd049fdf6cf1ddb253cb88972cffb472a1e1b457",
+  "report_path": "docs/reviews/MUS-026-B.md",
+  "report_sha256": "4ee7231d470b66820eb28adf7cfa2c1bec9816b1d02607b9d34bd83d8afcea50",
+  "b_latest_sha256": "594b763ccb6990304fb7714b860c085f7f2201d83e28ee57907e45cfea25dca2",
+  "a_verified": [
+    "feed/source latest bytes and hash",
+    "only two allowed B report files relative to reviewed source",
+    "exact dispatch and ack match",
+    "exact review imported"
+  ],
+  "b_reported": {
+    "node_tests": 31,
+    "npm_ci_build": "passed existing lockfile",
+    "final_run": "baseline-20261024-010925-6",
+    "browser_assertions": 30,
+    "browser_exports_cli_validated": 1,
+    "expected_http_console_errors": 1,
+    "uncaught_pageerrors": 0,
+    "publication": "sequential non-atomic source then feed"
+  },
+  "limits": [
+    "Private B raw evidence not received or hashes recomputed by A.",
+    "Earlier blocked preparation and four browser runs retained; counts not accumulated.",
+    "Scoped026 approval does not cover the new rating-entry usability fix MUS-027.",
+    "N1 existing devtools overlay observation recorded separately; production preview passed.",
+    "No real human quality/P95/held-out/freeze or main merge."
+  ]
+}
