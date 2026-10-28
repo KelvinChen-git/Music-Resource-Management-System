@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-029两模式探索比较开始
+
+A；2026-10-28 America/Chicago；branch codex/MUS-029-exploratory-evaluation；base3e6c517；in_progress。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`，开始sync双方fetched。原B027/rev1任务卡保持assigned，不替换/不冒充认领。
+
+用户继续推进028后续评估。先E4冻结完整已判pack/report双SHA、原rankings各top5顺序、P@5>=2、指数gain pooled nDCG@5，IDCG从已判并集最佳5，0时null且披露/不进宏均值。缺判不当0、未知/重复/短top5拒绝，tie保留固定原顺序，不比跨mode分数。只新增标准库评估CLI/独立合成tests及必要docs，明细/案例在ignore.local/a/mus029；已判原件/模型/音频/旧代码/前后端只读。
+
+同会话代理方法复算与test文件路径隔离，A串行台账；不等于账号B验收。无Recall/nDCG10/定位IoU/显著性/P95/held-out或泛化结论，不调参/训练/改阈值/合并main，原备份/服务保持。源码实现/实跑后补结果，允许范围见STATUS。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-028首轮探索标注接收完成
 
 A；2026-10-28 America/Chicago；branch codex/MUS-028-label-receipt；base/source-code df50001bc1e0490cfdf10ed2ea25971b17980731；done仅接收/格式与固定来源绑定验收。最终文档SHA由handoff.source_sha给出。

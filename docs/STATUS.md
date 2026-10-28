@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-28 America/Chicago）：用户完成首轮探索标注，MUS-028接收/校验/本机私有归档完成；51/51已判、20曲/8查询，非held-out或正式质量结论。MUS-027 B固定卡仍assigned，原版/后端/main保持。
+- 当前检查点（2026-10-28 America/Chicago）：用户完成首轮探索标注，MUS-028已接收；MUS-029按E4实现两模式探索比较；51/51已判、20曲/8查询，非held-out或正式质量结论。MUS-027 B固定卡仍assigned，原版/后端/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,6 +42,7 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段已真实处理，028已收51探索判断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
+| MUS-029 两模式探索评估 | in_progress / A | codex/MUS-029-exploratory-evaluation / 3e6c517 | 仅新增标准库评估CLI/合成测试、E4/必要说明/汇总；私有原标签只读，P@5及pooled nDCG@5 |
 | MUS-028 首轮标注接收 | done / A（格式/来源绑定验收，非模型质量验收） | codex/MUS-028-label-receipt / df50001 | 51/51已判，0/1/2/3=19/13/9/10；原字节私有归档/固定run校验通过，0人工区间 |
 | MUS-027 评分入口提示 | review / A（实现及本机验证完成） | fix/MUS-027-review-rating-entry / 2ed661d | 就近必填代号/明确校验；8包检查/build、17浏览器断言及合成导出CLI通过 |
 | MUS-027-R1-B 评分入口复核 | assigned / B（待主动认领） | review/MUS-027-B-rating-entry / 2ed661d | 仅新报告/own latest，合成包验证评分/草稿/导出小增量 |
@@ -547,3 +548,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 用户提交及私有原字节归档SHA774c2083…/44495 bytes一致，副本0600、目录0700；既有固定run/report/catalog CLI对原件及归档exit0。8查询/20曲/51对全部有合法判断；0/1/2/3=19/13/9/10，无人工区间。原空白包及原运行不变，原下载不改，个人代号/逐条记录不入Git。
 - 同会话子代理只读复核一致，不是B独立审核。仅汇总/receipt证据文档，未计算模型指标或定位IoU，不能把19/51当Precision/Recall/准确率；未做阈值/训练/线上权限刷新。详见verification/MUS-028.md/results.json。MUS-002仍blocked于模型/效果对照及冻结，后续评测需定义口径、保留本轮，扩库另建版本。
 - 本轮无源码/API/schema/依赖/服务改变，不重跑无关应用测试；备份干净f3b0da1，不合并main。B固定027卡原字节保留、仍assigned未认领；检查点同步后发布本机接收汇总，不向B传原始私有标注或外推027批准。
+
+
+## MUS-029占用与评估口径（2026-10-28）
+
+- owner A；base3e6c517。允许新增services/audio-search/evaluate_review.py及test_evaluate_review.py，模块README，根README/PROJECT/CONTRACTS/STATUS/A latest与verification/MUS-029*。不改旧review_pack/模型/切片/排序/前端/后端/锁/公共目录。
+- E4先固定完整人评、两模式原top5顺序、P@5>=2、指数gain的pooled nDCG@5/零IDCGnull与宏均值口径；明细/案例只在.local/a/mus029，原run/已判归档/空白包只读；无Recall/10%提升/阈值/训练。
+- 同会话只读代理独立复算方法/数字；另一代理只写新合成test文件，A拥有实现与台账，路径互斥。同会话协作不冒充B审核。B027卡原字节保留，开始sync双方fetched，B仍dc5ec6ce/source dd049fdf；本任务不替换其在途派发。
