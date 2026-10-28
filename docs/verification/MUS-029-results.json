@@ -1,0 +1,324 @@
+{
+  "task_id": "MUS-029",
+  "status": "implemented_and_exploratory_run_completed_not_model_acceptance",
+  "date": "2026-10-28 America/Chicago",
+  "implementation_sha": "ef5e38842c6d0cf632d7401d77a61271fb8eb50d",
+  "comparison_base_sha": "c206567055416832a67ceead67c922452aefa71d",
+  "protocol": {
+    "precision_positive_grade_min": 2,
+    "precision_denominator": 5,
+    "gain": "2**relevance - 1",
+    "discount": "log2(rank + 1)",
+    "ideal_pool": "top5 of all judged union candidates for same query",
+    "zero_idcg": "null; excluded from macro nDCG; included as zero P@5",
+    "ranking_order": "frozen rankings.json array order; never package ID order",
+    "paired_tie_absolute_tolerance": 1e-12
+  },
+  "input_sha256": {
+    "source_report": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+    "catalog": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+    "judgments": "774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869",
+    "rankings": "72fbdc2852d2d4fe05f50f961d838217e6bf7ac119f58e669d499d948f48a626"
+  },
+  "dataset_sha256": "38ad667ba7df7c98bf52476c2d66db86cbba557a2895c36062bcd69003c602f0",
+  "query_count": 8,
+  "distinct_tracks": 20,
+  "candidate_pairs": 51,
+  "unjudged_pairs_in_original20x8": 109,
+  "weak_query_ids": [
+    "exp-02",
+    "exp-03",
+    "exp-04",
+    "exp-07",
+    "exp-08"
+  ],
+  "unjudged_pairs_for_weak5": 67,
+  "summary": {
+    "whole_track": {
+      "macro_precision_at_5": 0.4,
+      "macro_pooled_ndcg_at_5": 0.8298516298384039,
+      "ndcg_valid_queries": 8,
+      "zero_idcg_queries": 0
+    },
+    "segment": {
+      "macro_precision_at_5": 0.45,
+      "macro_pooled_ndcg_at_5": 0.9062003903905755,
+      "ndcg_valid_queries": 8,
+      "zero_idcg_queries": 0
+    }
+  },
+  "paired": {
+    "precision_at_5": {
+      "segment_wins": 2,
+      "ties": 6,
+      "whole_track_wins": 0,
+      "compared_queries": 8
+    },
+    "pooled_ndcg_at_5": {
+      "segment_wins": 5,
+      "ties": 0,
+      "whole_track_wins": 3,
+      "compared_queries": 8
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "exp-01",
+      "text": "Energetic electronic dance music with a strong beat.",
+      "pool_size": 6,
+      "pool_positive_count": 5,
+      "relevance_counts": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3
+      },
+      "unjudged_pairs_in_original20": 14,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.8,
+          "pooled_ndcg_at_5": 0.939490267096745,
+          "positive_count": 4
+        },
+        "segment": {
+          "precision_at_5": 1.0,
+          "pooled_ndcg_at_5": 1.0,
+          "positive_count": 5
+        }
+      }
+    },
+    {
+      "query_id": "exp-02",
+      "text": "Calm acoustic guitar music for a quiet evening.",
+      "pool_size": 7,
+      "pool_positive_count": 1,
+      "relevance_counts": {
+        "0": 5,
+        "1": 1,
+        "2": 1,
+        "3": 0
+      },
+      "unjudged_pairs_in_original20": 13,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.8262346571285599,
+          "positive_count": 1
+        },
+        "segment": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.9639404333166532,
+          "positive_count": 1
+        }
+      }
+    },
+    {
+      "query_id": "exp-03",
+      "text": "A rock song with distorted electric guitars and drums.",
+      "pool_size": 7,
+      "pool_positive_count": 1,
+      "relevance_counts": {
+        "0": 3,
+        "1": 3,
+        "2": 0,
+        "3": 1
+      },
+      "unjudged_pairs_in_original20": 13,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.9263070818015406,
+          "positive_count": 1
+        },
+        "segment": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.9130914317649858,
+          "positive_count": 1
+        }
+      }
+    },
+    {
+      "query_id": "exp-04",
+      "text": "Soft piano music with a slow and reflective mood.",
+      "pool_size": 5,
+      "pool_positive_count": 1,
+      "relevance_counts": {
+        "0": 2,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "unjudged_pairs_in_original20": 15,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.8213137146137828,
+          "positive_count": 1
+        },
+        "segment": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 1.0,
+          "positive_count": 1
+        }
+      }
+    },
+    {
+      "query_id": "exp-05",
+      "text": "A rhythmic hip hop track with rapped vocals.",
+      "pool_size": 7,
+      "pool_positive_count": 4,
+      "relevance_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 3
+      },
+      "unjudged_pairs_in_original20": 13,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.6,
+          "pooled_ndcg_at_5": 0.7959160554314038,
+          "positive_count": 3
+        },
+        "segment": {
+          "precision_at_5": 0.6,
+          "pooled_ndcg_at_5": 0.923033221305162,
+          "positive_count": 3
+        }
+      }
+    },
+    {
+      "query_id": "exp-06",
+      "text": "A bright pop song with singing and a catchy chorus.",
+      "pool_size": 5,
+      "pool_positive_count": 5,
+      "relevance_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 2,
+        "3": 3
+      },
+      "unjudged_pairs_in_original20": 15,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 1.0,
+          "pooled_ndcg_at_5": 1.0,
+          "positive_count": 5
+        },
+        "segment": {
+          "precision_at_5": 1.0,
+          "pooled_ndcg_at_5": 0.9840352219951628,
+          "positive_count": 5
+        }
+      }
+    },
+    {
+      "query_id": "exp-07",
+      "text": "Jazz music with a swinging rhythm and saxophone.",
+      "pool_size": 6,
+      "pool_positive_count": 1,
+      "relevance_counts": {
+        "0": 3,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "unjudged_pairs_in_original20": 14,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.0,
+          "pooled_ndcg_at_5": 0.346332821766451,
+          "positive_count": 0
+        },
+        "segment": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.5865409417085417,
+          "positive_count": 1
+        }
+      }
+    },
+    {
+      "query_id": "exp-08",
+      "text": "Orchestral music that builds tension for an action scene.",
+      "pool_size": 8,
+      "pool_positive_count": 1,
+      "relevance_counts": {
+        "0": 5,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "unjudged_pairs_in_original20": 12,
+      "metrics": {
+        "whole_track": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.9832184408687481,
+          "positive_count": 1
+        },
+        "segment": {
+          "precision_at_5": 0.2,
+          "pooled_ndcg_at_5": 0.878961873034099,
+          "positive_count": 1
+        }
+      }
+    }
+  ],
+  "tests": {
+    "initial_targeted": {
+      "tests": 18,
+      "passed": 16,
+      "failed": 2,
+      "causes": [
+        "optional None SHA pin accepted by evaluate; fixed explicit SHA validation",
+        "new test expected DCG omitted grade1 at rank3; corrected test arithmetic"
+      ],
+      "evidence": "transcribed summary only; original full initial log not saved"
+    },
+    "final_targeted": {
+      "tests": 21,
+      "exit_code": 0
+    },
+    "final_with_existing_review_pack": {
+      "tests": 38,
+      "includes_existing": 17,
+      "includes_new": 21,
+      "exit_code": 0
+    },
+    "same_session_readonly_audit": "independent arithmetic and code review; explicit SHA issue independently found; not account B review"
+  },
+  "actual_run": {
+    "final_exit_code": 0,
+    "overwrite_exit_code": 1,
+    "wrong_pack_hash_exit_code": 1,
+    "final_output_sha256": "eb08c6e7727e9a1f672c6910168723a235421f5a6d54f57047efe5ecb4619962",
+    "all_inputs_unchanged": true,
+    "mode": "0600",
+    "clean_implementation_sha": "ef5e38842c6d0cf632d7401d77a61271fb8eb50d"
+  },
+  "file_sha256": {
+    "services/audio-search/evaluate_review.py": "e1ae3dbbfd72d0c39d9aa562f817e9f0cfdc5bf3925e44c328a253b854163b69",
+    "services/audio-search/test_evaluate_review.py": "43ca0dde1e06d700b219589e34f52798f6e0a22306e0adc0e150d176edfeff4f",
+    ".local/a/mus029/evaluation.json": "eb08c6e7727e9a1f672c6910168723a235421f5a6d54f57047efe5ecb4619962",
+    ".local/a/mus029/private-cases.md": "7fa565d908e15dc4dab7c1c441319f42ed5d5ab7029c9b45b9608007fe1efbc5",
+    ".local/a/mus029/logs/review-and-evaluate-final.log": "8746d7095cbb7ce3a0285897520b1d15797cf9a3e5eb321379e72d84d38050a4",
+    ".local/a/mus029/logs/evaluate-tests-final.log": "4b5e50911bed9cfab14e94e9ac2cf364fb8a712b4566ea1d31b36abe74a73904",
+    ".local/a/mus029/logs/evaluate-tests-initial-summary.txt": "ab7ccc5e0a05c850ac0c5574fa25146d1bfdd60a21122f787a0c39eef6064e96",
+    ".local/a/mus029/logs/evaluation-final.log": "87d416ee609f767945f0e6bce15c61d6d553c6705be4851bfa246005aef16ada",
+    ".local/a/mus029/logs/overwrite-refused.log": "3cffdb404ac13a1985c03b8ee1bd1bfe67e7f9bd55d14f08ce5f65329daecef3",
+    ".local/a/mus029/logs/wrong-pack-sha-refused.log": "46a26767d06f1f53da1eca705d86d116d3f69f8bb69aff988228928bd50a8c8c"
+  },
+  "limits": [
+    "Exploratory pooled judgments, model suggestions visible; not blind or held-out.",
+    "Pooled nDCG can be high with few relevant candidates; see pool positive counts.",
+    "No full-corpus Recall, localization IoU, significance, model freeze or P95.",
+    "Judgment identity/listening and current media permissions are not verified.",
+    "Raw per-track rankings and grades are private local output only.",
+    "Actual low scores do not prove corpus absence; 109 of160 possible query-track pairs remain unjudged.",
+    "No positive/negative threshold calibration, training, model rerun, public API or main merge.",
+    "B027 original assignment preserved; B029 review not dispatched while prior card remains assigned."
+  ],
+  "method_background_sources": [
+    "https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html",
+    "https://www-nlp.stanford.edu/IR-book/html/htmledition/assessing-relevance-1.html"
+  ]
+}

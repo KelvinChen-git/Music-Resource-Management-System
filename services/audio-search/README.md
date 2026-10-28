@@ -46,3 +46,21 @@ HF_HOME="$PWD/.local/a/hf-cache" HF_HUB_DISABLE_XET=1 WANDB_MODE=disabled \
 首次真实运行已对20首/933片段、8英文文字与3参考片段完成512维编码/排序；23项测试通过。完整实跑命令、原始工件位置/摘要、未标注边界见 [MUS-022](../../docs/verification/MUS-022.md)。生成向量/排序仅保留ignore目录，不提交Git；探索查询fixture不是评测集，reference同源自匹配不能算质量。原输入只读共享，输出需独立；B在自己的合法输入/缓存/slot运行，不依赖A本机路径。
 
 尚需人工相关性/区间标注、效果和模型对照及discovery-v0冻结；当前不提供online API或前端检索。原MUS-002合成探针保持原样。
+
+
+## 完成人评后的探索比较（MUS-029）
+
+`evaluate_review.py`只用Python标准库，对E1固定run和已完成判断作双SHA验证后，按原rankings两mode的top5计算P@5（>=2）及pooled nDCG@5（指数gain、同query已判并集IDCG）。所有候选需已判；None或错误的期望SHA、缺判/未知/重复/短top5拒绝。IDCG0返回null并从nDCG宏均值排除、披露计数；不把缺判当0，不支持全库Recall或定位IoU。包中的ID排序不是检索排名。
+
+```sh
+python3 -m unittest discover -s services/audio-search -p 'test_*review*.py' -v
+python3 services/audio-search/evaluate_review.py \
+  --run-dir .local/a/mus022/run-01 \
+  --catalog web/public/demo-catalog.json \
+  --report-sha256 90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108 \
+  --pack .local/a/mus028/received-judgments.json \
+  --pack-sha256 774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869 \
+  --output .local/a/mus029/evaluation.json
+```
+
+上述为A本机固定工件，B用自己的合成fixture/独立目录，不要求接收A原始标签。已有output拒绝覆盖，重复实跑需新文件名；结果仅本checkout的.local、0600，stdout只有聚合摘要，原输入只读。实际38检查和首次8query探索结果/失败/限制见[MUS-029](../../docs/verification/MUS-029.md)。模型建议可见、同20曲小池，非held-out；不以此调参/训练、冻结模型或报告10%提升。

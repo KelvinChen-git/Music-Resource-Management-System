@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-029首次两模式探索比较完成
+
+A；2026-10-28 America/Chicago；branch codex/MUS-029-exploratory-evaluation；review仅源码工具/本机探索完成，非模型验收。implementation `ef5e38842c6d0cf632d7401d77a61271fb8eb50d`，comparison/scope `c206567055416832a67ceead67c922452aefa71d`；最终文档SHA见handoff。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / B source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`，开始/检查点双方fetched，B仍旧026报告。MUS-027-R1-B/rev1原任务卡字节保持assigned，未替换或冒充认领；029独立卡待前卡返回后协调，不要求B取得A私人标签。
+
+E4先冻结P@5>=2、指数gain的pooled nDCG@5（并集IDCG），完整人评+report/pack显式双SHA、原rankings各top5顺序/固定tie、零IDCGnull/披露排除宏均值。仅新增标准库evaluate_review.py及独立合成test；旧标注/检索/模型/播放器与API不改，不训练/调参/拒绝阈值。原始人评/音频/向量只读。
+
+最终新21、连旧17为38通过，不加首18或独立21。首18中16通过2失败：函数None SHA绕过下层optional pin（已显式rp.sha两参数，report None亦测）；新测试漏rel1@rank3的0.5（修期望）。首轮只保留转录事实摘要，最终原始日志在.local；同会话只读方法复算/代码审查独立确认数字及同一pin问题，不冒充B审核。
+
+干净ef5e388上CLI exit0；P@5 whole0.40/segment0.45（前5平均2.00/2.25相关曲），pooled nDCG0.8298516298/0.9062003904，8有效0零IDCG。P逐query片段胜平负2/6/0，nDCG5/0/3，非所有描述获益。实际重名输出exit1且原结果不变，错pack SHA exit1且无产物。输入run/catalog/已判与空白包所有SHA前后不变；结果/私有逐曲复查表0600，仅ignore.local/a/mus029，stdout聚合、Git仅方法/汇总与哈希，不含个人代号/逐条判断。
+
+小池高nDCG不等于覆盖充足；五个弱描述池各只有1个正例。20曲×8描述160对只判51，109未知，其中五弱描述余67；需有界核查漏召回与曲库覆盖，再决定补样，不能将未判当负例或直接归因库缺歌。本轮非盲评/held-out，没有人工区间，不报Recall/nDCG10/定位IoU/显著性/P95或10%提升，不据此冻结模型。方法/命令/聚合和限制见verification/MUS-029.md/results.json。
+
+只新增两源码并更新必要README/PROJECT/E4/STATUS/本latest/verification。备份干净f3b0da1、原后端/UI保留，不改Java/Vue/API/schema/依赖/公共目录，未重启服务或合并main，无关Maven/前端/模型套件不重复。提交后publish并回读，发布不等于B审核/接收或取得A私有原件，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-029两模式探索比较开始
 
 A；2026-10-28 America/Chicago；branch codex/MUS-029-exploratory-evaluation；base3e6c517；in_progress。
