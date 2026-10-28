@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-030诊断补标包开始
+
+A；2026-10-28 America/Chicago；branch codex/MUS-030-diagnostic-review-pack；base5c9c55f；in_progress。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`。开始sync双方fetched，B027原卡保持assigned，不替换/冒充认领。
+
+用户要下一步，执行029建议：准备exp-02/03/04/07/08原20曲未入池的67个对，用于诊断漏召回/素材不足。先E5冻结独立sonora-diagnostic-pack-v1，固定report+完整E1基包SHA，重建全库减每query旧池、无旧已判对，初始全null/模型建议空；新schema每query<=100、旧E1仍<=10，新指纹草稿隔离。只做必要导入兼容/提示，既有试听/评分流程沿用。
+
+允许范围见STATUS：新增标准库CLI/测试，前端reviewPack helper/新测试/最小说明和文档；各代理路径隔离，A串行台账。原51已判/空白包/run/音频只读，无模型重跑/自动融合/训练/扩库/阈值/后端或main改变。实现并实跑后补精确SHA与证据，生成物仅ignore.local/a/mus030、0600独占创建。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-029首次两模式探索比较完成
 
 A；2026-10-28 America/Chicago；branch codex/MUS-029-exploratory-evaluation；review仅源码工具/本机探索完成，非模型验收。implementation `ef5e38842c6d0cf632d7401d77a61271fb8eb50d`，comparison/scope `c206567055416832a67ceead67c922452aefa71d`；最终文档SHA见handoff。

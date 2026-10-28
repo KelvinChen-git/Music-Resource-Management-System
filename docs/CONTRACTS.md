@@ -296,6 +296,14 @@ MUS-027交互补充：评分区就近提供必填匿名代号输入；空值或�
 - 不报告Recall、nDCG@10、定位IoU、显著性/held-out泛化、P95或10%提升，不据本轮调参/改阈值/训练。两模式比较只适用于这8个探索描述/当前池；模型提示可见且原语料小，不能区分曲库缺失和模型误排的完整原因。
 - 结果绑定输入报告、catalog、pack、rankings、模型/pipeline和评估源码哈希；保留原输入及所有人工判断。逐曲排名/标签/案例仅本机ignore的.local、0600独占创建；提交聚合指标/方法/限制与非敏感汇总。不得自动把模型建议当人工定位，原始包/音频/向量只读，无网络/数据库/新API。
 
+### E5. MUS-030未入池诊断补标（仅当前小曲库，非新召回）
+
+- 新格式`sonora-diagnostic-pack-v1`，split仍`exploratory_only_not_held_out`。顶层与E1相同；provenance保留E1运行/catalog/model/pipeline/artifact字段，selection=`unjudged_complement_for_selected_queries`、ordering仍`query_fixture_order_then_track_id_ascending`、labeling_aid=`no_model_intervals_for_diagnostic_complement`，另必需base_judgments_sha256、base_dataset_sha256和diagnostic_query_ids有序唯一列表。
+- Python标准库CLI先对report和已完整标注E1基包显式固定SHA，再重建/校验E1。只选显式query IDs，在原查询fixture顺序输出“固定全曲库减该query的旧候选池”；所有原候选池外曲目都在，无重复/漏曲/旧已判对。读取固定manifest得到原音频绑定；每query1–100候选、总文件<=2MiB。未知/重复query、空补集、错base或run、漏判基包拒绝。
+- 所有新人工四字段初始null，不复制基包已判记录、模型分数或区间；model_suggested_intervals_ms固定空数组。无模型重新排序，按ID展示，只试听整曲/手动seek。原51已判、空白包、run/音频只读；新包/草稿/export指纹不同，不覆盖或静默恢复旧包。
+- 浏览器保持E1原规则和上限（<=10），仅新schema允许<=100且要求准确的新provenance字段/有序query IDs对齐/空模型区间；owner/SHA字节/JWT逐次媒体/人工输入/本机草稿原行为保持。新增就近说明“核查未入选曲目、已完成判断保留、不提供模型建议”，不重做UI。
+- 固定run+基包CLI最终校验重建完整补集，仅人工四字段可变，沿用0..3/代号/UTC/合法可选人工区间。浏览器只校验结构与自洽指纹，不能独立认证补集来源；交回仍需CLI。E4评估不接受新诊断schema，不把补标当原top5评分或held-out；本轮不自动合并标签/训练/扩库/定拒绝阈值。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。
