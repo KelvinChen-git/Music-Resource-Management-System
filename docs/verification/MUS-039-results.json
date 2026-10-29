@@ -1,0 +1,343 @@
+{
+  "task_id": "MUS-039",
+  "status": "G1_source_corpus_and_query_texts_frozen_source_only_not_model_quality_acceptance",
+  "checked_on": "2026-10-29 America/Chicago",
+  "branch": "codex/MUS-039-independent-corpus-freeze",
+  "source_baseline_sha": "bc653e05eb722224bdd6ca395a0835ffeafab910",
+  "collector_run_source_sha": "e668a745b67b1d914cd03d9223848a3679bfe4e6",
+  "protocol": {
+    "active_version": 2,
+    "sha256": "83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b",
+    "official_metadata_revision": "216bda2dc80b4ec53b3d279d67923eea020dcce7",
+    "sampling_seed": "MUS-038-phase1-corpus-v1",
+    "sampling_rule": "SHA256(seed + newline + actual_provider + newline + source_id), then provider/source_id",
+    "creator_cap": 4,
+    "work_rule": "first_technically_eligible_recording_per_reviewed_work_group",
+    "minimum_creator_groups": 5,
+    "query_or_model_or_label_based_selection": false
+  },
+  "v1_retired": {
+    "frame_records": 132,
+    "eligible_for_technical_screening": 126,
+    "quarantined": 6,
+    "creator_groups": 10,
+    "theoretical_maximum_before_audio": 19,
+    "required_tracks": 20,
+    "audio_downloads": 0,
+    "query_texts_authored": 8,
+    "sampler_read_query_texts": false,
+    "query_texts_reused": false,
+    "reason": "capacity_shortfall_before_audio; new_protocol_version_before_fresh_query_authoring"
+  },
+  "active_v2_frame": {
+    "records": 221,
+    "provider_record_counts": {
+      "loc-citizen-dj-fma": 132,
+      "loc-citizen-dj-musicbox": 89
+    },
+    "eligible_for_technical_screening": 212,
+    "quarantined": 9,
+    "documented_old_overlap": 0,
+    "eligible_creator_groups": 11,
+    "theoretical_maximum_before_audio": 23,
+    "musicbox_creator_pool": "one_conservative_recording_project_group_cap4",
+    "reviewed_old_recordings": 40,
+    "alias_review_exhaustive": false,
+    "acoustic_near_duplicate_fingerprinting_performed": false
+  },
+  "capture": {
+    "status": "passed_source_only_capture",
+    "selected_tracks": 20,
+    "provider_counts": {
+      "loc-citizen-dj-musicbox": 4,
+      "loc-citizen-dj-fma": 16
+    },
+    "creator_groups": 9,
+    "sorted_positive_creator_group_counts": [
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      4,
+      4,
+      4
+    ],
+    "reviewed_distinct_work_groups": 20,
+    "total_raw_bytes": 61224732,
+    "total_duration_ms": 3824645,
+    "minimum_duration_ms": 32000,
+    "maximum_duration_ms": 441000,
+    "saved_downloads_and_proofs": 21,
+    "accepted_audio_actual_EOF_checked": 20,
+    "rejected_short_audio_actual_EOF_checked": 1,
+    "full_priority_queue_records": 221,
+    "processed_prefix_records": 176,
+    "excluded_records": 156,
+    "exclusion_reasons": {
+      "creator_group_cap4": 147,
+      "group_quarantined": 8,
+      "unsupported_invalid_or_out_of_bounds_actual_audio": 1
+    },
+    "unprocessed_suffix_records": 45,
+    "unprocessed_suffix_audio_technically_verified": false,
+    "selected_musicbox_original_metadata_extensions": {
+      "mov": 1,
+      "m2ts": 1,
+      "wav": 2
+    },
+    "selected_Java_music_ids": 0,
+    "database_imports": 0,
+    "old40_new20_exact_content_overlap": 0,
+    "within_selected_exact_content_duplicates": 0,
+    "source_dataset_sha256": "2172565fca070583b599a8a445bb4fa779bac982f4075d59e4eccf73be830551",
+    "source_manifest_sha256": "cf320f06b61b19e72a67a013365ede22f29e82b96370e11e346ac98d8f0aacf0",
+    "priority_queue_sha256": "4dbcb6aec4d935bc2afb4a5290f0b5a4174d2a493057c13e44429dfc7ac60a16",
+    "decoder": "soundfile-read-out-65536-actual-eof-v1",
+    "DSP": "existing_readonly_research_corpus.decode_source_mono_mono_mean_soxr_hq_48k_integer_ceil",
+    "model_loaded": false
+  },
+  "query_freeze": {
+    "active_English_queries": 8,
+    "possible_no_match_probes": 2,
+    "Chinese_audible_cues_and_0_to_3_rules": true,
+    "author": "isolated_same_session_AI_agent_not_human_or_B",
+    "author_candidate_or_model_result_access": false,
+    "v2_frame_commit_before_authoring": "2ab6c94b4ce2b52da3e34f8d99d1ff57a14acd92",
+    "source_corpus_frozen_at_utc": "2026-10-29T22:03:38.619000+00:00",
+    "sampler_first_opened_active_query_text_at_utc": "2026-10-29T22:04:08.088319+00:00",
+    "sampler_read_any_query_body_before_source_freeze": false,
+    "text_modified_after_opening": false,
+    "public_query_manifest_sha256": "6b3af0cc99ab0bde1d1d27b88e5f477e44f627948ffd69183ec421bad185cbfb",
+    "all_query_texts_authored_this_task_including_retired": 16,
+    "retired_v1_body_still_unopened_by_sampler": true,
+    "no_test_qrels_exist": true
+  },
+  "planned_not_done": {
+    "full_grid_pairs": 160,
+    "judged_test_pairs": 0,
+    "annotation_packages": 0,
+    "test_model_runs": 0,
+    "model_weight_downloads": 0,
+    "new_vectors_or_rankings": 0,
+    "G2_runner_freeze": false,
+    "G3_annotation_package": false,
+    "G4_all_five_configuration_rankings": false,
+    "G5_qrels_release_and_metrics": false,
+    "next_task": "MUS-040_source_identity_HTTP_import_new_test_contract_runner_and_safe_development_preflight"
+  },
+  "current_development_unchanged": {
+    "imported_tracks": 40,
+    "queries": 8,
+    "judged_pairs": 141,
+    "unknown_pairs": 179,
+    "complete_preflight_pairs": 100,
+    "five_query_development_macro_P5": {
+      "whole": 1.0,
+      "segment": 0.96
+    },
+    "formal_quality_or_discovery_v0_accepted": false
+  },
+  "verification": {
+    "final_unit_tests": {
+      "status": "passed",
+      "count": 26,
+      "seconds": 2.333,
+      "command": "PYTHONDONTWRITEBYTECODE=1 ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest discover -s scripts -p test_holdout_music.py -v",
+      "intermediate_19_or_agent_subsets_added_to_total": false
+    },
+    "real_checked_inputs": {
+      "status": "passed",
+      "records": 221,
+      "old_recordings": 40,
+      "pinned_evidence_files": 276
+    },
+    "real_capture_exit_code": 0,
+    "independent_readonly_audit": {
+      "status": "passed_independent_EOF_PCM_artifact_and_full_processed_queue_audit",
+      "same_session_not_B": true,
+      "saved_audio_files": 21,
+      "inputs_hash_checked": 297,
+      "processed_queue_prefix": 176,
+      "exclusions_rebuilt": 156,
+      "collector_run_or_fetch_called": false,
+      "models_or_queries_or_labels_used": false
+    },
+    "duplicate_output": {
+      "status": "passed_expected_rejection",
+      "exit_code": 1,
+      "error_class": "FileExistsError",
+      "capture_files_unchanged": 91,
+      "new_downloads": 0
+    },
+    "preservation": {
+      "status": "passed",
+      "checked_at_utc": "2026-10-29T22:07:28.321297+00:00",
+      "protected_inputs": 307,
+      "changed_inputs": [],
+      "shared_cache_regular_files": 54,
+      "cache_set_and_hashes_unchanged": true,
+      "backup_clean": true,
+      "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+      "private_mode_violations": [],
+      "v1_query_bytes_unchanged": true,
+      "v2_sealed_query_bytes_unchanged": true,
+      "public_v2_query_bytes_unchanged": true,
+      "v1_query_body_still_unopened": true,
+      "v2_query_body_opened_only_after_source_freeze": true,
+      "original_listener_pids": {
+        "8080": [
+          "96842"
+        ],
+        "5175": [
+          "4143"
+        ]
+      }
+    },
+    "frontend_Maven_browser_or_CLAP_suites_run_this_task": false,
+    "query_rows_identical_and_unblind_order_independent_readonly_check": "passed_same_session_not_B"
+  },
+  "collaboration": {
+    "sync_start_utc": "2026-10-29T21:16:59Z",
+    "last_documented_checkpoint_utc": "2026-10-29T22:12:13Z",
+    "both_feeds": "fetched",
+    "A_feed_before_delivery": "860729d06de545e7d3ac3c2d6ef6722743dd78ab",
+    "A_source_before_delivery": "bc653e05eb722224bdd6ca395a0835ffeafab910",
+    "ack_peer_feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
+    "peer_source_sha": "4f5783790b5d4607080678b82c5ce6cf842f64e3",
+    "B035_status": "assigned_not_claimed",
+    "B035_reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+    "B035_base_sha": "b42b767afc0bd3ddb76601a436f8073c3d72106c",
+    "B035_card_and_dispatch_bytes_unchanged": true,
+    "same_session_agents_are_B": false,
+    "published_source_sha": "see_atomic_feed_handoff_after_commit",
+    "merged_main": false
+  },
+  "preserved_failures_and_corrections": [
+    "Live LOC preflight HTTP403 retained; pinned official GitHub metadata and exact S3 item media used with normal TLS; no authentication or TLS bypass.",
+    "Initial v1 metadata/group capacity19 insufficient; no v1 corpus audio downloaded; retired queries kept unopened and a new protocol/frame committed before fresh v2 queries.",
+    "Group-review/audit wrapper preparation assertions and four independent-audit wrapper field/title assumptions were corrected before successful output; intermediate failures are not passed checks.",
+    "Root wrongly inferred the selected32s recording was an unselected source, then probed a nonexistent path; failure was a wrong path, not a decoder or browser failure. Independent report corrected identity; no selection or source bytes changed.",
+    "Final permissions audit found two new official template/config snapshots at0644; changed their modes only to0600, kept first failed report, and reran preservation successfully with hashes unchanged."
+  ],
+  "limits": [
+    "Fixed two-provider LOC metadata frame, small unrepresentative sample; not a universal source collector or exhaustive identity resolution.",
+    "Metadata/primary relationship review and exact-byte deduplication; no acoustic near-duplicate fingerprint audit or guarantee of no CLAP pretraining overlap.",
+    "Rights based on original official dedication/free-use wording; no invented CC0 URI or version.",
+    "MusicBox files are exact official full-item MP3 derivatives of source audio/video files, not original studio masters or original video bytes.",
+    "Source-only corpus lacks Java identity/owner mapping and ordinary-user HTTP media verification; current review page/CLI do not accept this format.",
+    "Fresh query authorship by isolated AI is not human annotation or expert validation; two probes do not guarantee zero positives.",
+    "No model quality, localization, P95, significance, Recall or improvement measured; G2-G5 remain unexecuted."
+  ],
+  "private_evidence": {
+    "source-frame.json": {
+      "bytes": 125014,
+      "sha256": "a9fd0079a6b882d31667014fbb96e66cfb6b9fed875a235142c687f48b1d8a27"
+    },
+    "group-review.json": {
+      "bytes": 182632,
+      "sha256": "7bfd3fe3634d2fb67e870fcb92a2926361a9c03c93b7979f9c21928bc5dd73a8"
+    },
+    "feasibility-v1.json": {
+      "bytes": 592,
+      "sha256": "337badfb0737821652e52edae7fb96ef285dc3e997291210780858291b87e1a4"
+    },
+    "old-group-review.json": {
+      "bytes": 36577,
+      "sha256": "6d35735c2b47a236d2c79f91672fda6b99be75c25d1f456ccec20ae84c50fe74"
+    },
+    "sealed-queries.json": {
+      "bytes": 15668,
+      "sha256": "6c2c8dea1391599caf054876554a2f7aaf2df27e1d2625ca26e5d73ddb1f09bc"
+    },
+    "query-v1-retirement-receipt.json": {
+      "bytes": 586,
+      "sha256": "5ea97059b5f92ac15b6ee33c02e590b09f772ccba55f72fa75c8e7ae510c1609"
+    },
+    "source-frame-v2.json": {
+      "bytes": 246726,
+      "sha256": "d4f2faaa1d5106626ec64ab8913d7588e96b5f61820ef6e1763506f91e3c8a3e"
+    },
+    "group-review-v2.json": {
+      "bytes": 393273,
+      "sha256": "48eebd56043a2599bfcfa88c2461199695ec42c55525767b20087fef4e61c062"
+    },
+    "revision02/sealed-queries.json": {
+      "bytes": 17055,
+      "sha256": "5c828557634a43e44ad411959ba07d8440bf7a25b8ea16fa24c1b1bb635a8c55"
+    },
+    "query-seal-receipt-v2.json": {
+      "bytes": 612,
+      "sha256": "e507d98d490cae10704ae6868ec3999da09bd681204f5371ea61bec92f872d77"
+    },
+    "source-dataset-freeze-receipt.json": {
+      "bytes": 1399,
+      "sha256": "2e432fb25f025980684f353c166b42164cca65f726433f8ed28bacd99126376c"
+    },
+    "query-text-opening-receipt.json": {
+      "bytes": 758,
+      "sha256": "4005fac9436f039c4277480b883270a6d2ac8a3d5bea9bdc0a056522e279763b"
+    },
+    "inputs-check-v2.json": {
+      "bytes": 275,
+      "sha256": "1deaa16027adefcb954dababd92c2a95e1839a48ff5a8a7531434c0883091bf8"
+    },
+    "capture-run-v2-01.json": {
+      "bytes": 251,
+      "sha256": "498001a51b541c09d418b417ee0229aa424fe1670e55297f804c6a01e4d0db01"
+    },
+    "capture-v2-01/manifest.json": {
+      "bytes": 37568,
+      "sha256": "cf320f06b61b19e72a67a013365ede22f29e82b96370e11e346ac98d8f0aacf0"
+    },
+    "capture-v2-01/priority-queue.json": {
+      "bytes": 33838,
+      "sha256": "4dbcb6aec4d935bc2afb4a5290f0b5a4174d2a493057c13e44429dfc7ac60a16"
+    },
+    "capture-v2-01/exclusions.json": {
+      "bytes": 28653,
+      "sha256": "014da11ca6ec9436c9bc9c45c0733aed8357fca069a7ec31feaf8091acf59f37"
+    },
+    "independent-capture-check.json": {
+      "bytes": 56006,
+      "sha256": "c451613af09613c432779c2485958da9c816315d5059d8132128777505019fce"
+    },
+    "duplicate-output-check.json": {
+      "bytes": 349,
+      "sha256": "881570f622589daa65296858335699c2fea065fe4da7573c53a523cc3c3d723f"
+    },
+    "inputs-before.json": {
+      "bytes": 43315,
+      "sha256": "2ab85286f967af472423ef5b122d0768d5e47d1cbeeb0d4c7d1dfd403e8c8a1e"
+    },
+    "preservation-check.json": {
+      "bytes": 348,
+      "sha256": "4227728979a6b00f9b47cdc9c1d9f329e46052c81eaacb1395237d83dcd23aed"
+    },
+    "preservation-final.json": {
+      "bytes": 873,
+      "sha256": "ad73b2636e2f4a726a7fe64720b93a97487155f0acf4c21196e47673672887c3"
+    },
+    "preservation-final-v2.json": {
+      "bytes": 649,
+      "sha256": "f1d9134985be810bfbb325a1b378769a158b55e63ad320dca11f1e6894715f10"
+    },
+    "runtime-info.json": {
+      "bytes": 357,
+      "sha256": "ffd01e959a8c2e919f09d17c0596abb82c2cd0fc677b5af718036ec913097856"
+    },
+    "tests-final.log": {
+      "bytes": 4717,
+      "sha256": "45dbc6d2f3d90111747cf3a4da9cd043e39af6905edd93ef48320b88aebe96fd"
+    },
+    "source-preflight-note.json": {
+      "bytes": 361,
+      "sha256": "3195dbbfe3b14ca4b4c56261edb6040b3ce47e1cf98c61135b1a89f4d378e006"
+    },
+    "preflight-correction-note.json": {
+      "bytes": 554,
+      "sha256": "a248132f46c60cc4c12f133d4a5fd45619bd13f28a471fe90188b4630a109d3a"
+    }
+  }
+}

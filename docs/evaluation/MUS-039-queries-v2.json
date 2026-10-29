@@ -1,0 +1,166 @@
+{
+  "schema": "sonora-independent-query-manifest-v1",
+  "version": 2,
+  "status": "frozen_query_texts_not_an_annotation_package",
+  "protocol_sha256": "83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b",
+  "source_frame_sha256": "d4f2faaa1d5106626ec64ab8913d7588e96b5f61820ef6e1763506f91e3c8a3e",
+  "source_sealed_manifest_sha256": "5c828557634a43e44ad411959ba07d8440bf7a25b8ea16fa24c1b1bb635a8c55",
+  "source_corpus_freeze_receipt_sha256": "2e432fb25f025980684f353c166b42164cca65f726433f8ed28bacd99126376c",
+  "query_language": "en",
+  "annotation_gloss_language": "zh",
+  "Chinese_gloss_is_model_input": false,
+  "queries": [
+    {
+      "query_key": "holdout-01",
+      "text_en": "A gently rocking three-beat tune with a reedy accordion-like melody and soft plucked-string accompaniment.",
+      "gloss_zh": "找能轻轻摇摆着数“一、二、三”的音乐：主旋律像手风琴那样带簧片鼻音，伴奏是轻柔拨弦。",
+      "audible_required_cues_zh": [
+        "稳定重复“一重、两轻”的三拍摇摆感，能自然跟着数一、二、三；不要求会认拍号。",
+        "前景旋律有像手风琴一样的簧片鼻音，音能略微延续，并非敲一下就衰减的琴键声。",
+        "下方可辨柔和分开的拨弦伴奏，整体轻柔地摇摆。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有三拍摇摆与簧片式旋律的组合；普通稳定节拍或一般轻柔音乐不足以相关。",
+        "1": "只有三拍感、簧片音色或柔和拨弦的一部分；旋律音色明显不同，或节奏无法形成一重两轻的循环。",
+        "2": "连贯乐段中三拍摇摆、簧片式旋律和柔和拨弦均可辨，至少一项较靠后或不够鲜明。",
+        "3": "一重两轻的循环清楚而持续，簧片式旋律突出，柔和拨弦相伴，轻轻摇摆是主要听感。"
+      },
+      "distinction_from_development_zh": "不是exp-02安静吉他的情绪改写，也不是exp-07摇摆萨克斯爵士：必要组合为能数一二三的三拍、簧片式主旋律与柔和拨弦；单凭安静或摇摆不能相关。",
+      "possible_no_match_probe": false
+    },
+    {
+      "query_key": "holdout-02",
+      "text_en": "A firm marching tune with crisp snare-drum rolls and short brass calls over a straight, even walking pulse.",
+      "gloss_zh": "找踏步感明确的进行音乐：小军鼓沙沙地快速滚奏，铜管短句一声声呼喊，步点直而均匀。",
+      "audible_required_cues_zh": [
+        "节拍像一左一右整齐走路，力度坚实、速度稳定，不是松散摇摆。",
+        "可听见清脆带沙响的鼓声及短暂密集滚奏，像小军鼓。",
+        "主旋律是明亮有力的吹管声，像铜管号角，常以简短呼喊句出现。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有整齐踏步节拍与军鼓、短铜管句的组合；仅有气势或大声音乐不算。",
+        "1": "有鼓滚奏、铜管或整齐步点的一部分，但缺少组合，或主要为自由速度、舞曲强拍或持续铺开的管弦音墙。",
+        "2": "连贯乐段中整齐踏步脉冲、带沙响的鼓滚奏和短铜管式呼喊均可辨，至少一项不够突出。",
+        "3": "直而均匀的踏步脉冲清楚持续，军鼓滚奏利落，短铜管句鲜明呼应，进行感占据前景。"
+      },
+      "distinction_from_development_zh": "区别于exp-08逐渐制造动作紧张的管弦乐：这里要求稳定踏步、军鼓滚奏和短铜管呼喊，不要求渐强、悬念或动作剧情；也不是exp-01一般强拍电子舞曲。",
+      "possible_no_match_probe": false
+    },
+    {
+      "query_key": "holdout-03",
+      "text_en": "A rhythmic song where a solo singer calls out a short line and a group answers with a repeated sung phrase, supported by hand claps.",
+      "gloss_zh": "找有问答感的歌：一个人先唱一句，几个人再用重复的短句回应，拍手声撑着节奏。",
+      "audible_required_cues_zh": [
+        "可以分辨前面的单人领唱与后面的多人回应，两者轮流而不是一直同时唱。",
+        "回应声部反复唱相同或很相近的短旋律句；不要求听懂歌词。",
+        "伴奏中有清楚的手掌拍击声，配合歌唱节奏。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有领唱与多人回应的可辨轮流关系；普通独唱、持续合声或纯器乐不匹配。",
+        "1": "有领唱、多人声、短句反复或拍手中的部分线索，但没有清楚的轮流问答，或缺少可听拍手。",
+        "2": "连贯乐段中单人唱句、多人重复回应及拍手节奏均可辨，某一声部或拍手不够突出。",
+        "3": "领唱与多人回应多次清楚交替，重复答句容易跟随，手掌拍击节奏明确，共同形成主要音乐内容。"
+      },
+      "distinction_from_development_zh": "区别于exp-06只要演唱与副歌的流行歌，也区别于exp-05的说唱：核心是单人领唱与多人回应的轮流结构以及拍手，旋律句必须听得出在唱。",
+      "possible_no_match_probe": false
+    },
+    {
+      "query_key": "holdout-04",
+      "text_en": "A steady midtempo instrumental with a wavering flute-like tune above a repeating pattern of hand-played drums.",
+      "gloss_zh": "找中速器乐：像笛子一样带气息、会轻轻颤动的旋律，下面是双手敲鼓反复形成的节奏。",
+      "audible_required_cues_zh": [
+        "旋律高处有带气息的吹奏音，能延长并轻微颤动，像笛子，不要求认出具体管乐。",
+        "伴奏反复出现深浅不同的手敲鼓声，能听见较圆的鼓腔声与较短的拍击声。",
+        "节奏中等速度而稳定，吹奏旋律与手鼓式节奏都能听清，主唱不占前景。"
+      ],
+      "grade_rules_zh": {
+        "0": "听不到带气息的笛状旋律与重复手鼓式节奏组合；单纯器乐或任意鼓声不够。",
+        "1": "只有笛状旋律或手鼓式节奏一方，或二者都出现但被主唱、强烈电子鼓或极端速度掩盖。",
+        "2": "连贯乐段中气息颤动的笛状旋律和深浅相间的手鼓式循环均可辨，速度稳定适中，某一层较弱。",
+        "3": "笛状气息旋律清楚浮在反复手鼓节奏上，两层持续配合，中速律动稳定，器乐组合是主要听感。"
+      },
+      "distinction_from_development_zh": "区别于exp-07的摇摆萨克斯爵士与exp-02的安静吉他：这里要带气息的笛状旋律、深浅手敲鼓循环及中速稳定节奏，不靠风格名判断。",
+      "possible_no_match_probe": false
+    },
+    {
+      "query_key": "holdout-05",
+      "text_en": "Long guitar notes sliding smoothly up and down over a soft swaying rhythm, with a spacious, dreamy sound.",
+      "gloss_zh": "找梦游般空旷的吉他音乐：长音顺滑地往上、往下滑，下面的节奏轻轻摇动。",
+      "audible_required_cues_zh": [
+        "前景是拨弦后能延续的吉他式声音，音高会连续地滑上去或滑下来，不是只跳到下一个固定音。",
+        "滑动长音之间有留白或回声，空间听感明显。",
+        "下方节奏轻柔摇动，不以激烈重鼓或厚重失真节奏吉他为主。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有可辨的滑动吉他式长音；只有柔和、梦幻情绪或一般回声不算匹配。",
+        "1": "有吉他长音、滑音或空旷回声的部分线索，但滑动旋律不清楚，或重鼓、密集失真伴奏盖过轻柔摇动。",
+        "2": "连贯乐段中可辨吉他式长音连续滑动、空间余韵及柔和摇动节奏，至少一项较弱。",
+        "3": "顺滑的上行下行吉他长音突出而持续，音间留白与余韵明显，柔和摇动节奏衬托出空旷梦游感。"
+      },
+      "distinction_from_development_zh": "区别于exp-03的失真电吉他摇滚，也区别于exp-02以安静原声吉他为主的场景：这里的辨别重点是连续滑音、延音留白和柔和摇动的组合，不是“吉他”加另一情绪词。",
+      "possible_no_match_probe": false
+    },
+    {
+      "query_key": "holdout-06",
+      "text_en": "Dry, rapid percussion with several interlocking drum patterns and no clear pitched tune.",
+      "gloss_zh": "找以敲击为主体的音乐：好几路短而干的鼓点快速交错，没有能哼唱的明确旋律。",
+      "audible_required_cues_zh": [
+        "主要内容是短促、收得快、回响较少的敲击声。",
+        "至少能听出两路不同节奏交错，一路敲的时候另一路补进空隙，速度活跃偏快。",
+        "没有占据前景的演唱、吹奏或弦乐曲调；鼓腔本身有高低不等于明确旋律。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有交错的多路敲击主体，或主要内容是清楚旋律、人声、缓慢长音。只有一般伴奏鼓点不相关。",
+        "1": "有快速鼓点或干短音色，但主要是单一重复节奏，或旋律和人声仍明显主导；不足以形成所需无曲调的交错敲击。",
+        "2": "连贯乐段以干短快速敲击为主体，可听出多路节奏相互填空，且无明确前景曲调，层次或速度感稍弱。",
+        "3": "多路干短鼓点清楚快速交错，互相填入空隙并持续形成音乐主体，没有前景人声或可哼唱曲调。"
+      },
+      "distinction_from_development_zh": "区别于exp-01以强拍推动的电子舞曲，也区别于exp-05以说唱为主体的节奏歌：这里把多路敲击交错本身作为内容，并要求没有明确前景曲调。",
+      "possible_no_match_probe": false
+    },
+    {
+      "query_key": "holdout-07",
+      "text_en": "An instrumental duet where low bowed-string tones hold long rough notes and a high harp-like sound answers with separate plucked notes, without a drum beat.",
+      "gloss_zh": "找两条声音互相应答的器乐：低处像弓拉粗弦那样持续摩擦的长音，高处像竖琴那样一颗颗拨出的短音回应，没有鼓拍。此需求可能没有匹配。",
+      "audible_required_cues_zh": [
+        "低声部延长，带拉弦摩擦的粗糙感，而不是反复低音鼓。",
+        "高声部是分开的清楚拨弦短音，发声后自然衰减，像竖琴。",
+        "能分辨低长音与高短音的轮流回应，主要只有这两类声部，没有持续鼓拍或主唱。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有低处拉弦长音与高处拨弦短音的可辨组合；普通弦乐群奏或低音加鼓点不匹配。",
+        "1": "只符合一种音色，或两种音色都有却一直叠成伴奏、没有回应关系，或鼓拍和主唱占前景。",
+        "2": "连贯乐段中低摩擦长音、高拨弦短音及轮流回应都能分辨，没有持续鼓拍或主唱，但两声部的音色或独立性稍弱。",
+        "3": "低粗弦长音与高颗粒拨弦多次清楚回应，两声部独立而突出，没有鼓拍或主唱，形成可直接使用的持续二重奏听感。"
+      },
+      "distinction_from_development_zh": "区别于exp-08的大型动作管弦渐强、exp-02的安静吉他和exp-04的柔和钢琴：要求低摩擦长音与高拨弦短音两声部应答，不能仅凭安静或弦乐相关。",
+      "possible_no_match_probe": true
+    },
+    {
+      "query_key": "holdout-08",
+      "text_en": "A short sung melody alternating between an ordinary human-sounding voice and a clearly robotic voice, while the backing beat stays the same.",
+      "gloss_zh": "找同一短旋律在人声和机器人般的声音之间轮流唱、底下节拍保持不变的歌。此需求可能没有匹配。",
+      "audible_required_cues_zh": [
+        "先后能听出自然人声式演唱与明显机械电子式演唱：后者有僵直、发硬、电子蜂鸣般的人声色彩。",
+        "两种声线在轮流重复同一或清楚相近的短旋律，不要求听懂歌词，也不凭制作说明猜使用了什么软件。",
+        "声线切换时伴奏节拍保持同一循环，不是换了一首歌或整段音乐一起完全变样。"
+      ],
+      "grade_rules_zh": {
+        "0": "没有可辨的演唱声线交替，或只有器乐、说话、说唱，无法听出所需自然人声与机器人声的旋律关系。",
+        "1": "只有机械式人声或自然人声一方，或两者虽都有却不轮流唱相近旋律；伴奏在切换时完全改变也只算部分线索。",
+        "2": "同一录音中能辨出自然与机械式声线轮流唱相近短旋律，伴奏节拍保持同一循环，但声线反差或交替次数有限。",
+        "3": "自然人声与明显机器人声多次清楚交替唱出相同短旋律，声线反差鲜明而伴奏循环稳定，组合持续成为歌曲特色。"
+      },
+      "distinction_from_development_zh": "区别于exp-06一般流行演唱副歌及exp-05的说唱：同旋律的自然与机械声线交替、伴奏不变是新必要组合，不能仅因电子伴奏或有人唱歌判相关。",
+      "possible_no_match_probe": true
+    }
+  ],
+  "provenance": {
+    "author": "isolated_same_session_AI_agent_not_human_or_B",
+    "candidate_or_model_results_seen_during_authoring": false,
+    "authoring_after_source_frame_commit": "2ab6c94b4ce2b52da3e34f8d99d1ff57a14acd92",
+    "sampler_first_opened_text_only_after_source_corpus_freeze": true,
+    "v1_query_texts_retired_unopened_and_not_reused": true,
+    "no_test_qrels_exist": true
+  }
+}

@@ -102,3 +102,18 @@ PYTHONPATH=services/audio-search python3 -m unittest test_review_pack test_evalu
 `supplement_pack.py build|validate`增加独立包，使用research_evaluate原11输入SHA及`--evaluation`/`--evaluation-sha256`完整重建035结果，再选未判top5并集。候选从035 actual manifest取时间，不改033历史包；初始全null、空模型建议，新dataset隔离草稿。沿用现有试听页的最小schema适配，浏览器导出仍须同固定输入CLI校验。已有输出拒绝覆盖，通用CLI仅写本checkout已ignore的.local私有子目录，本轮仅.local/a/mus036，0700/0600。
 
 实际仅2query/3对/3不同曲目，已有138保留；20新Python检查，最终全目录188通过；前端新9、连旧共77及build通过。原035排序/指标不改、未跑模型或收到新标签。固定完整命令/哈希/保留失败和18项真实浏览器增量见[MUS-036](../../docs/verification/MUS-036.md)，新schema不能交给原E1或source-review CLI。
+
+
+## 独立测试来源准备（MUS-039，source-only）
+
+根目录`scripts/collect_holdout_music.py`已实现固定LOC FMA/MusicBox两框的完整输入重建和source-only收集，显式提供frame、group-review、old-group-review三SHA；这些私有快照与人工关系审查仍需按协议准备，不是通用采集/消歧命令。只取固定官方整item MP3、保留原字节，MusicBox是原音频/视频的官方音轨派生版；共同实际EOF65536/DSP与creator cap4/同作品首项、固定hash队列，不接收query/模型/标签。
+
+已有只读环境执行的新测试：
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest discover -s scripts -p test_holdout_music.py -v
+```
+
+这是从仓库根目录执行的命令，26项通过；真实收集完整命令/三pins与输出名见[MUS-039验证](../../docs/verification/MUS-039.md)。本次收集已成功，原输出重跑拒绝覆盖。没有安装/升级依赖或加载CLAP，共享模型/cache只读，新NUMBA缓存只在本次私有目录。
+
+20条新source-only录音/9保守群与8新query已冻结，旧40开发材料保持；尚无Java身份/HTTP权限映射、新test标注包/runner、向量或人评。现有review/research CLI与页面不自动接收新格式，不能改split复用旧包冒充test；040先冻结新契约/映射/模型安全dev预检和G2，之后才出160项包，G5前不读新qrels。本小样本/元数据关系审查及精确SHA排重不证明声学无近重复或预训练未见。

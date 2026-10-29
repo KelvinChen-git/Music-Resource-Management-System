@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-29 America/Chicago）：MUS-038独立评测/模型对照方案设计完成，未执行test。计划20新曲×8新英文query、160全矩阵，旧100作dev预检；四声学配置加词面对照，采样框先冻、qrels至G5后解封。旧40/141与037五描述开发P@5=1.00/0.96保持；B035/rev1准确9797仍assigned未认领，原卡/dispatch保持。实际新曲/query正文/标注/权重下载/test run均0，MUS-002与线上检索仍未完成；原版/main不变。
+- 当前检查点（2026-10-29 America/Chicago）：MUS-039 G1已冻结20条新source-only录音（16 FMA/4 MusicBox）、9个保守创作者群/20个作品群及8条全新英文描述；26新单测、真实EOF/独立完整队列复核通过。初框容量19，未读旧描述即另版并另写新8条，语料先冻再打开正文。未导入数据库/生成160项包/模型run；旧40/141与037开发P@5保持。040待真实身份HTTP映射、新test格式/runner/安全dev预检。B035/rev1准确9797仍assigned未认领；原版/UI/main不变。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -28,7 +28,7 @@
 | Python离线候选 / 线上检索 | 两来源40曲离线实跑，线上未实现 | 独立私有新run，原窗口/两mode规则；无Java gateway/共享索引/浏览器检索，discovery-v0未冻结 |
 | 研究语料与标注 | 40首已导入；累计141判断已接收 | 原933/新1557片段run保持；037三补判完成、四原包分别保留，五描述123/200已知、77未知，8描述141/320已知、179未知；非held-out/2,000首/70,000片段/120查询 |
 | 质量、P95、并发和提升比例 | 五开发描述精确top5已测，正式质量/P95未验收 | 037 whole25/25相关、segment24/25，P@5=1.00/0.96；旧20同五描述0.16/0.20；原029八query/035区间保持，定向扩库非held-out/10%提升 |
-| 独立测试/模型对照方案 | 038设计完成；执行未开始 | 20新曲×8新query/全160；旧100开发预检复用，A/B各whole/segment与词面共五配置；采样/权重/新包/新run实际0 |
+| 独立测试/模型对照 | 039来源/描述G1冻结；G2–G5未执行 | 新20 source-only/9群、8全新英文query；26新测试/独立EOF与队列核验；160标注包/人评/模型run均0，仍需真实身份导入/新runner |
 
 详细命令与机器生成结果见 [verification/MUS-001.md](verification/MUS-001.md)。旧会话网络阻塞只是历史：本轮 Maven 已能下载和实跑。原始默认 75 tests 有 3 errors；修正 fixture 后才得到全量 89 tests 通过。
 
@@ -50,8 +50,8 @@
 | MUS-036 新top5未知补判包 | review / A（工具就绪；3判断已由037接收） | codex/MUS-036-top5-supplement / 9797ed4；真实生成125076d | E9独立包/实际EOF/新指纹/空建议，历史188 Python/77 Node/build/18真实浏览器通过，工具独立审核未完成 |
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
-| MUS-039 独立测试来源与描述冻结 | in_progress / A | codex/MUS-039-independent-corpus-freeze / bc653e0；依赖038 | 先冻来源采样框，再由未看候选者编写新query，20曲/≥5新群/实际EOF与排除manifest；不按模型或标签挑歌，数量不足blocked |
-| MUS-040 独立格式与模型预检 | todo / A（尚未开始） | 依赖038/039；未来独立任务分支 | 先立新test包/runner契约，B权重本地SHA/严格加载/512及旧100开发预检；当前CLI/UI不自动兼容，不升级现有依赖 |
+| MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
+| MUS-040 独立格式与模型预检 | todo / A（尚未开始） | 依赖038/039；未来独立任务分支 | 先普通owner HTTP导入20源/真实ID与权限Range/SHA映射，立新test包/runner契约；B权重本地SHA/严格加载/512及旧100 dev预检，G2后新包；不升级依赖/重做UI |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | assigned / B（待主动认领） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
@@ -725,3 +725,14 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 039第一检查点：全132条官方loc-fma元数据/逐首rights与模板等137快照已冻结frame SHA a9fd0079…；公开回执独立记录，freeze时query正文/音频下载均0。LOC现场页本机HTTP403如实保留，固定官方GitHub元数据正常TLS可读，整曲S3 HEAD200；不绕证书/鉴权。27个署名字面值不是27个独立作者，别名/合作/许可冲突仍在审查；旧40关系种子仅元数据，原307保护文件保持。先提交E12与frame回执，再让隔离作者编写query，尚未采集20曲或完成G1。
 
 - 039第二检查点：初框完整重建+group review126可技术筛选/6隔离，作者cap4/同work首项理论仅19（实际音频0），feasibility-v1保留；新collector19合成检查/真实三pins只读校验通过，代码968b022。未放宽隔离/凑20，按原协议允许另版：v2全部132FMA+89MusicBox共221/新92快照，原8query保持封存且弃用，采样方未读正文；v2框先提交后才编写8条新描述。MusicBox官方MP3是视频item音轨派生版，原字节保留并披露，项目共享创作者池保守合一群cap4。实际20采集/G1未完成，B035原卡仍保持。
+
+
+### MUS-039 G1完成检查点
+
+- v1容量仅19，8条query原字节封存且采样方未打开；新协议83bc7bf3…/新框d4f2faaa…先在2ab6c94提交再另写新8条。v2全部221记录（132 FMA/89 MusicBox），212可技术筛选、9隔离、11可用群/理论23；原FMA决定不放宽。MusicBox同一录制项目保守一群cap4，原媒体可为音频或视频，下载保留官方整item MP3派生字节，不称原母带。
+- 干净e668a745b67b1d914cd03d9223848a3679bfe4e6真实收集exit0，20条（16/4）、9群、20作品群；61,224,732bytes/3,824,645ms，32–441秒。221优先队列处理176：20入选/156排除（147群上限/8隔离/1实际14.984秒过短），余45未处理，不称其已解码。source manifest cf320f06…/dataset2172565f…/完整queue4dbcb6ae…。
+- 最终26新合成单测通过，旧19/代理子集不累加；真实三pin输入重建221/276证据通过。独立同会话代理复核全部21保存音频实际EOF、20入选PCM/原字节/证明及176完整流程/156排除，297输入hash保持，非B。重名实跑预期exit1/FileExistsError，原91文件字节保持。保留LOC403、初框不足、审计准备错误及根侧误认未入选路径的纠正，不计为成功检查。
+- 22:03:38.619Z先冻结20曲与完整替补队列，22:04:08.088Z才首次读v2正文，8条与封存源5c828557…逐字段相同；公开fixture6b3af0cc…。另8条v1依旧未读/弃用，整任务创作16、活动8。新query来自未看候选/模型的隔离同会话AI，非真人/B；两probe不保证0正例，不按可用素材改描述。
+- 新20仍source-only、无Java ID/owner，未导入数据库/生成160项新包/模型或向量run/读取新标签。旧40已导入/141已判/179未知、四原包/两run/037开发指标保持，页面不会自动看到新20。后续040补普通owner HTTP映射/权限Range/SHA、新test契约/runner和B安全dev预检/G2，再生成新包，qrels仍G5才解封。
+- 307保护文件SHA与54共享cache常规文件集合/hash保持，原备份干净f3b0da1，8080 PID96842/5175 PID4143未重启。首次私有权限终检发现两个新官方快照0644，改mode到0600且字节保持，失败报告保留，重检0700/0600通过。无应用/API/schema/锁/依赖/当前模型/UI/main变化，未重跑无关Maven/build/浏览器/CLAP。
+- 检查点22:12:13Z双方fetched，A860729d/sourcebc653e0，B16b06c8/source4f57837；ack B，035/rev1准确9797/baseb42b767原卡/dispatch字节保持assigned未认领。同会话复核不算B批准，不外推033。G1完成不等于工具独立验收、预训练未见、声学无近重复或正式模型质量；详见verification/MUS-039.md/results.json。
