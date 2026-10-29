@@ -370,7 +370,7 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 
 - 039初始132框经别名/合作/work审查理论上限19<20（尚未下载/解码），按038允许的“blocked或另版协议”选择另版，原038协议、039初框/审查/8条未打开的旧封存描述均原字节保留。v1描述不进入v2；不看其中正文/模型分数/标签再改框。
 - 新协议docs/evaluation/MUS-039-protocol-v2.json，SHA83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b，继承038预算/指标/模型/冻结规则，仅将来源范围显式扩为同一官方revision的全部132 FMA+全部89 MusicBox。完整221框SHAd4f2faaa1d5106626ec64ab8913d7588e96b5f61820ef6e1763506f91e3c8a3e与公开回执先提交；新v2 query正文编写在其后，采样方仍不提前读取。
-- 新frame schema sonora-holdout-source-frame-v2，绑定原FMA frame/review精确SHA，新增92份MusicBox元数据/collection/data/逐首rights快照及完整221规范行。MusicBox source_provider=loc-citizen-dj-musicbox，source_id为原14位录音ID，官方S3路径仅/audio/items/loc-musicbox/<same>.mp3。原metadata文件名可为.m2ts；下载为官方完整item音轨的MP3派生版，保留官方字节，不伪称原视频/原始录音母带、不本地转码或截取。rights使用原逐首free-use-and-reuse文案和AFC来源，不造CC0 URI。
+- 新frame schema sonora-holdout-source-frame-v2，绑定原FMA frame/review精确SHA，新增92份MusicBox元数据/collection/data/逐首rights快照及完整221规范行。MusicBox source_provider=loc-citizen-dj-musicbox，source_id为原始官方录音UID（包含DR字母数字及不同长度数字ID，不补零/截断），官方S3路径仅/audio/items/loc-musicbox/<same>.mp3。原metadata文件名可为.m2ts；下载为官方完整item音轨的MP3派生版，保留官方字节，不伪称原视频/原始录音母带、不本地转码或截取。rights使用原逐首free-use-and-reuse文案和AFC来源，不造CC0 URI。
 - MusicBox共享录制项目/创作者池保守合为一个creator_group、上限仍4，不将45署名当45独立群；规范原作者/performer与summary/credit均保留，原40已知身份/作品重叠或身份/作品未决隔离。已有FMA132审查决定原字节复用，不为数量放宽Lucas/Keith等隔离。全221按同seed/provider/source_id SHA顺序，work版本只留首个合格，全部provider用共同actualEOF/48k DSP和原技术边界。
 - 新collector仅在完整重建两官方框/rights/模板、旧种子与绑定group evidence后支持v2；同时保留v1验证，不以新代码改旧记录。构建前后重核来源/collector/DSP与全部已保存音频/证明。原v1源码提交保留在历史，v2源码清洁提交后才真实运行。仍需20/≥5群才能输出成功；本修订不意味着20已取得或G1已通过，040新包/runner/模型预检未执行。
 

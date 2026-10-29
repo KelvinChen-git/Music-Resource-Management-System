@@ -16,8 +16,11 @@ from urllib.request import HTTPRedirectHandler, HTTPSHandler, ProxyHandler, Requ
 ROOT = Path(__file__).resolve().parents[1]
 CODE_ROOT = ROOT
 PROVIDER = 'loc-citizen-dj-fma'
+MUSICBOX = 'loc-citizen-dj-musicbox'
+MUSICBOX_GROUP = 'loc-musicbox-recording-project'
 REVISION = '216bda2dc80b4ec53b3d279d67923eea020dcce7'
 PROTOCOL_SHA = 'f83a3b456ce51a6dc25b1e4b5c8ae3c77a37168f2b2b11645ccb14a65bebc9e8'
+PROTOCOL_V2_SHA = '83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b'
 SEED = 'MUS-038-phase1-corpus-v1'
 SITE = 'https://citizen-dj.labs.loc.gov'
 BUCKET = 'https://s3.amazonaws.com/citizen-dj-assets.labs.loc.gov'
@@ -25,6 +28,10 @@ DECODER = 'soundfile-read-out-65536-actual-eof-v1'
 RIGHTS = ('This work has been dedicated to the public domain by its creator, thus is free to use and reuse without restriction. '
           'You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. '
           'Attribution is recommended but not required.')
+MUSICBOX_RIGHTS = ('This sound recording is free to use and reuse. You can copy, modify, distribute and perform the work, '
+    'even for commercial purposes, all without asking permission. The American Folklife Center at the Library of Congress '
+    'asks that artists approach the materials in this collection with respect for the culture and sensibilities of the people '
+    'whose lives, ideas, and creativity are documented here. Attribution is recommended but not required.')
 MAX_AUDIO = 30 * 1024 * 1024
 MAX_INPUT = 16 * 1024 * 1024
 
@@ -84,17 +91,20 @@ def regular(path):
     return path
 
 
-def priority(source_id):
-    return digest((SEED + '\n' + PROVIDER + '\n' + source_id).encode())
+def priority(source_id, provider=PROVIDER):
+    require(provider in (PROVIDER, MUSICBOX), 'Unknown official LOC provider')
+    return digest((SEED + '\n' + provider + '\n' + source_id).encode())
 
 
-def source_id(value):
-    require(isinstance(value, str) and re.fullmatch(r'fma-[1-9][0-9]*', value), 'Invalid LOC recording identity')
+def source_id(value, provider=PROVIDER):
+    pattern = r'fma-[1-9][0-9]*' if provider == PROVIDER else r'(?:DR[0-9]{6}|[0-9]{10}|[0-9]{14})'
+    require(provider in (PROVIDER, MUSICBOX) and isinstance(value, str) and re.fullmatch(pattern, value), 'Invalid LOC recording identity')
     return value
 
 
-def audio_url(value, sid):
-    expected = BUCKET + '/audio/items/loc-fma/' + source_id(sid) + '.mp3'
+def audio_url(value, sid, provider=PROVIDER):
+    collection = 'loc-fma' if provider == PROVIDER else 'loc-musicbox'
+    expected = BUCKET + '/audio/items/' + collection + '/' + source_id(sid, provider) + '.mp3'
     require(value == expected, 'Only the exact pinned LOC full-recording URL is allowed')
     return expected
 
@@ -112,8 +122,8 @@ def scalar(document, name, frontmatter=False):
     return text(value)
 
 
-def checked_inputs(frame, frame_sha256, group_review, group_review_sha256,
-                   old_group_review, old_group_review_sha256):
+def _checked_inputs_v1(frame, frame_sha256, group_review, group_review_sha256,
+                       old_group_review, old_group_review_sha256):
     bindings = {}
     def read(path, expected):
         path = regular(path)
@@ -247,6 +257,150 @@ def checked_inputs(frame, frame_sha256, group_review, group_review_sha256,
     return rows, reviews, old_names, old_titles, old_hashes, bindings
 
 
+def _checked_inputs_v2(frame, frame_sha256, group_review, group_review_sha256,
+                       old_group_review, old_group_review_sha256):
+    root = Path(frame).absolute().parent
+    raw_frame = regular(frame).read_bytes()
+    require(digest(raw_frame) == sha(frame_sha256), 'V2 source frame SHA mismatch')
+    f = strict_json(raw_frame)
+    require(f.get('schema') == 'sonora-holdout-source-frame-v2'
+            and f.get('status') == 'source_frame_frozen_not_final_dataset'
+            and f.get('protocol_sha256') == PROTOCOL_V2_SHA and f.get('source_revision') == REVISION
+            and f.get('provider') == 'loc-citizen-dj-union-v2' and f.get('priority_seed') == SEED
+            and f.get('enumeration') == 'all132FMA_union_all89MusicBox_pinned_metadata_no_query_or_genre_filter'
+            and f.get('expected_item_counts') == {PROVIDER: 132, MUSICBOX: 89}
+            and f.get('selection_uses_query_or_model_or_human_relevance') is False
+            and f.get('musicbox_metadata_file') == 'revision02/loc-musicbox-metadata.json'
+            and f.get('musicbox_rights_statement') == MUSICBOX_RIGHTS, 'Unknown or changed V2 source frame')
+    fma_rows, fma_reviews, old_names, old_titles, old_hashes, bindings = _checked_inputs_v1(
+        root / relative(f['fma_frame_file']), f['fma_frame_sha256'],
+        root / relative(f['fma_group_review_file']), f['fma_group_review_sha256'], old_group_review, old_group_review_sha256)
+    def read(path, expected):
+        path = regular(path)
+        raw = path.read_bytes()
+        require(0 < len(raw) <= MAX_INPUT and digest(raw) == sha(expected), 'V2 evidence SHA/size mismatch')
+        require(path not in bindings or bindings[path] == expected, 'Conflicting V2 evidence pins')
+        bindings[path] = expected
+        return raw
+    read(frame, frame_sha256)
+    protocol = strict_json(read(ROOT / 'docs/evaluation/MUS-039-protocol-v2.json', PROTOCOL_V2_SHA))
+    require(protocol.get('version') == 2 and protocol.get('parent_protocol_sha256') == PROTOCOL_SHA
+            and protocol['sampling']['corpus_priority_seed'] == SEED
+            and protocol['test_design']['planned_tracks'] == 20
+            and protocol['test_design']['tracks_per_creator_group_maximum'] == 4,
+            'V2 protocol inheritance/budget mismatch')
+    snapshots = f['snapshots']
+    require(isinstance(snapshots, dict) and len(snapshots) == 92, 'Expected all92 MusicBox snapshots')
+    raw = {name: read(root / relative(name), pin) for name, pin in snapshots.items()}
+    fixed = {'revision02/loc-musicbox-metadata.json', 'revision02/loc-musicbox-collection.md', 'revision02/loc-musicbox-data.json'}
+    require(fixed <= set(raw), 'Missing MusicBox metadata evidence')
+    collection = raw['revision02/loc-musicbox-collection.md']
+    require(scalar(collection, 'uid', True) == 'loc-musicbox'
+            and scalar(collection, 'item_rights', True) == MUSICBOX_RIGHTS
+            and scalar(collection, 'source_url', True) == 'https://lccn.loc.gov/2019655209', 'MusicBox rights/upstream mismatch')
+    meta = strict_json(raw[f['musicbox_metadata_file']])
+    headings = ['title', 'filename', 'year', 'contributors', 'url', 'stream_url']
+    require(meta['itemHeadings'] == headings and isinstance(meta['items'], list) and len(meta['items']) == 89,
+            'Expected complete89 MusicBox metadata')
+    names = meta['groups']['contributors']
+    require(isinstance(names, list) and names and all(isinstance(name, str) for name in names), 'Invalid MusicBox contributor groups')
+    rows, extras, seen = list(fma_rows), {}, set()
+    for values in meta['items']:
+        require(isinstance(values, list) and len(values) == 6, 'Unexpected MusicBox item shape')
+        item = dict(zip(headings, values))
+        match = re.fullmatch(r'/items/loc-musicbox/([^/]+)/', item['url'])
+        require(match is not None, 'Invalid MusicBox canonical URL')
+        sid = source_id(match[1], MUSICBOX)
+        require(sid not in seen, 'Duplicate MusicBox recording')
+        seen.add(sid)
+        title = str(item['title']) if type(item['title']) is int else text(item['title'])
+        indices = item['contributors']
+        require(isinstance(indices, list) and indices and len(set(indices)) == len(indices)
+                and all(type(i) is int and 0 <= i < len(names) for i in indices), 'Invalid MusicBox contributor indices')
+        contributors = [text(names[i]) for i in indices]
+        original = text(item['filename'])
+        require(original == Path(original).name and Path(original).stem == sid
+                and Path(original).suffix in ('.m2ts', '.mov', '.MTS', '.wav'), 'Unexpected original MusicBox media filename')
+        require(type(item['year']) is int and 1900 <= item['year'] <= 2100, 'Invalid MusicBox recording year')
+        stream = '/audio/items/loc-musicbox/' + sid + '.mp3'
+        require(item['stream_url'] == stream, 'MusicBox full-MP3 stream identity mismatch')
+        rights_file = 'revision02/item-rights/' + sid + '.md'
+        require(rights_file in raw, 'Missing MusicBox recording rights')
+        document = raw[rights_file]
+        require(scalar(document, 'uid', True) == sid and scalar(document, 'title', True) == title
+                and scalar(document, 'permalink', True) == item['url']
+                and scalar(document, 'stream_url', True) == stream
+                and scalar(document, 'contributors', True).split(' | ') == contributors
+                and scalar(document, 'rights', True) == MUSICBOX_RIGHTS, 'MusicBox item frontmatter/rights mismatch')
+        rows.append({'source_provider': MUSICBOX, 'source_id': sid, 'title': title, 'contributors': contributors,
+            'source_url': SITE + item['url'], 'upstream_source_url': 'https://lccn.loc.gov/2019655209',
+            'download_url': BUCKET + stream, 'rights_id': 'loc-musicbox-free-use-and-reuse',
+            'rights_statement': MUSICBOX_RIGHTS, 'rights_snapshot': rights_file,
+            'rights_snapshot_sha256': snapshots[rights_file], 'priority_sha256': priority(sid, MUSICBOX),
+            'provider_original_filename': original, 'official_MP3_derivative_of_original_media': True})
+        extras[sid] = {'provider_summary': scalar(document, 'summary', True),
+                      'provider_credit': scalar(document, 'credit', True), 'provider_recorded_year': item['year']}
+    require(set(raw) == fixed | {'revision02/item-rights/' + sid + '.md' for sid in seen}, 'Unexpected MusicBox snapshots')
+    data = strict_json(raw['revision02/loc-musicbox-data.json'])['items']
+    by_id = {r['source_id']: r for r in rows if r['source_provider'] == MUSICBOX}
+    require(isinstance(data, list) and len(data) == 89 and len({r['id'] for r in data}) == 89
+            and all(r['id'] in by_id and str(r['title']) == by_id[r['id']]['title']
+                    and SITE + r['url'] == by_id[r['id']]['source_url'] for r in data), 'MusicBox collection metadata mismatch')
+    rows.sort(key=lambda row: (priority(row['source_id'], row['source_provider']), row['source_provider'], row['source_id']))
+    require(canonical(f['tracks']) == canonical(rows), 'V2 frame is not the full reconstructed221 priority queue')
+    groups = strict_json(read(group_review, group_review_sha256))
+    require(groups.get('schema') == 'sonora-holdout-group-review-v2'
+            and groups.get('source_frame_sha256') == frame_sha256
+            and groups.get('old_group_review_sha256') == old_group_review_sha256
+            and groups.get('acoustic_fingerprinting_performed') is False, 'V2 group review binding mismatch')
+    text(groups['method_version'])
+    evidence = groups['evidence']
+    require(isinstance(evidence, dict) and evidence, 'V2 group review requires evidence')
+    for name, pin in evidence.items():
+        read(Path(group_review).absolute().parent / relative(name), pin)
+    require(isinstance(groups['records'], list) and len(groups['records']) == 221, 'Expected all221 group decisions')
+    reviews = {}
+    for row in groups['records']:
+        provider, sid = row['source_provider'], row['source_id']
+        source_id(sid, provider)
+        require(sid not in reviews and ((provider == PROVIDER and sid in fma_reviews)
+                or (provider == MUSICBOX and sid in by_id)), 'Unknown/duplicate V2 group record')
+        if provider == PROVIDER:
+            require(canonical({k: v for k, v in row.items() if k != 'source_provider'}) == canonical(fma_reviews[sid]),
+                    'Original FMA group decisions cannot change in V2')
+        else:
+            require(row['decision'] in ('eligible', 'quarantined', 'old_overlap'), 'Invalid MusicBox review decision')
+            text(row['reason'])
+            for name in ('creator_group', 'work_group'):
+                require(row[name] is None or isinstance(row[name], str), 'Invalid MusicBox group')
+                if row[name] is not None: text(row[name])
+                require(row['decision'] != 'eligible' or row[name] is not None, 'Eligible MusicBox groups must be resolved')
+            require(row['creator_group'] in (None, MUSICBOX_GROUP)
+                    and (row['decision'] != 'eligible' or row['creator_group'] == MUSICBOX_GROUP),
+                    'MusicBox must retain the single recording-project creator group')
+        paths = row['evidence_paths']
+        require(isinstance(paths, list) and paths and len(set(paths)) == len(paths) and set(paths) <= set(evidence),
+                'V2 group record lacks pinned evidence')
+        reviews[sid] = row
+    for row in rows:
+        if row['source_provider'] == MUSICBOX:
+            row.update(extras[row['source_id']])
+    return rows, reviews, old_names, old_titles, old_hashes, bindings
+
+
+def checked_inputs(frame, frame_sha256, group_review, group_review_sha256, old_group_review, old_group_review_sha256):
+    raw = regular(frame).read_bytes()
+    require(0 < len(raw) <= MAX_INPUT and digest(raw) == sha(frame_sha256), 'Pinned source frame SHA/size mismatch')
+    schema = strict_json(raw).get('schema')
+    if schema == 'sonora-holdout-source-frame-v1':
+        checker = _checked_inputs_v1
+    elif schema == 'sonora-holdout-source-frame-v2':
+        checker = _checked_inputs_v2
+    else:
+        raise ValueError('Unknown holdout source frame schema')
+    return checker(frame, frame_sha256, group_review, group_review_sha256, old_group_review, old_group_review_sha256)
+
+
 class ExactRedirects(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         require(req.full_url == newurl, 'LOC redirect changed source or recording identity')
@@ -255,7 +409,8 @@ class ExactRedirects(HTTPRedirectHandler):
 
 def fetch_audio(url, limit):
     sid = url.rsplit('/', 1)[-1].removesuffix('.mp3')
-    audio_url(url, sid)
+    provider = MUSICBOX if url.startswith(BUCKET + '/audio/items/loc-musicbox/') else PROVIDER
+    audio_url(url, sid, provider)
     context = ssl.create_default_context(cafile='/etc/ssl/cert.pem')
     opener = build_opener(ProxyHandler({}), ExactRedirects(), HTTPSHandler(context=context))
     with opener.open(Request(url, headers={'User-Agent': 'SonoraHoldoutSource/1.0'}), timeout=90) as response:
@@ -314,6 +469,7 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
         output, fetch=None, decode=None):
     rows, reviews, old_names, old_titles, old_hashes, bindings = checked_inputs(
         frame, frame_sha256, group_review, group_review_sha256, old_group_review, old_group_review_sha256)
+    protocol_sha = strict_json(regular(frame).read_bytes())['protocol_sha256']
     source_paths = {'collector': Path(__file__), 'actual_eof_decoder': CODE_ROOT / 'services/audio-search/research_corpus.py',
                     'preprocessing': CODE_ROOT / 'services/audio-search/preprocess.py'}
     source_hashes = {name: digest(regular(path).read_bytes()) for name, path in source_paths.items()}
@@ -335,7 +491,8 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
         for path, expected in bindings.items():
             require(digest(regular(path).read_bytes()) == expected, 'Frozen source evidence changed during collection')
     def exclude(row, reason, error=None):
-        record = {'source_id': row['source_id'], 'priority_sha256': priority(row['source_id']), 'reason': reason}
+        record = {'source_provider': row['source_provider'], 'source_id': row['source_id'],
+                  'priority_sha256': priority(row['source_id'], row['source_provider']), 'reason': reason}
         if error is not None:
             record.update(error_type=type(error).__name__, error=str(error)[:2000])
         exclusions.append(record)
@@ -344,7 +501,8 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
             require(digest(regular(path).read_bytes()) == expected,
                     'Previously downloaded audio or proof changed; source collection aborted')
     try:
-        write_new(target / 'priority-queue.json', [{'source_id': r['source_id'], 'priority_sha256': priority(r['source_id'])} for r in rows])
+        write_new(target / 'priority-queue.json', [{'source_provider': r['source_provider'], 'source_id': r['source_id'],
+            'priority_sha256': priority(r['source_id'], r['source_provider'])} for r in rows])
         for row in rows:
             review = reviews[row['source_id']]
             if review['decision'] != 'eligible':
@@ -357,7 +515,7 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
                 exclude(row, 'creator_group_cap4'); continue
             if work_key in works:
                 exclude(row, 'work_or_version_already_selected'); continue
-            url = audio_url(row['download_url'], row['source_id'])
+            url = audio_url(row['download_url'], row['source_id'], row['source_provider'])
             body, final_url = (fetch or fetch_audio)(url, MAX_AUDIO)
             require(isinstance(body, bytes) and final_url == url, 'Download changed source identity')
             name = row['source_id'] + '.mp3'
@@ -366,7 +524,7 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
             saved_audio_proofs[path] = digest(body)
             proof = {'source_url': row['source_url'], 'download_url': url, 'final_url': final_url,
                 'bytes_read': len(body), 'sha256': digest(body), 'download_within_complete_size_bound': 0 < len(body) <= MAX_AUDIO,
-                'rights_id': row['rights_id'], 'rights_statement': RIGHTS,
+                'rights_id': row['rights_id'], 'rights_statement': row.get('rights_statement', RIGHTS),
                 'rights_snapshot': row['rights_snapshot'], 'rights_snapshot_sha256': row['rights_snapshot_sha256']}
             proof_name = row['source_id'] + '.download.json'
             write_new(audio / proof_name, proof)
@@ -388,7 +546,7 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
             require(digest(regular(path).read_bytes()) == digest(body), 'Downloaded bytes changed during decoding')
             recheck()  # Input pin failures are never a reason to skip to another recording.
             recheck_downloads()
-            accepted.append({**row, 'recording_key': PROVIDER + ':' + row['source_id'],
+            accepted.append({**row, 'recording_key': row['source_provider'] + ':' + row['source_id'],
                 'creator_group': creator, 'work_group': work, 'audio_filename': 'audio/' + name,
                 'content_sha256': digest(body), 'content_bytes': len(body),
                 'download_proof_filename': 'audio/' + proof_name,
@@ -406,7 +564,7 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
                     and digest(regular(target / track['download_proof_filename']).read_bytes()) == track['download_proof_sha256'],
                     'Accepted audio or proof changed before source freeze')
         manifest = {'schema': 'sonora-holdout-corpus-v1', 'split': 'independent_test_source_only',
-            'protocol_sha256': PROTOCOL_SHA, 'source_frame_sha256': frame_sha256,
+            'protocol_sha256': protocol_sha, 'source_frame_sha256': frame_sha256,
             'group_review_sha256': group_review_sha256, 'old_group_review_sha256': old_group_review_sha256,
             'source_decoder_version': DECODER, 'collector_sha256': digest(Path(__file__).read_bytes()),
             'source_hashes': source_hashes,
@@ -415,7 +573,7 @@ def run(frame, frame_sha256, group_review, group_review_sha256, old_group_review
             'exclusions_sha256': digest((target / 'exclusions.json').read_bytes()),
             'limits': ['Source-only; no Java identity, owner, labels, queries, vectors or model scores.',
                 'Pinned metadata/group review and exact byte deduplication; no acoustic fingerprinting performed.',
-                'Public-domain dedication retained as LOC wording; no precise CC0 URI inferred.']}
+                'Provider-specific LOC rights wording and official MP3 derivative status retained; no precise CC0 URI inferred.']}
         manifest['dataset_sha256'] = digest(canonical(manifest))
         write_new(target / 'manifest.json', manifest)
         return {'status': 'collected_independent_source_only', 'tracks': 20, 'creator_groups': len(creators),

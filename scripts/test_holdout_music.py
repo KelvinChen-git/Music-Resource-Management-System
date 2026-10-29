@@ -105,6 +105,55 @@ class HoldoutCollectionTest(unittest.TestCase):
         self.groups.update(source_frame_sha256=self.frame_sha, old_group_review_sha256=self.old_sha)
         self.groups_sha = put(self.groups_path, self.groups)
 
+    def make_v2(self):
+        protocol=self.root/'docs/evaluation/MUS-039-protocol-v2.json'
+        protocol.write_bytes((c.CODE_ROOT/'docs/evaluation/MUS-039-protocol-v2.json').read_bytes())
+        fma_frame_path,fma_groups_path=self.frame_path,self.groups_path
+        fma_frame_sha,fma_groups_sha=self.frame_sha,self.groups_sha
+        fma_rows=deepcopy(self.rows);fma_records=deepcopy(self.groups['records'])
+        snapshots,metadata,data,mb_rows={},{'itemHeadings':['title','filename','year','contributors','url','stream_url'],
+            'items':[],'groups':{'contributors':['Synthetic MusicBox performer A','Synthetic MusicBox performer B']}},[],[]
+        rights_dir=self.state/'revision02/item-rights';rights_dir.mkdir(parents=True,mode=0o700)
+        def snapshot(name,body):
+            path=self.state/name;path.write_bytes(body);path.chmod(0o600);snapshots[name]=c.digest(body)
+        for i in range(89):
+            sid=('DR'+str(100+i).zfill(6)) if i%3==0 else (str(2011121000+i) if i%3==1 else str(20100917180000+i))
+            title='Synthetic MusicBox '+str(i);page='/items/loc-musicbox/'+sid+'/'
+            stream='/audio/items/loc-musicbox/'+sid+'.mp3';rights='revision02/item-rights/'+sid+'.md'
+            filename=sid+('.wav' if sid.startswith('DR') else ('.m2ts' if i%3==1 else '.mov'))
+            fields={'uid':sid,'title':title,'permalink':page,'stream_url':stream,
+                'contributors':'Synthetic MusicBox performer A | Synthetic MusicBox performer B',
+                'rights':c.MUSICBOX_RIGHTS,'summary':'Synthetic performance context', 'credit':'Synthetic AFC metadata credit'}
+            snapshot(rights,('---\n'+''.join(k+': '+json.dumps(v)+'\n' for k,v in fields.items())+'---\n').encode())
+            metadata['items'].append([title,filename,2010,[0,1],page,stream]);data.append({'id':sid,'title':title,'url':page})
+            mb_rows.append({'source_provider':c.MUSICBOX,'source_id':sid,'title':title,
+                'contributors':metadata['groups']['contributors'],'source_url':c.SITE+page,
+                'upstream_source_url':'https://lccn.loc.gov/2019655209','download_url':c.BUCKET+stream,
+                'rights_id':'loc-musicbox-free-use-and-reuse','rights_statement':c.MUSICBOX_RIGHTS,
+                'rights_snapshot':rights,'rights_snapshot_sha256':snapshots[rights],
+                'priority_sha256':c.priority(sid,c.MUSICBOX),'provider_original_filename':filename,
+                'official_MP3_derivative_of_original_media':True})
+        snapshot('revision02/loc-musicbox-metadata.json',c.canonical(metadata))
+        snapshot('revision02/loc-musicbox-data.json',c.canonical({'items':data}))
+        snapshot('revision02/loc-musicbox-collection.md',('---\nuid: "loc-musicbox"\nsource_url: "https://lccn.loc.gov/2019655209"\nitem_rights: '+json.dumps(c.MUSICBOX_RIGHTS)+'\n---\n').encode())
+        self.rows=sorted(fma_rows+mb_rows,key=lambda r:(c.priority(r['source_id'],r['source_provider']),r['source_provider'],r['source_id']))
+        self.frame={'schema':'sonora-holdout-source-frame-v2','status':'source_frame_frozen_not_final_dataset',
+            'protocol_sha256':c.PROTOCOL_V2_SHA,'source_revision':c.REVISION,'provider':'loc-citizen-dj-union-v2',
+            'priority_seed':c.SEED,'enumeration':'all132FMA_union_all89MusicBox_pinned_metadata_no_query_or_genre_filter',
+            'expected_item_counts':{c.PROVIDER:132,c.MUSICBOX:89},'selection_uses_query_or_model_or_human_relevance':False,
+            'fma_frame_file':fma_frame_path.name,'fma_frame_sha256':fma_frame_sha,
+            'fma_group_review_file':fma_groups_path.name,'fma_group_review_sha256':fma_groups_sha,
+            'musicbox_metadata_file':'revision02/loc-musicbox-metadata.json','musicbox_rights_statement':c.MUSICBOX_RIGHTS,
+            'snapshots':snapshots,'tracks':self.rows}
+        self.groups={'schema':'sonora-holdout-group-review-v2','source_frame_sha256':'','old_group_review_sha256':self.old_sha,
+            'method_version':'synthetic-v2-group-test','acoustic_fingerprinting_performed':False,
+            'evidence':deepcopy(self.groups['evidence']),
+            'records':[dict(r,source_provider=c.PROVIDER) for r in fma_records]+[
+                {'source_provider':c.MUSICBOX,'source_id':r['source_id'],'decision':'eligible',
+                 'creator_group':c.MUSICBOX_GROUP,'work_group':'mb-work-'+r['source_id'],
+                 'reason':'Synthetic work review','evidence_paths':['creator-evidence.txt']} for r in mb_rows]}
+        self.frame_path=self.state/'source-frame-v2.json';self.groups_path=self.state/'group-review-v2.json';self.save()
+
     def fetch(self, url, limit):
         self.calls.append(url)
         return b'ID3 synthetic full recording ' + url.encode(), url
@@ -303,6 +352,73 @@ class HoldoutCollectionTest(unittest.TestCase):
             c.main()
         self.assertEqual(err.getvalue(),'');self.assertEqual(json.loads(out.getvalue())['tracks'],20)
         self.assertNotIn('source_id',out.getvalue());self.assertNotIn('title',out.getvalue())
+
+    def test_v2_complete_union_and_actual_provider_hash_priority(self):
+        self.make_v2()
+        args=self.arguments();args.pop('output');args.pop('fetch');args.pop('decode')
+        rows,reviews,*_=c.checked_inputs(**args)
+        self.assertEqual((len(rows),len(reviews)),(221,221))
+        self.assertEqual(Counter(r['source_provider'] for r in rows),{c.PROVIDER:132,c.MUSICBOX:89})
+        mb=[r for r in rows if r['source_provider']==c.MUSICBOX]
+        self.assertEqual({len(r['source_id']) for r in mb},{8,10,14})
+        expected=sorted(rows,key=lambda r:(hashlib.sha256((c.SEED+'\n'+r['source_provider']+'\n'+r['source_id']).encode()).hexdigest(),r['source_provider'],r['source_id']))
+        self.assertEqual(rows,expected)
+        self.assertTrue(all(r['provider_summary']=='Synthetic performance context' for r in mb))
+
+    def test_v2_success_retains_distinct_rights_derivative_and_creator_project_cap(self):
+        self.make_v2();self.run_batch()
+        manifest=json.loads((self.output/'manifest.json').read_text())
+        self.assertEqual(manifest['protocol_sha256'],c.PROTOCOL_V2_SHA)
+        mb=[r for r in manifest['tracks'] if r['source_provider']==c.MUSICBOX]
+        self.assertTrue(mb);self.assertLessEqual(len(mb),4)
+        for r in mb:
+            proof=json.loads((self.output/r['download_proof_filename']).read_text())
+            self.assertEqual(proof['rights_statement'],c.MUSICBOX_RIGHTS)
+            self.assertEqual(r['creator_group'],c.MUSICBOX_GROUP)
+            self.assertEqual(r['recording_key'],c.MUSICBOX+':'+r['source_id'])
+            self.assertTrue(r['official_MP3_derivative_of_original_media'])
+            self.assertNotEqual(Path(r['provider_original_filename']).suffix,'.mp3')
+            self.assertTrue(proof['download_url'].endswith(r['source_id']+'.mp3'))
+
+    def test_v2_video_sample_or_different_uid_urls_remain_forbidden(self):
+        self.make_v2();row=next(r for r in self.rows if r['source_provider']==c.MUSICBOX)
+        self.assertEqual(c.audio_url(row['download_url'],row['source_id'],c.MUSICBOX),row['download_url'])
+        for url in (row['download_url'].replace('.mp3','.mov'),row['download_url'].replace('.mp3','.wav'),
+                    row['download_url'].replace('/audio/items/','/audio/samples/'),row['download_url'].replace(row['source_id'],'DR999999')):
+            with self.subTest(url=url),self.assertRaises(ValueError):c.audio_url(url,row['source_id'],c.MUSICBOX)
+
+    def test_v2_cannot_relax_original_fma_group_decisions(self):
+        self.make_v2();row=next(r for r in self.groups['records'] if r['source_provider']==c.PROVIDER)
+        row['creator_group']='changed-old-reviewed-group';self.save()
+        with self.assertRaisesRegex(ValueError,'Original FMA group decisions'):self.run_batch()
+        self.assertEqual(self.calls,[])
+
+    def test_v2_musicbox_cannot_split_recording_project_into_performer_groups(self):
+        self.make_v2();row=next(r for r in self.groups['records'] if r['source_provider']==c.MUSICBOX)
+        row['creator_group']='pretend-independent-performer';self.save()
+        with self.assertRaisesRegex(ValueError,'single recording-project'):self.run_batch()
+        self.assertEqual(self.calls,[])
+
+    def test_v2_changed_metadata_derivative_disclosure_or_protocol_is_rejected(self):
+        self.make_v2();row=next(r for r in self.frame['tracks'] if r['source_provider']==c.MUSICBOX)
+        row['official_MP3_derivative_of_original_media']=False;self.save()
+        with self.assertRaisesRegex(ValueError,'full reconstructed221'):self.run_batch()
+        row['official_MP3_derivative_of_original_media']=True;self.save()
+        path=self.root/'docs/evaluation/MUS-039-protocol-v2.json';path.write_bytes(path.read_bytes()+b'changed')
+        with self.assertRaisesRegex(ValueError,'SHA/size'):self.run_batch()
+        self.assertEqual(self.calls,[])
+
+    def test_v2_musicbox_work_versions_still_select_only_first_valid_recording(self):
+        self.make_v2()
+        ordered=[r for r in self.rows if r['source_provider']==c.MUSICBOX]
+        first={r['source_id'] for r in ordered[:2]}
+        for row in self.groups['records']:
+            if row['source_id'] in first:row['work_group']='same-musicbox-work'
+        self.save();self.run_batch()
+        manifest=json.loads((self.output/'manifest.json').read_text())
+        self.assertEqual(sum(r['work_group']=='same-musicbox-work' for r in manifest['tracks']),1)
+        reasons=json.loads((self.output/'exclusions.json').read_text())
+        self.assertTrue(any(r['reason']=='work_or_version_already_selected' and r['source_provider']==c.MUSICBOX for r in reasons))
 
 
 if __name__=='__main__':unittest.main()
