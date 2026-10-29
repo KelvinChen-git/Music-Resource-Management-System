@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-034新20素材标注已接收
+
+A；2026-10-29 America/Chicago（28日开始）；branch codex/MUS-034-source-label-receipt；base `7879a7d1494ce8822bf2aaf2e144e321112964de`；done仅收件/素材汇总，非模型效果验收。最终提交SHA见handoff。
+
+ack_peer_feed_sha `44a7f90a6d4682e16ec92e2ce8733bc95cfbf151` / B source `f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac`。开始sync双方fetched，B033/rev1 assigned原卡保持，准确reviewed10880f8不改；未替换/冒充主动认领或外推027批准。
+
+用户交回16218字节新source-review包，SHA eccc4af2c765bcc2dab45c43e5abc9afc9e0ded65d64890e29266c0c44353c96，原字节0600归档在ignore.local/a/mus034，父目录0700。固定E7输入重建，下载/归档CLI均exit0，dataset仍b225ef4d…；20/20全3分、0人工区间、五描述各4不同新音乐，与原118对无交集，累计138，等级78/19/11/30。原三完成包分别保留，不写混合schema或改评分。
+
+五描述原20全库相关2/1/1/2/1，本次各新增4，40曲中已知相关至少6/5/5/6/5；每query24已知/16未知。五query共120/200已知，全部8query138/320已知、182未知，不当完整40曲真值/模型P@5。全部新素材单作者且按已知描述元数据选取，仍development，不等于模型准确率或held-out提升。旧029指标/933片段/run保持，新40未编码/索引或模型重跑。
+
+固定CLI及独立同会话分组复核一致，非B审核/身份听音认证。186保护文件前后SHA保持（含旧标签/空白包/033原包40catalog80副本/032/旧run/B卡/下载），原版干净f3b0da1。实际分析JSON有效，一次多余格式预检条件误判及替代脚本路径失败已保留说明，不改变有效结果、不记passed。仅README/PROJECT/STATUS/本latest/verification/MUS-034*，无应用/工具源码/API/schema/依赖/服务/模型/main变更，不重复无关应用测试。
+
+方法/精确哈希与未知边界见verification/MUS-034.md/results.json。下一步MUS-035另立provider-aware40曲新run与冻结候选对照，明确未判处理，独立测试另建；MUS-002效果/discovery-v0未完成。提交后publish并回读，发布非B接收，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-033导入/新20素材核查完成，接收B027限定批准
 
 A；2026-10-28 America/Chicago；branch codex/MUS-033-source-import-review；base `7704051f9a844816174c710d09e6f92e5b23f0e7`，implementation `dc7e1e492695d5960dd13aea412730c6c72d4baf`，audio fix `f9192fcd03d0c8224b5dbe9176e46d46d7c1dcf1`，最终source边界 `10880f87f4073dc8f2d260fb72a07c9e52e59791`。review：本机交付完成，新20待人评/独立复核；最终交付SHA见handoff。
