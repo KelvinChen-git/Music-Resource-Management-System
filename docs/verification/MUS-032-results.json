@@ -1,0 +1,122 @@
+{
+  "task_id": "MUS-032",
+  "status": "source_candidates_collected_and_decoded_local_review",
+  "checked_on": "2026-10-28 America/Chicago",
+  "branch": "codex/MUS-032-targeted-corpus-candidates",
+  "source_baseline_sha": "2e2db1e9e62d19ee57cdf2c5823f4c8f3593878e",
+  "split": "development_source_candidates_not_held_out",
+  "selection_sha256": "c02ae831a4338862ffc68e626a64c67477ea79e5e62c8a019ac4cb311e701669",
+  "baseline_catalog_sha256": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+  "collector_sha256": "8c7afa901b17eaec5d7483f61658d88c037315f8f7317cf7368140b9bfd9bb53",
+  "test_source_sha256": "d8c670cb42f8bacd7fa71d9808e5dac51038de4a22228d97dba344438b30d320",
+  "private_batch_path": ".local/a/mus032/batch-01",
+  "manifest_sha256": "2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a",
+  "downloaded_tracks": 20,
+  "downloaded_bytes": 115494136,
+  "per_bucket": {
+    "exp-02": 4,
+    "exp-03": 4,
+    "exp-04": 4,
+    "exp-07": 4,
+    "exp-08": 4
+  },
+  "distinct_composers_in_new_batch": 1,
+  "previous_content_overlap": 0,
+  "new_duplicate_contents": 0,
+  "official_snapshots": {
+    "official-catalog.json": {
+      "url": "https://incompetech.com/music/royalty-free/pieces.json",
+      "sha256": "54802ad340562624b9d1c9c97aa9f005e2b9bf79001f8a1a07ed857e68b2164a"
+    },
+    "official-track-template.html": {
+      "url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN2300003",
+      "sha256": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+    },
+    "official-license.html": {
+      "url": "https://incompetech.com/music/royalty-free/licenses/",
+      "sha256": "479019ed42fd8384c63c04bd95dc6d0e0e0da505ddd6f567a13018c724f8416d"
+    }
+  },
+  "license_evidence": "One official dynamic per-track rendering template plus complete official catalog and license description; not20 separately rendered static license pages.",
+  "validation": {
+    "decoded": 20,
+    "finite": 20,
+    "hash_and_proof_matched": 20,
+    "duration_metadata_within_2000ms": 14,
+    "duration_metadata_outside_2000ms": 6,
+    "original_inputs_unchanged": 55,
+    "human_judged": 0,
+    "java_imported": 0,
+    "status": "passed_full_source_decode_with_metadata_differences",
+    "total_duration_ms": 3189548,
+    "min_duration_ms": 52702,
+    "max_duration_ms": 244102,
+    "formats": [
+      "MP3"
+    ],
+    "sample_rates_hz": [
+      44100,
+      48000
+    ],
+    "channels": [
+      2
+    ],
+    "metadata_duration_delta_ms_outside_2000": [
+      2561,
+      2702,
+      3448,
+      3497,
+      3566,
+      3659
+    ]
+  },
+  "checks": {
+    "synthetic_guard_tests": 18,
+    "guard_tests_result": "passed",
+    "actual_repeat_output_exit_code": 1,
+    "actual_repeat_output_rejected_without_changes": true,
+    "independent_same_session_full_decode": "matched; not account B review",
+    "private_file_mode": "0o600",
+    "private_directory_mode": "0o700"
+  },
+  "logs": {
+    "collect.log_sha256": "60c1db9d5a315de8d8c35bf5abaaa97fa825cbcda30184bd946e0a6f9b2cc8c2",
+    "tests.log_sha256": "17e61501e42c4284e7870cf8f59a98f95646fe77a68316acbbf48903a9a11063",
+    "decode-first-attempt.log_sha256": "c09cce775faa15c4732dcb5fdc48634edaaf26d6c070cb26fd57dafe36dc1694",
+    "decode-final.log_sha256": "660fa7292aa6a993503b960332649e4db55c3ececc4d8d8716722cfe72407d78",
+    "decode-results.json_sha256": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+    "verify_audio.py_sha256": "8d8622fa89581551f6650bb98d7535785a6e3a1afe6671c30d7958e33b7dab58",
+    "overwrite-rejected.log_sha256": "88a8ba2dea1ef989ceda5c17e68122696c2b576c956b2553b66582c24bfa0d22"
+  },
+  "initial_attempts": [
+    {
+      "stage": "environment_preflight",
+      "errors": [
+        "Sonora .local/a/music-catalog not found",
+        "Sonora .local/a/clap-venv/bin/python not found"
+      ],
+      "resolution": "Use documented original checkout read-only cache/decoder; no dependency or source/audio changes."
+    },
+    {
+      "stage": "first_decode_check",
+      "exit_code": 1,
+      "error": "AssertionError at provisional metadata duration <=2000ms expectation",
+      "resolution": "Fully decode all20, preserve actual duration and metadata separately;14 within2s and6 differing2.561..3.659s. No audio trimming or metadata overwriting; not20 metadata matches."
+    }
+  ],
+  "limits": [
+    "Bucket assignments are source-metadata curation clues, not human relevance scores.",
+    "Only source candidates collected; app catalog remains original20 until HTTP import/real Java IDs and provider adaptation.",
+    "All new candidates by Kevin MacLeod; known-description selection is development-only, not held-out/test.",
+    "No new model encoding, index, ranking, metrics, Java/API/database-schema/UI/lockfile changes, main merge or old data mutation.",
+    "Provider duration discrepancies must remain visible; actual decoded times govern future windows.",
+    "B027 fixed assignment unchanged;032 independent tool review not yet dispatched."
+  ],
+  "runtime": {
+    "git_head_at_collection": "2e2db1e9e62d19ee57cdf2c5823f4c8f3593878e",
+    "working_tree_dirty_at_collection": true,
+    "collector_python_version": "3.12.10",
+    "decoder_python_version": "3.12.10",
+    "code_identity": "Collector precise SHA bound in manifest; committed source must match it."
+  }
+}

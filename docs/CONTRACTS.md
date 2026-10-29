@@ -304,6 +304,13 @@ MUS-027交互补充：评分区就近提供必填匿名代号输入；空值或�
 - 浏览器保持E1原规则和上限（<=10），仅新schema允许<=100且要求准确的新provenance字段/有序query IDs对齐/空模型区间；owner/SHA字节/JWT逐次媒体/人工输入/本机草稿原行为保持。新增就近说明“核查未入选曲目、已完成判断保留、不提供模型建议”，不重做UI。
 - 固定run+基包CLI最终校验重建完整补集，仅人工四字段可变，沿用0..3/代号/UTC/合法可选人工区间。浏览器只校验结构与自洽指纹，不能独立认证补集来源；交回仍需CLI。E4评估不接受新诊断schema，不把补标当原top5评分或held-out；本轮不自动合并标签/训练/扩库/定拒绝阈值。
 
+### E6. MUS-032定向来源候选（独立source-only版本）
+
+- 当前五描述已用于探索失败分析，按其收集的新曲只属于development扩充，不命名held-out/test或宣称效果提升。新静态selection固定五个query_id各4个不重复ISRC；提供方乐器/情绪说明只是选曲线索，不是人工relevance，后续人评仍需显式用户动作。
+- 采用作者官方Incompetech来源及其CC BY4.0署名/下载说明，单独记录官方catalog、曲目展示模板、许可说明的原始快照SHA和每个ISRC记录；音频只从官方HTTPS限定路径取得，保留原字节、长度、SHA、来源/许可/作者/未修改说明。拒绝非官方重定向、越界路径、超限/空/HTML内容、重复ISRC/内容和旧20曲内容。完整录音允许30–600秒，不把短录音拼接或截成假整曲。
+- 输出独立`sonora-source-candidates-v1`，split=`development_source_candidates_not_held_out`，身份为provider+ISRC，不填/假造Java musicId或owner，不直接传给旧probe/标注页。原public catalog、原下载证明/音频/run/118判断只读；新目录必须是当前checkout ignore的.local下，0700，文件0600，已存在目录拒绝覆盖；显式固定selection和旧catalog SHA。
+- 本任务完成来源候选收集/内容证明与实际解码检查，不自动变成人类确认的正例、不写本机数据库/账号/API、不重跑CLAP或改排序。后续通过原普通owner HTTP导入取得真实musicId，再生成独立catalog/run/标注指纹；原20基线继续可复验。单作者集中度与围绕已知描述选样的偏差需披露，独立测试另建。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。

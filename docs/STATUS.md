@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-28 America/Chicago）：MUS-031已接收补充67/67，与028原51累计118/160已知；五条描述各20曲完整判断，仅各1–2首相关，补集新增2个原联合池漏选相关对。029首轮探索指标保留，正式模型验收仍未完；非held-out，其他三描述42对未知。MUS-027 B固定卡仍assigned，原版/后端/main保持。
+- 当前检查点（2026-10-28 America/Chicago）：MUS-032另收五描述各4共20首来源候选并完整解码，尚未导入网页；原曲库20首及118判断保留。031五描述完整诊断仅各1–2首相关、原联合池漏2对；新候选仍未听评，不算独立测试或模型验收。033待真实ID与新来源适配；B027固定卡仍assigned，原版/后端/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -42,6 +42,8 @@
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段，028/031已收118探索判断并完成五描述覆盖诊断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
+| MUS-032 定向来源候选 | review / A（收集/全解码完成，工具待独立复核） | codex/MUS-032-targeted-corpus-candidates / 2e2db1e | 五描述各4首，20/20原MP3/SHA/证明/解码、18保护检查；source-only，未写库/人评 |
+| MUS-033 新来源导入与身份适配 | todo / unassigned | 依赖032 | 固定批次、真实JavaID和原owner HTTP导入、来源适配与新私有catalog/run；保留原20/118，不把候选当正例 |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
@@ -594,3 +596,17 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 仅内存对照，未生成可导入混合包/逐条公开人评；private分析脚本、校验日志与原始包在ignore.local，公开聚合/哈希/方法见verification/MUS-031.md/results.json。同会话只读复核与CLI/计数一致，非B审核；原run/向量/catalog/原51/两空白包/下载/B027卡SHA全部保持。
 - 原029指标口径与数值保留，不把五描述诊断混成八描述全库结果；其他三描述42对未知。无新排名指标/定位IoU/P95、模型重跑/训练/阈值/扩库；本任务仅文档和私有接收，不重复无关应用测试。下一步针对具体描述补充素材、另建独立测试和模型对照；不提前冻结discovery-v0。
 - 检查点sync双方fetched，B仍dc5ec6ce/source dd049fdf、027卡assigned保持；原版备份干净f3b0da1，未动前后端/服务/依赖/API/schema或合并main。原始包不跨账号发布；本机收件与同会话复核不等于B独立验收。
+
+## MUS-032定向来源候选占用（2026-10-28）
+
+- owner A；base2e2db1e；branch codex/MUS-032-targeted-corpus-candidates。允许新scripts/collect_research_music.py、test_research_music.py、services/audio-search/targeted_sources.json，README/PROJECT/CONTRACTS/STATUS/A latest及verification/MUS-032*。先E6固定source-only身份/仅development/独立输出和不代填人评；不改原importer/corpus/probe、前端/Java/依赖/公共catalog。
+- 计划五描述各4新曲，先以官方作者来源/CC BY4.0/元数据筛选，再固定ISRC下载并实际解码，原字节与证明只ignore.local/a/mus032，文件0600/目录0700；旧曲按内容hash排除。研究代理只读查来源，测试代理只写新test，A独占实现/selection/台账。同会话非B审核，B027原assigned卡保持。
+- 现有Jamendo热门导入不能增量且会覆盖旧公开catalog；本轮不用旧入口。官方Jamendo API另有离线/缓存条款，新增素材改由作者官网明确CC授权/下载入口获取；保留旧证据、不据新调查改写历史验收或作法律结论。输出不是Java已导入曲库，也不是已确认相关曲目或独立测试；后续真实ID映射与独立版本另立集成检查。
+
+### MUS-032收集与全解码完成
+
+- 新收集器/固定selection仅标准库，无依赖升级；18项合成边界检查通过，同会话只读代码与真实全解码复核一致，非B。真实batch-01收20/20、各bucket4，共115494136bytes，20内容与旧20无交集、无新重复；manifest SHA2747406a…，source-only无JavaID/owner，全部human_relevance null。
+- 20/20 MP3全帧读完、有限值、SHA/完整证明/官方metadata record匹配，实际总3189548ms、最短52702/最长244102ms。官网时长仅14/20在2s内，另6差+2561..3659ms，保留差异并以实际音频时长用于后续窗口。首核验把2s当必需断言失败已保留；不裁音频或覆盖metadata掩盖差异。
+- 三份许可依据为官方完整catalog、通用动态曲目展示/署名下载模板、许可说明快照，非20份静态逐首许可页。全部为Kevin MacLeod，已知描述定向选样，只用于development，不能声称已确认20正例或held-out。完整音频/证明/原快照/日志仅ignore.local/a/mus032，0600/目录0700；公开仅代码/ISRC清单/聚合/哈希。
+- 真实重名输出exit1/FileExistsError，44个批次文件hash不变；旧音频/证明/selection/ledger/result/run/catalog/118判断/B027卡共55文件前后SHA保持。首次环境预检误查Sonora本地cache/venv路径（不存在），改回022文档的原版共享只读环境后通过，不算产品失败或解码通过。
+- 本任务无UI/Java/API/数据库schema/依赖锁/公开catalog/服务或main变化，不重跑无关Maven/前端/CLAP。下一步033需真实owner/JavaID与新provider适配，不能直接把ISRC包送旧probe/审阅页。B027固定卡保留，032独立工具卡待前卡返回后协调；细节见verification/MUS-032.md/results.json。

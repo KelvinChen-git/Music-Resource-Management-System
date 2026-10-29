@@ -1,0 +1,26 @@
+{
+  "schema": "sonora-source-selection-v1",
+  "split": "development_source_candidates_not_held_out",
+  "tracks": [
+    {"bucket_id": "exp-02", "isrc": "USUAN2300003", "title": "Morning"},
+    {"bucket_id": "exp-02", "isrc": "USUAN1900004", "title": "Midnight Tale"},
+    {"bucket_id": "exp-02", "isrc": "USUAN1100757", "title": "Windswept"},
+    {"bucket_id": "exp-02", "isrc": "USUAN1100181", "title": "Laid Back Guitars"},
+    {"bucket_id": "exp-03", "isrc": "USUAN1100695", "title": "Take the Lead"},
+    {"bucket_id": "exp-03", "isrc": "USUAN1100295", "title": "Chipper"},
+    {"bucket_id": "exp-03", "isrc": "USUAN1100221", "title": "Gearhead"},
+    {"bucket_id": "exp-03", "isrc": "USUAN1100140", "title": "Neolith"},
+    {"bucket_id": "exp-04", "isrc": "USUAN1100860", "title": "Avec Soin"},
+    {"bucket_id": "exp-04", "isrc": "USUAN1100857", "title": "Pensif"},
+    {"bucket_id": "exp-04", "isrc": "USUAN1100566", "title": "Blue Paint"},
+    {"bucket_id": "exp-04", "isrc": "USUAN1100097", "title": "Reminiscing"},
+    {"bucket_id": "exp-07", "isrc": "USUAN1900056", "title": "Night in Venice"},
+    {"bucket_id": "exp-07", "isrc": "USUAN1500042", "title": "In Your Arms"},
+    {"bucket_id": "exp-07", "isrc": "USUAN1100128", "title": "Off to Osaka"},
+    {"bucket_id": "exp-07", "isrc": "USUAN1100202", "title": "Hot Swing"},
+    {"bucket_id": "exp-08", "isrc": "USUAN1100875", "title": "Five Armies"},
+    {"bucket_id": "exp-08", "isrc": "USUAN1400039", "title": "Volatile Reaction"},
+    {"bucket_id": "exp-08", "isrc": "USUAN1200094", "title": "The Descent"},
+    {"bucket_id": "exp-08", "isrc": "USUAN1300037", "title": "Black Vortex"}
+  ]
+}
