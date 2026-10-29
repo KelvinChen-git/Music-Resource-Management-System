@@ -20,10 +20,10 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
     request = new AbortController(); const signal = request.signal
     const current = () => ticket === generation && !signal.aborted
     try {
-      reviewId(row.track_id); checkRange(range, row.duration_ms)
+      reviewId(row.track_id); checkRange(range, row.duration_ms); range = [...range]
       if (!Number.isSafeInteger(positionMs) || positionMs < range[0] || positionMs >= range[1]) throw new Error('试听位置超出当前范围。')
       if (!Number.isSafeInteger(row.content_bytes) || row.content_bytes < 1 || row.content_bytes > 30 * 1024 * 1024) throw new Error('音频大小超出允许范围。')
-      lastPlayback = { row: { ...row }, range: [...range] }
+      lastPlayback = { row: { ...row }, range: [...range], requestRange: [...range] }
       beforePlay(); emit({ phase: 'loading', trackId: row.track_id, positionMs, rangeStartMs: range[0], rangeEndMs: range[1] })
       const response = await fetchMedia(`/api/music-resources/${row.track_id}/file`, { signal })
       if (!current()) return
@@ -62,7 +62,14 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
       })
       await waitFor('loadedmetadata', () => { audio.src = objectUrl; audio.load() })
       if (!current()) return
-      if (!Number.isFinite(audio.duration) || range[1] / 1000 > audio.duration + 0.1) throw new Error('浏览器音频时长与候选区间不符。')
+      if (!Number.isFinite(audio.duration) || audio.duration <= 0) throw new Error('浏览器音频时长与候选区间不符。')
+      if (row.source_provider === 'incompetech' && range[0] === 0 && range[1] === row.duration_ms) {
+        // Verified source MP3 decoders may expose different end padding. Never extend playback or alter the package duration.
+        range[1] = Math.min(row.duration_ms, Math.floor(audio.duration * 1000))
+        if (range[1] <= 0 || positionMs >= range[1]) throw new Error('浏览器音频时长与候选区间不符。')
+        lastPlayback.range = [...range]
+        emit({ rangeEndMs: range[1] })
+      } else if (range[1] / 1000 > audio.duration + 0.1) throw new Error('浏览器音频时长与候选区间不符。')
       if (positionMs > 0) await waitFor('seeked', () => { audio.currentTime = positionMs / 1000 })
       if (!current()) return
       const finish = () => { const positionMs = Math.min(range[1], Math.round(audio.currentTime * 1000)); stop(false); emit({ positionMs }) }
@@ -101,20 +108,20 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
   async function toggle() {
     if (state.phase === 'playing' || state.phase === 'loading') { pause(); return }
     if (lastPlayback) {
-      const { row, range } = lastPlayback
+      const { row, range, requestRange } = lastPlayback
       const position = state.positionMs >= range[0] && state.positionMs < range[1] ? state.positionMs : range[0]
-      await start(row, range, position)
+      await start(row, requestRange, position)
     }
   }
   async function seek(value) {
     if (!lastPlayback || !Number.isFinite(value)) return
-    const { row, range } = lastPlayback
+    const { row, range, requestRange } = lastPlayback
     const target = Math.max(range[0], Math.min(range[1], Math.round(value)))
     if (objectUrl && state.verified) {
       try { audio.currentTime = target / 1000; refresh() }
       catch { stop(); emit({ phase: 'error', error: '无法跳转试听位置，请重新试听。' }) }
     } else if (target === range[1]) { stop(false); emit({ positionMs: target }) }
-    else await start(row, range, target, state.phase !== 'paused')
+    else await start(row, requestRange, target, state.phase !== 'paused')
   }
   function setVolume(value) {
     if (Number.isFinite(value)) audio.volume = Math.max(0, Math.min(100, value)) / 100

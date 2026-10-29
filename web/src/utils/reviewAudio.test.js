@@ -90,3 +90,94 @@ test('seeking a pending load cancels its generation and late bytes cannot move t
   const pending=s.control.start(s.row);await s.control.seek(7000);first.resolve(new Response(bytes));await pending
   assert.equal(s.audio.currentTime,7);assert.equal(s.created.length,1);assert.equal(s.signals[0].aborted,true)
 })
+test('verified Incompetech whole-track playback uses the shorter browser endpoint without changing input',async t=>{
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.25322
+  const original=structuredClone(s.row),range=[0,153555]
+  await s.control.start(s.row,range)
+  assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.states.at(-1).verified,true)
+  assert.equal(s.states.at(-1).rangeEndMs,153253);assert.deepEqual(range,[0,153555]);assert.deepEqual(s.row,original)
+  s.audio.currentTime=153.253;s.audio.dispatchEvent(new Event('timeupdate'))
+  assert.equal(s.states.at(-1).phase,'idle');assert.equal(s.states.at(-1).positionMs,153253)
+  assert.equal(s.audio.paused,true);assert.equal(s.audio.src,'');assert.deepEqual(s.revoked,['blob:1'])
+})
+test('a longer Incompetech browser duration never extends the recorded whole-track range',async t=>{
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=154
+  await s.control.start(s.row)
+  assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.states.at(-1).rangeEndMs,153555)
+  await s.control.seek(154000)
+  assert.equal(s.states.at(-1).phase,'idle');assert.equal(s.states.at(-1).positionMs,153555)
+  assert.equal(s.row.duration_ms,153555)
+})
+test('source fragments and legacy whole tracks retain the original duration mismatch rejection',async t=>{
+  for(const [provider,range] of [[undefined,[0,153555]],['jamendo',[0,153555]],['incompetech',[1000,153555]],['incompetech',[0,153554]]]){
+    const s=await setup(t);s.row.duration_ms=153555;if(provider)s.row.source_provider=provider;s.audio.duration=153.25322
+    await s.control.start(s.row,range)
+    assert.equal(s.states.at(-1).phase,'error');assert.match(s.states.at(-1).error,/时长/)
+    assert.equal(s.audio.plays,0);assert.equal(s.revoked.length,1);assert.equal(s.states.at(-1).verified,false)
+  }
+})
+test('source pause, paused seek, resume and endpoint seek share the verified effective range',async t=>{
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.25322
+  await s.control.start(s.row);s.audio.currentTime=100;s.control.pause()
+  assert.equal(s.states.at(-1).phase,'paused');assert.equal(s.states.at(-1).positionMs,100000);assert.equal(s.states.at(-1).rangeEndMs,153253)
+  await s.control.seek(120000)
+  assert.equal(s.calls.length,2);assert.equal(s.states.at(-1).phase,'paused');assert.equal(s.states.at(-1).positionMs,120000)
+  assert.equal(s.states.at(-1).rangeEndMs,153253);assert.equal(s.audio.src,'')
+  await s.control.toggle()
+  assert.equal(s.calls.length,3);assert.equal(s.audio.currentTime,120);assert.equal(s.states.at(-1).phase,'playing')
+  assert.equal(s.states.at(-1).rangeEndMs,153253);assert.equal(s.row.duration_ms,153555)
+  await s.control.seek(153554)
+  assert.equal(s.states.at(-1).phase,'idle');assert.equal(s.states.at(-1).positionMs,153253);assert.equal(s.audio.src,'')
+})
+test('invalid or sub-millisecond browser duration and positions beyond the effective endpoint cannot play',async t=>{
+  for(const duration of [NaN,Infinity,-Infinity,0,-1,0.0005]){
+    const s=await setup(t);s.row.source_provider='incompetech';s.audio.duration=duration
+    await s.control.start(s.row)
+    assert.equal(s.states.at(-1).phase,'error');assert.equal(s.audio.plays,0);assert.equal(s.revoked.length,1)
+  }
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.25322
+  await s.control.start(s.row,[0,153555],153400)
+  assert.equal(s.states.at(-1).phase,'error');assert.equal(s.audio.plays,0);assert.equal(s.states.at(-1).verified,false)
+})
+test('source endpoint adaptation never bypasses byte/SHA validation or fresh resume duration validation',async t=>{
+  const invalid=await setup(t,async()=>new Response(new Uint8Array([4,3,2,1])))
+  invalid.row.source_provider='incompetech';invalid.audio.duration=11.7
+  await invalid.control.start(invalid.row)
+  assert.equal(invalid.created.length,0);assert.equal(invalid.audio.plays,0);assert.equal(invalid.states.at(-1).phase,'error')
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.25322
+  await s.control.start(s.row);s.audio.currentTime=100;s.control.pause();s.audio.duration=153
+  await s.control.toggle()
+  assert.equal(s.calls.length,2);assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.states.at(-1).verified,true)
+  assert.equal(s.states.at(-1).rangeEndMs,153000);assert.equal(s.audio.currentTime,100)
+  assert.equal(s.audio.plays,2);assert.equal(s.created.length,2);assert.equal(s.revoked.length,1)
+})
+test('fresh source resume and paused seek reapply the whole-track identity even for sub-100ms shortening',async t=>{
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.25322
+  await s.control.start(s.row);s.audio.currentTime=100;s.control.pause();s.audio.duration=153.2
+  await s.control.toggle()
+  assert.equal(s.calls.length,2);assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.states.at(-1).rangeEndMs,153200)
+  s.control.pause();s.audio.duration=153.1;await s.control.seek(120000)
+  assert.equal(s.calls.length,3);assert.equal(s.states.at(-1).phase,'paused');assert.equal(s.states.at(-1).rangeEndMs,153100)
+  assert.equal(s.states.at(-1).positionMs,120000);assert.equal(s.audio.src,'')
+  await s.control.toggle()
+  assert.equal(s.calls.length,4);assert.equal(s.states.at(-1).phase,'playing');assert.equal(s.states.at(-1).rangeEndMs,153100)
+  assert.equal(s.row.duration_ms,153555)
+  await s.control.seek(153200)
+  assert.equal(s.states.at(-1).phase,'idle');assert.equal(s.states.at(-1).positionMs,153100)
+})
+test('source resume or paused seek at or beyond a newly shortened endpoint rejects before playing',async t=>{
+  for(const [action,position] of [['resume',153240],['resume',153200],['seek',153220],['seek',153200]]){
+    const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.25322
+    await s.control.start(s.row);s.audio.currentTime=action==='resume'?position/1000:100;s.control.pause();s.audio.duration=153.2
+    if(action==='resume')await s.control.toggle();else await s.control.seek(position)
+    assert.equal(s.calls.length,2);assert.equal(s.states.at(-1).phase,'error');assert.equal(s.states.at(-1).verified,false)
+    assert.equal(s.audio.plays,1);assert.equal(s.created.length,2);assert.equal(s.revoked.length,2);assert.equal(s.audio.src,'')
+  }
+})
+test('fresh source fragment resume keeps its original clip identity and duration rejection',async t=>{
+  const s=await setup(t);Object.assign(s.row,{source_provider:'incompetech',duration_ms:153555});s.audio.duration=153.6
+  await s.control.start(s.row,[0,153554]);s.audio.currentTime=100;s.control.pause();s.audio.duration=153.25322
+  await s.control.toggle()
+  assert.equal(s.calls.length,2);assert.equal(s.states.at(-1).phase,'error');assert.equal(s.audio.plays,1)
+  assert.equal(s.created.length,2);assert.equal(s.revoked.length,2)
+})
