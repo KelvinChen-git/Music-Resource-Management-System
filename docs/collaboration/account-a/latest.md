@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-031补充标注接收与覆盖诊断完成
+
+A；2026-10-28 America/Chicago；branch codex/MUS-031-diagnostic-receipt；base `d9f6f2dadb075ffd537385a350f9c24d1047fcaa`；done仅接收/探索诊断，非模型质量验收。最终文档SHA见handoff。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / B source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`。开始/检查点双方fetched，B仍026报告，027原固定卡字节保持assigned，未替换/冒充主动认领。029/030工具独立B仍待前卡返回后协调。
+
+用户补充文件与本机原字节归档均46306bytes、SHA `38f8a4d078e4367e3819818735713812379fb5458a100cc1712e8fa68231f5b0`；既有固定run/report/catalog/原51双SHA诊断CLI对原件及归档exit0，5query/67已判/0未判、18曲、等级59/6/2/0、0人工区间，dataset77cf9d56…。私有归档/脚本/日志0600，父目录0700，只ignore.local/a/mus031；Git仅聚合/哈希/方法，不含逐条评分/代号/owner。
+
+新旧query-track无交集，原51+新67共118/160、等级78/19/11/10；五条目标描述各完整20首=100对、等级77/16/6/1、相关>=2共7。原声/摇滚/钢琴/爵士/管弦分别2/1/1/2/1相关；原联合池5、新补集2，新增原声/爵士各1均未入两原top5。整曲命中1/1/1/0/1、片段1/1/1/1/1；只计数、不重排/新算排名指标。结论为这些具体描述适合素材稀少与排序漏选并存，不称某类完全缺失；其他三描述42对未知，不能外推8描述完整真值。
+
+仅内存对照、不生成可导入混合包；固定run六文件含向量/catalog/原51/两空白包/下载/B027卡全部SHA保持，两个空白包仍全null。分析重复运行输出逐字节一致；同会话只读代理固定CLI及独立计数一致，非B审核。原029池内指标不混新分母；无人工区间/held-out/盲评/正式Recall或泛化结论，无训练/调参/阈值/模型重跑/扩库。本轮仅README/PROJECT/STATUS/A latest及verification/MUS-031*；不重复无关应用测试。
+
+原备份干净f3b0da1，原后端/UI/依赖/API/schema保持，未重启或合并main。后续针对描述补充来源许可明确素材、另建独立测试版本与模型对照；002效果/契约冻结未完。公开方法/表格/证据见verification/MUS-031.md/results.json。提交后publish并回读，发布不等于B审核或对方已收到私有原始标签，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-030独立诊断试听包就绪
 
 A；2026-10-28 America/Chicago；branch codex/MUS-030-diagnostic-review-pack；review仅工具/包与本机增量完成，67真实判断待用户。implementation `4e8115c3c19f836359a52860f9fda7820dd6088d`，comparison/scope `f07b76893bc9b7964432939818e8d070d815a7f3`；最终文档SHA见handoff。

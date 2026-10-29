@@ -1,0 +1,171 @@
+{
+  "task_id": "MUS-031",
+  "status": "received_validated_archived_and_diagnosed",
+  "received_on": "2026-10-28 America/Chicago",
+  "source_code_sha": "d9f6f2dadb075ffd537385a350f9c24d1047fcaa",
+  "submitted_file_sha256": "38f8a4d078e4367e3819818735713812379fb5458a100cc1712e8fa68231f5b0",
+  "submitted_bytes": 46306,
+  "archive_path": ".local/a/mus031/received-diagnostic-judgments.json",
+  "archive_exact_bytes": true,
+  "archive_mode": "0o600",
+  "validation": {
+    "status": "validated_unverified_judgments",
+    "split": "exploratory_only_not_held_out",
+    "queries": 5,
+    "candidate_pairs": 67,
+    "judged": 67,
+    "unjudged": 0,
+    "relevance_counts": {
+      "0": 59,
+      "1": 6,
+      "2": 2,
+      "3": 0
+    },
+    "human_intervals": 0,
+    "dataset_sha256": "77cf9d56c83de4dc2d63e71294e5b842a1ea028df1ae99de8ace28dfff6c4f70",
+    "identity_or_listening_verified": false,
+    "schema": "sonora-diagnostic-pack-v1"
+  },
+  "distinct_tracks_in_complement": 18,
+  "combined": {
+    "queries": 8,
+    "known_pairs": 118,
+    "possible_pairs": 160,
+    "unjudged_pairs": 42,
+    "ratings": {
+      "0": 78,
+      "1": 19,
+      "2": 11,
+      "3": 10
+    },
+    "duplicate_query_track_pairs": 0
+  },
+  "selected_five": {
+    "complete_queries": 5,
+    "tracks_per_query": 20,
+    "judged_pairs": 100,
+    "ratings": {
+      "0": 77,
+      "1": 16,
+      "2": 6,
+      "3": 1
+    },
+    "relevance_ge_2_pairs": 7,
+    "original_union_positive_pairs": 5,
+    "complement_positive_pairs": 2
+  },
+  "per_query": [
+    {
+      "query_id": "exp-02",
+      "text": "Calm acoustic guitar music for a quiet evening.",
+      "judged_of_20": 20,
+      "ratings": {
+        "0": 15,
+        "1": 3,
+        "2": 2,
+        "3": 0
+      },
+      "relevance_ge_2": 2,
+      "original_pool_pairs": 7,
+      "complement_pairs": 13,
+      "original_pool_positive_pairs": 1,
+      "complement_positive_pairs": 1,
+      "whole_track_top5_positive_pairs": 1,
+      "segment_top5_positive_pairs": 1
+    },
+    {
+      "query_id": "exp-03",
+      "text": "A rock song with distorted electric guitars and drums.",
+      "judged_of_20": 20,
+      "ratings": {
+        "0": 13,
+        "1": 6,
+        "2": 0,
+        "3": 1
+      },
+      "relevance_ge_2": 1,
+      "original_pool_pairs": 7,
+      "complement_pairs": 13,
+      "original_pool_positive_pairs": 1,
+      "complement_positive_pairs": 0,
+      "whole_track_top5_positive_pairs": 1,
+      "segment_top5_positive_pairs": 1
+    },
+    {
+      "query_id": "exp-04",
+      "text": "Soft piano music with a slow and reflective mood.",
+      "judged_of_20": 20,
+      "ratings": {
+        "0": 17,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "relevance_ge_2": 1,
+      "original_pool_pairs": 5,
+      "complement_pairs": 15,
+      "original_pool_positive_pairs": 1,
+      "complement_positive_pairs": 0,
+      "whole_track_top5_positive_pairs": 1,
+      "segment_top5_positive_pairs": 1
+    },
+    {
+      "query_id": "exp-07",
+      "text": "Jazz music with a swinging rhythm and saxophone.",
+      "judged_of_20": 20,
+      "ratings": {
+        "0": 15,
+        "1": 3,
+        "2": 2,
+        "3": 0
+      },
+      "relevance_ge_2": 2,
+      "original_pool_pairs": 6,
+      "complement_pairs": 14,
+      "original_pool_positive_pairs": 1,
+      "complement_positive_pairs": 1,
+      "whole_track_top5_positive_pairs": 0,
+      "segment_top5_positive_pairs": 1
+    },
+    {
+      "query_id": "exp-08",
+      "text": "Orchestral music that builds tension for an action scene.",
+      "judged_of_20": 20,
+      "ratings": {
+        "0": 17,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "relevance_ge_2": 1,
+      "original_pool_pairs": 8,
+      "complement_pairs": 12,
+      "original_pool_positive_pairs": 1,
+      "complement_positive_pairs": 0,
+      "whole_track_top5_positive_pairs": 1,
+      "segment_top5_positive_pairs": 1
+    }
+  ],
+  "method": "Relevance >=2; query-track keyed in-memory join; five complete 20-track universes; count original mode top5 hits without reranking or new metrics.",
+  "provenance": {
+    "base_judgments_sha256": "774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869",
+    "report_sha256": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+    "rankings_sha256": "72fbdc2852d2d4fe05f50f961d838217e6bf7ac119f58e669d499d948f48a626",
+    "original_diagnostic_null_pack_sha256": "b706492fe1f810ef19f0d7253062bd6f1331bad04cde5e1d596b8ad2c068cf2e",
+    "original_null_pack_sha256": "dc69d46d64a3eb6e4cb2a479f21a9376786dbfee158a0a4df364d32609ea95bd",
+    "all_pinned_inputs_unchanged": true
+  },
+  "evidence": {
+    "analysis_script_sha256": "1b9a0d8095b9202aad8b1e890e3df60d7b7291a3fa3c18a669a9b1ad449360f0",
+    "archive_validate_log_sha256": "b5c8d24be11a43d15aae75ae9fe2c86040bf0a0b75dedd737f91b858ac29a2b1",
+    "independent_same_session_readonly_crosscheck": "matched CLI, disjoint pair sets, complete universes and per-query counts; not account B review"
+  },
+  "limits": [
+    "Single exploratory annotator; identity/listening not authenticated.",
+    "Original model candidates were visible; complement has no model suggestions but is not held-out or blind.",
+    "Five exact descriptions are complete for these20 tracks; the other3 still have42 unknown pairs.",
+    "Positive pair counts are not counts of distinct music genres or unique positive songs across queries.",
+    "No new Recall/nDCG/P95/localization/model-generalization claim; human intervals0.",
+    "No label overwrite, reimportable merged pack, training, tuning, model rerun, music import or app/backend/main changes."
+  ]
+}
