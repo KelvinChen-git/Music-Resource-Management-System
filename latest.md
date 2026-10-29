@@ -1,5 +1,29 @@
 # 账号 A 最新交接
 
+## 当前：MUS-036三对补判包就绪，接收B033限定批准
+
+A；2026-10-29 America/Chicago；branch codex/MUS-036-top5-supplement；base `9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d`，实现bde85a1，权限修复及真实生成 `125076d3d9bd336ab7928dcd7f9ecd9a0a8a3316`。review仅包/工具与本机交付完成，3真人判断仍待用户，非新模型验收；最终文档SHA见handoff。
+
+ack_peer_feed_sha `16b06c8cfde4b34bb461ab18d533e66d50ac9f16` / B source `4f5783790b5d4607080678b82c5ce6cf842f64e3`。开始/末次06:29:53Z sync双方fetched，B033/rev1 approve_scoped已核准确10880f8/base7704051/assignment9797/ack A bf1f855及claim链；source与claim仅两允许报告，五源码SHA一致。原字节报告SHA3c41a66a6e0db5e304631b4a0ca97d474626a42377d7faa34c12e79069f47d8d归档并写033-B-acceptance.json。B27 importer/72包/68 Node/build、独立15+7、最终23浏览器和三导出按B报告记录，未读取/重算其私有证据，早20断言失败不累计。不认证033历史时长为实际EOF，不外推032/035/036或模型质量。
+
+033原卡保持，固定入口明确转MUS-035-R1-B/rev1，reviewed `9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d`、baseb42b767，只审三离线工具/三测试/E8，独立合成输入，不要求A原件或新跑模型；assigned未主动认领，原035编码提交17a31f5和新assignment来源区分。036包/UI为另一个增量，未获B批准，不静默捆绑。
+
+E9先冻结：标准库supplement_pack完整重建035 evaluation+原11pins，canonical相等后仅取五描述新两mode top5未知并集，省空query/按query与数值ID排，actual035 manifest时间与来源，空建议/四人工null/新指纹。新schema sonora-retrieval-supplement-pack-v1，split development_not_held_out；已有138和三原包分开保留，不拷分或改历史时长。前端仅新schema/新test/View提示，旧三schema/评分/草稿/播放器布局保持。
+
+实际新v1包4284bytes、SHA85f1ac61000aad1ed9b86e9b2662ee799b647d92ce6dc0378a76c5113bf1780d、dataset4c00b2ee577e153d5dbd588d13c3ce6e8fa6d9f2b8229a66da8543063520c4ee，2query/3不同音乐（钢琴1、爵士2），全null/空建议。build/validate exit0；重复output/错evaluation pin均预期exit1且原输出不变。私有文件仅ignore.local/a/mus036，0700/0600，无逐条标签/ID/owner/音频提交。
+
+最终188 Python（旧168+新20）、77 Node（旧68+新9）、现有lock build通过，原bundle警告保留。独立审计发现极端umask生成mode000问题，已fchmod0600与新回归关闭；E9澄清本轮实际mus036目录与通用CLI仅ignore.local私有子目录。另独立纯合成Python→JS→Python 10未知/2测试判断/1区间通过，非真人/B。早187/19/57与独立子集不累加。
+
+原普通账号/现有8080和5175真实三曲字节/SHA验证播放、底栏、暂停释放src、20800ms暂停seek/重新取音频恢复、切query释放均通过；18浏览器断言，0新评分，alias清空。真实空白导出与原包对象相同并过固定CLI exit0；默认668视口无横溢，未强制改变尺寸/声称390或1440测试。最终重新导入原0/3、无草稿自动恢复，页面作为用户交付保留，截图已看，新包核验warnings/errors0。
+
+保留私有首次包装日志重名FileExistsError（子CLI exit未留证，不记成功），原输出保持，另v1/pack-*日志真实成功且两个包字节相同；首次登录跨build旧chunk两错误保留，reload新构建后核验通过，无产品绕过。259保护文件中258原字节保持，唯一计划变化是A dispatch033→035，旧033卡原字节/54共享cache集合及内容/原备份干净f3b0da1/138/两run/音频证明/模型不变。
+
+详细命令/源码/输入/工件哈希与限制见verification/MUS-036.md/results.json。无Java/API/数据库schema/锁/模型版本/后端重启/UI重做/main合并，不重跑无关Maven或CLAP。035仍whole23相关/2未知、segment24/1未知，P上下限和累计138保持；下一步等用户交回3实际判断再另立接收/固定排名精确开发比较，独立test/质量/discovery-v0未完成。提交后原子publish并回读，远端可读不等于B认领/接收，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-035两来源40曲离线检索与开发对照完成
 
 A；2026-10-29 America/Chicago；branch codex/MUS-035-expanded-retrieval；base `b42b767afc0bd3ddb76601a436f8073c3d72106c`；实现 `895af4bb27e375e36d1e4cd444a0efdc1b1825bd`，实际EOF修复与成功实跑源码 `17a31f5d5f4a04873d299c52f722dd3a890b9b5e`。review仅本机离线链路/开发对照完成，工具独立复核与正式效果未验收；最终文档SHA见handoff。
