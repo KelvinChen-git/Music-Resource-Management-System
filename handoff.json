@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-29T01:36:32.202723+00:00",
-  "source_branch": "codex/MUS-031-diagnostic-receipt",
-  "source_sha": "2e2db1e9e62d19ee57cdf2c5823f4c8f3593878e",
+  "published_at": "2026-10-29T02:07:19.356030+00:00",
+  "source_branch": "codex/MUS-032-targeted-corpus-candidates",
+  "source_sha": "7704051f9a844816174c710d09e6f92e5b23f0e7",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "0a34ee1ee37f0ed5d6547625fcaba36e33c9abc6e4cfc492dcd704d228392f90"
+  "report_sha256": "a7203479546e5b9bee43427861c28bcc6c5a3edc7bffb331f182d56414b408da"
 }

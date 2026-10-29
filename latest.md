@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-032定向来源候选已收集并全解码
+
+A；2026-10-28 America/Chicago；branch codex/MUS-032-targeted-corpus-candidates；base `2e2db1e9e62d19ee57cdf2c5823f4c8f3593878e`；review，来源批次/本机验证完成，非模型或独立测试验收。最终提交SHA见handoff。
+
+ack_peer_feed_sha `dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42` / B source `dd049fdf6cf1ddb253cb88972cffb472a1e1b457`。开始/检查点双方fetched，B仍026报告；027固定卡原字节assigned保持，未替换或冒充主动认领。032新工具独立B待前卡返回后协调，同会话代理不算B。
+
+先E6冻结source-only ISRC身份/仅development/独立0700与0600/双显式SHA/原20只读。只新增标准库collect_research_music.py、独立test与固定targeted_sources.json，原importer/corpus/probe/UI/Java/依赖/公共catalog保持；新数据不造JavaID/owner或人工评分。旧热门导入不能增量且重写catalog，不运行旧入口；新增从作者官网明确CC BY4.0展示/下载来源获取，许可依据是官方通用动态模板+全catalog+许可说明三快照，非20份静态逐曲页。
+
+真实batch-01已收20/20、五描述各4，共115494136bytes，manifest SHA `2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a`，selection SHA c02ae831…/原catalog33c9d7fd…。原字节与完整证明/metadata record SHA匹配，20新内容无批内/旧20重复；实际重名输出exit1且44文件原hash不变。私有音频/原快照/证明/日志/verify脚本只ignore.local/a/mus032，Git仅源码/非敏感选择/聚合/方法与哈希。
+
+18合成保护检查通过（提供方transport为替身，不称真实解码）；20真实MP3另以已有只读soundfile环境完整解码，全帧/有限值/实际30–600秒通过，总3189548ms、最短52702/最长244102。官网整数秒仅14/20在2秒误差内，6首差+2561..3659ms，分别保留metadata与实际时长。首临时2秒必需断言exit1日志保留，最终明确with_metadata_differences；未裁音频/覆盖metadata冒充全匹配。初查Sonora本地cache/venv不存在，改用022文档原版共享路径后通过；无依赖重装。
+
+同会话只读代理独立完整float64解码/计数/证明核验相同，非B。55个旧音频/证明/selection/ledger/result/run/catalog/118人评/两空白包/B027卡前后SHA保持；原版干净f3b0da1，后端/服务保持，未读凭据或写本机API/数据库、重启、改模型/排序或合并main。仅相关18检查/真实收集与解码，不重复无关Maven/前端/CLAP。
+
+新增20全部Kevin MacLeod、按已知五描述元数据选样，仍全null，爵士swing等需真人确认；不能说网页已有40首、已得到20正例或held-out提升。下一步MUS-033先新增来源适配/原普通owner HTTP导入获得真实musicId，再独立40曲catalog/run/标注指纹，旧public catalog与原基线继续可验；独立test/模型对照/002冻结未完。细节verification/MUS-032.md/results.json。提交后publish并回读，发布不等于B独立批准或收到私有原件，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-031补充标注接收与覆盖诊断完成
 
 A；2026-10-28 America/Chicago；branch codex/MUS-031-diagnostic-receipt；base `d9f6f2dadb075ffd537385a350f9c24d1047fcaa`；done仅接收/探索诊断，非模型质量验收。最终文档SHA见handoff。
