@@ -1,0 +1,202 @@
+{
+  "task_id": "MUS-036",
+  "checked_on": "2026-10-29 America/Chicago",
+  "status": "supplement_package_ready_for_three_human_judgments",
+  "branch": "codex/MUS-036-top5-supplement",
+  "source_baseline_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+  "initial_implementation_sha": "bde85a18c3328c77739215c719d4c6fe636bc0ff",
+  "private_mode_fix_and_actual_build_sha": "125076d3d9bd336ab7928dcd7f9ecd9a0a8a3316",
+  "source_files_sha256": {
+    "services/audio-search/supplement_pack.py": "cdbfd3add27856d7be8aca8b88c88b012e474da327c257ed1992cdefa2682db3",
+    "services/audio-search/test_supplement_pack.py": "39b7387885d7b4045040f05651a169fa3935d4804dacba8034a38c37117cbb97",
+    "web/src/utils/reviewPack.js": "63c52ccd90b9b42fb0304be496349390d1cc01584ba27c501295cfa4c100bfc4",
+    "web/src/utils/supplementPack.test.js": "529ea18767ffccedc35fba49e90a6fed615f15384af0b3e9e9b422b5c13e52c7",
+    "web/src/views/ReviewWorkspace.vue": "94df57e0a9aa5ebf72c481ebf08f70ab7e9af58ac82857d09196fdd172e1e537"
+  },
+  "pack": {
+    "source_sha": "125076d3d9bd336ab7928dcd7f9ecd9a0a8a3316",
+    "pack_path": ".local/a/mus036/retrieval-supplement-pack-v1.json",
+    "pack_sha256": "85f1ac61000aad1ed9b86e9b2662ee799b647d92ce6dc0378a76c5113bf1780d",
+    "pack_bytes": 4284,
+    "dataset_sha256": "4c00b2ee577e153d5dbd588d13c3ce6e8fa6d9f2b8229a66da8543063520c4ee",
+    "schema": "sonora-retrieval-supplement-pack-v1",
+    "split": "development_not_held_out",
+    "queries": 2,
+    "candidate_pairs": 3,
+    "distinct_tracks": 3,
+    "all_human_fields_null": true,
+    "all_suggestions_empty": true,
+    "file_mode": "0o600",
+    "directory_mode": "0o700",
+    "cli_exits": {
+      "build": 0,
+      "validate": 0,
+      "repeat_rejected": 1,
+      "wrong_pin_rejected": 1
+    },
+    "failures_preserved_and_output_unchanged": true,
+    "original_wrapper_output_byte_equal": true
+  },
+  "input_basis": {
+    "original_judgment_pairs": 138,
+    "new_judgment_pairs_received": 0,
+    "evaluation_sha256": "a591632f926b139ffacfd9f42675c55198d551422d22c6cca723c0d2f7ec62d5",
+    "old_report_sha256": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+    "new_report_sha256": "9c8a792f1d0a01c9806b37ee4a4606eabb5bf9d498c9787d4690413dadaf9a01",
+    "new_run_code_sha": "17a31f5d5f4a04873d299c52f722dd3a890b9b5e",
+    "six_run_inputs_sha256": {
+      "catalog": "1cf24cff5eeceaca587d607e5dae96a47da3ee806b067158f700eba773321cc3",
+      "source_manifest": "2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a",
+      "decode_report": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+      "baseline_catalog": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+      "selection": "c02ae831a4338862ffc68e626a64c67477ea79e5e62c8a019ac4cb311e701669",
+      "queries": "f6118b2283c2818f0dd2af196c98c770045ff787c32403407eaea2241a313723"
+    },
+    "known_judgments_sha256": {
+      "base": "774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869",
+      "diagnostic": "38f8a4d078e4367e3819818735713812379fb5458a100cc1712e8fa68231f5b0",
+      "source": "eccc4af2c765bcc2dab45c43e5abc9afc9e0ded65d64890e29266c0c44353c96"
+    },
+    "selection": "unknown union of the frozen two-mode top5 for five target development descriptions",
+    "target_queries_with_unknown": {
+      "exp-04": 1,
+      "exp-07": 2
+    },
+    "actual_unknown_pairs": 3,
+    "actual_distinct_tracks": 3,
+    "all_candidate_durations_from_actual035_manifest": true,
+    "old_pack_fields_or_times_rewritten": false
+  },
+  "verification": {
+    "final_python_service_tests": 188,
+    "new_python_tests": 20,
+    "original_service_tests": 168,
+    "earlier_python_service_tests": 187,
+    "node_tests": 77,
+    "new_node_tests": 9,
+    "earlier_agent_targeted_node_subset": 57,
+    "counts_not_accumulated": true,
+    "frontend_build": "passed existing lock; retained >500kB bundle warning",
+    "browser": {
+      "assertion_count": 18,
+      "real_tracks_verified": 3,
+      "new_human_judgments": 0,
+      "viewport": {
+        "scrollWidth": 668,
+        "width": 668
+      },
+      "no_forced_viewport_or_mobile_test_claim": true,
+      "warnings_errors_during_supplement_checks": 0,
+      "blank_export_cli_exit": 0,
+      "blank_export_object_equal": true,
+      "final_import_state": "0/3, anonymous alias empty, no draft restored",
+      "read_only_and_actual_media_checks": [
+        "real package imports as 0 of 3",
+        "two query options",
+        "model suggestions omitted",
+        "valid alias enables rating without scoring",
+        "verified whole-track shows in bottom player",
+        "paused seek completed at 20.8 seconds",
+        "paused audio source released",
+        "resume uses verified audio",
+        "query switch releases previous playback",
+        "jazz has two unjudged candidates",
+        "second real track verified and paused",
+        "third real track verified and paused",
+        "all real judgments remain blank after playback",
+        "browser produced a blank export",
+        "default viewport has no horizontal overflow",
+        "alias cleared and blank judgments preserved",
+        "no warnings or errors during supplement checks",
+        "final handoff imports original blank packet without restoring drafts"
+      ]
+    },
+    "same_session_cross_implementation_synthetic_audit": {
+      "passed": true,
+      "python_to_js_to_python": true,
+      "synthetic_unknown_pairs": 10,
+      "synthetic_judgments": 2,
+      "synthetic_human_intervals": 1,
+      "counts_not_real_labels": true,
+      "not_B_review": true
+    },
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "protected_input_count": 259,
+    "protected_inputs_unchanged": 258,
+    "intentional_dispatch_change_count": 1,
+    "old033_card_unchanged": true,
+    "shared_cache_regular_files_unchanged": 54,
+    "final_document_checks": {
+      "json_valid": true,
+      "eight_markdown_local_links_and_fences_valid": true,
+      "new_source_private_evidence_and_B_report_hashes_matched": true,
+      "git_diff_check_passed": true,
+      "same_original_service_pids_maintained": true,
+      "same_session_independent_read_only_review_passed_not_B": true
+    }
+  },
+  "coordination": {
+    "a_start_feed_sha": "bf1f855a542e7e12d22c9e512967307e4422568a",
+    "ack_peer_feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
+    "b_source_sha": "4f5783790b5d4607080678b82c5ce6cf842f64e3",
+    "last_checkpoint_sync_utc": "2026-10-29T06:29:53Z",
+    "received033_approve_scoped": true,
+    "receipt_path": "docs/verification/MUS-033-B-acceptance.json",
+    "new_B_task_id": "MUS-035-R1-B",
+    "new_B_revision": 1,
+    "new_B_reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+    "new_B_status": "assigned_not_claimed",
+    "B_approval_does_not_cover035_or036": true
+  },
+  "initial_attempts": [
+    {
+      "stage": "independent synthetic output permissions audit",
+      "result": "umask0777 produced mode000 despite successful write",
+      "resolution": "fchmod0600 plus20th regression; final188 passed; no real pack generated until fixed"
+    },
+    {
+      "stage": "private initial generation wrapper",
+      "result": "CLI output created before log-open collided with existing frontend build.log; wrapper exit1, initial CLI exit not recorded",
+      "resolution": "preserved original output/log, distinct pack-* log names and fresh v1 build exit0; outputs byte-identical"
+    },
+    {
+      "stage": "browser login during frontend build replacement",
+      "result": "two old chunk import errors retained in browser-initial-logs.json",
+      "resolution": "reloaded new build, entered review route;18 supplement checks have0 warning/error; no product bypass"
+    }
+  ],
+  "limits": [
+    "Package preparation only;three real human judgments remain outstanding and035 metrics stay unchanged.",
+    "Selected from previous model retrieval on development descriptions;empty hints do not make it independent/held-out/blind.",
+    "Browser authenticates structure/fingerprint;fixed-input CLI reconstructs original evaluation and actual candidate membership.",
+    "No model rerun/training/threshold changes/new quality metrics or localization accuracy.",
+    "Original138 and all historical reports/run/audio/proofs/checkpoint/cache retained;only coordinated B dispatch changed.",
+    "No Java/API/database/schema/lock/model version/backend restart/main merge or UI redesign.",
+    "B033 scoped approval received;035 independent review assigned;036 tools/UI not independently B approved."
+  ],
+  "private_evidence_sha256": {
+    "browser-checks.json": "bac079032ae1b6e7f4951c395aa040fe1819b4178760e7a90dcfea8cce2537cc",
+    "browser-export-results.json": "9be1ca3b556dbedb23dca5d2713b18ee4dbec8bee5f12e706fa6f1bd618aa9ec",
+    "browser-export-validate.log": "cb2c4fe412158f5f963b1dd70318d9d295b20be51ca454ab5bcafd32425e0c8e",
+    "browser-initial-logs.json": "e33f80efb3184c468d0a04cd0fae5a4db52f024d841cd2fc84fe59e74d16886c",
+    "browser-null-export.json": "85f1ac61000aad1ed9b86e9b2662ee799b647d92ce6dc0378a76c5113bf1780d",
+    "browser-ready-view.png": "453698a8bb111de34c821156ad3d58237732bdc3fe9f85e7ed59f573af17b043",
+    "browser-ready.png": "dbd3100599a1738d285ee8cd03a2516cf25ddfa3f182af8e8cfac0f2e7a9d52f",
+    "build.log": "46a43322d7ba1194a978a646872b7706cf0fa08e6941a0167edfb1af30741f18",
+    "cli-results.json": "8df2567189f04de9e5ff9bf771345b3b0d851b8dabdb3cff54a6ff375e5c592d",
+    "generation-wrapper-note.json": "3938797543bf5be1e0d06fdec1042c319e77bf94e548b81049566e1ac746b9c1",
+    "inputs-before.json": "f57c10a35d4106980670652542d01c53937af7f0ab9989e894375f59ddbb5746",
+    "node-tests.log": "e48b4493d106ace9f0c8be44078e8a070ef9286b6c901131bea750e444bfb8e2",
+    "pack-build.log": "66b7c12c84d75edfef5c9e9842c5ccd0e8915dc92edd2c9a83592ae3fb06b50f",
+    "pack-command.json": "8ab87a8aa7a43e1287425a290fbc925f4da99074ea163ac18608ad96fcf8d182",
+    "pack-repeat-rejected.log": "4c4fd062031951b8f443c732ac0898ac139c201df2092c8d9ffd21058ea7a168",
+    "pack-validate.log": "cb2c4fe412158f5f963b1dd70318d9d295b20be51ca454ab5bcafd32425e0c8e",
+    "pack-wrong-pin-rejected.log": "28697a5a83825d219a1bf9cc147afcb29d9e2c52442156eb19d7ea0c418df6ca",
+    "preservation-check.json": "465a9541654f86279f719f18790ae2ee73ac7aa4ceae7edc6cdaf77087fc2bbf",
+    "python-tests-final.log": "1d640471526e3571ced0322dbf640c3491839dc5381c00b2e686fd892f44511e",
+    "python-tests.log": "b1106c34621fe5d9e8eb93969ef744e82f193abfc41391f74d3144ab4fd2c8cd",
+    "retrieval-supplement-pack-v1.json": "85f1ac61000aad1ed9b86e9b2662ee799b647d92ce6dc0378a76c5113bf1780d",
+    "retrieval-supplement-pack.json": "85f1ac61000aad1ed9b86e9b2662ee799b647d92ce6dc0378a76c5113bf1780d"
+  }
+}

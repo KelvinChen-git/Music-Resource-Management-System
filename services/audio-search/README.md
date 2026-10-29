@@ -96,3 +96,9 @@ PYTHONPATH=services/audio-search python3 -m unittest test_review_pack test_evalu
 `research_evaluate.py`标准库CLI同时固定旧/新report、E7六输入、原51/67/新20判断共11 SHA。五目标描述各24已知/16未知；top5只报告r/n/u、P@5上下限，全部5个位置已判时才提供该条exact，不排除unknown query做宏均值。新旧queries各自raw哈希仍核验，但逻辑同一fixture重新序列化后的空白差异按canonical对象比较。新来源时间由历史header绑定+actual精确ceil分别校验；当前三包人工区间必须0，只做track级比较。旧E1/两旧schema和评估器保持，不能把新run直接交给旧CLI。
 
 实际run-02为40曲/1557片段/8文字、512维；原20重新编码最大差0，最终168单测和独立矩阵/排名复算通过。真实固定命令/源码与工件SHA、初次失败及开发比较见[MUS-035](../../docs/verification/MUS-035.md)。环境继续复用原版只读venv/checkpoint/HF缓存，NUMBA_CACHE_DIR写本次私有目录，不安装或升级依赖。未实现在线API或正式质量验收。
+
+## 新top5未知补判包（MUS-036）
+
+`supplement_pack.py build|validate`增加独立包，使用research_evaluate原11输入SHA及`--evaluation`/`--evaluation-sha256`完整重建035结果，再选未判top5并集。候选从035 actual manifest取时间，不改033历史包；初始全null、空模型建议，新dataset隔离草稿。沿用现有试听页的最小schema适配，浏览器导出仍须同固定输入CLI校验。已有输出拒绝覆盖，通用CLI仅写本checkout已ignore的.local私有子目录，本轮仅.local/a/mus036，0700/0600。
+
+实际仅2query/3对/3不同曲目，已有138保留；20新Python检查，最终全目录188通过；前端新9、连旧共77及build通过。原035排序/指标不改、未跑模型或收到新标签。固定完整命令/哈希/保留失败和18项真实浏览器增量见[MUS-036](../../docs/verification/MUS-036.md)，新schema不能交给原E1或source-review CLI。

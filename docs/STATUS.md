@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-29 America/Chicago）：MUS-035已完成40曲/1557片段完整编码与五描述有界开发比较；新增20素材在两mode均全部进入各自top5，已知相关23/25和24/25、未知2/1，P@5仅区间0.92–1.00/0.96–1.00。历史新来源头部时长已明确纠正为实际EOF，旧证据/138判断保留；线上检索/独立效果验收未完成。B033/rev1 assigned及原版/main保持。
+- 当前检查点（2026-10-29 America/Chicago）：MUS-036独立补判包已准备，钢琴1/爵士2共3首，页面0/3/空建议/新指纹；188 Python/77 Node/build/18真实浏览器增量通过，等待用户判断，原138与035指标保持。B033限定批准已原字节接收，固定入口转035/rev1准确9797ed4，assigned未主动认领。原版/main保持，线上检索/独立效果验收未完成。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -46,7 +46,7 @@
 | MUS-033 新来源导入与身份适配 | done / A（B限定批准已接收） | codex/MUS-033-source-import-review / 7704051；实现dc7e1e4、播放f9192fc、边界10880f8 | B对准确10880f8的独立合成审核通过；真实导入与034收件保持，历史header时长勘误见035，不外推模型 |
 | MUS-034 新20素材标注接收 | done / A（接收/素材汇总完成，非模型验收） | codex/MUS-034-source-label-receipt / 7879a7d | 20/20全3分/原字节归档、固定CLI及同会话复核通过，累计138；186保护文件保持 |
 | MUS-035 扩大语料检索对照 | review / A（实跑/开发对照完成；工具待独立复核） | codex/MUS-035-expanded-retrieval / b42b767；实跑17a31f5 | 全40/1557片段/8文本；168测试/独立矩阵复算/新素材20命中，P@5仅区间；旧run/138保留 |
-| MUS-036 新top5未知补判包 | in_progress / A | codex/MUS-036-top5-supplement / 9797ed4；依赖035 | 仅两mode未知并集3对，E9实际EOF/新指纹/空建议；新CLI/最小前端适配/检查，原138只读 |
+| MUS-036 新top5未知补判包 | review / A（包就绪，3真人判断待用户） | codex/MUS-036-top5-supplement / 9797ed4；真实生成125076d | E9独立包/实际EOF/新指纹/空建议，188 Python/77 Node/build/18真实浏览器通过；原138/035指标保持 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | assigned / B（待主动认领） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
@@ -673,3 +673,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 后端包代理只写supplement_pack/test；前端代理只写helper/新test/View；A串行契约/台账、私有生成与浏览器核验，同会话代理非B。私有仅ignore.local/a/mus036，0700/0600，不改数据库/API/锁/模型、不重做UI/合并main。
 - 开始sync A bf1f855/source9797ed4，B16b06c8/source4f57837；收到033/rev1 approve_scoped，准确reviewed10880f8/base7704051/ack bf1f855，已完成只读来源与报告核验，待A原字节归档接收及独立035新卡串行更新。不改B自身latest，不将033批准外推035/本轮。
 - A接收033原字节报告SHA3c41a66a…及receipt；核source/claim仅两允许报告、准确卡来源9797与五源码SHA，A未收到/重算B私有证据。B27 importer/72包/68 Node/build、独立15断言+7 Node、最终23浏览器/三导出均按B报告记录，早20断言失败不累加。033历史时长不受本批准认证。旧033卡保留，固定入口明确转035/rev1准确9797，新卡仅离线三工具及合成复核；本轮036另列，不静默捆绑批准。
+
+### MUS-036包交付检查点
+
+- 实现bde85a1、权限修复/真实build125076d3d9bd336ab7928dcd7f9ecd9a0a8a3316；包4284bytes/SHA85f1ac61000aad1ed9b86e9b2662ee799b647d92ce6dc0378a76c5113bf1780d，dataset4c00b2ee…，2query/3不同音乐，exp04为1、exp07为2，全null/空建议。固定evaluation+原11pins完整重建，actual时间；build/validate exit0，重复输出/错pin预期exit1且不改输出。
+- 最终188 Python（原168+新20）/77 Node（原68+新9）及现有lock build通过；极端umask创建mode000的合成审计问题已fchmod+回归关闭，E9澄清可复用CLI私有目录与本轮实际目录，早187/代理子集不累加。独立合成Python→JS→Python 10未知/测试2判断1区间通过，非真人/B。
+- 实际原账号/服务三曲完整媒体校验/底栏/暂停/20800ms暂停seek/恢复及切query释放通过，18断言；0/3浏览器导出对象与原包相同且固定CLI exit0。默认668宽无横溢，未强制改视口/称390或1440实测。最终原空白包留页、alias空/无draft恢复；新包核验warning/error0。
+- 私有初次包装日志与前端build.log重名，CLI后日志阶段FileExistsError，不记包装passed；另v1包和pack-*日志真实成功，原输出保持且逐字节相同。首次登录跨build旧chunk两错误保留，reload后新构建核验通过，不修改产品绕过。原版干净f3b0da1，259保护中258不变，唯一计划变化是A dispatch033→035，旧033卡/54缓存/模型/138/run/原音频保持。
+- 本轮只包CLI/测试与最小前端分支/说明、必要文档/B接收派发；无Java/API/schema/锁/模型版本/服务重启/UI重做/main合并，无关Maven/模型不重跑。同步末次06:29:53Z双方fetched，B仍16b06c8/source4f57837；035/rev1 assigned不等于已认领，036未受B独立批准。下一步等3条真人导出交回再另立接收/精确开发比较，035当前未知和指标保持。
