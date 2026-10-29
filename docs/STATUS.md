@@ -45,7 +45,7 @@
 | MUS-032 定向来源候选 | review / A（收集/全解码完成，工具待独立复核） | codex/MUS-032-targeted-corpus-candidates / 2e2db1e | 五描述各4首，20/20原MP3/SHA/证明/解码、18保护检查；source-only，未写库/人评 |
 | MUS-033 新来源导入与身份适配 | review / A（本机交付完成；新20已由034接收，工具独立复核待进行） | codex/MUS-033-source-import-review / 7704051；实现dc7e1e4、播放f9192fc、边界10880f8 | 普通owner真实导入新20/共40、Range/full SHA40、独立20条素材核查包；27+72 Python/68 Node/build/真实UI通过；未跑40曲模型 |
 | MUS-034 新20素材标注接收 | done / A（接收/素材汇总完成，非模型验收） | codex/MUS-034-source-label-receipt / 7879a7d | 20/20全3分/原字节归档、固定CLI及同会话复核通过，累计138；186保护文件保持 |
-| MUS-035 扩大语料检索对照 | todo / unassigned | 依赖033/034；待明确独立分支与范围 | provider-aware40曲新run/冻结排名和未判处理，不能改旧run或以定向来源判断自证模型提升 |
+| MUS-035 扩大语料检索对照 | in_progress / A | codex/MUS-035-expanded-retrieval / b42b767；依赖033/034 | 新两来源40曲完整编码/私有run、五描述未知感知P@5上下限；旧run/138标注不改 |
 | MUS-033-R1-B 新来源核查复核 | assigned / B（待主动认领） | review/MUS-033-B-source-review / 10880f8；对比7704051 | 新导入器/schema/必要UI/整曲时长增量，独立合成fixture；仅新报告/own latest，不读A私有原件 |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
@@ -646,3 +646,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 原20完整五query的相关2/1/1/2/1，加本次每query4，现已知相关至少6/5/5/6/5；每query仅24/40已知（16未知），非全40相关真值/模型P@5。8×40为138已知/182未知，五query120已知/80未知。只内存关联，不写混合schema或把未判当0；原029指标保持。
 - 原件/旧已判及三空白包/40catalog与80副本/032/旧run/B033卡等186文件SHA保持；private0700/0600、原版干净f3b0da1。分析JSON实际有效，一次多余格式预检误判条件导致断言与不存在的final脚本路径失败，未改变有效分析输出/包；记录私有preflight-note，未将该尝试记passed。
 - 仅本机接收与文档，无应用/工具源码/API/schema/依赖/模型/服务或main变更，不重复无关Maven/build/CLAP。独立同会话固定CLI/计数复核一致，非B，B033/rev1原assigned保持；开始/检查点sync以最新实际结果为准。下一步MUS-035先建provider-aware40曲新run/模型候选对照，独立测试版本另立，当前素材评价不等于质量提升。
+
+
+## MUS-035范围与占用（2026-10-29）
+
+- owner A；base b42b767afc0bd3ddb76601a436f8073c3d72106c；branch codex/MUS-035-expanded-retrieval。先E8冻结40曲双来源/固定同模型全量重新编码、8原查询/两mode排名、五目标描述P@5上下限与unknown显式计数，未判不补0、不调阈值/训练。旧source/code/138人评/原20run/03340catalog/音频证明/公共catalog只读。
+- 允许新增services/audio-search/research_corpus.py、research_probe.py、research_evaluate.py及三独立test；README/模块README/PROJECT/CONTRACTS/STATUS/A latest/verification/MUS-035*。私有输入保护/运行/分析仅ignore.local/a/mus035、0700/0600。无前后端/旧probe工具/依赖/API/schema/模型版本/共享缓存或main改变。
+- 语料代理独占research_corpus/test；运行代理独占research_probe/test；评估代理独占research_evaluate/test；A串行契约/台账、源码审查、真实模型运行及独立工件复算。同会话不算B。开始sync双方fetched，B仍44a7f90a/sourcef9911e5，033/rev1 assigned原卡保持，不接管或替换。
