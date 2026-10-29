@@ -19,7 +19,7 @@ async function fixture() {
           title: `Synthetic source ${id}`, artist: 'Synthetic fixture only',
           source_url: `https://incompetech.com/music/royalty-free/index.html?isrc=${source_id}`,
           license_url: 'https://creativecommons.org/licenses/by/4.0/', content_sha256: id.toString(16).padStart(64, '0'),
-          content_bytes: 1234, duration_ms: 12000, model_suggested_intervals_ms: [],
+          content_bytes: 1234, duration_ms: 60000, model_suggested_intervals_ms: [],
           relevance: null, human_intervals_ms: null, annotator: null, judged_at: null }
       }) })) })
 }
@@ -149,12 +149,13 @@ test('source Java Long spelling, ordering, byte and duration bounds remain stric
     ['zero bytes', pack => { pack.queries[0].candidates[0].content_bytes = 0 }],
     ['oversized audio', pack => { pack.queries[0].candidates[0].content_bytes = 30 * 1024 * 1024 + 1 }],
     ['zero duration', pack => { pack.queries[0].candidates[0].duration_ms = 0 }],
+    ['under-thirty-second duration', pack => { pack.queries[0].candidates[0].duration_ms = 29999 }],
     ['overlong duration', pack => { pack.queries[0].candidates[0].duration_ms = 600001 }],
     ['uppercase content hash', pack => { pack.queries[0].candidates[0].content_sha256 = 'A'.repeat(64) }]
   ])
   const bounds = await fixture()
   Object.assign(bounds.queries[0].candidates[0], { content_bytes: 30 * 1024 * 1024, duration_ms: 600000 })
-  Object.assign(bounds.queries[0].candidates[1], { content_bytes: 1, duration_ms: 1 })
+  Object.assign(bounds.queries[0].candidates[1], { content_bytes: 1, duration_ms: 30000 })
   await load(await seal(bounds))
 })
 
@@ -183,7 +184,7 @@ test('source human judgments export and restore without changing the fingerprint
 
 test('source human fields retain strict score, alias, timestamp and interval checks', async () => {
   for (const [key, value] of [['relevance', true], ['relevance', '2'], ['relevance', 4], ['annotator', 'Real Name'],
-    ['judged_at', '2026-02-30T00:00:00Z'], ['human_intervals_ms', []], ['human_intervals_ms', [[0, 12001]]],
+    ['judged_at', '2026-02-30T00:00:00Z'], ['human_intervals_ms', []], ['human_intervals_ms', [[0, 60001]]],
     ['human_intervals_ms', [[0, 6000], [5000, 12000]]]]) {
     const pack = await fixture(), row = pack.queries[0].candidates[0]
     mark(row, 2); row[key] = value

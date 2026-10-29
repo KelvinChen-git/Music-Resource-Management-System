@@ -106,7 +106,7 @@ function checkSourceReviewShape(pack, owner) {
       ensure(BigInt(row.track_id) > previous); previous = BigInt(row.track_id)
       ensure(row.source_provider === 'incompetech' && typeof row.source_id === 'string' && /^[A-Z]{2}[A-Z0-9]{3}[0-9]{7}$/.test(row.source_id))
       text(row.title, 500); text(row.artist, 500); hash(row.content_sha256)
-      int(row.content_bytes, 1, 30 * 1024 * 1024); int(row.duration_ms, 1, 600000)
+      int(row.content_bytes, 1, 30 * 1024 * 1024); int(row.duration_ms, 30000, 600000)
       ensure(row.source_url === `https://incompetech.com/music/royalty-free/index.html?isrc=${row.source_id}`)
       ensure(row.license_url === 'https://creativecommons.org/licenses/by/4.0/')
       ensure(Array.isArray(row.model_suggested_intervals_ms) && row.model_suggested_intervals_ms.length === 0)
