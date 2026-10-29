@@ -1,0 +1,29 @@
+{
+  "schema": "sonora-source-frame-freeze-receipt-v2",
+  "task_id": "MUS-039",
+  "frozen_at_utc": "2026-10-29T21:42:31.766815+00:00",
+  "version": 2,
+  "protocol_sha256": "83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b",
+  "parent_protocol_sha256": "f83a3b456ce51a6dc25b1e4b5c8ae3c77a37168f2b2b11645ccb14a65bebc9e8",
+  "frame_sha256": "d4f2faaa1d5106626ec64ab8913d7588e96b5f61820ef6e1763506f91e3c8a3e",
+  "official_revision": "216bda2dc80b4ec53b3d279d67923eea020dcce7",
+  "enumerated_tracks": 221,
+  "item_counts": {
+    "loc-citizen-dj-fma": 132,
+    "loc-citizen-dj-musicbox": 89
+  },
+  "new_v2_queries_authored_at_freeze": 0,
+  "prior_v1_query_texts_retired_unopened": 8,
+  "prior_v1_query_sha256": "6c2c8dea1391599caf054876554a2f7aaf2df27e1d2625ca26e5d73ddb1f09bc",
+  "audio_downloads_at_freeze": 0,
+  "no_qrels_or_model_results_exist": true,
+  "musicbox_creator_policy": "all89_conservatively_one_recording_project_creator_pool_cap4;not_claim45_independent_artists;unresolved_work_or_old_overlap_quarantined",
+  "official_audio_derivative_policy": "retain_exact_official_full_item_MP3_bytes;MusicBox_MP3_is_official_audio_derivative_of_metadata_video_filename;no_local_transcode_or_clip;not_claim_original_video_or_studio_master",
+  "frame_and_snapshots_private": true,
+  "final_corpus_manifest_sha256": null,
+  "v2_query_manifest_sha256": null,
+  "source_metadata_urls": [
+    "https://raw.githubusercontent.com/LibraryOfCongress/citizen-dj/216bda2dc80b4ec53b3d279d67923eea020dcce7/data/metadata/loc-fma.json",
+    "https://raw.githubusercontent.com/LibraryOfCongress/citizen-dj/216bda2dc80b4ec53b3d279d67923eea020dcce7/data/metadata/loc-musicbox.json"
+  ]
+}

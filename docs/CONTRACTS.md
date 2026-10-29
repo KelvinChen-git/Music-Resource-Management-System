@@ -366,6 +366,14 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 成功source-only输出sonora-holdout-corpus-v1，split=independent_test_source_only，20条来源/creator与work组/原字节SHA/实际时间/下载与解码证明，所有标签不存在或null，不提供模型分数/建议。只有真实20/≥5群/所有输入复核通过才冻结dataset SHA；不能将部分批次称G1完成。当前旧CLI/页面不接此格式，040另立契约。
 - frame冻结后由未看任何候选的新同会话作者编写8英文描述/中文可听说明与0–3规则、2个可能无匹配边界槽；须区别旧8意图，采样方在20曲与替补队列冻结前不读正文。query文件独立指纹/收据，不自动生成160标注或读标签；本任务不执行G2模型冻结/G3新包/G4排名/G5解封。
 
+### E13. MUS-039 v2：首次来源框不足后的显式修订
+
+- 039初始132框经别名/合作/work审查理论上限19<20（尚未下载/解码），按038允许的“blocked或另版协议”选择另版，原038协议、039初框/审查/8条未打开的旧封存描述均原字节保留。v1描述不进入v2；不看其中正文/模型分数/标签再改框。
+- 新协议docs/evaluation/MUS-039-protocol-v2.json，SHA83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b，继承038预算/指标/模型/冻结规则，仅将来源范围显式扩为同一官方revision的全部132 FMA+全部89 MusicBox。完整221框SHAd4f2faaa1d5106626ec64ab8913d7588e96b5f61820ef6e1763506f91e3c8a3e与公开回执先提交；新v2 query正文编写在其后，采样方仍不提前读取。
+- 新frame schema sonora-holdout-source-frame-v2，绑定原FMA frame/review精确SHA，新增92份MusicBox元数据/collection/data/逐首rights快照及完整221规范行。MusicBox source_provider=loc-citizen-dj-musicbox，source_id为原14位录音ID，官方S3路径仅/audio/items/loc-musicbox/<same>.mp3。原metadata文件名可为.m2ts；下载为官方完整item音轨的MP3派生版，保留官方字节，不伪称原视频/原始录音母带、不本地转码或截取。rights使用原逐首free-use-and-reuse文案和AFC来源，不造CC0 URI。
+- MusicBox共享录制项目/创作者池保守合为一个creator_group、上限仍4，不将45署名当45独立群；规范原作者/performer与summary/credit均保留，原40已知身份/作品重叠或身份/作品未决隔离。已有FMA132审查决定原字节复用，不为数量放宽Lucas/Keith等隔离。全221按同seed/provider/source_id SHA顺序，work版本只留首个合格，全部provider用共同actualEOF/48k DSP和原技术边界。
+- 新collector仅在完整重建两官方框/rights/模板、旧种子与绑定group evidence后支持v2；同时保留v1验证，不以新代码改旧记录。构建前后重核来源/collector/DSP与全部已保存音频/证明。原v1源码提交保留在历史，v2源码清洁提交后才真实运行。仍需20/≥5群才能输出成功；本修订不意味着20已取得或G1已通过，040新包/runner/模型预检未执行。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。
