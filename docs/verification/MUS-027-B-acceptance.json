@@ -1,0 +1,40 @@
+{
+  "task_id": "MUS-027-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-28 America/Chicago",
+  "reviewed_sha": "2ed661daff6e66856cdef6a6789a9edea7a2dc5d",
+  "comparison_base_sha": "a945927d45d982e7bda22cc7a84dce930787b52f",
+  "assignment_source_sha": "7704051f9a844816174c710d09e6f92e5b23f0e7",
+  "b_ack_peer_feed_sha": "23497a7c2a43902fd90a71975463748aabb3b7ff",
+  "b_feed_sha": "44a7f90a6d4682e16ec92e2ce8733bc95cfbf151",
+  "b_source_sha": "f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac",
+  "report_path": "docs/reviews/MUS-027-B.md",
+  "report_sha256": "54034af6288c3f6fed2c1500175fa25f4234664876252d34b52c07cac0c67728",
+  "b_latest_sha256": "dae60fdfcfdaef15b0cbae3bd7fb55036d14fa95759c5fd34fa24a32b3bc127b",
+  "a_verified": [
+    "feed/source latest bytes and report hash",
+    "only two allowed B files against reviewed SHA",
+    "reviewed View SHA matches reported 75703a7f5c35988719964f5fdf2730f3288755c2dc12fd5e16f7d5e236b5447b",
+    "exact task revision, reviewed source and A feed ack",
+    "original B report imported byte-for-byte"
+  ],
+  "b_reported": {
+    "node_tests": 8,
+    "build": "passed existing dependencies and lock; retained >500kB warning",
+    "final_run": "run-20261028-213730",
+    "browser_assertions": 25,
+    "browser_exports_cli_validated": 2,
+    "final_warning_error_pageerror": 0,
+    "backend": "synthetic login/profile only; no Java or real JWT",
+    "publication": "sequential non-atomic source then feed"
+  },
+  "limits": [
+    "B private evidence not received or recomputed by A.",
+    "Two earlier blocked runs retained and not accumulated.",
+    "Scoped single-view027 approval does not cover029/030/032/033 or model quality.",
+    "No real human listening, real media/backend permission audit, P95, held-out or main merge."
+  ]
+}

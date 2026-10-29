@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-28 America/Chicago）：MUS-032另收五描述各4共20首来源候选并完整解码，尚未导入网页；原曲库20首及118判断保留。031五描述完整诊断仅各1–2首相关、原联合池漏2对；新候选仍未听评，不算独立测试或模型验收。033待真实ID与新来源适配；B027固定卡仍assigned，原版/后端/main保持。
+- 当前检查点（2026-10-28 America/Chicago）：MUS-033已经原普通owner HTTP导入20首，新旧账号资源共40；新20素材核查包/试听页准备完成，0/20待用户听评，旧118判断保留。40曲未编码/索引，非模型质量验收。B027限定批准已核验接收，固定入口转033/rev1待主动认领；原版/后端运行版本/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -43,13 +43,14 @@
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段，028/031已收118探索判断并完成五描述覆盖诊断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
 | MUS-032 定向来源候选 | review / A（收集/全解码完成，工具待独立复核） | codex/MUS-032-targeted-corpus-candidates / 2e2db1e | 五描述各4首，20/20原MP3/SHA/证明/解码、18保护检查；source-only，未写库/人评 |
-| MUS-033 新来源导入与身份适配 | in_progress / A | codex/MUS-033-source-import-review / 7704051；依赖032 | 固定输入、普通owner HTTP真实ID、独立40曲catalog/20条素材核查包；先确认新素材适配，不改旧20/118或跑模型 |
+| MUS-033 新来源导入与身份适配 | review / A（本机交付完成；新20待人评） | codex/MUS-033-source-import-review / 7704051；实现dc7e1e4、播放f9192fc、边界10880f8 | 普通owner真实导入新20/共40、Range/full SHA40、独立20条素材核查包；27+72 Python/68 Node/build/真实UI通过；未跑40曲模型 |
+| MUS-033-R1-B 新来源核查复核 | assigned / B（待主动认领） | review/MUS-033-B-source-review / 10880f8；对比7704051 | 新导入器/schema/必要UI/整曲时长增量，独立合成fixture；仅新报告/own latest，不读A私有原件 |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
 | MUS-028 首轮标注接收 | done / A（格式/来源绑定验收，非模型质量验收） | codex/MUS-028-label-receipt / df50001 | 51/51已判，0/1/2/3=19/13/9/10；原字节私有归档/固定run校验通过，0人工区间 |
-| MUS-027 评分入口提示 | review / A（实现及本机验证完成） | fix/MUS-027-review-rating-entry / 2ed661d | 就近必填代号/明确校验；8包检查/build、17浏览器断言及合成导出CLI通过 |
-| MUS-027-R1-B 评分入口复核 | assigned / B（待主动认领） | review/MUS-027-B-rating-entry / 2ed661d | 仅新报告/own latest，合成包验证评分/草稿/导出小增量 |
+| MUS-027 评分入口提示 | done / A（B限定批准已接收） | fix/MUS-027-review-rating-entry / 2ed661d | 就近必填代号/明确校验；8包检查/build、17浏览器断言及合成导出CLI通过 |
+| MUS-027-R1-B 评分入口复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-027-B-rating-entry / 2ed661d；交付f9911e5 | B8 helper/build/25最终浏览器断言及两导出CLI；合成login/profile非真实Java/JWT；原字节接收见027-B-acceptance |
 | MUS-026 审阅底栏/进度控制 | done / A（B限定批准已接收） | fix/MUS-026-review-player-controls / d766dcd | 两处控同一已验证音频，31检查/build及真实桌面/手机seek通过，原队列与标签保留 |
 | MUS-026-R1-B 播放控制复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-026-B-review-controls / d766dcd | 仅新报告/own latest；独立合成环境补真实队列/控制链，不重复025全套 |
 | MUS-025 试听审阅入口 | done / A（B原范围限定批准已接收；新体验问题转026） | feat/MUS-025-listening-review / cdc2fc5 | 本地包/JWT及SHA验证试听、人工草稿/导出，21检查/build/浏览器增量通过，原51空白包保留；已填副本见028 |
@@ -617,3 +618,14 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 先E7固定新source-only到真实Java ID的HTTP映射与两新私有格式；原20/118/032批次只读。计划20新曲普通owner导入、每首Range/完整SHA核验、独立40曲catalog和仅20条新素材判断；无假checkpoint、模型结果或自动打分，不要求重做旧标注。40曲检索/held-out后续另建。
 - 导入代理独占新importer/test；Python包代理独占source_review_pack/test；前端代理独占reviewPack.js/新test/View最小提示；A串行台账、实跑、浏览器和交接。开始sync双方fetched，B仍dc5ec6ce/source dd049fdf，027固定卡原assigned保持；同会话代理非独立B。
 - 真实UI增量发现Morning整曲已通过SHA/字节但浏览器时长153253.22ms短于soundfile153555ms，触发100ms保护拒播。范围扩展仅web/src/utils/reviewAudio.js及既有test：新来源整曲经完整验证后取两种时长较小播放上限并共享seek/继续；不改原包时长、旧schema/片段保护、底栏布局或原队列。修复后必须真实播放/暂停/seek并保持0/20人工字段，不能把初次拒播记为passed。
+
+
+### MUS-033本机交付与B027接收检查点（2026-10-28）
+
+- 源码实现dc7e1e4，整曲播放修复f9192fc；27导入保护+72包相关/68 Node/build通过，实际导入重复运行均40且catalog SHA一致，新增20 pending/无自动审核。真实整曲/底栏/暂停/seek/继续与0/20导出CLI通过；合成包2/20+区间/草稿恢复独立验证，不代填真实人评。
+- 新私有40曲catalog SHA1cf24cff…，新包20不同曲目/五描述各4，dataset b225ef4d…，初始20条人工四字段null。旧音频/证明/run/catalog/两完成及两空白包/032批次共99非任务卡输入哈希保持；100项原保护检查在B卡更新前全通过。随后仅固定卡因接收027/派发033按明确状态变更，不把其变更隐藏成仍100项不变。公开目录仍20，不写原版配置/Java/数据库schema/依赖/模型，不重做UI或合并main。
+- 浏览器Morning153555ms/153.25322s与Hot Swing52702ms/49.999979s差异均保留，验证后以较短整曲端点播放；原片段/旧schema100ms保护保持。只读审计发现fresh恢复53ms边界缺口后修正：内部保留原整曲requestRange，每次获取重算min，位置>=新终点拒绝；最终独立合成复查关闭。非B审核、非decoder时间完全等价。
+- 结束检查点sync读到B feed44a7f90a/source f9911e5，精确027/rev1限定批准；A核对feed/source latest哈希、两允许文件、reviewed2ed661d View SHA与原字节报告，接收docs/verification/MUS-027-B-acceptance.json。B最终25浏览器断言/两导出/8 helper/build是其报告范围，非真实服务/人评；两早期blocked不累加。027完成，033新卡assigned，不冒充认领/批准；032等旧工具独立审核未自动关闭。
+- 允许文档范围扩展为B027原字节报告导入、027接收记录与固定dispatch/033卡；A串行维护，B own latest不改。A latest ack最新B feed，提交后原子publish/回读。下一步只收新20真人核查，再协调provider-aware新run与独立测试；旧118不需重做。
+
+- 发布前交叉复查另发现新source浏览器时长下限仍1ms、与Python30s不一致；已仅新schema收紧到30000–600000ms，fixture/29999拒绝与30000通过边界补齐，原两schema保持。提交10880f8，最终68Node/build通过，独立内存重签复查关闭；B033准确审核输入更新10880f8（尚未发布派发，无重复修订/认领）。

@@ -71,3 +71,17 @@ python3 services/audio-search/evaluate_review.py \
 `diagnostic_pack.py build|validate`同时固定report、已完整标注E1基包SHA及显式query IDs，从校验过的完整manifest减各query旧池；输出独立新schema/指纹，人工字段初始null、无模型建议/分数，不修改原包。新包只用于补齐当前曲库判断，E4评估不会直接接收它。原路径0600独占、只.local，CLI只打印汇总；完整命令与实际5query/67对见[MUS-030](../../docs/verification/MUS-030.md)。浏览器原E1规则保留，新schema支持每query<=100；最终来源仍需CLI。
 
 标准库相关检查：`PYTHONPATH=services/audio-search python3 -m unittest test_review_pack test_evaluate_review test_diagnostic_pack -v`，实际53通过。不加载CLAP或音频，不对诊断新对自动打分、融合、训练或作held-out结论。
+
+
+## 新来源素材核查（MUS-033）
+
+`source_review_pack.py build|validate`显式固定source manifest、decode report、私有import catalog、query fixture四份SHA，另重建selection及原20基线。只接收新来源已导入真实Java身份、完整内容/证明与解码绑定；输出5描述各4首、20首互异的新schema包，所有人工字段null、模型区间为空。它确认素材是否适合已知描述，不能作为模型排序/held-out，也不能直接交给旧Jamendo-only corpus/probe。
+
+导入入口是根目录`scripts/import_research_music.py`，使用既有普通owner与现有HTTP接口，独立私有40曲catalog；原公开20曲与118判断保持。精确本机命令/哈希见[MUS-033](../../docs/verification/MUS-033.md)。B用独立合成fixture，不需要A私有数据或凭据。标准库检查：
+
+```sh
+python3 -m unittest discover -s scripts -p test_research_import.py -v
+PYTHONPATH=services/audio-search python3 -m unittest test_review_pack test_evaluate_review test_diagnostic_pack test_source_review_pack -v
+```
+
+实际27+72通过，不加载CLAP。新包CLI重建原不可变结构，只准人工四字段改变，已有输出拒绝覆盖；浏览器导出须再次CLI验证。实际页面初始0/20，新来源整曲仅在完整JWT媒体/字节/SHA验证后按较短浏览器端点播放，不改解码记录；旧schema和真正片段边界不放宽。新40曲索引与模型比较属于后续任务。

@@ -3,25 +3,25 @@
   "owner": "b",
   "status": "assigned",
   "claimed_by_b": false,
-  "task_id": "MUS-027-R1-B",
+  "task_id": "MUS-033-R1-B",
   "previous_task": {
-    "task_id": "MUS-026-R1-B",
+    "task_id": "MUS-027-R1-B",
     "assignment_revision": 1,
-    "reviewed_sha": "d766dcd09df3cc1e54130ca80aefb946985ee2b3",
+    "reviewed_sha": "2ed661daff6e66856cdef6a6789a9edea7a2dc5d",
     "status": "review_completed",
     "verdict": "approve_scoped_received",
-    "source_sha": "dd049fdf6cf1ddb253cb88972cffb472a1e1b457",
-    "feed_sha": "dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42",
-    "acceptance_record_path": "docs/verification/MUS-026-B-acceptance.json"
+    "source_sha": "f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac",
+    "feed_sha": "44a7f90a6d4682e16ec92e2ce8733bc95cfbf151",
+    "acceptance_record_path": "docs/verification/MUS-027-B-acceptance.json"
   },
-  "note": "026 scoped approval received. New one-view inline alias/rating usability increment; synthetic workflow only, do not repeat media/backend/model audit.",
+  "note": "027 scoped approval received. Review the new033 importer/source-qualification schema/browser increment with independent synthetic inputs; no access to A private data or model rerun.",
   "assignment_revision": 1,
-  "task_card_path": "docs/collaboration/tasks/MUS-027-R1-B.md",
-  "reviewed_sha": "2ed661daff6e66856cdef6a6789a9edea7a2dc5d",
-  "comparison_base_sha": "a945927d45d982e7bda22cc7a84dce930787b52f",
-  "review_branch": "review/MUS-027-B-rating-entry",
+  "task_card_path": "docs/collaboration/tasks/MUS-033-R1-B.md",
+  "reviewed_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791",
+  "comparison_base_sha": "7704051f9a844816174c710d09e6f92e5b23f0e7",
+  "review_branch": "review/MUS-033-B-source-review",
   "allowed_output_paths": [
-    "docs/reviews/MUS-027-B.md",
+    "docs/reviews/MUS-033-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md"

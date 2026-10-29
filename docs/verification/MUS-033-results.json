@@ -1,0 +1,271 @@
+{
+  "task_id": "MUS-033",
+  "status": "local_import_and_source_qualification_pack_ready_for_human_review",
+  "checked_on": "2026-10-28 America/Chicago",
+  "branch": "codex/MUS-033-source-import-review",
+  "source_baseline_sha": "7704051f9a844816174c710d09e6f92e5b23f0e7",
+  "implementation_sha": "dc7e1e492695d5960dd13aea412730c6c72d4baf",
+  "playback_fix_sha": "f9192fcd03d0c8224b5dbe9176e46d46d7c1dcf1",
+  "source_files_sha256": {
+    "scripts/import_research_music.py": "fd37990c1e6f4d6dedc9480be7385e05143274c0f18d1da26e267333e609574a",
+    "scripts/test_research_import.py": "bffe4d489aae8113a8dd4ce0d96af990d63cf1a39d6e7ed5b9a3cead42907e5b",
+    "services/audio-search/source_review_pack.py": "c6630572817c70e4a80daa82cd9281877124f3db310821f8dee394f2d4f1dd15",
+    "services/audio-search/test_source_review_pack.py": "2109c42561da53880d3e31549b807df53f61e27250709758a69f26204118c510",
+    "web/src/utils/reviewPack.js": "31742899889a61057659e33b5f44011f0f733b30586ee096b8d992312355e463",
+    "web/src/utils/sourceReviewPack.test.js": "7eab27df8724bcaafc48c7136605fd6d6fda5e386c158d996b135394fd65eb4d",
+    "web/src/views/ReviewWorkspace.vue": "fe244c3e53b50c4f48a308debba5811b3b8df7bba2a1f8c1771751892015bda2",
+    "web/src/utils/reviewAudio.js": "28aeb3dd075a48d250046bed51024a3435adf68edf12b2d88265db28944af393",
+    "web/src/utils/reviewAudio.test.js": "d531ff3f59d59bd14a79910616c04df5b8aba8dd92a821fad91a7267e5a3e6ec"
+  },
+  "inputs": {
+    "source_manifest_sha256": "2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a",
+    "decode_report_sha256": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+    "baseline_catalog_sha256": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+    "selection_sha256": "c02ae831a4338862ffc68e626a64c67477ea79e5e62c8a019ac4cb311e701669",
+    "query_fixture_sha256": "f6118b2283c2818f0dd2af196c98c770045ff787c32403407eaea2241a313723"
+  },
+  "private_artifacts": {
+    "catalog": {
+      "path": ".local/a/mus033/import/catalog.json",
+      "sha256": "1cf24cff5eeceaca587d607e5dae96a47da3ee806b067158f700eba773321cc3",
+      "schema": "sonora-research-catalog-v1",
+      "tracks": 40,
+      "original_tracks": 20,
+      "new_tracks": 20
+    },
+    "source_review_pack": {
+      "path": ".local/a/mus033/source-review-pack.json",
+      "sha256": "ac024ca350782f50fa447ce2f1e8fd0d0476b0a192f257294b280a5b4c38c661",
+      "bytes": 15818,
+      "schema": "sonora-source-review-pack-v1",
+      "split": "development_source_candidates_not_held_out",
+      "dataset_sha256": "b225ef4dc8790f13d02b7f33825a29be09f4732474ee79d138003eaabd0b6c71",
+      "queries": 5,
+      "candidate_pairs": 20,
+      "distinct_music": 20,
+      "per_query": {
+        "exp-02": 4,
+        "exp-03": 4,
+        "exp-04": 4,
+        "exp-07": 4,
+        "exp-08": 4
+      },
+      "human_judged": 0,
+      "unjudged": 20,
+      "model_suggested_intervals": 0
+    }
+  },
+  "actual_import": {
+    "api": "existing localhost A ordinary USER owner HTTP upload/metadata/media",
+    "first_exit_code": 0,
+    "repeat_exit_code": 0,
+    "resource_count": 40,
+    "range_206_verified_per_run": 40,
+    "full_sha_verified_per_run": 40,
+    "catalog_repeat_same_sha": true,
+    "old20_resource_objects_unchanged_at_post_import": true,
+    "new20_resource_status": "pending",
+    "new20_automatically_approved": false,
+    "actual_list_pages": 2,
+    "actual_list_page_limit": 20,
+    "private_audio_files": 40,
+    "private_proof_files": 40,
+    "copies_byte_equal_and_no_symlinks_or_hardlinks": true,
+    "private_file_mode": "0o600",
+    "private_directory_mode": "0o700",
+    "legacy_account_state_still_missing": true,
+    "credentials_changed": false
+  },
+  "tests": {
+    "importer_standard_library": {
+      "passed": 27
+    },
+    "pack_standard_library": {
+      "passed": 72,
+      "new_source_pack": 19,
+      "old_e1_eval_diagnostic": 53
+    },
+    "node_helper_and_store": {
+      "passed": 68,
+      "review_audio_subset": 20
+    },
+    "build": {
+      "exit_code": 0,
+      "existing_bundle_warning_retained": true
+    },
+    "pack_repeat_build": {
+      "expected_exit_code": 1,
+      "original_unchanged": true
+    },
+    "legacy_clis": {
+      "first_pack_judged": 51,
+      "supplement_judged": 67,
+      "unjudged": 0,
+      "exit_codes": [
+        0,
+        0
+      ]
+    }
+  },
+  "browser": {
+    "real_current_owner_login": "existing account; original USER role",
+    "real_pack_judged": 0,
+    "real_export_exact_object_roundtrip": true,
+    "real_export_fixed_input_cli_exit_code": 0,
+    "real_playback": [
+      "Morning",
+      "Hot Swing"
+    ],
+    "controls_verified": [
+      "page and bottom title sync",
+      "pause",
+      "page seek",
+      "bottom seek",
+      "fresh authorized resume"
+    ],
+    "layout_widths": [
+      390,
+      1440
+    ],
+    "document_scroll_widths": [
+      384,
+      1434
+    ],
+    "final_captured_warn_error_logs": 0,
+    "synthetic_ui_export": {
+      "judged": 2,
+      "relevance_counts": {
+        "0": 1,
+        "3": 1
+      },
+      "unjudged": 18,
+      "human_intervals": 1,
+      "fixed_cli_exit_code": 0,
+      "not_human_labels": true
+    },
+    "synthetic_draft": "refresh/import original leaves0; explicit restore returns2; real dataset remains separate",
+    "final_page": "http://127.0.0.1:5175/research/review",
+    "final_state": "new20 loaded,0/20,anonymous alias empty,Morning stopped; no human fields edited"
+  },
+  "playback_duration_observations": {
+    "Morning": {
+      "recorded_decode_ms": 153555,
+      "browser_duration_seconds": 153.25322,
+      "effective_end_ms": 153253
+    },
+    "Hot Swing": {
+      "recorded_decode_ms": 52702,
+      "browser_duration_seconds": 49.999979,
+      "effective_end_ms": 49999
+    },
+    "adaptation": "verified Incompetech original whole-track only; min(recorded,floor(browser ms)),fresh resume recomputes from original request range; fragment/legacy original guard retained",
+    "same_session_independent_audit": "initial fresh-resume53ms gap found and fixed; final independent in-memory reproduction passed; not account B"
+  },
+  "preservation": {
+    "original_input_files_checked_before_dispatch_update": 100,
+    "unchanged_before_dispatch_update": 100,
+    "non_dispatch_files_rechecked_unchanged": 99,
+    "expected_dispatch_update": "B027 scoped approval receipt and new B033 revision1 assignment",
+    "old_human_judgments_retained": 118,
+    "old_public_catalog_tracks": 20,
+    "old_index_tracks": 20,
+    "old_index_segments": 933,
+    "new40_index_built": false,
+    "new_model_runs": 0,
+    "backup_clean": true,
+    "backup_head": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce"
+  },
+  "coordination": {
+    "a_start_feed": "23497a7c2a43902fd90a71975463748aabb3b7ff",
+    "b_start_feed": "dc5ec6ce412d50a31d935304a6cb17fb7bf6dc42",
+    "b_checkpoint_feed": "44a7f90a6d4682e16ec92e2ce8733bc95cfbf151",
+    "b_checkpoint_source": "f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac",
+    "b027_receipt": "docs/verification/MUS-027-B-acceptance.json",
+    "new_b_task": "MUS-033-R1-B",
+    "new_b_task_revision": 1,
+    "new_b_task_status": "assigned_not_claimed",
+    "b033_approval_received": false,
+    "new_b_reviewed_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791"
+  },
+  "logs_sha256": {
+    "browser-export-validation.log": "dacf346039ac3560704d5caddafe7c738307ed769549d6e8e3910204341dd19c",
+    "build-delivery.log": "079d3d129ffafff4d9453c85fe17717f87bfc5fa57fb9362875786ced8a9dbd5",
+    "build-final.log": "fd4747fd69f040a3c3ece0d8a8ca120985e3a37094ccdf9fc9169a83ee0b6437",
+    "build-pack.log": "13285e586d37a51fbb8c525f9d1b2bc0f0712ea7e79e09eed32d700978f525f7",
+    "build-publication.log": "3480ec6100587e4e38e7edbd6fccc13108d9af54dcf887a2c0ee49efcb200e2a",
+    "build.log": "a1c2d204d1a1888a8e7e793b8537739df02325d8ad80668d83c2f674ff68c0c2",
+    "frontend-tests-delivery.log": "92c5924124fb3606fff95d49b8db36c96281cf7e1b2434b927a7f6874316e444",
+    "frontend-tests-final.log": "e2ac718521cbda9cd1c3b4e5cb477363e2a34eed988e61b713fb6298d1c5e892",
+    "frontend-tests-publication.log": "d14822c4bbfcd3854b14ced25632ce89c9ca104f512494f5f730a0eb63fe8b3f",
+    "frontend-tests.log": "041c2b4d04e93c791b60c579d16deaad13aac7b210b41476eb88e2256e24750d",
+    "import-final.log": "b989c710772adc93518ed065841d271a42ab8f78d996a24970a3a0b56f311845",
+    "import-repeat.log": "b989c710772adc93518ed065841d271a42ab8f78d996a24970a3a0b56f311845",
+    "import-tests-final.log": "8589edbb3233e9d8b459241de79d5ea4d027a3216751e35340d99291514d4e11",
+    "import-tests.log": "18ebf484f1843ca177c76494566945c91d102bad0a83a6b7923853dceb024b16",
+    "import.log": "01aa5da3ad3ec6d92054af41034bd6d53be4a1ba32476e5c61f19c5a62041b18",
+    "legacy-validation.log": "efd7425406f7ad7edcaeea96dd838b522ffda84f58ef12277662a1a1c348707a",
+    "pack-overwrite-rejected.log": "2d98403edf11acfc40e4600aabf7cac0989dc790d7775ff126f1e9b52e3c81fe",
+    "python-pack-tests.log": "bb94dec2222f4c42176a389a2fe8c4a1403a212270059ddb91608697674d007c",
+    "real-pack-node-roundtrip.log": "dccfad3f7c6ddba3e1f466e0c91ec6e5c8e64b99e02acb719ad26d2d6793a040",
+    "synthetic-export-validate.log": "c1eb66832ec4a95e76418935608ee5dbf0bcf3e15147bd0036bf2ad0f61dfce3",
+    "validate-pack.log": "dacf346039ac3560704d5caddafe7c738307ed769549d6e8e3910204341dd19c"
+  },
+  "screenshots_private_sha256": {
+    "desktop-review.png": "cca3ff97ec7157d9c3df97fa3651aadb503703938739203ac38f7371e5d4427b",
+    "mobile-review.png": "c34f553c17e466666df99c73bd81324ac54927caa726c8c13a589f3480d8a87f",
+    "review-final.png": "18182d7bcce1d8c2faecb0a78278dae61dc85e5b9edb47fc1c54a881b7d1c9a8",
+    "review-ready.png": "392a7ce7069f0115fbc7d7b66807065cd9aeb3f3691874d0a3b245e2a847eeda"
+  },
+  "initial_failures_and_resolutions": [
+    {
+      "stage": "import preflight",
+      "error": "legacy demo-account-state.json absent",
+      "result": "exit1,no uploads; narrowly allow truly absent legacy state only with pinned baseline and actual same USER profile; present bad/pending state still rejected"
+    },
+    {
+      "stage": "source pack fixture validation",
+      "error": "reversed query fixture and consistent too-short decode accepted initially",
+      "result": "fixed exact target query order and30..600s; regression tests pass"
+    },
+    {
+      "stage": "resource list verification",
+      "error": "expected40 rows from server-capped20 row page",
+      "result": "read two20-record pages;40unique; no service change"
+    },
+    {
+      "stage": "real browser playback",
+      "error": "Morning browser end shorter than recorded by301.78ms; old100ms guard refused",
+      "result": "new-provider whole-track-only verified effective endpoint; original durations unchanged"
+    },
+    {
+      "stage": "same-session independent audio audit",
+      "error": "first adaptation lost original full-range identity on fresh resume, allowing53ms stale overrun",
+      "result": "requestRange retained; fresh metadata recomputes end; final audit closes gap"
+    },
+    {
+      "stage": "synthetic fixture preparation",
+      "error": "first local fixture helper used nonexistent prepare method",
+      "result": "used existing save/build methods; no product change"
+    },
+    {
+      "stage": "browser query selection",
+      "error": "query ID used as option value but UI uses numeric option values",
+      "result": "inspect rendered options and select actual visible label; no product change"
+    },
+    {
+      "stage": "final independent source-schema audit",
+      "error": "Browser source duration lower bound1ms differed from Python30000ms; normal Node fixture12000ms masked it",
+      "result": "Only new source branch now30000..600000ms; fixture60000,29999reject/30000accept/600000accept/600001reject; independent in-memory reseal confirms closure; real pack unchanged"
+    }
+  ],
+  "limits": [
+    "Source qualification,not model ranking or human-positive proof.",
+    "All new candidates by one composer; selected using known failure descriptions,development only,not held-out.",
+    "New20human judgments pending; original118 preserved and remaining old42unknown unchanged.",
+    "New40provider-aware corpus/index/model comparison not yet implemented or run.",
+    "No Java/API/database-schema/startup/lock/old public catalog changes,no backend restart or main merge.",
+    "MUS-002 quality acceptance/discovery-v0 freeze/P95/improvement unmeasured or incomplete.",
+    "No B private raw evidence recomputation;027 approval does not cover033 or032."
+  ],
+  "source_duration_validation_fix_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791"
+}

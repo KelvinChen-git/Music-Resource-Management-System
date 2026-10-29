@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-032-targeted-corpus-candidates`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-033-source-import-review`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -30,9 +30,11 @@ VITE_DEV_PORT=5175 VITE_PROXY_TARGET=http://127.0.0.1:8080 npm run preview -- --
 
 **当前面向浏览器的多模态检索尚未实现。** MUS-022已补上20首真实MP3的离线解码、933片段及固定CLAP候选排序；MUS-028/031累计接收118条探索人工判断，五条描述各完成全20曲判断，MUS-029已完成首轮候选池探索比较。正式模型效果验收及线上检索接口仍未完成。已建立MUS-001本地功能基线；模型效果、正式索引、独立研究测试集和性能仍需验证。2,000 首、约 70,000 片段、120 查询、300ms P95 和 10% 提升均不是现有成果。
 
+MUS-033已通过原普通账号HTTP接口新增20首，账号资源现40首；独立私有40曲catalog和仅新增20条的素材核查包已完成，试听页支持该包。旧公开来源目录仍原20首，旧118判断/933片段索引保留；新40曲尚未编码/索引，素材适配需先听评。页面已打开时可直接继续；刷新后手动导入本机 `.local/a/mus033/source-review-pack.json`。方法/包绑定与播放时长差异见[MUS-033](docs/verification/MUS-033.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
-两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；A 自动发布仍受连接写权限 / 受管终端网络阻塞，不能声称双方全自动推送均通过。
+两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。
 
 ## 代码与验证边界
 
