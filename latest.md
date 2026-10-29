@@ -1,5 +1,31 @@
 # 账号 A 最新交接
 
+## 当前：MUS-039独立来源与描述G1已冻结，source-only
+
+A；2026-10-29 America/Chicago；branch codex/MUS-039-independent-corpus-freeze；base `bc653e05eb722224bdd6ca395a0835ffeafab910`；真实收集源码 `e668a745b67b1d914cd03d9223848a3679bfe4e6`。review仅G1完成/工具待独立审核，不是模型效果验收；最终提交SHA见handoff。
+
+ack_peer_feed_sha `16b06c8cfde4b34bb461ab18d533e66d50ac9f16` / B source `4f5783790b5d4607080678b82c5ce6cf842f64e3`。开始21:16:59Z及检查点22:12:13Z双方fetched；B035/rev1准确reviewed9797ed4/baseb42b767仍assigned未主动认领，原card/dispatch逐字节保持，不替换在途任务或外推033批准。
+
+初框132 FMA先提交c7c6d61，隔离作者再写8条query；保守别名/合作/work审查容量仅19，未下载音频、采样方未读正文。按038允许另版：原框/审查/8条封存文本保留弃用，v2完整132 FMA+89 MusicBox框先提交2ab6c94，再另写8条全新query。没有按相关度/模型/标签凑数或放宽旧隔离；整任务创作16条，活动8条/160对不变。
+
+v2协议SHA83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b、框d4f2faaa1d5106626ec64ab8913d7588e96b5f61820ef6e1763506f91e3c8a3e、关系审查48eebd56…。完整221行/212可技术筛选/9隔离，11可用群、理论23。MusicBox共同录制项目保守一群cap4；实际源包括音频/视频文件，下载是官方完整item音轨MP3派生版，保留原字节，不称原母带或补造CC0 URI。未决作品/身份/许可保持隔离，元数据关系审查非穷尽别名/声学指纹。
+
+新collector/test仅两文件，旧工具/DSP只读复用；显式三pin/完整来源重建，固定SHA队列/cap4/同work首项、实际65536 out EOF/48k整数ceil/原字节及PCM SHA/输入前后复核，私有独占/拒绝覆盖/逃逸。干净e668a74真实exit0，20条=16FMA+4MusicBox、9群/20work，61,224,732bytes/3,824,645ms，32–441秒。完整221队列处理176：20选/156排除（147cap/8隔离/1短音频）；后45未处理，不称全部已技术验证。manifest cf320f06…、dataset2172565f…、queue4dbcb6ae…。
+
+最终26新合成单测通过，不加早19/代理子集；真实输入221/276证据核验通过。独立同会话另一代理不用collector.run/fetch，复核21保存音频实际EOF/20入选PCM及字节/证明/完整176处理156排除/297输入hash，非B。重名实跑预期exit1/FileExistsError，原91文件hash不变，无新下载。保留LOC403、v1不足、审查/审计准备错误和根侧误认未入选路径的纠正，不当成功应用测试。
+
+22:03:38.619Z先冻结source20与完整替补队列，22:04:08.088Z才首次打开v2 query正文，8条与封存5c828557…逐字段相同，公开fixture6b3af0cc…。作者是未看候选/音频/模型的隔离同会话AI，非真人/B；中文可听线索/0–3规则/2个可能无匹配需求不保证实际0正例。v1原文本仍未打开，不按素材修改新query。
+
+307保护文件和54共享cache常规文件集合/hash保持，原备份干净f3b0da1，8080 PID96842/5175 PID4143保持。首次模式终检发现两个新官方快照0644，仅改mode到0600字节不变、保留失败报告，重检全私有0700/0600通过。旧40已导入/141判断/179未知、四原包/旧排名/模型与037开发指标保持；不升级依赖、重跑无关Maven/build/浏览器/CLAP，未改Java/Vue/API/schema/当前模型/服务/UI/main。
+
+新20仍source-only无Java ID/owner，未导入数据库/生成可标注包/跑模型或向量/收新判断；页面不会出现新20。下一步040先普通owner HTTP导入与真实ID/权限Range/完整SHA映射、新test包/runner契约、B本地pin严格加载/512及旧100安全dev预检，再G2冻结/新160项包；G5前可读qrels仍由标注者保管。MUS-002质量/discovery-v0/线上检索未完成，没有新模型成绩/P95/定位/显著性/预训练未见结论。完整方法/指纹见verification/MUS-039.md/results.json与evaluation/MUS-039-queries-v2.json。
+
+提交后原子publish并sync回读；发布不等于B认领/接收/批准或main合并，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-038独立小样本评测与模型对照方案已冻结
 
 A；2026-10-29 America/Chicago；branch codex/MUS-038-independent-eval-protocol；base `efd7be584b9f30e61ac86474c038d0d79f43ec39`。done仅设计，实际test尚未执行；最终提交SHA见handoff。
