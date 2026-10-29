@@ -4,7 +4,7 @@ import { useUserStore } from '@/stores/user'
 import { useSonoraPlayer } from '@/stores/sonoraPlayer'
 import { fetchMedia } from '@/utils/media'
 import { createReviewAudio } from '@/utils/reviewAudio'
-import { DIAGNOSTIC_SCHEMA, SOURCE_REVIEW_SCHEMA, loadReviewPack, exportReviewPack, loadReviewDraft, reviewDraftKey, reviewCounts, validAlias, checkRange } from '@/utils/reviewPack'
+import { DIAGNOSTIC_SCHEMA, SOURCE_REVIEW_SCHEMA, RETRIEVAL_SUPPLEMENT_SCHEMA, loadReviewPack, exportReviewPack, loadReviewDraft, reviewDraftKey, reviewCounts, validAlias, checkRange } from '@/utils/reviewPack'
 
 const user = useUserStore(), player = useSonoraPlayer()
 const pack = ref(null), queryIndex = ref(0), candidateIndex = ref(0), alias = ref('')
@@ -15,6 +15,7 @@ const seekPreview = ref(null)
 const counts = computed(() => pack.value ? reviewCounts(pack.value) : { total: 0, judged: 0, unjudged: 0 })
 const diagnostic = computed(() => pack.value?.schema === DIAGNOSTIC_SCHEMA)
 const sourceReview = computed(() => pack.value?.schema === SOURCE_REVIEW_SCHEMA)
+const supplement = computed(() => pack.value?.schema === RETRIEVAL_SUPPLEMENT_SCHEMA)
 const query = computed(() => pack.value?.queries[queryIndex.value])
 const row = computed(() => query.value?.candidates[candidateIndex.value])
 const canJudge = computed(() => validAlias(alias.value))
@@ -156,11 +157,12 @@ async function download() {
 
 <template>
   <section class="review-workspace">
-    <header class="review-heading"><div><p class="eyebrow">EXPLORATORY LISTENING</p><h1>试听审阅</h1><p>{{ sourceReview ? '听一听，再判断新素材是否适合当前描述。本轮仅核查素材，不提供模型排序。' : diagnostic ? '听一听，再判断文字描述与音乐是否相关。本轮核查未入选曲目，不提供模型建议，仅作探索。' : '听一听，再判断文字描述与音乐是否相关。模型建议可见，本轮仅作探索。' }}</p></div><div class="actions"><button type="button" :disabled="importing" @click="input.click()">{{ importing ? '正在校验…' : '导入标注包' }}</button><button v-if="pack" type="button" @click="download">导出 JSON</button><input ref="input" class="file-input" type="file" accept=".json,application/json" aria-label="选择标注包" @change="importFile"></div></header>
+    <header class="review-heading"><div><p class="eyebrow">EXPLORATORY LISTENING</p><h1>试听审阅</h1><p>{{ supplement ? '听一听，再判断文字描述与音乐是否相关。本轮仅补判未判断结果，不提供模型建议，仅作开发核查。' : sourceReview ? '听一听，再判断新素材是否适合当前描述。本轮仅核查素材，不提供模型排序。' : diagnostic ? '听一听，再判断文字描述与音乐是否相关。本轮核查未入选曲目，不提供模型建议，仅作探索。' : '听一听，再判断文字描述与音乐是否相关。模型建议可见，本轮仅作探索。' }}</p></div><div class="actions"><button type="button" :disabled="importing" @click="input.click()">{{ importing ? '正在校验…' : '导入标注包' }}</button><button v-if="pack" type="button" @click="download">导出 JSON</button><input ref="input" class="file-input" type="file" accept=".json,application/json" aria-label="选择标注包" @change="importFile"></div></header>
     <p v-if="message" class="notice" role="status">{{ message }}</p>
     <div v-if="!pack" class="review-empty"><h2>从本机标注包开始</h2><p>导入准备好的探索 JSON，候选和原始评分会保留。音频通过当前账号的曲库权限读取。</p><p>不会自动填写人工判断，也不会把未判断条目记为不相关。</p></div>
     <template v-else>
-      <p v-if="sourceReview" class="notice">新素材核查，仅 20 条新判断；素材按描述收集，不代表模型排序或已确认相关。本包独立保存。</p>
+      <p v-if="supplement" class="notice">本轮仅补判扩大曲库后尚未判断的检索结果；已有判断保留，本包独立保存，不提供模型建议。</p>
+      <p v-else-if="sourceReview" class="notice">新素材核查，仅 20 条新判断；素材按描述收集，不代表模型排序或已确认相关。本包独立保存。</p>
       <p v-else-if="diagnostic" class="notice">补充核查：这些曲目未进入上一轮候选；已完成判断保留，本包独立保存。</p>
       <div class="review-summary"><span>已判断 <strong>{{ counts.judged }}</strong> / {{ counts.total }}</span><span>未判断 {{ counts.unjudged }}</span></div>
       <button v-if="draft" class="restore" type="button" @click="restore">恢复本机草稿（{{ draft.judged }} 条已判断）</button>
@@ -172,7 +174,7 @@ async function download() {
           <div class="review-progress"><span>{{ time(playback.positionMs) }}</span><input type="range" :min="playback.rangeStartMs || 0" :max="playback.rangeEndMs || 1" step="100" :value="seekPreview ?? playback.positionMs" :disabled="!playback.verified || busy" aria-label="试听进度" @input="seekPreview=Number($event.target.value)" @change="seek($event.target.value)" @pointercancel="seekPreview=null"><span>{{ time(playback.rangeEndMs || 0) }}</span></div>
           <div class="actions"><button type="button" :disabled="!playback.verified || busy" @click="controller.toggle()">{{ playback.phase === 'playing' ? '暂停试听' : '继续试听' }}</button><small class="hint" v-if="playback.rangeEndMs">可拖动范围：{{ seconds(playback.rangeStartMs) }}–{{ seconds(playback.rangeEndMs) }} 秒</small></div>
           <p class="playback" role="status">{{ busy ? '正在获取并校验音频…' : playback.phase === 'playing' ? '试听中' : playback.phase === 'paused' ? '已暂停' : '已停止' }} · {{ time(playback.positionMs) }}</p><p v-if="playback.error" class="error" role="alert">{{ playback.error }}</p>
-          <div class="suggestions"><h3>{{ diagnostic || sourceReview ? '试听与手动定位' : '模型建议片段' }}</h3><p v-if="diagnostic || sourceReview" class="hint">本轮请试听整曲并手动定位，不提供模型建议。</p><template v-else><div class="actions"><button v-for="(range, index) in row.model_suggested_intervals_ms" :key="index" type="button" @click="play(range)">试听 {{ seconds(range[0]) }}–{{ seconds(range[1]) }} 秒</button></div><p v-if="!row.model_suggested_intervals_ms.length" class="hint">本候选没有建议片段，可试听整曲。</p></template></div>
+          <div class="suggestions"><h3>{{ diagnostic || sourceReview || supplement ? '试听与手动定位' : '模型建议片段' }}</h3><p v-if="diagnostic || sourceReview || supplement" class="hint">本轮请试听整曲并手动定位，不提供模型建议。</p><template v-else><div class="actions"><button v-for="(range, index) in row.model_suggested_intervals_ms" :key="index" type="button" @click="play(range)">试听 {{ seconds(range[0]) }}–{{ seconds(range[1]) }} 秒</button></div><p v-if="!row.model_suggested_intervals_ms.length" class="hint">本候选没有建议片段，可试听整曲。</p></template></div>
           <fieldset class="ratings" aria-describedby="rating-alias-hint">
             <legend>与当前描述的相关性</legend>
             <label class="rating-alias">匿名标注代号（必填）<input v-model="alias" maxlength="64" placeholder="如 listener-a" autocomplete="off" spellcheck="false" required aria-label="匿名标注代号" aria-describedby="rating-alias-hint" :aria-invalid="!!alias && !canJudge"></label>

@@ -43,11 +43,12 @@
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段，028/031已收118探索判断并完成五描述覆盖诊断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
 | MUS-032 定向来源候选 | review / A（收集/全解码完成，工具待独立复核） | codex/MUS-032-targeted-corpus-candidates / 2e2db1e | 五描述各4首，20/20原MP3/SHA/证明/解码、18保护检查；source-only，未写库/人评 |
-| MUS-033 新来源导入与身份适配 | review / A（本机交付完成；新20已由034接收，工具独立复核待进行） | codex/MUS-033-source-import-review / 7704051；实现dc7e1e4、播放f9192fc、边界10880f8 | 普通owner真实导入新20/共40、Range/full SHA40、独立20条素材核查包；27+72 Python/68 Node/build/真实UI通过；未跑40曲模型 |
+| MUS-033 新来源导入与身份适配 | done / A（B限定批准已接收） | codex/MUS-033-source-import-review / 7704051；实现dc7e1e4、播放f9192fc、边界10880f8 | B对准确10880f8的独立合成审核通过；真实导入与034收件保持，历史header时长勘误见035，不外推模型 |
 | MUS-034 新20素材标注接收 | done / A（接收/素材汇总完成，非模型验收） | codex/MUS-034-source-label-receipt / 7879a7d | 20/20全3分/原字节归档、固定CLI及同会话复核通过，累计138；186保护文件保持 |
 | MUS-035 扩大语料检索对照 | review / A（实跑/开发对照完成；工具待独立复核） | codex/MUS-035-expanded-retrieval / b42b767；实跑17a31f5 | 全40/1557片段/8文本；168测试/独立矩阵复算/新素材20命中，P@5仅区间；旧run/138保留 |
-| MUS-036 新top5未知补判 | todo / unassigned | 依赖035；新独立范围待立 | 仅两mode未知并集3对，绑定035实际EOF与新指纹，不重做138或将未判补0 |
-| MUS-033-R1-B 新来源核查复核 | assigned / B（待主动认领） | review/MUS-033-B-source-review / 10880f8；对比7704051 | 新导入器/schema/必要UI/整曲时长增量，独立合成fixture；仅新报告/own latest，不读A私有原件 |
+| MUS-036 新top5未知补判包 | in_progress / A | codex/MUS-036-top5-supplement / 9797ed4；依赖035 | 仅两mode未知并集3对，E9实际EOF/新指纹/空建议；新CLI/最小前端适配/检查，原138只读 |
+| MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
+| MUS-035-R1-B 两来源离线工具复核 | assigned / B（待主动认领） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
@@ -665,3 +666,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 五目标原20 top5相关4/25与5/25，新whole23相关/0已知负/2未知、segment24/0/1，macro上下限0.92–1.00/0.96–1.00，exact均null。两mode各有20个新素材确认对进入top5；unknown并集3、交集0。只适用于定向development语料变化，非模型训练/held-out提升、全库Recall/定位IoU/P95；原029八query池内指标不改。
 - 评估使用三包显式SHA重建，原138只内存关联，evaluation重算另output byte-identical且CLI exit0，同会话独立原排名+标签计数一致，非B。一次私有包装漏import os，子CLI已产出结果但记录阶段NameError；另包装输出recheck成功，原包装失败保留不记passed。首次模型run-01失败/PCM位级一致性误设/两合成测试准备差异均记录，不覆盖旧证据。
 - 只新增六离线源码/测试与必要文档；无Java/Vue/旧工具/依赖/API/schema/模型版本/服务重启或main合并。B033/rev1固定card字节保持，feed仍44a7f90a/sourcef9911e5，工具035独立审核未派发/未获批准；A latest披露033历史时长勘误，不修改B自身feed。下一步036仅补3未知对并冻结新时间/包指纹，独立测试与discovery-v0另立。
+
+## MUS-036范围与占用（2026-10-29）
+
+- A集成，base9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d，branch codex/MUS-036-top5-supplement，先E9冻结再实现。允许新增services/audio-search/supplement_pack.py及test_supplement_pack.py，web/src/utils/reviewPack.js新分支/新supplementPack.test.js、ReviewWorkspace最小提示；必要README/模块README/PROJECT/CONTRACTS/STATUS/A latest/verification/MUS-036*。旧三schema/播放器/原工具/035源及所有人评/音频/模型/run只读。
+- 后端包代理只写supplement_pack/test；前端代理只写helper/新test/View；A串行契约/台账、私有生成与浏览器核验，同会话代理非B。私有仅ignore.local/a/mus036，0700/0600，不改数据库/API/锁/模型、不重做UI/合并main。
+- 开始sync A bf1f855/source9797ed4，B16b06c8/source4f57837；收到033/rev1 approve_scoped，准确reviewed10880f8/base7704051/ack bf1f855，已完成只读来源与报告核验，待A原字节归档接收及独立035新卡串行更新。不改B自身latest，不将033批准外推035/本轮。
+- A接收033原字节报告SHA3c41a66a…及receipt；核source/claim仅两允许报告、准确卡来源9797与五源码SHA，A未收到/重算B私有证据。B27 importer/72包/68 Node/build、独立15断言+7 Node、最终23浏览器/三导出均按B报告记录，早20断言失败不累加。033历史时长不受本批准认证。旧033卡保留，固定入口明确转035/rev1准确9797，新卡仅离线三工具及合成复核；本轮036另列，不静默捆绑批准。

@@ -3,25 +3,25 @@
   "owner": "b",
   "status": "assigned",
   "claimed_by_b": false,
-  "task_id": "MUS-033-R1-B",
+  "task_id": "MUS-035-R1-B",
+  "assignment_revision": 1,
   "previous_task": {
-    "task_id": "MUS-027-R1-B",
+    "task_id": "MUS-033-R1-B",
     "assignment_revision": 1,
-    "reviewed_sha": "2ed661daff6e66856cdef6a6789a9edea7a2dc5d",
+    "reviewed_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791",
     "status": "review_completed",
     "verdict": "approve_scoped_received",
-    "source_sha": "f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac",
-    "feed_sha": "44a7f90a6d4682e16ec92e2ce8733bc95cfbf151",
-    "acceptance_record_path": "docs/verification/MUS-027-B-acceptance.json"
+    "source_sha": "4f5783790b5d4607080678b82c5ce6cf842f64e3",
+    "feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
+    "acceptance_record_path": "docs/verification/MUS-033-B-acceptance.json"
   },
-  "note": "027 scoped approval received. Review the new033 importer/source-qualification schema/browser increment with independent synthetic inputs; no access to A private data or model rerun.",
-  "assignment_revision": 1,
-  "task_card_path": "docs/collaboration/tasks/MUS-033-R1-B.md",
-  "reviewed_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791",
-  "comparison_base_sha": "7704051f9a844816174c710d09e6f92e5b23f0e7",
-  "review_branch": "review/MUS-033-B-source-review",
+  "note": "033 scoped approval received. Review only035 offline two-provider corpus/probe/evaluator using independent synthetic fixtures. No A private labels/audio/model rerun;036 pack is a separate increment.",
+  "task_card_path": "docs/collaboration/tasks/MUS-035-R1-B.md",
+  "reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+  "comparison_base_sha": "b42b767afc0bd3ddb76601a436f8073c3d72106c",
+  "review_branch": "review/MUS-035-B-expanded-retrieval",
   "allowed_output_paths": [
-    "docs/reviews/MUS-033-B.md",
+    "docs/reviews/MUS-035-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md"

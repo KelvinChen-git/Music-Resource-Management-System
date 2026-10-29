@@ -3,6 +3,8 @@ export const REVIEW_SCHEMA = 'sonora-judgment-pack-v1'
 export const DIAGNOSTIC_SCHEMA = 'sonora-diagnostic-pack-v1'
 export const SOURCE_REVIEW_SCHEMA = 'sonora-source-review-pack-v1'
 export const SOURCE_REVIEW_SPLIT = 'development_source_candidates_not_held_out'
+export const RETRIEVAL_SUPPLEMENT_SCHEMA = 'sonora-retrieval-supplement-pack-v1'
+export const RETRIEVAL_SUPPLEMENT_SPLIT = 'development_not_held_out'
 export const REVIEW_SPLIT = 'exploratory_only_not_held_out'
 const human = ['relevance', 'human_intervals_ms', 'annotator', 'judged_at']
 const artifacts = ['corpus-manifest.json', 'queries.json', 'rankings.json', 'segments.json']
@@ -117,9 +119,68 @@ function checkSourceReviewShape(pack, owner) {
   }
   return pack
 }
+function checkSupplementShape(pack, owner) {
+  ensure(pack.split === RETRIEVAL_SUPPLEMENT_SPLIT, '补判包仅用于开发核查，不能改为正式测试集。')
+  reviewId(pack.owner_user_id); reviewId(String(owner))
+  ensure(pack.owner_user_id === String(owner), '该标注包属于另一个账号，请使用对应账号。')
+  hash(pack.dataset_sha256)
+  const p = pack.provenance
+  const hashes = ['source_report_sha256', 'input_catalog_sha256', 'checkpoint_sha256', 'evaluation_sha256']
+  object(p, [...hashes, 'run_code_sha', 'pipeline_version', 'source_decoder_version', 'artifact_sha256',
+    'known_judgments_sha256', 'supplement_query_ids', 'selection', 'ordering', 'labeling_aid'])
+  for (const key of hashes) hash(p[key])
+  ensure(typeof p.run_code_sha === 'string' && /^[a-f0-9]{40}$/.test(p.run_code_sha))
+  ensure(p.pipeline_version === 'candidate-soundfile-soxr-mono-zero-10s-hop5s-v1'
+    && p.source_decoder_version === 'soundfile-read-out-65536-actual-eof-v1')
+  object(p.artifact_sha256, [...artifacts, 'vectors.npz']); for (const value of Object.values(p.artifact_sha256)) hash(value)
+  object(p.known_judgments_sha256, ['base', 'diagnostic', 'source']); for (const value of Object.values(p.known_judgments_sha256)) hash(value)
+  ensure(p.selection === 'unjudged_union_whole_track_top5_and_segment_top5'
+    && p.ordering === 'query_fixture_order_then_track_id_ascending'
+    && p.labeling_aid === 'no_model_intervals_retrieval_supplement')
+  const targets = ['exp-02', 'exp-03', 'exp-04', 'exp-07', 'exp-08']
+  ensure(Array.isArray(p.supplement_query_ids) && p.supplement_query_ids.length >= 1 && p.supplement_query_ids.length <= targets.length)
+  let previousQuery = -1
+  for (const id of p.supplement_query_ids) { const index = targets.indexOf(id); ensure(index > previousQuery); previousQuery = index }
+  ensure(Array.isArray(pack.queries) && pack.queries.length === p.supplement_query_ids.length)
+  const tracks = new Map(), sources = new Map(), contents = new Map()
+  let count = 0
+  for (const [index, query] of pack.queries.entries()) {
+    object(query, ['query_id', 'text', 'candidates']); text(query.text, 1000)
+    ensure(query.query_id === p.supplement_query_ids[index])
+    ensure(Array.isArray(query.candidates) && query.candidates.length >= 1 && query.candidates.length <= 10)
+    count += query.candidates.length; ensure(count <= 50)
+    let previous = 0n
+    for (const row of query.candidates) {
+      object(row, [...candidateFields, 'source_provider']); reviewId(row.track_id)
+      ensure(BigInt(row.track_id) > previous); previous = BigInt(row.track_id)
+      text(row.title, 500); text(row.artist, 500); hash(row.content_sha256)
+      int(row.content_bytes, 1, 30 * 1024 * 1024); int(row.duration_ms, 1, 600000)
+      if (row.source_provider === 'jamendo') {
+        reviewId(row.source_id)
+        ensure(row.source_url === `https://www.jamendo.com/track/${row.source_id}`)
+        ensure(typeof row.license_url === 'string' && /^https:\/\/creativecommons\.org\/licenses\/by\/(2\.0|2\.5|3\.0|4\.0)\/$/.test(row.license_url))
+      } else {
+        ensure(row.source_provider === 'incompetech' && typeof row.source_id === 'string' && /^[A-Z]{2}[A-Z0-9]{3}[0-9]{7}$/.test(row.source_id))
+        int(row.duration_ms, 30000, 600000)
+        ensure(row.source_url === `https://incompetech.com/music/royalty-free/index.html?isrc=${row.source_id}`)
+        ensure(row.license_url === 'https://creativecommons.org/licenses/by/4.0/')
+      }
+      ensure(Array.isArray(row.model_suggested_intervals_ms) && row.model_suggested_intervals_ms.length === 0)
+      checkHuman(row)
+      const metadata = { ...row }; for (const field of human) delete metadata[field]
+      const identity = canonicalReview(metadata), source = `${row.source_provider}:${row.source_id}`
+      ensure(!tracks.has(row.track_id) || tracks.get(row.track_id) === identity)
+      ensure(!sources.has(source) || sources.get(source) === row.track_id)
+      ensure(!contents.has(row.content_sha256) || contents.get(row.content_sha256) === row.track_id)
+      tracks.set(row.track_id, identity); sources.set(source, row.track_id); contents.set(row.content_sha256, row.track_id)
+    }
+  }
+  return pack
+}
 export function checkReviewShape(pack, owner) {
   object(pack, ['schema', 'split', 'owner_user_id', 'provenance', 'queries', 'dataset_sha256'])
   if (pack.schema === SOURCE_REVIEW_SCHEMA) return checkSourceReviewShape(pack, owner)
+  if (pack.schema === RETRIEVAL_SUPPLEMENT_SCHEMA) return checkSupplementShape(pack, owner)
   const diagnostic = pack.schema === DIAGNOSTIC_SCHEMA
   ensure((pack.schema === REVIEW_SCHEMA || diagnostic) && pack.split === REVIEW_SPLIT, '只接受探索标注包，不能改为正式测试集。')
   reviewId(pack.owner_user_id); reviewId(String(owner))
