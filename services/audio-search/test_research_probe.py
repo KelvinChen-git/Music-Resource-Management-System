@@ -90,6 +90,7 @@ class ResearchProbeTest(unittest.TestCase):
             if provider == 'incompetech':
                 asset['recorded_decode'] = {'frames': frames, 'sample_rate_hz': rate, 'channels': 2,
                     'format': 'MP3', 'duration_ms': frames * 1000 // rate}
+                info['declared_source_frames'] = frames
             self.assets.append(asset)
             self.infos[filename] = info
         self.decoded = []
@@ -105,6 +106,7 @@ class ResearchProbeTest(unittest.TestCase):
             'version': Mock(return_value='synthetic-test-version'),
             'sf_version': Mock(return_value='synthetic-test-library'),
             'decode_mono': Mock(side_effect=self.decode),
+            'decode_source_mono': Mock(side_effect=self.decode_source),
         }
         for name, value in replacements.items():
             item = patch.object(driver, name, value)
@@ -125,6 +127,10 @@ class ResearchProbeTest(unittest.TestCase):
         self.decoded.append(path.name)
         info = deepcopy(self.infos[path.name])
         return np.zeros(info['decoded_samples'], dtype=np.float32), info
+
+    def decode_source(self, path, recorded):
+        self.assertEqual(recorded, next(a['recorded_decode'] for a in self.assets if a['asset_filename'] == path.name))
+        return self.decode(path)
 
     def run_probe(self, **overrides):
         args = {**self.paths, **self.pins, 'audio_root': self.audio_root,
@@ -148,6 +154,7 @@ class ResearchProbeTest(unittest.TestCase):
         self.assertEqual(report['counts']['tracks'], 40)
         self.assertEqual(report['counts']['text_queries'], 8)
         self.assertEqual(report['counts']['reference_queries'], 0)
+        self.assertEqual(report['source_decoder_version'], 'soundfile-read-out-65536-actual-eof-v1')
         self.assertEqual(len(self.decoded), 40)
         self.assertEqual(set(self.decoded), {a['asset_filename'] for a in self.assets})
         self.assertEqual(sum(shape[0] for shape, _, _ in self.sdk.audio_batches), report['counts']['segments'])
@@ -156,6 +163,8 @@ class ResearchProbeTest(unittest.TestCase):
         self.assertEqual(len(self.sdk.text_batches), 1)
         self.assertTrue(all(truncated is False for _, truncated in self.sdk.token_calls))
         self.assertEqual(driver.checked_assets.call_count, 2)
+        self.assertEqual(driver.decode_mono.call_count, 20)
+        self.assertEqual(driver.decode_source_mono.call_count, 20)
         self.assertEqual(set(report['input_sha256']), set(driver.INPUT_PINS))
         self.assertEqual(report['model']['dimension'], 512)
         self.assertTrue(report['model']['removed_nonlearned_position_ids'])
@@ -183,6 +192,7 @@ class ResearchProbeTest(unittest.TestCase):
         self.run_probe()
         manifest = json.loads((self.output / 'corpus-manifest.json').read_text())
         self.assertEqual(manifest['schema'], 'sonora-research-corpus-v1')
+        self.assertEqual(manifest['source_decoder_version'], 'soundfile-read-out-65536-actual-eof-v1')
         track = manifest['tracks'][20]
         self.assertEqual(track['recorded_decode']['duration_ms'], 30000)
         self.assertEqual(track['duration_ms'], 30001)
@@ -192,6 +202,29 @@ class ResearchProbeTest(unittest.TestCase):
         self.assertEqual(tail['start_sample'], 10 * 48000)
         self.assertEqual(tail['end_sample'], 16 * 48000 + 17)
         self.assertEqual(tail['padded_samples'], 4 * 48000 - 17)
+
+    def test_header_estimate_above_actual_eof_is_retained_without_padding(self):
+        asset = self.assets[20]
+        info = self.infos[asset['asset_filename']]
+        declared = info['source_frames'] + 441
+        asset['recorded_decode']['frames'] = declared
+        asset['recorded_decode']['duration_ms'] = declared * 1000 // info['source_sample_rate_hz']
+        info['declared_source_frames'] = declared
+        self.run_probe()
+        track = json.loads((self.output / 'corpus-manifest.json').read_text())['tracks'][20]
+        self.assertEqual(track['source_frames'], info['source_frames'])
+        self.assertEqual(track['declared_source_frames'], declared)
+        self.assertGreater(track['declared_source_frames'], track['source_frames'])
+        self.assertEqual(track['recorded_decode']['duration_ms'], 30010)
+        self.assertEqual(track['decoded_samples'], 1440048)
+        self.assertEqual(track['duration_ms'], 30001)
+
+    def test_header_estimate_must_still_match_original_record(self):
+        info = self.infos[self.assets[20]['asset_filename']]
+        info['declared_source_frames'] += 1
+        with self.assertRaisesRegex(ValueError, 'pinned original'):
+            self.run_probe()
+        self.assertFalse((self.output / 'report.json').exists())
 
     def test_existing_output_is_never_overwritten_or_given_failure_record(self):
         self.output.mkdir(mode=0o700)

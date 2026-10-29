@@ -22,6 +22,7 @@ import torch
 from corpus import decode_mono, file_hash, window_bounds, unit_vectors, rank_segments, PIPELINE_VERSION
 from preprocess import prepare_window, SAMPLE_RATE, WINDOW_SAMPLES
 from probe import create_pinned_model, CHECKPOINT_SHA256, CHECKPOINT_REVISION, ROBERTA_REVISION
+from research_corpus import decode_source_mono, SOURCE_DECODE_VERSION
 
 SOURCE = Path(__file__).resolve().parent
 ROOT = SOURCE.parents[1]
@@ -120,6 +121,8 @@ def code_state():
 def validate_decode(samples, info, asset):
     fields = {'format', 'source_frames', 'source_sample_rate_hz', 'source_channels',
               'sample_rate_hz', 'decoded_samples', 'duration_ms'}
+    if asset['source_provider'] == 'incompetech':
+        fields.add('declared_source_frames')
     require(isinstance(info, dict) and set(info) == fields, 'Decoder metadata fields changed')
     frames, rate, channels = info['source_frames'], info['source_sample_rate_hz'], info['source_channels']
     require(type(frames) is int and type(rate) is int and type(channels) is int
@@ -134,12 +137,14 @@ def validate_decode(samples, info, asset):
             'Decoded/resampled samples must match the exact integer-ceiling length')
     if asset['source_provider'] == 'incompetech':
         recorded = asset.get('recorded_decode')
+        declared = info['declared_source_frames']
         require(isinstance(recorded, dict)
                 and set(recorded) == {'frames', 'sample_rate_hz', 'channels', 'format', 'duration_ms'}
                 and all(type(recorded[key]) is int for key in ('frames', 'sample_rate_hz', 'channels', 'duration_ms'))
-                and recorded == {'frames': frames, 'sample_rate_hz': rate, 'channels': channels,
-                                 'format': info['format'], 'duration_ms': frames * 1000 // rate},
-                'New source decode differs from its pinned original decode record')
+                and type(declared) is int and 0 < declared <= rate * 600
+                and recorded == {'frames': declared, 'sample_rate_hz': rate, 'channels': channels,
+                                 'format': info['format'], 'duration_ms': declared * 1000 // rate},
+                'New source header differs from its pinned original decode record')
 
 
 def sf_version():
@@ -199,7 +204,11 @@ def run(*, catalog, audio_root, source_manifest, decode_report, baseline_catalog
             for original in original_assets:
                 asset = deepcopy(original)
                 tick = time.perf_counter()
-                samples, info = decode_mono(Path(audio_root) / asset['asset_filename'])
+                path = Path(audio_root) / asset['asset_filename']
+                if asset['source_provider'] == 'incompetech':
+                    samples, info = decode_source_mono(path, asset['recorded_decode'])
+                else:
+                    samples, info = decode_mono(path)
                 decode_ms += (time.perf_counter() - tick) * 1000
                 validate_decode(samples, info, asset)
                 asset.update(info)
@@ -237,7 +246,8 @@ def run(*, catalog, audio_root, source_manifest, decode_report, baseline_catalog
         require(input_hashes(arguments) == pins and source_hashes() == sources and code_state() == git
                 and file_hash(regular(checkpoint)) == actual_hash,
                 'Pinned input/source/Git state changed during encoding')
-        corpus = {'schema': 'sonora-research-corpus-v1', 'pipeline_version': PIPELINE_VERSION, 'tracks': assets,
+        corpus = {'schema': 'sonora-research-corpus-v1', 'pipeline_version': PIPELINE_VERSION,
+            'source_decoder_version': SOURCE_DECODE_VERSION, 'tracks': assets,
             'visibility': 'private owner-scoped offline probe; no shared discovery permission',
             'evidence': 'pinned two-provider catalog, source/decode records and original download proofs; no fresh permission check'}
         write_json(output / 'corpus-manifest.json', corpus)
@@ -261,6 +271,7 @@ def run(*, catalog, audio_root, source_manifest, decode_report, baseline_catalog
                 'roberta_revision': ROBERTA_REVISION, 'audio_architecture': 'HTSAT-base', 'fusion': False,
                 'dimension': dimension, 'strict_missing': loaded.missing_keys, 'strict_unexpected': loaded.unexpected_keys,
                 'removed_nonlearned_position_ids': removed}, 'pipeline_version': PIPELINE_VERSION,
+            'source_decoder_version': SOURCE_DECODE_VERSION,
             'preprocessing': {'sample_rate_hz': SAMPLE_RATE, 'window_samples': WINDOW_SAMPLES,
                 'hop_samples': SAMPLE_RATE * 5, 'downmix': 'channel arithmetic mean',
                 'resampler': 'whole-track soxr_hq with integer-ceiling sample count',
@@ -278,7 +289,7 @@ def run(*, catalog, audio_root, source_manifest, decode_report, baseline_catalog
             'peak_rss_platform_units': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
             'limits': ['Fresh forty-track development encoding; no human labels read and no relevance metric computed.',
                 'Eight existing text queries only; no new audio reference or held-out test.',
-                'New source original decode duration retained; 48k duration follows exact integer-ceiling resampling.',
+                'New source historical header frames/duration retained separately from actual EOF frames and exact-ceiling 48k duration.',
                 'Whole-track is normalized mean of window embeddings, not a full-song encoder.',
                 'Single-process timings are not P95/concurrency/Java/browser latency.',
                 'Recorded source/license evidence is not fresh permission or legal verification.',

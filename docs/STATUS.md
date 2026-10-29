@@ -653,3 +653,5 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - owner A；base b42b767afc0bd3ddb76601a436f8073c3d72106c；branch codex/MUS-035-expanded-retrieval。先E8冻结40曲双来源/固定同模型全量重新编码、8原查询/两mode排名、五目标描述P@5上下限与unknown显式计数，未判不补0、不调阈值/训练。旧source/code/138人评/原20run/03340catalog/音频证明/公共catalog只读。
 - 允许新增services/audio-search/research_corpus.py、research_probe.py、research_evaluate.py及三独立test；README/模块README/PROJECT/CONTRACTS/STATUS/A latest/verification/MUS-035*。私有输入保护/运行/分析仅ignore.local/a/mus035、0700/0600。无前后端/旧probe工具/依赖/API/schema/模型版本/共享缓存或main改变。
 - 语料代理独占research_corpus/test；运行代理独占research_probe/test；评估代理独占research_evaluate/test；A串行契约/台账、源码审查、真实模型运行及独立工件复算。同会话不算B。开始sync双方fetched，B仍44a7f90a/sourcef9911e5，033/rev1 assigned原卡保持，不接管或替换。
+
+- 035真实run-01失败保留：旧20全部编码后Morning触发旧decoder的完整性保护（sf头部6771806帧，read实际6761088）。调查证实032 blocks()计yield长度含估计末尾，旧frame/duration证据需明确纠正而非填零或改旧报告。E8新增来源实际EOF读取版本/declared与actual分存，旧20 decoder不动；三代理仍只改本任务六新源码。修复后另run-02完整40重新编码，不复用run-01部分结果；历史138标注只按track/content关联，原人工区间0保持。

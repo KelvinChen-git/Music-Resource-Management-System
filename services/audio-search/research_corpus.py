@@ -5,6 +5,66 @@ import stat
 import review_pack as rp
 import source_review_pack as source_review
 
+SOURCE_DECODE_VERSION = 'soundfile-read-out-65536-actual-eof-v1'
+
+
+def decode_source_mono(path, recorded_decode):
+    """Read valid MP3 frames to actual EOF; historical header length is only a binding."""
+    import librosa
+    import numpy as np
+    import soundfile as sf
+    from preprocess import SAMPLE_RATE
+
+    rp.require(isinstance(recorded_decode, dict) and set(recorded_decode) ==
+               {'frames', 'sample_rate_hz', 'channels', 'format', 'duration_ms'},
+               'Expected historical source decode metadata')
+    for key in ('frames', 'sample_rate_hz', 'channels', 'duration_ms'):
+        rp.require(type(recorded_decode[key]) is int, 'Historical decode fields must be integers')
+    with sf.SoundFile(path) as source:
+        declared, rate, channels = source.frames, source.samplerate, source.channels
+        rp.require(type(declared) is int and type(rate) is int and type(channels) is int
+                   and source.format == 'MP3' and 8000 <= rate <= 192000 and channels in (1, 2)
+                   and 0 < declared <= rate * 600,
+                   'Unsupported source format/channels/rate/declared duration')
+        rp.require(recorded_decode == {'frames': declared, 'sample_rate_hz': rate,
+                   'channels': channels, 'format': source.format, 'duration_ms': declared * 1000 // rate},
+                   'Historical source header binding mismatch')
+        rp.require(source.tell() == 0, 'Source decoder must begin at frame zero')
+        buffer = np.empty((65536, channels), dtype=np.float32)
+        parts, actual = [], 0
+        while True:
+            before = source.tell()
+            # Supplying out bypasses soundfile._check_frames(), which clamps to the estimated header.
+            # No fill_value: only the returned valid view may be copied before the buffer is reused.
+            block = source.read(frames=65536, out=buffer)
+            after = source.tell()
+            rp.require(isinstance(block, np.ndarray) and block.dtype == np.float32 and block.ndim == 2
+                       and block.shape[1] == channels and block.flags.c_contiguous and len(block) <= 65536,
+                       'Invalid actual-EOF decoder return buffer')
+            count = len(block)
+            rp.require(type(before) is int and type(after) is int and before == actual
+                       and after - before == count, 'Decoder position/actual frame count mismatch')
+            rp.require(np.isfinite(block).all(), 'Nonfinite actual source samples')
+            if count == 0:
+                break
+            actual += count
+            rp.require(actual <= rate * 600, 'Actual source exceeds 600-second decode cap')
+            parts.append(block.copy())
+        rp.require(rate * 30 <= actual <= rate * 600, 'Actual source must contain 30..600 seconds')
+        info = {'format': source.format, 'source_frames': actual, 'declared_source_frames': declared,
+                'source_sample_rate_hz': rate, 'source_channels': channels}
+    samples = np.concatenate(parts).mean(axis=1)
+    if rate != SAMPLE_RATE:
+        expected = (actual * SAMPLE_RATE + rate - 1) // rate
+        samples = librosa.resample(samples, orig_sr=rate, target_sr=SAMPLE_RATE,
+                                   res_type='soxr_hq', fix=False)
+        samples = librosa.util.fix_length(samples, size=expected)
+    rp.require(len(samples) == (actual * SAMPLE_RATE + rate - 1) // rate
+               and np.isfinite(samples).all(), 'Invalid actual-EOF resampled source samples')
+    info.update(sample_rate_hz=SAMPLE_RATE, decoded_samples=len(samples),
+                duration_ms=len(samples) * 1000 // SAMPLE_RATE)
+    return np.ascontiguousarray(samples, dtype=np.float32), info
+
 
 def checked_assets(*, catalog, audio_root, source_manifest, decode_report, baseline_catalog,
                    selection, queries, catalog_sha256, manifest_sha256, decode_sha256,

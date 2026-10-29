@@ -20,6 +20,7 @@ SOURCE_NAMES = ('research_corpus.py', 'research_probe.py', 'test_research_probe.
                 'source_review_pack.py', 'exploratory_queries.json')
 ARTIFACTS = (*rp.ARTIFACTS, 'vectors.npz')
 PIPELINE = 'candidate-soundfile-soxr-mono-zero-10s-hop5s-v1'
+SOURCE_DECODER = 'soundfile-read-out-65536-actual-eof-v1'
 MODEL = {'checkpoint_sha256': 'fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd',
          'checkpoint_revision': 'b3708341862f581175dba5c356a4ebf74a9b6651',
          'roberta_revision': 'e2da8e2f811d1448a5b465c236feacd80ffbac7b',
@@ -173,12 +174,15 @@ def evaluate(*, old_run_dir, old_report_sha256, new_run_dir, new_report_sha256,
     source_validation = sp.validate(source, source_expected)
     for validation in (base_validation, diagnostic_validation, source_validation):
         rp.require(validation['unjudged'] == 0, 'All three supplied packages must be fully judged')
+        rp.require(validation['human_intervals'] == 0,
+                   'This track-only comparison requires packages without human localization intervals')
     rp.require(base['owner_user_id'] == diagnostic['owner_user_id'] == source['owner_user_id'],
                'Judgment owner mismatch')
     old_report, _ = rp.read_json(Path(old_run_dir) / 'report.json', expected=old_report_sha256)
     report, _ = rp.read_json(Path(new_run_dir) / 'report.json', expected=new_report_sha256)
     rp.require(report['schema'] == 'sonora-research-probe-v1'
                and report['status'] == 'passed_private_research_pipeline_only'
+               and report['source_decoder_version'] == SOURCE_DECODER
                and report['working_tree_dirty'] is False
                and isinstance(report['code_sha'], str) and re.fullmatch('[a-f0-9]{40}', report['code_sha']),
                'Expected clean completed research run')
@@ -213,7 +217,9 @@ def evaluate(*, old_run_dir, old_report_sha256, new_run_dir, new_report_sha256,
                'New and old query fixture differ')
     manifest = artifacts['corpus-manifest.json']
     rp.require(manifest['schema'] == 'sonora-research-corpus-v1'
-               and manifest['pipeline_version'] == PIPELINE, 'Research corpus schema/pipeline mismatch')
+               and manifest['pipeline_version'] == PIPELINE
+               and manifest['source_decoder_version'] == SOURCE_DECODER,
+               'Research corpus schema/pipeline/source decoder mismatch')
     old_manifest, _ = rp.read_json(Path(old_run_dir) / 'corpus-manifest.json', limit=16 * 1024 * 1024,
         expected=old_report['artifact_sha256']['corpus-manifest.json'])
     old_tracks = {track['track_id']: track for track in old_manifest['tracks']}
@@ -255,12 +261,14 @@ def evaluate(*, old_run_dir, old_report_sha256, new_run_dir, new_report_sha256,
                        'Added recording bytes/license mismatch')
             raw = recorded[sid]
             expected_decode = {key: raw[key] for key in ('frames', 'sample_rate_hz', 'channels', 'format', 'duration_ms')}
+            rp.integer(track['source_frames'], raw['sample_rate_hz'] * 30, raw['sample_rate_hz'] * 600)
             rp.require(rp.canonical(track['recorded_decode']) == rp.canonical(expected_decode)
-                       and track['source_frames'] == raw['frames']
+                       and type(track['declared_source_frames']) is int
+                       and track['declared_source_frames'] == raw['frames']
                        and track['source_sample_rate_hz'] == raw['sample_rate_hz']
                        and track['source_channels'] == raw['channels'] and track['format'] == raw['format']
                        and candidate['duration_ms'] == raw['frames'] * 1000 // raw['sample_rate_hz'],
-                       'Added source decode binding mismatch')
+                       'Added source historical header/actual decode binding mismatch')
             proof = Path(source_manifest).parent / (sid + '.download.json')
             rp.require(track['download_proof_sha256'] == file_hash(proof), 'Added source proof hash mismatch')
         tracks[tid] = track; sources.add((provider, sid)); content.add(digest)
@@ -342,7 +350,8 @@ def evaluate(*, old_run_dir, old_report_sha256, new_run_dir, new_report_sha256,
             'input_sha256': pins, 'validation': {'base': base_validation, 'diagnostic': diagnostic_validation,
                                                'source': source_validation},
             'new_run_source_sha': report['code_sha'], 'retrieval_model': report['model'],
-            'pipeline_version': PIPELINE, 'preprocessing': report['preprocessing'],
+            'pipeline_version': PIPELINE, 'source_decoder_version': SOURCE_DECODER,
+            'preprocessing': report['preprocessing'],
             'evaluator_sha256': file_hash(__file__), 'summary': summary, 'queries': results,
             'protocol': {'positive_grade_min': 2, 'denominator': 5, 'unknown': 'unjudged, never zero',
                          'precision_bounds': '[known_relevant/5, (known_relevant+unknown)/5]',
@@ -352,6 +361,7 @@ def evaluate(*, old_run_dir, old_report_sha256, new_run_dir, new_report_sha256,
             'limits': ['Development expansion selected around known failed descriptions; one new author.',
                        'Twenty new tracks have only four judgments per target query; remaining sixteen are unknown.',
                        'Track relevance does not establish suggested-interval localization accuracy.',
+                       'New-source historical header frames remain separate from versioned actual-EOF reads.',
                        'No new nDCG, Recall, IoU, P95, significance, held-out or exact overall improvement claim.',
                        'No training, score threshold calibration, model acceptance, identity or listening verification.',
                        'Per-track ranking and judgment links are private local output only.']}

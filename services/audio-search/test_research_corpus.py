@@ -180,5 +180,118 @@ class ResearchCorpusTests(unittest.TestCase):
         self.assertEqual(before, after)
 
 
+class ActualEOFSource:
+    """Header length and returned EOF are independent; the unused buffer is poisoned."""
+    def __init__(self, *, header=31 * 48000, actual=30 * 48000 + 13, rate=48000, channels=2,
+                 format='MP3', nonfinite=False, tell_mismatch=False, decoder_error=False):
+        self.frames, self.actual, self.samplerate, self.channels, self.format = header, actual, rate, channels, format
+        self.position, self.calls, self.buffer_ids = 0, 0, []
+        self.nonfinite, self.tell_mismatch, self.decoder_error = nonfinite, tell_mismatch, decoder_error
+
+    def __enter__(self): return self
+    def __exit__(self, *args): return False
+    def tell(self): return self.position + (1 if self.tell_mismatch and self.calls else 0)
+    def read(self, *, frames, out):
+        import numpy as np
+        assert frames == 65536 and out.shape == (65536, self.channels) and out.dtype == np.float32
+        self.buffer_ids.append(id(out)); self.calls += 1
+        if self.decoder_error and self.calls == 2: raise RuntimeError('synthetic decoder error')
+        count = min(frames, max(0, self.actual - self.position))
+        out[:] = np.nan  # Only the returned valid view is audio; never append stale/fill bytes.
+        out[:count] = np.float32(self.calls / 100)
+        if self.channels == 2: out[:count, 1] += np.float32(0.1)
+        if self.nonfinite and count and self.calls == 2: out[0, 0] = np.nan
+        self.position += count
+        return out[:count]
+
+    def recorded(self):
+        return {'frames': self.frames, 'sample_rate_hz': self.samplerate, 'channels': self.channels,
+                'format': self.format, 'duration_ms': self.frames * 1000 // self.samplerate}
+
+
+class SourceEOFDecodeTests(unittest.TestCase):
+    def decode(self, source, recorded=None):
+        import soundfile as sf
+        with patch.object(sf, 'SoundFile', return_value=source):
+            return research.decode_source_mono('synthetic-only.mp3', source.recorded() if recorded is None else recorded)
+
+    def test_actual_eof_may_be_shorter_than_header_without_tail_padding(self):
+        import numpy as np
+        source = ActualEOFSource()
+        samples, info = self.decode(source)
+        self.assertEqual(research.SOURCE_DECODE_VERSION, 'soundfile-read-out-65536-actual-eof-v1')
+        self.assertEqual(len(samples), source.actual)
+        self.assertLess(len(samples), source.frames)
+        self.assertEqual(info['source_frames'], source.actual)
+        self.assertEqual(info['declared_source_frames'], source.frames)
+        self.assertEqual(set(info), {'format', 'source_frames', 'declared_source_frames', 'source_sample_rate_hz',
+                                    'source_channels', 'sample_rate_hz', 'decoded_samples', 'duration_ms'})
+        self.assertEqual(source.position, source.actual)
+        self.assertEqual(source.calls, (source.actual + 65535) // 65536 + 1)
+        self.assertEqual(len(set(source.buffer_ids)), 1)
+        self.assertTrue(np.isfinite(samples).all())
+        self.assertEqual(samples.dtype, np.float32)
+        self.assertTrue(samples.flags.c_contiguous)
+        self.assertAlmostEqual(float(samples[0]), 0.06, places=6)
+        self.assertAlmostEqual(float(samples[65536]), 0.07, places=6)
+        self.assertNotEqual(samples[0], samples[-1])  # Copies must survive reuse of the same output buffer.
+
+    def test_actual_eof_may_exceed_estimated_header(self):
+        source = ActualEOFSource(header=30 * 48000, actual=31 * 48000)
+        samples, info = self.decode(source)
+        self.assertGreater(info['source_frames'], info['declared_source_frames'])
+        self.assertEqual(len(samples), 31 * 48000)
+        self.assertEqual(info['duration_ms'], 31000)
+
+    def test_exact_30_second_lower_boundary_and_mono(self):
+        source = ActualEOFSource(header=30 * 48000, actual=30 * 48000, channels=1)
+        samples, info = self.decode(source)
+        self.assertEqual(len(samples), 1440000)
+        self.assertEqual(samples.ndim, 1)
+        self.assertEqual(info['source_channels'], 1)
+
+    def test_actual_eof_under_30_seconds_or_over_600_seconds_rejected(self):
+        for actual in (0, 30 * 8000 - 1, 600 * 8000 + 1):
+            source = ActualEOFSource(header=30 * 8000, actual=actual, rate=8000, channels=1)
+            with self.subTest(actual=actual), self.assertRaises(ValueError): self.decode(source)
+
+    def test_nonfinite_valid_samples_decoder_error_and_tell_mismatch_rejected(self):
+        for options, error in (({'nonfinite': True}, ValueError), ({'decoder_error': True}, RuntimeError),
+                               ({'tell_mismatch': True}, ValueError)):
+            with self.subTest(options=options), self.assertRaises(error): self.decode(ActualEOFSource(**options))
+
+    def test_historical_header_fields_must_match_before_any_reads(self):
+        source = ActualEOFSource(); original = source.recorded()
+        for key, value in (('frames', source.frames + 1), ('sample_rate_hz', 44100), ('channels', 1),
+                           ('format', 'WAV'), ('duration_ms', original['duration_ms'] + 1),
+                           ('frames', float(source.frames)), ('extra', 1)):
+            changed = {**original, key: value}
+            with self.subTest(key=key), self.assertRaises(ValueError): self.decode(source, changed)
+            self.assertEqual(source.calls, 0)
+
+    def test_unsupported_header_bounds_rejected_before_any_reads(self):
+        for options in ({'format': 'WAV'}, {'channels': 3}, {'rate': 7999}, {'rate': 192001},
+                        {'header': 0}, {'header': 600 * 48000 + 1}):
+            source = ActualEOFSource(**options)
+            with self.subTest(options=options), self.assertRaises(ValueError): self.decode(source)
+            self.assertEqual(source.calls, 0)
+
+    def test_integer_ceiling_resample_uses_actual_length_and_original_dsp(self):
+        import librosa
+        import numpy as np
+        source = ActualEOFSource(header=31 * 44100, actual=30 * 44100 + 1, rate=44100, channels=1)
+        expected = (source.actual * 48000 + 44100 - 1) // 44100
+        with patch.object(librosa, 'resample', return_value=np.full(expected - 1, 0.25, dtype=np.float32)) as resample:
+            samples, info = self.decode(source)
+        self.assertEqual(len(resample.call_args.args[0]), source.actual)
+        self.assertEqual(resample.call_args.kwargs, {'orig_sr': 44100, 'target_sr': 48000,
+                                                   'res_type': 'soxr_hq', 'fix': False})
+        self.assertEqual(len(samples), expected)
+        self.assertEqual(info['decoded_samples'], expected)
+        self.assertEqual(info['duration_ms'], expected * 1000 // 48000)
+        self.assertLess(len(samples), 31 * 48000)
+        self.assertEqual(samples[-1], 0)  # Only the original DSP's integer-ceiling resample correction.
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -96,12 +96,13 @@ class Fixture:
                 'source_url': entry['sourceUrl'], 'license_url': entry['licenseUrl'],
                 'title': entry['title'], 'artist': entry['artist'], 'provider_duration_seconds': entry['durationSeconds'],
                 'recorded_decode': {key: raw[key] for key in ('frames', 'sample_rate_hz', 'channels', 'format', 'duration_ms')},
-                'format': 'MP3', 'source_frames': raw['frames'], 'source_sample_rate_hz': raw['sample_rate_hz'],
+                'format': 'MP3', 'source_frames': raw['frames'], 'declared_source_frames': raw['frames'],
+                'source_sample_rate_hz': raw['sample_rate_hz'],
                 'source_channels': raw['channels'], 'sample_rate_hz': 48000,
                 'decoded_samples': 60 * 48000, 'duration_ms': 60000})
         self.new_tracks.sort(key=lambda row: int(row['track_id']))
         self.new_artifacts = {'corpus-manifest.json': {'schema': 'sonora-research-corpus-v1',
-            'pipeline_version': ev.PIPELINE, 'tracks': self.new_tracks},
+            'pipeline_version': ev.PIPELINE, 'source_decoder_version': ev.SOURCE_DECODER, 'tracks': self.new_tracks},
             'segments.json': windows(self.new_tracks), 'queries.json': deepcopy(self.source.queries),
             'rankings.json': {'judgments': 'unjudged', 'queries': []}}
         sources_by_query = {qid: sorted((str(row['musicId']) for row in self.source.catalog['audioTracks'][20:]
@@ -116,6 +117,7 @@ class Fixture:
                 'segment': self.ranking([*own, '20'], self.new_artifacts['segments.json'], True)})
         self.new_report = {'schema': 'sonora-research-probe-v1', 'status': 'passed_private_research_pipeline_only',
             'working_tree_dirty': False, 'code_sha': 'b' * 40, 'pipeline_version': ev.PIPELINE,
+            'source_decoder_version': ev.SOURCE_DECODER,
             'model': deepcopy(ev.MODEL), 'preprocessing': deepcopy(ev.PREPROCESSING), 'environment': {'device': 'cpu'},
             'source_hashes': self.hash_sources(), 'counts': {}}
         self.refresh_runs()
@@ -345,7 +347,8 @@ class ResearchEvaluationTest(unittest.TestCase):
         tid = str(self.f.source.catalog['audioTracks'][20]['musicId'])
         track = next(row for row in self.f.new_tracks if row['track_id'] == tid)
         track['recorded_decode'].update(frames=60 * 44100 + 44, sample_rate_hz=44100)
-        track.update(source_frames=60 * 44100 + 44, source_sample_rate_hz=44100,
+        track.update(source_frames=60 * 44100 + 44, declared_source_frames=60 * 44100 + 44,
+                     source_sample_rate_hz=44100,
                      decoded_samples=2880048, duration_ms=60001)
         self.f.new_artifacts['segments.json'] = windows(self.f.new_tracks)
         self.f.refresh_runs(); self.f.rebuild_packages()
@@ -363,6 +366,44 @@ class ResearchEvaluationTest(unittest.TestCase):
             self.f.refresh_runs()
             with self.subTest(mutation=mutation), self.assertRaises(ValueError): self.evaluate()
             track.clear(); track.update(deepcopy(original))
+
+    def test_actual_eof_differs_from_historical_header_without_padding(self):
+        track = next(row for row in self.f.new_tracks if row['source_provider'] == 'incompetech')
+        recorded_before = deepcopy(track['recorded_decode'])
+        # Simulate a 250ms overestimate in the old header, with actual EOF separately counted.
+        track.update(source_frames=60 * 48000 - 12000, decoded_samples=60 * 48000 - 12000,
+                     duration_ms=59750)
+        self.f.new_artifacts['segments.json'] = windows(self.f.new_tracks)
+        self.f.refresh_runs()
+        result = self.evaluate()
+        self.assertEqual(result['source_decoder_version'], ev.SOURCE_DECODER)
+        self.assertEqual((track['declared_source_frames'], track['source_frames']), (2880000, 2868000))
+        self.assertEqual(track['recorded_decode'], recorded_before)
+        self.assertEqual(result['queries'][0]['known_pairs'], 24)
+
+    def test_declared_header_and_actual_frame_bounds_are_separate_required_checks(self):
+        track = next(row for row in self.f.new_tracks if row['source_provider'] == 'incompetech')
+        before = deepcopy(track)
+        for field, value in (('declared_source_frames', before['declared_source_frames'] - 1),
+                             ('declared_source_frames', True), ('source_frames', 48000 * 30 - 1),
+                             ('source_frames', 48000 * 600 + 1), ('source_frames', False)):
+            track.clear(); track.update(deepcopy(before)); track[field] = value
+            self.f.refresh_runs()
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError): self.evaluate()
+
+    def test_actual_eof_decoder_version_is_bound_in_both_report_and_manifest(self):
+        for target in (self.f.new_report, self.f.new_artifacts['corpus-manifest.json']):
+            target['source_decoder_version'] = 'other-decoder'
+            self.f.refresh_runs()
+            with self.assertRaises(ValueError): self.evaluate()
+            target['source_decoder_version'] = ev.SOURCE_DECODER
+        self.f.refresh_runs()
+
+    def test_track_only_comparison_rejects_human_localization_intervals(self):
+        path = self.f.package_paths['source']; pack = json.loads(path.read_bytes())
+        pack['queries'][0]['candidates'][0]['human_intervals_ms'] = [[0, 1000]]
+        put(path, pack)
+        with self.assertRaisesRegex(ValueError, 'track-only comparison'): self.evaluate()
 
     def run_cli(self, output):
         arguments = ['research_evaluate.py']
