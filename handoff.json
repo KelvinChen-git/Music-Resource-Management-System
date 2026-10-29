@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-29T02:07:19.356030+00:00",
-  "source_branch": "codex/MUS-032-targeted-corpus-candidates",
-  "source_sha": "7704051f9a844816174c710d09e6f92e5b23f0e7",
+  "published_at": "2026-10-29T03:17:51.995153+00:00",
+  "source_branch": "codex/MUS-033-source-import-review",
+  "source_sha": "7879a7d1494ce8822bf2aaf2e144e321112964de",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "a7203479546e5b9bee43427861c28bcc6c5a3edc7bffb331f182d56414b408da"
+  "report_sha256": "1c839885636c05222fc98712c87b8e6fb7b7b0ccf4861d255f3713a26fbbf364"
 }

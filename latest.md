@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-033导入/新20素材核查完成，接收B027限定批准
+
+A；2026-10-28 America/Chicago；branch codex/MUS-033-source-import-review；base `7704051f9a844816174c710d09e6f92e5b23f0e7`，implementation `dc7e1e492695d5960dd13aea412730c6c72d4baf`，audio fix `f9192fcd03d0c8224b5dbe9176e46d46d7c1dcf1`，最终source边界 `10880f87f4073dc8f2d260fb72a07c9e52e59791`。review：本机交付完成，新20待人评/独立复核；最终交付SHA见handoff。
+
+ack_peer_feed_sha `44a7f90a6d4682e16ec92e2ce8733bc95cfbf151` / B source `f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac`。检查点收到027/rev1 approve_scoped：核验两允许文件、source/feed latest、原View SHA及准确任务/ack，原字节导入MUS-027-B.md并写027-B-acceptance.json，027已接收完成。B最终8helper/build/25浏览器断言及两导出属合成login/profile范围，未复算B私有证据、不外推真实Java/JWT/模型。原卡随后明确转033/rev1 assigned，待B主动认领；不是静默替换未返回任务。
+
+E7先冻结真实ID/两新私有格式。既有普通owner经现有HTTP新增20，账号资源40；两次导入各40 Range206/full SHA且catalog相同，新20pending/未提权自动审核。私有40catalog SHA1cf24cff5eeceaca587d607e5dae96a47da3ee806b067158f700eba773321cc3；80独立音频/证明副本0600，目录0700。缺失legacy确认状态仅在固定旧基线+实际相同USERprofile后兼容，存在坏状态仍拒绝，原账号文件不写。
+
+新source-review包5描述各4共20不同新曲，全null/无模型区间，dataset b225ef4dc8790f13d02b7f33825a29be09f4732474ee79d138003eaabd0b6c71；文件SHAac024ca350782f50fa447ce2f1e8fd0d0476b0a192f257294b280a5b4c38c661。只核查素材适配，不是模型排名；浏览器新schema最小提示、原流程保留。真实MP3两解码器时长差异触发拒播，已对经验证新来源整曲取较短实际终点并每次fresh恢复重算；原包时长/旧片段保护不改。独立同会话审计发现53ms恢复边界后已修复关闭，非B批准。
+
+27 importer+72包相关Python、最终68Node/build passed，原bundle警告保留；真实Morning/Hot Swing/底栏/暂停/两处seek/继续、390/1440布局、原对象0/20导出CLI通过；合成2/20评分区间/显式草稿恢复另验，未代填真人。重复包输出拒绝且哈希不变，旧51+67CLI均通过。100原输入在B卡更新前全不变；其余99于预期dispatch变更后再核验保持，原版干净f3b0da1。
+
+旧118/公开20catalog/933片段/run/032原件保留，新40未建索引/跑模型。下一步用户只听评新20，接收后再协调provider-aware新run与独立测试；单作者/已知描述选样仍development，无质量提升/P95/held-out/discovery-v0结论。发布前将新source浏览器时长下限与Python对齐30s（旧schema不改），独立重签边界确认关闭，最终68Node/build通过；033独立卡准确输入10880f8，明确允许范围/合成输入，不读A私有原件；032等旧审核不自动关闭。无UI重做、Java/API/schema/依赖锁/服务重启或main合并。方法/精确哈希/保留失败见verification/MUS-033.md/results.json。提交后原子publish并回读，发布不等于B认领/接收；无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-032定向来源候选已收集并全解码
 
 A；2026-10-28 America/Chicago；branch codex/MUS-032-targeted-corpus-candidates；base `2e2db1e9e62d19ee57cdf2c5823f4c8f3593878e`；review，来源批次/本机验证完成，非模型或独立测试验收。最终提交SHA见handoff。
