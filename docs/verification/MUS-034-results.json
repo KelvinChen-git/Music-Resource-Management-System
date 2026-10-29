@@ -1,0 +1,187 @@
+{
+  "task_id": "MUS-034",
+  "status": "completed_source_judgments_received_and_validated",
+  "checked_on": "2026-10-28 America/Chicago",
+  "branch": "codex/MUS-034-source-label-receipt",
+  "source_baseline_sha": "7879a7d1494ce8822bf2aaf2e144e321112964de",
+  "split": "development_source_candidates_not_held_out",
+  "schema": "sonora-source-review-pack-v1",
+  "dataset_sha256": "b225ef4dc8790f13d02b7f33825a29be09f4732474ee79d138003eaabd0b6c71",
+  "received_file": {
+    "bytes": 16218,
+    "sha256": "eccc4af2c765bcc2dab45c43e5abc9afc9e0ded65d64890e29266c0c44353c96",
+    "private_archive": ".local/a/mus034/received-source-judgments.json",
+    "download_and_archive_identical": true,
+    "file_mode": "0o600",
+    "directory_mode": "0o700"
+  },
+  "validation": {
+    "download_cli_exit_code": 0,
+    "archive_cli_exit_code": 0,
+    "independent_same_session_cli_exit_code": 0,
+    "identity_or_listening_verified": false,
+    "source_review_pack_py_sha256": "c6630572817c70e4a80daa82cd9281877124f3db310821f8dee394f2d4f1dd15",
+    "import_catalog_sha256": "1cf24cff5eeceaca587d607e5dae96a47da3ee806b067158f700eba773321cc3",
+    "source_manifest_sha256": "2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a",
+    "decode_report_sha256": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+    "query_fixture_sha256": "f6118b2283c2818f0dd2af196c98c770045ff787c32403407eaea2241a313723",
+    "selection_sha256": "c02ae831a4338862ffc68e626a64c67477ea79e5e62c8a019ac4cb311e701669",
+    "original_blank_source_pack_sha256": "ac024ca350782f50fa447ce2f1e8fd0d0476b0a192f257294b280a5b4c38c661"
+  },
+  "summary": {
+    "new_source_pairs": 20,
+    "new_distinct_music": 20,
+    "old_judged_pairs": 118,
+    "cumulative_judged_pairs": 138,
+    "new_relevance_counts": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 20
+    },
+    "cumulative_relevance_counts": {
+      "0": 78,
+      "1": 19,
+      "2": 11,
+      "3": 30
+    },
+    "new_relevant_ge2": 20,
+    "human_intervals": 0,
+    "per_query": [
+      {
+        "query_id": "exp-02",
+        "new_candidate_pairs": 4,
+        "relevance_counts": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 4
+        },
+        "new_relevant_ge2": 4,
+        "original20_relevant_ge2": 2,
+        "expanded40_known_pairs": 24,
+        "expanded40_unknown_pairs": 16,
+        "expanded40_known_relevant_ge2": 6
+      },
+      {
+        "query_id": "exp-03",
+        "new_candidate_pairs": 4,
+        "relevance_counts": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 4
+        },
+        "new_relevant_ge2": 4,
+        "original20_relevant_ge2": 1,
+        "expanded40_known_pairs": 24,
+        "expanded40_unknown_pairs": 16,
+        "expanded40_known_relevant_ge2": 5
+      },
+      {
+        "query_id": "exp-04",
+        "new_candidate_pairs": 4,
+        "relevance_counts": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 4
+        },
+        "new_relevant_ge2": 4,
+        "original20_relevant_ge2": 1,
+        "expanded40_known_pairs": 24,
+        "expanded40_unknown_pairs": 16,
+        "expanded40_known_relevant_ge2": 5
+      },
+      {
+        "query_id": "exp-07",
+        "new_candidate_pairs": 4,
+        "relevance_counts": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 4
+        },
+        "new_relevant_ge2": 4,
+        "original20_relevant_ge2": 2,
+        "expanded40_known_pairs": 24,
+        "expanded40_unknown_pairs": 16,
+        "expanded40_known_relevant_ge2": 6
+      },
+      {
+        "query_id": "exp-08",
+        "new_candidate_pairs": 4,
+        "relevance_counts": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 4
+        },
+        "new_relevant_ge2": 4,
+        "original20_relevant_ge2": 1,
+        "expanded40_known_pairs": 24,
+        "expanded40_unknown_pairs": 16,
+        "expanded40_known_relevant_ge2": 5
+      }
+    ],
+    "full8_queries_by40_music": {
+      "possible_pairs": 320,
+      "known_pairs": 138,
+      "unknown_pairs": 182
+    },
+    "five_target_queries_by40_music": {
+      "possible_pairs": 200,
+      "known_pairs": 120,
+      "unknown_pairs": 80
+    },
+    "new_model_rankings": false,
+    "original_blank20_unchanged_and_null": true,
+    "input_files_unchanged": 186,
+    "schema_merge_written": false
+  },
+  "private_evidence_sha256": {
+    "analysis-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis-results.json": "b8d5f1095074de5608b486d2ccc897106239084e81430e49ecb9ed609e898bac",
+    "analyze_receipt.py": "88c1b3cb6066a3c4d93215c5d3c63624db14c305b40f0417b6fe06f5d47a70a9",
+    "archive-validation.log": "d5b9059fa18a2327a5eda06284b77117d5529ad1ef77e9dee6dcb504a0e0d503",
+    "download-validation.log": "d5b9059fa18a2327a5eda06284b77117d5529ad1ef77e9dee6dcb504a0e0d503",
+    "independent-validation.log": "e16b460f51d7495d72fc88bd5a87ecc4f59c662af8f183cb0711e58363df76ca",
+    "inputs-before.json": "788508d20260a1ac022ecf75e540f1bd53bdd76131201e8b9c39173df67c74aa",
+    "preflight-note.json": "5f297d7603aee62c31a45071126938924e182ac23ed50a65fb51cd2a0a9aa2b7",
+    "received-source-judgments.json": "eccc4af2c765bcc2dab45c43e5abc9afc9e0ded65d64890e29266c0c44353c96"
+  },
+  "preservation": {
+    "protected_files_unchanged": 186,
+    "original_completed_judgments": 118,
+    "original_source_pack_still_null": true,
+    "b033_dispatch_unchanged": true,
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "private_schema_merge_created": false,
+    "model_rerun": false,
+    "app_or_api_or_schema_or_lock_changed": false,
+    "main_merged": false
+  },
+  "coordination": {
+    "a_start_feed": "1959694c9679614497c3bdac3ea7f5f75b343b6f",
+    "b_ack_peer_feed_sha": "44a7f90a6d4682e16ec92e2ce8733bc95cfbf151",
+    "b_source_sha": "f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac",
+    "b033_status": "assigned_not_claimed",
+    "same_session_audit_not_B": true
+  },
+  "initial_preflight": {
+    "stage": "post-analysis output check",
+    "status": "preflight_failed_no_data_changes",
+    "error": "A mistaken expectation of invalid newline made an assertion fail; dependent final-script paths did not exist.",
+    "resolution": "Original analysis-results.json already parses correctly. Retain original successful script/output; no repair or rerun needed. The empty analysis-final.log belongs to the failed preflight, not successful analysis."
+  },
+  "limits": [
+    "New20 source candidates were chosen from metadata for five known development descriptions; all by Kevin MacLeod.",
+    "All20 graded3 by submitted human judgment;not a model precision/ranking or held-out improvement.",
+    "Each target description has24/40 known pairs,16 unknown;8x40 has138/320 known,182 unknown.",
+    "Keep original20-corpus metrics and original118 labels unchanged; no mixed-schema import file or automatic training/threshold changes.",
+    "New40 provider-aware corpus/index/model comparison has not been implemented or run;MUS-002/discovery-v0 acceptance remains incomplete.",
+    "No raw owner/alias/per-track labels/timestamps/audio/weights/private logs committed."
+  ],
+  "completed_on": "2026-10-29 America/Chicago"
+}
