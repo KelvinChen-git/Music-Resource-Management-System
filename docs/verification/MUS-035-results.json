@@ -1,0 +1,436 @@
+{
+  "task_id": "MUS-035",
+  "status": "local_two_provider_pipeline_and_unknown_aware_development_comparison_completed",
+  "checked_on": "2026-10-29 America/Chicago",
+  "branch": "codex/MUS-035-expanded-retrieval",
+  "source_baseline_sha": "b42b767afc0bd3ddb76601a436f8073c3d72106c",
+  "initial_implementation_sha": "895af4bb27e375e36d1e4cd444a0efdc1b1825bd",
+  "actual_eof_fix_and_run_sha": "17a31f5d5f4a04873d299c52f722dd3a890b9b5e",
+  "source_files_sha256": {
+    "research_corpus.py": "58219780f73d94914fff4be1d1aaf48e5fdc5a2352fb47dbebe1347ed2794a79",
+    "test_research_corpus.py": "4eb453e633aa9b02041c3a257678e5fd7122eaabc6a982f2c13b7c9671e6e1e3",
+    "research_probe.py": "dc3253913e1f0bbb461aba5190e8c3c7b5f39cb05b9d7ca6d8e0e508bc233750",
+    "test_research_probe.py": "f66695a6e06819b729f5d9d92955895254173e2da1c58e5baa7f779a8cf0d245",
+    "research_evaluate.py": "83a671fbd1995ae13e8e9613dbfcb388f6549015ef5346d474961d286fb7c13e",
+    "test_research_evaluate.py": "c1d2b94e0e6fefcb422c44dfd7693830fc26cd2211947e60a82559b8b2a0645d"
+  },
+  "run": {
+    "private_directory": ".local/a/mus035/run-02",
+    "report_sha256": "9c8a792f1d0a01c9806b37ee4a4606eabb5bf9d498c9787d4690413dadaf9a01",
+    "schema": "sonora-research-probe-v1",
+    "source_decoder_version": "soundfile-read-out-65536-actual-eof-v1",
+    "input_sha256": {
+      "catalog": "1cf24cff5eeceaca587d607e5dae96a47da3ee806b067158f700eba773321cc3",
+      "source_manifest": "2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a",
+      "decode_report": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+      "baseline_catalog": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+      "selection": "c02ae831a4338862ffc68e626a64c67477ea79e5e62c8a019ac4cb311e701669",
+      "queries": "f6118b2283c2818f0dd2af196c98c770045ff787c32403407eaea2241a313723"
+    },
+    "artifact_sha256": {
+      "corpus-manifest.json": "d19cd64da8455872480532260f61015106711a4cf9bd307aaf374fdfa9e4a237",
+      "queries.json": "41d524140b43b49fce935af66c0150ccfd5177533d88633b1c88d94e19f1010f",
+      "rankings.json": "ec5338d4e7415a31a7755164de1e73a48bd02dbd35e08573a21f34d44fba65d6",
+      "segments.json": "a523d9fbabb8275c4d24b27963ca69f5294db1b32d2047ec03abaa83b382ce11",
+      "vectors.npz": "d307862596ec884f9935917aebd34746c57246a2118d5fd633035bb6d177d678"
+    },
+    "counts": {
+      "tracks": 40,
+      "segments": 1557,
+      "text_queries": 8,
+      "reference_queries": 0,
+      "padded_tail_segments": 40,
+      "decoded_duration_ms": 7892191
+    },
+    "model": {
+      "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+      "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+      "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+      "audio_architecture": "HTSAT-base",
+      "fusion": false,
+      "dimension": 512,
+      "strict_missing": [],
+      "strict_unexpected": [],
+      "removed_nonlearned_position_ids": true
+    },
+    "pipeline_version": "candidate-soundfile-soxr-mono-zero-10s-hop5s-v1",
+    "preprocessing": {
+      "sample_rate_hz": 48000,
+      "window_samples": 480000,
+      "hop_samples": 240000,
+      "downmix": "channel arithmetic mean",
+      "resampler": "whole-track soxr_hq with integer-ceiling sample count",
+      "padding": "right zeros before SDK",
+      "sdk_quantization": "clip [-1,1], float32 -> int16 -> float32"
+    },
+    "environment": {
+      "python": "3.12.10",
+      "system": "Darwin",
+      "machine": "arm64",
+      "device": "cpu",
+      "threads": 2,
+      "soundfile_library": "1.2.2",
+      "packages": {
+        "laion-clap": "1.1.7",
+        "torch": "2.6.0",
+        "numpy": "1.26.4",
+        "soundfile": "0.13.1",
+        "librosa": "0.11.0",
+        "soxr": "1.1.0",
+        "transformers": "4.51.3"
+      }
+    },
+    "single_run_timings_ms": {
+      "model_load": 3715.3829999733716,
+      "decode_resample": 8146.112460119184,
+      "audio_encoding_including_reference": 121964.81099462835,
+      "text_encoding": 191.53191603254527,
+      "total": 137924.0726659773
+    },
+    "peak_rss_platform_units": 1848197120,
+    "vector_rows": 1605,
+    "freshly_encoded_tracks": 40,
+    "reused_old_vectors": false,
+    "file_mode": "0o600",
+    "directory_mode": "0o700"
+  },
+  "evaluation": {
+    "private_path": ".local/a/mus035/evaluation.json",
+    "sha256": "a591632f926b139ffacfd9f42675c55198d551422d22c6cca723c0d2f7ec62d5",
+    "repeat_sha256": "a591632f926b139ffacfd9f42675c55198d551422d22c6cca723c0d2f7ec62d5",
+    "repeat_byte_identical": true,
+    "cli_recheck_exit_code": 0,
+    "summary": {
+      "whole_track": {
+        "query_count": 5,
+        "old_macro_exact_precision_at_5": 0.16,
+        "new_macro_precision_at_5_lower": 0.9199999999999999,
+        "new_macro_precision_at_5_upper": 1.0,
+        "new_macro_exact_precision_at_5": null,
+        "new_unknown_returned_positions": 2,
+        "new_fully_judged_queries": 3,
+        "new_known_relevant_positions": 23,
+        "new_confirmed_source_relevant_hits": 20
+      },
+      "segment": {
+        "query_count": 5,
+        "old_macro_exact_precision_at_5": 0.2,
+        "new_macro_precision_at_5_lower": 0.96,
+        "new_macro_precision_at_5_upper": 1.0,
+        "new_macro_exact_precision_at_5": null,
+        "new_unknown_returned_positions": 1,
+        "new_fully_judged_queries": 4,
+        "new_known_relevant_positions": 24,
+        "new_confirmed_source_relevant_hits": 20
+      }
+    },
+    "queries": [
+      {
+        "query_id": "exp-02",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old_known_relevant_at5": {
+          "whole_track": 1,
+          "segment": 1
+        },
+        "new_modes": {
+          "whole_track": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          },
+          "segment": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          }
+        }
+      },
+      {
+        "query_id": "exp-03",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old_known_relevant_at5": {
+          "whole_track": 1,
+          "segment": 1
+        },
+        "new_modes": {
+          "whole_track": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          },
+          "segment": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          }
+        }
+      },
+      {
+        "query_id": "exp-04",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old_known_relevant_at5": {
+          "whole_track": 1,
+          "segment": 1
+        },
+        "new_modes": {
+          "whole_track": {
+            "known_relevant": 4,
+            "known_nonrelevant": 0,
+            "unknown": 1,
+            "precision_at_5_lower": 0.8,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": null,
+            "confirmed_new_source_relevant_hits": 4
+          },
+          "segment": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          }
+        }
+      },
+      {
+        "query_id": "exp-07",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old_known_relevant_at5": {
+          "whole_track": 0,
+          "segment": 1
+        },
+        "new_modes": {
+          "whole_track": {
+            "known_relevant": 4,
+            "known_nonrelevant": 0,
+            "unknown": 1,
+            "precision_at_5_lower": 0.8,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": null,
+            "confirmed_new_source_relevant_hits": 4
+          },
+          "segment": {
+            "known_relevant": 4,
+            "known_nonrelevant": 0,
+            "unknown": 1,
+            "precision_at_5_lower": 0.8,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": null,
+            "confirmed_new_source_relevant_hits": 4
+          }
+        }
+      },
+      {
+        "query_id": "exp-08",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old_known_relevant_at5": {
+          "whole_track": 1,
+          "segment": 1
+        },
+        "new_modes": {
+          "whole_track": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          },
+          "segment": {
+            "known_relevant": 5,
+            "known_nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5_lower": 1.0,
+            "precision_at_5_upper": 1.0,
+            "exact_precision_at_5": 1.0,
+            "confirmed_new_source_relevant_hits": 4
+          }
+        }
+      }
+    ],
+    "unknown_query_track_union_count": 3,
+    "cross_mode_unknown_pair_overlap": 0,
+    "full_target_universe": {
+      "known": 120,
+      "unknown": 80
+    },
+    "original_human_judgments_preserved": 138,
+    "exact_new_macro_precision_available": false,
+    "new_ndcg_recall_iou_or_p95": false
+  },
+  "actual_eof_correction": {
+    "original032_report_unchanged_sha256": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+    "historical_record_is_header_estimate_not_actual_eof": true,
+    "independent_audit_sha256": "aa105d23811633ff0fde18deba52a33764d589a5dc2186d1ae76e24d00ec9de3",
+    "summary": {
+      "tracks": 20,
+      "header_matches_old032_frames": 20,
+      "header_differs_from_actual_eof": 20,
+      "header_greater_than_actual": 20,
+      "header_less_than_actual": 0,
+      "two_block_sizes_identical_frame_count": 20,
+      "two_block_sizes_bitwise_pcm_equal": 0,
+      "block_size_pcm_max_absolute_delta": 2.980232238769531e-07,
+      "all_finite_and_tell_deltas_match": true,
+      "actual_total_frames_by_sample_rate": {
+        "44100": 98261086,
+        "48000": 45206784
+      },
+      "actual_total_duration_ms": 3169945,
+      "header_frame_delta_min": 1152,
+      "header_frame_delta_max": 162436,
+      "original_report_duration_delta_ms_min": 26,
+      "original_report_duration_delta_ms_max": 3384
+    },
+    "recorded_old_source_duration_ms": 3189548,
+    "actual_source_duration_ms": 3169945,
+    "overcount_ms": 19603,
+    "actual_duration_vs_provider": {
+      "within_2000ms": 20,
+      "outside_2000ms": 0,
+      "min_delta_ms": -433,
+      "max_delta_ms": 464
+    },
+    "old20_decoder_unchanged": true,
+    "old_human_packet_durations_unchanged_and_historical": true,
+    "no_padding_to_historical_frame_count": true,
+    "block_size_frozen": 65536
+  },
+  "verification": {
+    "final_service_unit_tests": 168,
+    "new_test_subset": {
+      "research_corpus": 22,
+      "research_probe": 29,
+      "research_evaluate": 22
+    },
+    "original_service_tests": 95,
+    "earlier_service_suite": 154,
+    "unit_counts_not_accumulated": true,
+    "actual_repeat_run_exit_code": 1,
+    "actual_repeat_no_model_or_artifact_change": true,
+    "independent_numpy_audit": {
+      "artifact_hashes_matched": 5,
+      "tracks": 40,
+      "segments": 1557,
+      "text_queries": 8,
+      "rankings_checked": 16,
+      "dimension": 512,
+      "old20_reencoded_max_abs_delta": {
+        "text": 0.0,
+        "segment": 0.0,
+        "whole": 0.0
+      },
+      "protected_inputs_unchanged": 251,
+      "passed": true
+    },
+    "independent_metric_audit_sha256": "d81427ad09019be787e9e9076471bd7a6c4bdc21b73b3d221f1c07934b7f89a0",
+    "protected_files_unchanged": 251,
+    "shared_cache_regular_file_set_unchanged": 54,
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "final_document_checks": {
+      "json_valid": true,
+      "six_markdown_local_links_and_code_fences_valid": true,
+      "git_diff_check_passed": true,
+      "same_session_read_only_review_passed_not_B": true
+    }
+  },
+  "initial_attempts": [
+    {
+      "stage": "real run-01",
+      "result": "failed after20 old tracks; no passed report or completed index",
+      "error": "ValueError: Incomplete or nonfinite decoded audio",
+      "resolution": "Correct new-source actual EOF reading, preserve failure, fresh40 run-02 on clean17a31f5;no partial vector reuse"
+    },
+    {
+      "stage": "PCM investigation",
+      "result": "Extra bitwise equality assumptions failed for different read block sizes",
+      "resolution": "Counts/finite/tell agree;float32 rounding measured,max2.980232238769531e-7;freeze65536,no bitwise identity claim"
+    },
+    {
+      "stage": "initial driver synthetic test",
+      "result": "One non-exact floating vector fixture made an assumed strict tie fail",
+      "resolution": "Exact unit-basis fake embeddings test tie rules;product ranking not relaxed"
+    },
+    {
+      "stage": "initial evaluator private-output test",
+      "result": "macOS /var symlink fixture path rejected",
+      "resolution": "Resolve fixture root;production symlink rule retained"
+    },
+    {
+      "stage": "private evaluation wrapper logging",
+      "error": "NameError: os was not imported in the initial wrapper after its CLI subprocess completed.",
+      "resolution": "Preserved original wrapper and successful evaluation.json. A separate corrected wrapper wrote evaluation-recheck.json and a real exit0 log; outputs are byte-identical. Wrapper failure is not counted as a successful command."
+    }
+  ],
+  "private_evidence_sha256": {
+    "adapter-preflight.log": "675e4d85f5c26db034d578d30b94d63dfef0a19527c11ce111f68a983b7a281f",
+    "audit-results.json": "159025cd7111ff98f2ad7903cf8d2a466c019f4a4f585aa6d05f760394672b6c",
+    "audit.log": "159025cd7111ff98f2ad7903cf8d2a466c019f4a4f585aa6d05f760394672b6c",
+    "audit_run.py": "7a74e4ae639409d8882e5de4bb19afab43f6a5f5811a08588187c450ddecd3a7",
+    "decode-investigation.log": "612049df68d5a14cc6e2d4afa655de172ed1fece6cbc228f864c689dffadc350",
+    "evaluation-recheck.json": "a591632f926b139ffacfd9f42675c55198d551422d22c6cca723c0d2f7ec62d5",
+    "evaluation-recheck.log": "01bcc7c647f4b76b79057afe812a7eef7f908b596019e1c460005bc313ac5e09",
+    "evaluation-wrapper-note.json": "2bf8083b99a7d5ffad45207aa16f50f3c59c5eab8349ce5ebd59aa9107f436c1",
+    "evaluation.json": "a591632f926b139ffacfd9f42675c55198d551422d22c6cca723c0d2f7ec62d5",
+    "independent-metrics.json": "d81427ad09019be787e9e9076471bd7a6c4bdc21b73b3d221f1c07934b7f89a0",
+    "inputs-before.json": "0ba5eff15ee76c07839db70742ca82880c43143face2ee086577ac622f0dcd5a",
+    "morning-read-audit.log": "40878c2004f8233678bfe82dc5b09307f150bac5edad6d1b1a6fb73eedaf5ced",
+    "probe-command.json": "8d14f0976ccfb2ece2ca365cef414455dc5d102f052a56947c369b77e4a816e0",
+    "repeat-rejected.log": "24acd7dc917b029057d1cd3ffcc53f60cd8cde69a438d085fb8c169e149091b6",
+    "run-02.log": "2df6d4d4188846f8949c592a9a0f7da22a668b10f1940d74e614c1b42e0dead5",
+    "run.log": "1debc6953785e4bb6458bbc13c48d485cdafce470b122522100b303ed1532678",
+    "run_evaluation.py": "ae91cde294c3c3fb5e28ff407b8acf82ede6f37176025ff8c1a14b3fa192a16f",
+    "run_evaluation_logged.py": "4c312983f7584ed53c15df5fe2a58fe154588dd5d58dafe4df4b2d1300c1b5b4",
+    "source-decode-audit.json": "aa105d23811633ff0fde18deba52a33764d589a5dc2186d1ae76e24d00ec9de3",
+    "tests-eof.log": "f0e09a1a0386d0abf62d56d49ed546a808c0afd1ab7b24c1db9e7e43e2f37704",
+    "tests.log": "e382688c5883ab2540abad264df3492e7d9f0452801002696cb6203d8b1fae2a",
+    "final-preservation-check.json": "bb7e15af1603f8450d86d81e394886fff1c02ba164e6fa155867e0cf994db118"
+  },
+  "failed_run_artifacts_sha256": {
+    "failure.json": "48a0f03dd95340d31a8d8960cefed79ed73b4de9daae591bb103801d0b6a2582"
+  },
+  "coordination": {
+    "a_start_feed": "cdf9b2be2ab149a0aa60f8ae8710fb0fdd469d11",
+    "b_ack_peer_feed_sha": "44a7f90a6d4682e16ec92e2ce8733bc95cfbf151",
+    "b_source_sha": "f9911e5b85a12928b7df8a62fbec10e5fa3eb3ac",
+    "b033_fixed_revision": 1,
+    "b033_status": "assigned_not_claimed",
+    "b033_dispatch_unchanged": true,
+    "same_session_audits_not_B": true,
+    "last_prepublication_sync_utc": "2026-10-29T05:44:30Z"
+  },
+  "limits": [
+    "Offline private vectors/rankings only;no browser-facing discovery API/shared online index.",
+    "Five known development descriptions with targeted same-author expansion;not held-out or independent model improvement.",
+    "Newtop5 has3 distinct unknown query-track pairs across modes;never treat them as negatives or claim exact macro P@5.",
+    "All20 newly confirmed source pairs occur in each mode top5;this observes corpus expansion with unchanged model,not training gains.",
+    "Track grades only;no human interval ground truth or localization accuracy.",
+    "Original032/033 duration fields are historical header estimates;use versioned035 actual EOF for new windows,do not rewrite immutable labeled packets.",
+    "Original20 run/933 segments/138 judgments/all audio/proofs/shared caches/old tools/B card unchanged.",
+    "No Java/Vue/API/schema/lock/model version change,no backend restart or main merge;MUS-002/discovery-v0 still incomplete."
+  ]
+}

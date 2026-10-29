@@ -85,3 +85,14 @@ PYTHONPATH=services/audio-search python3 -m unittest test_review_pack test_evalu
 ```
 
 实际27+72通过，不加载CLAP。新包CLI重建原不可变结构，只准人工四字段改变，已有输出拒绝覆盖；浏览器导出须再次CLI验证。实际页面初始0/20，新来源整曲仅在完整JWT媒体/字节/SHA验证后按较短浏览器端点播放，不改解码记录；旧schema和真正片段边界不放宽。新40曲索引与模型比较属于后续任务。
+
+
+## 两来源40曲开发检索对照（MUS-035）
+
+`research_corpus.checked_assets`在E7固定输入上读取独立40曲音频副本；`research_probe.py`重新处理全部40曲，复用固定模型/数值DSP和原两mode排序；8原文字查询、无新音频参考。六份输入SHA与checkpoint均显式固定，源码必须已提交且工作区干净，前后重核输入/模型/源码；私有新run只在ignore.local、0700/0600独占创建，已有成功或失败目录均拒绝覆盖。
+
+新来源使用`soundfile-read-out-65536-actual-eof-v1`。旧032 blocks()的yield长度把MP3头部估计计为实际，不能作为真实EOF；旧报告与033 catalog/已判包保留为历史记录。新manifest同时保存recorded_decode/declared_source_frames及实际source_frames，按实际读到的0帧EOF、固定65536 out缓冲、有限值/位置/30–600s上限处理；旧20 decoder/窗口/排序字节保持，原数值预处理规则相同。不要通过补零迎合历史头部，或在原dataset内修改已判包时间。
+
+`research_evaluate.py`标准库CLI同时固定旧/新report、E7六输入、原51/67/新20判断共11 SHA。五目标描述各24已知/16未知；top5只报告r/n/u、P@5上下限，全部5个位置已判时才提供该条exact，不排除unknown query做宏均值。新旧queries各自raw哈希仍核验，但逻辑同一fixture重新序列化后的空白差异按canonical对象比较。新来源时间由历史header绑定+actual精确ceil分别校验；当前三包人工区间必须0，只做track级比较。旧E1/两旧schema和评估器保持，不能把新run直接交给旧CLI。
+
+实际run-02为40曲/1557片段/8文字、512维；原20重新编码最大差0，最终168单测和独立矩阵/排名复算通过。真实固定命令/源码与工件SHA、初次失败及开发比较见[MUS-035](../../docs/verification/MUS-035.md)。环境继续复用原版只读venv/checkpoint/HF缓存，NUMBA_CACHE_DIR写本次私有目录，不安装或升级依赖。未实现在线API或正式质量验收。
