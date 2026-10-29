@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-036-top5-supplement`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-037-supplement-receipt`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -33,6 +33,8 @@ VITE_DEV_PORT=5175 VITE_PROXY_TARGET=http://127.0.0.1:8080 npm run preview -- --
 MUS-035已用同一固定CLAP重新处理40首，生成1557片段/40整曲向量和8条文字查询的两模式离线排名。五条目标描述中，两模式均将新增20首各自排进前5；整曲25位置已知相关23/未判2，片段24/未判1，对应P@5范围0.92–1.00/0.96–1.00，不能当精确总体指标或独立测试提升。原20向量重编码差为0，138判断/旧run/空白包保留；新top5跨模式尚有3个不同组合待判。新来源实际EOF读取也纠正了历史头部估计时长（原记录保留），详见[MUS-035](docs/verification/MUS-035.md)。当前仍是私有离线结果，网页多模态检索/共享线上索引尚未实现。
 
 MUS-036已把这3对准备为独立补判包：钢琴1、爵士2，3首不同音乐，实际EOF时间/新指纹/全null/空模型建议；现有试听页可导入、播放和导出，已有138保留。188 Python/77 Node/build及18真实浏览器断言通过，等待用户判断后再更新精确开发指标。本轮接收B033限定批准并明确派发035独立工具审核，不外推036。见[MUS-036](docs/verification/MUS-036.md)。
+
+MUS-037已接收3/3补判并独立复算，累计141条；固定五描述的新40曲整曲top5相关25/25、片段24/25，精确宏P@5=1.00/0.96，剩余top5未知0。原20同五描述为0.16/0.20；原035区间/029八描述指标及四原包保留，不重排或训练。全8×40仍有179对未知，定向开发结果不等于独立测试；下一步独立评测/模型对照方案仍待建立。见[MUS-037](docs/verification/MUS-037.md)。
 
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 

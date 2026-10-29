@@ -1,0 +1,394 @@
+{
+  "task_id": "MUS-037",
+  "status": "three_supplement_judgments_received_and_fixed_development_top5_comparison_completed",
+  "checked_on": "2026-10-29 America/Chicago",
+  "branch": "codex/MUS-037-supplement-receipt",
+  "source_baseline_sha": "49c255ccdd528a68995fef3fffdf178cd2605d32",
+  "receipt": {
+    "source_sha256": "1147aacb6befc1ed1d90ad56b865db8c027ae833360b5e3ed4dc6396a691c779",
+    "source_bytes": 4344,
+    "archive_path": ".local/a/mus037/received-supplement-judgments.json",
+    "archive_byte_identical": true,
+    "archive_mode": "0o600",
+    "directory_mode": "0o700",
+    "download_cli_exit": 0,
+    "archive_cli_exit": 0,
+    "validation": {
+      "status": "validated_unverified_judgments",
+      "split": "development_not_held_out",
+      "queries": 2,
+      "candidate_pairs": 3,
+      "judged": 3,
+      "unjudged": 0,
+      "relevance_counts": {
+        "0": 1,
+        "1": 0,
+        "2": 1,
+        "3": 1
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "4c00b2ee577e153d5dbd588d13c3ce6e8fa6d9f2b8229a66da8543063520c4ee",
+      "identity_or_listening_verified": false,
+      "schema": "sonora-retrieval-supplement-pack-v1"
+    }
+  },
+  "input_sha256": {
+    "old_report_sha256": "90e7b4939cc1d77f40863403a699926881c03e41a1b634c9b4f06c23a96d9108",
+    "new_report_sha256": "9c8a792f1d0a01c9806b37ee4a4606eabb5bf9d498c9787d4690413dadaf9a01",
+    "baseline_catalog_sha256": "33c9d7fdf284aa1f3570ccbb03e79146adcb16e7e2509b823fb6cee7b931e2a5",
+    "import_catalog_sha256": "1cf24cff5eeceaca587d607e5dae96a47da3ee806b067158f700eba773321cc3",
+    "source_manifest_sha256": "2747406a250ddd5a704fd2ba045c2f16741c373635e6c467eaae34a69bef867a",
+    "decode_report_sha256": "e921e63ae76499ad0cca1eefaddfd2e32d7e1574403db65ed1cd1dc7a7fe4427",
+    "selection_sha256": "c02ae831a4338862ffc68e626a64c67477ea79e5e62c8a019ac4cb311e701669",
+    "query_fixture_sha256": "f6118b2283c2818f0dd2af196c98c770045ff787c32403407eaea2241a313723",
+    "base_pack_sha256": "774c2083f3ffae16e24472bf2a8e69271ce748f78049eac2302cacd9ab382869",
+    "diagnostic_pack_sha256": "38f8a4d078e4367e3819818735713812379fb5458a100cc1712e8fa68231f5b0",
+    "source_pack_sha256": "eccc4af2c765bcc2dab45c43e5abc9afc9e0ded65d64890e29266c0c44353c96",
+    "evaluation_sha256": "a591632f926b139ffacfd9f42675c55198d551422d22c6cca723c0d2f7ec62d5"
+  },
+  "aggregate_analysis": {
+    "schema": "sonora-private-supplement-receipt-analysis-v1",
+    "status": "fixed_development_top5_fully_judged",
+    "supplement_sha256": "1147aacb6befc1ed1d90ad56b865db8c027ae833360b5e3ed4dc6396a691c779",
+    "supplement_dataset_sha256": "4c00b2ee577e153d5dbd588d13c3ce6e8fa6d9f2b8229a66da8543063520c4ee",
+    "receipt_validation": {
+      "status": "validated_unverified_judgments",
+      "split": "development_not_held_out",
+      "queries": 2,
+      "candidate_pairs": 3,
+      "judged": 3,
+      "unjudged": 0,
+      "relevance_counts": {
+        "0": 1,
+        "1": 0,
+        "2": 1,
+        "3": 1
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "4c00b2ee577e153d5dbd588d13c3ce6e8fa6d9f2b8229a66da8543063520c4ee",
+      "identity_or_listening_verified": false,
+      "schema": "sonora-retrieval-supplement-pack-v1"
+    },
+    "original_judgments": 138,
+    "new_judgments": 3,
+    "total_known_pairs": 141,
+    "total_unknown_pairs": 179,
+    "target_known_pairs": 123,
+    "target_unknown_pairs": 77,
+    "all_grades": {
+      "0": 79,
+      "1": 19,
+      "2": 12,
+      "3": 31
+    },
+    "human_intervals": 0,
+    "queries": [
+      {
+        "query_id": "exp-02",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old": {
+          "whole_track": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          },
+          "segment": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          }
+        },
+        "new": {
+          "whole_track": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "segment": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          }
+        }
+      },
+      {
+        "query_id": "exp-03",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old": {
+          "whole_track": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          },
+          "segment": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          }
+        },
+        "new": {
+          "whole_track": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "segment": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          }
+        }
+      },
+      {
+        "query_id": "exp-04",
+        "known_pairs": 25,
+        "unknown_pairs": 15,
+        "old": {
+          "whole_track": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          },
+          "segment": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          }
+        },
+        "new": {
+          "whole_track": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "segment": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          }
+        }
+      },
+      {
+        "query_id": "exp-07",
+        "known_pairs": 26,
+        "unknown_pairs": 14,
+        "old": {
+          "whole_track": {
+            "relevant": 0,
+            "nonrelevant": 5,
+            "unknown": 0,
+            "precision_at_5": 0.0,
+            "lower": 0.0,
+            "upper": 0.0
+          },
+          "segment": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          }
+        },
+        "new": {
+          "whole_track": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "segment": {
+            "relevant": 4,
+            "nonrelevant": 1,
+            "unknown": 0,
+            "precision_at_5": 0.8,
+            "lower": 0.8,
+            "upper": 0.8
+          }
+        }
+      },
+      {
+        "query_id": "exp-08",
+        "known_pairs": 24,
+        "unknown_pairs": 16,
+        "old": {
+          "whole_track": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          },
+          "segment": {
+            "relevant": 1,
+            "nonrelevant": 4,
+            "unknown": 0,
+            "precision_at_5": 0.2,
+            "lower": 0.2,
+            "upper": 0.2
+          }
+        },
+        "new": {
+          "whole_track": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "segment": {
+            "relevant": 5,
+            "nonrelevant": 0,
+            "unknown": 0,
+            "precision_at_5": 1.0,
+            "lower": 1.0,
+            "upper": 1.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "old": {
+        "whole_track": {
+          "query_count": 5,
+          "positions": 25,
+          "relevant": 4,
+          "nonrelevant": 21,
+          "unknown": 0,
+          "macro_exact_precision_at_5": 0.16
+        },
+        "segment": {
+          "query_count": 5,
+          "positions": 25,
+          "relevant": 5,
+          "nonrelevant": 20,
+          "unknown": 0,
+          "macro_exact_precision_at_5": 0.2
+        }
+      },
+      "new": {
+        "whole_track": {
+          "query_count": 5,
+          "positions": 25,
+          "relevant": 25,
+          "nonrelevant": 0,
+          "unknown": 0,
+          "macro_exact_precision_at_5": 1.0
+        },
+        "segment": {
+          "query_count": 5,
+          "positions": 25,
+          "relevant": 24,
+          "nonrelevant": 1,
+          "unknown": 0,
+          "macro_exact_precision_at_5": 0.96
+        }
+      }
+    },
+    "scope": "fixed five development queries, original frozen old/new top5, positive grade>=2",
+    "no_label_driven_reranking_or_model_rerun": true,
+    "raw_packages_separate": true
+  },
+  "verification": {
+    "download_cli_exit": 0,
+    "archive_cli_exit": 0,
+    "archive_byte_identical": true,
+    "independent_recomputation_matches": true,
+    "independent_recomputation_not_B": true,
+    "all_four_raw_packages_kept_separate": true,
+    "protected_inputs_unchanged": 284,
+    "shared_cache_regular_file_set_and_hashes_unchanged": 54,
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "same_service_pids": {
+      "java_8080": 96842,
+      "preview_5175": 4143
+    },
+    "private_modes": "0700/0600",
+    "application_or_retrieval_source_changes": false,
+    "application_build_or_unit_suites_rerun": false,
+    "reason": "Receipt and documents only;existing pinned CLI plus independent aggregation checked;no implementation change.",
+    "document_checks": {
+      "six_markdown_local_links_and_fences_valid": true,
+      "json_valid": true,
+      "private_evidence_hashes_matched": true,
+      "git_diff_check_passed": true,
+      "same_session_independent_final_document_review_passed_not_B": true
+    }
+  },
+  "coordination": {
+    "a_start_feed_sha": "52ef10beb2c05345cf0bea77eca0b4b972269f56",
+    "ack_peer_feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
+    "b_source_sha": "4f5783790b5d4607080678b82c5ce6cf842f64e3",
+    "last_checkpoint_sync_utc": "2026-10-29T16:10:26Z",
+    "B035_card_revision": 1,
+    "B035_reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+    "B035_status": "assigned_not_claimed",
+    "B035_dispatch_and_card_bytes_unchanged": true
+  },
+  "limits": [
+    "Exact P@5 covers only five frozen development descriptions and their two-mode top5,not all eight queries or the full40-track relevance universe.",
+    "Targeted same-author expansion around known weak descriptions;no independent held-out/model-training or generalization claim.",
+    "All40x8=320 query-track pairs include141 judged and179 unknown;target five include123 judged and77 unknown.",
+    "Original035 bounded evaluation and029 eight-query pooled results retained;new exact comparison written separately.",
+    "No new nDCG/Recall/IoU/P95/significance,threshold calibration,training or label-driven ranking.",
+    "No human localization intervals;track grades cannot establish segment localization accuracy.",
+    "Original138,blank packets,rankings,audio,source evidence,model/checkpoint/cache and backup retained.",
+    "No Java/Vue/API/schema/dependency/model-version/backend-restart/UI-redesign/main-merge changes.",
+    "B033 approval does not cover035/036/037;independent B review remains pending."
+  ],
+  "private_evidence_sha256": {
+    "analysis.json": "2a669849bacf9edbcb874bb46872f9271f4c748d2ffa21de03e023797fc3cf60",
+    "analysis.log": "25b3f422414950641866a8a8cc2cf4ae4829ea7726ad1aa7036592600758e4d8",
+    "analyze_receipt.py": "0ff14322e2e0ec8e91a1ecf879330acef65de8e91e773ffc89d894f4b7fd299d",
+    "archive-validation.log": "1c95f12b00186d9cb40574f6c895a90599e2329d6f507ae6eaba44f96bd72b6d",
+    "download-validation.log": "1c95f12b00186d9cb40574f6c895a90599e2329d6f507ae6eaba44f96bd72b6d",
+    "independent-analysis.json": "8ffd50bb68214f7805d8c4bb31979cc948d0312b3af9548cab8db1061fcc9a4e",
+    "inputs-before.json": "22f0979d32318f418016a2f60081959b994b9b7e6597e7ad2038a3fc984ebf45",
+    "preservation-check.json": "56032660601a17eeace448cbcd21f1274dbe21c1dca56b804dedb5276387bbc4",
+    "receipt.json": "6c1e78086728c70728031abed6eab66934bf069e0cf1243b01dc93b5df00ca96",
+    "received-supplement-judgments.json": "1147aacb6befc1ed1d90ad56b865db8c027ae833360b5e3ed4dc6396a691c779"
+  }
+}

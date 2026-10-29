@@ -1,5 +1,27 @@
 # 账号 A 最新交接
 
+## 当前：MUS-037三条补判已接收，五描述固定top5完整比较完成
+
+A；2026-10-29 America/Chicago；branch codex/MUS-037-supplement-receipt；base `49c255ccdd528a68995fef3fffdf178cd2605d32`。done仅接收/固定开发比较，非独立模型质量验收；最终提交SHA见handoff。
+
+ack_peer_feed_sha `16b06c8cfde4b34bb461ab18d533e66d50ac9f16` / B source `4f5783790b5d4607080678b82c5ce6cf842f64e3`。开始/检查点双方fetched，末次2026-10-29T16:10:26Z。B仍033已接收报告，035/rev1准确reviewed9797ed4/baseb42b767原assigned card/dispatch字节保持，未冒充主动认领/替换任务，不外推033批准至035/036/037。
+
+用户新下载4344bytes、SHA1147aacb6befc1ed1d90ad56b865db8c027ae833360b5e3ed4dc6396a691c779，dataset4c00b2ee577e153d5dbd588d13c3ce6e8fa6d9f2b8229a66da8543063520c4ee。既有supplement CLI以035 evaluation+原11pins完整重建，原件及原字节归档两次exit0，3/3已判/0未判、等级0/1/2/3=1/0/1/1、人工区间0，归档仅ignore.local/a/mus037、0600/0700。只验证结构/来源绑定，不认证听音/身份，不改评分或旧包。
+
+E10先冻结再读新评分：五目标exp02/03/04/07/08、原两run/两mode top5顺序、>=2相关、每条固定分母5及五条等权；四包只在分析内存按query/track/content关联，无重叠/混合schema/标签驱动重排。旧138+新3=141，等级79/19/12/31；原件/空白包/四完成包分别保留。全8×40已知141/320、未知179；五描述123/200、未知77，不当全库金标准。
+
+新40曲whole25相关/0负/0未知，segment24/1/0，精确P@5宏1.00/0.96；whole五query均5相关，segment仅爵士exp07为4相关/1负，其余均5。原20同五描述whole4/25=0.16、segment5/25=0.20，旧029八query指标不混分母。035原区间/文件保留，本轮另存精确分析；whole达到原上端1.00、segment落在原下端0.96。不能说片段普遍更优或模型100%准确；定向单作者/已知失败描述/模型结果选样仍development，非训练/held-out/泛化提升。
+
+根侧私有一次分析从四原包与实际冻结rankings重算，独立同会话代理未调用root脚本、固定CLI与独立原件计数逐query/模式/coverage一致，独立聚合SHA8ffd50bb68214f7805d8c4bb31979cc948d0312b3af9548cab8db1061fcc9a4e，非B。无人工区间/新nDCG/Recall/IoU/P95/显著性/拒绝阈值或10%提升结论，不训练/跑模型/重写旧evaluation。
+
+284保护输入前后SHA与54共享cache常规文件集合保持，含新下载/旧138/036空白及导出/两run与向量/音频证明/模型/B035卡。原版干净f3b0da1，Java8080 PID96842/preview5175 PID4143保持未重启。个人代号/时间/owner/逐条判断仅私有，Git仅方法/聚合/哈希。源码工具/前后端/API/schema/锁/依赖/模型版本/UI/main不变，无关单测/build/浏览器/CLAP不重跑，036历史188/77不算本轮执行。
+
+细节verification/MUS-037.md/results.json。下一阶段038只先明确独立dev/test与模型对照方案，不把既有五描述重新命名held-out；MUS-002正式质量与discovery-v0仍未完成。提交后原子publish并回读，发布不等于B认领/接收或main合并，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-036三对补判包就绪，接收B033限定批准
 
 A；2026-10-29 America/Chicago；branch codex/MUS-036-top5-supplement；base `9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d`，实现bde85a1，权限修复及真实生成 `125076d3d9bd336ab7928dcd7f9ecd9a0a8a3316`。review仅包/工具与本机交付完成，3真人判断仍待用户，非新模型验收；最终文档SHA见handoff。
