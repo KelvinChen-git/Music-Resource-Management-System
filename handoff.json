@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-29T22:28:59.903Z",
+  "published_at": "2026-10-29T22:45:30.159Z",
   "source_branch": "review/MUS-035-B-expanded-retrieval",
-  "source_sha": "d6742716bf629b75acb8939e90fd3fb0002ee1ee",
+  "source_sha": "0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "722f2f6360aecd1d8a0bc1843be6b6791dad5a8401fc0fefb151a1eabc9d7d38"
+  "report_sha256": "2df8a12d5125e06544305a3638234a9892d51e165b04fc84046241ef1261f6e0"
 }
