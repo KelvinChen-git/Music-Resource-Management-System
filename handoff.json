@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-29T06:36:31.819836+00:00",
-  "source_branch": "codex/MUS-036-top5-supplement",
-  "source_sha": "49c255ccdd528a68995fef3fffdf178cd2605d32",
+  "published_at": "2026-10-29T16:15:37.213639+00:00",
+  "source_branch": "codex/MUS-037-supplement-receipt",
+  "source_sha": "efd7be584b9f30e61ac86474c038d0d79f43ec39",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "9146a62f25d0c2d1982c0c72b78d4e88058bff53f403752fb2aec618af885341"
+  "report_sha256": "e6b5c917926cf10f32138feec54366997b31e5b950b43200ff0339a32ed7a315"
 }
