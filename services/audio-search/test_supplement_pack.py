@@ -3,6 +3,7 @@ from contextlib import redirect_stderr, redirect_stdout
 from copy import deepcopy
 import io
 import json
+import os
 from pathlib import Path
 from types import SimpleNamespace
 import sys
@@ -278,6 +279,17 @@ class SupplementPackTest(unittest.TestCase):
         supplement.subprocess.run.return_value = SimpleNamespace(returncode=1)
         with self.assertRaisesRegex(ValueError, 'ignored by Git'):
             supplement.write_new(self.private / 'unignored.json', pack)
+
+    def test_private_file_remains_readable_with_restrictive_umask(self):
+        pack = self.prepare()
+        target = self.private / 'restricted-umask.json'
+        previous = os.umask(0o777)
+        try:
+            supplement.write_new(target, pack)
+        finally:
+            os.umask(previous)
+        self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+        self.assertEqual(json.loads(target.read_bytes()), pack)
 
     def test_readonly_inputs_remain_exact_after_prepare_and_cli_failure(self):
         before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}

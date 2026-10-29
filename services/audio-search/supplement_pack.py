@@ -133,6 +133,7 @@ def write_new(path, pack):
     rp.require(len(raw) <= 2 * 1024 * 1024, 'Supplement pack exceeds import size limit')
     fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
     with os.fdopen(fd, 'wb') as output:
+        os.fchmod(output.fileno(), 0o600)
         output.write(raw)
 
 

@@ -338,7 +338,7 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 新标准库supplement_pack.prepare先按显式evaluation SHA读取035评估，再调用未改的research_evaluate.evaluate以原11输入SHA完整重建并canonical比对；不信任孤立evaluation或自行重签候选。新候选metadata/content/bytes/双provider来源及duration_ms来自已校验035 manifest，时间用035 actual EOF，不能用033历史header估计。构建与校验共享相同固定输入，原138/所有旧包/run/排名只读，不加载模型/改排序。
 - provenance精确字段：source_report_sha256、run_code_sha、input_catalog_sha256、checkpoint_sha256、pipeline_version、source_decoder_version、artifact_sha256（035完整五工件）、evaluation_sha256、known_judgments_sha256（base/diagnostic/source三SHA）、supplement_query_ids（有未知的有序query ID）、selection=`unjudged_union_whole_track_top5_and_segment_top5`、ordering=`query_fixture_order_then_track_id_ascending`、labeling_aid=`no_model_intervals_retrieval_supplement`。run_code_sha仍035编码提交，不伪装成本次包工具提交。
 - 候选沿用E1四个人工字段及source_provider；jamendo十进制source_id/规范Jamendo与CC BY URL，incompetech严格ISRC/官方ISRC URL/CC BY4。track_id为Java Long十进制字符串；内容、来源身份及跨query同track元数据一致，禁止不同track共享来源或content。初始四人工字段全null，model_suggested_intervals_ms必须空；允许人工四字段按原0–3/代号/UTC/区间规则填写，不提供模型区间或默认判断。dataset以新schema/provenance/实际时间及null人工字段canonical签名，草稿按owner+新指纹隔离，不能迁移旧判断。
-- 浏览器只最小新增schema校验及“本轮仅补判未判断结果”的说明，原布局/播放/评分/草稿/旧三schema规则保留。整曲沿用完整JWT媒体字节/SHA校验后Incompetech较短端点保护，每次fresh恢复重算；不改旧播放器。浏览器校验不认证固定来源，导出必须由CLI以原输入重建校验。独立新包/工件只ignore.local/a/mus036，目录0700/文件0600，拒绝symlink/逃逸/覆盖既有输出。
+- 浏览器只最小新增schema校验及“本轮仅补判未判断结果”的说明，原布局/播放/评分/草稿/旧三schema规则保留。整曲沿用完整JWT媒体字节/SHA校验后Incompetech较短端点保护，每次fresh恢复重算；不改旧播放器。浏览器校验不认证固定来源，导出必须由CLI以原输入重建校验。本轮真实新包/工件仅写ignore.local/a/mus036；可复用CLI限制为本checkout已ignore的.local私有子目录，不硬编码任务号。目录0700/文件0600（文件创建后fchmod，不受umask影响），拒绝symlink/逃逸/覆盖既有输出。
 - 本轮仅准备包与工具，未接收新真人标签前保持035未知范围和指标；后续接收另立任务。不训练/调阈值/新跑模型，不产生新质量指标或将这3对称独立测试。033 B限定批准只接收原卡范围，035另派独立审核，不外推批准。
 
 ## F. 契约变更
