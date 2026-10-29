@@ -1,0 +1,229 @@
+{
+  "task_id": "MUS-038",
+  "status": "independent_evaluation_protocol_frozen_execution_not_started",
+  "checked_on": "2026-10-29 America/Chicago",
+  "branch": "codex/MUS-038-independent-eval-protocol",
+  "source_baseline_sha": "efd7be584b9f30e61ac86474c038d0d79f43ec39",
+  "protocol_sha256": "f83a3b456ce51a6dc25b1e4b5c8ae3c77a37168f2b2b11645ccb14a65bebc9e8",
+  "actual_new_material": {
+    "tracks": 0,
+    "query_texts": 0,
+    "judgment_pairs": 0,
+    "model_weight_downloads": 0,
+    "test_runs": 0,
+    "annotation_packages": 0
+  },
+  "development_preflight": {
+    "tracks": 20,
+    "query_ids": [
+      "exp-02",
+      "exp-03",
+      "exp-04",
+      "exp-07",
+      "exp-08"
+    ],
+    "fully_judged_pairs": 100,
+    "new_calibration_labels_needed": 0,
+    "zero_positive_queries": 0
+  },
+  "current_development": {
+    "tracks": 40,
+    "queries": 8,
+    "judged_pairs": 141,
+    "unjudged_pairs": 179
+  },
+  "planned_test": {
+    "tracks": 20,
+    "new_English_query_texts": 8,
+    "full_grid_pairs": 160,
+    "batches": 4,
+    "pairs_per_batch": 40,
+    "creator_groups_minimum": 5,
+    "tracks_per_group_maximum": 4,
+    "index_includes_old40": false,
+    "corpus_query_group_qrels_manifest_sha256": null,
+    "all_old_material_excluded": true,
+    "no_relevance_based_sampling": true,
+    "readable_qrels_release": "G5_only_after_runner_freeze_and_all160_valid_and_all5runs_hashed",
+    "new_contract_and_runner_needed": true
+  },
+  "planned_comparison": {
+    "configurations": [
+      "A-whole",
+      "A-segment",
+      "B-whole",
+      "B-segment",
+      "title-tfidf"
+    ],
+    "primary_contrast": {
+      "candidate": "B-whole",
+      "anchor": "A-whole"
+    },
+    "secondary_contrasts": [
+      {
+        "candidate": "B-segment",
+        "anchor": "A-segment"
+      },
+      {
+        "candidate": "A-segment",
+        "anchor": "A-whole"
+      },
+      {
+        "candidate": "B-segment",
+        "anchor": "B-whole"
+      }
+    ],
+    "primary_metric": "macro_P@5_all8queries",
+    "secondary_metric": "macro_nDCG@5_full20_IDCG_zero_IDCG_excluded_and_disclosed",
+    "improvement_required": false
+  },
+  "model_pin_verification": {
+    "status": "pinned_remote_metadata_verified_only",
+    "repo": "lukewys/laion_clap",
+    "revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "publisher_license_tag": "cc0-1.0",
+    "files": {
+      "music_audioset_epoch_15_esc_90.14.pt": {
+        "bytes": 2352471003,
+        "sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd"
+      },
+      "music_speech_audioset_epoch_15_esc_89.98.pt": {
+        "bytes": 2352471003,
+        "sha256": "51c68f12f9d7ea25fdaaccf741ec7f81e93ee594455410f3bca4f47f88d8e006"
+      }
+    },
+    "local_challenger_file_sha_or_load_verified": false,
+    "weights_downloaded": 0,
+    "metadata_bytes": 2931
+  },
+  "verification": {
+    "protocol_consistency": {
+      "status": "passed_protocol_consistency_only",
+      "check_count": 42,
+      "checks": [
+        "plan-only status",
+        "actual new material remains zero",
+        "20x8 full grid",
+        "no new calibration labels",
+        "existing141 remain development",
+        "old unresolved pairs not test",
+        "new20 index excludes old40",
+        "group-cap can support20",
+        "four40-pair batches",
+        "all8 slots covered exactly once",
+        "2 edge queries included in8",
+        "no fabricated corpus query qrels or group fingerprint",
+        "pin matches official metadata A",
+        "pin matches official metadata B",
+        "different checkpoint bytes",
+        "B load and dimension pending",
+        "all4 acoustic plus lexical",
+        "4 valid preregistered contrasts",
+        "main whole model comparison fixed",
+        "all configurations retained",
+        "same10s5s48k input",
+        "test labels not selection inputs",
+        "replacement cannot follow test access",
+        "old CLI and UI not relabeled",
+        "optional reliability audit not counted or enabled",
+        "unknown cannot be negative",
+        "query unit and all8",
+        "model-blind and single rater",
+        "no rejection or probability calibration",
+        "freeze precedes test run and qrels",
+        "runs precede unblind",
+        "success not conditioned on winning",
+        "hypothetical all0 P0 nDCGnull",
+        "hypothetical all1 P0 nDCG1",
+        "hypothetical4 positives best P=.8",
+        "hypothetical P macro keeps zero-positive query",
+        "unknown159 cannot yield complete160 result",
+        "fixed batch query within-query candidate order",
+        "frame frozen before new query authoring or disclosure",
+        "insufficient eligible groups cannot relax plan",
+        "readable labels held until G5 complete gates",
+        "only four pre-unblind receipt fields"
+      ],
+      "protocol_sha256": "f83a3b456ce51a6dc25b1e4b5c8ae3c77a37168f2b2b11645ccb14a65bebc9e8",
+      "hypothetical_metric_examples_only_not_real_test_results": true,
+      "actual_test_runs": 0,
+      "new_labels_or_music": 0
+    },
+    "document_checks": {
+      "status": "passed",
+      "allowed_public_files": 9,
+      "markdown_files_checked": 7,
+      "local_link_count": 70,
+      "fences_valid": true,
+      "JSON_valid": true,
+      "protocol_and_private_evidence_hashes_match": true,
+      "git_diff_check_passed": true,
+      "private_modes_valid": true,
+      "same_session_independent_final_document_review_passed_not_B": true
+    },
+    "same_session_readonly_reviews": {
+      "metrics": "passed_after_order_and_custody_clarification",
+      "leakage": "passed_after_frame_and_custody_clarification",
+      "model_pins_and_implementation_limits": "passed",
+      "independent_B_review": false
+    },
+    "protected_inputs_unchanged": 294,
+    "shared_cache_regular_files_and_hashes_unchanged": 54,
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "same_service_pids": {
+      "java_8080": [
+        96842
+      ],
+      "preview_5175": [
+        4143
+      ]
+    },
+    "private_modes": "0700/0600",
+    "application_or_retrieval_source_changes": false,
+    "application_build_or_unit_suites_or_model_rerun": false,
+    "reason": "Protocol documents and metadata verification only;no implementation or evaluation execution."
+  },
+  "metadata_fetch": {
+    "initial_method": "system Python urllib default SSL trust store",
+    "initial_status": "failed",
+    "original_error": "ssl.SSLCertVerificationError: CERTIFICATE_VERIFY_FAILED: unable to get local issuer certificate",
+    "retry_method": "system curl HTTPS certificate verification enabled; same pinned metadata URL; no weights requested",
+    "did_not_disable_certificate_verification": true,
+    "retry_status": "passed",
+    "retry_exit": 0,
+    "metadata_bytes": 2931,
+    "weights_downloaded": 0
+  },
+  "coordination": {
+    "a_start_feed_sha": "0ea759adc8b32bc93ef40a3fdf114654533544db",
+    "ack_peer_feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
+    "b_source_sha": "4f5783790b5d4607080678b82c5ce6cf842f64e3",
+    "checkpoint_sync_utc": "2026-10-29T21:07:32Z",
+    "B035_reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+    "B035_card_revision": 1,
+    "B035_status": "assigned_not_claimed",
+    "B035_dispatch_and_card_bytes_unchanged": true
+  },
+  "limits": [
+    "Design only;new tracks,query texts,qrels,packages,weight downloads and test runs are all0.",
+    "All40 existing tracks,141 judgments,179 unknown pairs and8 query texts remain development.",
+    "B checkpoint remote metadata only;local hash,strict loading,512 output and compatibility pending.",
+    "Single-user model-blind subjective judgments;titles and source visible;not expert,double-blind or interrater validated.",
+    "20track/8query project-process holdout;pretraining overlap unknown;not a population-generalization claim.",
+    "No Recall,IoU,P95,significance,Chinese accuracy,abstention calibration or target10percent improvement measured.",
+    "Old schemas,CLI and UI do not support the new independent test;MUS-039/040 not started.",
+    "Original backup,labels,blank packs,rankings,audio,model and caches retained;no main merge."
+  ],
+  "private_evidence_sha256": {
+    "feasibility-check.json": "d31de1b8913569b6f28ec0b8df6caf73d56109d6246520f5bd66705f0b35f08f",
+    "inputs-before.json": "17553d97ea5d782fdb837f6c090c9c7da45b2320136a800eb4f224cdb11a20c8",
+    "metadata-fetch-note.json": "c8fe4708d80b3bca6d08108b457009d0a1c8e4a2d681303da3bb6be8dde4fcb1",
+    "model-pin-check.json": "4ab2fe2a2aac3ba07232bf43318f408767d7e7f5828d4dc9c7c29f7ad43a2e73",
+    "model-release-metadata.json": "5bc03724c61938e77d4335484806fe2c7b7210a393ea89219d30ef3def60ec37",
+    "preservation-check.json": "d5809aa22b40ae5a6c559c8041a5f537eb70d585cfce15399b0ffaf65076d119",
+    "protocol-checks.json": "4a21abedc6bf70c49bc8e93a04d3ced48bfd8f4c21d48d4169523149bae70625",
+    "verify_protocol.py": "c1eb29143118072d35f0603e782b16763f3caca088a0fda5771df0709298eb83",
+    "document-checks.json": "225a716f6ca5abe56b41a45410d68275fc90a6b6fcbb09f669c0742243b8d895"
+  }
+}

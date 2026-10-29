@@ -1,0 +1,390 @@
+{
+  "schema": "sonora-independent-evaluation-plan-v1",
+  "task_id": "MUS-038",
+  "version": 1,
+  "status": "protocol_specification_frozen_execution_not_started",
+  "source_baseline_sha": "efd7be584b9f30e61ac86474c038d0d79f43ec39",
+  "scope": "small_project_process_holdout_not_pretraining_unseen_or_population_estimate",
+  "actual_new_material": {
+    "tracks": 0,
+    "query_texts": 0,
+    "judgment_pairs": 0,
+    "model_weight_downloads": 0,
+    "test_runs": 0
+  },
+  "development": {
+    "tracks": 40,
+    "query_texts": 8,
+    "known_pairs": 141,
+    "unknown_pairs": 179,
+    "all_existing_material_excluded_from_test": true,
+    "legacy_unjudged_pairs_are_not_holdout": true,
+    "preflight_subset": {
+      "tracks": 20,
+      "query_ids": [
+        "exp-02",
+        "exp-03",
+        "exp-04",
+        "exp-07",
+        "exp-08"
+      ],
+      "fully_judged_pairs": 100,
+      "additional_labels": 0,
+      "role": "development_preflight_only",
+      "zero_positive_queries": 0,
+      "not_suitable_for_abstention_calibration": true
+    }
+  },
+  "test_design": {
+    "planned_tracks": 20,
+    "planned_query_texts": 8,
+    "planned_complete_qrels_pairs": 160,
+    "additional_unique_labels": 160,
+    "creator_groups_minimum": 5,
+    "tracks_per_creator_group_maximum": 4,
+    "duration_ms_minimum": 30000,
+    "duration_ms_maximum": 600000,
+    "bytes_per_track_maximum": 31457280,
+    "format": "MP3",
+    "query_language": "en",
+    "annotation_gloss_language": "zh",
+    "gloss_is_model_input": false,
+    "project_old_recordings_creators_works_or_near_duplicate_groups_overlap": false,
+    "CLAP_pretraining_recording_overlap": "unknown",
+    "corpus_manifest_sha256": null,
+    "query_manifest_sha256": null,
+    "group_review_sha256": null,
+    "raw_qrels_sha256": null,
+    "test_index_includes_old_development_tracks": false,
+    "full_qrels_claim_scope": "new20track_candidate_universe_only_not_combined60track_library",
+    "open_world_probe_query_slots": {
+      "planned_slots": 2,
+      "included_in_total_queries": 8,
+      "not_guaranteed_zero_positive": true,
+      "never_rewrite_after_judgments": true
+    }
+  },
+  "sampling": {
+    "eligible_frame": "future_frozen_licensed_music_source_metadata_snapshot",
+    "source_and_license_evidence_required": true,
+    "selection_does_not_accept_query_text_grades_or_model_scores": true,
+    "corpus_priority_seed": "MUS-038-phase1-corpus-v1",
+    "corpus_priority_formula": "SHA256(UTF8(seed + newline + provider + newline + source_id)) ascending, then provider/source_id",
+    "creator_group_cap_applied_before_take20": true,
+    "all_old_and_related_groups_excluded_before_priority": true,
+    "non_relevance_exclusion_reasons": [
+      "license_or_source_evidence_incomplete",
+      "identity_or_group_relationship_unresolved",
+      "exact_or_near_duplicate_group_overlap",
+      "unsupported_or_invalid_audio",
+      "duration_or_size_outside_frozen_bounds"
+    ],
+    "replacement": "next_eligible_in_the_same_frozen_priority_queue;log_all_exclusions",
+    "no_replacement_for_few_positives_or_low_retrieval_score": true,
+    "exact_content_sha_is_not_near_duplicate_proof": true,
+    "group_review": "canonical_creator_alias_collaboration_and_work_version_graph;unresolved_quarantined;method_version_frozen_before_test",
+    "fingerprint_or_manual_review_capability_claim": "report_actual_method_only;no_claim_of_exhaustive_acoustic_dedup_if_not_run",
+    "replacement_allowed_only_before_dataset_freeze_and_any_test_run_or_annotation": true,
+    "source_frame_freeze": "provider,inclusion_rules,enumeration_scope,metadata_snapshot_and_SHA_frozen_before_new_query_texts_are_authored_or_disclosed_to_sampler",
+    "source_frame_must_not_use_query_derived_tags_or_creator_allowlists": true,
+    "insufficient_eligible_frame": "blocked_or_new_protocol_version;never_relax_old_group_exclusion_or_creator_cap_or_reselect_frame_for_relevance"
+  },
+  "query_design": {
+    "new_texts_before_candidate_inspection_or_any_new_model_rankings": true,
+    "new_intent_groups_not_old_queries_or_translation_paraphrases": true,
+    "genre_word_overlap_alone_does_not_define_intent_identity": true,
+    "no_query_based_positive_quota": true,
+    "explanations_and_grade_rules_frozen_with_query_manifest": true,
+    "new_query_slots": [
+      "holdout-01",
+      "holdout-02",
+      "holdout-03",
+      "holdout-04",
+      "holdout-05",
+      "holdout-06",
+      "holdout-07",
+      "holdout-08"
+    ],
+    "slots_are_not_authored_queries": true
+  },
+  "annotation": {
+    "grid": "all8queries_x_all20tracks_no_topk_pool",
+    "presentation_seed": "MUS-038-phase1-label-order-v1",
+    "presentation_order": "fixed_batch_1_to4;query_slots_in_declared_batch_order;within_query_SHA256(seed + newline + query_key + newline + recording_key)_ascending_then_recording_key;not_model_order",
+    "batches": [
+      {
+        "batch": 1,
+        "query_slots": [
+          "holdout-01",
+          "holdout-02"
+        ],
+        "unique_pairs": 40
+      },
+      {
+        "batch": 2,
+        "query_slots": [
+          "holdout-03",
+          "holdout-04"
+        ],
+        "unique_pairs": 40
+      },
+      {
+        "batch": 3,
+        "query_slots": [
+          "holdout-05",
+          "holdout-06"
+        ],
+        "unique_pairs": 40
+      },
+      {
+        "batch": 4,
+        "query_slots": [
+          "holdout-07",
+          "holdout-08"
+        ],
+        "unique_pairs": 40
+      }
+    ],
+    "must_finish_all_batches_before_complete_test_result": true,
+    "grades": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "positive_grade_minimum": 2,
+    "unknown": null,
+    "cannot_judge_remains_unknown_not_zero": true,
+    "model_score_rank_model_name_or_suggested_intervals_visible": false,
+    "title_source_and_license_metadata_blinding_limit_disclosed": true,
+    "primary_rater_count": 1,
+    "claim": "single_user_subjective_model_blind_only_not_double_blind_or_interrater_validated",
+    "optional_reliability_audit": {
+      "enabled": false,
+      "proposed_extra_pairs": 16,
+      "sampling_and_resolution_must_freeze_before_annotation_if_enabled": true,
+      "extra_pairs_not_counted_in160": true
+    },
+    "unresolved_unknowns": "retain_null;independent_adjudication_if_available_or_incomplete_test;never_drop_query",
+    "legacy_packages_compatible": false,
+    "new_annotation_schema_and_UI_status": "planned_not_implemented;freeze_separate_contract_before_implementation"
+  },
+  "model_comparison": {
+    "checkpoints": [
+      {
+        "id": "A",
+        "repo": "lukewys/laion_clap",
+        "revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+        "filename": "music_audioset_epoch_15_esc_90.14.pt",
+        "sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+        "bytes": 2352471003,
+        "architecture": "HTSAT-base",
+        "fusion": false,
+        "local_status": "already_verified_on_development_only"
+      },
+      {
+        "id": "B",
+        "repo": "lukewys/laion_clap",
+        "revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+        "filename": "music_speech_audioset_epoch_15_esc_89.98.pt",
+        "sha256": "51c68f12f9d7ea25fdaaccf741ec7f81e93ee594455410f3bca4f47f88d8e006",
+        "bytes": 2352471003,
+        "architecture": "HTSAT-base",
+        "fusion": false,
+        "local_status": "not_downloaded_or_loaded",
+        "remote_pin_status": "fixed_revision_LFS_metadata_verified_only"
+      }
+    ],
+    "same_family_different_weights_not_controlled_causal_speech_ablation": true,
+    "configurations": [
+      {
+        "id": "A-whole",
+        "checkpoint": "A",
+        "aggregation": "whole"
+      },
+      {
+        "id": "A-segment",
+        "checkpoint": "A",
+        "aggregation": "segment"
+      },
+      {
+        "id": "B-whole",
+        "checkpoint": "B",
+        "aggregation": "whole"
+      },
+      {
+        "id": "B-segment",
+        "checkpoint": "B",
+        "aggregation": "segment"
+      },
+      {
+        "id": "title-tfidf",
+        "checkpoint": null,
+        "aggregation": "lexical_title_only",
+        "role": "non_acoustic_lexical_sanity_control_not_strong_semantic_model"
+      }
+    ],
+    "all_four_acoustic_configurations_reported_even_if_preflight_winner_is_known": true,
+    "primary_contrast": {
+      "candidate": "B-whole",
+      "anchor": "A-whole"
+    },
+    "secondary_contrasts": [
+      {
+        "candidate": "B-segment",
+        "anchor": "A-segment"
+      },
+      {
+        "candidate": "A-segment",
+        "anchor": "A-whole"
+      },
+      {
+        "candidate": "B-segment",
+        "anchor": "B-whole"
+      }
+    ],
+    "dimension_required_after_actual_strict_load": 512,
+    "dimension_for_B_currently_verified": false,
+    "input_sample_rate_hz": 48000,
+    "window_samples": 480000,
+    "hop_samples": 240000,
+    "new_test_decoder": "common_actual_EOF_fixed65536_float32_out_read;header_frames_separate;all_providers_same_version",
+    "DSP": "same_downmix_and_soxr_hq_exact_integer_ceil_resample_for_both;10s_right_zero_tail_padding;fixed_SDK_quantization",
+    "whole": "L2_normalize_mean_of_all_normalized_window_vectors",
+    "segment": "maximum_window_cosine_per_track;old_representative_window_rule_if_displayed",
+    "score_sort": "descending_original_float_score_then_numeric_Java_track_id;no_label_reranking_or_rounding_tie_rewrite",
+    "different_checkpoint_vectors_kept_separate": true,
+    "sdk_target": "laion-clap1.1.7_torch2.6.0_same_readonly_existing_runtime_pending_B_preflight",
+    "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "strict_loader": "restricted_weights_only_true;only_predeclared_nonlearned_position_buffer_exception;no_strict_false",
+    "no_training_threshold_tuning_or_test_time_prompt_search": true,
+    "abstention_threshold": null,
+    "language_scope": "English_only;Chinese_gloss_not_encoded;no_multilingual_claim"
+  },
+  "lexical_control": {
+    "field": "title_only",
+    "normalization": "Unicode_NFKC_then_casefold",
+    "token_regex": "[a-z0-9]+",
+    "ngrams": [
+      1,
+      1
+    ],
+    "stemming": false,
+    "stoplist": [],
+    "tf": "1+ln(count) if count>0 else0",
+    "idf": "ln((1+N)/(1+df))+1",
+    "document_frequency_scope": "the_unlabeled_indexed20titles_only;queries_and_qrels_excluded",
+    "l2_normalize_document_and_query_vectors": true,
+    "unseen_query_terms": "ignored",
+    "empty_query_vector": "all_scores_zero;deterministic_ID_tie_order;no_implicit_relevance_label",
+    "score": "cosine",
+    "new_dependency_installation_required_by_plan": false
+  },
+  "metrics": {
+    "primary": "macro_P@5",
+    "positive_grade_minimum": 2,
+    "k": 5,
+    "query_count": 8,
+    "sample_unit": "query_not_top5_position",
+    "precision": "relevant_in_top5/5;all8queries_equal_weight",
+    "zero_positive_query_precision": 0,
+    "complete_qrels_required": 160,
+    "any_unknown_means_complete_exact_test_result_unavailable": true,
+    "secondary": "macro_nDCG@5_full20_IDCG",
+    "gain": "2^grade-1",
+    "discount": "1/log2(rank+1)",
+    "IDCG": "best5_from_all20_manually_judged_tracks_for_that_query",
+    "zero_IDCG": "per_query_null;exclude_from_nDCG_macro_only;report_count_and_eligible_query_ids",
+    "zero_positive_is_not_zero_IDCG": true,
+    "all_grade1_example": {
+      "binary_positives": 0,
+      "precision_at5": 0,
+      "nDCG_at5_for_any_complete_ranking": 1.0
+    },
+    "report": [
+      "per_query_scores_for_all5configurations",
+      "macro_means_with_denominators",
+      "actual_positive_count_and_P5_ceiling_per_query",
+      "pre_registered_paired_query_delta_and_win_tie_loss",
+      "absolute_percentage_point_difference",
+      "unknown_and_zero_positive_and_zero_IDCG_counts"
+    ],
+    "not_reported_in_phase1": [
+      "Recall",
+      "localization_IoU",
+      "P95",
+      "statistical_significance",
+      "population_generalization",
+      "Chinese_retrieval_accuracy"
+    ],
+    "improvement_is_not_execution_acceptance_requirement": true
+  },
+  "freeze_and_unblind": {
+    "protocol_sha256_assigned_by_commit_receipt": true,
+    "config_and_source_and_environment_and_both_local_checkpoint_hashes_before_any_test_model_run_or_qrels_open": true,
+    "hash_commitment_is_not_access_control": true,
+    "all5runs_persisted_and_hashed_before_single_qrels_unblind": true,
+    "all160_labels_complete_before_official_metrics": true,
+    "no_progress_quality_scores_or_early_score_stopping": true,
+    "post_unblind_change": "old_test_becomes_regression_development;new_test_version_required",
+    "technical_failure": "report_incomplete_or_blocked_with_original_error;no_silent_model_or_query_replacement",
+    "readable_test_qrels_held_by_labeler_until_G5_after_all160_valid_and_all5runs_persisted_hashed": true,
+    "pre_G5_receipt_allowed_fields": [
+      "dataset_sha256",
+      "payload_sha256",
+      "total_completed_count",
+      "validation_status"
+    ],
+    "pre_G5_receipt_forbidden": "readable_qrels_body_or_path,grade_distribution,per_query_positive_counts,quality_metrics",
+    "pre_G5_validation": "labeler_side_only;runner_receives_only_allowlisted_sealing_receipt"
+  },
+  "future_artifacts": [
+    {
+      "id": "dataset_and_query_manifest",
+      "status": "planned",
+      "contents": "frozen_source_frame_and_priority;20_recordings_with_source_license_hash_bytes_actual_frames;8_EN_queries_ZH_gloss;old_group_exclusion_and_group_review;presentation_order"
+    },
+    {
+      "id": "runner_freeze_receipt",
+      "status": "planned",
+      "contents": "protocol_dataset_queries_groups_SHA;both_checkpoint_files_local_SHA;strict_load_and_dimension;source_dependency_environment_and_all5config_SHA"
+    },
+    {
+      "id": "new_model_blind_fullgrid_package",
+      "status": "planned_not_supported_by_current_legacy_UI_or_CLIs",
+      "contents": "new_schema_full160_pairs_null_fields;ordinary_authorized_media_binding;no_model_hints;4_predefined_batches"
+    },
+    {
+      "id": "raw_test_qrels",
+      "status": "planned_labeler_held",
+      "contents": "labeler_held_original_exports;full160_validated_on_labeler_side;allowlisted_receipt_only_until_G5_after_freeze_and_all5run_hashes;one_recorded_read_release"
+    },
+    {
+      "id": "fixed_runs_and_final_comparison",
+      "status": "planned",
+      "contents": "all5ranked_runs_hashes_before_unblind;one_paired_comparison_and_independent_recomputation"
+    }
+  ],
+  "next_tasks": [
+    {
+      "task": "MUS-039",
+      "scope": "freeze_new_query_sampling_frame_and_creator_work_groups;source_only20track_capture_and_actual_decode_manifest;no_model_scoring_or_relevance_cherry_picking"
+    },
+    {
+      "task": "MUS-040",
+      "scope": "freeze_new_independent_dataset_package_contract_and_reusable_runner_adapter;B_checkpoint_safe_preflight_on_old20x5dev;new_package_UI_only_if_needed"
+    },
+    {
+      "task": "later",
+      "scope": "run_freeze_receipt;160_model_blind_judgments_and_all5frozen_test_runs;single_unblind_evaluation"
+    }
+  ],
+  "references": {
+    "official_clap_models": "https://github.com/LAION-AI/CLAP#pretrained-models",
+    "fixed_release_metadata": "https://huggingface.co/api/models/lukewys/laion_clap/revision/b3708341862f581175dba5c356a4ebf74a9b6651?blobs=true",
+    "official_roberta_model_card": "https://huggingface.co/FacebookAI/roberta-base",
+    "official_audio_config": "https://raw.githubusercontent.com/LAION-AI/CLAP/main/src/laion_clap/clap_module/model_configs/HTSAT-base.json",
+    "test_leakage_practice": "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage",
+    "TREC_test_collections": "https://trec.nist.gov/pubs/trec33/papers/overview_33.pdf"
+  }
+}
