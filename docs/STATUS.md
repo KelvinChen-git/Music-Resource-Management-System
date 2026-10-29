@@ -50,7 +50,7 @@
 | MUS-036 新top5未知补判包 | review / A（工具就绪；3判断已由037接收） | codex/MUS-036-top5-supplement / 9797ed4；真实生成125076d | E9独立包/实际EOF/新指纹/空建议，历史188 Python/77 Node/build/18真实浏览器通过，工具独立审核未完成 |
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
-| MUS-039 独立测试来源与描述冻结 | todo / A（尚未开始） | 依赖038；未来独立任务分支 | 先冻来源采样框，再由未看候选者编写新query，20曲/≥5新群/实际EOF与排除manifest；不按模型或标签挑歌，数量不足blocked |
+| MUS-039 独立测试来源与描述冻结 | in_progress / A | codex/MUS-039-independent-corpus-freeze / bc653e0；依赖038 | 先冻来源采样框，再由未看候选者编写新query，20曲/≥5新群/实际EOF与排除manifest；不按模型或标签挑歌，数量不足blocked |
 | MUS-040 独立格式与模型预检 | todo / A（尚未开始） | 依赖038/039；未来独立任务分支 | 先立新test包/runner契约，B权重本地SHA/严格加载/512及旧100开发预检；当前CLI/UI不自动兼容，不升级现有依赖 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | assigned / B（待主动认领） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
@@ -714,3 +714,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 42项一次性文档一致性与假设指标边界核验通过（非42应用测试/真实评测），同会话三方向只读审查完成，非B。首次Python HTTPS信任链失败保留；正常TLS的系统curl重试仅元数据成功，未绕过证书或下载权重。294保护输入与54cache文件集合/哈希、B035卡/dispatch保持；原版干净f3b0da1，8080/5175原PID未重启，私有0700/0600。
 - 检查点2026-10-29T21:07:32Z双方fetched，A仍0ea759a/sourceefd7be5、B16b06c8/source4f57837；035/rev1准确9797原assigned，不替换/冒充认领，033批准不外推本轮。本轮仅九份文档，不改工具/Java/Vue/API/schema/锁/模型/服务/UI/main；无新曲/query正文/标签/包/模型run，未运行无关应用构建或测试。细节verification/MUS-038.md/results.json。
 - 下一步039才做来源/描述/分组与实际manifest，再040新契约/runner及B安全dev预检；现有旧包/页面不支持新独立格式。本方案完成不等于MUS-002正式质量、discovery-v0冻结或上线完成。
+
+
+## MUS-039范围与占用（2026-10-29）
+
+- A集成；basebc653e05eb722224bdd6ca395a0835ffeafab910；branch codex/MUS-039-independent-corpus-freeze。允许新独立source-only收集/验证工具及合成测试、来源框/新query规范文件，README/模块README/PROJECT/CONTRACTS/STATUS/A latest/verification/MUS-039*；旧工具/包/标签/模型/缓存/公开catalog及038协议原字节保持，不改Java/Vue/API/schema/依赖/UI/main。
+- 先冻结来源提供方/纳入条件/枚举快照SHA，再由未看候选的独立同会话代理编写8新英文query与中文可听说明；采样方在20曲/替补队列冻结前不读新query，按038固定hash队列/cap4/≥5新群与技术边界收集20，实际EOF65536读取，新来源只写ignore.local/a/mus039、0700/0600。若来源数量不足如实blocked，不以相关度换框。
+- A独占台账/契约/来源采样与实际运行；来源代理只读官方目录/许可，旧群代理仅旧40身份/作品，工具代理先只读实现建议；同会话非B。开始sync2026-10-29T21:16:59Z双方fetched，A860729d/sourcebc653e0，B16b06c8/source4f57837；035/rev1原assigned卡/dispatch保持。本轮不下载模型/跑分/生成可标注test包/导入数据库或读取新标签。
+
+- 039第一检查点：全132条官方loc-fma元数据/逐首rights与模板等137快照已冻结frame SHA a9fd0079…；公开回执独立记录，freeze时query正文/音频下载均0。LOC现场页本机HTTP403如实保留，固定官方GitHub元数据正常TLS可读，整曲S3 HEAD200；不绕证书/鉴权。27个署名字面值不是27个独立作者，别名/合作/许可冲突仍在审查；旧40关系种子仅元数据，原307保护文件保持。先提交E12与frame回执，再让隔离作者编写query，尚未采集20曲或完成G1。

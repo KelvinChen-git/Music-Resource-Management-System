@@ -356,6 +356,16 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 全矩阵model-blind单用户标注、null保留不强0；title/来源提示限制披露，非双盲/专家或一致性已验收。8条含2条可能无匹配边界需求，但实际0正例由完整人评决定，不能据此改query。主macroP@5相关>=2、分母5、全8等权含零正例；次full20-IDCG nDCG@5指数gain，IDCG0为null/仅该宏指标排除并披露；全1分无二值正例却nDCG=1须明确。任一未判则不出完整正式成绩，不删query。报告预注册成对差值/胜平负，不报首批显著性/Recall/IoU/P95或广泛泛化，成绩不提升不使有效评测失败。
 - 运行冻结收据须在任何test run/可读qrels打开前绑定协议/数据/query/分组/呈现、双方本地checkpoint/源码/依赖/全部配置SHA；标注者保管可读test原导出至G5，G2收据、160合法判断和5组runs持久化hash齐全后才交运行方一次解封；此前仅收SHA/总完成数/合法性，不收标签分布或可读正文/路径。hash不是访问控制，要记录实际保管/打开步骤；看test后修改则旧test转development回归。当前四旧包/CLI/页面不自动支持此新test，另立新契约/实现，不能改split冒充。下一步039来源/描述/分组manifest，再040安全模型预检和新runner/包最小适配；本轮无采样/下载/编码/应用修改。
 
+### E12. MUS-039：独立来源框、新描述与source-only语料（不含模型运行）
+
+- 源于038协议SHA f83a3b456ce51a6dc25b1e4b5c8ae3c77a37168f2b2b11645ccb14a65bebc9e8。先冻结官方LibraryOfCongress/citizen-dj固定revision的loc-fma全部132条元数据及137原始快照；不按genre/query截取。公开冻结回执见docs/evaluation/MUS-039-source-frame.json；完整frame/原始快照/逐条来源仅ignore.local/a/mus039，0700/0600。freeze时新query正文/音频下载均0，frame不可按随后query改写。
+- 新source-frame schema=sonora-holdout-source-frame-v1，固定protocol/source_revision/provider/metadata_file/snapshots/tracks/priority_seed，snapshots为相对安全路径→SHA。132身份从官方metadata完整重建；逐item frontmatter必须绑定uid/title/contributors/permalink/stream_url/rights，数字标题只规范为原显示字符串。下载仅官方模板的HTTPS S3固定bucket/audio/items/loc-fma/fma-N.mp3；不得下载samplepack/one-shot替代整曲。rights原文为public-domain dedication，不能补造其没有的CC0 URI；有新证据冲突先隔离。
+- 作者/合作/作品审查独立sonora-holdout-group-review-v1，绑定frame与旧40种子SHA。records完整覆盖132个source_id，decision仅eligible/quarantined/old_overlap，creator_group/work_group/理由/有SHA证据必需。不同显示名不证明独立，已证实别名/合作连通组合并；身份/作品/许可未决先quarantine，原旧40作者/作品群排除。没有运行音频指纹时如实只称元数据/关系审查与字节排重。
+- 新收集CLI显式固定frame/group-review/old-group-review三SHA，不接收新query正文、模型分数或人评；校验所有来源快照与旧种子后按038 SHA256(seed+newline+provider+newline+source_id)升序，再provider/source_id排序。整作者群最多4，同work/版本群仅首个合格录音，不足20/至少5群则blocked，不放宽或按相关性替补。只有固定技术/内容/许可/身份排除才能从同队列继续，保留排除流水。网络/校验错误不得伪称已解码；独立运行目录重名拒绝，失败原件/日志保留。
+- 新源全部共同实际EOF65536 float32 out读取，header与actual分存，不补零凑header；复用既有research_corpus数值解码/DSP，经只读现有环境到48k准确整数ceil。MP3/30–600s/≤30MiB，有限值，内容SHA与旧40及新批次排精确重复。原始下载字节保留，HTTP证明绑定源/最终URL/字节/SHA/rights原快照。不写JavaID/owner，不导入数据库，不建向量/加载模型。
+- 成功source-only输出sonora-holdout-corpus-v1，split=independent_test_source_only，20条来源/creator与work组/原字节SHA/实际时间/下载与解码证明，所有标签不存在或null，不提供模型分数/建议。只有真实20/≥5群/所有输入复核通过才冻结dataset SHA；不能将部分批次称G1完成。当前旧CLI/页面不接此格式，040另立契约。
+- frame冻结后由未看任何候选的新同会话作者编写8英文描述/中文可听说明与0–3规则、2个可能无匹配边界槽；须区别旧8意图，采样方在20曲与替补队列冻结前不读正文。query文件独立指纹/收据，不自动生成160标注或读标签；本任务不执行G2模型冻结/G3新包/G4排名/G5解封。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。
