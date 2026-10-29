@@ -1,6 +1,8 @@
 // Local exploratory packages. Final provenance still needs the pinned-run Python CLI.
 export const REVIEW_SCHEMA = 'sonora-judgment-pack-v1'
 export const DIAGNOSTIC_SCHEMA = 'sonora-diagnostic-pack-v1'
+export const SOURCE_REVIEW_SCHEMA = 'sonora-source-review-pack-v1'
+export const SOURCE_REVIEW_SPLIT = 'development_source_candidates_not_held_out'
 export const REVIEW_SPLIT = 'exploratory_only_not_held_out'
 const human = ['relevance', 'human_intervals_ms', 'annotator', 'judged_at']
 const artifacts = ['corpus-manifest.json', 'queries.json', 'rankings.json', 'segments.json']
@@ -79,8 +81,45 @@ export async function sha256(bytes) {
   return Array.from(new Uint8Array(result), byte => byte.toString(16).padStart(2, '0')).join('')
 }
 export async function reviewFingerprint(pack) { return sha256(new TextEncoder().encode(canonicalReview(reviewBase(pack, false)))) }
+function checkSourceReviewShape(pack, owner) {
+  ensure(pack.split === SOURCE_REVIEW_SPLIT, '新素材核查包不能改为正式测试集。')
+  reviewId(pack.owner_user_id); reviewId(String(owner))
+  ensure(pack.owner_user_id === String(owner), '该标注包属于另一个账号，请使用对应账号。')
+  hash(pack.dataset_sha256)
+  const p = pack.provenance
+  const hashes = ['source_manifest_sha256', 'import_catalog_sha256', 'decode_report_sha256', 'source_selection_sha256', 'query_fixture_sha256']
+  object(p, [...hashes, 'selection', 'ordering', 'labeling_aid'])
+  for (const key of hashes) hash(p[key])
+  ensure(p.selection === 'targeted_source_candidates_by_metadata'
+    && p.ordering === 'query_fixture_order_then_track_id_ascending'
+    && p.labeling_aid === 'no_model_intervals_source_qualification')
+  const queryIds = ['exp-02', 'exp-03', 'exp-04', 'exp-07', 'exp-08']
+  ensure(Array.isArray(pack.queries) && pack.queries.length === queryIds.length)
+  const tracks = new Set(), sources = new Set(), contents = new Set()
+  for (const [index, query] of pack.queries.entries()) {
+    object(query, ['query_id', 'text', 'candidates']); text(query.text, 1000)
+    ensure(query.query_id === queryIds[index])
+    ensure(Array.isArray(query.candidates) && query.candidates.length === 4)
+    let previous = 0n
+    for (const row of query.candidates) {
+      object(row, [...candidateFields, 'source_provider']); reviewId(row.track_id)
+      ensure(BigInt(row.track_id) > previous); previous = BigInt(row.track_id)
+      ensure(row.source_provider === 'incompetech' && typeof row.source_id === 'string' && /^[A-Z]{2}[A-Z0-9]{3}[0-9]{7}$/.test(row.source_id))
+      text(row.title, 500); text(row.artist, 500); hash(row.content_sha256)
+      int(row.content_bytes, 1, 30 * 1024 * 1024); int(row.duration_ms, 1, 600000)
+      ensure(row.source_url === `https://incompetech.com/music/royalty-free/index.html?isrc=${row.source_id}`)
+      ensure(row.license_url === 'https://creativecommons.org/licenses/by/4.0/')
+      ensure(Array.isArray(row.model_suggested_intervals_ms) && row.model_suggested_intervals_ms.length === 0)
+      checkHuman(row)
+      ensure(!tracks.has(row.track_id) && !sources.has(row.source_id) && !contents.has(row.content_sha256))
+      tracks.add(row.track_id); sources.add(row.source_id); contents.add(row.content_sha256)
+    }
+  }
+  return pack
+}
 export function checkReviewShape(pack, owner) {
   object(pack, ['schema', 'split', 'owner_user_id', 'provenance', 'queries', 'dataset_sha256'])
+  if (pack.schema === SOURCE_REVIEW_SCHEMA) return checkSourceReviewShape(pack, owner)
   const diagnostic = pack.schema === DIAGNOSTIC_SCHEMA
   ensure((pack.schema === REVIEW_SCHEMA || diagnostic) && pack.split === REVIEW_SPLIT, '只接受探索标注包，不能改为正式测试集。')
   reviewId(pack.owner_user_id); reviewId(String(owner))

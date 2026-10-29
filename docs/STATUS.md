@@ -43,7 +43,7 @@
 | MUS-002 模型 spike / 契约冻结 | blocked / A（真实处理已补，质量/冻结未完） | 原探针ab5d6f3；真实补证MUS-022@ef8588a | 20首/933片段，028/031已收118探索判断并完成五描述覆盖诊断；仍缺效果/模型对照与独立测试，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
 | MUS-032 定向来源候选 | review / A（收集/全解码完成，工具待独立复核） | codex/MUS-032-targeted-corpus-candidates / 2e2db1e | 五描述各4首，20/20原MP3/SHA/证明/解码、18保护检查；source-only，未写库/人评 |
-| MUS-033 新来源导入与身份适配 | todo / unassigned | 依赖032 | 固定批次、真实JavaID和原owner HTTP导入、来源适配与新私有catalog/run；保留原20/118，不把候选当正例 |
+| MUS-033 新来源导入与身份适配 | in_progress / A | codex/MUS-033-source-import-review / 7704051；依赖032 | 固定输入、普通owner HTTP真实ID、独立40曲catalog/20条素材核查包；先确认新素材适配，不改旧20/118或跑模型 |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
@@ -610,3 +610,9 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 三份许可依据为官方完整catalog、通用动态曲目展示/署名下载模板、许可说明快照，非20份静态逐首许可页。全部为Kevin MacLeod，已知描述定向选样，只用于development，不能声称已确认20正例或held-out。完整音频/证明/原快照/日志仅ignore.local/a/mus032，0600/目录0700；公开仅代码/ISRC清单/聚合/哈希。
 - 真实重名输出exit1/FileExistsError，44个批次文件hash不变；旧音频/证明/selection/ledger/result/run/catalog/118判断/B027卡共55文件前后SHA保持。首次环境预检误查Sonora本地cache/venv路径（不存在），改回022文档的原版共享只读环境后通过，不算产品失败或解码通过。
 - 本任务无UI/Java/API/数据库schema/依赖锁/公开catalog/服务或main变化，不重跑无关Maven/前端/CLAP。下一步033需真实owner/JavaID与新provider适配，不能直接把ISRC包送旧probe/审阅页。B027固定卡保留，032独立工具卡待前卡返回后协调；细节见verification/MUS-032.md/results.json。
+
+## MUS-033占用与新素材核查（2026-10-28）
+
+- owner A；base7704051；branch codex/MUS-033-source-import-review。允许新增scripts/import_research_music.py、test_research_import.py；services/audio-search/source_review_pack.py、test_source_review_pack.py；web/src/utils/reviewPack.js、新sourceReviewPack.test.js和ReviewWorkspace.vue必要提示；README/模块README/PROJECT/CONTRACTS/STATUS/A latest/verification/MUS-033*。不改旧importer/corpus/probe/播放器/Java/API/数据库schema/依赖锁/公开catalog。
+- 先E7固定新source-only到真实Java ID的HTTP映射与两新私有格式；原20/118/032批次只读。计划20新曲普通owner导入、每首Range/完整SHA核验、独立40曲catalog和仅20条新素材判断；无假checkpoint、模型结果或自动打分，不要求重做旧标注。40曲检索/held-out后续另建。
+- 导入代理独占新importer/test；Python包代理独占source_review_pack/test；前端代理独占reviewPack.js/新test/View最小提示；A串行台账、实跑、浏览器和交接。开始sync双方fetched，B仍dc5ec6ce/source dd049fdf，027固定卡原assigned保持；同会话代理非独立B。

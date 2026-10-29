@@ -311,6 +311,15 @@ MUS-027交互补充：评分区就近提供必填匿名代号输入；空值或�
 - 输出独立`sonora-source-candidates-v1`，split=`development_source_candidates_not_held_out`，身份为provider+ISRC，不填/假造Java musicId或owner，不直接传给旧probe/标注页。原public catalog、原下载证明/音频/run/118判断只读；新目录必须是当前checkout ignore的.local下，0700，文件0600，已存在目录拒绝覆盖；显式固定selection和旧catalog SHA。
 - 本任务完成来源候选收集/内容证明与实际解码检查，不自动变成人类确认的正例、不写本机数据库/账号/API、不重跑CLAP或改排序。后续通过原普通owner HTTP导入取得真实musicId，再生成独立catalog/run/标注指纹；原20基线继续可复验。单作者集中度与围绕已知描述选样的偏差需披露，独立测试另建。
 
+### E7. MUS-033来源导入与20条素材核查（非模型召回包）
+
+- 已有普通演示owner经现有A本机HTTP接口登录/上传/metadata导入，登录失败停止，不新注册/改密/提权/自动审核。显式固定032 manifest、decode结果和原20 catalog SHA；先核实完整音频/下载证明/解码绑定，后登录和写入；原账号状态/上传证明/公开catalog/118判断只读。导入checkpoint/锁/副本/结果只在本checkout独立ignore.local目录；同输入重跑核验复用，拒绝错误owner/输入变更/歧义资源/坏证明，不用删ledger掩盖。
+- `sonora-research-catalog-v1`是新私有已导入版本：ownerId、slot、baseline_catalog_sha256、source_manifest_sha256、decode_report_sha256、importer_sha256、audioTracks。保留原20记录并在副本增加sourceProvider=jamendo；新增20以sourceProvider=incompetech/sourceId=大写ISRC保存来源，musicId/fileId必须为HTTP返回真实正整数。新曲含contentBytes、decodedDurationMs与原provider durationSeconds；官方sourceURL精确为`https://incompetech.com/music/royalty-free/index.html?isrc=<same>`，CC BY4.0。每首Range206/完整响应SHA匹配才记verified；不修改原文件。数据量40不等于已建40曲向量/检索结果。
+- 先核验新素材是否适合五条已知描述，再做扩大曲库检索对照。新增`sonora-source-review-pack-v1`，split=`development_source_candidates_not_held_out`；沿用顶层schema/split/owner_user_id/provenance/queries/dataset_sha256。provenance精确键为source_manifest_sha256、import_catalog_sha256、decode_report_sha256、source_selection_sha256、query_fixture_sha256、selection=`targeted_source_candidates_by_metadata`、ordering=`query_fixture_order_then_track_id_ascending`、labeling_aid=`no_model_intervals_source_qualification`，不伪造模型/checkpoint/report。
+- 仅五个目标query按原fixture顺序、每个4个新曲，共20个独立query-track对，按真实track_id升序；candidate为E1共同字段加`source_provider`，仅incompetech、source_id严格ISRC，track_id仍Java Long；来源和许可精确绑定，model_suggested_intervals_ms为空，人工四字段null。按source ID/内容/真实Java ID三者去重，catalog/manifest/decode SHA必须显式固定重建，只允许人工四字段改变。新指纹/owner隔离草稿，不复制旧评分，也不改旧包/指纹。
+- 浏览器只新增此明确schema/split/精确provenance分支，保留旧E1/诊断原规则。新包5query各4、20不同曲目，严格ISRC/sourceURL/CC BY4.0/空模型建议；页内说明“新素材核查、仅20条、非模型排序”。沿用JWT+完整音频SHA/字节、原播放器/seek/评分/草稿/导出，不重做UI。最终仍需新CLI绑定本机输入验证，浏览器自洽不等于认证来源/听音。
+- 本卡不改旧corpus/probe/两旧schema或跑CLAP。40曲private catalog/真实ID与20条素材核查完成后，后续另建provider-aware索引与模型候选版本；定向选样/单作者仍是development，不能宣称独立测试、曲库已足够或模型提升。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。
