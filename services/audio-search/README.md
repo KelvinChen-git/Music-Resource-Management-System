@@ -139,3 +139,10 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search ../Music-Resource-Man
 根目录scripts/holdout_assets.py以显式binding SHA重建G1全框/审查/原20来源与old40排除、原件/proof/实际时间，另验证新私有20 catalog/真实Java身份/独立音频证明副本。scripts/import_holdout_music.py只经现有普通owner HTTP接口导入，旧40前后核验、原catalog不写，锁和原子ledger支持响应丢失恢复，错误身份/变更/路径与重复保护保留。真实命令及三份pins见[MUS-040第二检查点](../../docs/verification/MUS-040-phase02.md)。
 
 已新增20 pending，账号自有60曲（开发40/新测试20），实际EOF/PCM/Range/full SHA过；CLI重复0创建、42核心文件不变，额外20匿名401。78合成检查通过（source26+research-import27+asset10+holdout-import15）：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 -m unittest test_holdout_music test_research_import test_holdout_assets test_holdout_import -v`。介质/HTTP替身与真实本机证据区分。新20未建测试索引，160新包/标签/G2仍待实现，不将60资源当60曲模型run。
+
+
+## 独立test冻结、全矩阵包与五配置runner（MUS-040第三检查点）
+
+`holdout_contract.py`标准库验证显式G1 binding/catalog pins、20真实身份/独立副本、8冻结描述与runtime config；`holdout_runner.py freeze`要求干净已提交源码，实际A/B严格加载，仅合成音频/旧通用文本检查512，新描述仅tokenizer长度，保存G2；`run`必须显式G2 SHA，再对20×8完整新编码，保存双权重各whole/segment和title-only log-TF/smoothed-IDF词面控制五组排名。输入/源码/依赖/离线cache/权重前后核验，独占输出/失败保留，不读取qrels或计算成绩。
+
+`holdout_review.py build`在G2后生成四批2描述×20曲、共160项，固定hash呈现/全null/无模型提示；前端新增独立schema、中文可听线索与0–3规则、四字段完成回执。完整判断由标注者本机保管，G5前只提交回执；`seal`仅在labeler侧以显式原包SHA校验本地导出，打印总完成数/合法性/两SHA，不打印评分分布。旧四schema/草稿/播放保持；G2/包/排名准备不等于正式质量验收。真实运行状态另见[第三检查点验证](../../docs/verification/MUS-040-phase03.md)。

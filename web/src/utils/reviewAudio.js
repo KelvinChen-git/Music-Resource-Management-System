@@ -63,7 +63,7 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
       await waitFor('loadedmetadata', () => { audio.src = objectUrl; audio.load() })
       if (!current()) return
       if (!Number.isFinite(audio.duration) || audio.duration <= 0) throw new Error('浏览器音频时长与候选区间不符。')
-      if (row.source_provider === 'incompetech' && range[0] === 0 && range[1] === row.duration_ms) {
+      if (['incompetech', 'loc-citizen-dj-fma', 'loc-citizen-dj-musicbox'].includes(row.source_provider) && range[0] === 0 && range[1] === row.duration_ms) {
         // Verified source MP3 decoders may expose different end padding. Never extend playback or alter the package duration.
         range[1] = Math.min(row.duration_ms, Math.floor(audio.duration * 1000))
         if (range[1] <= 0 || positionMs >= range[1]) throw new Error('浏览器音频时长与候选区间不符。')

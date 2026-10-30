@@ -181,3 +181,15 @@ test('fresh source fragment resume keeps its original clip identity and duration
   assert.equal(s.calls.length,2);assert.equal(s.states.at(-1).phase,'error');assert.equal(s.audio.plays,1)
   assert.equal(s.created.length,2);assert.equal(s.revoked.length,2)
 })
+
+test('both pinned LOC providers clamp verified full tracks to browser EOF and preserve source duration', async t => {
+  for (const provider of ['loc-citizen-dj-fma', 'loc-citizen-dj-musicbox']) {
+    const s = await setup(t); s.audio.duration = 11.7; s.row.source_provider = provider
+    await s.control.start(s.row)
+    assert.equal(s.states.at(-1).phase, 'playing'); assert.equal(s.states.at(-1).rangeEndMs, 11700)
+    assert.equal(s.row.duration_ms, 12000)
+    s.control.pause(); s.audio.duration = 11.6; await s.control.toggle()
+    assert.equal(s.states.at(-1).rangeEndMs, 11600); assert.equal(s.calls.length, 2)
+    await s.control.start(s.row, [5000, 12000]); assert.equal(s.states.at(-1).phase, 'error')
+  }
+})

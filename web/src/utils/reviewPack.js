@@ -1,4 +1,7 @@
 // Local exploratory packages. Final provenance still needs the pinned-run Python CLI.
+export const INDEPENDENT_SCHEMA = 'sonora-independent-review-pack-v1'
+export const INDEPENDENT_SPLIT = 'independent_test'
+export const PRESENTATION_SEED = 'MUS-038-phase1-label-order-v1'
 export const REVIEW_SCHEMA = 'sonora-judgment-pack-v1'
 export const DIAGNOSTIC_SCHEMA = 'sonora-diagnostic-pack-v1'
 export const SOURCE_REVIEW_SCHEMA = 'sonora-source-review-pack-v1'
@@ -177,8 +180,82 @@ function checkSupplementShape(pack, owner) {
   }
   return pack
 }
+function checkIndependentShape(pack, owner) {
+  ensure(pack.split === INDEPENDENT_SPLIT)
+  reviewId(pack.owner_user_id); reviewId(String(owner))
+  ensure(pack.owner_user_id === String(owner), '该标注包属于另一个账号，请使用对应账号。')
+  hash(pack.dataset_sha256)
+  const p = pack.provenance
+  const hashes = ['runner_freeze_sha256', 'source_dataset_sha256', 'import_catalog_sha256',
+    'query_manifest_sha256', 'runtime_config_sha256', 'test_dataset_sha256']
+  object(p, [...hashes, 'batch', 'batches', 'selection', 'ordering', 'labeling_aid'])
+  for (const key of hashes) hash(p[key])
+  int(p.batch, 1, 4)
+  ensure(p.batches === 4 && p.selection === 'full20_per_query_model_blind'
+    && p.ordering === 'preregistered_hash_recording_order' && p.labeling_aid === 'no_model_hints')
+  ensure(Array.isArray(pack.queries) && pack.queries.length === 2)
+  const tracks = new Map(), sources = new Map(), contents = new Map()
+  for (const [index, query] of pack.queries.entries()) {
+    object(query, ['query_id', 'text', 'gloss_zh', 'audible_required_cues_zh', 'grade_rules_zh', 'possible_no_match_probe', 'candidates'])
+    const slot = (p.batch - 1) * 2 + index + 1
+    ensure(query.query_id === `holdout-${String(slot).padStart(2, '0')}`)
+    text(query.text, 1000); text(query.gloss_zh, 1000)
+    ensure(query.possible_no_match_probe === (slot >= 7))
+    ensure(Array.isArray(query.audible_required_cues_zh) && query.audible_required_cues_zh.length === 3)
+    for (const cue of query.audible_required_cues_zh) text(cue, 1000)
+    object(query.grade_rules_zh, ['0', '1', '2', '3'])
+    for (const rule of Object.values(query.grade_rules_zh)) text(rule, 1000)
+    ensure(Array.isArray(query.candidates) && query.candidates.length === 20)
+    const seen = new Set()
+    for (const row of query.candidates) {
+      object(row, [...candidateFields, 'source_provider']); reviewId(row.track_id)
+      ensure(!seen.has(row.track_id)); seen.add(row.track_id)
+      let collection
+      if (row.source_provider === 'loc-citizen-dj-fma') {
+        ensure(typeof row.source_id === 'string' && /^fma-[1-9][0-9]*$/.test(row.source_id)); collection = 'loc-fma'
+      } else {
+        ensure(row.source_provider === 'loc-citizen-dj-musicbox' && typeof row.source_id === 'string'
+          && /^(?:DR[0-9A-Za-z]+|[0-9]+)$/.test(row.source_id)); collection = 'loc-musicbox'
+      }
+      ensure(row.source_url === `https://citizen-dj.labs.loc.gov/items/${collection}/${row.source_id}/`)
+      ensure(row.license_url === `https://citizen-dj.labs.loc.gov/${collection}/use/`)
+      text(row.title, 100); text(row.artist, 50); hash(row.content_sha256)
+      int(row.content_bytes, 1, 30 * 1024 * 1024); int(row.duration_ms, 30000, 600000)
+      ensure(Array.isArray(row.model_suggested_intervals_ms) && row.model_suggested_intervals_ms.length === 0)
+      checkHuman(row)
+      const metadata = { ...row }; for (const field of human) delete metadata[field]
+      const identity = canonicalReview(metadata), source = `${row.source_provider}:${row.source_id}`
+      ensure(!tracks.has(row.track_id) || tracks.get(row.track_id) === identity)
+      ensure(!sources.has(source) || sources.get(source) === row.track_id)
+      ensure(!contents.has(row.content_sha256) || contents.get(row.content_sha256) === row.track_id)
+      tracks.set(row.track_id, identity); sources.set(source, row.track_id); contents.set(row.content_sha256, row.track_id)
+    }
+  }
+  ensure(tracks.size === 20 && sources.size === 20 && contents.size === 20)
+  return pack
+}
+async function checkIndependentOrder(pack) {
+  for (const query of pack.queries) {
+    const ordered = await Promise.all(query.candidates.map(async row => {
+      const key = `${row.source_provider}:${row.source_id}`
+      return { id: row.track_id, key, hash: await sha256(new TextEncoder().encode(`${PRESENTATION_SEED}\n${query.query_id}\n${key}`)) }
+    }))
+    ordered.sort((a, b) => a.hash < b.hash ? -1 : a.hash > b.hash ? 1 : a.key < b.key ? -1 : a.key > b.key ? 1 : 0)
+    ensure(ordered.every((row, index) => row.id === query.candidates[index].track_id), '曲目呈现顺序与预先固定的顺序不一致。')
+  }
+}
+export async function exportCompletionReceipt(pack, owner) {
+  ensure(pack?.schema === INDEPENDENT_SCHEMA, '完成回执仅适用于独立标注包。')
+  const content = await exportReviewPack(pack, owner)
+  const snapshot = JSON.parse(content)
+  ensure(reviewCounts(snapshot).unjudged === 0, '本批全部 40 项合法完成后才能导出回执。')
+  return JSON.stringify({ dataset_sha256: snapshot.dataset_sha256,
+    payload_sha256: await sha256(new TextEncoder().encode(content)),
+    total_completed_count: 40, validation_status: 'valid_complete_batch' }, null, 2) + '\n'
+}
 export function checkReviewShape(pack, owner) {
   object(pack, ['schema', 'split', 'owner_user_id', 'provenance', 'queries', 'dataset_sha256'])
+  if (pack.schema === INDEPENDENT_SCHEMA) return checkIndependentShape(pack, owner)
   if (pack.schema === SOURCE_REVIEW_SCHEMA) return checkSourceReviewShape(pack, owner)
   if (pack.schema === RETRIEVAL_SUPPLEMENT_SCHEMA) return checkSupplementShape(pack, owner)
   const diagnostic = pack.schema === DIAGNOSTIC_SCHEMA
@@ -233,6 +310,7 @@ export function checkReviewShape(pack, owner) {
 }
 export async function loadReviewPack(raw, owner) {
   const pack = checkReviewShape(strictReviewJson(raw), owner)
+  if (pack.schema === INDEPENDENT_SCHEMA) await checkIndependentOrder(pack)
   ensure(await reviewFingerprint(pack) === pack.dataset_sha256, '候选内容指纹不匹配，请用原运行重新生成标注包。')
   return pack
 }

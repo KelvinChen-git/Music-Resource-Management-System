@@ -1,0 +1,114 @@
+{
+  "schema": "sonora-independent-runtime-config-v1",
+  "protocol_sha256": "83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b",
+  "query_manifest_sha256": "6b3af0cc99ab0bde1d1d27b88e5f477e44f627948ffd69183ec421bad185cbfb",
+  "pipeline_version": "actual-eof-clap-window10-hop5-mean-max-title-tfidf-v1",
+  "tracks": 20,
+  "queries": 8,
+  "pairs": 160,
+  "sample_rate_hz": 48000,
+  "window_samples": 480000,
+  "hop_samples": 240000,
+  "dimension": 512,
+  "audio_batch_size": 4,
+  "device": "cpu",
+  "threads": 2,
+  "seed": 0,
+  "configurations": [
+    {
+      "id": "A-whole",
+      "checkpoint": "A",
+      "aggregation": "whole"
+    },
+    {
+      "id": "A-segment",
+      "checkpoint": "A",
+      "aggregation": "segment"
+    },
+    {
+      "id": "B-whole",
+      "checkpoint": "B",
+      "aggregation": "whole"
+    },
+    {
+      "id": "B-segment",
+      "checkpoint": "B",
+      "aggregation": "segment"
+    },
+    {
+      "id": "title-tfidf",
+      "checkpoint": null,
+      "aggregation": "lexical_title_only",
+      "role": "non_acoustic_lexical_sanity_control_not_strong_semantic_model"
+    }
+  ],
+  "lexical_control": {
+    "field": "title_only",
+    "normalization": "Unicode_NFKC_then_casefold",
+    "token_regex": "[a-z0-9]+",
+    "ngrams": [
+      1,
+      1
+    ],
+    "stemming": false,
+    "stoplist": [],
+    "tf": "1+ln(count) if count>0 else0",
+    "idf": "ln((1+N)/(1+df))+1",
+    "document_frequency_scope": "the_unlabeled_indexed20titles_only;queries_and_qrels_excluded",
+    "l2_normalize_document_and_query_vectors": true,
+    "unseen_query_terms": "ignored",
+    "empty_query_vector": "all_scores_zero;deterministic_ID_tie_order;no_implicit_relevance_label",
+    "score": "cosine",
+    "new_dependency_installation_required_by_plan": false
+  },
+  "presentation_seed": "MUS-038-phase1-label-order-v1",
+  "batches": [
+    {
+      "batch": 1,
+      "query_slots": [
+        "holdout-01",
+        "holdout-02"
+      ],
+      "unique_pairs": 40
+    },
+    {
+      "batch": 2,
+      "query_slots": [
+        "holdout-03",
+        "holdout-04"
+      ],
+      "unique_pairs": 40
+    },
+    {
+      "batch": 3,
+      "query_slots": [
+        "holdout-05",
+        "holdout-06"
+      ],
+      "unique_pairs": 40
+    },
+    {
+      "batch": 4,
+      "query_slots": [
+        "holdout-07",
+        "holdout-08"
+      ],
+      "unique_pairs": 40
+    }
+  ],
+  "package_schema": "sonora-independent-review-pack-v1",
+  "package_split": "independent_test",
+  "metrics": {
+    "primary": "macro_P@5_all8_including_zero_positive",
+    "secondary": "nDCG@5_full20_IDCG_zero_IDCG_null",
+    "positive_grade_minimum": 2,
+    "k": 5
+  },
+  "receipt_allowed_fields": [
+    "dataset_sha256",
+    "payload_sha256",
+    "total_completed_count",
+    "validation_status"
+  ],
+  "new_test_qrels_held_by_labeler_until_G5": true
+}

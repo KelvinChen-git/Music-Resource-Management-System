@@ -772,3 +772,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 78相关合成检查通过（原source26/import27、新asset10/import15），初23的metadata响应丢失注入因fake状态复用未触发，已分离子例状态，不累加失败/子集。保留首次许可http/https等价初检拒绝、额外HTTP100分页准备误差；修复仅严格CC BY规范化/核查脚本20分页，原件/应用不改。
 - 额外A分脚本直接关联G1/catalog/HTTP，角色USER、60身份集合=旧40+新20、新20pending/真实file ID/Range206/full200 SHA及匿名20次401均过；非B或独立操作者，未跑真实其他用户矩阵。838旧文件/54cache集合SHA/原备份干净f3b0da1与8080 PID96842/5175 PID4143保持，私有0700/0600；无Java/Vue/API/schema/锁/依赖/模型变动或main合并，现有后端仅授权新增20资源。
 - 2026-10-30T02:12:49Z sync双方fetched，A95ce190/source48eeeca，B610c03e/source0e8de159；N1原035-R2卡/dispatch保持assigned。040仍in_progress，下一阶段固定五配置runner/词面对照/新包/最小页面与G2；160包/新判断/test模型run均0，141开发标签/旧run与G1新描述保持。详见verification/MUS-040-phase02.md/results.json。
+
+
+### MUS-040第三检查点范围与占用
+
+- 延续同分支，从5023721d411b3ea350df267962cf0c331005145e第二检查点继续。A串行新增holdout_contract/holdout_runner/holdout_review及测试、运行参数JSON；允许web/src/utils/reviewPack.js/reviewAudio.js、ReviewWorkspace.vue及新对应测试的最小独立schema/中文说明/回执适配，旧布局/四schema/评分/队列保留。E16先冻，原phase02 helper/catalog/G1/141/双权重/旧run只读；phase03仅私有ignore.local。
+- G2先实际两固定模型合成512/strict检查并冻结全部输入/源码/依赖/五配置，再生成四批各40的空包；本检查点不接用户新qrels，不按模型结果改描述/采样。runner真实test与合成检查区分，首次真实G4可后续运行，G5仍等全160合法与五run hash。B035-R2卡仍独立，不把派发当批准。
+
+- 第三检查点实现完成、真实G2/G3/G4待执行：三个新标准库契约/包模块与ML runner、27项新合成检查；音频工具目录238项、旧source/import78项、Node84项及build通过。首次27之前24项有12个合成fixture准备错误（fake query SHA未同步runtime config、fake Path未序列化），已修正并保留日志；不把失败或子集累加。允许在G2持久化后实际运行全部五组G4，无qrels/质量指标，随后核对四包/页面。原B N1卡保持。

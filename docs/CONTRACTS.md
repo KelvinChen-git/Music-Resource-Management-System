@@ -391,6 +391,17 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 导入前按G1同版本65536 actual EOF/PCM完整复核新20，NUMBA仅本检查点私有目录；源码/绑定/新旧原件前后SHA保持。输出独立`sonora-holdout-import-catalog-v1`，split=`independent_test_imported_assets`，仅新20+owner、旧40 catalog SHA/源binding/source_dataset、importer/helper SHA及真实身份/原始完整元数据/Range/full验证；旧catalog和G1原件不写。后续runner通过同只读适配器校验私有catalog/原源/独立副本，按数值Java ID返回新20。
 - 本检查点不生成160项包、G2或test排名/标签；下一步在此身份映射上建立五配置runner、固定呈现和独立标注契约/最小页面支持。历史141判断/开发与预检run/双权重/cache/原版及main保持。新资源导入是已授权增量，该普通账号自有资源从40到60须以真实运行结果为准，不能把源码完成写成已导入。
 
+### E16. MUS-040第三检查点：G2运行冻结与四批独立标注格式
+
+- 继承039 v2全部采样/模型/指标/G5规则，机器运行参数见docs/evaluation/MUS-040-runtime-config.json（20/8/160、五配置、共同actual EOF/48k/10s窗口5s步长、512维、seed0/CPU2、词面控制和固定呈现）。新holdout_contract.py只读校验原G1/20真实身份catalog/query原文/参数，明确schema与source/input SHA；旧工具/模型常量/标签不改。
+- 新holdout_runner.py的freeze在已提交干净源码上绑定协议/dataset/import catalog/frame/group/新query/呈现、两本地权重SHA、SDK与依赖/环境和五配置源码。A/B实际严格加载，用固定合成音频和旧通用文本检查实际512/finite/norm，不编码新20录音/新query；新query仅tokenizer<=77检查。新G2收据sonora-independent-runner-freeze-v1必须在任何test编码或qrels打开之前保存/hash，失败保留且不静默替换模型/文本。
+- runner另提供run：只接显式freeze SHA和独占输出，重新验证全部数据/源码/权重与环境；共同65536 actual EOF/PCM匹配G1后分别完整编码新20/8英文，整曲归一化窗口均值/片段最大与原代表窗口规则，五完整排名分别保存，title-only按预注册NFKC/casefold/unigram/logTF/smoothedIDF/20标题df/余弦与Java数值ID并列。A/B向量独立、不读qrels、不复用旧索引；前后SHA，失败/部分run保留，全部五组hash齐后才有all-runs commitment。本检查点run实现/合成验证与实际test运行须分开报告。
+- 新holdout_review.py从已验证G2/input重建四批包，schema=sonora-independent-review-pack-v1、split=independent_test，每批两条固定query×全部20首=40，共160，不按topk选池。query保留英文text及中文gloss/cues/0–3规则/可能无匹配标记；candidate按SHA256(presentation_seed+newline+query_id+newline+recording_key)升序，含真实track/source/来源权利URL/原字节/实际时长，model_suggested_intervals_ms恒空、四人工字段初始null。批号放provenance，顶层仍schema/split/owner_user_id/provenance/queries/dataset_sha256；新dataset指纹隔离旧草稿。
+- provenance固定runner_freeze_sha256/source_dataset_sha256/import_catalog_sha256/query_manifest_sha256/runtime_config_sha256/test_dataset_sha256、batch(1–4)、batches=4、selection=full20_per_query_model_blind、ordering=preregistered_hash_recording_order、labeling_aid=no_model_hints。test_dataset为全20身份/8query/固定呈现与source pins canonical hash，批dataset再按null人字段签名；旧包schema不改split冒充test。
+- 前端只新增新schema严格校验、中文线索/规则、批次/保管提示及完成回执导出；原评分/播放器/草稿/旧四schema保留。来源为LOC两provider，rights_url使用官方对应/use页面，不造CC0 URI；整曲完整JWT/bytes/SHA验证后可按新LOC已知provider较短实际浏览器终点播放，包时长不改。无模型名/排序/分数/建议展示，原版UI布局不重做。
+- labeler端可导出完整/部分判断自行保管；只有该批40全合法已判时可导出四字段完成回执dataset_sha256/payload_sha256/total_completed_count/validation_status。回执hash针对同一exportReviewPack实际字节，其他个人字段/等级分布/正文路径不得提前回传；CLI标签校验仅labeler侧读取基包+本地导出、可只打印允许回执。A在G5前不打开可读qrels，模型五runs全部持久化hash与160合法完成回执齐全后再记录一次解封。新包工具/页面校验不认证身份或听音，也不是访问控制。
+- 新输出仅ignore.local/a/mus040/phase03，0700/0600、不覆盖、不写数据库/服务/线上模型。实际新test模型run/评分仍须独立记录，不因G2/包已准备声称模型质量、定位、显著性或MUS-002/discovery-v0完成。B N1原在途卡不扩到本增量。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。
