@@ -383,6 +383,14 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 新B权重只从038已固定官方revision下载到ignore.local/a/mus040，保留原TLS错误/不完整文件，不覆盖/替换原共享A权重或cache；依赖/SDK只读复用。正常TLS/准确SHA/严格加载及实际输出通过前不得称B可用。模型下载/构造只在本轮被授权的开发预检，不读取新20音频/query/人评，预检胜负不删任何预注册配置。
 - 原100开发判断可在新预检排名固定后只读关联另存聚合，不改分/不当test成绩。039新20仍source-only；本检查点不生成标注包、不导入数据库、不生成test排名/读test标签。040余下需普通owner HTTP身份/权限Range/SHA映射、新test包/runner/词面控制、G2全部运行配置源码环境冻结，之后才G3四批160项；qrels仍由标注者保管至G5。
 
+### E15. MUS-040第二检查点：新20录音导入与可复用只读资产适配
+
+- 新标准库`holdout_assets.py`读取独立`sonora-holdout-input-binding-v1`，必须显式binding SHA；固定协议/frame/group/old-group/source manifest/G1 source-freeze各path+SHA，以及原已导入40 catalog SHA/独立音频root。所有本checkout绑定路径安全相对路径、无symlink/hardlink/越界，完整重建官方221来源关系与原manifest20/作品/作者cap/精确排重/实际时间/下载证明、dataset canonical hash和冻结收据，不接query/模型/评分。原G1文件不增加Java字段或改字节。
+- 新`import_holdout_music.py`只使用原普通owner经现有HTTP登录/profile/上传/metadata/Range/完整媒体SHA；不注册、改权限、自动审核、SQL或迁移。先完整验证原40身份/音频/证明与HTTP媒体，再导入新20，结束再核原40。新曲名/完整作者串原样、现有100/50长度边界，album为固定`SONORA independent test <source_dataset前16hex>`；不因元数据长度改素材/截字。新上传与metadata均pending，单独记录真实Java music/file ID，不改已有40 catalog。
+- 新私有目录独占锁、原子checkpoint可恢复已提交上传或metadata但响应丢失；绑定/source/helper SHA、owner/slot固定，拒绝未知/篡改ledger、身份交叉/重复、错误旧资源、输出覆盖/路径/硬链/symlink。新20音频/证明独立复制，不复制旧40；全部新目录0700/文件0600且极端umask下明确设置。完成后同目录重试只验证/不重复创建，目录已有非本工具内容则拒绝；错误原件/日志保留，不按时间删除他人锁。
+- 导入前按G1同版本65536 actual EOF/PCM完整复核新20，NUMBA仅本检查点私有目录；源码/绑定/新旧原件前后SHA保持。输出独立`sonora-holdout-import-catalog-v1`，split=`independent_test_imported_assets`，仅新20+owner、旧40 catalog SHA/源binding/source_dataset、importer/helper SHA及真实身份/原始完整元数据/Range/full验证；旧catalog和G1原件不写。后续runner通过同只读适配器校验私有catalog/原源/独立副本，按数值Java ID返回新20。
+- 本检查点不生成160项包、G2或test排名/标签；下一步在此身份映射上建立五配置runner、固定呈现和独立标注契约/最小页面支持。历史141判断/开发与预检run/双权重/cache/原版及main保持。新资源导入是已授权增量，数据库从40到60须以真实运行结果为准，不能把源码完成写成已导入。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。

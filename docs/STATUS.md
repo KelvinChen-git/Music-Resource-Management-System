@@ -756,3 +756,10 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 排名保存后固定E1/E5 CLI重建旧51/67原包，五query×20全100已判只在内存关联。A复用022原排名whole4/25、segment5/25，B新预检5/25、5/25；宏0.16/0.20与0.20/0.20，只多原声1位置，不宣称显著/独立提升或据此换模型/删配置。旧40/141/037原开发指标保持，不改人评/新query。
 - 745保护文件744原字节保持，唯一计划变化A dispatch在接收035后转N1；54共享cache集合/SHA保持，原备份干净f3b0da1，8080 PID96842/5175 PID4143保持；私有0700/0600。仅模型预检/源码/文档，无数据库/Java/Vue/API/schema/锁/依赖/原版/UI/main变动，不跑无关Maven/build/浏览器。
 - 检查点2026-10-30T01:35:24Z双方fetched，A9aa68ee/source74645de，B610c03e/source0e8de159，已ack。040仍in_progress：新20普通owner HTTP身份/权限Range/SHA、独立test资产/五配置runner和词面对照/新包/UI最小适配及G2待实施；160包/test run/新判断仍0，不提前读test qrels。详见verification/MUS-040.md/results.json。
+
+
+### MUS-040第二检查点范围与占用
+
+- 延续codex/MUS-040-independent-runner-preflight，从48eeeca6c3891d2930f0423d80f6526387e5dc5e干净开始。A串行新增scripts/holdout_assets.py、import_holdout_music.py及各自合成测试，E15、必要README/模块README/PROJECT/STATUS/A latest、verification/MUS-040-phase02*；现有importer/corpus/DSP/Java/Vue/模型/038与039冻结文件只读。私有仅ignore.local/a/mus040/phase02，0700/0600。
+- 先绑定原039框/审查/source20/G1收据和原033私有40 catalog，再普通owner现有HTTP导入新20，不改旧身份/metadata/catalog、不提权或自动审核。新20需实际EOF/PCM复核，独立新catalog/40音频证明副本、真实Range/full SHA，断点可恢复但不重复创建；本检查点不输出标注包/G2/test模型排名或读取新qrels。
+- 2026-10-30T01:39:22Z sync双方fetched，A95ce190/source48eeeca，B610c03e/source0e8de159；B035-R2原卡/dispatch保持assigned未认领，不按等待时间接管/更换。本轮无子代理，N1独立审核与新导入范围分开。
