@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-29 America/Chicago）：MUS-040第二检查点完成、整体in_progress。源码2b2d287已通过普通owner HTTP导入20新录音，账号自有资源60（开发40/测试20）、新20 pending，实际EOF/PCM/真实ID/Range/full SHA通过；CLI重跑0新增/42核心保持，额外20匿名401。78相关测试/838原件保护通过。G1新20/8query/141旧判断/双权重与旧索引保持；G2/160包/test run未生成。N1 B卡035-R2仍assigned，原版/UI/main保持。
+- 当前检查点（2026-10-29 America/Chicago）：MUS-040 G2/G3/G4完成，review（工具待独立审核，G5等用户160项标注）。准确干净源码1671b134，两权重合成严格512后先冻447输入/源码/环境，再四批各40空包和五组实际排名；每套755片段/20整曲/8文本，共40个全20排名已hash，未读新qrels/无质量指标。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过；首批0/40已载入，先交完成回执、完整判断自存待通知。原141/G1/phase02/952保护文件/54cache/原版/服务保持，main未合并；N1 B原卡035-R2仍assigned。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -28,7 +28,7 @@
 | Python离线候选 / 线上检索 | 两来源40曲离线实跑，线上未实现 | 独立私有新run，原窗口/两mode规则；无Java gateway/共享索引/浏览器检索，discovery-v0未冻结 |
 | 研究语料与标注 | 自有资源60首（开发40/新测试20）；累计141开发判断 | 原933/新1557片段run保持；037三补判完成、四原包分别保留，五描述123/200已知、77未知，8描述141/320已知、179未知；非held-out/2,000首/70,000片段/120查询 |
 | 质量、P95、并发和提升比例 | 五开发描述精确top5已测，正式质量/P95未验收 | 037 whole25/25相关、segment24/25，P@5=1.00/0.96；旧20同五描述0.16/0.20；原029八query/035区间保持，定向扩库非held-out/10%提升 |
-| 独立测试/模型对照 | 039 G1/040预检与新20身份导入通过；G2–G5未执行 | B旧20/933片段/五文本512实跑；新20真实ID/媒体绑定、78相关检查；160包/新标签/test run均0，待新runner/G2 |
+| 独立测试/模型对照 | 039 G1/040 G2/G3/G4完成；G5等160真人判断 | 两权重各755片段/20整曲/8文本、五组40完整排名已hash；四批各40空包/20首真实播放就绪，新qrels未读/无正式质量指标 |
 
 详细命令与机器生成结果见 [verification/MUS-001.md](verification/MUS-001.md)。旧会话网络阻塞只是历史：本轮 Maven 已能下载和实跑。原始默认 75 tests 有 3 errors；修正 fixture 后才得到全量 89 tests 通过。
 
@@ -51,7 +51,7 @@
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
 | MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
-| MUS-040 独立格式与模型预检 | in_progress / A（安全dev预检/新20导入完成，新test适配未完） | codex/MUS-040-independent-runner-preflight / 74645de；实跑de255c7，依赖038/039 | 先普通owner HTTP导入20源/真实ID与权限Range/SHA映射，立新test包/runner契约；B权重本地SHA/严格加载/512及旧100 dev预检，G2后新包；不升级依赖/重做UI |
+| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5等160真人标注；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
@@ -780,3 +780,14 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - G2先实际两固定模型合成512/strict检查并冻结全部输入/源码/依赖/五配置，再生成四批各40的空包；本检查点不接用户新qrels，不按模型结果改描述/采样。runner真实test与合成检查区分，首次真实G4可后续运行，G5仍等全160合法与五run hash。B035-R2卡仍独立，不把派发当批准。
 
 - 第三检查点实现完成、真实G2/G3/G4待执行：三个新标准库契约/包模块与ML runner、27项新合成检查；音频工具目录238项、旧source/import78项、Node84项及build通过。首次27之前24项有12个合成fixture准备错误（fake query SHA未同步runtime config、fake Path未序列化），已修正并保留日志；不把失败或子集累加。允许在G2持久化后实际运行全部五组G4，无qrels/质量指标，随后核对四包/页面。原B N1卡保持。
+
+
+### MUS-040第三检查点完成：标注可开始，G5尚未解封
+
+- 实现/真实运行源码1671b134ccec92819a8c041373b6330630800812。G2 exit0 24.550s，两checkpoint严格加载/合成1×512，8新query仅tokenizer19–36≤77；447输入/5141安装代码配置/54离线cache/源码/参数/权重冻结，实际新音频编码/文本编码/qrels均0。G2 SHA1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83先保存后G3/G4。
+- G3 exit0 5.752s，四批2×20各40/总160，20不同音乐、8新描述，固定hash呈现、全null/无模型提示/新指纹隔离；共同test dataset93423365…。G4 exit0 154.978s，A/B各实际EOF/PCM匹配G1、755片段/20整曲/8英文512向量，另title-only固定TFIDF，全部五组×8共40个全20排名/hash保存。all-runs commitment d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1；无新质量指标/模型选择/标签打开。
+- A分脚本仅NumPy/math复核755窗口/双均值最大误差各1.49e-8/32声学排名含代表片段/8词面排名与全部输入/artifact SHA通过；同操作者非B。G3/G4原输出真实重复拒绝exit1/FileExistsError，5/10文件保持。238音频Python（新27）/78来源导入/84 Node（新7）/build通过；初24有12个fixture准备错误修复并保留日志，不累计子集/重复。
+- 四批实际页面全部导入空白0/40；中文三线索/0–3说明/无匹配提醒/未完成回执禁用通过。20首各自完整JWT/bytes/SHA校验后都能播放，底部曲名/页面进度约27s/暂停/重新授权续播通过；只临时代号检查启用再清空，真实评分0。完全不同身份/内容/query的合成40包实际完整导出与四字段完成回执字节SHA相符；不写真实qrels或假草稿。首批最终0/40、代号空、已停播，667px无横向溢出/console error。
+- 952旧保护文件全部SHA保持（含phase02原件/catalog/副本）、54cache集合/hash保持，原版f3b0da1干净，8080 PID96842/5175 PID4143保持；新目录0700/文件0600。无资源写API/新上传/metadata修改/SQL迁移/Java/依赖/锁/模型切换/服务重启或main合并；仅最小页面增量，无UI重做。无关Maven不重复。
+- 下一步由用户独立完成四批160项并先交四字段完成回执，完整判断JSON本机保管；当前收到新真人判断/完成回执/打开新qrels均0。五组run已固化，但必须待160合法齐全才G5一次接收/解封，按038既定P@5/nDCG/成对差值报告，不提前猜相关/补0或改query。
+- 2026-10-30T02:31:25Z/02:52:27Z sync双方fetched，B610c03e/source0e8de159未变、已ack，035-R2/rev1准确de255c7/base74645de原卡仍assigned；不替换在途任务/不外推035限定批准。最终文档/聚合见verification/MUS-040-phase03.md/results.json，提交后publish/sync回读；发布不等于B接收或main合并。

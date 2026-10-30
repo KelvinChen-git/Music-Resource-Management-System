@@ -1,0 +1,285 @@
+{
+  "schema": "sonora-independent-preparation-verification-v1",
+  "status": "review_G2_G3_G4_complete_G5_awaits160human_judgments",
+  "recorded_at_utc": "2026-10-30T02:57:44.421939+00:00",
+  "source_sha": "1671b134ccec92819a8c041373b6330630800812",
+  "branch": "codex/MUS-040-independent-runner-preflight",
+  "protocol_sha256": "83bc7bf3f00a91634a56fd269daaf6720192c19507860ddff9df33c3063de63b",
+  "source_dataset_sha256": "2172565fca070583b599a8a445bb4fa779bac982f4075d59e4eccf73be830551",
+  "query_manifest_sha256": "6b3af0cc99ab0bde1d1d27b88e5f477e44f627948ffd69183ec421bad185cbfb",
+  "runner_freeze_sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83",
+  "test_dataset_sha256": "93423365583e9fcc19c9cde09524bb100ca5c3d5038e530ba2b58ef3d301a684",
+  "all_runs_commitment_sha256": "d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1",
+  "runtime": {
+    "python": "3.12.10",
+    "system": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "threads": 2,
+    "packages": {
+      "laion-clap": "1.1.7",
+      "torch": "2.6.0",
+      "numpy": "1.26.4",
+      "librosa": "0.11.0",
+      "soundfile": "0.13.1",
+      "soxr": "1.1.0",
+      "transformers": "4.51.3",
+      "numba": "0.68.0",
+      "tokenizers": "0.21.4"
+    },
+    "installed_code_config_sha256": "b7c51667d5ed603a99f3e1153281bf49c79f4af25514d9801356f58008572cd2",
+    "installed_files": 5141
+  },
+  "frozen_offline_cache_regular_files": 54,
+  "models": {
+    "A": {
+      "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+      "synthetic_audio_shape": [
+        1,
+        512
+      ],
+      "synthetic_text_shape": [
+        1,
+        512
+      ],
+      "strict_missing": [],
+      "strict_unexpected": [],
+      "test_query_token_lengths": [
+        27,
+        26,
+        31,
+        28,
+        25,
+        19,
+        36,
+        28
+      ]
+    },
+    "B": {
+      "checkpoint_sha256": "51c68f12f9d7ea25fdaaccf741ec7f81e93ee594455410f3bca4f47f88d8e006",
+      "synthetic_audio_shape": [
+        1,
+        512
+      ],
+      "synthetic_text_shape": [
+        1,
+        512
+      ],
+      "strict_missing": [],
+      "strict_unexpected": [],
+      "test_query_token_lengths": [
+        27,
+        26,
+        31,
+        28,
+        25,
+        19,
+        36,
+        28
+      ]
+    }
+  },
+  "native_commands": {
+    "G2-freeze": {
+      "exit_code": 0,
+      "source_sha": "1671b134ccec92819a8c041373b6330630800812",
+      "seconds": 24.54997866699705
+    },
+    "G3-build": {
+      "exit_code": 0,
+      "source_sha": "1671b134ccec92819a8c041373b6330630800812",
+      "seconds": 5.751799750025384
+    },
+    "G4-runs": {
+      "exit_code": 0,
+      "source_sha": "1671b134ccec92819a8c041373b6330630800812",
+      "seconds": 154.977834624995
+    }
+  },
+  "G2_counts": {
+    "new_test_audio_encoded": 0,
+    "new_test_text_encoded": 0,
+    "qrels_opened": 0
+  },
+  "G4_counts_per_checkpoint": {
+    "A": {
+      "segments": 755,
+      "whole": 20,
+      "text": 8,
+      "ranked_queries": 16
+    },
+    "B": {
+      "segments": 755,
+      "whole": 20,
+      "text": 8,
+      "ranked_queries": 16
+    }
+  },
+  "full_rankings": 40,
+  "positions_per_ranking": 20,
+  "ranking_sha256": {
+    "A-whole.json": "9bacd3375fa5dbbad0263918f94c5ae9393b9aa636f56f7c86f45404289d0573",
+    "A-segment.json": "33fd89a8b327f9914eb6a2bac4c768ab1ebb5edda79181ae6367ddbd8f8216f4",
+    "B-whole.json": "a1011ef975c94de5e2de433c650407df1d5c89bcd83afa5cae86e5ea1df31ec8",
+    "B-segment.json": "1b882b682c08c1c38984c7cbdbec130e72646d30883c7b6301f41441a338f49b",
+    "title-tfidf.json": "fbabfa274cef6804642b385725e3ecb9edf5fecb7dccc1ae4061c8f817d7559f"
+  },
+  "packages": [
+    {
+      "batch": 1,
+      "filename": "sonora-independent-batch-1.json",
+      "file_sha256": "b8b0596a522103eab25d9fe6a03941e92e155680c42df82fe8bf2d5f2b48954a",
+      "dataset_sha256": "d6611d9eb4161ceb9557caa5221dcb2723c86ea76fdf95c2b8a085ef9046c35b",
+      "candidate_pairs": 40,
+      "judged": 0
+    },
+    {
+      "batch": 2,
+      "filename": "sonora-independent-batch-2.json",
+      "file_sha256": "979371e12083faa4a48f3f21f83a5fe8581c2f8f8c4b885124296bea736de770",
+      "dataset_sha256": "154038666a2664c07c2e70b4ea52e30ad137dd97fc21eac5612c244f0819a777",
+      "candidate_pairs": 40,
+      "judged": 0
+    },
+    {
+      "batch": 3,
+      "filename": "sonora-independent-batch-3.json",
+      "file_sha256": "8fc91cd0d41d2afb2f6f0faff44a66dbb587443ddb944ef3d1e513f3b162902d",
+      "dataset_sha256": "bf53151d4d420dfe4621ede2ddef5fc40f733ee86336c94131d804f3f5957e07",
+      "candidate_pairs": 40,
+      "judged": 0
+    },
+    {
+      "batch": 4,
+      "filename": "sonora-independent-batch-4.json",
+      "file_sha256": "30ac18e4cfb67cb137147f2280283aff3b3ba52b00ff40c1bbf5e1b2442547ce",
+      "dataset_sha256": "bfda48f4eb212d67ab018eebf84cb093c3044ae0275c8574c7260c5afacf9de5",
+      "candidate_pairs": 40,
+      "judged": 0
+    }
+  ],
+  "package_counts": {
+    "unique_recordings": 20,
+    "queries": 8,
+    "candidate_pairs": 160,
+    "judged": 0,
+    "model_hints": 0
+  },
+  "tests": {
+    "audio_python": {
+      "passed": 238,
+      "failed": 0,
+      "new": 27
+    },
+    "source_import_python": {
+      "passed": 78,
+      "failed": 0
+    },
+    "node": {
+      "passed": 84,
+      "failed": 0,
+      "new": 7
+    },
+    "build": "passed_existing_bundle_warning"
+  },
+  "audit": {
+    "status": "passed_separate_A_numpy_math_audit_not_independent_B",
+    "whole_mean_max_abs_errors": {
+      "A": 1.4901161193847656e-08,
+      "B": 1.4901161193847656e-08
+    },
+    "frozen_input_files_verified": 447,
+    "G2_receipt_persisted_before_G3_G4": true,
+    "all_five_rankings_recomputed_from_stored_vectors_or_titles": true
+  },
+  "browser": {
+    "status": "passed",
+    "allFourRealPackagesImportedBlank": true,
+    "realAudioTracksVerified": 20,
+    "realLabelsWritten": 0,
+    "firstBatchLeftBlank40": true,
+    "aliasLeftEmpty": true,
+    "modelSuggestionsVisible": false,
+    "ChineseCuesAndGradeRulesVisible": true,
+    "fullTrackGlobalPlayerSeekPauseResume": true,
+    "possibleNoMatchReminderVisible": true,
+    "syntheticReceiptExactExportHash": true,
+    "syntheticReceiptFields": [
+      "dataset_sha256",
+      "payload_sha256",
+      "total_completed_count",
+      "validation_status"
+    ],
+    "browserErrors": 0,
+    "viewportWidth": 667,
+    "documentScrollWidth": 667,
+    "limits": [
+      "Synthetic complete export only; no human judgment or listening verified.",
+      "One early import snapshot observed before async completion; awaited visible batch thereafter.",
+      "Native app file chooser inspection unavailable; documented browser file chooser succeeded."
+    ]
+  },
+  "preservation": {
+    "status": "passed",
+    "checked_at_utc": "2026-10-30T02:51:17.163146+00:00",
+    "protected_files": 952,
+    "changed_files": [],
+    "shared_cache_regular_files": 54,
+    "shared_cache_set_and_hashes_unchanged": true,
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "original_listener_pids": {
+      "8080": [
+        "96842"
+      ],
+      "5175": [
+        "4143"
+      ]
+    },
+    "private_modes": "0700/0600",
+    "old141_and_G1_and_phase02_and_old_runs_and_both_checkpoints_unchanged": true,
+    "database_mutations_in_phase03": 0
+  },
+  "private_evidence_sha256": {
+    "G2-freeze-command.json": "16bc79a7f6f545f25cce66d5ca85dd092a246783e321a5e7ce483bd3fc65fffe",
+    "G2-persisted-before-G3-G4.json": "48929471dfa713108190473ee0c21e53aadb7633ef074e1d5d0f3f7cb2680464",
+    "G3-build-command.json": "c3a5624cbaf040d582eadf6faa1b4ed71e2f6b70908e6de261638a08b042a20e",
+    "G4-runs-command.json": "2b1c4d7bd68db4cd07e3349a6104f4531c547dd8a43913b97b50240550027cd9",
+    "freeze-01/freeze.json": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83",
+    "packages-01/build-receipt.json": "2d0b3c6b1ccafbe1377be45e10f0ae3288348f6888f3af3d81ccacb84497bc26",
+    "runs-01/all-runs-commitment.json": "d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1",
+    "run-audit.json": "e788cbfba7390437453650cf3fb37082957440c097224a7b99485db36cefd124",
+    "browser-check.json": "cae684318ec3cb8fd3932587a0f86ad64fc9e9eae3474b5299b2a4a1ec27a8dd",
+    "ui-audio-checks.json": "efc9cc4d5d2b3b5258139ff0d9360a7ac95af6f693ef8797811697acc51ac07b",
+    "duplicate-output-checks.json": "413608b8f9ad0d47091ea7ca6c7f8c8c036ddf080ad4cd4ad77d29ee15eb3cbf",
+    "preservation-check.json": "bcf57b16705aafa7fb57424b7a4139a026f8d2a1abe28fef0f8d81338e98ac94",
+    "python-tests-initial.log": "74913bef1f469d5b2b3e6b93ca4d85da1c6bbc481022423f87653c08fb3236c2",
+    "python-tests-second.log": "85732a4a5797d9ee36c7fd7adeb2f8880e62598c9682f4b5078d24f1294b8be8",
+    "python-tests-final-v2.log": "d50b9b18a7c3eb1796b5ce91a6e32b7484bbe6596bd69aca30b7c32bc2a3dea3",
+    "script-regression.log": "3e993775880f3462974155a552be238506ed6b2a94869143cb2a8d68829e8d45",
+    "node-tests-initial.log": "e1534f6494317e3589f22b7c026941c2586b1897401adbdb90d8d90762bd8341",
+    "build-final.log": "f96ff6a77de37fcb058b54f9e7102394c3c0337b58033b884290e8624f09c226",
+    "review-ready.png": "3a5113fe58cf9684f68a478f2fd7bcdb45fb506a8e569477e1aec32f3f4fb874",
+    "synthetic-complete-ui.json": "2684137e0f32327daa8302a130ef07276c441fd99e3717987c37f1649d16a661",
+    "ui-export-synthetic.json": "2684137e0f32327daa8302a130ef07276c441fd99e3717987c37f1649d16a661",
+    "ui-receipt-synthetic.json": "0c0d41fa16efc3ec536d99f072f855be19320f00876c8b5fd628f6172c663d66",
+    "开始标注.txt": "d7bb054e41b8e98cc69a3d4f3a4f28973c32bed2ae95fc9a78c4afc8046eada1",
+    "SONORA-独立标注包-四批.zip": "a28adef84137c86b7fc418868fd9cfd171d27317c2c292154da5d205361ec66a"
+  },
+  "custody": {
+    "new_test_readable_qrels_opened": 0,
+    "real_human_judgments_received": 0,
+    "completed_batches_received": 0,
+    "required_completed_batches": 4,
+    "required_total_valid_judgments": 160,
+    "next": "Labeler keeps complete JSON locally and sends only four completion receipts. Open readable qrels once at G5 after all160 valid and all5 run hashes."
+  },
+  "limits": [
+    "Same A operator audits are not independent B approval. B035-R2 N1 exact card remains assigned.",
+    "All rankings exist but no new-test quality metrics have been computed; labels remain unknown.",
+    "One annotator and visible titles/source metadata, not double blind or expert agreement.",
+    "Creator/work metadata and exact byte dedup do not prove acoustic or pretraining nonoverlap.",
+    "No online discovery service, reference-audio test, IoU, significance, P95, production or main merge.",
+    "Old141 development judgments, G1/query originals, phase02 catalog, audio, weights/cache and historical runs preserved."
+  ]
+}

@@ -44,6 +44,8 @@ MUS-040第一检查点已完成：接收B035限定批准并修复极端umask输�
 
 MUS-040第二检查点已真实导入新20首：普通账号自有资源60首（开发40/独立测试20），新20全部pending、真实Java身份/Range/完整SHA通过，CLI重跑0新增、42核心文件保持；额外20匿名请求均401。78相关检查通过，G1原件/新描述/141旧标注/双权重与索引保持；新20尚未编码进测试索引，160项包/G2未生成。见[导入验证](docs/verification/MUS-040-phase02.md)。
 
+MUS-040第三检查点已完成G2运行冻结、四批独立标注包和五组新测试排名：20首×8新描述共160项，四批各40，全部初始判断为空、无模型提示，页面有中文可听线索和0–3说明。A/B各755片段/20整曲/8文本，另标题词面对照，共40个全20排名；源/权重/源码/依赖先冻结，排名全部保存后才交标注。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过，原141/备份/旧run保持。当前等待用户标注，先交完成回执、完整判断自存至通知；未打开新qrels或计算正式质量。第1批已在本机试听页空白载入，见[第三检查点验证](docs/verification/MUS-040-phase03.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。
