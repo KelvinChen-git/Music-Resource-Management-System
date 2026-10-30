@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-040第二检查点新20导入完成，继续新test格式/G2
+
+A；2026-10-29 America/Chicago；branch codex/MUS-040-independent-runner-preflight；本段base48eeeca6c3891d2930f0423d80f6526387e5dc5e；实际源码2b2d28796bcd8c74aa96f45f9f38bc602d309220。040整体in_progress，最终文档SHA见handoff。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；2026-10-30T01:39:22Z/02:12:49Z双方fetched。035-R2/rev1准确de255c7/base74645de原卡/dispatch保持assigned未认领，不替换在途卡、不外推035批准或冒充B。
+
+E15先冻结，新holdout_assets/import_holdout_music与合成测试/共享fixture；旧工具/DSP/模型/038/039冻结文件不改。绑定显式SHA56b74cd137ac0ae4442cf7c13a8e2c2bd9ceda0429cf7e7cfdc84cafaa1c5561，完整重建221框/关系/原40内容排除、20源manifest/G1收据/404输入和实际EOF/PCM，再普通USER原HTTP导入。原曲名最长100/作者串40原样，album固定source dataset前缀，无截字/素材更换。
+
+真实首次12.955秒exit0，新增20上传/metadata，新20pending、真实music/file ID/Range/full SHA通过；旧40前后身份/metadata/媒体保持，账号自有60（开发40/新测试20），不是全DB总量。新20 catalog SHA ea7eb53a6c3c29d9d5d052b2f786c794550cd332cf60162e45b722c1387766f8，source dataset2172565f…不改；仅20新音频+20证明独立副本。CLI同目录9.660秒exit0，创建0、42核心字节保持；原catalog/G1不写。
+
+78相关合成检查（旧53/新25）passed；初23子集/一次fake后台复用导致metadata丢失注入未触发不累计，分离子例后通过。另A分脚本不用新importer/adapter，直接G1/catalog/HTTP关联，USER/60身份集合/20pending、file ID/Range206/full200 SHA、匿名20×401通过；同操作者非B，未测真实其他账号矩阵。保留http→https同CC BY初检拒绝与100分页准备错误，分别复用原严格规范化/用现有20分页解决，原件及应用不改。
+
+838旧文件SHA及54共享cache集合/hash保持；两checkpoint/039source/query/旧141/全部run/原版备份干净f3b0da1、8080 PID96842/5175 PID4143保持；只授权新增20 backend上传/metadata，无注册/提权/自动审核/SQL迁移/Java/Vue/API/schema/锁/依赖/模型/服务/UI/main变化。私有仅ignore.local/a/mus040/phase02，0700/0600，真实ID/owner/音频/逐条数据不进Git；未跑无关Maven/build/浏览器/CLAP。
+
+下一步继续040五配置runner/词面控制/固定呈现、新标注格式及最小UI/G2；当前新20未编码，160包/新判断/test run均0，G5前qrels仍标注者保管。B N1卡不扩到此增量，不把身份导入当正式质量/线上检索/discovery-v0。精确命令、聚合与证据见verification/MUS-040-phase02.md/results.json。提交后publish/sync回读，远端可读不等于B接收或main合并，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-040安全开发预检第一检查点完成，整体仍in_progress
 
 A；2026-10-29 America/Chicago；branch codex/MUS-040-independent-runner-preflight；base `74645de71c173c43811d7d0d98548089a1836491`；真实实跑源码 `de255c7724926c6f823abceecf0b9a487a467d6d`。本轮不是G2或独立测试完成，最终文档SHA由handoff给出。
