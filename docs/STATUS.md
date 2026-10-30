@@ -1,10 +1,10 @@
 # 项目状态与交接
 
-最后更新：2026-10-29（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-30（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
-- 当前检查点（2026-10-29 America/Chicago）：MUS-040 G2/G3/G4完成，review（工具待独立审核，G5等用户160项标注）。准确干净源码1671b134，两权重合成严格512后先冻447输入/源码/环境，再四批各40空包和五组实际排名；每套755片段/20整曲/8文本，共40个全20排名已hash，未读新qrels/无质量指标。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过；首批0/40已载入，先交完成回执、完整判断自存待通知。原141/G1/phase02/952保护文件/54cache/原版/服务保持，main未合并；N1 B原卡035-R2仍assigned。
+- 当前检查点（2026-10-30 America/Chicago）：MUS-040 G2/G3/G4完成，review；已收第1批完成回执（1/4批、报告40/160项），G5仍关闭，未接收/打开具体评分。准确干净源码1671b134，两权重合成严格512后先冻447输入/源码/环境，再四批各40空包和五组实际排名；每套755片段/20整曲/8文本，共40个全20排名已hash，未读新qrels/无质量指标。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过；初始首批0/40已交付；现第1批回执报告40/40，待第2–4批，完整判断仍由用户自存。原141/G1/phase02/952保护文件/54cache/原版/服务保持，main未合并；N1 B原卡035-R2仍assigned。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -51,7 +51,7 @@
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
 | MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
-| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5等160真人标注；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
+| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5已收1/4回执、报告40/160，未读评分；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
@@ -791,3 +791,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 952旧保护文件全部SHA保持（含phase02原件/catalog/副本）、54cache集合/hash保持，原版f3b0da1干净，8080 PID96842/5175 PID4143保持；新目录0700/文件0600。无资源写API/新上传/metadata修改/SQL迁移/Java/依赖/锁/模型切换/服务重启或main合并；仅最小页面增量，无UI重做。无关Maven不重复。
 - 下一步由用户独立完成四批160项并先交四字段完成回执，完整判断JSON本机保管；当前收到新真人判断/完成回执/打开新qrels均0。五组run已固化，但必须待160合法齐全才G5一次接收/解封，按038既定P@5/nDCG/成对差值报告，不提前猜相关/补0或改query。
 - 2026-10-30T02:31:25Z/02:52:27Z sync双方fetched，B610c03e/source0e8de159未变、已ack，035-R2/rev1准确de255c7/base74645de原卡仍assigned；不替换在途任务/不外推035限定批准。最终文档/聚合见verification/MUS-040-phase03.md/results.json，提交后publish/sync回读；发布不等于B接收或main合并。
+
+
+### MUS-040第1批完成回执接收（2026-10-30 America/Chicago）
+
+- 从干净1c2cb665586df7c90eb9dfa7f6e32a7d8d1f794e接收用户提供的四字段回执，范围仅私有phase03/completion-receipts/batch-1原字节归档/metadata核对、STATUS/A latest与verification/MUS-040-completion-receipts.json；不打开/扫描具体评分文件，不改G1/G2/G3/G4/代码/模型/索引/网页/旧判断，不切换用户正在审阅的页面。
+- dataset d6611d9eb4161ceb9557caa5221dcb2723c86ea76fdf95c2b8a085ef9046c35b与已冻结第1批一致；恰四字段、无重复key、SHA语法/整数40/valid_complete_batch通过。原回执SHA647042f7adb4b7db72a45bf1e14419171f83a637140b4ac8e471e11361da83f6；payload SHA7e81c03bc62a8ec75f048c35edbc7ece387a72954b1c2afe47959d88de1ab768作为用户承诺保存，尚未对未打开的完整导出字节验证。源下载原件不改，私有目录0700/文件0600。
+- 进度为1/4批回执、labeler报告40/160项；待第2/3/4批120项。回执是labeler侧合法性证明，不是A独立重验具体评分/听音；readable judgments接收/打开0、等级分布0、新test指标0，G5未满足。五组排名commitment d3b03f47…和G2 1898f2bd…字节保持；完整JSON仍由用户保管，四批回执齐全后再请求一次交付并核验payload hash/160合法判断。
+- 2026-10-30T05:02:46Z双方sync fetched，A e5e2905/source1c2cb66、B610c03e/source0e8de159未变；已ack，035-R2原卡仍assigned。不将收回执当B批准或模型效果验收。文档/回执字段与绑定检查通过；没有应用改动，不重复Python/Node/build/Maven或模型运行。提交后原子publish/sync，main不合并。

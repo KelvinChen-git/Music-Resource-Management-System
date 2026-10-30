@@ -1,0 +1,47 @@
+{
+  "schema": "sonora-independent-completion-receipt-log-v1",
+  "recorded_at_utc": "2026-10-30T05:03:59.603320+00:00",
+  "task": "MUS-040",
+  "status": "one_of_four_receipts_received_G5_closed",
+  "base_source_sha": "1c2cb665586df7c90eb9dfa7f6e32a7d8d1f794e",
+  "runner_freeze_sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83",
+  "all_runs_commitment_sha256": "d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1",
+  "test_dataset_sha256": "93423365583e9fcc19c9cde09524bb100ca5c3d5038e530ba2b58ef3d301a684",
+  "received": [
+    {
+      "batch": 1,
+      "receipt": {
+        "dataset_sha256": "d6611d9eb4161ceb9557caa5221dcb2723c86ea76fdf95c2b8a085ef9046c35b",
+        "payload_sha256": "7e81c03bc62a8ec75f048c35edbc7ece387a72954b1c2afe47959d88de1ab768",
+        "total_completed_count": 40,
+        "validation_status": "valid_complete_batch"
+      },
+      "receipt_file_sha256": "647042f7adb4b7db72a45bf1e14419171f83a637140b4ac8e471e11361da83f6",
+      "checks": "exact_four_fields_no_duplicate_keys_valid_types_and_hash_syntax;dataset_matches_frozen_batch1;reported40;original_bytes_archived",
+      "underlying_payload_sha256_verified": false,
+      "readable_judgments_opened": false,
+      "labels_independently_revalidated": false
+    }
+  ],
+  "progress": {
+    "receipts_received": 1,
+    "receipts_required": 4,
+    "reported_completed_pairs": 40,
+    "required_pairs": 160,
+    "pending_batches": [
+      2,
+      3,
+      4
+    ],
+    "readable_judgments_received": 0,
+    "readable_judgments_opened": 0,
+    "grade_distribution_received": false,
+    "new_quality_metrics_computed": false,
+    "G5_ready": false
+  },
+  "limits": [
+    "Receipt is labeler-side validation evidence, not independent verification of the unread payload or listening.",
+    "Payload SHA will be checked against actual exported bytes only after all four receipts at G5.",
+    "No readable judgment file was requested, discovered or opened; labeler keeps complete exports."
+  ]
+}
