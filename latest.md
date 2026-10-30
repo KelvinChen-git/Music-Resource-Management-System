@@ -1,5 +1,21 @@
 # 账号 A 最新交接
 
+## 当前：MUS-040已收第1批完成回执，1/4批、报告40/160，G5未解封
+
+A；2026-10-30 America/Chicago；branch codex/MUS-040-independent-runner-preflight；本段base1c2cb665586df7c90eb9dfa7f6e32a7d8d1f794e。仅receipt metadata接收/原字节私有归档与台账，G2/G3/G4源码1671b134及五组排名不改，040仍review、工具待独立审核。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；2026-10-30T05:02:46Z双方fetched，A e5e2905/source1c2cb66。B N1准确035-R2/rev1原卡仍assigned，不更换在途任务/不外推035批准。
+
+用户第1批四字段回执dataset d6611d9e…与原冻结包一致、报告40/valid_complete_batch。精确字段/无重复key/SHA语法/整数count检查通过，原字节SHA647042f7adb4b7db72a45bf1e14419171f83a637140b4ac8e471e11361da83f6已归档ignore.local/a/mus040/phase03/completion-receipts/batch-1，0700/0600，不改下载原件。payload SHA7e81c03bc62a8ec75f048c35edbc7ece387a72954b1c2afe47959d88de1ab768只记录承诺，未打开完整导出、未验证其实际字节或重验评分/听音。
+
+累计收到1/4批回执、labeler报告40/160，待第2–4批120项；readable judgments接收/打开0、等级分布/新test指标0，G5仍关闭。用户自行保管完整JSON，四批回执齐全后再统一请求完整导出并校验承诺SHA/全160合法性。G2 1898f2bd…、五runs commitment d3b03f47…及原包字节保持；不扫描Downloads其他文件/不接qrels，不改代码/模型/索引/旧141/备份/服务/UI/main，不切换用户审阅页。
+
+仅STATUS/A latest和verification/MUS-040-completion-receipts.json更新；字段/冻结batch与工件hash/原件归档检查和diff检查通过，没有代码变化，不重复应用测试/模型运行。提交后publish/sync回读，发布不等于B接收或main合并。下一步给用户第2批原包入口，继续仅接完成回执。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-040 G2/G3/G4完成，四批160项可标注，G5等用户
 
 A；2026-10-29 America/Chicago；branch codex/MUS-040-independent-runner-preflight；本段base5023721d411b3ea350df267962cf0c331005145e；准确干净实现/真实运行源码1671b134ccec92819a8c041373b6330630800812。MUS-040 review（工具待独立审核），不是正式质量验收。最终文档SHA见handoff。

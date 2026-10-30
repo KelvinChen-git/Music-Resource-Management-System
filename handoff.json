@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-30T03:00:31.618302+00:00",
+  "published_at": "2026-10-30T05:05:06.569636+00:00",
   "source_branch": "codex/MUS-040-independent-runner-preflight",
-  "source_sha": "1c2cb665586df7c90eb9dfa7f6e32a7d8d1f794e",
+  "source_sha": "3d0cb479756fed19551931d097ad78e810cc199a",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "c64811c47377fd21783d0e63067e11713618a5411d339c4c5a18791e9244dab8"
+  "report_sha256": "69cbd04862317f03279b30251b98c90c75e83e972d0ed360f0a502f65baf9e1d"
 }
