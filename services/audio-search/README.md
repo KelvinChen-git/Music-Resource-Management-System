@@ -117,3 +117,18 @@ PYTHONDONTWRITEBYTECODE=1 ../Music-Resource-Management-System/.local/a/clap-venv
 这是从仓库根目录执行的命令，26项通过；真实收集完整命令/三pins与输出名见[MUS-039验证](../../docs/verification/MUS-039.md)。本次收集已成功，原输出重跑拒绝覆盖。没有安装/升级依赖或加载CLAP，共享模型/cache只读，新NUMBA缓存只在本次私有目录。
 
 20条新source-only录音/9保守群与8新query已冻结，旧40开发材料保持；尚无Java身份/HTTP权限映射、新test标注包/runner、向量或人评。现有review/research CLI与页面不自动接收新格式，不能改split复用旧包冒充test；040先冻结新契约/映射/模型安全dev预检和G2，之后才出160项包，G5前不读新qrels。本小样本/元数据关系审查及精确SHA排重不证明声学无近重复或预训练未见。
+
+
+## 固定checkpoint安全加载与旧20预检（MUS-040第一检查点）
+
+`checkpoint_model.py`支持038已注册A/B两文件，严格filename/bytes/SHA+构造前后复核，拒绝symlink/hardlink、weights_only/mmap/CPU/strict，不回退或在线下载。当前应用/旧probe的A常量不改，新增B仅本轮私有models目录；依赖/原HF cache继续只读。
+
+`checkpoint_preflight.py`只接受原20开发catalog/显式33c9d7fd… SHA与旧五描述，完整20重新解码/编码，沿用原窗口/DSP/两mode；不接039新素材/新query/qrels，不能当test runner或G2。源码已提交干净才实跑，前后输入/源码/模型与音频证明核验，独占0700/0600输出/私有NUMBA缓存，拒绝覆盖并保留失败。真实完整命令见[MUS-040](../../docs/verification/MUS-040.md)。
+
+96相关合成测试：
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_research_corpus test_research_probe test_research_evaluate test_checkpoint_model test_checkpoint_preflight -v
+```
+
+本次B真实严格加载512维、旧20/933片段/5文字通过；原100开发判断整曲A0.16/B0.20、片段均0.20，A为旧022排名、B为新预检，非test/模型升级。原research_probe只补3行chmod/fchmod与两回归修N1，数值/模型不改。040余下新20身份导入、test资产/五配置runner/包schema/G2尚未完成，当前160新包/判断/test run仍0；035 B批准不外推本轮。

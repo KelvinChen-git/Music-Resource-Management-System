@@ -1,5 +1,31 @@
 # 账号 A 最新交接
 
+## 当前：MUS-040安全开发预检第一检查点完成，整体仍in_progress
+
+A；2026-10-29 America/Chicago；branch codex/MUS-040-independent-runner-preflight；base `74645de71c173c43811d7d0d98548089a1836491`；真实实跑源码 `de255c7724926c6f823abceecf0b9a487a467d6d`。本轮不是G2或独立测试完成，最终文档SHA由handoff给出。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`。开始2026-10-30T01:09:09Z与检查点01:35:24Z双方fetched。接收035/rev1准确9797ed4/baseb42b767、assignment74645de/ack9aa68ee、claim d674271/a2f53b2；交付仅两允许文档、六核心源码匹配，原字节报告d5fc9e15…归档和acceptance。B原生完整45入口blocked/36原生/37显式shim/49观察分别记录，未接收或重算其私有证据，不外推真实codec/权重/040质量。
+
+非阻塞N1仅private_output后chmod0700、两fd fchmod0600共3行，保留O_EXCL/O_NOFOLLOW，两个新回归；A另用真实OS/NumPy准确源码函数复现旧000→新0700/0600/0600、读回/重复拒绝，非B独立验收。旧035卡原字节保持，接收后才将固定入口转035-R2-B/rev1准确de255c7/base74645de，仅N1增量；assigned未认领，新checkpoint/039不在批准范围。
+
+E14先冻范围，新checkpoint_model/preflight及两测试：固定A/B文件名/大小/SHA、构造前/反序列化前后核验、拒绝symlink/hardlink、weights_only/mmap/CPU/strict，唯一非学习buffer例外。原A模型/旧工具常量与DSP不改；新B正常TLS下载2352471003bytes/SHA51c68f12…，仅ignore.local/a/mus040/models，依赖/HF/runtime只读，不切换应用模型。
+
+干净de255c7真实exit0，旧20重新编码933片段/5英文文本/0参考，共958个512维向量、strict missing/unexpected空，约91.737秒非P95。只允许原20 catalog33c9d7fd与原exp02/03/04/07/08，不能接039新source/query或qrels。新NUMBA缓存私有run且环境/umask恢复；输入/源码/音频证明/权重前后SHA保持。保留原SDK meshgrid/初始roberta pooler警告，随后CLAP完整严格覆盖，无训练/依赖绕过。
+
+最终96相关合成测试（research75含新2、checkpoint21），早20子集不累加。A分脚本NumPy不用driver窗口/均值/排名函数，重建933窗口/20均值/10排名，维度/finite/norm/hash一致，均值差约1.49e-8；同操作者非B。真实重复输出exit1/FileExistsError，原52文件保持，不重新加载/编码。
+
+排名保存后，用原E1/E5 CLI重建旧51/67原包、固定五query×20完整100对，只内存关联。A复用022历史top5 whole4/25、segment5/25，B新预检5/25、5/25，宏0.16/0.20与0.20/0.20，仅原声多1位置；不当独立提升、显著性或speech因果，不据此换模型/删预注册配置/调阈值。旧40/141和037开发指标/四原包保持。
+
+745保护文件744原字节保持，唯一计划变化是接收035后A dispatch转N1；54共享cache常规集合/SHA保持，039全部source/query/原音频/模型/run/标签与旧卡保持。原版干净f3b0da1，8080 PID96842/5175 PID4143保持；私有0700/0600，无真实IDs/owner/标签/音频/权重/索引提交。本轮A串行、未启动子代理，无Java/Vue/API/schema/锁/依赖/数据库/UI/main变化，不跑无关Maven/build/浏览器。
+
+040余下还需新20普通owner HTTP导入与真实身份/权限Range/完整SHA映射，新test资产/全部五配置runner与固定词面控制、独立标注schema/最小页面适配和G2冻结，再出四批160项包；当前新20未导入、新包/新判断/test run均0。qrels仍标注者保管至G5，不提前交运行方。MUS-002质量/discovery-v0/线上检索未完成。方法/准确hash/命令见verification/MUS-040.md/results.json。
+
+提交后原子publish并sync回读；远端可读不等于B接收/认领/批准或main合并，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-039独立来源与描述G1已冻结，source-only
 
 A；2026-10-29 America/Chicago；branch codex/MUS-039-independent-corpus-freeze；base `bc653e05eb722224bdd6ca395a0835ffeafab910`；真实收集源码 `e668a745b67b1d914cd03d9223848a3679bfe4e6`。review仅G1完成/工具待独立审核，不是模型效果验收；最终提交SHA见handoff。

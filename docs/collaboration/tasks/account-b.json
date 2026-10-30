@@ -3,9 +3,19 @@
   "owner": "b",
   "status": "assigned",
   "claimed_by_b": false,
-  "task_id": "MUS-035-R1-B",
+  "task_id": "MUS-035-R2-B",
   "assignment_revision": 1,
   "previous_task": {
+    "task_id": "MUS-035-R1-B",
+    "assignment_revision": 1,
+    "reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+    "status": "review_completed",
+    "verdict": "approve_scoped_received",
+    "source_sha": "0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2",
+    "feed_sha": "610c03e17989e934f8f35ec79e6b6063aeea7439",
+    "acceptance_record_path": "docs/verification/MUS-035-B-acceptance.json"
+  },
+  "earlier_previous_task": {
     "task_id": "MUS-033-R1-B",
     "assignment_revision": 1,
     "reviewed_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791",
@@ -15,13 +25,13 @@
     "feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
     "acceptance_record_path": "docs/verification/MUS-033-B-acceptance.json"
   },
-  "note": "033 scoped approval received. Review only035 offline two-provider corpus/probe/evaluator using independent synthetic fixtures. No A private labels/audio/model rerun;036 pack is a separate increment.",
-  "task_card_path": "docs/collaboration/tasks/MUS-035-R1-B.md",
-  "reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
-  "comparison_base_sha": "b42b767afc0bd3ddb76601a436f8073c3d72106c",
-  "review_branch": "review/MUS-035-B-expanded-retrieval",
+  "note": "035/rev1 scoped approval received; only incremental N1 output modes for3 functions. New checkpoint preflight and039 source work are excluded.",
+  "task_card_path": "docs/collaboration/tasks/MUS-035-R2-B.md",
+  "reviewed_sha": "de255c7724926c6f823abceecf0b9a487a467d6d",
+  "comparison_base_sha": "74645de71c173c43811d7d0d98548089a1836491",
+  "review_branch": "review/MUS-035-B-output-permissions",
   "allowed_output_paths": [
-    "docs/reviews/MUS-035-B.md",
+    "docs/reviews/MUS-035-N1-B.md",
     "docs/collaboration/account-b/latest.md"
   ],
   "claim_channel": "collab/account-b latest.md"
