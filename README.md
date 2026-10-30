@@ -42,6 +42,8 @@ MUS-039已完成G1独立来源/描述冻结：20条新录音（16 FMA、4 MusicB
 
 MUS-040第一检查点已完成：接收B035限定批准并修复极端umask输出权限；第二个预注册CLAP权重正常TLS/SHA核验、严格加载通过，旧20首重新处理为933片段/5文本、512维，96相关测试及分脚本排名复算通过。复用旧100开发判断，整曲P@5由原A0.16到B0.20，仅多1个相关位置；片段均0.20，不是独立测试提升或模型切换。新20仍未导入，160项新包/G2/test run均0；040余下要完成真实身份/新test适配与冻结。N1另派准确de255c7增量复核，不外推B批准；见[MUS-040](docs/verification/MUS-040.md)。
 
+MUS-040第二检查点已真实导入新20首：普通账号自有资源60首（开发40/独立测试20），新20全部pending、真实Java身份/Range/完整SHA通过，CLI重跑0新增、42核心文件保持；额外20匿名请求均401。78相关检查通过，G1原件/新描述/141旧标注/双权重与索引保持；新20尚未编码进测试索引，160项包/G2未生成。见[导入验证](docs/verification/MUS-040-phase02.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

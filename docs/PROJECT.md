@@ -203,3 +203,10 @@ B035/rev1准确9797ed4限定批准已核feed/source/claim/六源码并原字节�
 冻结B排名后，原E1/E5 CLI重建旧51/67包并只关联原100开发判断：A历史整曲4/25与片段5/25，B新整曲5/25与片段5/25，macro P@5分别0.16/0.20与0.20/0.20。只多一个原声位置，非显著性/held-out改进或speech因果对照；不按开发胜负删预注册配置、训练、调阈值或改新描述。
 
 745保护文件744保持，唯一计划变化是接收035后更新A dispatch到N1；原卡/039冻结文本与素材/141判断/旧run/54cache/原备份及服务保持。新20仍source-only、数据库仍40首；040还缺普通owner HTTP身份/权限Range/SHA映射、新test runner/词面配置/包格式与G2，160项包/test run/新判断均0，qrels至G5规则不变。详见[MUS-040](verification/MUS-040.md)。
+
+
+### MUS-040第二检查点：真实身份与媒体绑定完成
+
+源码2b2d287真实普通owner HTTP新增20个上传/metadata，账号自有资源60（开发40、新测试20）、新20 pending，9保守群/20work。原名和作者串不截短，旧40前后身份/metadata/媒体核验；原catalog/G1原件不写。独立新20 catalog及40音频证明副本，完整实际EOF/PCM复核后才进入HTTP，绑定SHA56b74cd1…、catalog ea7eb53a…。真实CLI同目录再执行0新增/42核心字节保持；另脚本直接关联G1/catalog/HTTP，60身份集合/20文件ID与Range/full SHA、20匿名401通过，非独立人员或B。
+
+78相关合成检查（原53/新25）通过，838保护原件和54cache保持；原版/端口/模型/UI不改，唯一数据库写入是普通owner授权的新20 pending资源。新20未参与模型编码、160包/G2/标签仍0，仍需固定五配置runner/呈现/新标注schema与最小页面适配。N1 B卡原样assigned，不外推035批准；证据见[MUS-040第二检查点](verification/MUS-040-phase02.md)。

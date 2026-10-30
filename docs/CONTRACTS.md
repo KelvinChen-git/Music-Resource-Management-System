@@ -389,7 +389,7 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 新`import_holdout_music.py`只使用原普通owner经现有HTTP登录/profile/上传/metadata/Range/完整媒体SHA；不注册、改权限、自动审核、SQL或迁移。先完整验证原40身份/音频/证明与HTTP媒体，再导入新20，结束再核原40。新曲名/完整作者串原样、现有100/50长度边界，album为固定`SONORA independent test <source_dataset前16hex>`；不因元数据长度改素材/截字。新上传与metadata均pending，单独记录真实Java music/file ID，不改已有40 catalog。
 - 新私有目录独占锁、原子checkpoint可恢复已提交上传或metadata但响应丢失；绑定/source/helper SHA、owner/slot固定，拒绝未知/篡改ledger、身份交叉/重复、错误旧资源、输出覆盖/路径/硬链/symlink。新20音频/证明独立复制，不复制旧40；全部新目录0700/文件0600且极端umask下明确设置。完成后同目录重试只验证/不重复创建，目录已有非本工具内容则拒绝；错误原件/日志保留，不按时间删除他人锁。
 - 导入前按G1同版本65536 actual EOF/PCM完整复核新20，NUMBA仅本检查点私有目录；源码/绑定/新旧原件前后SHA保持。输出独立`sonora-holdout-import-catalog-v1`，split=`independent_test_imported_assets`，仅新20+owner、旧40 catalog SHA/源binding/source_dataset、importer/helper SHA及真实身份/原始完整元数据/Range/full验证；旧catalog和G1原件不写。后续runner通过同只读适配器校验私有catalog/原源/独立副本，按数值Java ID返回新20。
-- 本检查点不生成160项包、G2或test排名/标签；下一步在此身份映射上建立五配置runner、固定呈现和独立标注契约/最小页面支持。历史141判断/开发与预检run/双权重/cache/原版及main保持。新资源导入是已授权增量，数据库从40到60须以真实运行结果为准，不能把源码完成写成已导入。
+- 本检查点不生成160项包、G2或test排名/标签；下一步在此身份映射上建立五配置runner、固定呈现和独立标注契约/最小页面支持。历史141判断/开发与预检run/双权重/cache/原版及main保持。新资源导入是已授权增量，该普通账号自有资源从40到60须以真实运行结果为准，不能把源码完成写成已导入。
 
 ## F. 契约变更
 

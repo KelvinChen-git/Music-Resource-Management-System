@@ -132,3 +132,10 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search ../Music-Resource-Man
 ```
 
 本次B真实严格加载512维、旧20/933片段/5文字通过；原100开发判断整曲A0.16/B0.20、片段均0.20，A为旧022排名、B为新预检，非test/模型升级。原research_probe只补3行chmod/fchmod与两回归修N1，数值/模型不改。040余下新20身份导入、test资产/五配置runner/包schema/G2尚未完成，当前160新包/判断/test run仍0；035 B批准不外推本轮。
+
+
+## 新20身份导入（MUS-040第二检查点）
+
+根目录scripts/holdout_assets.py以显式binding SHA重建G1全框/审查/原20来源与old40排除、原件/proof/实际时间，另验证新私有20 catalog/真实Java身份/独立音频证明副本。scripts/import_holdout_music.py只经现有普通owner HTTP接口导入，旧40前后核验、原catalog不写，锁和原子ledger支持响应丢失恢复，错误身份/变更/路径与重复保护保留。真实命令及三份pins见[MUS-040第二检查点](../../docs/verification/MUS-040-phase02.md)。
+
+已新增20 pending，账号自有60曲（开发40/新测试20），实际EOF/PCM/Range/full SHA过；CLI重复0创建、42核心文件不变，额外20匿名401。78合成检查通过（source26+research-import27+asset10+holdout-import15）：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 -m unittest test_holdout_music test_research_import test_holdout_assets test_holdout_import -v`。介质/HTTP替身与真实本机证据区分。新20未建测试索引，160新包/标签/G2仍待实现，不将60资源当60曲模型run。

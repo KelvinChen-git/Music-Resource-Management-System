@@ -1,0 +1,195 @@
+{
+  "task_id": "MUS-040",
+  "checkpoint": "02_imported_identity_mapping_complete_task_in_progress",
+  "source_baseline_sha": "48eeeca6c3891d2930f0423d80f6526387e5dc5e",
+  "actual_import_source_sha": "2b2d28796bcd8c74aa96f45f9f38bc602d309220",
+  "branch": "codex/MUS-040-independent-runner-preflight",
+  "checked_on": "2026-10-29 America/Chicago",
+  "source_binding_sha256": "56b74cd137ac0ae4442cf7c13a8e2c2bd9ceda0429cf7e7cfdc84cafaa1c5561",
+  "import_catalog_sha256": "ea7eb53a6c3c29d9d5d052b2f786c794550cd332cf60162e45b722c1387766f8",
+  "source_dataset_sha256": "2172565fca070583b599a8a445bb4fa779bac982f4075d59e4eccf73be830551",
+  "actual_import": {
+    "exit_code": 0,
+    "source_sha": "2b2d28796bcd8c74aa96f45f9f38bc602d309220",
+    "seconds": 12.954736458021216,
+    "result": {
+      "status": "imported_and_verified_independent20",
+      "new_tracks": 20,
+      "old_tracks_verified_before_and_after": 40,
+      "new_range_and_full_SHA_verified": 20,
+      "created_uploads": 20,
+      "created_metadata": 20,
+      "catalog_sha256": "ea7eb53a6c3c29d9d5d052b2f786c794550cd332cf60162e45b722c1387766f8",
+      "source_dataset_sha256": "2172565fca070583b599a8a445bb4fa779bac982f4075d59e4eccf73be830551",
+      "pending_tracks": 20,
+      "judgments": 0,
+      "vectors_built": 0
+    },
+    "error": null
+  },
+  "actual_CLI_retry": {
+    "status": "passed_actual_CLI_idempotent_reverification",
+    "exit_code": 0,
+    "seconds": 9.66037066699937,
+    "result": {
+      "status": "imported_and_verified_independent20",
+      "new_tracks": 20,
+      "old_tracks_verified_before_and_after": 40,
+      "new_range_and_full_SHA_verified": 20,
+      "created_uploads": 0,
+      "created_metadata": 0,
+      "catalog_sha256": "ea7eb53a6c3c29d9d5d052b2f786c794550cd332cf60162e45b722c1387766f8",
+      "source_dataset_sha256": "2172565fca070583b599a8a445bb4fa779bac982f4075d59e4eccf73be830551",
+      "pending_tracks": 20,
+      "judgments": 0,
+      "vectors_built": 0
+    },
+    "unchanged_core_files": 42
+  },
+  "separate_HTTP_check": {
+    "status": "passed_separate_source_to_HTTP_identity_media_and_anonymous_check",
+    "operator": "A_same_session_not_B_or_independent_person",
+    "owner_role": "USER",
+    "owner_total_resources": 60,
+    "old40_and_new20_ID_sets_disjoint": true,
+    "new_pending_resources": 20,
+    "new_file_ID_and_source_SHA_bindings_checked": 20,
+    "new_Range206_and_full200_SHA_checks": 20,
+    "anonymous401_denials": 20,
+    "catalog_and_G1_bytes_unchanged": true,
+    "other_real_user_permission_matrix_tested": false
+  },
+  "native_synthetic_tests": {
+    "status": "passed",
+    "count": 78,
+    "seconds": 14.841,
+    "breakdown": {
+      "existing_source26_and_import27": 53,
+      "new_assets10_and_import15": 25
+    },
+    "initial23_subset_not_added": true
+  },
+  "preservation": {
+    "status": "passed",
+    "checked_at_utc": "2026-10-30T02:13:45.179617+00:00",
+    "protected_files": 838,
+    "changed_files": [],
+    "shared_cache_regular_files": 54,
+    "shared_cache_set_and_hashes_unchanged": true,
+    "backup_clean": true,
+    "backup_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "original_listener_pids": {
+      "8080": [
+        "96842"
+      ],
+      "5175": [
+        "4143"
+      ]
+    },
+    "new_private_modes": "0700/0600",
+    "database_write_scope": "only20_new_ordinary_owner_uploads_and_metadata;old40 verified before/after"
+  },
+  "actual_music": {
+    "ordinary_owner_resource_count": 60,
+    "development_tracks": 40,
+    "independent_imported_tracks": 20,
+    "independent_creator_groups": 9,
+    "independent_queries_frozen": 8,
+    "new_annotation_packages": 0,
+    "new_test_judgments": 0,
+    "new_test_model_runs": 0,
+    "old_judgments_retained": 141,
+    "new_index_vectors": 0
+  },
+  "collaboration": {
+    "start_sync_utc": "2026-10-30T01:39:22Z",
+    "checkpoint_sync_utc": "2026-10-30T02:12:49Z",
+    "both_feeds": "fetched",
+    "A_feed_before_delivery": "95ce190e2958993ce9945c3176894a712be7d1e1",
+    "ack_peer_feed_sha": "610c03e17989e934f8f35ec79e6b6063aeea7439",
+    "peer_source_sha": "0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2",
+    "B035_R2_card_dispatch_unchanged": true,
+    "B035_R2_status": "assigned_not_claimed"
+  },
+  "preparation_failures": [
+    "First old40 binding check rejected equivalent HTTP/HTTPS CC BY URLs; fixed by reusing existing strict canonicalization, originals untouched.",
+    "Initial23 new tests had one metadata-response-loss fixture failure because the prior subcase had already created all resources; fixed independent fake backend per subcase, no real HTTP writes.",
+    "First separate HTTP audit requested pageSize100; running service returned20 then empty at offset100. Repeated using existing UI pageSize20; passed all60. No application pagination changes."
+  ],
+  "limits": [
+    "Only ordinary-owner and anonymous real HTTP access checked; other actual users not tested.",
+    "G1 source hashes and metadata/work review unchanged; no exhaustive alias or acoustic near-duplicate/pretraining guarantee.",
+    "Current music index remains old40; no new test model embeddings/rankings/labels, G2 or160 package yet.",
+    "No Java/Vue/API/schema/dependency/model changes or main merge; backend existing local upload/database additions only new20."
+  ],
+  "private_evidence": {
+    "inputs-before.json": {
+      "bytes": 117686,
+      "sha256": "e8563c086e92dba1415e69286bb9da16c0ebf2c57cad50bcb399f6cd51f2b926"
+    },
+    "binding.json": {
+      "bytes": 1229,
+      "sha256": "56b74cd137ac0ae4442cf7c13a8e2c2bd9ceda0429cf7e7cfdc84cafaa1c5561"
+    },
+    "binding-check-v2.json": {
+      "bytes": 267,
+      "sha256": "86868c6237ccb7f7abca7c130c8342e48b82ac5f6713a44a7170c44b1691c56a"
+    },
+    "binding-preparation-note.json": {
+      "bytes": 398,
+      "sha256": "e8efe3003717e414791c5229af6bee6b329c8bf41590fdcc1ed0f0699ec16284"
+    },
+    "local-api-preflight.json": {
+      "bytes": 586,
+      "sha256": "08e099352e75369464ad0611b01543b44b5d20b05ab713aab287bc45d96e0556"
+    },
+    "tests-initial.log": {
+      "bytes": 4524,
+      "sha256": "aacf0e6d97e43a8443ba651a786ac42effc525a30eb316136110a57ce3235740"
+    },
+    "tests-final.log": {
+      "bytes": 12761,
+      "sha256": "bd22822e8edece1574fd22cb54ee79fe6eceddda889f8993a0a924a6c5844817"
+    },
+    "import-run-01.json": {
+      "bytes": 627,
+      "sha256": "32aca34901e53a75cfde5469607b4b6104b99c4ad0ed4c71b711094f94f236c1"
+    },
+    "import-recheck.json": {
+      "bytes": 1052,
+      "sha256": "eba42528b0a33ebd1ee40d0c7db9b938f52a007b8801076e1504e1a4f43a65a3"
+    },
+    "HTTP-audit-v2.json": {
+      "bytes": 497,
+      "sha256": "329d4811632fbd98193994178182bd059cebddfb67545f23ee709312603fb956"
+    },
+    "preservation-check.json": {
+      "bytes": 542,
+      "sha256": "bd1f905c20fada145cfd950d83fac49c7ec4748b7ff455afd3aad7c62d6ece3f"
+    },
+    "import/catalog.json": {
+      "bytes": 52976,
+      "sha256": "ea7eb53a6c3c29d9d5d052b2f786c794550cd332cf60162e45b722c1387766f8"
+    },
+    "import/import-ledger.json": {
+      "bytes": 6768,
+      "sha256": "e8a6276f18411147e2eb6a581c2535f94985311fa9f0c0cad75630914aea184f"
+    },
+    "import-01.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "import-recheck.stdout.log": {
+      "bytes": 457,
+      "sha256": "820628aa6b218967ac35aa35c3f88137ad428016a162531c3fde780dddf3aea5"
+    },
+    "audit-HTTP.py": {
+      "bytes": 4022,
+      "sha256": "009c8868564b8b2f50fc9500f8f9caed8a64c583ba4fa9c19385fbb886fe88c0"
+    },
+    "audit-HTTP-v2.py": {
+      "bytes": 4024,
+      "sha256": "18d9e5120b39ec8a37e81816f99a3d6d20127d6fa51251d6b762acba359f162b"
+    }
+  }
+}
