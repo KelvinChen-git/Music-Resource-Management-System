@@ -1,5 +1,31 @@
 # 账号 A 最新交接
 
+## 当前：MUS-040 G2/G3/G4完成，四批160项可标注，G5等用户
+
+A；2026-10-29 America/Chicago；branch codex/MUS-040-independent-runner-preflight；本段base5023721d411b3ea350df267962cf0c331005145e；准确干净实现/真实运行源码1671b134ccec92819a8c041373b6330630800812。MUS-040 review（工具待独立审核），不是正式质量验收。最终文档SHA见handoff。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；02:31:25Z/02:52:27Z双方fetched。035-R2/rev1准确de255c7/base74645de原卡/dispatch保持assigned未认领，不替换在途卡、不外推035批准或冒充B。
+
+E16先冻，新增三模块holdout_contract/runner/review及27合成检查、机器参数JSON；UI仅新schema/中文线索与0–3规则/批次保管说明/完成回执，旧四schema/草稿/评分/布局/播放器保持。已导入新20普通owner身份与G1原件只读，不改源/描述/采样。
+
+G2真实exit0 24.550秒，两固定checkpoint weights_only/mmap/CPU/strict无missing/unexpected，用固定合成音频/旧通用文本各1×512/finite/unit；新8query仅tokenizer19–36≤77。447输入/源码/5141已装代码配置/54离线cache/双权重/五配置先绑定，收据1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83保存/hash后才G3/G4，冻结时newtest音频编码/文本编码/qrels均0。
+
+G3真实exit0 5.752秒，四批2描述×全20首=40/总160；固定hash呈现、全null/无模型提示，中文可听线索/逐query评分规则与可能无匹配提示，批指纹隔离；共同test dataset93423365…。G4真实exit0 154.978秒（非P95），A/B分别完整EOF/PCM与G1相同，各755片段/20整曲/8英文512向量，加title-only固定logTF/smoothedIDF/20标题df/余弦，共40全20排名与各5文件hash保存；all-runs commitment d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1。保留初roberta pooler/meshgrid警告，CLAP后续严格覆盖，无训练/依赖修改。未读取真实qrels/产生质量成绩/模型选择。
+
+A分脚本不用生产helper，只NumPy/math复核755窗口/双均值（各差1.49e-8）、32声学排名及代表片段/8词面排名，冻结447输入/源码/全部artifact hash通过；同操作者非B。G3/G4真实重复输出均exit1/FileExistsError、模型前拒绝，原5/10文件保持。完整238音频Python（211旧+27新）、78来源导入、84 Node（77旧+7新）及build通过；初24/12个fixture准备错误已修复、原日志保留，不累计子集或重复检查。
+
+现有8080/5175真实页面四包逐一0/40导入，三中文线索/0–3规则/07/08无匹配提醒/回执禁用、全部20首完整JWT/bytes/SHA后播放通过；底部曲名/进度约27s/暂停/重新获取并续播通过。临时代号只检查评分启用后清空，真实打分0。完全不同合成query/身份/content指纹包的40全合法实际导出JSON/四字段回执，payload SHA等于确切导出字节，无个人/分布/正文路径；不写真实假分或草稿。最后第1批0/40、代号空、停播供用户开始；667px无溢出/console error，截图私有。
+
+952旧文件与54cache集合/hash/原141/G1/query/phase02/旧run/双权重保持；原版干净f3b0da1、8080 PID96842/5175 PID4143保持。新增ignore.local/a/mus040/phase03、0700/0600；无Java/API/SQL迁移/新上传/metadata写入/锁/依赖/模型切换/服务重启/UI重做/main合并。未跑无关Maven；真实owner/ID/逐条素材/判断/音频/权重/向量不入Git，仅方法/聚合/hash。
+
+下一步用户完成四批160项，完整判断JSON先自存，仅交四字段完成回执；当前真人新判断/收到回执/打开qrels均0。五runs已固化，仍待160合法齐全才G5一次接收/打开完整导出、按038固定P@5/nDCG/成对差值比较。不将新排名准备当独立质量/定位/显著性/P95/线上检索或MUS-002/discovery-v0完成。完整方法/命令/聚合/证据SHA见verification/MUS-040-phase03.md/results.json。
+
+提交后publish/sync回读；远端可读不等于B认领/批准或main合并，无后台轮询。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-040第二检查点新20导入完成，继续新test格式/G2
 
 A；2026-10-29 America/Chicago；branch codex/MUS-040-independent-runner-preflight；本段base48eeeca6c3891d2930f0423d80f6526387e5dc5e；实际源码2b2d28796bcd8c74aa96f45f9f38bc602d309220。040整体in_progress，最终文档SHA见handoff。
