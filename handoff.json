@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-29T22:12:38.535988+00:00",
-  "source_branch": "codex/MUS-039-independent-corpus-freeze",
-  "source_sha": "74645de71c173c43811d7d0d98548089a1836491",
+  "published_at": "2026-10-30T01:37:53.971075+00:00",
+  "source_branch": "codex/MUS-040-independent-runner-preflight",
+  "source_sha": "48eeeca6c3891d2930f0423d80f6526387e5dc5e",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "53ea52910c46879d4ba4fc96ae363c2ba77e33108ed451cd5ede025aec65733a"
+  "report_sha256": "945968fe67a631414947b7e6177227a5e027466ae86903164436d7fbed995dd6"
 }
