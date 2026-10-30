@@ -3,6 +3,7 @@ from contextlib import redirect_stdout
 from copy import deepcopy
 import io
 import json
+import os
 from pathlib import Path
 from types import SimpleNamespace
 import tempfile
@@ -147,6 +148,36 @@ class ResearchProbeTest(unittest.TestCase):
         self.assertTrue((self.output / 'failure.json').is_file())
         self.assertFalse((self.output / 'report.json').exists())
 
+    def test_restrictive_umask_outputs_are_private_and_readable(self):
+        prior = os.umask(0o777)
+        try:
+            target = driver.private_output(self.output)
+            driver.write_json(target / 'readable.json', {'synthetic': True})
+            driver.write_vectors(target / 'readable.npz', values=np.eye(2, dtype=np.float32))
+        finally:
+            os.umask(prior)
+        self.assertEqual(target.stat().st_mode & 0o777, 0o700)
+        self.assertEqual(json.loads((target / 'readable.json').read_text()), {'synthetic': True})
+        with np.load(target / 'readable.npz', allow_pickle=False) as stored:
+            np.testing.assert_array_equal(stored['values'], np.eye(2, dtype=np.float32))
+        self.assertTrue(all(p.stat().st_mode & 0o777 == 0o600 for p in target.iterdir()))
+        for name, writer in [('readable.json', lambda p: driver.write_json(p, {})),
+                             ('readable.npz', lambda p: driver.write_vectors(p, values=np.zeros(1)))]:
+            before = (target / name).read_bytes()
+            with self.assertRaises(FileExistsError):
+                writer(target / name)
+            self.assertEqual((target / name).read_bytes(), before)
+
+    def test_output_writers_do_not_follow_symlinks(self):
+        original = self.private / 'preserved'
+        original.write_bytes(b'preserve original synthetic bytes')
+        for name, writer in [('linked.json', lambda p: driver.write_json(p, {})),
+                             ('linked.npz', lambda p: driver.write_vectors(p, values=np.zeros(1)))]:
+            link = self.private / name
+            link.symlink_to(original)
+            with self.assertRaises(FileExistsError):
+                writer(link)
+            self.assertEqual(original.read_bytes(), b'preserve original synthetic bytes')
     def test_full_fresh_encoding_and_text_only_artifacts(self):
         report = self.run_probe()
         self.assertEqual(report['schema'], 'sonora-research-probe-v1')

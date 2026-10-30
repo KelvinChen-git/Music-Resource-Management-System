@@ -51,9 +51,9 @@
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
 | MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
-| MUS-040 独立格式与模型预检 | todo / A（尚未开始） | 依赖038/039；未来独立任务分支 | 先普通owner HTTP导入20源/真实ID与权限Range/SHA映射，立新test包/runner契约；B权重本地SHA/严格加载/512及旧100 dev预检，G2后新包；不升级依赖/重做UI |
+| MUS-040 独立格式与模型预检 | in_progress / A（第一检查点：B接收/N1/安全dev预检） | 依赖038/039；未来独立任务分支 | 先普通owner HTTP导入20源/真实ID与权限Range/SHA映射，立新test包/runner契约；B权重本地SHA/严格加载/512及旧100 dev预检，G2后新包；不升级依赖/重做UI |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
-| MUS-035-R1-B 两来源离线工具复核 | assigned / B（待主动认领） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
+| MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已由A接收，N1待修） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
@@ -736,3 +736,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 新20仍source-only、无Java ID/owner，未导入数据库/生成160项新包/模型或向量run/读取新标签。旧40已导入/141已判/179未知、四原包/两run/037开发指标保持，页面不会自动看到新20。后续040补普通owner HTTP映射/权限Range/SHA、新test契约/runner和B安全dev预检/G2，再生成新包，qrels仍G5才解封。
 - 307保护文件SHA与54共享cache常规文件集合/hash保持，原备份干净f3b0da1，8080 PID96842/5175 PID4143未重启。首次私有权限终检发现两个新官方快照0644，改mode到0600且字节保持，失败报告保留，重检0700/0600通过。无应用/API/schema/锁/依赖/当前模型/UI/main变化，未重跑无关Maven/build/浏览器/CLAP。
 - 检查点22:12:13Z双方fetched，A860729d/sourcebc653e0，B16b06c8/source4f57837；ack B，035/rev1准确9797/baseb42b767原卡/dispatch字节保持assigned未认领。同会话复核不算B批准，不外推033。G1完成不等于工具独立验收、预训练未见、声学无近重复或正式模型质量；详见verification/MUS-039.md/results.json。
+
+
+## MUS-040范围与占用（2026-10-29）
+
+- A集成，branch codex/MUS-040-independent-runner-preflight/base74645de71c173c43811d7d0d98548089a1836491。先E14冻结第一检查点：B035原字节接收/非阻塞N1权限修复、新固定双checkpoint安全加载器和旧20×五query开发预检；允许research_probe/test_research_probe的最小权限修复，新checkpoint_model/preflight及对应测试，必要契约/台账/README/模块README/A latest、B原报告/acceptance、B下一有界卡及verification/MUS-040*。本轮不启动子代理，所有修改由A串行完成，不伪装B。
+- 新私有目录仅ignore.local/a/mus040，0700/0600；745旧文件建立保护基线，原039 source/query/两run/141判断/原A模型/cache/备份保持。允许有界改动旧driver与其测试、B035 dispatch接收/转新卡须逐项列明，不把预期修改记为全部保持。
+- 开始sync2026-10-30T01:09:09Z双方fetched：A9aa68ee/source74645de，B610c03e/source0e8de159。已核B035/rev1准确9797/baseb42b767、assignment74645de/ack9aa68ee及claim d674271/a2f53b2；交付仅两允许文件/六源码字节同reviewed，原报告d5fc9e15…归档。批准仅合成/静态，B原生45入口缺依赖blocked；36原生/37显式shim/49独立观察分开，不外推真实加载/EOF或040。
+- N1 P3修复前仍待处理。039已冻结新20/8query不改，040第一检查点只用原20/原五query及旧100开发判断；本轮新B下载/严格加载不切换原应用模型，不升级依赖。新20普通owner导入/新test适配/G2/160包/模型test/G5尚未实现，不提前收可读qrels。

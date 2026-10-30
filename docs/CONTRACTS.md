@@ -374,6 +374,15 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - MusicBox共享录制项目/创作者池保守合为一个creator_group、上限仍4，不将45署名当45独立群；规范原作者/performer与summary/credit均保留，原40已知身份/作品重叠或身份/作品未决隔离。已有FMA132审查决定原字节复用，不为数量放宽Lucas/Keith等隔离。全221按同seed/provider/source_id SHA顺序，work版本只留首个合格，全部provider用共同actualEOF/48k DSP和原技术边界。
 - 新collector仅在完整重建两官方框/rights/模板、旧种子与绑定group evidence后支持v2；同时保留v1验证，不以新代码改旧记录。构建前后重核来源/collector/DSP与全部已保存音频/证明。原v1源码提交保留在历史，v2源码清洁提交后才真实运行。仍需20/≥5群才能输出成功；本修订不意味着20已取得或G1已通过，040新包/runner/模型预检未执行。
 
+
+### E14. MUS-040：独立格式/运行准备与安全开发预检（第一检查点）
+
+- 继承039 v2协议/20来源/8描述/所有G2–G5规则，原冻结文件不写。先按feed准确接收B035/rev1限定批准；N1仅修research_probe独占输出mkdir后chmod0700、JSON/NPZ fd上fchmod0600，保留O_EXCL/O_NOFOLLOW/重复输出拒绝；不改旧模型、排序、历史run或DSP。
+- 新`checkpoint_model.py`仅接受协议中A/music与B/music_speech_audioset两种固定filename/bytes/SHA，不接受任意checkpoint metadata。构造前及反序列化前流式验SHA/大小、拒绝symlink/hardlink；仅复用固定offline roberta构造，无网络回退。torch.load必须weights_only=True/mmap=True/map_location=cpu，strict=True，仅可移除已注册非学习position_ids；错误不得strict=False回退。当前线上/旧工具模型常量不改，新B仅存在本轮私有models目录。
+- 新`checkpoint_preflight.py`第一阶段只支持旧20 Jamendo开发catalog与原8描述中的exp02/03/04/07/08，显式catalog SHA及固定旧query fixture；拒绝039新素材/query和qrels输入。完整20重新编码、原窗口/DSP/整曲均值/片段最大规则，英文5条、512维/finite/norm与token<=77。输出新私有manifest/segments/vectors/rankings/report，独占0700/0600、已提交干净源码、前后源码/输入/音频/证明/checkpoint/hash核验；失败保留，不复用部分运行。该driver是开发预检，尚不是可运行test适配器或G2收据。
+- 新B权重只从038已固定官方revision下载到ignore.local/a/mus040，保留原TLS错误/不完整文件，不覆盖/替换原共享A权重或cache；依赖/SDK只读复用。正常TLS/准确SHA/严格加载及实际输出通过前不得称B可用。模型下载/构造只在本轮被授权的开发预检，不读取新20音频/query/人评，预检胜负不删任何预注册配置。
+- 原100开发判断可在新预检排名固定后只读关联另存聚合，不改分/不当test成绩。039新20仍source-only；本检查点不生成标注包、不导入数据库、不生成test排名/读test标签。040余下需普通owner HTTP身份/权限Range/SHA映射、新test包/runner/词面控制、G2全部运行配置源码环境冻结，之后才G3四批160项；qrels仍由标注者保管至G5。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。

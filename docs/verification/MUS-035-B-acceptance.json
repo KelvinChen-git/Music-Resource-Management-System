@@ -1,0 +1,48 @@
+{
+  "task_id": "MUS-035-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-29 America/Chicago",
+  "reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
+  "comparison_base_sha": "b42b767afc0bd3ddb76601a436f8073c3d72106c",
+  "assignment_source_sha": "74645de71c173c43811d7d0d98548089a1836491",
+  "b_ack_peer_feed_sha": "9aa68ee154142dcdc8d336130a8498ccc80aa775",
+  "b_feed_sha": "610c03e17989e934f8f35ec79e6b6063aeea7439",
+  "b_source_sha": "0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2",
+  "b_claim_source_sha": "d6742716bf629b75acb8939e90fd3fb0002ee1ee",
+  "b_claim_feed_sha": "a2f53b2ce51ed46a42614fb96808e0d9bdb89b6c",
+  "report_path": "docs/reviews/MUS-035-B.md",
+  "report_sha256": "d5fc9e1536b20eabec923615593105a16f7e68b09f548c4796d688fbf92a4b77",
+  "b_latest_sha256": "2df8a12d5125e06544305a3638234a9892d51e165b04fc84046241ef1261f6e0",
+  "core_source_sha256": {
+    "research_corpus.py": "58219780f73d94914fff4be1d1aaf48e5fdc5a2352fb47dbebe1347ed2794a79",
+    "test_research_corpus.py": "4eb453e633aa9b02041c3a257678e5fd7122eaabc6a982f2c13b7c9671e6e1e3",
+    "research_probe.py": "dc3253913e1f0bbb461aba5190e8c3c7b5f39cb05b9d7ca6d8e0e508bc233750",
+    "test_research_probe.py": "f66695a6e06819b729f5d9d92955895254173e2da1c58e5baa7f779a8cf0d245",
+    "research_evaluate.py": "83a671fbd1995ae13e8e9613dbfcb388f6549015ef5346d474961d286fb7c13e",
+    "test_research_evaluate.py": "c1d2b94e0e6fefcb422c44dfd7693830fc26cd2211947e60a82559b8b2a0645d"
+  },
+  "a_verified": [
+    "feed/source latest equal and hash",
+    "only two allowed B output paths",
+    "claim ancestry",
+    "six core sources match exact reviewed source and pre-fix checkout",
+    "original B report imported byte-for-byte"
+  ],
+  "b_reported": {
+    "native_discovery": "blocked:45tests/24errors missing dependencies;not product failures",
+    "native_available_tests": 36,
+    "explicit_dependency_shim_tests": 37,
+    "independent_assertions_or_observations": 49,
+    "real_Torch_CLAP_or_codec_validation": false,
+    "N1": "P3 nonblocking extreme umask outputs000",
+    "publication": "sequential source then feed;non-atomic"
+  },
+  "limits": [
+    "A did not receive or recompute B private evidence.",
+    "Approval only exact035 synthetic/static scope; no036-040/model quality/real EOF/P95/permission certification.",
+    "N1 remains until A correction and new evidence; same-session work is not B approval."
+  ]
+}

@@ -97,18 +97,21 @@ def private_output(path):
                            capture_output=True).returncode == 0,
             'Output must be ignored by Git')
     output.mkdir(mode=0o700)  # Existing successful, incomplete and failed runs all remain intact.
+    output.chmod(0o700)
     return output
 
 
 def write_json(path, value):
     raw = (json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode()
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    os.fchmod(fd, 0o600)
     with os.fdopen(fd, 'wb') as output:
         output.write(raw)
 
 
 def write_vectors(path, **arrays):
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    os.fchmod(fd, 0o600)
     with os.fdopen(fd, 'wb') as output:
         np.savez(output, **arrays)
 
