@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-31T18:25:46.869336+00:00",
-  "source_branch": "codex/MUS-046-expanded-caption-diagnostic",
-  "source_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
+  "published_at": "2026-10-31T19:02:03.442567+00:00",
+  "source_branch": "codex/MUS-047-device-preflight",
+  "source_sha": "cb77a01262799792a1371f605a452b28205e1093",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "fd67e025f064d8af5134cd31b2624dd724e7625f84338ebba1be1618111d0e26"
+  "report_sha256": "ff8fed4d76816ffefd904579913fbeb15327da2413689eaf61e08b8b216e36c6"
 }
