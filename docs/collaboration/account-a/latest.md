@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## MUS-047开始：接收046限定批准，准备CPU/设备校准
+
+A；2026-10-31 America/Chicago；branch codex/MUS-047-device-preflight，baseaaf5e4bbffa61969b3d7bf993b408acec195a818。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，18:48:07Z双方fetched。
+
+046-R1/rev1/e4e6bfd/basee109b5c approve_scoped已原字节归档与接收JSON，B12原合成+7独立方法passed，真实CLAP/音频/质量未复现；仅准确合成/静态工具批准，不外推045/047/扩训/部署。旧卡关闭转waiting。
+
+用户继续GPU准备，本机torch2.6.0无CUDA但MPS available，尚未实测模型。本阶段E22/config先定3train9窗6原tag文本，CPU参考与显式MPS/CUDA小样本一致性、同步warmup+3次计时，FP32/不fallback/阈值不按结果放宽，设备环境参与独立key；不租卡/上传/下载/训练/改模型/读test。现已实现独立CLI/纯数值策略并通过64相关检查（10新/54旧），待干净提交后CPU参考与MPS实际尝试。原045/046工件/23源码/141+160/三W/缓存/原版/UI/Java/DB/main保持。
+
+## 上一轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-046完成140候选诊断，保留identity；035 N1限定批准接收，新046卡已派发
 
 A；2026-10-31 America/Chicago；branch `codex/MUS-046-expanded-caption-diagnostic`，basee109b5c2ebc0531c059ddca844c63ad1b101ca84，真实运行源码 `e4e6bfdf320a4608953cd653fa60c6398a3ee601`；最终交付SHA见handoff.source_sha。046 review：真实有界诊断完成、工具待独立审核，不是模型质量验收。

@@ -1,0 +1,29 @@
+{
+  "task_id": "MUS-046-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-31 America/Chicago",
+  "reviewed_sha": "e4e6bfdf320a4608953cd653fa60c6398a3ee601",
+  "comparison_base_sha": "e109b5c2ebc0531c059ddca844c63ad1b101ca84",
+  "assignment_source_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
+  "b_feed_sha": "de296c7adbe2a232dc428edf712e91d0017a1c13",
+  "b_source_sha": "f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b",
+  "b_ack_peer_feed_sha": "aa3dfc1c2e6c816a5b355bc9469babe973ce984b",
+  "b_claim_source_sha": "dd3cccbcf8e4c758f5aa05c20451882aa01cf217",
+  "b_claim_feed_sha": "2bcb2c8314d2a97624ecad1030ce7853ce8da353",
+  "report_path": "docs/collaboration/imports/account-b/2026-10-31-MUS-046-review.md",
+  "report_sha256": "4ea8503942be5663e2dbd936d049b7a096e0d6091e83df5f935d4fba7416a9e4",
+  "b_reported": {
+    "native_synthetic_methods_passed": 12,
+    "independent_methods_passed": 7,
+    "private_evidence_sha256": "c2a7c35c5e07e965f5db6cb1326d9162f1e9d6daa74dd3d90f714a5cc5824bbb",
+    "actual_CLAP_codec_or_A_files_reproduced": false,
+    "publication": "sequential_non_atomic"
+  },
+  "limits": [
+    "Exact synthetic metrics and static runner only; not045 approval or real model-quality,scale-up/deployment approval.",
+    "A imported report and verified peer bytes, not B private evidence."
+  ]
+}

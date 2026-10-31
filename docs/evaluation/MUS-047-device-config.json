@@ -1,0 +1,51 @@
+{
+  "schema": "sonora-device-calibration-v1",
+  "task": "MUS-047",
+  "base_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
+  "corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "cache": {
+    "path": ".local/a/mus046/run-01/cache.json",
+    "sha256": "5600bddbf4062939398b0904f6929b02ced7e9e71da216de4043e9875fda49e9"
+  },
+  "original_cache": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "original_freeze": {
+    "path": ".local/a/mus040/phase03/freeze-01/freeze.json",
+    "sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83"
+  },
+  "selection": "first3 train source_track_id ascending;first6 vocabulary tags;no score-based sampling",
+  "audio_tracks": 3,
+  "audio_windows": 9,
+  "text_prompts": 6,
+  "dimension": 512,
+  "view": "first_min120seconds_actual_EOF;first_mid_last10seconds;65536_read48k_mono;original_prepare_window_and_SDK_quantization",
+  "devices": [
+    "cpu",
+    "mps",
+    "cuda:0"
+  ],
+  "dtype": "float32",
+  "autocast": false,
+  "tf32": false,
+  "automatic_device_fallback": false,
+  "batch_audio": 3,
+  "batch_text": 6,
+  "warmup_repeats": 1,
+  "timed_repeats": 3,
+  "atol_vector_maxabs": 0.0001,
+  "atol_cosine_distance": 0.0001,
+  "atol_score_maxabs": 0.0001,
+  "stable_order_score_gap": 0.0002,
+  "rank_rule": "Only reference pairwise candidate order with gap>2*score tolerance must agree;near ties counted separately, never silently passed as exact ranks",
+  "device_identity_in_cache_key": true,
+  "test_inputs": 0,
+  "fit_runs": 0,
+  "downloads": 0,
+  "decision": "calibration_only_no_production_cache_replacement_or_model_selection",
+  "cross_host": "same model/data/source/recipe required,environment/device recorded separately;old CPU cache key never reused as GPU key"
+}

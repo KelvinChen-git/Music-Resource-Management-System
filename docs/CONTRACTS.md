@@ -453,3 +453,14 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - 主报告录音等权已知caption本曲配对MRR（无R5的20池天花板要求），另完整R1/R5/query宏及三窗口；同24描述同时报告原20和扩大140池、四模型，不把未配对当确认负例。bootstrap按20配对录音分组、seed20261031046、2000次报三指标差与区间，仅开发描述性结果。
 - 本次不再按新指标挑选或部署模型、不凭开发改善放大训练，固定保留identity；新评估因已知045结果而设计，不能冒充重新独立盲测/推翻045原门槛。目标是检查扩大池后差异与监督信息：公开仅100训练特征/正tag目标的平均两两余弦、配对caption对原音频及tag均值的聚合余弦；只是几何诊断，不作训练原因的因果证明。
 - B035-R2/rev1真实approve_scoped收到后，仅关闭准确三输出函数/两测试范围N1，原生全driver缺torch仍blocked；不外推为045或046批准。A串行更新STATUS/接收记录/自身feed，B旧报告按原字节归档；原模型/全部旧评分/音频/缓存/原版/UI/DB/main保持。
+
+
+### E22. MUS-047：冻结模型的小样本设备校准
+
+- 用户要求继续GPU准备；独立codex/MUS-047-device-preflight、baseaaf5e4b。本阶段不训练/扩容/租卡/上传云端，不改旧23冻结源码、046 runner、模型版本、API或生产缓存；接收B046准确限定工具批准，质量结论保持原边界。
+- docs/evaluation/MUS-047-device-config.json先冻结：仅既有100train按源ID升序前3、首120秒/原65536 EOF与48k mono/3个10秒首中尾，共9窗；前6原183tag模板，非人写caption，保留测试输入0。先CPU准备独占校准包（预处理波形/原提示/CPU参考向量及模型/数据/源码/SHA），3轨3窗与046缓存/文字与045prototype作控制，不根据设备差异改样本或阈值。
+- 新设备runner显式cpu/mps/cuda:0，不auto、不静默回退CPU/MPS fallback；未安装torch/无可用设备写blocked，不算passed。复用原严格CPU checkpoint loader核sha/weights_only/mmap/strict，之后显式移动全部模型参数到目标设备并核验，FP32/inference_mode/无autocast/无TF32；MPS是本机实验路线，不冒充CUDA验证，CUDA需另机实际运行。
+- 缓存key含设备/环境/源码/模型/输入/配方。跨主机允许环境不同但必须单独完整记录包版本/SDK代码与离线cache hash；模型/配方/校准输入及算法源码须同，旧CPU缓存不得伪作GPU输出。原参考路径不要求远端存在，运行显式本机checkpoint和已传入校准目录；本阶段不传输权重/私有数据或配置云端。
+- 验证仅数值/排序一致性：向量最大绝对差<=1e-4、余弦距离<=1e-4、整曲/三窗得分差<=1e-4；参考分差>2e-4的候选两两次序必须保持，近并列单独计数，不称全rank字节相同。拒绝非finite/shape或单位范数异常/数据与源码/权重SHA改变。阈值预先固定，未通过保留证据、不放宽后重试选优。
+- 每设备同batch（audio3/text6）、一次warmup后3次同步计时，分加载/纯SDK编码（含其CPU前处理与传输）、不含解码/下载/训练；CUDA或MPS计时前后同步，记录CUDA峰值allocated、MPS观测值，按CPU实测计算仅本小批次速度比。不叫P95/服务性能或训练加速；没有真实GPU通过就不标GPU可用或速度收益。
+- 输出独占ignore.local/a/mus047，目录0700/文件0600；先干净提交与freeze再模型操作，输入/源码/权重/环境前后核验，重复目录在模型前拒绝；原音频/141+160/三W/全部旧run/原版/UI/DB/main只读。本地可用MPS则尝试一次，不支持算子或数值失败原样记录，不fallback，后续CUDA单独验证。B工具批准与设备实测区分。

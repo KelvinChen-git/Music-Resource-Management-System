@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-31 America/Chicago）：codex/MUS-046-expanded-caption-diagnostic，从已发布e109b5c开始，真实源码e4e6bfd。统一140候选首120秒、120重编码/20开发与24文本复用、0新fit/下载/test；两池两模式四模型诊断完成，任务review（工具待B限定审核）。140池原模型整曲R1/R5/MRR=.31/.49/.4208，原alpha0.1=.36/.60/.4658；MRR差+.0450区间[-.0490,+.1604]含零，保持identity，不据此扩训/部署，045原门槛与结果不改。
+- 当前工作（2026-10-31 America/Chicago）：codex/MUS-047-device-preflight，从已发布aaf5e4b开始。独立CPU参考与显式MPS/CUDA校准runner/纯数值策略已实现，64相关检查passed（10新/54旧），真实CPU/设备运行待干净提交后执行；固定3train/9窗/6原tag、FP32/no fallback/预注册容差、独立设备cache key，不扩大训练/租卡/上传/下载或更换主模型。
 
-- 当前验证与协作：54相关检查passed（12新/42既有），独立rank/两池两模式指标及配对区间/训练几何复算通过；原20控制复现、重复CLI零额外模型/编码/fit，全部045原件/旧评分/权重/缓存/原版保持。旧952中951保持，唯一A-owned B任务入口因准确035 N1限定批准而关闭/改派046；初保护审计与临时日志mode错误证据保留，修正审计预期与日志创建权限后通过，未改产品结果。B feed4b653974/source5274de0已ack（18:14:35Z/18:20:36Z）；035-R2/rev1 done/N1关闭，B9边界检查passed、完整driver缺torch/31方法0仍blocked，不外推045/046批准。新046-R1/rev1准确审核e4e6bfd已assigned，待B主动认领；保留两组test未取文本/音频/评分，原版/UI/Java/DB/main保持。
+- 当前协作与设备：18:48:07Z双方fetched，B feedde296c7/sourcef0d3ef2的046-R1/rev1/e4e6bfd准确限定approve_scoped已原字节接收，B12原合成/7独立passed，真实CLAP或质量未复现；原卡关闭转waiting，不外推045/047。当前torch2.6.0无CUDA（buildNone/count0），MPS available=true但未校准；设备不可用必须blocked不fallback。原045/046全部工件、23源码/141+160/权重/缓存/原版/UI/Java/DB/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,11 +58,12 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-047 设备校准准备 | in_progress / A（实现/64检查通过，真实运行待做） | codex/MUS-047-device-preflight / aaf5e4b，依赖046原数据和B限定审核接收 | 固定3train9窗6tag CPU参考/显式MPS-CUDA，无fallback/新设备key/同步计时，不训练/下载/开test或付费资源 |
 | MUS-046 扩大候选池诊断 | review / A（真实诊断完成，工具独立审核待做） | codex/MUS-046-expanded-caption-diagnostic / e109b5c，依赖045 | 140首同首120秒/三窗、24描述/三旧W；两池两模式诊断/54检查/独立复算/原20复现，扩大池有正开发信号但主MRR区间含零，保留identity；无新fit/下载/test |
 | MUS-045 小批真实语料与描述开发比较 | review / A（140真实/三候选已完成，保留identity） | codex/MUS-045-mtg-corpus-acquisition / 46b52db；采集be880da/比较95360d8 | 100train/20tagval/20captiondev、24描述；42检查/独立复算/恢复通过；整曲R1无提升、R5天花板，不千首扩训/不开保留test；工具独立审核未完成 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
-| MUS-046-R1-B 扩大池工具复核 | assigned / B（待主动认领） | review/MUS-046-B-expanded-caption / e4e6bfd，对比e109b5c | 新指标/runner/12合成检查及E21/config的限定审核；仅B报告与own latest，不访问A私有音频/模型或称质量验收 |
+| MUS-046-R1-B 扩大池工具复核 | done / B（approve_scoped已接收） | review/MUS-046-B-expanded-caption / e4e6bfd，对比e109b5c | 新指标/runner/12合成检查及E21/config的限定审核；仅B报告与own latest，不访问A私有音频/模型或称质量验收 |
 | MUS-035-R2-B 输出权限N1增量 | done / B（approve_scoped已接收；N1关闭） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
@@ -930,3 +931,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 140池整曲R1/R5/MRR：identity .31/.49/.420808，alpha0.1 .36/.60/.465839，alpha1 .37/.49/.448409，alpha5 .31/.49/.420074；alpha0.1主MRR差+.045030，录音bootstrap95%[-.049046,+.160356]含零、胜8/平7/负5，R5差+.11亦含零。原池天花板解除，出现正开发信号但非独立泛化验收，继续identity，不按本诊断选模型/千首扩训/部署或改045原门槛。训练tag目标平均两两余弦.7330比原音频.3993更集中，几何聚合仅诊断非因果。
 - 54检查passed（12新/42旧）；同操作者不导入生产metric独立计数rank、两池四模型两模式/全部配对区间/训练几何一致，非B审核。真实重复输出在模型前FileExistsError、额外模型/编码/fit0且全run SHA保持。保护审计初952含计划B卡差异、第二次自日志临时0644拒绝均原件保留；最终仅承认唯一授权B卡变更、其余951及全045文件集合/hash、043/044/160原件/23源码/54cache/原版f3b0da1保持，日志预建0600后检查通过。全部046目录0700/文件0600，原音频/描述/身份/特征/rank/W不入Git，无应用/依赖/main改动，不重复无关应用测试。
 - B035-R2/rev1/de255c7/base74645de准确approve_scoped按原字节/source5274de0/feed4b653974接收，关闭N1；只覆盖三输出函数/两新方法，9边界检查passed，完整原生31方法缺torch未执行仍blocked。旧B卡由完成转新046-R1/rev1，固定e4e6bfd、basee109b5c，仅新指标/runner/测试及E21/config的合成/静态范围，assigned未认领、不是045/046批准。后续先工具审核再另预注册训练/开发设计，保留test继续不取文本/音频/评分。最终commit后publish/sync回读。
+
+
+### MUS-047范围与占用（2026-10-31）
+
+- A从干净aaf5e4b建codex/MUS-047-device-preflight；18:48:07Z固定feed同步成功，B新de296c7/sourcef0d3ef2交付046-R1/rev1准确e4e6bfd/basee109b5c限定approve_scoped，原字节与报告SHA接收，12原合成/7独立检查为B证据，真实模型/质量未复现。B原卡关闭转waiting，不外推045或047批准。
+- 用户GPU后续准备，本机torch2.6.0/cuda_build=None/cuda_count0，MPS available=true；不称已有CUDA或MPS通过。E22/config先定3train/9窗/6原tag文本、CPU校准与显式MPS/CUDA运行/无fallback/预注册数值与稳定排序阈值、独立设备cache key、同步warmup+3次计时，不租卡/上传/下载/新fit/新包/test输入或换模型。
+- 允许新增device_calibration纯数值/设备策略模块与独立runner/相关合成检查、E22/config/必要README/PROJECT/STATUS/A latest/verification/MUS-047*及B接收/任务入口；私有仅ignore.local/a/mus047。原23/045/046源码、音频/标注/模型/缓存/三W/原版/UI/DB/main只读，实际校准待实现和干净提交。
+
+- 实现检查点：device_calibration纯NumPy数值/排序/设备策略及独立CLI、10新合成+54既有最终64 passed；设备policy检查不冒充真实GPU。下一步提交后一次CPU准备和本机MPS尝试，CUDA无设备明确blocked，不放宽阈值/默转CPU。

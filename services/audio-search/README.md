@@ -216,3 +216,17 @@ python3 scripts/diagnose_expanded_caption.py --help
 ```
 
 真实运行需原音频Python环境、原绝对HF_HOME和config显式SHA；只支持独占ignore.local输出，先完整核旧输入/原G2/checkpoint/环境/源码再模型加载。公开聚合/证据与限制由MUS-046验证报告提供；没有应用/API变化。
+
+
+## 设备校准（MUS-047）
+
+calibrate_encoder_device是独立小样本校准入口，不改旧CPU工具或默认模型。prepare仅从现有train按ID前3选9窗、前6已有tag模板，核原数据/PCM/冻结权重/环境后建立CPU参考包；run显式cpu/mps/cuda:0，FP32、禁止自动设备或MPS CPU fallback，设备环境/源码参与独立cache key。各设备同batch、1次warmup后3次同步计时，并按预注册1e-4向量/余弦/得分容差和稳定分差排序检查。不可用设备返回blocked/exit2，不算passed；MPS不代表CUDA。原始音频与预处理波形/参考向量只在ignore.local，不上传云端或复制生产缓存。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_device_calibration test_expanded_caption test_caption_gate test_tag_adapter test_mtg_dataset test_preflight_mtg
+python3 scripts/calibrate_encoder_device.py inventory
+python3 scripts/calibrate_encoder_device.py prepare --help
+python3 scripts/calibrate_encoder_device.py run --help
+```
+
+实际编码使用原音频Python环境与原绝对HF_HOME。prepare要求047配置显式SHA；run要求校准package显式SHA、本机显式checkpoint路径和独占输出。跨主机只验证同数据/模型/配方/源码、环境单独记录；此处没有远端启动/传输/资源购买或从零训练能力，校准通过也不自动切换旧模型或索引。
