@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-31T04:39:57.547779+00:00",
-  "source_branch": "codex/MUS-042-independent-evaluation",
-  "source_sha": "7b592d200eeafc13d17a57687d12b4541340f05b",
+  "published_at": "2026-10-31T04:59:58.767837+00:00",
+  "source_branch": "codex/MUS-043-mtg-adapter-preflight",
+  "source_sha": "83ebeea8e32d41c9652d4c8dbdf75f24e8024fab",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "60df75971a35bf34a74c0b8443158c7d3e53d533f884d055d28e705e965bbf85"
+  "report_sha256": "c2137ac8850dd2398a591bb851ab63445c748755166fa7b0b94185aacaf20e6e"
 }

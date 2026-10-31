@@ -1,5 +1,43 @@
 # 账号 A 最新交接
 
+## 当前：MUS-043标签adapter与20首真实音频预检完成，训练尚未开始
+
+A；2026-10-30 America/Chicago；branch codex/MUS-043-mtg-adapter-preflight；base7b592d200eeafc13d17a57687d12b4541340f05b，真实工具9a92a8ccf86e9bb756f59778159a9bc646bf5904。043 review（实现/数据链路完成，工具待独立审核），无训练/质量提升/线上导入。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；04:45:00Z/04:56:02Z双方fetched，A c1dd288/source7b592d2。N1准确035-R2/rev1/de255c7/base74645de原卡保持assigned，不扩/替代B任务或冒充批准。
+
+新增E18、固定MTG policy、mtg_dataset与preflight_mtg及21新合成测试；固定revision/split-0/183tag/原60+SDD706/191排除，现成标签只转述不补属性，未出现标签unknown。train32,859中过滤为7,577 metadata候选，固定20 train/20作者/49tag（3 BY/17 BY-SA），保持整体metadata非商业研究条款，不叫商用授权或已取得7,577音频。
+
+官方CDN支持直接逐曲获取；20/20正常TLS/206精确范围/稳定validator/官方低码率SHA首次成功，音频65,431,195bytes、采集器body77,945,120<256MiB，无tar/整库/extractall。20/20 actual EOF/48k mono、132.327–523.183秒、1,004个10s/5s窗口及40首尾padding通过。原60文件字节、原20同decoder PCM、新20间精确重复0；原开发40同规格PCM/声学近重复/完整别名版本排除未完成，不冒充新盲测。
+
+66相关检查passed（21新+45旧），另脚本不导入生产helper复核20来源/tag/模板/源SHA/frames/PCM/1,004窗口均同，非B独立审核。初32768复核buffer使首曲相对声明65536出现1.19e-7浮点差和PCM hash不同，保留原件诊断，复核用原声明参数后20 hash一致，生产音频/算法不改。官方名称文件literal TSV实际56,639记录、56,637合法/2异常隔离；默认CSV quote会吞记录，不猜修，原README56,693口径保留差异。metadata-02补记已用网络预算但20选择与01逐项相同。
+
+实际重复fetch exit1/FileExistsError、网络0、原选择/下载/解码保持。私有.local/a/mus043 0700/0600；952旧文件/447输入/23推理源码/54cache集合/hash、042原评分和结果、原版f3b0da1干净保持。模型加载/训练/新索引/Java导入/Vue/DB/API/锁/依赖/服务/UI/main改动0；无关Maven/build/CLAP不重复，未声称这些本轮passed。当前20在私有研究目录，不是页面曲库由60变80。
+
+交付新工具/配置/相关测试、README/PROJECT/CONTRACTS/STATUS/A latest、verification/MUS-043.md/results.json；原模型/141+160/所有旧run保留。下一步另冻1–2k研究子集规模/预算、作者作品和内容排除/dev与未来test、轻量适配loss与未知负例/硬件预算；本轮没有训练模型。不再追加全交叉大规模人工包，用户四批已完成；已看160对新模型选参只作development回归。
+
+提交后原子publish/sync回读，远端可读不等于B接收/审核或main合并，无后台轮询。
+
+## 上一实现检查点（保留）
+
+# 账号 A 最新交接
+
+## MUS-043实现检查点：固定MTG adapter与20首音频预检工具，真实音频待运行
+
+A；2026-10-30 America/Chicago；branch codex/MUS-043-mtg-adapter-preflight；base7b592d200eeafc13d17a57687d12b4541340f05b。A集成负责人串行写STATUS。ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；2026-10-31T04:45:00Z双方fetched，N1原035-R2/rev1保持assigned，不扩在途审核。
+
+E18先定：只本地非商业研究的固定metadata/已用60与SDD排除/train20有界传输和实际EOF，不训练或改模型/UI/数据库/main。新增mtg_dataset.py、preflight_mtg.py及21合成检查、固定policy/必要README和台账；原冻结源码不改。
+
+官方同revision补获4文件12,512,369bytes；证实官方CDN既有单曲路径206与精确逐曲SHA，不必tar。literal names实际56,639记录，其中2条字段异常隔离；正确解析56,637，CSV默认quote解释会吞并记录，未改原件或猜修。旧60加SDD706/191保留排除，解析到13个已用/规范化作者ID；train32,859筛为7,577 metadata候选，固定20 distinct-artist，49现成tag，17 BY-SA/3 BY，仍受整体metadata非商业条款，不是商用或可用训练总量。
+
+21新增合成检查通过（13 metadata/8 bounded transport）；固定种子/全split/tag一致/old name与source组/SDD/异常行/未知标签、206/长度/validator/官方SHA/总body预算均验证。metadata-01为补充已用网络预算前选择、metadata-02最终policy选择，20条逐项相同；保存两者，不作为调样本。
+
+下一步提交实现后在固定20上正常TLS/每音频20MiB/全轮256MiB body-read预算跑下载与EOF预检，完成聚合与保存检查，再publish/sync最终交付。原041/042/160/141/模型/所有旧排名保持，不索取新人工标注。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-042四批160原评分接收/单次G5/五组比较完成，无训练或切模型
 
 A；2026-10-30 America/Chicago；branch codex/MUS-042-independent-evaluation；本段base865a7ed（实际工具提交，完整SHA见verification/MUS-042-results.json），任务起点3655fb30644968d6213d59540710c744ba4d0700。042接收/小样本比较done，040工具仍待独立审核；不是总体质量或线上检索验收。
