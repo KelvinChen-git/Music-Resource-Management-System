@@ -1,0 +1,55 @@
+{
+  "schema": "sonora-independent-G5-request-eligibility-v1",
+  "checked_at_utc": "2026-10-31T04:24:26.815230+00:00",
+  "status": "ready_to_request_all4_committed_exports_not_opened",
+  "base_source_sha": "72c386e6d392f4fb1e4af3e4492bc32292220b3f",
+  "runner_freeze_sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83",
+  "all_runs_commitment_sha256": "d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1",
+  "test_dataset_sha256": "93423365583e9fcc19c9cde09524bb100ca5c3d5038e530ba2b58ef3d301a684",
+  "checks": {
+    "all4_unique_receipts": true,
+    "labeler_reported_valid_pairs": 160,
+    "frozen_input_files": 447,
+    "frozen_source_files": 23,
+    "both_checkpoints_and_environment_and54_cache_files_unchanged": true,
+    "persisted_rankings": 5,
+    "full_query_rankings": 40,
+    "positions_each": 20,
+    "rankings_and4_vector_artifact_hashes": true,
+    "G2_before_runs_before_qrels": true
+  },
+  "requested_exports": [
+    {
+      "batch": 1,
+      "expected_filename": "sonora-judgments-d6611d9eb416.json",
+      "dataset_sha256": "d6611d9eb4161ceb9557caa5221dcb2723c86ea76fdf95c2b8a085ef9046c35b",
+      "payload_sha256": "7e81c03bc62a8ec75f048c35edbc7ece387a72954b1c2afe47959d88de1ab768"
+    },
+    {
+      "batch": 2,
+      "expected_filename": "sonora-judgments-154038666a26.json",
+      "dataset_sha256": "154038666a2664c07c2e70b4ea52e30ad137dd97fc21eac5612c244f0819a777",
+      "payload_sha256": "31f6972f7ba2da4f4ca0b25a700dba8a41f2feed593630f93c4f0b6b01d7311c"
+    },
+    {
+      "batch": 3,
+      "expected_filename": "sonora-judgments-bf53151d4d42.json",
+      "dataset_sha256": "bf53151d4d420dfe4621ede2ddef5fc40f733ee86336c94131d804f3f5957e07",
+      "payload_sha256": "a3c483d18783f8d2daf75ca1338409a00a7538e81fad4bb412c86b6a48d2fc1b"
+    },
+    {
+      "batch": 4,
+      "expected_filename": "sonora-judgments-bfda48f4eb21.json",
+      "dataset_sha256": "bfda48f4eb212d67ab018eebf84cb093c3044ae0275c8574c7260c5afacf9de5",
+      "payload_sha256": "b1df04545f7fb3cc2ab2b1099fb8925d7a7d899fe7bcd61848ef546de3e640be"
+    }
+  ],
+  "readable_payloads_received": 0,
+  "readable_payloads_opened": 0,
+  "quality_metrics_computed": false,
+  "next": "Ask the user to upload all4 original judgment exports corresponding to receipts. Verify all4 exact-byte hashes before parsing any grades, then validate all160 against reconstructed bases and record once-only opening.",
+  "limits": [
+    "Receipt completion/legality is labeler-side evidence, not independent grade validation or proof of listening.",
+    "Eligibility is not G5 opening, completed evaluation, training or model-quality acceptance."
+  ]
+}
