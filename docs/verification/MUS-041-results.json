@@ -1,0 +1,424 @@
+{
+  "schema": "sonora-labeled-data-research-v1",
+  "status": "feasibility_complete_audio_import_and_training_not_implemented",
+  "recorded_at_utc": "2026-10-31T02:55:52.934026+00:00",
+  "task": "MUS-041",
+  "base_source_sha": "ce1eb6b543880d7ef499428fc1fd0d07b32f68a2",
+  "branch": "codex/MUS-041-labeled-data-feasibility",
+  "decision": "Use existing labeled datasets for future train/dev; preserve current160 for frozen5-model evaluation; default no further full-grid manual-label batches.",
+  "recommended_primary": "MTG-Jamendo split-0 training for noncommercial research, after content/license/isolation validation",
+  "caption_evaluation_candidate": "Song Describer validated subset, after excluding known prior recordings/artists and further alias/work/content checks",
+  "sources": {
+    "MTG-Jamendo": "https://github.com/MTG/mtg-jamendo-dataset",
+    "MusicCaps": "https://huggingface.co/datasets/google/MusicCaps",
+    "SongDescriber": "https://github.com/mulab-mir/song-describer-dataset",
+    "MusicBench": "https://huggingface.co/datasets/amaai-lab/MusicBench",
+    "JamendoMaxCaps": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps"
+  },
+  "MTG": {
+    "schema": "sonora-labeled-metadata-feasibility-v1",
+    "status": "metadata_verified_only_no_training_audio",
+    "MTG_revision": "cafd8e20c265ed84f1e61f1c875327971f43a62f",
+    "source_metadata_files": 10,
+    "source_metadata_bytes": 28342039,
+    "base": {
+      "tracks": 55609,
+      "artists": 3565,
+      "albums": 11262,
+      "tag_categories": {
+        "genre": 95,
+        "instrument": 41,
+        "mood/theme": 59
+      },
+      "unique_tags": 195,
+      "metadata_duration_min_seconds": 30.0,
+      "metadata_duration_at_or_below30": 47,
+      "metadata_duration_below30": 0
+    },
+    "split0": {
+      "train": {
+        "tracks": 32859,
+        "artists": 2139,
+        "albums": 6613,
+        "tag_categories": {
+          "genre": 87,
+          "instrument": 40,
+          "mood/theme": 56
+        },
+        "unique_tags": 183,
+        "metadata_duration_min_seconds": 30.0,
+        "metadata_duration_at_or_below30": 35,
+        "metadata_duration_below30": 0
+      },
+      "validation": {
+        "tracks": 11101,
+        "artists": 713,
+        "albums": 2278,
+        "tag_categories": {
+          "genre": 87,
+          "instrument": 40,
+          "mood/theme": 56
+        },
+        "unique_tags": 183,
+        "metadata_duration_min_seconds": 30.0,
+        "metadata_duration_at_or_below30": 6,
+        "metadata_duration_below30": 0
+      },
+      "test": {
+        "tracks": 11565,
+        "artists": 713,
+        "albums": 2365,
+        "tag_categories": {
+          "genre": 87,
+          "instrument": 40,
+          "mood/theme": 56
+        },
+        "unique_tags": 183,
+        "metadata_duration_min_seconds": 30.0,
+        "metadata_duration_at_or_below30": 6,
+        "metadata_duration_below30": 0
+      }
+    },
+    "split0_union_tracks": 55525,
+    "split0_union_tag_categories": {
+      "genre": 87,
+      "mood/theme": 56,
+      "instrument": 40
+    },
+    "split0_pairwise_id_overlaps": {
+      "train__validation": {
+        "track_ids": 0,
+        "artist_ids": 0,
+        "album_ids": 0
+      },
+      "train__test": {
+        "track_ids": 0,
+        "artist_ids": 0,
+        "album_ids": 0
+      },
+      "validation__test": {
+        "track_ids": 0,
+        "artist_ids": 0,
+        "album_ids": 0
+      }
+    },
+    "license_entries": 55701,
+    "license_entries_covered_by_split": {
+      "train": 32859,
+      "validation": 11101,
+      "test": 11565
+    },
+    "license_family_counts_base": {
+      "by-nc-sa": 21358,
+      "by-sa": 9918,
+      "by-nc-nd": 15566,
+      "by": 3115,
+      "artlibre": 86,
+      "by-nc": 2273,
+      "by-nd": 3138,
+      "unknown": 155
+    },
+    "prior20_Jamendo_ID_overlap_with_base": 9,
+    "prior20_Jamendo_ID_overlap_by_split": {
+      "train": 7,
+      "validation": 1,
+      "test": 1
+    },
+    "train_tracks_with_by_or_by_sa_audio_metadata": 7997,
+    "audio_downloaded": 0,
+    "audio_decoded": 0,
+    "model_training_runs": 0,
+    "user_test_judgments_opened": 0,
+    "limits": [
+      "Official identifier disjointness is not alias/work/cover/content fingerprint isolation.",
+      "Existing Jamendo20 source-ID check does not establish no overlap with FMA/MusicBox/other prior artists or pretrained data.",
+      "Missing uploader tags do not prove negative relevance, and track tags do not annotate time intervals.",
+      "Audio availability, actual bytes/decoding and any per-track training suitability have not been tested.",
+      "MTG dataset terms restrict use to noncommercial research; metadata CC BY-NC-SA4, audio individual CC."
+    ]
+  },
+  "caption_metadata": {
+    "schema": "sonora-caption-source-feasibility-v1",
+    "SDD": {
+      "rows": 1106,
+      "unique_recordings": 706,
+      "valid_rows": 746,
+      "valid_unique_recordings": 547,
+      "unique_source_artist_IDs": 191,
+      "MTG_split0_intersections": {
+        "train": {
+          "sdd_recording_ID_intersections": 0,
+          "sdd_artist_ID_intersections": 0,
+          "tracks_removed_to_exclude_all_SDD_artist_IDs": 0
+        },
+        "validation": {
+          "sdd_recording_ID_intersections": 0,
+          "sdd_artist_ID_intersections": 0,
+          "tracks_removed_to_exclude_all_SDD_artist_IDs": 0
+        },
+        "test": {
+          "sdd_recording_ID_intersections": 706,
+          "sdd_artist_ID_intersections": 191,
+          "tracks_removed_to_exclude_all_SDD_artist_IDs": 6369
+        }
+      },
+      "role": "external_caption_evaluation_candidate;exclude_all_SDD_recordings_and_related_artist_groups_from_new_training",
+      "valid_subset_documentation_discrepancy": "README reports546 versus datasheet547;use_observed_pinned_CSV_counts_in_this_audit"
+    },
+    "MusicCaps": {
+      "rows": 5521,
+      "unique_ytids": 5521,
+      "all_windows_10seconds": true,
+      "AudioSet_eval_rows": 2858,
+      "AudioSet_train_rows": 2663,
+      "audio_in_published_CSV": false,
+      "role": "human_caption_candidate;audio_source_access_rights_and_AVailability_not_verified"
+    },
+    "audio_downloads": 0,
+    "caption_content_printed_or_passed_to_models": false,
+    "user_test_qrels_opened": 0,
+    "limits": [
+      "CSV counts/identifier intersections only; did not inspect caption content or assess its correctness.",
+      "Track-ID and artist-ID grouping does not establish no alias/work/near-duplicate or pretraining overlap.",
+      "Human single-positive captions do not provide complete relevance grades for all song/query combinations.",
+      "MusicBench and JamendoMaxCaps inspected only cards/file listings; their reported training counts are not locally audited."
+    ]
+  },
+  "known_prior_overlap": {
+    "known_prior_Jamendo_artist_IDs_in_MTG": 9,
+    "SDD_caption_rows_with_those_artist_IDs": 9,
+    "SDD_recordings_with_those_artist_IDs": 5,
+    "limitations": "Only groups resolved via9 existing source-ID matches; unresolved old11 Jamendo and other40 sources still require metadata/alias/work/content checks."
+  },
+  "preservation": {
+    "status": "passed",
+    "protected_old_files": 952,
+    "changed_old_files": [],
+    "frozen_source_files": 23,
+    "MUS040_receipts_unchanged": "2/4, reported80/160;no readable qrels opened",
+    "all5_rankings_and4_blank_packages_unchanged": true,
+    "shared_cache_regular_files": 54,
+    "cache_set_and_hash_unchanged": true,
+    "backup_clean_sha": "f3b0da1e97113d28c81aa49be61c5cbcc49eebce",
+    "listener_pids": {
+      "8080": [
+        "96842"
+      ],
+      "5175": [
+        "4143"
+      ]
+    },
+    "private_modes": "0700/0600",
+    "audio_downloaded": 0,
+    "models_loaded_or_trained": 0
+  },
+  "HF_revisions": {
+    "MusicCaps": "0a51889b340037bb75a9a0858af2e4ece21f7f89",
+    "MusicBench": "b141e962aacc19ffd51c15732738040377989203",
+    "JamendoMaxCaps": "13090d785d071dcd617636deaa4a9775936ac995"
+  },
+  "SDD_source_revision": "ed7e754c0c0739b6cd84828fc044588ee26d1e20",
+  "metadata_capture": {
+    "files_downloaded": 23,
+    "bytes_downloaded": 31684027,
+    "audio_files_downloaded": 0,
+    "training_runs": 0,
+    "model_loads": 0,
+    "current_user_test_qrels_opened": 0
+  },
+  "source_snapshots": [
+    {
+      "url": "https://api.github.com/repos/MTG/mtg-jamendo-dataset",
+      "final_url": "https://api.github.com/repos/MTG/mtg-jamendo-dataset",
+      "filename": "mtg-repo.json",
+      "bytes": 6451,
+      "sha256": "7abc03862fae7662177cc2f323e6dae279ca16c488c15e1f55667d23133b63d2",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://api.github.com/repos/MTG/mtg-jamendo-dataset/commits/master",
+      "final_url": "https://api.github.com/repos/MTG/mtg-jamendo-dataset/commits/master",
+      "filename": "mtg-commit.json",
+      "bytes": 5696,
+      "sha256": "02d7cc495ad7ae449a8336679f9b82354900940ff32fa863cc94e50059edcb37",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://api.github.com/repos/MTG/mtg-jamendo-dataset/git/trees/cafd8e20c265ed84f1e61f1c875327971f43a62f?recursive=1",
+      "final_url": "https://api.github.com/repos/MTG/mtg-jamendo-dataset/git/trees/cafd8e20c265ed84f1e61f1c875327971f43a62f?recursive=1",
+      "filename": "mtg-tree.json",
+      "bytes": 53772,
+      "sha256": "02cd52f08b8820cf8a7ae5bc556685e108a06d168e8c170bd1dd2a0f4695bcee",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/README.md",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/README.md",
+      "filename": "mtg-README.md",
+      "bytes": 16557,
+      "sha256": "309d29cbe6ffcd8d060a2308c14ee187bc3fc312322bf981156c0f3a890360d3",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/LICENSE",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/LICENSE",
+      "filename": "mtg-LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/audio_licenses.txt",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/audio_licenses.txt",
+      "filename": "mtg-audio_licenses.txt",
+      "bytes": 12686550,
+      "sha256": "c207c476d1714dfc9061f5ae9f2047c0490bfaa5d861dc090acc786508948933",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/raw_30s_cleantags_50artists.tsv",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/raw_30s_cleantags_50artists.tsv",
+      "filename": "mtg-data__raw_30s_cleantags_50artists.tsv",
+      "bytes": 7807534,
+      "sha256": "a30655f45f4a7b4f9dba2d6b51d78733be33687eae3e8b9795e2234d54ef4e56",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/splits/split-0/autotagging-train.tsv",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/splits/split-0/autotagging-train.tsv",
+      "filename": "mtg-data__splits__split-0__autotagging-train.tsv",
+      "bytes": 4461782,
+      "sha256": "3b6766ee0a0aea01fa2c2c34769cb3873c0adc04378bba35912edad37077f42b",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/splits/split-0/autotagging-validation.tsv",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/splits/split-0/autotagging-validation.tsv",
+      "filename": "mtg-data__splits__split-0__autotagging-validation.tsv",
+      "bytes": 1680437,
+      "sha256": "b93639bc4f716148e7a41e35e9a1d73058a0b9e65c1cc723b66e9e72726072a7",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/splits/split-0/autotagging-test.tsv",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/splits/split-0/autotagging-test.tsv",
+      "filename": "mtg-data__splits__split-0__autotagging-test.tsv",
+      "bytes": 1611903,
+      "sha256": "c80e43416e89afc0b2656848e9d4d6f076ca0426003d7e0148ac8cdc6254d366",
+      "status": "downloaded_metadata_only"
+    },
+    {
+      "url": "https://api.github.com/repos/mulab-mir/song-describer-dataset",
+      "filename": "SDD-repo.json",
+      "bytes": 6956,
+      "sha256": "98379c528fadf74f220cb20d2db310dd4d573075e8f71150042dbe2d0531bc35"
+    },
+    {
+      "url": "https://api.github.com/repos/mulab-mir/song-describer-dataset/commits/main",
+      "filename": "SDD-commit.json",
+      "bytes": 6007,
+      "sha256": "2dbcd2fa7e04958e0641781db6886a56fa2e0abc298242dd0a972b90410dec91"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mulab-mir/song-describer-dataset/ed7e754c0c0739b6cd84828fc044588ee26d1e20/README.md",
+      "filename": "SDD-README.md",
+      "bytes": 5333,
+      "sha256": "7b08bd05cdc5585b5e548a3667966fd767568f58944490585502d9ea9bc6d878"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mulab-mir/song-describer-dataset/ed7e754c0c0739b6cd84828fc044588ee26d1e20/docs/datacard.md",
+      "filename": "SDD-docs__datacard.md",
+      "bytes": 2349,
+      "sha256": "a5538deda382cdcc8d3d01b773e9d416bdc2295c97029b1ebd368ff3b963e943"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mulab-mir/song-describer-dataset/ed7e754c0c0739b6cd84828fc044588ee26d1e20/docs/datasheet.md",
+      "filename": "SDD-docs__datasheet.md",
+      "bytes": 24531,
+      "sha256": "472e4fb47064e8d7d9a1647b0469ad6145aa173ab381ae8cdb2e23c81a2447b5"
+    },
+    {
+      "url": "https://zenodo.org/records/10072001/files/song_describer.csv?download=1",
+      "filename": "SDD-song_describer.csv",
+      "bytes": 186208,
+      "sha256": "fb853b0327394cfdbdc205f712fdb64df70e6fcd3bae3a9d3f1617d54b45ad70"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/google/MusicCaps",
+      "filename": "google--MusicCaps-info.json",
+      "bytes": 1475,
+      "sha256": "95638fe7232069b0c7f0aee760978bb04e6c5586fb01190ba4f798ee85c2ab60"
+    },
+    {
+      "url": "https://huggingface.co/datasets/google/MusicCaps/resolve/0a51889b340037bb75a9a0858af2e4ece21f7f89/README.md",
+      "filename": "google--MusicCaps-README.md",
+      "bytes": 5062,
+      "sha256": "694ce36fcc1d208e9b387581709cf7a30294c961d630fcb34f3231680ec8013f"
+    },
+    {
+      "url": "https://huggingface.co/datasets/google/MusicCaps/resolve/0a51889b340037bb75a9a0858af2e4ece21f7f89/musiccaps-public.csv",
+      "filename": "google--MusicCaps-musiccaps-public.csv",
+      "bytes": 2939484,
+      "sha256": "8cc109ac507b5e5aed8ea73a5c8f897a9d0793f7397427e000adf4c05f6021c7"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/MusicBench",
+      "filename": "amaai-lab--MusicBench-info.json",
+      "bytes": 1459,
+      "sha256": "ddfda39e0c1244a41d3eb679f9eb5f3607b133d81d34b4e96bac0b602f87fd02"
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/MusicBench/resolve/b141e962aacc19ffd51c15732738040377989203/README.md",
+      "filename": "amaai-lab--MusicBench-README.md",
+      "bytes": 4850,
+      "sha256": "47f17bd41fd3ad898a6cc876bed473b8a95d35a535b130247d42e3423e171c5d"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/JamendoMaxCaps",
+      "filename": "amaai-lab--JamendoMaxCaps-info.json",
+      "bytes": 153848,
+      "sha256": "08ef9c8a752122111f13eb77a25c975559902e9dad235d1d01afc7a5d794590b"
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps/resolve/13090d785d071dcd617636deaa4a9775936ac995/README.md",
+      "filename": "amaai-lab--JamendoMaxCaps-README.md",
+      "bytes": 4426,
+      "sha256": "4a459fcb398ae876e7f387edb9f5042f40d6dcaa7a2ea1bd7f58f43d1d2f3b1b"
+    }
+  ],
+  "private_evidence_sha256": {
+    "capture-v2/capture-manifest.json": "3db337ccfe8c0acbbb05f8ce37bd09f754c87e8d8e284cd60648d1773e0d7ffb",
+    "source-cards/manifest.json": "cdc9f44527ac246254762153c031f48fe37d2f3c446bd91e918673658698528d",
+    "MTG-metadata-audit.json": "1760bdeb5c690ce903fdea80e7eaea70edbaa58b09c4162b714cfcdfea258f6f",
+    "caption-metadata-audit.json": "167bfff8017a9b3cc0d4decdfb09ff82dc86d505ebc5a1f0575dad24c8a454a2",
+    "prior-overlap-review.json": "7a37583a1dd00367f5697928e201bfade4b58f8d4128f5ed6004e934a67c0291",
+    "preservation-check.json": "1973174dd2c3aa111505e9f0f0ae8647a6be00616c0475d6f36805c8ed51a150"
+  },
+  "next_stage_proposed_not_executed": {
+    "first_audio_preflight_target": 20,
+    "pilot_train_target_range": [
+      1000,
+      2000
+    ],
+    "training_partition": "MTG official split-0 train only; reserve validation/test; remove prior/project-test overlaps by source/artist/work/content",
+    "model_plan": "First retain pretrained encoder baseline and evaluate a lightweight supervised adaptation; full CLAP training is not implemented or promised.",
+    "supervision": "Uploader tags remain weak track-level labels; deterministic short descriptions may only restate known tags. No invented temporal labels or unknown-as-confirmed-negative.",
+    "manual_work": "Current4x40 continues. Future default small bounded QA, not whole corpus cross-product manual grading.",
+    "evaluation": "Current160 only grades already-frozen5 configurations. It cannot guide a new model and still be claimed blind. Future training gets separate frozen evaluation protocol and public held-out captions.",
+    "audio_download_budget": "Do not execute upstream whole-corpus downloader (156-508GB per documentation); first verify selective acquisition/availability and explicit per-track rights."
+  },
+  "preparation_issues": [
+    "Framework python default CA rejected first HTTPS request; no data acquired; existing venv certifi with normal certificate verification succeeded, no disabled TLS or dependency install.",
+    "Initial duration>30 assertion rejected47 official metadata rows exactly30.0; source bytes retained, final audit reports boundary counts without calling them decoded.",
+    "Initial CC-URI regex missed jurisdiction variants and ArtLibre; final retains exactURI and classifies unrecognized entries separately, not as allowed training data.",
+    "SDD README valid-recording count546 differs from datasheet547; actual pinned CSV has746 valid captions/547 recordings."
+  ],
+  "limits": [
+    "Metadata verification is not acquired/decoded training audio or trained model quality.",
+    "MTG metadata CC BY-NC-SA4 and dataset noncommercial research terms; per-audio licenses differ, repository Apache/MIT does not license all audio.",
+    "Human captions are not complete160-style relevance judgments; missing pair annotations are not proven negative.",
+    "MusicBench augmented/ChatGPT text and JamendoMaxCaps generated text are weak/synthetic supervision, not new independent human truth.",
+    "No pretrained-audio nonoverlap guarantee, exhaustive aliases/works or acoustic fingerprint dedup.",
+    "No current qrels, model settings, media service, database, UI or main changed."
+  ]
+}

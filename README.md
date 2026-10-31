@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-040-independent-runner-preflight`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-041-labeled-data-feasibility`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -45,6 +45,8 @@ MUS-040第一检查点已完成：接收B035限定批准并修复极端umask输�
 MUS-040第二检查点已真实导入新20首：普通账号自有资源60首（开发40/独立测试20），新20全部pending、真实Java身份/Range/完整SHA通过，CLI重跑0新增、42核心文件保持；额外20匿名请求均401。78相关检查通过，G1原件/新描述/141旧标注/双权重与索引保持；新20尚未编码进测试索引，160项包/G2未生成。见[导入验证](docs/verification/MUS-040-phase02.md)。
 
 MUS-040第三检查点已完成G2运行冻结、四批独立标注包和五组新测试排名：20首×8新描述共160项，四批各40，全部初始判断为空、无模型提示，页面有中文可听线索和0–3说明。A/B各755片段/20整曲/8文本，另标题词面对照，共40个全20排名；源/权重/源码/依赖先冻结，排名全部保存后才交标注。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过，原141/备份/旧run保持。当前等待用户标注，先交完成回执、完整判断自存至通知；未打开新qrels或计算正式质量。第1批已在本机试听页空白载入，见[第三检查点验证](docs/verification/MUS-040-phase03.md)。
+
+MUS-041已按用户要求调整后续数据路线：既有标注作为训练/开发主来源，人工仅保留有界抽检和项目验收，当前四批仍照常完成。已核MTG-Jamendo固定版本55,609条标签metadata，官方split-0 train32,859/validation11,101/test11,565且作者ID无交叉，原开发20 Jamendo有9首重叠须排除；SDD可作外部人写caption评测候选，但也含已用作者。已比较MusicCaps/MusicBench/生成caption的角色与许可，实际仅下载约31.7MB文档/metadata，未取音频或训练。首选MTG仅按非商业研究评估，不能当商用授权；当前160与五配置/G5不改，新训练不能据已看test调参后仍称盲测。详见[现成标注路线](docs/evaluation/MUS-041-labeled-data.md)。
 
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 

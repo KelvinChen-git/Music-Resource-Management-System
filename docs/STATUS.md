@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- 当前工作（2026-10-30 America/Chicago）：MUS-041现成标注语料可行性完成（review，仅metadata；尚无adapter/训练音频/训练模型）。branch codex/MUS-041-labeled-data-feasibility/basece1eb6b；推荐MTG非商业研究train/dev，人工后续仅有界抽检；当前040四批/G5/五排名不变，仍2/4回执报告80/160、具体评分未读。官方split/原素材重叠/SDD外部评测候选已核，23文档/metadata31.7MB，无音频下载/训练/应用改动或main合并。
+
 - 当前检查点（2026-10-30 America/Chicago）：MUS-040 G2/G3/G4完成，review；已收第1、2批完成回执（2/4批、报告80/160项），G5仍关闭，未接收/打开具体评分。准确干净源码1671b134，两权重合成严格512后先冻447输入/源码/环境，再四批各40空包和五组实际排名；每套755片段/20整曲/8文本，共40个全20排名已hash，未读新qrels/无质量指标。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过；初始首批0/40已交付；现第1、2批回执各报告40/40，待第3、4批，完整判断仍由用户自存。原141/G1/phase02/952保护文件/54cache/原版/服务保持，main未合并；N1 B原卡035-R2仍assigned。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
@@ -52,6 +54,7 @@
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
 | MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
 | MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5已收2/4回执、报告80/160，未读评分；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
+| MUS-041 现成标注语料可行性 | review / A（metadata路线完成，训练尚未实现） | codex/MUS-041-labeled-data-feasibility / ce1eb6b，依赖040隔离/用户路线修订 | MTG train32,859/val11,101/test11,565、195原/183split标签和ID隔离/旧9重叠实核；SDD/MusicCaps候选，生成caption不当人工真值；仅metadata，无音频/训练/新人工包 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
@@ -807,3 +810,24 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 原回执SHAc13420f33f3e3f18e36a9d925e04dadac74ad5633efebc0a6a1b1ba6ba5ab0e4；payload SHA31f6972f7ba2da4f4ca0b25a700dba8a41f2feed593630f93c4f0b6b01d7311c作为用户承诺保留，尚未对未打开的完整JSON字节核验。归档与下载原件逐字节一致，目录0700/文件0600，第1批原件/记录及G2/五runs commitment/原包/源码保持，不读取或枚举其他Downloads文件。
 - 累计2/4批回执、labeler报告80/160项（50%），待第3、4批共80项。具体评分接收/打开0、等级分布/正式指标0，G5仍关闭，完整JSON继续由用户本机保管。回执字段检查不等于A独立重验人工评分或听音；四批齐后再统一请求完整导出、核承诺SHA与160合法性。
 - 2026-10-30T23:53:15Z双方sync fetched，A3531d69/source3d0cb47、B610c03e/source0e8de159未变、已ack，035-R2原卡不扩范围仍assigned。仅文档/收件，无代码/模型/排名/UI/数据/API/备份/main改动，不切换用户当前页面，不重复应用测试；完成字段/原件/冻结源保护与diff检查后提交publish/sync回读。
+
+
+## MUS-041 现成标注语料可行性（2026-10-30）
+
+- 用户明确当前四批会完成，同时希望训练初期以现成已标注曲库代替大量人工组合标注。A单独branch codex/MUS-041-labeled-data-feasibility，从干净ce1eb6b543880d7ef499428fc1fd0d07b32f68a2开始；040原四批/已收2回执80项/冻结五runs/G5规则保持，不读具体评分、不训练或改变当前模型。
+- 本任务in_progress：官方一级来源比较MTG-Jamendo/MusicCaps/MusicBench/Song Describer等，区分上传者标签/人工caption/自动或合成caption，核元数据/音频/许可及划分隔离；仅小型只读元数据/文档快照与统计私有.local/a/mus041，0700/0600。允许必要README/PROJECT/STATUS/A latest、evaluation/MUS-041-labeled-data.md、verification/MUS-041-results.json；无应用代码/API/schema/依赖/权重/训练/音频批量下载或main合并。
+- 2026-10-31T02:47:06Z双方sync fetched，A1dda0e4/sourcece1eb6b，B610c03e/source0e8de159保持；N1原卡不替换或扩范围。完成本轮现成数据路线不意味已获得可用训练音频、训练器或模型效果。后续默认既有标注为主、人工仅有界质量抽检；新训练/参数选择不接触当前160标签，已解封test不可据以改模型后继续称新模型盲测。
+
+
+### MUS-041完成：现成标注路线与固定metadata核查
+
+- 用户当前四批会完成；041只改变后续默认训练数据来源，不读040具体评分、不替换040基准或追加人工全组合包。推荐先MTG-Jamendo train/dev做本地非商业研究，SDD人写caption保留为外部评测候选；MusicCaps为人写10s候选但只给YT IDs，MusicBench/MaxCaps为增强/生成弱监督，音频许可与代码/metadata许可分开，不直接接到产品授权。
+- 固定MTG cafd8e20…真实base55,609/195tag，split-0共55,525/183tag（genre87/instrument40/mood56），train32,859/val11,101/test11,565。三组track/artist/album ID交集0、行来源/标签子集与55,701条许可路径覆盖全过；原开发20 Jamendo录音ID重叠9=7train/1val/1test，9个已知作者ID须后续排除。ID隔离不等于别名/作品/音频或预训练无重叠。
+- MTG许可家族含NC/ND/国家版本、ArtLibre和155本解析器未分类URI；train按BY/BY-SA URI初筛7,997，仅metadata候选，未做音频可用/法律适用/完整旧素材排除。整个metadata CC BY-NC-SA4/官方非商业研究限制保持，不能拿Apache/MIT代码许可覆盖音频。原表47条metadata恰30.0秒，明确统计，不当真实解码。
+- SDD实际1,106描述/706录音、validated746/547（官方README546与datasheet547有差异）；全706及191作者ID都在MTG test，train/val交集0。但已知旧作者涉及SDD5录音/9caption，不能直接全量当新盲测。仅读结构/ID/标记，不打印/编码caption正文。MusicCaps CSV5,521唯一YT ID/10秒，AudioSet eval2,858/train2,663；发布的文字/视频ID不等于取得音频及授权。MusicBench/MaxCaps只核官方卡/列表，未本地复算其大样本数。
+- 真实23份官方文档/metadata 31,684,027bytes，固定revision与SHA原件只ignore.local/a/mus041、0700/0600，Git仅方法/聚合/hash。首系统Python CA失败下载0，现有venv/certifi正常TLS成功，无关闭验证/新依赖；初审>30和CC URI断言分别因30.0/国家版本与ArtLibre调整统计口径，源字节不改，失败脚本/证据保留，不当应用失败。
+- 952旧保护文件、23冻结源码、五排名/四包/2回执、原141/G1/source/query/双权重保持；54cache集合/hash/原版f3b0da1干净、8080 PID96842/5175 PID4143保持。音频下载/解码、模型加载/训练、040评分读取、新指标、DB/API/UI/应用/锁/依赖/main改动均0；无关应用测试不重复。
+- 下一阶段尚planned：显式pin adapter/分组排除与逐曲许可/字节/EOF，先20样本端到端再目标1–2k子集，保留预训练基线、轻量适配按验证集选参数；训练loss/负例/未知/资源预算另立契约。当前160仅比较原五冻结配置；若解封后据它调整新模型，该test只能作开发回归；新训练使用另冻结的公开评测协议，不能宣称已实现或已有提升。
+- 开始2026-10-31T02:47:06Z双方fetched，A1dda0e4/sourcece1eb6b、B610c03e/source0e8de159；已ack，N1准确035-R2原卡仍assigned不扩范围。交付evaluation/MUS-041-labeled-data.md、verification/MUS-041-results.json和必要README/PROJECT/STATUS/A latest。提交后publish/sync，远端可读不等于B批准或main合并。
+
+- 检查点2026-10-31T02:57:43Z双方再次fetched，B610c03e/source0e8de159未变，N1原卡保持；本轮元数据/文档检查完成，准备提交发布。
