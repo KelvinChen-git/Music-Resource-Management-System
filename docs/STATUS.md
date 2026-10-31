@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-30 America/Chicago）：MUS-040独立回执收件分支codex/MUS-040-completion-receipts，本轮基于72c386e；四批回执齐全、labeler报告160/160（100%）。G2/五组排名及原包核对通过，已满足统一请求四份承诺完整导出的条件；具体评分接收/打开仍0，G5尚未解封或计算指标。041现成标注metadata可行性结论保持（review，尚无adapter/训练音频/训练模型）；后续MTG研究train/dev＋有界人工抽检，不改变040五组冻结对照或把本轮test用于训练。
+- 当前工作（2026-10-30 America/Chicago）：codex/MUS-042-independent-evaluation，从已发布3655fb3开始；比较实现已提交865a7ed并干净运行。用户四批完整原导出已接收，全部先核原字节承诺，再单次解封/验证160/160，五组指标及同操作者独立分脚本复算完成；结果见verification/MUS-042.md/results.json。原版/UI/main保持，当前工具独立B审核不在N1原卡范围。
 
-- 当前检查点（2026-10-30 America/Chicago）：MUS-040 G2/G3/G4完成，review；第1–4批完成回执均已接收、各报告40项，总160项。447输入/23冻结源码/双权重/环境与54cache、五组40个全20排名/4向量工件/四原包hash复核通过；仅具备请求完整导出的条件，尚未接收或打开具体评分、未独立重验160判断、未计算质量。下一步请用户一次上传四份原始sonora-judgments导出，先将全部四份原字节hash与回执承诺核对，再解析任一评分、重建基包校验160合法性并记录一次解封。历史238音频Python/78来源导入/84 Node/build及20首真实播放证据保持；本轮无代码变化，不重复应用测试。N1 B原卡035-R2仍assigned，main未合并。
+- 当前检查点：MUS-040 G2/G3/G4及G5接收/计算已完成，工具仍review；MUS-042接收/小样本比较done（非总体质量验收）。P@5全8：A整曲0.125/片段0.175，B整曲0.075/片段0.125，标题0.075；5描述零正例，理想宏上限0.225，主对照−5个百分点，原模型保持。四批160全格式合法/未知0、原件私有，首次解析2026-10-31T04:35:29.858220Z；不再等待用户提交或本轮补标。49相关检查及全部40组独立复算通过，952旧文件/备份保持，无新推理/训练/网页或DB改动。041现成标注metadata路线保持，adapter/音频预检/实际训练未开始；N1 B035-R2原卡仍assigned。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -29,8 +29,8 @@
 | CLAP 文本 / 音频编码 | 原40链路及B旧20预检passed，正式效果未验收 | MUS-035全40/1557片段/8文本、512维；原20重编码差0、168测试/独立工件复算；无新参考音频/线上API |
 | Python离线候选 / 线上检索 | 两来源40曲离线实跑，线上未实现 | 独立私有新run，原窗口/两mode规则；无Java gateway/共享索引/浏览器检索，discovery-v0未冻结 |
 | 研究语料与标注 | 自有资源60首（开发40/新测试20）；累计141开发判断 | 原933/新1557片段run保持；037三补判完成、四原包分别保留，五描述123/200已知、77未知，8描述141/320已知、179未知；非held-out/2,000首/70,000片段/120查询 |
-| 质量、P95、并发和提升比例 | 五开发描述精确top5已测，正式质量/P95未验收 | 037 whole25/25相关、segment24/25，P@5=1.00/0.96；旧20同五描述0.16/0.20；原029八query/035区间保持，定向扩库非held-out/10%提升 |
-| 独立测试/模型对照 | 039 G1/040 G2/G3/G4完成；G5已齐四批回执、等完整导出 | 两权重各755片段/20整曲/8文本、五组40完整排名已hash；四批各40空包/20首真实播放就绪，新qrels未读/无正式质量指标 |
+| 质量、P95、并发和提升比例 | 五开发描述精确top5已测，独立小样本已比较、总体质量/P95未验收 | 042全8 A0.125/0.175、B0.075/0.125，理想上限0.225；037 whole25/25相关、segment24/25，P@5=1.00/0.96；旧20同五描述0.16/0.20；原029八query/035区间保持，定向扩库非held-out/10%提升 |
+| 独立测试/模型对照 | G1–G5完成，042首次小样本比较done | 两权重各755片段/20整曲/8文本、五组40完整排名已hash；四批160原导出已核承诺/全合法后单次解封，五组完整指标及独立复算见042；非总体质量验收 |
 
 详细命令与机器生成结果见 [verification/MUS-001.md](verification/MUS-001.md)。旧会话网络阻塞只是历史：本轮 Maven 已能下载和实跑。原始默认 75 tests 有 3 errors；修正 fixture 后才得到全量 89 tests 通过。
 
@@ -43,7 +43,7 @@
 | DOC-001 协作文件 | review / A | docs/multimodal-collaboration / b81f57c | 五文件已应用并包含于远端 A 源码历史；main 未合并 |
 | MUS-001 可重复开发基线 | review / A | chore/MUS-001-dev-baseline / b81f57c + 8f1fb6b；依赖 DOC-001 | A 的空库、local 启动、测试、build、smoke 通过；B 静态审核 / 前端 / 隔离通过，独立后端运行补证 blocked |
 | MUS-001-R1 基线与媒体审查 | done / B（审核交付完成，后端运行补证未通过） | review/MUS-001-B-baseline / 7ab0d39；delivery 6e4118c | 只新增 B 审核正文和 latest；B feed 05d4e9f 已由 A 核验。48 格媒体矩阵均明确未运行，不将文档表格当测试通过 |
-| MUS-002 模型 spike / 契约冻结 | blocked / A（开发效果已测，独立测试/冻结未完） | 原探针ab5d6f3；真实补证022/035，开发比较037 | 新40曲/1557片段、141判断，五query精确开发P@5已补；仍缺独立测试/模型对照，discovery-v0未冻结 |
+| MUS-002 模型 spike / 契约冻结 | blocked / A（独立小样本已实算，discovery契约/线上接入未完成） | 原探针ab5d6f3；真实补证022/035，开发比较037 | 新40曲/1557片段、141判断，五query精确开发P@5已补；042首次20×8独立小样本/五组比较完成，总体质量未验收，discovery-v0未冻结 |
 | MUS-023 演示导入恢复/来源边界 | done / A（B限定批准已接收） | fix/MUS-023-demo-import-recovery / ebae5eb；契约81566b1 | pending/confirmed、完整缓存证明、canonical来源；62 Python/8链接/build通过 |
 | MUS-032 定向来源候选 | review / A（收集/全解码完成，工具待独立复核） | codex/MUS-032-targeted-corpus-candidates / 2e2db1e | 五描述各4首，20/20原MP3/SHA/证明/解码、18保护检查；source-only，未写库/人评 |
 | MUS-033 新来源导入与身份适配 | done / A（B限定批准已接收） | codex/MUS-033-source-import-review / 7704051；实现dc7e1e4、播放f9192fc、边界10880f8 | B对准确10880f8的独立合成审核通过；真实导入与034收件保持，历史header时长勘误见035，不外推模型 |
@@ -53,8 +53,9 @@
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
 | MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
-| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5已收4/4回执、报告160/160，待统一提交完整导出，未读评分；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
+| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5原导出已接收/160合法/单次打开，042已比较；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；G5具体评分/固定比较见042，原历史G2/G3/G4保留，N1原B卡不扩范围 |
 | MUS-041 现成标注语料可行性 | review / A（metadata路线完成，训练尚未实现） | codex/MUS-041-labeled-data-feasibility / ce1eb6b，依赖040隔离/用户路线修订 | MTG train32,859/val11,101/test11,565、195原/183split标签和ID隔离/旧9重叠实核；SDD/MusicCaps候选，生成caption不当人工真值；仅metadata，无音频/训练/新人工包 |
+| MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
@@ -857,3 +858,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 - A从干净3655fb30644968d6213d59540710c744ba4d0700创建codex/MUS-042-independent-evaluation；2026-10-31T04:32:04Z双方feed已fetched，A7bbda1d/source3655fb3，B610c03e/source0e8de159保持，N1原卡不变。ZIP只读目录与四原JSON字节已全部核对回执承诺，无JSON评分解析；ZIP SHA166d21b82e2fc27d881692d94ef807ec3b977d19bb8045c6af4e432457fa1387。
 - 允许新增holdout_evaluate.py与合成测试、E17、模块README、必要README/PROJECT/STATUS/A latest及verification/MUS-042*；私有仅ignore.local/a/mus042。原23冻结源码/五排名/空包/权重/索引/训练/Java/Vue/DB/备份/main只读。实现既定公式/全160严格校验与一次解封，先完成合成验证再读评分；041路线不变，不请求新一轮人工全矩阵。
+
+### MUS-042完成：四批原始评分单次解封与五组结果
+
+- 原ZIP及四JSON分别核全4回执SHA后，原G2/447输入/23推理源码/双权重/5141已装代码配置/54cache/五run全部hash/四空包重建通过；在干净865a7ed工具下先私有归档及记录事件、2026-10-31T04:35:29.858220Z首次解析全部四批。160合法/未知0、0/1/2/3分=121/25/8/6；匿名代号/原逐曲评分/真实ID/原ZIP及JSON只.local，0700/0600，不入Git。
+- 全8等权P@5 A整曲0.125/片段0.175，B整曲0.075/片段0.125，标题0.075；nDCG（7个IDCG>0）分别0.359289/0.569915/0.338035/0.513909/0.191998。5描述无2/3正例；宏P@5理想上限0.225。主对照B整曲−A整曲−5个百分点，P胜0/平6/负2；其他三预注册对照与逐query全披露，无显著性/总体质量/模型切换结论。
+- 49相关合成检查通过（11新+38既有），首次macOS /var symlink fixture两项失败只修测试路径resolve；真实首次启动把venv python链接resolve到系统解释器，缺laion-clap metadata，在输出/评分解析前失败。保留错误后用原venv路径重跑exit0，未改模型/环境/依赖，解封仅一次；实际重复输出拒绝并保持原件/打开记录，不再解析评分。
+- 同操作者另脚本stdlib/Fraction复算40query组/五均值/四成对差/全部正例与可达上限相同，非B独立审核；952旧文件SHA保持、原版f3b0da1干净。当前040回执台账更新实际payload/格式校验与打开状态，原G5请求文件/原G2/G3/G4报告作为历史不改。原141/音频/权重/索引/Java/Vue/DB/API/锁/依赖/UI/main不变，无关应用测试不重复。
+- 用户四批已完成；下一步按041现成标注训练/开发与有界人工抽检，不再要求本轮补标。adapter/许可和旧作者作品排除/20首音频预检/1–2k研究子集训练仍待实现，未声称已训练。若用已看160选择新配置，该集降为development回归，未来模型另设评测。B035-R2/rev1仍原卡assigned，不将本报告冒充B批准；提交后publish/sync回读。

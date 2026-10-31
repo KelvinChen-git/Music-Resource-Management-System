@@ -1,0 +1,685 @@
+{
+  "schema": "sonora-independent-five-run-evaluation-v1",
+  "status": "complete_small_project_holdout_comparison",
+  "split": "independent_test",
+  "evaluated_at_utc": "2026-10-31T04:35:30.265620+00:00",
+  "gate_sha256": "ca3baa08e0621b26db74212540134820200b57890aaecb8a84d1bbcb73e21ea9",
+  "runner_freeze_sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83",
+  "all_runs_commitment_sha256": "d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1",
+  "test_dataset_sha256": "93423365583e9fcc19c9cde09524bb100ca5c3d5038e530ba2b58ef3d301a684",
+  "archive_sha256": "166d21b82e2fc27d881692d94ef807ec3b977d19bb8045c6af4e432457fa1387",
+  "opening_receipt_sha256": "fad1d6a61d079baf7aca628358b73303602aff459f99e4eb389815d395a983f4",
+  "payload_sha256": [
+    "7e81c03bc62a8ec75f048c35edbc7ece387a72954b1c2afe47959d88de1ab768",
+    "31f6972f7ba2da4f4ca0b25a700dba8a41f2feed593630f93c4f0b6b01d7311c",
+    "a3c483d18783f8d2daf75ca1338409a00a7538e81fad4bb412c86b6a48d2fc1b",
+    "b1df04545f7fb3cc2ab2b1099fb8925d7a7d899fe7bcd61848ef546de3e640be"
+  ],
+  "counts": {
+    "tracks": 20,
+    "queries": 8,
+    "judged_pairs": 160,
+    "unjudged_pairs": 0,
+    "configurations": 5,
+    "new_model_runs": 0,
+    "training_runs": 0
+  },
+  "validation": [
+    {
+      "status": "validated_unverified_judgments",
+      "split": "independent_test",
+      "queries": 2,
+      "candidate_pairs": 40,
+      "judged": 40,
+      "unjudged": 0,
+      "relevance_counts": {
+        "0": 24,
+        "1": 6,
+        "2": 4,
+        "3": 6
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "d6611d9eb4161ceb9557caa5221dcb2723c86ea76fdf95c2b8a085ef9046c35b",
+      "identity_or_listening_verified": false
+    },
+    {
+      "status": "validated_unverified_judgments",
+      "split": "independent_test",
+      "queries": 2,
+      "candidate_pairs": 40,
+      "judged": 40,
+      "unjudged": 0,
+      "relevance_counts": {
+        "0": 31,
+        "1": 9,
+        "2": 0,
+        "3": 0
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "154038666a2664c07c2e70b4ea52e30ad137dd97fc21eac5612c244f0819a777",
+      "identity_or_listening_verified": false
+    },
+    {
+      "status": "validated_unverified_judgments",
+      "split": "independent_test",
+      "queries": 2,
+      "candidate_pairs": 40,
+      "judged": 40,
+      "unjudged": 0,
+      "relevance_counts": {
+        "0": 31,
+        "1": 7,
+        "2": 2,
+        "3": 0
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "bf53151d4d420dfe4621ede2ddef5fc40f733ee86336c94131d804f3f5957e07",
+      "identity_or_listening_verified": false
+    },
+    {
+      "status": "validated_unverified_judgments",
+      "split": "independent_test",
+      "queries": 2,
+      "candidate_pairs": 40,
+      "judged": 40,
+      "unjudged": 0,
+      "relevance_counts": {
+        "0": 35,
+        "1": 3,
+        "2": 2,
+        "3": 0
+      },
+      "human_intervals": 0,
+      "dataset_sha256": "bfda48f4eb212d67ab018eebf84cb093c3044ae0275c8574c7260c5afacf9de5",
+      "identity_or_listening_verified": false
+    }
+  ],
+  "per_query": [
+    {
+      "query_id": "holdout-01",
+      "grade_counts": {
+        "0": 4,
+        "1": 6,
+        "2": 4,
+        "3": 6
+      },
+      "positives": 10,
+      "P_at_5_ceiling": 1.0,
+      "IDCG_at_5": 20.639213832155747,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 3,
+          "P_at_5": 0.6,
+          "nDCG_at_5": 0.44165901337133495
+        },
+        "A-segment": {
+          "relevant_top5": 3,
+          "P_at_5": 0.6,
+          "nDCG_at_5": 0.510315875060617
+        },
+        "B-whole": {
+          "relevant_top5": 2,
+          "P_at_5": 0.4,
+          "nDCG_at_5": 0.44048358884740757
+        },
+        "B-segment": {
+          "relevant_top5": 2,
+          "P_at_5": 0.4,
+          "nDCG_at_5": 0.32503844399191834
+        },
+        "title-tfidf": {
+          "relevant_top5": 2,
+          "P_at_5": 0.4,
+          "nDCG_at_5": 0.32799582471206784
+        }
+      }
+    },
+    {
+      "query_id": "holdout-02",
+      "grade_counts": {
+        "0": 20,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "positives": 0,
+      "P_at_5_ceiling": 0.0,
+      "IDCG_at_5": 0.0,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": null
+        },
+        "A-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": null
+        },
+        "B-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": null
+        },
+        "B-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": null
+        },
+        "title-tfidf": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": null
+        }
+      }
+    },
+    {
+      "query_id": "holdout-03",
+      "grade_counts": {
+        "0": 18,
+        "1": 2,
+        "2": 0,
+        "3": 0
+      },
+      "positives": 0,
+      "P_at_5_ceiling": 0.0,
+      "IDCG_at_5": 1.6309297535714575,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.9197207891481876
+        },
+        "A-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 1.0
+        },
+        "B-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.9197207891481876
+        },
+        "B-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 1.0
+        },
+        "title-tfidf": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        }
+      }
+    },
+    {
+      "query_id": "holdout-04",
+      "grade_counts": {
+        "0": 13,
+        "1": 7,
+        "2": 0,
+        "3": 0
+      },
+      "positives": 0,
+      "P_at_5_ceiling": 0.0,
+      "IDCG_at_5": 2.9484591188793923,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.30078518014914984
+        },
+        "A-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.34519134224686937
+        },
+        "B-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.5087403079104241
+        },
+        "B-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.3391602052736161
+        },
+        "title-tfidf": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.14606834984270645
+        }
+      }
+    },
+    {
+      "query_id": "holdout-05",
+      "grade_counts": {
+        "0": 19,
+        "1": 1,
+        "2": 0,
+        "3": 0
+      },
+      "positives": 0,
+      "P_at_5_ceiling": 0.0,
+      "IDCG_at_5": 1.0,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        },
+        "A-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.6309297535714575
+        },
+        "B-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        },
+        "B-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.38685280723454163
+        },
+        "title-tfidf": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.38685280723454163
+        }
+      }
+    },
+    {
+      "query_id": "holdout-06",
+      "grade_counts": {
+        "0": 12,
+        "1": 6,
+        "2": 2,
+        "3": 0
+      },
+      "positives": 2,
+      "P_at_5_ceiling": 0.4,
+      "IDCG_at_5": 6.210318626022307,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 1,
+          "P_at_5": 0.2,
+          "nDCG_at_5": 0.6156633900822389
+        },
+        "A-segment": {
+          "relevant_top5": 2,
+          "P_at_5": 0.4,
+          "nDCG_at_5": 0.8520477762771839
+        },
+        "B-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.23323426801486458
+        },
+        "B-segment": {
+          "relevant_top5": 1,
+          "P_at_5": 0.2,
+          "nDCG_at_5": 0.5463148455053497
+        },
+        "title-tfidf": {
+          "relevant_top5": 1,
+          "P_at_5": 0.2,
+          "nDCG_at_5": 0.48306700197788277
+        }
+      }
+    },
+    {
+      "query_id": "holdout-07",
+      "grade_counts": {
+        "0": 18,
+        "1": 0,
+        "2": 2,
+        "3": 0
+      },
+      "positives": 2,
+      "P_at_5_ceiling": 0.4,
+      "IDCG_at_5": 4.892789260714372,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 1,
+          "P_at_5": 0.2,
+          "nDCG_at_5": 0.23719771276929622
+        },
+        "A-segment": {
+          "relevant_top5": 2,
+          "P_at_5": 0.4,
+          "nDCG_at_5": 0.6509209298071326
+        },
+        "B-whole": {
+          "relevant_top5": 1,
+          "P_at_5": 0.2,
+          "nDCG_at_5": 0.26406812257259094
+        },
+        "B-segment": {
+          "relevant_top5": 2,
+          "P_at_5": 0.4,
+          "nDCG_at_5": 1.0
+        },
+        "title-tfidf": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        }
+      }
+    },
+    {
+      "query_id": "holdout-08",
+      "grade_counts": {
+        "0": 17,
+        "1": 3,
+        "2": 0,
+        "3": 0
+      },
+      "positives": 0,
+      "P_at_5_ceiling": 0.0,
+      "IDCG_at_5": 2.1309297535714578,
+      "scores": {
+        "A-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        },
+        "A-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        },
+        "B-whole": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        },
+        "B-segment": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        },
+        "title-tfidf": {
+          "relevant_top5": 0,
+          "P_at_5": 0.0,
+          "nDCG_at_5": 0.0
+        }
+      }
+    }
+  ],
+  "macro": {
+    "A-whole": {
+      "P_at_5": 0.125,
+      "P_query_denominator": 8,
+      "nDCG_at_5": 0.3592894407886011,
+      "nDCG_query_denominator": 7
+    },
+    "A-segment": {
+      "P_at_5": 0.175,
+      "P_query_denominator": 8,
+      "nDCG_at_5": 0.5699150967090372,
+      "nDCG_query_denominator": 7
+    },
+    "B-whole": {
+      "P_at_5": 0.07500000000000001,
+      "P_query_denominator": 8,
+      "nDCG_at_5": 0.33803529664192494,
+      "nDCG_query_denominator": 7
+    },
+    "B-segment": {
+      "P_at_5": 0.125,
+      "P_query_denominator": 8,
+      "nDCG_at_5": 0.5139094717150609,
+      "nDCG_query_denominator": 7
+    },
+    "title-tfidf": {
+      "P_at_5": 0.07500000000000001,
+      "P_query_denominator": 8,
+      "nDCG_at_5": 0.19199771196674267,
+      "nDCG_query_denominator": 7
+    }
+  },
+  "contrasts": [
+    {
+      "candidate": "B-whole",
+      "anchor": "A-whole",
+      "role": "primary",
+      "P_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": -0.19999999999999996,
+          "holdout-02": 0.0,
+          "holdout-03": 0.0,
+          "holdout-04": 0.0,
+          "holdout-05": 0.0,
+          "holdout-06": -0.2,
+          "holdout-07": 0.0,
+          "holdout-08": 0.0
+        },
+        "mean_delta": -0.049999999999999996,
+        "absolute_percentage_point_delta": -5.0,
+        "wins": 0,
+        "ties": 6,
+        "losses": 2,
+        "query_denominator": 8
+      },
+      "nDCG_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": -0.001175424523927382,
+          "holdout-03": 0.0,
+          "holdout-04": 0.20795512776127428,
+          "holdout-05": 0.0,
+          "holdout-06": -0.38242912206737434,
+          "holdout-07": 0.02687040980329472,
+          "holdout-08": 0.0
+        },
+        "mean_delta": -0.0212541441466761,
+        "absolute_percentage_point_delta": -2.12541441466761,
+        "wins": 2,
+        "ties": 3,
+        "losses": 2,
+        "query_denominator": 7
+      }
+    },
+    {
+      "candidate": "B-segment",
+      "anchor": "A-segment",
+      "role": "secondary",
+      "P_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": -0.19999999999999996,
+          "holdout-02": 0.0,
+          "holdout-03": 0.0,
+          "holdout-04": 0.0,
+          "holdout-05": 0.0,
+          "holdout-06": -0.2,
+          "holdout-07": 0.0,
+          "holdout-08": 0.0
+        },
+        "mean_delta": -0.049999999999999996,
+        "absolute_percentage_point_delta": -5.0,
+        "wins": 0,
+        "ties": 6,
+        "losses": 2,
+        "query_denominator": 8
+      },
+      "nDCG_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": -0.1852774310686987,
+          "holdout-03": 0.0,
+          "holdout-04": -0.006031136973253248,
+          "holdout-05": -0.2440769463369159,
+          "holdout-06": -0.30573293077183417,
+          "holdout-07": 0.34907907019286744,
+          "holdout-08": 0.0
+        },
+        "mean_delta": -0.05600562499397637,
+        "absolute_percentage_point_delta": -5.600562499397637,
+        "wins": 1,
+        "ties": 2,
+        "losses": 4,
+        "query_denominator": 7
+      }
+    },
+    {
+      "candidate": "A-segment",
+      "anchor": "A-whole",
+      "role": "secondary",
+      "P_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": 0.0,
+          "holdout-02": 0.0,
+          "holdout-03": 0.0,
+          "holdout-04": 0.0,
+          "holdout-05": 0.0,
+          "holdout-06": 0.2,
+          "holdout-07": 0.2,
+          "holdout-08": 0.0
+        },
+        "mean_delta": 0.05,
+        "absolute_percentage_point_delta": 5.0,
+        "wins": 2,
+        "ties": 6,
+        "losses": 0,
+        "query_denominator": 8
+      },
+      "nDCG_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": 0.06865686168928209,
+          "holdout-03": 0.08027921085181244,
+          "holdout-04": 0.044406162097719526,
+          "holdout-05": 0.6309297535714575,
+          "holdout-06": 0.23638438619494495,
+          "holdout-07": 0.4137232170378363,
+          "holdout-08": 0.0
+        },
+        "mean_delta": 0.2106256559204361,
+        "absolute_percentage_point_delta": 21.06256559204361,
+        "wins": 6,
+        "ties": 1,
+        "losses": 0,
+        "query_denominator": 7
+      }
+    },
+    {
+      "candidate": "B-segment",
+      "anchor": "B-whole",
+      "role": "secondary",
+      "P_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": 0.0,
+          "holdout-02": 0.0,
+          "holdout-03": 0.0,
+          "holdout-04": 0.0,
+          "holdout-05": 0.0,
+          "holdout-06": 0.2,
+          "holdout-07": 0.2,
+          "holdout-08": 0.0
+        },
+        "mean_delta": 0.05,
+        "absolute_percentage_point_delta": 5.0,
+        "wins": 2,
+        "ties": 6,
+        "losses": 0,
+        "query_denominator": 8
+      },
+      "nDCG_at_5": {
+        "paired_query_deltas": {
+          "holdout-01": -0.11544514485548923,
+          "holdout-03": 0.08027921085181244,
+          "holdout-04": -0.169580102636808,
+          "holdout-05": 0.38685280723454163,
+          "holdout-06": 0.3130805774904851,
+          "holdout-07": 0.7359318774274091,
+          "holdout-08": 0.0
+        },
+        "mean_delta": 0.17587417507313585,
+        "absolute_percentage_point_delta": 17.587417507313585,
+        "wins": 4,
+        "ties": 1,
+        "losses": 2,
+        "query_denominator": 7
+      }
+    }
+  ],
+  "zero_positive_queries": [
+    "holdout-02",
+    "holdout-03",
+    "holdout-04",
+    "holdout-05",
+    "holdout-08"
+  ],
+  "zero_IDCG_queries": [
+    "holdout-02"
+  ],
+  "nDCG_eligible_queries": [
+    "holdout-01",
+    "holdout-03",
+    "holdout-04",
+    "holdout-05",
+    "holdout-06",
+    "holdout-07",
+    "holdout-08"
+  ],
+  "unknown_pairs": 0,
+  "limits": [
+    "Single user subjective model-blind judgments; identity/listening and interrater reliability not verified.",
+    "Full qrels only for twenty new recordings, not the combined sixty-track library.",
+    "Eight queries/small source frame; no significance, pretraining-unseen or population-generalization claim.",
+    "No Recall, localization IoU, P95, tuning, model switch, training or online retrieval.",
+    "Future changes selected using these labels make this a development regression set."
+  ],
+  "task": "MUS-042",
+  "source_baseline_sha": "3655fb30644968d6213d59540710c744ba4d0700",
+  "actual_evaluator_source_sha": "865a7eda95da9a2ce894f9dccf9fa88f7828a379",
+  "evaluator_sha256": "bff2557fca43023a0f58d428c951a96d3f4ed1b50ddb37fdf3fa474fe62dccdf",
+  "G5_first_parse_at_utc": "2026-10-31T04:35:29.858220+00:00",
+  "custody": {
+    "all4_payload_hashes_checked_before_parse": true,
+    "original_archive_and4_exports_archived_unchanged": true,
+    "private_modes": "0700/0600",
+    "single_recorded_opening": true
+  },
+  "aggregate_grade_counts": {
+    "0": 121,
+    "1": 25,
+    "2": 8,
+    "3": 6
+  },
+  "macro_P_at_5_attainable_ceiling": 0.225,
+  "independent_recomputation": {
+    "status": "passed",
+    "method": "separate stdlib/Fraction arithmetic; no production evaluator imports; same operator, not B",
+    "all40_query_scores_and5_means_and4_paired_contrasts_match": true,
+    "old_protected_files_unchanged": 952,
+    "backup_clean_at_original_sha": true,
+    "private_modes": "0700/0600",
+    "grade_counts": {
+      "3": 6,
+      "2": 8,
+      "0": 121,
+      "1": 25
+    },
+    "macro_P5_ceiling": 0.225,
+    "comparison_result_sha256": "47c8c17737396e97447ed6c28273ae535d0086329b2d353704f3a068d4f76c3f",
+    "independent_script_sha256": "ea1e65b20564236b5e73cf66fb49f493c22851a6e93d2df6faf41950f369c7a5"
+  },
+  "validation_checks": {
+    "related_synthetic_tests_passed": 49,
+    "new_tests": 11,
+    "existing_tests": 38,
+    "model_loaded": false,
+    "frozen_run_artifacts_unchanged": true,
+    "real_repeat_output_refused_before_new_parse": true
+  },
+  "private_evidence_sha256": {
+    "opening.json": "fad1d6a61d079baf7aca628358b73303602aff459f99e4eb389815d395a983f4",
+    "result.json": "47c8c17737396e97447ed6c28273ae535d0086329b2d353704f3a068d4f76c3f",
+    "independent-recompute.json": "48ed3eacf8c2b8c12706b4ee673be302f8c5e362ec4b639abe746cc6f1388528",
+    "repeat-output-check.json": "369761141a30e7a2c9c286633b2eba40b60e24f68de656a1ead88f79b76b6594"
+  },
+  "attempts": [
+    "Initial synthetic suite: 49 total, 1 error/1 failure from macOS /var symlink in fixture; resolve fixture temporary path, preserve safety gate; final49 passed.",
+    "First invocation resolved virtualenv python symlink to base interpreter, laion-clap metadata unavailable; environment gate rejected before output creation/grade parsing. Retried with original virtualenv executable path, unchanged evaluator and complete environment verification passed."
+  ]
+}

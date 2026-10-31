@@ -48,6 +48,8 @@ MUS-040第三检查点已完成G2运行冻结、四批独立标注包和五组�
 
 MUS-041已按用户要求调整后续数据路线：既有标注作为训练/开发主来源，人工仅保留有界抽检和项目验收，当前四批仍照常完成。已核MTG-Jamendo固定版本55,609条标签metadata，官方split-0 train32,859/validation11,101/test11,565且作者ID无交叉，原开发20 Jamendo有9首重叠须排除；SDD可作外部人写caption评测候选，但也含已用作者。已比较MusicCaps/MusicBench/生成caption的角色与许可，实际仅下载约31.7MB文档/metadata，未取音频或训练。首选MTG仅按非商业研究评估，不能当商用授权；当前160与五配置/G5不改，新训练不能据已看test调参后仍称盲测。详见[现成标注路线](docs/evaluation/MUS-041-labeled-data.md)。
 
+MUS-042已接收四批原始完整判断并完成首次独立小样本比较：四回执SHA全部相符、160/160合法，5组原排名不变、单次解封且独立分脚本复算一致。全8描述宏P@5：A整曲0.125、A片段0.175、B整曲0.075、B片段0.125、标题0.075；5描述没有2/3分匹配，全样本理想上限0.225。B相对A两模式均低5个百分点，无模型切换/训练；nDCG及逐query/限制见[MUS-042](docs/verification/MUS-042.md)。这不是总体质量验收或线上检索，旧开发指标不能与新样本直接算提升；用户已完成四批，后续按041现成标注路线而非追加大量全矩阵标注。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

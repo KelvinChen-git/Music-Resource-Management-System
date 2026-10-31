@@ -1,5 +1,27 @@
 # 账号 A 最新交接
 
+## 当前：MUS-042四批160原评分接收/单次G5/五组比较完成，无训练或切模型
+
+A；2026-10-30 America/Chicago；branch codex/MUS-042-independent-evaluation；本段base865a7ed（实际工具提交，完整SHA见verification/MUS-042-results.json），任务起点3655fb30644968d6213d59540710c744ba4d0700。042接收/小样本比较done，040工具仍待独立审核；不是总体质量或线上检索验收。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；开始2026-10-31T04:32:04Z双方fetched，A7bbda1d/source3655fb3，结束前再次sync同B原卡保持。N1 035-R2/rev1准确de255c7/base74645de仍assigned，不替换/扩审核或冒充B批准。
+
+用户ZIP SHA166d21b82e2fc27d881692d94ef807ec3b977d19bb8045c6af4e432457fa1387内四原JSON字节全匹配原四回执。先核全4，再重验G2 1898f2bd…/447输入/23推理源码/双权重/5141已装代码配置/54cache/五run commitment d3b03f47…及全部5排名/4向量工件/四空包重建；干净865a7ed工具下先私有归档/记录事件，再于2026-10-31T04:35:29.858220Z首次联合解析。160/160格式合法/未知0，0/1/2/3=121/25/8/6；身份/听音不认证。原ZIP/JSON/逐曲评分/代号/真实Java ID均只ignore.local/a/mus042，0700/0600。
+
+全8等权P@5：A整曲0.125、A片段0.175、B整曲0.075、B片段0.125、标题0.075。nDCG全20 IDCG、7个IDCG>0宏均值依次0.359289/0.569915/0.338035/0.513909/0.191998；holdout02全0仅从nDCG排除，P仍全8。5描述无2/3分正例，宏P@5理想上限0.225，不能只把低绝对分归因模型。主对照B整曲−A整曲−5个百分点、P胜0/平6/负2；片段对应B−A也−5个百分点，模式内片段各+5个百分点。四预注册对照/逐query/零正例与上限全部公开，无显著性/总体提升/模型选择或切换。
+
+49相关合成检查passed（11新+38旧），含全1/全0/全20 IDCG/第20项正例/8等权与缺判/非法等级/排名集合/第四hash失败前零parse。初macOS临时目录/var symlink两项失败只修fixture resolve；初真实venv可执行链接被启动脚本resolve为系统解释器，缺laion-clap metadata，在输出/评分打开前门槛拒绝，保留错误后用原venv路径、相同工具/环境完整核验exit0。实际重复输出exit1/FileExistsError且原打开/归档/结果保持，无第二次parse。
+
+同操作者独立stdlib/Fraction分脚本，不导入生产helper，全部40query组/五宏/四对照/正例和上限复算一致，非B。952旧文件SHA及原版f3b0da1干净保持，无新模型加载/推理/训练/索引/音频/Java/Vue/DB/API/锁/依赖/UI/main改动。不重复Maven/build/CLAP，不称本轮通过这些检查。
+
+交付holdout_evaluate.py/11新测试/E17/必要README与PROJECT/STATUS/A latest、MUS-042.md/results.json和040原receipt log的实际payload/格式/G5状态；原请求资格JSON/G2/G3/G4报告历史不改。四批用户任务已完成，不再等待原文件或补标；下一步按041现成MTG研究train/dev＋有界抽检，adapter/许可和旧作者作品排除/20首链路预检/1–2k子集训练尚未开始。当前已看160若用于新模型选参只能作development回归，未来独立评测另冻。
+
+提交后原子publish/sync回读，远端可读不等于B接收、独立审核或main合并；无后台轮询。
+
+## 上一检查点（保留，解封前）
+
+# 账号 A 最新交接
+
 ## MUS-042：G5比较工具已实现，真实评分尚未解析
 
 A；2026-10-30 America/Chicago；branch codex/MUS-042-independent-evaluation；base3655fb30644968d6213d59540710c744ba4d0700。用户提交四批ZIP，原字节承诺全4匹配；准备先提交固定比较实现，再记录G5打开与实算。
