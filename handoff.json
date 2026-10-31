@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-31T05:40:00.352Z",
+  "published_at": "2026-10-31T05:52:21.975Z",
   "source_branch": "review/MUS-044-B-training-plan",
-  "source_sha": "79b4c8a71370d5e9a356959cca874a332a4a5a5e",
+  "source_sha": "1724630f5f37f8e856c1d12c068d208382763719",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "cffae39e4c9694f0ba2f7802f895c769f48dcec40265b6f554ef800c8a005dbf"
+  "report_sha256": "091fe2d6f6e1db01a2c5a2504657c74a4c8c99bd463423ce033bcc968737b6a5"
 }
