@@ -1,0 +1,733 @@
+{
+  "schema": "sonora-expanded-caption-diagnostic-result-v1",
+  "status": "development_diagnostic_complete",
+  "source_sha": "e4e6bfdf320a4608953cd653fa60c6398a3ee601",
+  "created_at_utc": "2026-10-31T18:20:18.461764+00:00",
+  "config_sha256": "fea78001f2693b0c3a590a29f0063a7ffc8a5742885273de98c30d9f90198a57",
+  "freeze_sha256": "c622a359e6dd3350e3d2fd4af18f045f5a81becd95a77114ddded71274be0926",
+  "features_sha256": "1758a225ba5b1c418f092cb1cccc81c4617ca3f9d00149ec8fa2f26a29c5dfe3",
+  "counts": {
+    "candidate_tracks": 140,
+    "paired_dev_recordings": 20,
+    "caption_queries": 24,
+    "newly_encoded_audio": 120,
+    "reused_dev_audio": 20,
+    "new_text_encodes": 0,
+    "new_downloads": 0,
+    "fit_runs": 0,
+    "test_inputs": 0
+  },
+  "strict": {
+    "id": "A",
+    "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+    "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "audio_architecture": "HTSAT-base",
+    "fusion": false,
+    "strict_missing": [],
+    "strict_unexpected": [],
+    "removed_nonlearned_position_ids": true,
+    "loader": "torch_weights_only_true_mmap_cpu_strict_v1"
+  },
+  "results": {
+    "dev20": {
+      "identity": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7083333333333333
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 1.0,
+            "MRR": 0.7319444444444444
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7135416666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "alpha-0.1": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6663095238095239
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7052579365079366
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 0.9,
+            "MRR": 0.71375
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 0.9166666666666666,
+            "MRR": 0.7447916666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "alpha-1.0": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 1.0,
+            "MRR": 0.6641666666666667
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 1.0,
+            "MRR": 0.6951388888888889
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6804166666666667
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.717013888888889
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "alpha-5.0": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7000000000000001
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 1.0,
+            "MRR": 0.725
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7135416666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      }
+    },
+    "expanded140": {
+      "identity": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4208083360138314
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.43178472445597055
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.22000000000000003,
+            "R5": 0.54,
+            "MRR": 0.3947233414733414
+          },
+          "query_macro": {
+            "R1": 0.25,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4344916734500068
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "alpha-0.1": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.36,
+            "R5": 0.6,
+            "MRR": 0.4658386752136752
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.6666666666666666,
+            "MRR": 0.4715322293447293
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.38,
+            "R5": 0.6,
+            "MRR": 0.490196262071262
+          },
+          "query_macro": {
+            "R1": 0.4166666666666667,
+            "R5": 0.6666666666666666,
+            "MRR": 0.533496885059385
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "alpha-1.0": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.37,
+            "R5": 0.49000000000000005,
+            "MRR": 0.44840940921823275
+          },
+          "query_macro": {
+            "R1": 0.375,
+            "R5": 0.5416666666666666,
+            "MRR": 0.47228561879297165
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.37,
+            "R5": 0.54,
+            "MRR": 0.47704212454212447
+          },
+          "query_macro": {
+            "R1": 0.375,
+            "R5": 0.5833333333333334,
+            "MRR": 0.5030906593406593
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "alpha-5.0": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.42007397458324575
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.43154312696751956
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.4446521164021163
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4760989858906526
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "dev20": {
+      "alpha-0.1": {
+        "whole": {
+          "R1": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.15,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 19,
+            "losses": 1
+          },
+          "R5": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.15,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 19,
+            "losses": 1
+          },
+          "MRR": {
+            "mean_delta": -0.04202380952380953,
+            "bootstrap95_lower": -0.09529166666666668,
+            "bootstrap95_upper": -0.0011904761904761834,
+            "wins": 1,
+            "ties": 15,
+            "losses": 4
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.05,
+            "bootstrap95_lower": -0.1,
+            "bootstrap95_upper": 0.25,
+            "wins": 2,
+            "ties": 17,
+            "losses": 1
+          },
+          "R5": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.15,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 19,
+            "losses": 1
+          },
+          "MRR": {
+            "mean_delta": 0.03750000000000001,
+            "bootstrap95_lower": -0.05,
+            "bootstrap95_upper": 0.14166666666666666,
+            "wins": 4,
+            "ties": 13,
+            "losses": 3
+          }
+        }
+      },
+      "alpha-1.0": {
+        "whole": {
+          "R1": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.15,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 19,
+            "losses": 1
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.044166666666666674,
+            "bootstrap95_lower": -0.09416666666666668,
+            "bootstrap95_upper": -0.0024999999999999996,
+            "wins": 0,
+            "ties": 16,
+            "losses": 4
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.004166666666666666,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.012499999999999997,
+            "wins": 1,
+            "ties": 19,
+            "losses": 0
+          }
+        }
+      },
+      "alpha-5.0": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.008333333333333335,
+            "bootstrap95_lower": -0.025,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 19,
+            "losses": 1
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          }
+        }
+      }
+    },
+    "expanded140": {
+      "alpha-0.1": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.05,
+            "bootstrap95_lower": -0.1,
+            "bootstrap95_upper": 0.2,
+            "wins": 2,
+            "ties": 17,
+            "losses": 1
+          },
+          "R5": {
+            "mean_delta": 0.11000000000000001,
+            "bootstrap95_lower": -0.05,
+            "bootstrap95_upper": 0.31,
+            "wins": 4,
+            "ties": 15,
+            "losses": 1
+          },
+          "MRR": {
+            "mean_delta": 0.04503033919984385,
+            "bootstrap95_lower": -0.049045945428840165,
+            "bootstrap95_upper": 0.16035620132791187,
+            "wins": 8,
+            "ties": 7,
+            "losses": 5
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.16,
+            "bootstrap95_lower": 0.009999999999999998,
+            "bootstrap95_upper": 0.32,
+            "wins": 4,
+            "ties": 16,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.06,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.16999999999999998,
+            "wins": 2,
+            "ties": 18,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.09547292059792059,
+            "bootstrap95_lower": 0.014725338434713435,
+            "bootstrap95_upper": 0.1919668473887223,
+            "wins": 8,
+            "ties": 7,
+            "losses": 5
+          }
+        }
+      },
+      "alpha-1.0": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.06,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.17,
+            "wins": 2,
+            "ties": 18,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.027601073204401378,
+            "bootstrap95_lower": -0.004839449685376541,
+            "bootstrap95_upper": 0.08303972895976562,
+            "wins": 6,
+            "ties": 11,
+            "losses": 3
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.15,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.35,
+            "wins": 3,
+            "ties": 17,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.08231878306878308,
+            "bootstrap95_lower": -2.8665547415547737e-05,
+            "bootstrap95_upper": 0.18273832671957668,
+            "wins": 6,
+            "ties": 12,
+            "losses": 2
+          }
+        }
+      },
+      "alpha-5.0": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.0007343614305856886,
+            "bootstrap95_lower": -0.0026785714285714273,
+            "bootstrap95_upper": 0.0004508933730901672,
+            "wins": 2,
+            "ties": 16,
+            "losses": 2
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.1,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.25,
+            "wins": 2,
+            "ties": 18,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.04992877492877493,
+            "bootstrap95_lower": -0.00014245014245014287,
+            "bootstrap95_upper": 0.125,
+            "wins": 2,
+            "ties": 17,
+            "losses": 1
+          }
+        }
+      }
+    }
+  },
+  "geometry": {
+    "train_audio_mean_pair_cosine": 0.3992692947078694,
+    "train_tag_centroid_mean_pair_cosine": 0.7330086656968622,
+    "dev_recording_macro_caption_original_audio_cosine": 0.37943054320309944,
+    "dev_recording_macro_caption_tag_centroid_cosine": 0.40776169130230067,
+    "scope": "aggregate_geometry_not_causal_or_new_training_supervision"
+  },
+  "model_decision": "retain_identity_no_selection_or_scale_up_from_this_diagnostic",
+  "limits": [
+    "Development queries and candidate adapters have been examined before; this is not a fresh independent test.",
+    "Expanded pool includes100 adapter-training and20 tag-validation recordings as unjudged distractors, not confirmed semantic negatives.",
+    "SDD nominal beginning view from low-bitrate original,not official SDD audio benchmark.",
+    "No data selection by rank,model score or tag, no opening reserved tests."
+  ],
+  "task": "MUS-046",
+  "branch": "codex/MUS-046-expanded-caption-diagnostic",
+  "base_sha": "e109b5c2ebc0531c059ddca844c63ad1b101ca84",
+  "verification": {
+    "related_tests": 54,
+    "new_tests": 12,
+    "existing_tests": 42,
+    "independent_audit": {
+      "status": "passed",
+      "method": "Same operator independent NumPy rank counts/paired bootstrap/explicit geometry, no production metric imports; plus prior043-045/951 old files and authorized B dispatch closure/frozen23/cache54 preservation checks",
+      "two_pools_four_models_two_modes_all_metrics_and_intervals_match": true,
+      "all_candidates_same_first120_view": true,
+      "original20_dev_windows_whole_and24_text_features_exactly_reused": true,
+      "all_prior045_files_set_and_hash_preserved": true,
+      "old951_unchanged_one_authorized_B_dispatch_closure": true,
+      "043_044_and160_originals_frozen23_cache54_and_backup_preserved": true,
+      "private_modes700_600": true,
+      "no_new_fit_or_test_inputs": true,
+      "script_sha256": "d25a4003f2fbedf1944c8a6674337d0ad93ee1aac8cf2603e1a739007d6bd851"
+    },
+    "repeat_run": {
+      "status": "passed",
+      "exit_code": 1,
+      "expected_error": "FileExistsError",
+      "original_run_all_artifacts_unchanged": true,
+      "additional_model_load_or_encoding_or_fits": 0
+    },
+    "note": "Independent audit occurred with completed035 dispatch waiting; final A-owned dispatch subsequently assigned046 as authorized, all other951 historical pins still required unchanged."
+  },
+  "interpretation": {
+    "development_signal_only": true,
+    "original20_control_reproduced": true,
+    "primary_whole_MRR_deltas_all_intervals_include_zero": true,
+    "selected_new_model": false,
+    "scale_up_started": false,
+    "reserved_tests_untouched": true,
+    "independent_B_tool_approval_received": false,
+    "next_step": "Receive versioned bounded tool review and preregister the next training/validation design before any additional training; no retrospective change to045."
+  },
+  "private_evidence_sha256": {
+    "prior045-before.json": "fe8fe69fd05ac5e4415916c0a2c31f89b7d7cb9548871188f9c75d9f87201e1b",
+    "invocation.json": "be5e6367d7fc7030d576563890ad048b98a6c1e6bf705880eccfa7515febb8a1",
+    "exit.json": "e89df0eae5ec7db81135aed16463968955c578bcc4f2ec43172eff351f080c17",
+    "run.log": "554909109e0c00003b4ad1a7efbd2d60483f080f016fd919d61f96c32f6ce84c",
+    "run-01/freeze.json": "c622a359e6dd3350e3d2fd4af18f045f5a81becd95a77114ddded71274be0926",
+    "run-01/cache.json": "5600bddbf4062939398b0904f6929b02ced7e9e71da216de4043e9875fda49e9",
+    "run-01/features.npz": "1758a225ba5b1c418f092cb1cccc81c4617ca3f9d00149ec8fa2f26a29c5dfe3",
+    "run-01/result-private.json": "5c58ee7fe68635e9ef528f3333fb4171f6dc1b6478d6c2f4d13b52c37bf5a638",
+    "run-01/result-public.json": "c8252a8cca9357e1c4676c37e2f4fec22e85c943f4def1ba14e01136db43b7a9",
+    "related-tests.log": "a3842572de956831ee265119374a846aa50d3efca5b133d452d1ffff3b1dcce5",
+    "independent-audit.py": "a9b994e3ebb847297d0f9635075a3efb007f90da440c5dcd3cc6ba6181a1ad12",
+    "independent-audit.log": "6b39859ee283a8d1d5215fdbbb42791cfd33eba12c27063ac58741055608f8cd",
+    "independent-audit-v2.py": "d25a4003f2fbedf1944c8a6674337d0ad93ee1aac8cf2603e1a739007d6bd851",
+    "independent-audit-v2.log": "0cb1b4942e47fadd02925b1578531ed146d870af0d6a97188f4968e9d8e1c60b",
+    "independent-audit-final.log": "15e9325f02390947f60c96b692b4e77d7ce91acc718c6a77f162e31321140008",
+    "independent-audit.json": "a1ef60c28b00c36e7e4a91cead87babbefbd8cd4e7e0fa5674766d08f9ddec1f",
+    "audit-initial-note.json": "34fa76decdae5d8b2091629f000b95658784e53cea5e76cfb316d1b67f8316ab",
+    "audit-mode-note.json": "01beb1d04ad170ac0eb84233ea59a4d5d2b4113bd156886024e3be447a0702a1",
+    "repeat-check.json": "953e3bce983d477eab7075335e30a9d4cf3ef99b22ad8c3c8a9d0d5cf0b41a52",
+    "repeat-run.log": "bc72339f5cd8aea2e65041ae8b6ef8d17b36fb108a5e6bcf1ff38e2f3770e314",
+    "final-doc-qa.json": "56f47361546c2423086ab7bffa2cf4cdaa5aed55cbd80d98fc9b988683477516"
+  }
+}

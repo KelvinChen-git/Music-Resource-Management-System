@@ -56,6 +56,8 @@ MUS-044已固定train1,000/validation200/reserved-test200的metadata分组计划
 
 MUS-045已接收B的044计划审查建议并完成140首真实研究音频（100训练/20标签验证/20人写描述开发）与三组适配比较；20开发录音对应24条既有描述，无新增人工包。原模型整曲配对R@1为54%，三候选最好仍54%；较强适配标签Recall@5由15.1%到22.1%，却降低描述检索，故保留原模型、不启动千首扩训。20候选池原模型R@5已100%，门槛出现天花板，后续需另预注册更有区分度的开发池并检查监督目标，不能凭此宣称泛化无效或改实验造收益。42相关检查、独立参数/排名复算及真实零额外下载恢复通过；新保留测试文本/音频/模型输入/评分均0。研究数据未导入页面曲库，原版/UI/main保持，见[MUS-045](docs/verification/MUS-045.md)。
 
+MUS-046已统一现有140候选的首120秒视图，复用原24描述/三W完成扩大池诊断，无新拟合或音频下载。原模型整曲R1/R5/MRR为31%/49%/0.4208，原alpha0.1为36%/60%/0.4658；主MRR差的95%开发区间包含零，继续保留identity，不据此扩训或部署。54检查和独立两池/两模式指标区间复算通过，原20控制指标复现，保留测试未用。B035权限N1准确限定批准已接收关闭，046工具另派独立合成/静态审核、未获批准。见[MUS-046](docs/verification/MUS-046.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

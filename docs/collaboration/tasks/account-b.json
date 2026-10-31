@@ -1,11 +1,11 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "status": "waiting",
+  "status": "assigned",
   "claimed_by_b": false,
-  "task_id": null,
-  "assignment_revision": null,
-  "task_card_path": null,
+  "task_id": "MUS-046-R1-B",
+  "assignment_revision": 1,
+  "task_card_path": "docs/collaboration/tasks/MUS-046-R1-B.md",
   "previous_task": {
     "task_id": "MUS-035-R2-B",
     "assignment_revision": 1,
@@ -26,5 +26,13 @@
     "feed_sha": "610c03e17989e934f8f35ec79e6b6063aeea7439",
     "acceptance_record_path": "docs/verification/MUS-035-B-acceptance.json"
   },
-  "note": "N1 scoped approval received, closed. No new task claimed or assigned; wait for explicit versioned card."
+  "note": "035 N1 scoped approval accepted/closed. New046 synthetic/static diagnostic-tool review only, not A private run or model-quality approval.",
+  "reviewed_sha": "e4e6bfdf320a4608953cd653fa60c6398a3ee601",
+  "comparison_base_sha": "e109b5c2ebc0531c059ddca844c63ad1b101ca84",
+  "review_branch": "review/MUS-046-B-expanded-caption",
+  "allowed_output_paths": [
+    "docs/reviews/MUS-046-B.md",
+    "docs/collaboration/account-b/latest.md"
+  ],
+  "claim_channel": "collab/account-b latest.md"
 }
