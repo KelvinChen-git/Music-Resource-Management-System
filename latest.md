@@ -1,5 +1,59 @@
 # 账号 A 最新交接
 
+## 当前：MUS-045完成140首真实数据与三候选比较，保留原模型、不扩训
+
+A；2026-10-31 America/Chicago；branch `codex/MUS-045-mtg-corpus-acquisition`；base46b52db8b2999ab015084f423545e4f2cd5c4e03。实际采集源码be880dab81fcba46a8ec956e5cc7bfcc8c454ff1，编码/比较源码95360d895cdbb00c24d444658d31e0699178e40c；最终文档交付SHA由handoff.source_sha给出。045 review：有界链路/开发比较完成，工具独立审核未完成，不是模型质量验收。
+
+ack_peer_feed_sha `0faad731981280a46b37cd617ff6d749962e6da5` / peer_source_sha `1724630f5f37f8e856c1d12c068d208382763719`；06:03:59Z/06:21:07Z/06:28:02Z双方fetched。B用户直派MUS-044-PLAN-B/rev1针对46b52db的needs_revision_before_scale_up已原字节归档并接收R1–R4，不冒充B对后续工具批准。原035-R2/rev1/de255c7/base74645de任务仍assigned/claimed_by_b=false；未替换、扩审或结束。
+
+固定E20/config后取得140/140真实官方音频：100train/20tag-val/20captiondev，24条既有validated人写描述。按原计划前缀/metadata hash与作者组件隔离，技术替补0；旧60同65536 PCM及新140/跨split精确文件与PCM无重复。正常TLS/206/validator/官方SHA/实际EOF/finite/48k mono均过，保守body394,148,675 bytes<1.5GiB，首ready磁盘394,332,902 bytes<2GiB，后恢复追加小日志/清单。实际同目录恢复140 ready复用，新增body0。全别名/声学近重复/翻唱/预训练排除仍不声称完成。
+
+一次冻结CLAP缓存编码140音频/420固定窗口/183tag prototype/24caption、超77token0；三个alpha0.1/1/5按每录音均值损失拟合lambda=Nalpha=10/100/500，加identity；text不映射，whole先聚合后W，三窗口segment单独。当前版本runner约束本次140/183形状，并非已验证千首生产trainer。SDD描述用首min120s官方低码率派生，同名义视图、非原SDD320官方字节等价benchmark。
+
+整曲recording-macro R1/R5/MRR：identity .54/1/.708333；alpha.1 .49/.95/.666310；alpha1 .49/1/.664167；alpha5 .54/1/.7。较强适配标签val观察Recall5由.150556升.220556，却未改善整曲描述。完整query宏/三窗口/genre-instrument-mood及seen/rare/unseen支持见MUS-045-results.json（79训练未出现tag）。未配对语义unknown，已知本曲配对R5不是完整人工P5，不与042混算。
+
+预注册whole R5增.05/R1不降/bootstrap下界>=0门槛无候选通过，选择identity，scale_up_gate_passed=false。原R5已1令20候选池门槛饱和，不能单凭门控否定适配；同时无候选提高整曲R1/MRR，故不换模型、不千首扩训。后续另预注册更有区分度开发池并审查正tag均值监督，不事后改本实验/换曲造提升。caption-test20仅metadata、不导出文本/音频/编码/评分；原tag-test200亦未取，无新人工包、训练和选择不读旧141/160。
+
+42相关检查passed（10新/32旧），初macOS /var fixture拒绝仅修测试resolve、生产保护不放松。独立NumPy不导入生产adapter/metric，512primal对100dual差7.77e-16，四候选两模式排名/等权指标/目标一致；同操作者非B。重复compare输出拟合前拒绝，额外fit0、三W和结果保持。952旧文件/043/044/160原始判断/23原推理源码/54cache集合SHA/原版f3b0da1干净均保持；私有.local/a/mus045全0700/0600，逐曲身份/人写文本/特征/W不入Git。
+
+交付本任务工具/检查/参数/E20、反馈接收、README/PROJECT/STATUS、verification/MUS-045.md及聚合JSON。无Java导入/Vue/UI/DB/API/依赖安装/原模型权重/旧索引/main改动；无关Maven/build未重复、不称本轮passed。全窗口/参考音频/近重复/更大版本runner和更有区分度开发协议仍待实现。完成文档后原子publish/sync回读；发布仅远端可读，不代表B主动接收/批准或main合并。
+
+## 上一实现检查点（历史保留）
+
+# 账号 A 最新交接
+
+## MUS-045比较实现检查点：140真实数据已ready，42检查通过，待一次编码和有限候选比较
+
+A；2026-10-31 America/Chicago；branch codex/MUS-045-mtg-corpus-acquisition；base46b52db，实际采集be880da。ack_peer_feed_sha `0faad731981280a46b37cd617ff6d749962e6da5` / B source `1724630f5f37f8e856c1d12c068d208382763719`。B044用户直派计划审查建议已接收并按R1–R4实施，非正式工具批准；035-R2原卡不变。
+
+140/140（100train/20tagval/20captiondev）官方逐曲SHA/严格206与validator/完整EOF/finite/60旧PCM及新split无精确内容重复，预算charged394,148,675bytes<1.5GiB；技术替补0。captiondev24人写描述配20录音，独立final-caption-test20只metadata、文本不导出/音频下载0。原200tag test也未获取；1k扩展未开始。
+
+新增通用缓存编码/有限候选比较，mean per-track alpha0.1/1/5、lambda=Nalpha，按N/d选等价primal/dual；identity必报，文本不映射。whole聚合后映射，三窗口segment单独；caption使用首120s低码率同视图，77token策略显式，原CSV24dev文本逐条一致。prepare parser修为StringIO保留多行文本，当前冻结源02文本未变、不重新挑样本。
+
+42相关检查passed（10新budget/mean/metric门槛+32原相关），初macOS fixture symlink两项拒绝只修测试路径；预算持久化/并发上限/超时保守费用/截断日志拒绝、均值尺度不随复制N改变、同录音多caption等权/稳定tie/bootstrap与identity回退通过。下一步提交干净比较实现，再固定特征一次编码、三候选拟合与开发门控/原件复核，随后publish/sync。
+
+原141/160/模型/043/044原件与W/Java/UI/DB/原版/main保持，不新增人工标注或部署。
+
+## 上一实现检查点（保留）
+
+# 账号 A 最新交接
+
+## MUS-045数据门槛实现检查点：接收B计划审查，先小批caption开发，不直接放大1000
+
+A；2026-10-31 America/Chicago；branch codex/MUS-045-mtg-corpus-acquisition；base46b52db8b2999ab015084f423545e4f2cd5c4e03。ack_peer_feed_sha `0faad731981280a46b37cd617ff6d749962e6da5` / B source `1724630f5f37f8e856c1d12c068d208382763719`；06:03:59Z双方fetched。
+
+B用户直派MUS-044-PLAN-B/rev1针对46b52db为needs_revision_before_scale_up，已原字节导入及收件JSON；它不是044工具批准或035-R2认领。接受R1–R4，035-R2/rev1原卡仍assigned不替换，044原配置/20训练结果不改。
+
+E20/config先冻，固定前100train/前20tagval，SDD validated metadata源按旧60+043 pilot+044全部plan关系/许可隔离后150录音/48独立作者组可选；固定caption-dev20/24人写caption、caption-test20仅metadata不导出文本/下载音频，dev reserve2；三窗口前min120s对应SDD名义开头片段，低码率派生不是原SDD320官方benchmark。没有新人工包或1000音频承诺。
+
+新增prepare_caption_gate及锁定/append-only费用/独占attempt/实际EOF的可恢复acquirer。13相关检查通过（5新/8原transport）；初两个fixture经macOS /var symlink受拒，resolve测试路径后通过，不放宽安全规则。下一步提交实现后正常TLS、两worker、1.5GiB charged body/2GiB disk/1800s，获取140并复核旧60同规格PCM；随后用均值loss alpha0.1/1/5+identity及独立caption-dev门槛比较，无收益保留identity不扩大。
+
+原141/160/旧run/权重/cache/Java/Vue/DB/原版/main保持；实际取得/编码/模型选择尚待运行，不能把源metadata当完成。最终报告后publish/sync。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-044首次20首轻量适配器拟合与1000/200/200 metadata计划完成，未验证效果
 
 A；2026-10-31 America/Chicago；branch codex/MUS-044-tag-adapter-training-smoke；base83ebeea8e32d41c9652d4c8dbdf75f24e8024fab，真实工具5bce919（完整SHA见MUS-044-results.json）。044 review，数据计划/训练链路实跑完成、工具待独立审核，不是质量验收或模型部署。
