@@ -81,7 +81,8 @@ def checksums(raw):
     return result
 
 
-def build(raws, policy):
+def build(raws, policy, *, partition="train", include_pool=False):
+    rp.require(partition in ("train", "validation", "test"), "Unknown official partition")
     rp.require(set(raws) == ROLES and policy['revision'] == REVISION and policy['seed'] == SEED
                and policy['preflight_tracks'] == 20 and policy['per_artist_cap'] == 1
                and policy['allowed_audio_license_families'] == ['by', 'by-sa'], 'Unexpected fixed metadata policy')
@@ -120,7 +121,7 @@ def build(raws, policy):
     rp.require(len(vocabulary) == policy['expected_tag_count'], 'Tag vocabulary changed')
     for rows in splits.values(): rp.require({t for r in rows.values() for t in r['tags']} == set(vocabulary), 'Split tag vocabulary mismatch')
     excluded = Counter(); pool = []
-    for tid, row in splits['train'].items():
+    for tid, row in splits[partition].items():
         numeric = source_id(tid, 'track'); meta = metadata.get(tid); low = row['path'].removesuffix('.mp3') + '.low.mp3'
         reasons = []
         if numeric in prior_ids: reasons.append('prior_recording_id')
@@ -139,7 +140,7 @@ def build(raws, policy):
         if reasons:
             excluded.update(reasons); continue
         text = 'Music tagged with ' + '; '.join(t.replace('---', ': ', 1) for t in row['tags']) + '.'
-        pool.append({'source_track_id': tid, 'official_split': 'train', **row, 'title': meta['title'], 'artist_name': meta['artist'],
+        pool.append({'source_track_id': tid, 'official_split': partition, **row, 'title': meta['title'], 'artist_name': meta['artist'],
                      'low_path': low, 'audio_sha256': hashes[low], 'audio_license': rights[row['path']],
                      'text_en': text, 'unobserved_tags': 'unknown_not_confirmed_negative',
                      'priority_sha256': hc.digest((SEED + '\n' + tid).encode())})
@@ -149,23 +150,26 @@ def build(raws, policy):
         if r['artist_id'] not in used_artists:
             chosen.append(r); used_artists.add(r['artist_id'])
             if len(chosen) == 20: break
-    rp.require(len(chosen) == 20, 'Insufficient eligible distinct-artist preflight candidates')
-    return {'schema': 'sonora-mtg-train-preflight-selection-v1', 'revision': REVISION, 'seed': SEED,
+    rp.require(include_pool or len(chosen) == 20, 'Insufficient eligible distinct-artist preflight candidates')
+    result = {'schema': 'sonora-mtg-train-preflight-selection-v1', 'revision': REVISION, 'seed': SEED,
             'selected': chosen, 'vocabulary': vocabulary,
             'summary': {'base_tracks': len(base), 'split_counts': {k: len(v) for k, v in splits.items()},
-                        'tag_count': len(vocabulary), 'eligible_train_tracks': len(pool),
-                        'excluded_train_tracks': len(splits['train']) - len(pool), 'exclusion_reasons_nonexclusive': dict(excluded),
+                        'tag_count': len(vocabulary), f'eligible_{partition}_tracks': len(pool),
+                        f'excluded_{partition}_tracks': len(splits[partition]) - len(pool), 'exclusion_reasons_nonexclusive': dict(excluded),
                         'raw_name_records_valid': len(metadata), 'raw_name_records_quarantined': len(malformed),
                         'known_prior_source_matches': sum(source_id(t, 'track') in prior_ids for t in metadata),
                         'prior_artist_ids_blocked': len(blocked_artists), 'prior_name_aliases': len(prior_names),
                         'SDD_reserved_recordings': len(sdd_ids), 'SDD_reserved_artists': len(sdd_artists),
-                        'selected_tracks': 20, 'selected_artist_ids': len(used_artists),
+                        'selected_tracks': len(chosen), 'selected_artist_ids': len(used_artists),
                         'selected_license_families': dict(Counter(r['audio_license']['family'] for r in chosen)),
                         'selected_tags': len({t for r in chosen for t in r['tags']}),
                         'training_runs': 0, 'model_loads': 0, 'user_grades_used_for_selection': False},
             'limits': ['Uploader track-level weak labels; missing tags unknown; no interval truth or model-generated music description.',
                        'Known ID/exact normalized names/credit components/work names only; unresolved aliases/versions/acoustic near-duplicates and pretraining overlap not proven absent.',
                        'Noncommercial research metadata terms remain; this is not commercial authorization or a ready training corpus.']}
+
+    if include_pool: result['eligible_pool'] = pool
+    return result
 
 
 def prepare(*, inputs, inputs_sha256, policy, policy_sha256, output):

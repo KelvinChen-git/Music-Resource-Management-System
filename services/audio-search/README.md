@@ -176,3 +176,16 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m un
 ```
 
 本阶段仅非商业研究数据链路，metadata及逐曲许可均保留；没训练、没模型质量成绩、没把已有160变成新模型训练集。后续规模扩展/训练loss/未知与负例/划分/预算需单独冻结，先保留现有CLAP基线。
+
+## 轻量适配训练试运行（MUS-044）
+
+`mtg_plan.py`调用metadata adapter的可选partition/pool接口，默认043行为保持；追加跨官方split的creator别名组件、作品名及官方低文件SHA冲突隔离，再固定1000/200/200 metadata计划，尚不下载这些音频。`tag_adapter.py`以已知正tag prototype均值为目标、未知tag不作负例，固定lambda=100对512维音频特征拟合带identity先验的ridge残差层；无超参搜索。
+
+`scripts/train_tag_adapter.py`显式pin043选择/音频/PCM、044配置与数据计划、原G2模型环境和干净源码后，先保存训练freeze，再加载冻结A编码器。每首固定起/中/尾3个10秒片段，183个短tag模板；全部20首只训练smoke，没有验证或测试质量结论。NPZ只私有输出，原CLAP权重/现有排名/UI不变。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_tag_adapter test_mtg_dataset test_preflight_mtg -v
+python3 scripts/train_tag_adapter.py --help
+```
+
+实际运行需已有音频venv和原冻结的绝对HF_HOME；首阶段真实训练记录与限制由MUS-044报告提供，不能把训练loss/已记录tag recall当自然语言检索P@5或泛化提升。

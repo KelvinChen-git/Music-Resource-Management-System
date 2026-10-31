@@ -881,3 +881,8 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 66相关检查passed（13 metadata+8 transport+45现有corpus/research_probe），另不导入生产helper的独立脚本复算20源/tag/模板/官方SHA/实际EOF/PCM/窗口一致；同操作者不是B。初复核32768 buffer与声明65536产生第一首最大1.19e-7浮点差而hash异，保留原诊断/脚本，按原声明65536独立复算20全部hash一致，生产代码/音频未改。metadata-02加全轮已用网络预算，20选择与metadata-01完全相同，未按质量调样。
 - 实际重复fetch同目录exit1/FileExistsError、网络请求0、原选择/下载/解码hash保持；全部.local/a/mus043目录0700/文件0600。952旧文件/23源码/447输入/54cache集合和SHA、042判断原件与结果、原版f3b0da1干净保持。模型加载/训练/新索引/原141+160变更/Java/Vue/DB/API/锁/依赖/UI/main均0；不重复Maven/build/CLAP。
 - 本阶段数据链路完成，工具review，7,577不是已取得训练音频，20不变成页面曲库新增20。下一步冻结1–2k研究子集预算/内容及作者作品隔离/dev未来test/训练loss与未知负例处理，才做轻量适配；不再要求用户补全大量组合标注。原160对未来新模型选参只作development回归。2026-10-31T04:56:02Z双方sync，B610c03e/source0e8de159、035-R2/rev1原卡不变；提交后publish/sync回读，发布不等于B批准或main合并。聚合与方法见verification/MUS-043.md/results.json。
+
+### MUS-044范围与占用
+
+- A从干净已发布83ebeea8e32d41c9652d4c8dbdf75f24e8024fab建立codex/MUS-044-tag-adapter-training-smoke；2026-10-31T05:13:48Z双方fetched，A f81f662/source83ebeea，B610c03e/source0e8de159保持并ack，035-R2/rev1原卡不变。
+- 本机16GiB RAM/269GiB可用，选择冻结CLAP+轻量线性层闭式拟合；先freeze千首级metadata分组计划，并用043已验证20首跑一次真实训练smoke，不先下载数GB或声称模型泛化提升。允许mtg_dataset.py可选pool导出（默认行为保留）、新mtg_plan/tag_adapter及测试/runner、E19/参数/必要README/PROJECT/STATUS/A latest及verification/MUS-044*；私有仅.local/a/mus044。原23推理源码/141+160/原043输入/音频/权重/旧排名/UI/数据库/main只读。

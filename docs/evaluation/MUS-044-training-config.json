@@ -1,0 +1,42 @@
+{
+  "schema": "sonora-mtg-tag-adapter-smoke-policy-v1",
+  "source_policy_sha256": "1a70282c1c15637ed28e2233b03a3befaaffa4e0ac6868ba362d7209ec1e0d7d",
+  "source_inputs_sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163",
+  "source_selection_sha256": "6a338dc43b57fc7d04785d836254ba1b755e2579875ae0839b5acc283a80a28b",
+  "source_fetch_sha256": "cd5b76ad4be08c5b61aa7c447501b95d16880fb0860b754d5645cc9cac0ed2fe",
+  "source_decode_sha256": "f9ba5aded71479e3f9753690a8b7e4b8a63a27e706def5a73d7be1e4b76ee089",
+  "plan_seed": "MUS-044-MTG-grouped-source-plan-v1",
+  "planned_counts": {
+    "train": 1000,
+    "validation": 200,
+    "test": 200
+  },
+  "per_artist_component_cap": 4,
+  "per_work_title_cap": 1,
+  "training_smoke_tracks": 20,
+  "model": "A",
+  "dimension": 512,
+  "device": "cpu",
+  "threads": 2,
+  "seed": 0,
+  "windows_per_track": 3,
+  "window_samples": 480000,
+  "window_starts": "0,floor((N-480000)/2),N-480000;deduplicate;right_zero_pad_if_needed",
+  "aggregation": "L2(mean(L2(window_embeddings)))",
+  "prototype_template": "Music tagged with {category}: {tag}.",
+  "target": "L2(mean(prototype_embeddings_for_observed_positive_tags_only))",
+  "unobserved_tags": "unknown_not_negative",
+  "lambda": 100.0,
+  "loss": "sum_squared_error(XW,Y)+lambda*sum_squared_error(W,I)",
+  "fit": "closed_form_positive_centroid_ridge_identity_prior",
+  "validation_or_test_used_for_fit_or_selection": false,
+  "training_diagnostics_only": [
+    "objective",
+    "MSE",
+    "normal_equation_gradient_residual",
+    "parameter_delta_norm",
+    "observed_tag_recall_at5"
+  ],
+  "CLAP_parameter_training": false,
+  "new_audio_downloads_allowed": false
+}

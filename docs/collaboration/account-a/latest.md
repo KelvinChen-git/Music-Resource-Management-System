@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## MUS-044实现检查点：数据metadata计划与真实20首轻量训练工具就绪，尚未实际拟合
+
+A；2026-10-31 America/Chicago；branch codex/MUS-044-tag-adapter-training-smoke；base83ebeea8e32d41c9652d4c8dbdf75f24e8024fab。ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；05:13:48Z双方fetched，A f81f662/source83ebeea。N1原035-R2/rev1卡仍assigned不扩审核。
+
+E19先冻：固定20已验证音频只训练smoke，原A CLAP零可训练参数；每曲固定3窗口、183既有tag模板，正tag均值为target、缺失unknown，单lambda100残差ridge闭式拟合，不搜索、不调用141/160评分、不切模型或写DB/UI。输出仅ignore.local/a/mus044、0700/0600；实际拟合前需提交源码/干净环境/原G2全量检查并留freeze。
+
+新增mtg_plan/tag_adapter/训练runner与11合成测试，mtg_dataset仅可选partition/pool导出，默认043规则保留；32相关检查通过（11新+21原）。原数据额外按跨split作者credit组件/作品名/官方低文件SHA冲突隔离：train7577→7307、validation2035→1888、test1429→1351；已固定1000/200/200 metadata计划，作者组件450/106/105、标签172/133/128。它们尚未下载/编码或训练；原20实际pilot全为训练，不当验证/测试。
+
+下一步在已提交实现下跑一次真实20拟合/训练诊断、独立primal复算与保护检查，完成报告后publish/sync。原23推理源码/模型/141+160/043原件/旧run/服务/原版/main保持，无新人工标注请求。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-043标签adapter与20首真实音频预检完成，训练尚未开始
 
 A；2026-10-30 America/Chicago；branch codex/MUS-043-mtg-adapter-preflight；base7b592d200eeafc13d17a57687d12b4541340f05b，真实工具9a92a8ccf86e9bb756f59778159a9bc646bf5904。043 review（实现/数据链路完成，工具待独立审核），无训练/质量提升/线上导入。

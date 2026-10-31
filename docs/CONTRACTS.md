@@ -423,3 +423,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - 当前仅本地非商业研究预检，metadata CC BY-NC-SA4、逐音频只准明确BY/BY-SA家族；NC/ND/ArtLibre/未知等保留原URI但排除本次候选，不据此宣称产品商用授权。保留逐曲原许可/出处/官方音频SHA和download证据；源标签是上传者整曲弱监督，不是专业片段真值。
 - 优先官方低码率文件；若只能tar，须验证服务器206/准确Content-Range/总长度及稳定ETag或Last-Modified，每次有界Range，仅读取tar头和预选成员、校验tar校验和/拒绝link/path逃逸，再核官方逐曲SHA。绝不调用整库download/unpack或extractall；不支持可靠Range时报告blocked，不自动下载46–508GB整库。全轮网络body上限256MiB、每音频<=20MiB/30–600秒/20首，重试有界，失败原证据留存；输出只独占ignore.local/a/mus043，0700/0600，不覆盖旧run。
 - 预检需实际EOF有效finite音频/头部与真实frames分别记录、48k mono规范化/合法10s/5s窗口与尾段padding，官方源hash与项目旧内容/PCM去重；通过只证明数据链路，不是训练或模型提升。adapter/相关合成验证和实际聚合交付，旧141/160原件/五排名/权重/缓存/Java/Vue/DB/依赖/原版/main保持。
+
+### E19. MUS-044：千首级metadata划分与20首真实轻量适配训练试运行
+
+- 独立分支codex/MUS-044-tag-adapter-training-smoke，从83ebeea开始。复用043固定metadata/20首官方SHA音频/同65536实际EOF规范；新增train1000/validation200/reserved-test200的metadata计划，整组以artist-ID及规范化credit别名连通分量隔离、作品名和官方低码率SHA跨split冲突隔离、SDD及旧60排除后按预先固定hash挑选、每作者组最多4首/每作品名1首。不以模型分数/160判断或训练结果选语料，不下载千首音频或伪称语料就绪；未来test仅metadata保留，不能称新盲测已完成。
+- 首次真实训练使用043已验证的20首（全部只作训练smoke，无验证/测试质量结论）。冻结A原CLAP/checkpoint/英文tag文本编码器，CPU2、inference_mode及requires_grad=False；每首预先固定起点/中点/终点三个10秒窗口、normalized window均值后再L2 normalize。短尾补零规则同043，先复核全部原音频/PCM pin，位置不按标签或模型选择。
+- 183原tag各生成唯一短英文模板“Music tagged with 类别: tag.”，不添加细节，确认token<=77再编码。每曲目标Y为其已知tag prototype的平均后L2归一化；未出现tag仍unknown，不作为0/BCE负例、不人工补全。训练X→Y的512×512线性残差适配器，固定lambda=100，唯一目标||XW−Y||²+lambda||W−I||²，闭式W=I+Xᵀ(XXᵀ+lambda I)⁻¹(Y−X)。只有20训练样本，不选lambda或按训练成绩替换主模型。
+- 保存原样特征/正例prototype/适配器NPZ及训练前后目标值/MSE/正规方程梯度残差/参数变化/输入与代码环境SHA；仅训练sanity，观察标签Recall@5只作训练诊断（分母为该曲已记录tag数），不是缺失标签均为负例的precision、自然语言检索P@5或泛化提升。不得与042指标直接对比。轻量层拟合才计训练，CLAP编码不计训练；本阶段无整库微调/部署/模型切换/Java导入。
+- 运行前冻结数据/窗口/标签模板/单一lambda/源码环境与原A权重；原20 train smoke不能当验证/测试，真实拟合只运行一次，计算复核不改变模型选择。扩展语料与未来训练/验证/测试另行实际下载/内容排除后才可运行，本轮141/160不用于选参或训练。
+- 只写ignore.local/a/mus044，0700/0600独占输出，不覆盖043与旧run。现有API/UI/DB/依赖/双原权重/缓存/原版/main保持；保留非商业研究metadata与逐曲许可。数据计划仍不能证明全别名/翻唱/声学近重复/预训练隔离，新增比较不可冒充B独立审核。适配相关测试、实际训练证据和限制作交付。
