@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-31 America/Chicago）：codex/MUS-047-device-preflight，从已发布aaf5e4b开始；最终实际校准源码d8555fa。固定3train/9窗/6tag的CPU参考与本机MPS校准通过，9窗热SDK编码中位656.31→240.35ms（CPU/MPS约2.73），最大向量差5.07e-7、两模式稳定次序各18对无翻转；非训练/P95。CUDA本机无设备明确blocked，模型加载/编码0，无fallback。任务review（实现/小样本实跑完成，047工具独立审核待做），不改主模型/生产cache、不租卡/上传/扩训。
+- 当前工作（2026-10-31 America/Chicago）：codex/MUS-048-device-feature-cache，从已发布cb77a01开始。有界140首MPS双视图构建/显式typed consumer已实现，76相关检查passed（10新/66既有），实际全量重建待干净提交后运行；train100/val20完整EOF三窗、检索140首120秒三窗，旧CPU对照全数值/四旧模型两池两模式稳定排序和宏指标通过才ready。新fit/下载/保留test/模型选择与部署均0，不改原缓存或应用。
 
-- 当前验证与协作：最终66相关检查passed（12新/54旧）；初MPS01在模型前误用旧16MiB JSON reader被拒，保留失败，仅新runner改有界流式校验并新增两回归，重新建CPU参考02后MPS02通过，两版CPU向量完全一致。独立NumPy差/得分/稳定次序/速度比复算、重复输出零模型/编码/fit通过；全045/046原件/043/044/160原评分/23源码/54cache/原版保持，历史951保持/唯一授权B任务入口更新。18:48:07Z/18:58:10Z双方fetched，Bde296c7/sourcef0d3ef2的046-R1/rev1准确限定approve_scoped已接收，B12原合成+7独立passed，非真实模型/设备/质量验收；新047-R1/rev1准确d8555fa已assigned待B认领，不外推047批准。保留两组test未输入，原版/UI/Java/DB/main保持。
+- 当前协作与保护：19:06:45Z双方fetched，A2458582/sourcecb77a01，Bde296c7/sourcef0d3ef2保持并ack；047-R1/rev1/d8555fa原卡仍assigned未认领，本轮不改047三源码/任务或外推048批准。原045/046/047全部原件/23源码/141+160/权重/缓存/原版/UI/Java/DB/main只读；048私有输出仅ignore.local/a/mus048，设备key独立，训练consumer不暴露dev文本。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,6 +58,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-048 有界MPS设备特征缓存 | in_progress / A（实现/76检查通过，真实构建待做） | codex/MUS-048-device-feature-cache / cb77a01，依赖047校准/045-046数据 | 100train/20val完整EOF、140检索首120双视图，显式device/model/view consumer，数值/排序/宏指标全通过才ready；无fit/下载/test/生产替换 |
 | MUS-047 设备校准准备 | review / A（CPU/MPS校准通过，工具独立审核待做） | codex/MUS-047-device-preflight / aaf5e4b，依赖046原数据和B限定审核接收 | 3train9窗6tag CPU/MPS通过、9窗656→240ms小批次比2.73，CUDA blocked；66检查/独立复算/设备key与重复保护通过，不训练/下载/test或付费资源 |
 | MUS-046 扩大候选池诊断 | done / A（有界诊断完成；B合成/静态限定批准已接收） | codex/MUS-046-expanded-caption-diagnostic / e109b5c，依赖045 | 140首同首120秒/三窗、24描述/三旧W；两池两模式诊断/54检查/独立复算/原20复现，扩大池有正开发信号但主MRR区间含零，保留identity；无新fit/下载/test |
 | MUS-045 小批真实语料与描述开发比较 | review / A（140真实/三候选已完成，保留identity） | codex/MUS-045-mtg-corpus-acquisition / 46b52db；采集be880da/比较95360d8 | 100train/20tagval/20captiondev、24描述；42检查/独立复算/恢复通过；整曲R1无提升、R5天花板，不千首扩训/不开保留test；工具独立审核未完成 |
@@ -949,3 +950,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 最终d8555fa2ee888107cc9fac9e0eda373fd9c2e777干净源码：仅源ID前三train/首120秒固定9窗，6原tag文本，前后原数据/PCM/模型/环境/源码核验。CPU对旧控制向量差1.63e-8；MPS对CPU差5.07e-7、余弦6.36e-12，整曲/三窗得分差6.39e-7/4.18e-7<预注册1e-4；稳定分差>2e-4各18对翻转0/近并列0，设备key不同，FP32/no fallback/CLAP冻结。1warmup+3timed，9窗SDK中位CPU656.31ms/MPS240.35ms，约2.73，仅编码含CPU前处理/传输，非训练/解码/加载/P95。MPS当前allocated800,590,080bytes不是峰值；CUDA请求exit2/blocked，模型/编码/fit0。
 - 66相关检查passed（12新/54既有），不叠加初64；独立NumPy不导入生产calibration复核差值/两模式得分与次序计数/速度比及CPU两版相等，非B本人。真实重复MPS输出FileExistsError，额外模型/编码/fit0，全run SHA保持。全部045/046文件集合/hash、043/044/160原件/23原源码/54cache/原版f3b0da1干净保持，951其余历史pin保持、唯一授权B入口因046完成/改派047变化。047目录0700/文件0600，波形/原身份/向量/包不入Git，无新训练/音频下载/模型替换/Java/UI/DB/依赖/main变化，无关应用测试不重复。
 - B046-R1/rev1/e4e6bfd/basee109b5c准确限定approve_scoped原字节导入/receipt接收，B12原+7独立合成passed，真实模型/质量无复现，不外推045/047批准。旧卡关闭，新047-R1/rev1/d8555fa/baseaaf5e4b仅纯数值设备策略/边界/静态runner范围已assigned未认领。下一步另立有界MPS特征编码集成，CPU继续小适配层拟合，CUDA有真实设备后独立校准；本轮不租卡/上传/扩训/换生产cache或读保留test。18:58:10Z双方feed再次fetched，最终commit后publish/sync回读。
+
+
+### MUS-048范围与占用（2026-10-31）
+
+- A从干净已发布cb77a01建codex/MUS-048-device-feature-cache；19:06:45Z双方feed同步成功，A2458582/sourcecb77a01，Bde296c7/sourcef0d3ef2未变。ack同B；047-R1/rev1原assigned未认领/不替换或扩大，本轮不修改其三源码。
+- 允许新增device_feature_cache纯数值/consumer与独立build runner/相关合成检查、E23/config/必要README/PROJECT/STATUS/A latest和verification/MUS-048*；私有仅ignore.local/a/mus048。目标现有140的MPS重建，训练100/验证20保留完整EOF视图、检索140首120视图，24旧dev文本/183tag，全量对CPU数值/四旧模型两池两模式排序和宏指标验证后才发布ready，显式view/device/model consumer；不新fit/下载/开test/自动部署。旧045/046/047/23源码/模型/标注/原版/UI/DB/main只读。
+
+- 实现检查点：新增device_feature_cache与build_device_feature_cache、10项合成边界/视图隔离/数据与数值/排序检查，连原66最终76 passed。047原代码未改；提交干净实现后才freeze/140实际重建，当前未声称新缓存ready。

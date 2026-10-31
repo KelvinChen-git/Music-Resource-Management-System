@@ -1,0 +1,69 @@
+{
+  "schema": "sonora-bounded-device-feature-cache-v1",
+  "task": "MUS-048",
+  "base_sha": "cb77a01262799792a1371f605a452b28205e1093",
+  "corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "dataset": {
+    "path": ".local/a/mus045/source-02/dataset.json",
+    "sha256": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe"
+  },
+  "legacy_cache": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus046/run-01/cache.json",
+    "sha256": "5600bddbf4062939398b0904f6929b02ced7e9e71da216de4043e9875fda49e9"
+  },
+  "prior_result": {
+    "path": ".local/a/mus045/compare-01/result-public.json",
+    "sha256": "c9f287def66b64418d6a2f3154cf88338e6b85c3de2fc7ff07de71815ecbb69a"
+  },
+  "preflight": {
+    "path": ".local/a/mus047/mps-02/result.json",
+    "sha256": "e650f3259605abb1552267b7c1c349e6ea496761edf6c35dd4c52833714bf279"
+  },
+  "preflight_freeze": {
+    "path": ".local/a/mus047/mps-02/freeze.json",
+    "sha256": "3550b75584b444662fa449516ea8c2d42c75c1fbcc904018dc510058eea71827"
+  },
+  "original_freeze": {
+    "path": ".local/a/mus040/phase03/freeze-01/freeze.json",
+    "sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83"
+  },
+  "device": "mps",
+  "dimension": 512,
+  "counts": {
+    "train": 100,
+    "validation": 20,
+    "caption_dev": 20,
+    "caption_queries": 24,
+    "prototypes": 183
+  },
+  "audio_batch": 3,
+  "text_batch": 6,
+  "dtype": "float32",
+  "autocast": false,
+  "tf32": false,
+  "automatic_fallback": false,
+  "views": {
+    "tag_training": "100train_full_actual_EOF_first_mid_last10seconds",
+    "tag_validation": "20validation_full_actual_EOF_first_mid_last10seconds",
+    "caption_retrieval": "140all_first_min120seconds_first_mid_last10seconds"
+  },
+  "window_deduplication": "same recording and exact start sample shared across views;no score based selection",
+  "atol_vector_maxabs": 0.0001,
+  "atol_cosine_distance": 0.0001,
+  "atol_score_maxabs": 0.0001,
+  "stable_order_score_gap": 0.0002,
+  "metric_atol": 1e-12,
+  "verification": "all3typed_feature_views_and_prototypes24texts_vsCPU;all4existing_models_2pools_2retrieval_modes_stable_order_and_exact_recording_macro_R1_R5_MRR",
+  "fit_runs": 0,
+  "new_downloads": 0,
+  "test_inputs": 0,
+  "selection_or_deployment": false,
+  "cache_publication": "new_private_manifest_only_after_all_parity_checks;explicit_device_model_and_view_consumer;never_overwrite_oldCPU"
+}

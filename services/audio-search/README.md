@@ -230,3 +230,17 @@ python3 scripts/calibrate_encoder_device.py run --help
 ```
 
 实际编码使用原音频Python环境与原绝对HF_HOME。prepare要求047配置显式SHA；run要求校准package显式SHA、本机显式checkpoint路径和独占输出。跨主机只验证同数据/模型/配方/源码、环境单独记录；此处没有远端启动/传输/资源购买或从零训练能力，校准通过也不自动切换旧模型或索引。
+
+
+## 有界设备特征缓存（MUS-048）
+
+build_device_feature_cache只重建140已有录音，不下载/训练/替换生产cache。固定MPS/FP32/audio3/text6，须同设备047校准成功且环境/原模型/源码匹配。按整曲train100/val20和首120秒检索140两个视图编码，同录音精确sample起点去重；24原dev描述/183tag模板保持。完整对原CPU向量/四旧模型两池两模式得分、稳定次序与录音宏指标通过后才创建ready manifest。
+
+新device_feature_cache.ready_view必须传缓存显式SHA、expected_device/expected_model_sha256和tag_training/tag_validation/caption_retrieval，拒绝设备/模型/视图错配、partial/失败report/NPZ篡改。训练/验证返回相应100/20行与原弱正tag，不返回dev文本；检索视图140行/24dev文本，未配对语义仍unknown。旧045/046 consumer接口不改，所有新cache只ignore.local，不自动换线上索引。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_device_feature_cache test_device_calibration test_expanded_caption test_caption_gate test_tag_adapter test_mtg_dataset test_preflight_mtg
+python3 scripts/build_device_feature_cache.py --help
+```
+
+实际构建使用现有音频Python环境/绝对HF_HOME、048配置显式SHA与独占ignore.local输出。只记录本次完整解码/SDK编码/总时长；没有匹配全量CPU测速，不能把047小批次2.73倍外推到整个语料或训练。

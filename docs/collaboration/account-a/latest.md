@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## MUS-048开始：有界140首MPS特征与明确视图consumer
+
+A；2026-10-31 America/Chicago；branch codex/MUS-048-device-feature-cache，basecb77a01262799792a1371f605a452b28205e1093。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，19:06:45Z双方fetched。B047-R1/rev1原assigned卡保持，不修改其源码或扩大审核，048未获B批准。
+
+E23/config先定：现有140全量MPS重建，训练100/标签验证20完整实际EOF三窗、检索140首min120秒三窗，精确起点去重，780 view-window引用/唯一数实际记录；原24dev描述/183tag同文本重编码。全量对CPU向量/四旧模型两池两模式稳定排序及宏R1/R5/MRR核验通过才写ready manifest，显式expected device/model/view consumer；旧CPU缓存不改、不新增fit/音频/曲库/保留test或部署。现已实现构建/typed consumer与10新合成检查，连原66最终76 passed；待干净提交后freeze/实际全量运行，原045/046/047全部原件/23源码/141+160/模型/cache/原版/UI/Java/DB/main保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-047本机CPU/MPS校准通过，CUDA blocked；接收046限定批准，派发047工具审核
 
 A；2026-10-31 America/Chicago；branch `codex/MUS-047-device-preflight`，baseaaf5e4bbffa61969b3d7bf993b408acec195a818，最终实跑源码 `d8555fa2ee888107cc9fac9e0eda373fd9c2e777`；最终文档交付SHA见handoff.source_sha。047 review：实现与小样本校准完成，工具待独立审核；不叫训练/模型质量/P95或CUDA通过。

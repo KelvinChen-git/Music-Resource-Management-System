@@ -464,3 +464,13 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - 验证仅数值/排序一致性：向量最大绝对差<=1e-4、余弦距离<=1e-4、整曲/三窗得分差<=1e-4；参考分差>2e-4的候选两两次序必须保持，近并列单独计数，不称全rank字节相同。拒绝非finite/shape或单位范数异常/数据与源码/权重SHA改变。阈值预先固定，未通过保留证据、不放宽后重试选优。
 - 每设备同batch（audio3/text6）、一次warmup后3次同步计时，分加载/纯SDK编码（含其CPU前处理与传输）、不含解码/下载/训练；CUDA或MPS计时前后同步，记录CUDA峰值allocated、MPS观测值，按CPU实测计算仅本小批次速度比。不叫P95/服务性能或训练加速；没有真实GPU通过就不标GPU可用或速度收益。
 - 输出独占ignore.local/a/mus047，目录0700/文件0600；先干净提交与freeze再模型操作，输入/源码/权重/环境前后核验，重复目录在模型前拒绝；原音频/141+160/三W/全部旧run/原版/UI/DB/main只读。本地可用MPS则尝试一次，不支持算子或数值失败原样记录，不fallback，后续CUDA单独验证。B工具批准与设备实测区分。
+
+
+### E23. MUS-048：有界140首MPS特征缓存与显式视图消费
+
+- 独立codex/MUS-048-device-feature-cache、basecb77a01；仅复用140已有研究音频/045标签与24已用dev描述、原三W/identity/047 MPS校准，不新下载/fit/扩大曲库/改模型或测试。本轮B047-R1/rev1仍原卡assigned，未收到新feed不接管/改审047源码，048不冒充已获批准。
+- 参数docs/evaluation/MUS-048-cache-config.json先冻结：MPS/FP32/audio batch3/text batch6/no TF32/no autocast/no fallback，047同设备校准与环境/source/模型须通过；先核完整旧绑定/音频收据/实际EOF规范PCM/源码及原G2/环境，freeze后加载原严格checkpoint再迁设备，前后复核。无可用或无匹配校准设备明确blocked。
+- 按源ID全140取固定视图：tag_training100与tag_validation20完整实际EOF的首中尾10秒，caption_retrieval140首min120秒的三窗。两种视图每录音同起点的10秒窗可按精确sample起点去重；是780个view-window引用，不称780不同片段，实际唯一数从来源记录。24原dev文本和183原tag模板重新编码、逐条text SHA/原次序保持，保留test未进入输入。
+- GPU整窗/聚合向量、三类视图/prototype/text均与045/046原CPU校验：最大绝对差及余弦<=1e-4，整曲/三窗得分差<=1e-4、CPU分差>2e-4的稳定两两次序必须保持，近并列单报；四旧模型/两池两模式的录音宏R1/R5/MRR需在1e-12内复现，否则不发布ready缓存，不放宽阈值或改数据选优。它是设备一致性验证，不作新效果提升/选模或独立test。
+- 只在ignore.local/a/mus048独占0700/0600生成新特征与manifest。key绑定device/环境/模型/数据/源码/配方，所有检查通过后才写ready manifest；失败向量/报告留存但不能被consumer读为ready。consumer需显式缓存SHA、expected_device/model_sha与tag_training/tag_validation/caption_retrieval view，校验manifest与NPZ hash/shape/finite/norm/身份/标签索引，拒绝混设备/混模型/混视图/partial。旧CPU缓存/API不改，不自动替换生产索引。
+- 记录唯一窗口及解码/加载/SDK编码/核验/总时长范围，GPU调用前后同步；原CPU全量未同次计时，不由047小批次2.73比外推全量加速/训练或P95。新cache供后续离线CPU拟合显式读取，当前不训练/部署、不读141/160选参/保留test、不改原版/UI/Java/DB/main。
