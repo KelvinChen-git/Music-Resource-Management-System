@@ -414,3 +414,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - 解封前重验原G2输入/23源码/双权重/已装环境54cache、五run commitment及全部排名/向量hash、四空包与重建包一致。新比较代码不属于G2推理源码，不修改其冻结列表或重跑模型。严格原四人工字段规则、160全合法/8描述各20互异同集为计算前提，未知不补0；五组每query全20原顺序不改。原validator返回的旧split汇总常量不用作新test元数据；新结果显式independent_test。
 - P@5按>=2、固定分母5、全8等权含无正例；nDCG@5按2^grade−1与log2(rank+1)、全部20判断IDCG，IDCG0仅nDCG排除并披露。逐query正例数/可达P@5、五组得分/宏均值、预注册B-whole−A-whole主对照及三次要对照的差值/百分点和win-tie-loss齐报；不按成绩更换主对照，不调参/训练/改query/补标。另用独立分脚本复算并区分同操作者与B审核。
 - 公开仅聚合、query代号、方法、来源提交和hash；个人代号/原逐曲评分/真实Java身份/原ZIP及JSON仍私有。单用户主观模型盲、20首/8query的小项目测试不是双盲、预训练未见证明或总体显著性，不报Recall/IoU/P95。已看test后的新训练调参将它降为development回归，后续模型另设独立评测。041现成标注训练路线保持，原版/UI/main不变。
+
+### E18. MUS-043：既有标签metadata adapter与20首音频预检
+
+- 继承041路线，独立分支codex/MUS-043-mtg-adapter-preflight、base7b592d2；本轮只建立固定MTG cafd8e20…官方split-0/标签/名称/逐曲许可/低码率音频SHA adapter和有界train预检，不训练/编码CLAP或接入Java/页面。原160已解封只作原五组报告，不读取其逐曲评分作筛选、定模板或训练；官方validation/test与SDD不进入train。
+- 所有输入显式SHA/固定source revision，校验base及三split的track/artist/album交集与tag子集、合法路径、duration；保留未知标签而非负例，英文模板仅逐字转述已有tag，不添加音乐属性/时序/边界。首批只按源标识hash、非相关性技术限制和作者数量上限选择20；选择方法/适用音频卷先冻结，不能依040测试结果挑歌曲/标签。
+- 用已用60首来源/标题/作者及SDD录音/作者构造排除，已知source ID/artist ID/规范化作者名和作品名冲突隔离，获取后再查精确音频SHA/解码PCM SHA重复。只报告实际匹配方法，未穷尽别名/合作/翻唱/声学近重复或预训练隔离，未解决者不能声称新盲测。官方train可用于train/dev来源候选，现有数据不擅自改split。
+- 当前仅本地非商业研究预检，metadata CC BY-NC-SA4、逐音频只准明确BY/BY-SA家族；NC/ND/ArtLibre/未知等保留原URI但排除本次候选，不据此宣称产品商用授权。保留逐曲原许可/出处/官方音频SHA和download证据；源标签是上传者整曲弱监督，不是专业片段真值。
+- 优先官方低码率文件；若只能tar，须验证服务器206/准确Content-Range/总长度及稳定ETag或Last-Modified，每次有界Range，仅读取tar头和预选成员、校验tar校验和/拒绝link/path逃逸，再核官方逐曲SHA。绝不调用整库download/unpack或extractall；不支持可靠Range时报告blocked，不自动下载46–508GB整库。全轮网络body上限256MiB、每音频<=20MiB/30–600秒/20首，重试有界，失败原证据留存；输出只独占ignore.local/a/mus043，0700/0600，不覆盖旧run。
+- 预检需实际EOF有效finite音频/头部与真实frames分别记录、48k mono规范化/合法10s/5s窗口与尾段padding，官方源hash与项目旧内容/PCM去重；通过只证明数据链路，不是训练或模型提升。adapter/相关合成验证和实际聚合交付，旧141/160原件/五排名/权重/缓存/Java/Vue/DB/依赖/原版/main保持。

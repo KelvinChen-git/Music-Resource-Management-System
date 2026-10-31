@@ -164,3 +164,15 @@ python services/audio-search/holdout_evaluate.py \
 ```
 
 上述路径为本机示意，输出父目录需事先存在并被ignore；重复输出拒绝覆盖。B使用独立合成输入，不接收A私有评分/用户ZIP。`compare`只输出聚合及query代号，不暴露逐曲标签/真实身份/标注代号；完整原件仅0700/0600私有归档。看test后的新模型选参须另设独立评测。
+
+## 现成标签adapter与音频预检（MUS-043）
+
+`mtg_dataset.py`显式pin MTG base/split-0/逐曲许可/名称/低码率音频SHA、原60目录及SDD metadata；只从train按固定hash、每作者1首选20做链路预检。原tag直接转述成英文文本，未出现tag仍unknown。名称使用literal TSV，异常分隔行隔离；旧source/artist/album/规范化credit组件/作品名与SDD组排除，不等于穷尽别名/翻唱/近重复或预训练隔离。
+
+`scripts/preflight_mtg.py prepare|fetch|decode`分别建立私有冻结选择、官方单曲206/ETag或Last-Modified/官方SHA有界下载、实际EOF/48k/10s和5s窗口预检。只准精确官方单曲URL，不拉tar，不调Java或训练模型。使用现有音频运行时和正常TLS CA；全部输出独占ignore.local下0700/0600目录，不覆盖原件。参数见`python3 scripts/preflight_mtg.py --help`及各子命令，policy为docs/evaluation/MUS-043-mtg-config.json；实际结果另见MUS-043验证报告。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_mtg_dataset test_preflight_mtg -v
+```
+
+本阶段仅非商业研究数据链路，metadata及逐曲许可均保留；没训练、没模型质量成绩、没把已有160变成新模型训练集。后续规模扩展/训练loss/未知与负例/划分/预算需单独冻结，先保留现有CLAP基线。

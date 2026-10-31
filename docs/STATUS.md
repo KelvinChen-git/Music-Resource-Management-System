@@ -866,3 +866,9 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 49相关合成检查通过（11新+38既有），首次macOS /var symlink fixture两项失败只修测试路径resolve；真实首次启动把venv python链接resolve到系统解释器，缺laion-clap metadata，在输出/评分解析前失败。保留错误后用原venv路径重跑exit0，未改模型/环境/依赖，解封仅一次；实际重复输出拒绝并保持原件/打开记录，不再解析评分。
 - 同操作者另脚本stdlib/Fraction复算40query组/五均值/四成对差/全部正例与可达上限相同，非B独立审核；952旧文件SHA保持、原版f3b0da1干净。当前040回执台账更新实际payload/格式校验与打开状态，原G5请求文件/原G2/G3/G4报告作为历史不改。原141/音频/权重/索引/Java/Vue/DB/API/锁/依赖/UI/main不变，无关应用测试不重复。
 - 用户四批已完成；下一步按041现成标注训练/开发与有界人工抽检，不再要求本轮补标。adapter/许可和旧作者作品排除/20首音频预检/1–2k研究子集训练仍待实现，未声称已训练。若用已看160选择新配置，该集降为development回归，未来模型另设评测。B035-R2/rev1仍原卡assigned，不将本报告冒充B批准；提交后publish/sync回读。
+
+### MUS-043范围与占用
+
+- A从干净已发布7b592d200eeafc13d17a57687d12b4541340f05b建立codex/MUS-043-mtg-adapter-preflight；2026-10-31T04:45:00Z双方fetched，A c1dd288/source7b592d2，B610c03e/source0e8de159保持并ack。B035-R2/rev1原卡不变，不扩其审核。
+- 当前目标固定metadata adapter/已用60+SDD排除、train-only20首标签/许可/SHA/实际EOF预检，不运行训练/CLAP，不新建人工标注包。允许新增services/audio-search/mtg_dataset.py与相关测试、必要scripts工具、E18/数据参数/README/PROJECT/STATUS/A latest及verification/MUS-043*；私有仅.local/a/mus043。原冻结源码/全部旧输入/模型/服务/UI/DB/main只读。
+- 官方脚本实际按100个tar分卷发音频；先正常TLS固定revision获取约12.5MB名称/逐曲校验SHA及脚本，并探测官方206。若无有界逐曲获取，保留adapter结果、明确音频预检blocked，不自动拉整库。041研究许可边界保持，当前已看160不用于本轮挑样本或调参。
