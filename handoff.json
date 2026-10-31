@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-31T02:58:06.061140+00:00",
-  "source_branch": "codex/MUS-041-labeled-data-feasibility",
-  "source_sha": "7a98ee0bf5fe824cc23b8ffbb74ad096c56be602",
+  "published_at": "2026-10-31T03:02:38.914084+00:00",
+  "source_branch": "codex/MUS-040-completion-receipts",
+  "source_sha": "72c386e6d392f4fb1e4af3e4492bc32292220b3f",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "adb6e7e958c21a4cfbc1b8d16ae20bf55c9bcd2473699ce54980560afa4fed2e"
+  "report_sha256": "6237f095d5ae1106c7d52d5c1b5026cb2206e62def4a4aff058e66a199cb04e5"
 }

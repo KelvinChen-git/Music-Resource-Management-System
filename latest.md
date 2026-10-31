@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-040已收前三批回执，3/4批、报告120/160，G5未解封
+
+A；2026-10-30 America/Chicago；branch codex/MUS-040-completion-receipts；base7a98ee0bf5fe824cc23b8ffbb74ad096c56be602。从041完成的干净最新源码另建040专用收件分支，不合并/覆盖041任务分支，041现成标注路线/metadata证据保持。040仍review、G5等第4批，训练未启动。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；2026-10-31T03:01:07Z双方fetched，A895018f/source7a98ee0。N1准确035-R2/rev1原卡仍assigned，不替换/扩范围。
+
+本次dataset bf53151d…匹配原冻结第3批，报告40/valid_complete_batch；无重复key/精确四字段/类型/整数count/SHA语法和新批次唯一性通过。原回执SHA2e54e80b5ba16600934325d32f997ed7b18f5c6adf042b3822c308a780237049，独占归档ignore.local/a/mus040/phase03/completion-receipts/batch-3，0700/0600，与下载原件相同；payload SHAa3c483d18783f8d2daf75ca1338409a00a7538e81fad4bb412c86b6a48d2fc1b只记录承诺，未打开完整JSON、未核实际payload或重验人工评分/听音。
+
+累计3/4批回执、labeler报告120/160（75%），仅待第4批40项；具体评分接收/打开0、等级分布/新指标0，G5仍关闭。各批完整JSON由用户自行保管，第四回执齐全核定后再统一请求并校验承诺SHA/160合法性。前两批记录与原件、原G2 1898f2bd…/五runs commitment d3b03f47…/四包/23冻结源码保持；不扫描其他下载、不切换当前用户页面。
+
+仅README当前分支、STATUS/A latest和receipt log更新；私有新原件/检查记录，无代码/模型/排名/训练/旧141/G1/音频/metadata原件/DB/API/UI/依赖/备份/main变化。字段/字节/冻结绑定/保护和diff通过，无关应用测试不重复。041后续现成标注训练/有界抽检路线保持，不能将已看040 test用于新模型选参后仍称独立盲测。
+
+提交后publish/sync回读，发布不等于B批准或main合并。下一步给用户第4批原包入口，仍先接完成回执；不提前索取/读取完整判断。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-041现成标注路线/metadata可行性完成，040继续等后两批回执
 
 A；2026-10-30 America/Chicago；branch codex/MUS-041-labeled-data-feasibility；basece1eb6b543880d7ef499428fc1fd0d07b32f68a2。041 review，仅数据可行性完成，adapter/可用训练音频/训练模型均未实现。用户会完成当前四批，后续默认现成标注为主、人工只做有界抽检，当前160/G5/五排名不变。
