@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-040四批回执齐全，统一请求四份原始完整判断；尚未打开评分
+
+A；2026-10-30 America/Chicago；branch codex/MUS-040-completion-receipts；本段base72c386e6d392f4fb1e4af3e4492bc32292220b3f。040仍review，G2/G3/G4已完成、G5具备请求条件，完整判断尚未接收/解封，非评测或训练完成。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；2026-10-31T04:21:15Z双方fetched，A b993f56/source72c386e。N1 035-R2/rev1原卡仍assigned，不替换在途任务、不外推B批准。
+
+第4批四字段回执dataset bfda48f4…匹配冻结第4包，reported40/valid_complete_batch，字段/无重复key/整数/SHA/唯一批次通过；原字节SHA bea139de19914906a677c1f3392f72c500afc1cac02421ab755ff4cfa6c667a2，payload承诺b1df04545f7fb3cc2ab2b1099fb8925d7a7d899fe7bcd61848ef546de3e640be。ignore.local/a/mus040/phase03/completion-receipts/batch-4独占0700/文件0600，原字节保留，前三批记录和原件保持。
+
+累计4/4回执、labeler报告160/160（100%）。实际评分接收/打开0，payload实际字节核验/评分独立验证/等级分布/质量指标均0；回执不能认证听音。标准库只读重验447冻结输入/23源码/双checkpoint/环境54cache、G2 1898f2bd…/五runs commitment d3b03f47…、40全20排名/4向量工件/四原包全部通过。初次HF_HOME含../路径导致环境字符串比对拒绝，54文件解析后内容SHA相同；使用冻结绝对路径重跑完整校验通过，未更改缓存/依赖或绕过检查，没有加载模型。
+
+现在明确通知用户一次提交四份与回执配套原始sonora-judgments导出（d6611d9eb416、154038666a26、bf53151d4d42、bfda48f4eb21）。收到后先核全部四份原字节SHA，再解析任何评分/按重建原包校验160合法性并记录一次打开，之后才做038固定五组P@5/nDCG/成对比较。verification/MUS-040-G5-request.json记录资格与承诺；G5_ready仅为请求资格，尚未解封、无评测或新模型选择。
+
+仅STATUS/A latest、原completion log和新增G5-request metadata交付；未读/扫描其他下载、不切用户页，不改应用/模型/排名/训练/旧141/数据库/API/UI/锁/依赖/原版/main。041metadata结论及既有标注主训练/有界人工抽检路线保持，本160只评原五组；新训练若据已看test选参不能再称该test盲测。文档/JSON/原件hash与权限检查，不重复无关应用测试。
+
+提交后publish/sync回读；发布不等于B接收/批准或main合并，无后台轮询。下一步等待四份原始完整导出，禁止自行查找未提交qrels。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-040已收前三批回执，3/4批、报告120/160，G5未解封
 
 A；2026-10-30 America/Chicago；branch codex/MUS-040-completion-receipts；base7a98ee0bf5fe824cc23b8ffbb74ad096c56be602。从041完成的干净最新源码另建040专用收件分支，不合并/覆盖041任务分支，041现成标注路线/metadata证据保持。040仍review、G5等第4批，训练未启动。
