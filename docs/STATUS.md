@@ -1,12 +1,12 @@
 # 项目状态与交接
 
-最后更新：2026-10-30（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-10-31（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-30 America/Chicago）：codex/MUS-043-mtg-adapter-preflight，基于已发布7b592d2；实际工具提交9a92a8c下完成metadata adapter/固定20首真实音频预检，数据链路review（实现/实跑完成，工具独立审核待安排）。固定20 train/20作者/49既有tag，20官方SHA/实际EOF/48k mono/1,004窗口通过；7,577为metadata候选，未下载1–2k或训练。
+- 当前工作（2026-10-31 America/Chicago）：codex/MUS-044-tag-adapter-training-smoke，从已发布83ebeea开始；实际源码5bce919干净运行后，首次20首轻量适配器拟合完成，任务review（工具待独立审核，非效果验收）。原CLAP冻结、60固定窗口/183 prototype、262,144参数线性层、lambda100；目标27.808→26.469，训练观察tag Recall@5仍28.13%，不切模型。
 
-- 当前检查点：66相关检查passed（21新/45原）、独立分脚本同规范PCM/窗口/标签复算通过，实际官方单曲音频65,431,195 bytes，无tar，body读取77,945,120/256MiB上限。旧952/447输入/23源码/54cache集合与SHA、042原件/结果、原版f3b0da1干净保持；无Java导入/UI/DB/依赖/模型/main改动。040/042四批160已接收并比较完成；后续沿既有标注训练、人工有界抽检，下一步规模/隔离/训练预算及loss另冻。B035-R2原卡仍assigned，不扩审核。
+- 当前检查点：分组metadata已冻结1000 train/200 validation/200 reserved-test（未下载对应音频），creator连通组450/106/105、tag覆盖172/133/128；跨split已知作者credit/作品/低文件SHA冲突隔离。32相关检查passed（11新/21旧），独立primal/dual解差8.88e-16；952旧文件/043原件/原23源码/54cache及原版保持。真实训练只用20已验证train作smoke，没有验证/测试或141/160输入，无新音频/Java导入/部署/UI/DB/main改动。下一步实际千首数据与验证预算，不再扩全矩阵人工标注；B035-R2原卡仍assigned。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -57,6 +57,7 @@
 | MUS-041 现成标注语料可行性 | review / A（metadata路线完成，训练尚未实现） | codex/MUS-041-labeled-data-feasibility / ce1eb6b，依赖040隔离/用户路线修订 | MTG train32,859/val11,101/test11,565、195原/183split标签和ID隔离/旧9重叠实核；SDD/MusicCaps候选，生成caption不当人工真值；仅metadata，无音频/训练/新人工包 |
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
+| MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
@@ -886,3 +887,11 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 - A从干净已发布83ebeea8e32d41c9652d4c8dbdf75f24e8024fab建立codex/MUS-044-tag-adapter-training-smoke；2026-10-31T05:13:48Z双方fetched，A f81f662/source83ebeea，B610c03e/source0e8de159保持并ack，035-R2/rev1原卡不变。
 - 本机16GiB RAM/269GiB可用，选择冻结CLAP+轻量线性层闭式拟合；先freeze千首级metadata分组计划，并用043已验证20首跑一次真实训练smoke，不先下载数GB或声称模型泛化提升。允许mtg_dataset.py可选pool导出（默认行为保留）、新mtg_plan/tag_adapter及测试/runner、E19/参数/必要README/PROJECT/STATUS/A latest及verification/MUS-044*；私有仅.local/a/mus044。原23推理源码/141+160/原043输入/音频/权重/旧排名/UI/数据库/main只读。
+
+### MUS-044完成：分组计划和20首真实轻量适配训练
+
+- E19和机器policy先定，源码5bce919干净提交、完整核原G2/源20 SHA与PCM/配置及计划后留新freeze，再编码20×3窗口和183短tag模板；所有CLAP requires_grad=False/inference_mode，模型参数更新0，只拟合线性残差W。训练样本20、全部仅smoke、验证/测试0，141/160输入0；无lambda搜索、重挑样本或按模型选窗口。
+- 真实exit0，单次18.441秒（非P95），固定lambda100/262,144参数，目标27.808033566→26.468974380、MSE0.002715628278→0.002463862687、正规方程残差9.25e-15、identity差范数0.111311296。训练观察tag Recall@5=0.281309524前后不变，不能据loss下降宣称检索提升，原模型不切换。W/特征/逐曲标签只.local/a/mus044，0700/0600。
+- pool可选接口保留043默认行为；跨split组/规范化作品名/官方低音频SHA隔离后eligible7307/1888/1351，固定train1000/validation200/reserved-test200，creator组件450/106/105，tag172/133/128。只metadata计划，未下载/解码/编码这1400，不叫千首训练已完成；完整别名/声学近重复/版本/预训练隔离仍未知。
+- 32相关检查passed（11新+21既有），初测试类导入使13旧例重复发现，模块引用后按最终32独立计数，未累加。独立NumPy primal512与生产dual20解最大差8.88e-16，正tag均值/目标/训练Recall/1400分组规则均重算一致，同操作者非B。实际重复输出FileExistsError、原模型/特征/结果不变，额外encoder加载/拟合0。
+- 952旧文件/043原件和证据/23原推理源码/54cache集合及SHA/原版干净保持；mtg_dataset可选扩展属本任务明确范围，旧043源码仍由9a92a8c复现。无依赖装改/新音频/Java/UI/DB/部署/main合并。保留初RoBERTa pooler/meshgrid warning，CLAP后strict完整覆盖，无模型警告驱动调参。下一步实际千首训练/验证数据与内容隔离预算，再做有效验证；旧160只作未来development回归边界。05:13:48Z/05:20:57Z双方sync，B610c03e/source0e8de159、035-R2/rev1原卡保持；提交publish/sync回读。

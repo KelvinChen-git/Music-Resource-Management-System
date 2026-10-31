@@ -52,6 +52,8 @@ MUS-042已接收四批原始完整判断并完成首次独立小样本比较：�
 
 MUS-043已建立MTG现成标签adapter与20首真实音频预检：固定官方split-0/183标签、原60及SDD已知组排除后得到7,577个metadata候选，固定首批20首/20作者/49标签，20/20官方逐曲SHA/实际EOF/48k mono与1,004窗口验证通过。66相关检查及独立分脚本复算通过；实际音频约65.4MB，官方单曲获取、未拉tar。只在私有研究目录，未导入Java或训练，未声称1–2k语料就绪/提升；原模型/141+160/五排名/原版保持，详见[MUS-043](docs/verification/MUS-043.md)。
 
+MUS-044已固定train1,000/validation200/reserved-test200的metadata分组计划（音频尚未下载），并首次真实拟合轻量适配层：复用043的20首、固定60窗口/183标签prototype，冻结原CLAP，只以已知正tag均值训练512×512 identity-prior ridge，单lambda100/无超参搜索。目标27.808→26.469，但训练已知tag Recall@5保持28.13%，没有验证/测试或检索提升结论；原模型不切换。32相关检查、独立primal参数复算和旧数据保护通过，详见[MUS-044](docs/verification/MUS-044.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

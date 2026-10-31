@@ -1,0 +1,162 @@
+{
+  "schema": "sonora-positive-centroid-ridge-training-smoke-v1",
+  "status": "trained_lightweight_adapter_smoke_only_no_generalization_claim",
+  "created_at_utc": "2026-10-31T05:20:56.100451+00:00",
+  "source_sha": "5bce9190386053d76d056e68fd0e7cd1d936f338",
+  "config_sha256": "7865eb81c66a7d30a3a651c903d7fa03ad1fc46afff59a83d2574a0cdc35c927",
+  "freeze_sha256": "900f4c709186fe21e7815145515fca5e33d48a34c38e2402531b734c5b10b9e4",
+  "future_plan_sha256": "69d7932ce0b3b828df30fa8fe5e3c730634f6e54daf520012ca48186b9b2bfe0",
+  "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "strict": {
+    "id": "A",
+    "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+    "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "audio_architecture": "HTSAT-base",
+    "fusion": false,
+    "strict_missing": [],
+    "strict_unexpected": [],
+    "removed_nonlearned_position_ids": true,
+    "loader": "torch_weights_only_true_mmap_cpu_strict_v1"
+  },
+  "counts": {
+    "training_tracks": 20,
+    "audio_windows": 60,
+    "prototype_tags": 183,
+    "observed_training_tags": 49,
+    "fit_runs": 1,
+    "CLAP_parameters_trained": 0,
+    "validation_tracks": 0,
+    "test_tracks": 0,
+    "user_judgments_used": 0
+  },
+  "training_diagnostics": {
+    "objective_before": 27.80803356636114,
+    "objective_after": 26.468974380186527,
+    "MSE_before": 0.002715628277964955,
+    "MSE_after": 0.0024638626865041043,
+    "normal_equation_max_abs_residual": 9.251280297384312e-15,
+    "parameter_delta_frobenius_norm": 0.111311296389203,
+    "fit_tracks": 20,
+    "parameter_count": 262144,
+    "regularization": 100.0,
+    "generalization_evaluated": false
+  },
+  "training_observed_tag_recall_before": {
+    "macro_observed_tag_recall_at5": 0.28130952380952384,
+    "tracks": 20,
+    "scope": "training_diagnostic_only_not_precision_or_full_relevance_or_test_accuracy"
+  },
+  "training_observed_tag_recall_after": {
+    "macro_observed_tag_recall_at5": 0.28130952380952384,
+    "tracks": 20,
+    "scope": "training_diagnostic_only_not_precision_or_full_relevance_or_test_accuracy"
+  },
+  "artifact_sha256": {
+    "freeze.json": "900f4c709186fe21e7815145515fca5e33d48a34c38e2402531b734c5b10b9e4",
+    "features.npz": "5ec84b28233d08b706b4d89b67cc38b436b019c2b5c3e869007a7f4124cf4239",
+    "feature-binding.json": "5376071c87fb5c141c10127ccba7e7e8796b43fbea4b5042868ef4c241bebf50",
+    "adapter.npz": "a81fa4ab367fe0e202c4d320ce3be341b24d5cdd1ca9d9ed61777f92f0e48a99"
+  },
+  "single_run_seconds": 18.44137595797656,
+  "limits": [
+    "All20 are training smoke only; training objective/observed-tag recall are not validation/test or natural-language retrieval metrics.",
+    "Pretrained CLAP remains frozen and unchanged; trained artifact is a small linear layer, not full backbone fine-tuning.",
+    "No lambda search, new corpus downloads, deployment, model switch or use of141/160 human relevance grades.",
+    "Planned1000/200/200 metadata is not a downloaded/validated training corpus; its future content/group checks remain required."
+  ],
+  "task": "MUS-044",
+  "branch": "codex/MUS-044-tag-adapter-training-smoke",
+  "base_source_sha": "83ebeea8e32d41c9652d4c8dbdf75f24e8024fab",
+  "dataset_plan": {
+    "counts": {
+      "train": 1000,
+      "validation": 200,
+      "test": 200
+    },
+    "eligible_before_cross_split_quarantine": {
+      "train": 7577,
+      "validation": 2035,
+      "test": 1429
+    },
+    "eligible_after_cross_split_quarantine": {
+      "train": 7307,
+      "validation": 1888,
+      "test": 1351
+    },
+    "quarantine_reasons_nonexclusive": {
+      "train:work_name_across_official_splits": 224,
+      "train:creator_component_across_official_splits": 37,
+      "train:official_audio_SHA_across_splits": 10,
+      "validation:work_name_across_official_splits": 127,
+      "validation:creator_component_across_official_splits": 12,
+      "validation:official_audio_SHA_across_splits": 9,
+      "test:work_name_across_official_splits": 66,
+      "test:creator_component_across_official_splits": 15,
+      "test:official_audio_SHA_across_splits": 1
+    },
+    "creator_components": {
+      "train": 450,
+      "validation": 106,
+      "test": 105
+    },
+    "tag_coverage": {
+      "train": 172,
+      "validation": 133,
+      "test": 128
+    },
+    "new_audio_downloads": 0,
+    "training_runs_on_planned_data": 0
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "independent NumPy primal512x512 solution vs production dual20x20, own centroid/recall/group recomputation; same operator, not B",
+    "max_abs_parameter_difference": 8.881784197001252e-16,
+    "objective_recomputed": 26.468974380186527,
+    "all1400_metadata_partitions_alias_work_audio_sets_disjoint": true,
+    "artist_group_cap4_verified": true,
+    "old952_and043_artifacts_unchanged": true,
+    "frozen23_sources_and54_cache_set_hash_unchanged": true,
+    "backup_clean": true,
+    "adapter_file_bytes": 2097676,
+    "script_sha256": "22378a41a249f322fe30f2c298581b4c172e9764a68cabb51822fe54b34924ba"
+  },
+  "repeat_output_check": {
+    "exit_code": 1,
+    "expected_error": "FileExistsError",
+    "original_model_and_features_and_training_result_unchanged": true,
+    "additional_encoder_loads_or_fits": 0
+  },
+  "tests": {
+    "related_passed": 32,
+    "new_tests": 11,
+    "existing_tests": 21
+  },
+  "private_evidence_sha256": {
+    "plan-01/plan.json": "69d7932ce0b3b828df30fa8fe5e3c730634f6e54daf520012ca48186b9b2bfe0",
+    "run-01/freeze.json": "900f4c709186fe21e7815145515fca5e33d48a34c38e2402531b734c5b10b9e4",
+    "run-01/result.json": "026df53eab9d6382a4ef6b227775cb5d125aa3450f1cfebb82274a1390532a16",
+    "run-01/features.npz": "5ec84b28233d08b706b4d89b67cc38b436b019c2b5c3e869007a7f4124cf4239",
+    "run-01/adapter.npz": "a81fa4ab367fe0e202c4d320ce3be341b24d5cdd1ca9d9ed61777f92f0e48a99",
+    "run-01/feature-binding.json": "5376071c87fb5c141c10127ccba7e7e8796b43fbea4b5042868ef4c241bebf50",
+    "independent-audit.json": "abf1eaabf0b986f4fa97e41cd75912cbefeb6c135e699255460c1da76ed4d13e",
+    "repeat-check.json": "b0ddcdbf79e1ce19d6081aac9e3aef932b9bc181005548f733b206b42d8ed276",
+    "related-tests.log": "ec834c9e8d19aad09b14f7b6609848e439946fa432d5b111601dddb2a4cdda8e",
+    "final-check.json": "8a9cf57f817f9ee873e7b1fc50cc7034f4739526a3b178365898ca39fb6af80e"
+  },
+  "plan_limits": [
+    "Official IDs, exact normalized names/credit components, work names and official low-file SHA only; not exhaustive alias/version/acoustic dedup or pretraining-unseen proof.",
+    "All new validation/test are metadata reservations, not downloaded/decoded/encoded or evaluated.",
+    "No selection by model scores, user160 judgments, captions or trained adapter outcomes."
+  ],
+  "interpretation": "Training chain is executable and the positive-only ridge optimum is verified; observed training-tag recall did not improve. No generalization or deployment decision.",
+  "final_preservation_and_publication_check": {
+    "status": "passed",
+    "all160_raw_judgments_and042_metrics_unchanged": true,
+    "private_modes": "0700/0600",
+    "public_aggregate_only": true,
+    "links_fences_and_all_evidence_SHA_verified": true,
+    "original_backup_sha_retained": true
+  }
+}
