@@ -1,0 +1,930 @@
+{
+  "schema": "sonora-caption-development-gate-comparison-v1",
+  "status": "development_gate_complete",
+  "created_at_utc": "2026-10-31T06:22:07.971022+00:00",
+  "comparison_source_sha": "95360d895cdbb00c24d444658d31e0699178e40c",
+  "config_sha256": "2cde464639794a8371f4bec17ee0d9b6f3f7cb5b921c7bd2a75d645b292b530b",
+  "cache_sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2",
+  "feature_sha256": "4079fa46f0727b4372d6932b2f0a9c3ae8fdd0a5774d2f79f54c199fee3b2ba1",
+  "cache_key_sha256": "5d57e488c69836a25630f1ae87d4f85e32d27cecf963468e4827043e8494513d",
+  "counts": {
+    "train": 100,
+    "tag_validation": 20,
+    "caption_dev": 20,
+    "caption_queries": 24,
+    "fitted_candidates": 3,
+    "identity_candidates": 1,
+    "reserved_test_scored": 0
+  },
+  "results": {
+    "identity": {
+      "alpha": null,
+      "fit_diagnostic": null,
+      "whole": {
+        "recording_macro": {
+          "R1": 0.54,
+          "R5": 1.0,
+          "MRR": 0.7083333333333333
+        },
+        "query_macro": {
+          "R1": 0.5833333333333334,
+          "R5": 1.0,
+          "MRR": 0.7319444444444444
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "segment": {
+        "recording_macro": {
+          "R1": 0.49000000000000005,
+          "R5": 0.95,
+          "MRR": 0.67625
+        },
+        "query_macro": {
+          "R1": 0.5416666666666666,
+          "R5": 0.9583333333333334,
+          "MRR": 0.7135416666666666
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.15055555555555555
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.1925
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.08333333333333333
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.3
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.2962962962962963
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "alpha-0.1": {
+      "alpha": 0.1,
+      "fit_diagnostic": {
+        "mean_objective_before": 1.3078793637308619,
+        "mean_objective_after": 0.6823420144574173,
+        "N_tracks": 100,
+        "alpha": 0.1,
+        "sum_lambda": 10.0,
+        "solver": "dual",
+        "max_normal_equation_residual_per_track": 6.522560269672794e-18
+      },
+      "whole": {
+        "recording_macro": {
+          "R1": 0.49000000000000005,
+          "R5": 0.95,
+          "MRR": 0.6663095238095238
+        },
+        "query_macro": {
+          "R1": 0.5416666666666666,
+          "R5": 0.9583333333333334,
+          "MRR": 0.7052579365079366
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "segment": {
+        "recording_macro": {
+          "R1": 0.54,
+          "R5": 0.9,
+          "MRR": 0.71375
+        },
+        "query_macro": {
+          "R1": 0.5833333333333334,
+          "R5": 0.9166666666666666,
+          "MRR": 0.7447916666666666
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.22055555555555553
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.26749999999999996
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.1388888888888889
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.35
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.4166666666666667
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.125
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "alpha-1.0": {
+      "alpha": 1.0,
+      "fit_diagnostic": {
+        "mean_objective_before": 1.3078793637308619,
+        "mean_objective_after": 1.102208857436718,
+        "N_tracks": 100,
+        "alpha": 1.0,
+        "sum_lambda": 100.0,
+        "solver": "dual",
+        "max_normal_equation_residual_per_track": 1.0859368959614813e-16
+      },
+      "whole": {
+        "recording_macro": {
+          "R1": 0.49000000000000005,
+          "R5": 1.0,
+          "MRR": 0.6641666666666667
+        },
+        "query_macro": {
+          "R1": 0.5416666666666666,
+          "R5": 1.0,
+          "MRR": 0.6951388888888889
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "segment": {
+        "recording_macro": {
+          "R1": 0.49000000000000005,
+          "R5": 0.95,
+          "MRR": 0.6804166666666667
+        },
+        "query_macro": {
+          "R1": 0.5416666666666666,
+          "R5": 0.9583333333333334,
+          "MRR": 0.7170138888888888
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.1561111111111111
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.205
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.08333333333333333
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.325
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.35185185185185186
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "alpha-5.0": {
+      "alpha": 5.0,
+      "fit_diagnostic": {
+        "mean_objective_before": 1.3078793637308619,
+        "mean_objective_after": 1.2548135234461484,
+        "N_tracks": 100,
+        "alpha": 5.0,
+        "sum_lambda": 500.0,
+        "solver": "dual",
+        "max_normal_equation_residual_per_track": 5.422051696513108e-16
+      },
+      "whole": {
+        "recording_macro": {
+          "R1": 0.54,
+          "R5": 1.0,
+          "MRR": 0.7
+        },
+        "query_macro": {
+          "R1": 0.5833333333333334,
+          "R5": 1.0,
+          "MRR": 0.725
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "segment": {
+        "recording_macro": {
+          "R1": 0.49000000000000005,
+          "R5": 0.95,
+          "MRR": 0.67625
+        },
+        "query_macro": {
+          "R1": 0.5416666666666666,
+          "R5": 0.9583333333333334,
+          "MRR": 0.7135416666666666
+        },
+        "recordings": 20,
+        "queries": 24,
+        "scope": "known_paired_match_not_complete_semantic_relevance"
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.1561111111111111
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.205
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.08333333333333333
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.325
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.35185185185185186
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "alpha-0.1": {
+      "R5_mean_delta": -0.05,
+      "paired_bootstrap95_lower": -0.15,
+      "paired_bootstrap95_upper": 0.0,
+      "wins": 0,
+      "ties": 19,
+      "losses": 1,
+      "scope": "descriptive_dev_recording_resampling_not_final_test_significance"
+    },
+    "alpha-1.0": {
+      "R5_mean_delta": 0.0,
+      "paired_bootstrap95_lower": 0.0,
+      "paired_bootstrap95_upper": 0.0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "scope": "descriptive_dev_recording_resampling_not_final_test_significance"
+    },
+    "alpha-5.0": {
+      "R5_mean_delta": 0.0,
+      "paired_bootstrap95_lower": 0.0,
+      "paired_bootstrap95_upper": 0.0,
+      "wins": 0,
+      "ties": 20,
+      "losses": 0,
+      "scope": "descriptive_dev_recording_resampling_not_final_test_significance"
+    }
+  },
+  "selected": "identity",
+  "scale_up_gate_passed": false,
+  "training_tag_support": {
+    "genre---60s": 0,
+    "genre---70s": 0,
+    "genre---80s": 1,
+    "genre---90s": 0,
+    "genre---acidjazz": 0,
+    "genre---alternative": 8,
+    "genre---alternativerock": 0,
+    "genre---ambient": 9,
+    "genre---atmospheric": 1,
+    "genre---blues": 0,
+    "genre---bluesrock": 0,
+    "genre---bossanova": 1,
+    "genre---breakbeat": 1,
+    "genre---celtic": 0,
+    "genre---chanson": 0,
+    "genre---chillout": 3,
+    "genre---choir": 0,
+    "genre---classical": 11,
+    "genre---classicrock": 0,
+    "genre---club": 3,
+    "genre---contemporary": 4,
+    "genre---country": 0,
+    "genre---dance": 7,
+    "genre---darkambient": 1,
+    "genre---darkwave": 0,
+    "genre---deephouse": 1,
+    "genre---disco": 2,
+    "genre---downtempo": 1,
+    "genre---drumnbass": 1,
+    "genre---dub": 1,
+    "genre---dubstep": 2,
+    "genre---easylistening": 10,
+    "genre---edm": 0,
+    "genre---electronic": 32,
+    "genre---electronica": 2,
+    "genre---electropop": 1,
+    "genre---ethno": 0,
+    "genre---eurodance": 1,
+    "genre---experimental": 5,
+    "genre---folk": 6,
+    "genre---funk": 3,
+    "genre---fusion": 0,
+    "genre---groove": 3,
+    "genre---grunge": 0,
+    "genre---hard": 0,
+    "genre---hardrock": 0,
+    "genre---hiphop": 4,
+    "genre---house": 4,
+    "genre---idm": 0,
+    "genre---improvisation": 0,
+    "genre---indie": 8,
+    "genre---industrial": 2,
+    "genre---instrumentalpop": 5,
+    "genre---instrumentalrock": 1,
+    "genre---jazz": 1,
+    "genre---jazzfusion": 1,
+    "genre---latin": 0,
+    "genre---lounge": 4,
+    "genre---medieval": 0,
+    "genre---metal": 1,
+    "genre---minimal": 1,
+    "genre---newage": 2,
+    "genre---newwave": 0,
+    "genre---orchestral": 2,
+    "genre---pop": 17,
+    "genre---popfolk": 6,
+    "genre---poprock": 0,
+    "genre---postrock": 0,
+    "genre---progressive": 1,
+    "genre---psychedelic": 1,
+    "genre---punkrock": 2,
+    "genre---rap": 3,
+    "genre---reggae": 4,
+    "genre---rnb": 4,
+    "genre---rock": 12,
+    "genre---rocknroll": 1,
+    "genre---singersongwriter": 0,
+    "genre---soul": 0,
+    "genre---soundtrack": 6,
+    "genre---swing": 1,
+    "genre---symphonic": 2,
+    "genre---synthpop": 0,
+    "genre---techno": 2,
+    "genre---trance": 4,
+    "genre---triphop": 1,
+    "genre---world": 4,
+    "genre---worldfusion": 2,
+    "instrument---accordion": 1,
+    "instrument---acousticbassguitar": 0,
+    "instrument---acousticguitar": 1,
+    "instrument---bass": 7,
+    "instrument---beat": 1,
+    "instrument---bell": 0,
+    "instrument---bongo": 0,
+    "instrument---brass": 0,
+    "instrument---cello": 1,
+    "instrument---clarinet": 0,
+    "instrument---classicalguitar": 0,
+    "instrument---computer": 0,
+    "instrument---doublebass": 1,
+    "instrument---drummachine": 4,
+    "instrument---drums": 5,
+    "instrument---electricguitar": 3,
+    "instrument---electricpiano": 2,
+    "instrument---flute": 2,
+    "instrument---guitar": 4,
+    "instrument---harmonica": 0,
+    "instrument---harp": 1,
+    "instrument---horn": 0,
+    "instrument---keyboard": 5,
+    "instrument---oboe": 0,
+    "instrument---orchestra": 0,
+    "instrument---organ": 0,
+    "instrument---pad": 0,
+    "instrument---percussion": 0,
+    "instrument---piano": 11,
+    "instrument---pipeorgan": 1,
+    "instrument---rhodes": 0,
+    "instrument---sampler": 1,
+    "instrument---saxophone": 0,
+    "instrument---strings": 1,
+    "instrument---synthesizer": 5,
+    "instrument---trombone": 0,
+    "instrument---trumpet": 0,
+    "instrument---viola": 0,
+    "instrument---violin": 2,
+    "instrument---voice": 2,
+    "mood/theme---action": 0,
+    "mood/theme---adventure": 0,
+    "mood/theme---advertising": 0,
+    "mood/theme---background": 3,
+    "mood/theme---ballad": 1,
+    "mood/theme---calm": 0,
+    "mood/theme---children": 0,
+    "mood/theme---christmas": 0,
+    "mood/theme---commercial": 0,
+    "mood/theme---cool": 0,
+    "mood/theme---corporate": 1,
+    "mood/theme---dark": 1,
+    "mood/theme---deep": 1,
+    "mood/theme---documentary": 0,
+    "mood/theme---drama": 0,
+    "mood/theme---dramatic": 0,
+    "mood/theme---dream": 2,
+    "mood/theme---emotional": 0,
+    "mood/theme---energetic": 3,
+    "mood/theme---epic": 0,
+    "mood/theme---fast": 0,
+    "mood/theme---film": 4,
+    "mood/theme---fun": 1,
+    "mood/theme---funny": 0,
+    "mood/theme---game": 2,
+    "mood/theme---groovy": 0,
+    "mood/theme---happy": 2,
+    "mood/theme---heavy": 0,
+    "mood/theme---holiday": 0,
+    "mood/theme---hopeful": 0,
+    "mood/theme---inspiring": 2,
+    "mood/theme---love": 3,
+    "mood/theme---meditative": 1,
+    "mood/theme---melancholic": 2,
+    "mood/theme---melodic": 1,
+    "mood/theme---motivational": 1,
+    "mood/theme---movie": 0,
+    "mood/theme---nature": 1,
+    "mood/theme---party": 1,
+    "mood/theme---positive": 2,
+    "mood/theme---powerful": 0,
+    "mood/theme---relaxing": 0,
+    "mood/theme---retro": 0,
+    "mood/theme---romantic": 2,
+    "mood/theme---sad": 3,
+    "mood/theme---sexy": 1,
+    "mood/theme---slow": 0,
+    "mood/theme---soft": 0,
+    "mood/theme---soundscape": 0,
+    "mood/theme---space": 2,
+    "mood/theme---sport": 0,
+    "mood/theme---summer": 0,
+    "mood/theme---trailer": 0,
+    "mood/theme---travel": 0,
+    "mood/theme---upbeat": 1,
+    "mood/theme---uplifting": 0
+  },
+  "unseen_training_tags": [
+    "genre---60s",
+    "genre---70s",
+    "genre---90s",
+    "genre---acidjazz",
+    "genre---alternativerock",
+    "genre---blues",
+    "genre---bluesrock",
+    "genre---celtic",
+    "genre---chanson",
+    "genre---choir",
+    "genre---classicrock",
+    "genre---country",
+    "genre---darkwave",
+    "genre---edm",
+    "genre---ethno",
+    "genre---fusion",
+    "genre---grunge",
+    "genre---hard",
+    "genre---hardrock",
+    "genre---idm",
+    "genre---improvisation",
+    "genre---latin",
+    "genre---medieval",
+    "genre---newwave",
+    "genre---poprock",
+    "genre---postrock",
+    "genre---singersongwriter",
+    "genre---soul",
+    "genre---synthpop",
+    "instrument---acousticbassguitar",
+    "instrument---bell",
+    "instrument---bongo",
+    "instrument---brass",
+    "instrument---clarinet",
+    "instrument---classicalguitar",
+    "instrument---computer",
+    "instrument---harmonica",
+    "instrument---horn",
+    "instrument---oboe",
+    "instrument---orchestra",
+    "instrument---organ",
+    "instrument---pad",
+    "instrument---percussion",
+    "instrument---rhodes",
+    "instrument---saxophone",
+    "instrument---trombone",
+    "instrument---trumpet",
+    "instrument---viola",
+    "mood/theme---action",
+    "mood/theme---adventure",
+    "mood/theme---advertising",
+    "mood/theme---calm",
+    "mood/theme---children",
+    "mood/theme---christmas",
+    "mood/theme---commercial",
+    "mood/theme---cool",
+    "mood/theme---documentary",
+    "mood/theme---drama",
+    "mood/theme---dramatic",
+    "mood/theme---emotional",
+    "mood/theme---epic",
+    "mood/theme---fast",
+    "mood/theme---funny",
+    "mood/theme---groovy",
+    "mood/theme---heavy",
+    "mood/theme---holiday",
+    "mood/theme---hopeful",
+    "mood/theme---movie",
+    "mood/theme---powerful",
+    "mood/theme---relaxing",
+    "mood/theme---retro",
+    "mood/theme---slow",
+    "mood/theme---soft",
+    "mood/theme---soundscape",
+    "mood/theme---sport",
+    "mood/theme---summer",
+    "mood/theme---trailer",
+    "mood/theme---travel",
+    "mood/theme---uplifting"
+  ],
+  "adapter_artifact_sha256": {
+    "alpha-0.1": "e5ba1c2c6aa6b24bfc7beb94407c939987659a2fa8b957528ac6ac98518993e2",
+    "alpha-1.0": "f85d6aad31f79c8b0a67b91b858026f1c97d074822c017bcf28bf691795c8a8a",
+    "alpha-5.0": "18d86c878588417fc528f04daef3e497f8572b2b72bd2f6029e827b99364522d"
+  },
+  "limits": [
+    "Known caption-recording pair retrieval, unpaired recordings are not confirmed semantic negatives; no full relevance P@5.",
+    "SDD nominal first120s from official low-bitrate source, not byte-identical official SDD audio benchmark.",
+    "Twenty-recording development selection and descriptive grouped bootstrap, not final test significance or deployment approval.",
+    "Text unchanged; whole mapping after pooling; segment separately maps only three fixed windows, no localization claim.",
+    "No reference-audio query, all-window sensitivity or automatic index/model switch; reserved tests untouched.",
+    "Identity whole R@5 is already 1.0 in this20-recording pool, so the preregistered +0.05 gate is saturated; do not infer adapter incapacity from that gate alone.",
+    "Acoustic near-duplicates, covers, exhaustive aliases and pretraining exposure are not excluded.",
+    "The versioned runner is scoped to this140-recording/183-tag gate, not a demonstrated production1000-recording trainer."
+  ],
+  "task": "MUS-045",
+  "branch": "codex/MUS-045-mtg-corpus-acquisition",
+  "base_sha": "46b52db8b2999ab015084f423545e4f2cd5c4e03",
+  "acquisition_source_sha": "be880dab81fcba46a8ec956e5cc7bfcc8c454ff1",
+  "encoding_source_sha": "95360d895cdbb00c24d444658d31e0699178e40c",
+  "source_summary": {
+    "selected_counts": {
+      "train": 100,
+      "validation": 20,
+      "caption_dev": 20
+    },
+    "reserves": {
+      "train": 20,
+      "validation": 4,
+      "caption_dev": 2
+    },
+    "caption_eligible_records": 150,
+    "caption_independent_groups": 48,
+    "caption_dev_queries": 24,
+    "caption_test_metadata_records": 20,
+    "caption_test_text_exported": false,
+    "caption_test_audio_downloads": 0,
+    "new_human_labels": 0
+  },
+  "acquisition": {
+    "counts": {
+      "train": 100,
+      "validation": 20,
+      "caption_dev": 20
+    },
+    "budget_charged_bytes": 394148675,
+    "disk_bytes": 394332902,
+    "prior60_PCM_pins_verified": 60,
+    "caption_test_audio_downloads": 0,
+    "reserved_tag_test_audio_downloads": 0,
+    "disk_snapshot": "catalog-1 at first ready completion; subsequent resume adds journal/catalog metadata",
+    "technical_replacements": 0
+  },
+  "feature_counts": {
+    "audio_tracks": 140,
+    "audio_windows": 420,
+    "caption_dev_queries": 24,
+    "caption_queries_over77": 0,
+    "prototype_tags": 183,
+    "reserved_test_model_inputs": 0
+  },
+  "verification": {
+    "related_tests": 42,
+    "new_tests": 10,
+    "existing_tests": 32,
+    "independent_audit": {
+      "status": "passed",
+      "method": "Independent NumPy primal vs dual, own whole/segment known-pair ranking and recording macro; no production metrics/adapter imports; same operator, not B",
+      "max_abs_primal_dual_parameter_difference": 7.771561172376096e-16,
+      "all4_candidates_both_modes_and_train_objectives_match": true,
+      "all140_audio_and_receipt_hashes_60prior_and_cross_split_exact_PCM_disjoint": true,
+      "caption_test_no_text_export_or_audio": true,
+      "old952_043_044_all_artifacts_160_original_judgments_preserved": true,
+      "frozen23_and54_cache_set_hash_unchanged": true,
+      "backup_clean": true,
+      "R5_dev_ceiling_saturated_before_any_candidate_can_pass_plus005_gate": true,
+      "no_adapter_beats_identity_R1_or_MRR_either": true,
+      "script_sha256": "3fc741eaaf0aca0aaefff71d177bac140801dcdf4da0d4a0694acc8b1ca156b7"
+    },
+    "ready_resume": {
+      "status": "passed",
+      "ready_reused": 140,
+      "additional_body_charges": 0,
+      "track_receipts_and_audio_unchanged": true
+    },
+    "repeat_compare": {
+      "status": "passed",
+      "expected_error": "FileExistsError",
+      "existing3_adapter_artifacts_and_results_unchanged": true,
+      "additional_fit_runs": 0
+    }
+  },
+  "interpretation": {
+    "retain_original_model": true,
+    "download1000_started": false,
+    "R5_baseline_ceiling": true,
+    "predeclared_plus005_R5_gate_impossible_at_observed_ceiling": true,
+    "no_candidate_improves_whole_R1_or_MRR_over_identity": true,
+    "next_step": "Preregister a more discriminative development candidate pool and review positive-tag centroid supervision before further scale; do not retrospectively alter this experiment.",
+    "independent_B_tool_approval": false
+  },
+  "private_evidence_sha256": {
+    "source-02/dataset.json": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe",
+    "corpus/catalog-1.json": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3",
+    "corpus/catalog-2.json": "2c8652294fa29544e7b4af60501ad0a50a0de6e9fd6b6b18fbdbc95614bb36e5",
+    "features-01/freeze.json": "a036912ffb9883fa5178f1a66c1c8255e3719383e82e54393d282ffdfe2f207b",
+    "features-01/cache.json": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2",
+    "features-01/features.npz": "4079fa46f0727b4372d6932b2f0a9c3ae8fdd0a5774d2f79f54c199fee3b2ba1",
+    "compare-01/result-public.json": "c9f287def66b64418d6a2f3154cf88338e6b85c3de2fc7ff07de71815ecbb69a",
+    "compare-01/result-private.json": "3e9217337eb3958d6f3b7f6226258108b4bf0ba3205fda5f36c8ba67393d46c4",
+    "acquire-invocation.json": "8a49cc61823ce56d9ddde9c06a53430567aeb48afa18e164cc7b032c279c3ba4",
+    "encode-invocation.json": "84f73a36a3269b2cabb27613eb91c9323c3791f5a45e45aad6633eae66af156f",
+    "compare-invocation.json": "55e745e51d113131b15f8524cf99183b131c3229af78a20e6702af3cc5483fd0",
+    "acquire.log": "3d7ab25f754c793af8a17ee0fe14f5437263dc9463480020ae6a0b88eb591af1",
+    "encode.log": "1e998691567227c0efc6bc379b94fb28eb83ac3065878a23ecaae8ad958401b8",
+    "compare.log": "b151b9be83b58b5b722d816f161cce2b0b8fdf04a8af9994056f3f37030a2ba1",
+    "all-related-tests-final.log": "c0de7f3edab5e536e3ac230c2764b24378af8622bfbb7ab9f1069a56c974b7db",
+    "independent-audit.json": "fd9732c53c3349eb900dcb874b762dd73a84006d47186311ab8769dd42bc628d",
+    "independent-audit.py": "3fc741eaaf0aca0aaefff71d177bac140801dcdf4da0d4a0694acc8b1ca156b7",
+    "resume-check.json": "765c970a9bacadabf56f2e26040920af8eee10be1a52180309202ed40626d800",
+    "repeat-compare-check.json": "ec7fcda2a381658c7a63db394fb8c9aa41cae642739124b8a43a1c8744289b57",
+    "initial-test-note.json": "8f920983bf4a3917c26a6eaa21cab0d40ab8a470036bf0f3538ca9e7441fb959",
+    "final-doc-qa.json": "b293fae162963fdea73a00a35576f5b00a5ca90c1776f2da663c3a791e8319d8"
+  }
+}

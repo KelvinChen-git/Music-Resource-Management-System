@@ -9,5 +9,29 @@
   "verdict_received": "needs_revision_before_scale_up",
   "scope": "User-directed training plan review, not formal044 tool approval or035-R2 acceptance",
   "action": "Accept R1-R4 for MUS045 bounded data/retrieval gate; preserve044 history; no immediate1000 download",
-  "standing035_R2_changed": false
+  "standing035_R2_changed": false,
+  "implementation_task": "MUS-045",
+  "actions_completed": {
+    "R1": "20 recording/24 human-caption development queries, identity and three candidates compared; reserved caption-test metadata only, no caption text export/audio/model input/scoring.",
+    "R2": "Mean per-track objective, alpha0.1/1/5 and lambda=N*alpha; duplication-invariance tests and independent primal/dual comparison.",
+    "R3": "Versioned, scoped shared feature cache bound to model/environment/source/data/recipe; text frozen, whole pooling then mapping, segment mapping separately; no demonstrated full-scale trainer.",
+    "R4": "140 real files, persistent bounded budget and retries, exact SHA/EOF/PCM with prior60; actual ready resume reuses140 with zero added body charges."
+  },
+  "outcome": {
+    "selected": "identity",
+    "scale_up_gate_passed": false,
+    "whole_R1_identity": 0.54,
+    "whole_R1_best_adapter": 0.54,
+    "whole_R5_identity": 1.0,
+    "R5_ceiling_limit": true,
+    "test_scored": 0,
+    "new_human_labels": 0
+  },
+  "remaining_before_scale": [
+    "Preregister more discriminative development candidate pool; do not change current frozen gate retrospectively.",
+    "Review positive-tag centroid supervision versus natural-language retrieval objective.",
+    "Full-window sensitivity/reference audio/approximate duplicates and a larger versioned runner remain outside this bounded evidence."
+  ],
+  "not_B_approval_of_followup": true,
+  "evidence": "MUS-045.md"
 }

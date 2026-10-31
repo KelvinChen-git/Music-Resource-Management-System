@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-31 America/Chicago）：codex/MUS-044-tag-adapter-training-smoke，从已发布83ebeea开始；实际源码5bce919干净运行后，首次20首轻量适配器拟合完成，任务review（工具待独立审核，非效果验收）。原CLAP冻结、60固定窗口/183 prototype、262,144参数线性层、lambda100；目标27.808→26.469，训练观察tag Recall@5仍28.13%，不切模型。
+- 当前工作（2026-10-31 America/Chicago）：codex/MUS-045-mtg-corpus-acquisition，从已发布46b52db开始；真实采集be880da、编码/比较95360d8。140/140音频ready（100训练/20标签验证/20描述开发、24人写描述），三候选比较完成，任务review（工具待独立审核，非最终质量验收）。选择identity；原模型整曲配对R@1=54%，三候选最好54%，无整曲MRR提升，不启动千首扩训。
 
-- 当前检查点：分组metadata已冻结1000 train/200 validation/200 reserved-test（未下载对应音频），creator连通组450/106/105、tag覆盖172/133/128；跨split已知作者credit/作品/低文件SHA冲突隔离。32相关检查passed（11新/21旧），独立primal/dual解差8.88e-16；952旧文件/043原件/原23源码/54cache及原版保持。真实训练只用20已验证train作smoke，没有验证/测试或141/160输入，无新音频/Java导入/部署/UI/DB/main改动。下一步实际千首数据与验证预算，不再扩全矩阵人工标注；B035-R2原卡仍assigned。
+- 当前检查点：原模型20候选R@5=100%，+0.05预注册门槛出现天花板，不能单凭门控失败否定适配；标签召回提升未转成整曲描述收益，后续另冻更有区分度开发池/监督目标。42相关检查passed（10新/32旧），独立primal/dual差7.77e-16，独立复算与生产四配置两模式指标一致；旧60及新140精确PCM排重、真实140恢复零额外body、重复compare零额外fit通过。所有旧原件/模型/缓存/原版保持，新20描述测试仅metadata不导出文本/音频，原200标签test未取；不导入Java/页面、不改UI/DB/main。B044-PLAN-B/rev1 needs_revision_before_scale_up已接收并按限定范围实施，不是B批准045，035-R2/rev1原卡仍assigned且未认领。最新sync 06:28:02Z，B feed0faad731/source1724630保持；最终提交后publish/sync回读。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,6 +58,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-045 小批真实语料与描述开发比较 | review / A（140真实/三候选已完成，保留identity） | codex/MUS-045-mtg-corpus-acquisition / 46b52db；采集be880da/比较95360d8 | 100train/20tagval/20captiondev、24描述；42检查/独立复算/恢复通过；整曲R1无提升、R5天花板，不千首扩训/不开保留test；工具独立审核未完成 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
 | MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
@@ -900,3 +901,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 
 - 从干净46b52db新建codex/MUS-045-mtg-corpus-acquisition；本轮sync于2026-10-31T06:03:59Z读到B新feed0faad731/source1724630，review_id044-PLAN-B/rev1、reviewed46b52db、用户直派计划审核needs_revision_before_scale_up。已原字节导入/ack，035-R2原卡不动、不当044批准。接受R1自然caption验证/R2 mean alpha/R3通用推理缓存/R4小批真实数据门槛；原044结果不改，不立即全1000下载。
 - 允许新增caption_gate/corpus_gate与相关测试/runner、tag_adapter均值目标与primal等价接口（旧fit行为保持）、E20/参数/必要README/PROJECT/STATUS/A latest、反馈接收与verification/MUS-045*；私有仅.local/a/mus045。目标固定前100train/前20tagval+SDD caption-dev20，保留原200test与新caption-test20；最多三alpha+identity开发验证，不新添人工包或部署。网络/磁盘/时间预算和恢复/替补按E20，若无收益保留identity不扩大。
+
+
+### MUS-045完成：140首真实数据、三候选开发比较与identity保留
+
+- 接收B044-PLAN-B/rev1的R1–R4并建立E20/config，保持044旧20训练结果与035-R2原卡。source-02冻结100train/20tagval/20captiondev，24既有人写描述；技术备选20/4/2未使用，独立caption-test20仅metadata不导出文本/取音频，原tag-test200未获取。本轮不新增人工判断，旧141/160不作训练选参。
+- 实际采集be880da、编码比较95360d8均干净提交运行；官方SHA/206/validator/实际EOF/finite/48k mono验证140/140。原40补同65536 PCM加原20共60，新140及跨split无精确内容重复；声学近重复/翻唱/预训练隔离仍未证明。保守body394,148,675 bytes<1.5GiB，首ready目录394,332,902 bytes<2GiB（后恢复追加小日志/清单），首次全成功、替补0；真实恢复140复用/额外body0。一次编码420窗口/183tag/24caption，超过77token0，保留test模型输入0。
+- mean-per-track alpha0.1/1/5（lambda10/100/500）三拟合+identity共享一缓存，CLAP/text冻结；整曲先聚合再W，三窗口单独映射次要。整曲recording-macro R1/R5/MRR：identity0.54/1/0.7083，alpha0.1为0.49/0.95/0.6663，alpha1为0.49/1/0.6642，alpha5为0.54/1/0.7。标签观察Recall5原0.1506、alpha0.1为0.2206，但未转成整曲描述提升；79tag训练未出现，分桶和完整两模式见结果JSON。
+- 预注册R5+0.05且R1不降/配对bootstrap下界>=0无候选通过，选择identity/scale_up=false。原R5已1，小候选池令门槛不可达，应披露局限；也无候选提高整曲R1/MRR。后续另预注册更有区分度开发池并检查监督，不事后改门槛/选曲，不千首扩训/开保留test/部署。已知描述本曲配对指标不等同完整语义相关度P5或042人工成绩；SDD首120秒低码率派生非官方原音频benchmark。
+- 42相关检查passed（10新/32旧）；初macOS symlink fixture仅改测试resolve，不放松保护。独立NumPy解/四候选两模式排名指标和目标一致、参数差7.77e-16；同操作者非B。实际重复compare在拟合前FileExistsError，三W/结果保持，额外fit0。952旧文件/043/044/160原始判断/23原推理源码/54cache文件集合与SHA/原版f3b0da1干净保持；所有私有输出0700/0600，不入Git。当前runner仅本版本140/183有界实验，非完整千首生产trainer；全窗口/参考音频待后续。
+- 公开交付源码/参数/E20/测试/B反馈接收及MUS-045报告和聚合JSON；原音频/逐曲身份/人写文本/特征/W仅ignore.local。没有Java导入/UI/DB/API/依赖安装/主模型或main变更，不重复无关应用测试。06:28:02Z双方feed fetched，B0faad731/source1724630保持，A ack；最终commit后publish/sync远端回读，远端可读不等于B主动批准。
