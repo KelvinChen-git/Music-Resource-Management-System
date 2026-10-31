@@ -1,5 +1,41 @@
 # 账号 A 最新交接
 
+## 当前：MUS-044首次20首轻量适配器拟合与1000/200/200 metadata计划完成，未验证效果
+
+A；2026-10-31 America/Chicago；branch codex/MUS-044-tag-adapter-training-smoke；base83ebeea8e32d41c9652d4c8dbdf75f24e8024fab，真实工具5bce919（完整SHA见MUS-044-results.json）。044 review，数据计划/训练链路实跑完成、工具待独立审核，不是质量验收或模型部署。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；05:13:48Z/05:20:57Z双方fetched，A f81f662/source83ebeea；N1准确035-R2/rev1/de255c7/base74645de原卡仍assigned，不替换/扩审核。
+
+E19先冻，固定20已验证音频、原A checkpoint与环境、起/中/尾3窗口和183 tag短模板、单lambda100。新freeze在模型前记录config/源码/环境/数据计划/原源SHA；原G2 447输入/23推理源码/双权重/54cache与源20官方音频及PCM均核验。真实CLAP编码60窗口，所有CLAP参数frozen/inference_mode；未记录tag仍unknown，用已知正tag prototype均值目标，拟合512×512 identity-prior ridge残差层，不用BCE伪负例，不输入141/160评分。
+
+实际exit0/18.441秒，唯一fit1/20训练/验证测试0，262,144参数线性W。目标27.808033566→26.468974380，MSE0.002715628278→0.002463862687，正规方程残差9.25e-15，参数变化范数0.111311296。训练观察tag Recall@5仍0.281309524，无改善；loss下降不等于检索/泛化提升，原CLAP/main模型不切换。原pooler/meshgrid警告原日志保留、后CLAP strict覆盖无missing/unexpected，不调loader。
+
+metadata额外排除跨官方split的creator别名credit连通分量/规范化作品名/官方低音频SHA冲突；eligible7577/2035/1429→7307/1888/1351，固定1000 train/200 validation/200 reserved-test，作者组件450/106/105、tag172/133/128。仅metadata未下载新1400音频，未称千首训练语料或新盲测就绪；全别名/版本/声学近重复/预训练隔离不冒充完整证明。mtg_dataset可选partition/pool导出默认043行为保留，旧043源码9a92a8c可精确复现。
+
+32相关测试passed（11新+21旧），初测试类引用导致13旧例重复计入，修为模块引用后只计最终32。独立脚本无生产helper导入，primal512与dual20参数差8.88e-16，正例目标/目标值/训练Recall/1400分组均相同；同操作者非B。实际重复输出exit1/FileExistsError，额外encoder加载/拟合0、原W/特征/结果保持。
+
+W/特征/逐曲绑定仅ignore.local/a/mus044，0700/0600。952旧文件/043音频和证据/23原推理源码/54cache集合/hash/原版干净保持；无依赖安装/新音频下载/Java导入/UI/DB/新索引或部署/main合并，不重复Maven/build。交付新planner/adapter/runner/相关测试、可选pool接口、E19/参数/README/PROJECT/STATUS/A latest、verification/MUS-044.md/results.json。
+
+下一步实际批量获取千首训练/验证音频并补内容/作者作品隔离、冻结计算和网络预算，再评价验证集，不用本20训练诊断替代测试。用户四批已完成，不加全矩阵人工包；旧已看160对新模型选参仅development回归。提交后原子publish/sync回读，远端可读不等于B主动接收/审核或main合并，无后台轮询。
+
+## 上一实现检查点（保留，真实拟合前）
+
+# 账号 A 最新交接
+
+## MUS-044实现检查点：数据metadata计划与真实20首轻量训练工具就绪，尚未实际拟合
+
+A；2026-10-31 America/Chicago；branch codex/MUS-044-tag-adapter-training-smoke；base83ebeea8e32d41c9652d4c8dbdf75f24e8024fab。ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；05:13:48Z双方fetched，A f81f662/source83ebeea。N1原035-R2/rev1卡仍assigned不扩审核。
+
+E19先冻：固定20已验证音频只训练smoke，原A CLAP零可训练参数；每曲固定3窗口、183既有tag模板，正tag均值为target、缺失unknown，单lambda100残差ridge闭式拟合，不搜索、不调用141/160评分、不切模型或写DB/UI。输出仅ignore.local/a/mus044、0700/0600；实际拟合前需提交源码/干净环境/原G2全量检查并留freeze。
+
+新增mtg_plan/tag_adapter/训练runner与11合成测试，mtg_dataset仅可选partition/pool导出，默认043规则保留；32相关检查通过（11新+21原）。原数据额外按跨split作者credit组件/作品名/官方低文件SHA冲突隔离：train7577→7307、validation2035→1888、test1429→1351；已固定1000/200/200 metadata计划，作者组件450/106/105、标签172/133/128。它们尚未下载/编码或训练；原20实际pilot全为训练，不当验证/测试。
+
+下一步在已提交实现下跑一次真实20拟合/训练诊断、独立primal复算与保护检查，完成报告后publish/sync。原23推理源码/模型/141+160/043原件/旧run/服务/原版/main保持，无新人工标注请求。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-043标签adapter与20首真实音频预检完成，训练尚未开始
 
 A；2026-10-30 America/Chicago；branch codex/MUS-043-mtg-adapter-preflight；base7b592d200eeafc13d17a57687d12b4541340f05b，真实工具9a92a8ccf86e9bb756f59778159a9bc646bf5904。043 review（实现/数据链路完成，工具待独立审核），无训练/质量提升/线上导入。

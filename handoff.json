@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-31T04:59:58.767837+00:00",
-  "source_branch": "codex/MUS-043-mtg-adapter-preflight",
-  "source_sha": "83ebeea8e32d41c9652d4c8dbdf75f24e8024fab",
+  "published_at": "2026-10-31T05:25:10.082666+00:00",
+  "source_branch": "codex/MUS-044-tag-adapter-training-smoke",
+  "source_sha": "46b52db8b2999ab015084f423545e4f2cd5c4e03",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "c2137ac8850dd2398a591bb851ab63445c748755166fa7b0b94185aacaf20e6e"
+  "report_sha256": "0eef6ed3fee75797fdc50444d542680a0f9d182760d227e85ac08690a29dd477"
 }
