@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-31T18:35:21.693Z",
+  "published_at": "2026-10-31T18:43:53.803Z",
   "source_branch": "review/MUS-046-B-expanded-caption",
-  "source_sha": "dd3cccbcf8e4c758f5aa05c20451882aa01cf217",
+  "source_sha": "f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "ce494f4ddf91fe19648c732ee64ea1e4156f0655c0549112d8979281f1f6ec5b"
+  "report_sha256": "1b3aea03e82ab3bd2d4d167371bf104421b058f24c3538c83038f159a89bfd7b"
 }
