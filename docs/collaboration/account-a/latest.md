@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## MUS-046开始：接收035 N1限定批准，预注册扩大候选池诊断
+
+A；2026-10-31 America/Chicago；branch codex/MUS-046-expanded-caption-diagnostic，basee109b5c2ebc0531c059ddca844c63ad1b101ca84。ack_peer_feed_sha `4b653974056476ca53e77a4097cda5ffda0de090` / peer_source_sha `5274de0ccdee27e9c432c54ccf8bf1ca20dc9968`，18:14:35Z双方fetched。
+
+035-R2/rev1准确de255c7/base74645de的N1 approve_scoped已按原字节归档与接收，N1关闭；B9项真实函数边界检查passed，完整driver缺torch/31方法0仍blocked。仅三输出函数/两新方法范围，不外推040/045/046。B任务暂waiting，后续仅准确新卡才再领取。
+
+045原结果/门槛保持，保留identity不开千首。E21/config先固定：全140候选统一首120秒三窗口，仅新编码120已有音频干扰项，20开发窗口/24描述与三W复用，不新增fit/下载/人工包，不读保留test。主MRR、R1/R5与bootstrap/两池两模式四模型全报，不事后按新指标选模型或扩训；额外正tag均值几何聚合只诊断非因果。现已实现独立runner/指标并通过54相关检查（12新/42既有），待干净提交后freeze/一次120干扰曲相同视图编码，非已取得新质量结果。原模型/旧141+160/音频/cache/原版/UI/Java/DB/main只读保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-045完成140首真实数据与三候选比较，保留原模型、不扩训
 
 A；2026-10-31 America/Chicago；branch `codex/MUS-045-mtg-corpus-acquisition`；base46b52db8b2999ab015084f423545e4f2cd5c4e03。实际采集源码be880dab81fcba46a8ec956e5cc7bfcc8c454ff1，编码/比较源码95360d895cdbb00c24d444658d31e0699178e40c；最终文档交付SHA由handoff.source_sha给出。045 review：有界链路/开发比较完成，工具独立审核未完成，不是模型质量验收。

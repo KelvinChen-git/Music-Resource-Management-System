@@ -1,0 +1,62 @@
+{
+  "schema": "sonora-expanded-caption-diagnostic-v1",
+  "task": "MUS-046",
+  "base_sha": "e109b5c2ebc0531c059ddca844c63ad1b101ca84",
+  "cache": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "prior_result": {
+    "path": ".local/a/mus045/compare-01/result-public.json",
+    "sha256": "c9f287def66b64418d6a2f3154cf88338e6b85c3de2fc7ff07de71815ecbb69a"
+  },
+  "original_freeze": {
+    "path": ".local/a/mus040/phase03/freeze-01/freeze.json",
+    "sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83"
+  },
+  "adapter_directory": ".local/a/mus045/compare-01",
+  "candidate_order": "source_track_id_ascending",
+  "candidate_tracks": 140,
+  "paired_recordings": 20,
+  "caption_queries": 24,
+  "dimension": 512,
+  "candidate_splits": {
+    "train": 100,
+    "validation": 20,
+    "caption_dev": 20
+  },
+  "candidate_view": "all_first_min120seconds_actual_EOF_three_first_middle_last_10second_windows",
+  "reuse_original_caption_features": true,
+  "new_audio_downloads": 0,
+  "new_fit_runs": 0,
+  "candidate_models": [
+    "identity",
+    "alpha-0.1",
+    "alpha-1.0",
+    "alpha-5.0"
+  ],
+  "primary_metric": "known_pair_recording_macro_MRR",
+  "secondary_metrics": [
+    "R1",
+    "R5",
+    "query_macro_MRR",
+    "three_window_segment"
+  ],
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261031046,
+  "bootstrap_unit": "paired_recording;all_captions_grouped",
+  "evaluation_rule": "Report all4 pre-existing models in both20 and140 fixed pools and all paired deltas, no model selection/scale-up/deployment decision in this diagnostic.",
+  "supervision_diagnostic": "paired caption cosine versus original audio/positive-tag centroid;mean pairwise target/audio cosine on100 train;aggregate only,not causal",
+  "test_model_inputs": 0,
+  "new_human_labels": 0,
+  "limits": [
+    "Development queries and candidate adapters have been examined before; this is not a fresh independent test.",
+    "Expanded pool includes100 adapter-training and20 tag-validation recordings as unjudged distractors, not confirmed semantic negatives.",
+    "SDD nominal beginning view from low-bitrate original,not official SDD audio benchmark.",
+    "No data selection by rank,model score or tag, no opening reserved tests."
+  ]
+}

@@ -204,3 +204,15 @@ python3 scripts/evaluate_caption_gate.py compare --help
 ```
 
 043/044原配置和工件保持；本门控无收益则保留identity，不直接拉1000、打开保留test或部署新模型。实际记录见MUS-045报告。
+
+
+## 扩大开发候选池诊断（MUS-046）
+
+新diagnose_expanded_caption读取046固定config、045原特征/三W/原140音频，120干扰曲补首120秒相同视图、原20开发及24文字特征复用，不下载/拟合或读保留test。两池（20/140）两模式四原模型全报MRR/R1/R5与配对录音bootstrap，已知配对仅诊断、未配对语义unknown。本次没有模型选择/扩训门槛，保留identity；不能追认045门控通过。当前参数和shape约束仅本140首版本，非生产通用trainer。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_expanded_caption test_caption_gate test_tag_adapter test_mtg_dataset test_preflight_mtg
+python3 scripts/diagnose_expanded_caption.py --help
+```
+
+真实运行需原音频Python环境、原绝对HF_HOME和config显式SHA；只支持独占ignore.local输出，先完整核旧输入/原G2/checkpoint/环境/源码再模型加载。公开聚合/证据与限制由MUS-046验证报告提供；没有应用/API变化。

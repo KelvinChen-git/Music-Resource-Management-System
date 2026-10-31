@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-31 America/Chicago）：codex/MUS-045-mtg-corpus-acquisition，从已发布46b52db开始；真实采集be880da、编码/比较95360d8。140/140音频ready（100训练/20标签验证/20描述开发、24人写描述），三候选比较完成，任务review（工具待独立审核，非最终质量验收）。选择identity；原模型整曲配对R@1=54%，三候选最好54%，无整曲MRR提升，不启动千首扩训。
+- 当前工作（2026-10-31 America/Chicago）：codex/MUS-046-expanded-caption-diagnostic，从已发布e109b5c开始。E21/config与独立诊断runner/指标已实现，54相关检查passed（12新/42既有）；实际统一视图编码和140候选比较待提交后运行。主MRR、两池两模式四旧模型全报，原045结果不改，不新增训练或按本诊断选模型，保留identity。
 
-- 当前检查点：原模型20候选R@5=100%，+0.05预注册门槛出现天花板，不能单凭门控失败否定适配；标签召回提升未转成整曲描述收益，后续另冻更有区分度开发池/监督目标。42相关检查passed（10新/32旧），独立primal/dual差7.77e-16，独立复算与生产四配置两模式指标一致；旧60及新140精确PCM排重、真实140恢复零额外body、重复compare零额外fit通过。所有旧原件/模型/缓存/原版保持，新20描述测试仅metadata不导出文本/音频，原200标签test未取；不导入Java/页面、不改UI/DB/main。B044-PLAN-B/rev1 needs_revision_before_scale_up已接收并按限定范围实施，不是B批准045，035-R2/rev1原卡仍assigned且未认领。最新sync 06:28:02Z，B feed0faad731/source1724630保持；最终提交后publish/sync回读。
+- 最新协作：18:14:35Z双方fetched；B feed4b653974/source5274de0交付035-R2/rev1准确N1 approve_scoped，A已原字节接收并关闭N1（B9函数边界检查passed；完整原生driver缺torch、31方法0仍blocked），不是045/046批准。B任务入口暂waiting。旧140音频/24描述/三W只读，保留caption-test20及tag-test200不取文本/音频或评分；原版/UI/Java/DB/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,10 +58,11 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-046 扩大候选池诊断 | in_progress / A（实现/54检查通过，真实运行待做） | codex/MUS-046-expanded-caption-diagnostic / e109b5c，依赖045 | 同140首首120秒/三窗口、复用原24描述/三W，两池四模型MRR等完整开发诊断；无新fit/下载/test/模型选择 |
 | MUS-045 小批真实语料与描述开发比较 | review / A（140真实/三候选已完成，保留identity） | codex/MUS-045-mtg-corpus-acquisition / 46b52db；采集be880da/比较95360d8 | 100train/20tagval/20captiondev、24描述；42检查/独立复算/恢复通过；整曲R1无提升、R5天花板，不千首扩训/不开保留test；工具独立审核未完成 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
-| MUS-035-R2-B 输出权限N1增量 | assigned / B（待主动认领） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
+| MUS-035-R2-B 输出权限N1增量 | done / B（approve_scoped已接收；N1关闭） | review/MUS-035-B-output-permissions / de255c7，对比74645de | 仅3个输出函数/两新回归与极端umask真实mode/读回/拒绝覆盖；不扩到040模型/039收集器 |
 | MUS-031 补标接收与覆盖诊断 | done / A（接收/探索诊断完成，非模型验收） | codex/MUS-031-diagnostic-receipt / d9f6f2d | 67/67校验/原字节归档，累计118；五query各20曲完整，新增2正例；汇总见031 |
 | MUS-030 诊断补标包 | review / A（工具/包完成；真人接收见031） | codex/MUS-030-diagnostic-review-pack / 4e8115c | 5query/67新对/18曲，53 Python/39 Node/build/20浏览器断言通过；原51保留；工具独立B仍待协调 |
 | MUS-029 两模式探索评估 | review / A（实现/本机探索完成，非模型验收） | codex/MUS-029-exploratory-evaluation / ef5e388 | 38检查/固定51人评实跑通过，P@5整曲0.40/片段0.45；原包只读，不调参/训练 |
@@ -911,3 +912,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 预注册R5+0.05且R1不降/配对bootstrap下界>=0无候选通过，选择identity/scale_up=false。原R5已1，小候选池令门槛不可达，应披露局限；也无候选提高整曲R1/MRR。后续另预注册更有区分度开发池并检查监督，不事后改门槛/选曲，不千首扩训/开保留test/部署。已知描述本曲配对指标不等同完整语义相关度P5或042人工成绩；SDD首120秒低码率派生非官方原音频benchmark。
 - 42相关检查passed（10新/32旧）；初macOS symlink fixture仅改测试resolve，不放松保护。独立NumPy解/四候选两模式排名指标和目标一致、参数差7.77e-16；同操作者非B。实际重复compare在拟合前FileExistsError，三W/结果保持，额外fit0。952旧文件/043/044/160原始判断/23原推理源码/54cache文件集合与SHA/原版f3b0da1干净保持；所有私有输出0700/0600，不入Git。当前runner仅本版本140/183有界实验，非完整千首生产trainer；全窗口/参考音频待后续。
 - 公开交付源码/参数/E20/测试/B反馈接收及MUS-045报告和聚合JSON；原音频/逐曲身份/人写文本/特征/W仅ignore.local。没有Java导入/UI/DB/API/依赖安装/主模型或main变更，不重复无关应用测试。06:28:02Z双方feed fetched，B0faad731/source1724630保持，A ack；最终commit后publish/sync远端回读，远端可读不等于B主动批准。
+
+
+### MUS-046范围与占用（2026-10-31）
+
+- 18:14:35Z sync成功，A7809c74/sourcee109b5c；B新4b653974/source5274de0为035-R2/rev1准确N1 approve_scoped。原字节导入/接收JSON，关闭N1；B9函数边界检查passed，原生31方法实际0/缺torch blocked，不外推045/046批准。B卡先waiting，完成本轮实现后再按准确版本决定有界审核卡。
+- A从干净e109b5c建codex/MUS-046-expanded-caption-diagnostic，允许新增expanded_caption_metrics及独立runner/相关测试、E21/固定config/必要README/PROJECT/STATUS/A latest/verification/MUS-046*，B接收和任务入口；不修改045/旧23冻结源码、原模型/数据/评分/旧W。私有仅ignore.local/a/mus046。
+- 新实验先预注册全140候选统一首120秒三窗口，复用20开发/24描述和原三W，不新增fit/下载/人工；只编码120干扰曲的新视图。主MRR/次R1R5、两池两模式四模型全报，不据新指标挑模型或扩训，保留identity。监督几何仅诊断，保留测试不使用；实际运行尚待实现与提交。
+
+- 实现检查点：新expanded_caption_metrics与diagnose_expanded_caption及12合成检查，连同42既有最终54 passed。覆盖额外无query候选、录音等权/稳定并列、三指标配对bootstrap、几何公式、两池/两模式及源身份/跨split/PCM绑定。原045编码源码未改。提交干净实现后再freeze/一次120曲视图编码；本条不代表真实新指标已获得。

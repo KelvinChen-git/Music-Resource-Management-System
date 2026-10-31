@@ -1,11 +1,22 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "status": "assigned",
+  "status": "waiting",
   "claimed_by_b": false,
-  "task_id": "MUS-035-R2-B",
-  "assignment_revision": 1,
+  "task_id": null,
+  "assignment_revision": null,
+  "task_card_path": null,
   "previous_task": {
+    "task_id": "MUS-035-R2-B",
+    "assignment_revision": 1,
+    "reviewed_sha": "de255c7724926c6f823abceecf0b9a487a467d6d",
+    "status": "review_completed",
+    "verdict": "approve_scoped_received",
+    "source_sha": "5274de0ccdee27e9c432c54ccf8bf1ca20dc9968",
+    "feed_sha": "4b653974056476ca53e77a4097cda5ffda0de090",
+    "acceptance_record_path": "docs/verification/MUS-035-N1-B-acceptance.json"
+  },
+  "earlier_previous_task": {
     "task_id": "MUS-035-R1-B",
     "assignment_revision": 1,
     "reviewed_sha": "9797ed4b8766f8cd5f6cd7759b86bd309cef2f7d",
@@ -15,24 +26,5 @@
     "feed_sha": "610c03e17989e934f8f35ec79e6b6063aeea7439",
     "acceptance_record_path": "docs/verification/MUS-035-B-acceptance.json"
   },
-  "earlier_previous_task": {
-    "task_id": "MUS-033-R1-B",
-    "assignment_revision": 1,
-    "reviewed_sha": "10880f87f4073dc8f2d260fb72a07c9e52e59791",
-    "status": "review_completed",
-    "verdict": "approve_scoped_received",
-    "source_sha": "4f5783790b5d4607080678b82c5ce6cf842f64e3",
-    "feed_sha": "16b06c8cfde4b34bb461ab18d533e66d50ac9f16",
-    "acceptance_record_path": "docs/verification/MUS-033-B-acceptance.json"
-  },
-  "note": "035/rev1 scoped approval received; only incremental N1 output modes for3 functions. New checkpoint preflight and039 source work are excluded.",
-  "task_card_path": "docs/collaboration/tasks/MUS-035-R2-B.md",
-  "reviewed_sha": "de255c7724926c6f823abceecf0b9a487a467d6d",
-  "comparison_base_sha": "74645de71c173c43811d7d0d98548089a1836491",
-  "review_branch": "review/MUS-035-B-output-permissions",
-  "allowed_output_paths": [
-    "docs/reviews/MUS-035-N1-B.md",
-    "docs/collaboration/account-b/latest.md"
-  ],
-  "claim_channel": "collab/account-b latest.md"
+  "note": "N1 scoped approval received, closed. No new task claimed or assigned; wait for explicit versioned card."
 }

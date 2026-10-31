@@ -1,0 +1,30 @@
+{
+  "task_id": "MUS-035-R2-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-10-31 America/Chicago",
+  "reviewed_sha": "de255c7724926c6f823abceecf0b9a487a467d6d",
+  "comparison_base_sha": "74645de71c173c43811d7d0d98548089a1836491",
+  "assignment_source_sha": "e109b5c2ebc0531c059ddca844c63ad1b101ca84",
+  "b_feed_sha": "4b653974056476ca53e77a4097cda5ffda0de090",
+  "b_source_sha": "5274de0ccdee27e9c432c54ccf8bf1ca20dc9968",
+  "b_ack_peer_feed_sha": "7809c74f81559fb3cf5142ba6c518064945b9d25",
+  "b_claim_source_sha": "11f7c2a50be7c6287f2f99ccc9b9bec3e9c37612",
+  "b_claim_feed_sha": "2d134ad3a200741eae8045752ae9430c2aedf845",
+  "report_path": "docs/collaboration/imports/account-b/2026-10-31-MUS-035-N1-review.md",
+  "report_sha256": "d7ef71af80b12ca7592dc918d17b3a6790a0b289a7348cc9f07b65f515a510e2",
+  "N1": "closed_for_exact_scoped_fix",
+  "b_reported": {
+    "boundary_checks_passed": 9,
+    "native_full_driver_methods_executed": 0,
+    "native_full_driver_status": "blocked_missing_torch",
+    "private_evidence_sha256": "ff500011096af26a7d596958aaf5833e0cfc6c1ba757655a888dced741afa60c",
+    "publication": "sequential_non_atomic_source_then_feed"
+  },
+  "limits": [
+    "A received raw report and verified source/feed, not B private evidence.",
+    "Three output functions and two added test methods only; no040/045/046 tool or model-quality approval."
+  ]
+}
