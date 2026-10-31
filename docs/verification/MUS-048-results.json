@@ -1,0 +1,546 @@
+{
+  "schema": "sonora-device-feature-build-result-v1",
+  "status": "passed",
+  "source_sha": "8a2401828862c80882e86aef4c79eae9588d8881",
+  "device": "mps",
+  "cache_key_sha256": "a0e583e74b6d1b48fdf4983ec33ebd6aeb883124fe84d649da958a896a60e951",
+  "config_sha256": "082b4f4c5a2bec4375d9e858fa68209ffce0745ada6810787b3da0e3b0dca516",
+  "strict": {
+    "id": "A",
+    "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+    "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "audio_architecture": "HTSAT-base",
+    "fusion": false,
+    "strict_missing": [],
+    "strict_unexpected": [],
+    "removed_nonlearned_position_ids": true,
+    "loader": "torch_weights_only_true_mmap_cpu_strict_v1"
+  },
+  "counts": {
+    "tracks": 140,
+    "train": 100,
+    "validation": 20,
+    "caption_dev": 20,
+    "unique_audio_windows": 624,
+    "view_window_references": 780,
+    "tag_prototypes": 183,
+    "dev_texts": 24,
+    "test_inputs": 0,
+    "fit_runs": 0,
+    "downloads": 0
+  },
+  "vector_parity": {
+    "retrieval_whole": {
+      "status": "passed",
+      "max_abs_difference": 2.734276138074976e-07,
+      "max_cosine_distance": 1.4138690218601369e-12,
+      "vectors": 140
+    },
+    "legacy_whole": {
+      "status": "passed",
+      "max_abs_difference": 2.4383914056652634e-07,
+      "max_cosine_distance": 1.3098411244527597e-12,
+      "vectors": 140
+    },
+    "prototypes": {
+      "status": "passed",
+      "max_abs_difference": 6.585415206449008e-07,
+      "max_cosine_distance": 7.724709760736914e-12,
+      "vectors": 183
+    },
+    "dev_texts": {
+      "status": "passed",
+      "max_abs_difference": 6.319514260152981e-07,
+      "max_cosine_distance": 1.1200151917023504e-11,
+      "vectors": 24
+    },
+    "retrieval_windows": {
+      "status": "passed",
+      "max_abs_difference": 3.7100230843023496e-07,
+      "max_cosine_distance": 3.263389558583185e-12,
+      "vectors": 420
+    },
+    "legacy_windows": {
+      "status": "passed",
+      "max_abs_difference": 3.8691688331385365e-07,
+      "max_cosine_distance": 3.263389558583185e-12,
+      "vectors": 420
+    }
+  },
+  "retrieval_parity": {
+    "dev20": {
+      "identity": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.0618739052694476e-06,
+          "stable_pairs": 4558,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 2,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7083333333333333
+          },
+          "recording_macro_device": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7083333333333333
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 9.684458899469894e-07,
+          "stable_pairs": 4558,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 2,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "recording_macro_device": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "macro_metrics_unchanged": true
+        }
+      },
+      "alpha-0.1": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.1108352543504063e-06,
+          "stable_pairs": 4555,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 5,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6663095238095239
+          },
+          "recording_macro_device": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6663095238095239
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 8.362628341751499e-07,
+          "stable_pairs": 4549,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 11,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.54,
+            "R5": 0.9,
+            "MRR": 0.71375
+          },
+          "recording_macro_device": {
+            "R1": 0.54,
+            "R5": 0.9,
+            "MRR": 0.71375
+          },
+          "macro_metrics_unchanged": true
+        }
+      },
+      "alpha-1.0": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.1282763899417292e-06,
+          "stable_pairs": 4559,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 1,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.49000000000000005,
+            "R5": 1.0,
+            "MRR": 0.6641666666666667
+          },
+          "recording_macro_device": {
+            "R1": 0.49000000000000005,
+            "R5": 1.0,
+            "MRR": 0.6641666666666667
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 9.9057896230971e-07,
+          "stable_pairs": 4557,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 3,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6804166666666667
+          },
+          "recording_macro_device": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6804166666666667
+          },
+          "macro_metrics_unchanged": true
+        }
+      },
+      "alpha-5.0": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.0826146687389904e-06,
+          "stable_pairs": 4556,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 4,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7000000000000001
+          },
+          "recording_macro_device": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7000000000000001
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 9.7564616700907e-07,
+          "stable_pairs": 4558,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 2,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "recording_macro_device": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "macro_metrics_unchanged": true
+        }
+      }
+    },
+    "expanded140": {
+      "identity": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.1389163128983082e-06,
+          "stable_pairs": 233315,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 205,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4208083360138314
+          },
+          "recording_macro_device": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4208083360138314
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 1.2642764358125613e-06,
+          "stable_pairs": 233307,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 213,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.22000000000000003,
+            "R5": 0.54,
+            "MRR": 0.3947233414733414
+          },
+          "recording_macro_device": {
+            "R1": 0.22000000000000003,
+            "R5": 0.54,
+            "MRR": 0.3947233414733414
+          },
+          "macro_metrics_unchanged": true
+        }
+      },
+      "alpha-0.1": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.1108352543504063e-06,
+          "stable_pairs": 233258,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 262,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.36,
+            "R5": 0.6,
+            "MRR": 0.4658386752136752
+          },
+          "recording_macro_device": {
+            "R1": 0.36,
+            "R5": 0.6,
+            "MRR": 0.4658386752136752
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 1.2024612565109116e-06,
+          "stable_pairs": 233247,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 273,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.38,
+            "R5": 0.6,
+            "MRR": 0.490196262071262
+          },
+          "recording_macro_device": {
+            "R1": 0.38,
+            "R5": 0.6,
+            "MRR": 0.490196262071262
+          },
+          "macro_metrics_unchanged": true
+        }
+      },
+      "alpha-1.0": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.1406911163969191e-06,
+          "stable_pairs": 233314,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 206,
+          "queries_with_any_rank_change": 1,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.37,
+            "R5": 0.49000000000000005,
+            "MRR": 0.44840940921823275
+          },
+          "recording_macro_device": {
+            "R1": 0.37,
+            "R5": 0.49000000000000005,
+            "MRR": 0.44840940921823275
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 1.250713169947959e-06,
+          "stable_pairs": 233318,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 202,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.37,
+            "R5": 0.54,
+            "MRR": 0.47704212454212447
+          },
+          "recording_macro_device": {
+            "R1": 0.37,
+            "R5": 0.54,
+            "MRR": 0.47704212454212447
+          },
+          "macro_metrics_unchanged": true
+        }
+      },
+      "alpha-5.0": {
+        "whole": {
+          "status": "passed",
+          "score_max_abs_difference": 1.1482409864593812e-06,
+          "stable_pairs": 233303,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 217,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.42007397458324575
+          },
+          "recording_macro_device": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.42007397458324575
+          },
+          "macro_metrics_unchanged": true
+        },
+        "segment": {
+          "status": "passed",
+          "score_max_abs_difference": 1.265189013770207e-06,
+          "stable_pairs": 233310,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 210,
+          "queries_with_any_rank_change": 0,
+          "queries_with_top5_set_change": 0,
+          "recording_macro_CPU": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.4446521164021163
+          },
+          "recording_macro_device": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.4446521164021163
+          },
+          "macro_metrics_unchanged": true
+        }
+      }
+    }
+  },
+  "timing_ms": {
+    "model_load": 5869.992958032526,
+    "decode": 19556.04000412859,
+    "audio_SDK": 19145.36884019617,
+    "text_SDK": 1945.1527909841388,
+    "total_including_integrity_and_parity": 60695.5480419565
+  },
+  "ready_cache_written": true,
+  "limits": [
+    "Device parity only, not new model quality/training or P95.",
+    "No matched full-corpus CPU timing, no full-run speed ratio."
+  ],
+  "task": "MUS-048",
+  "branch": "codex/MUS-048-device-feature-cache",
+  "base_sha": "cb77a01262799792a1371f605a452b28205e1093",
+  "cache_sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5",
+  "features_sha256": "eaea165ccdadaa82bda1618eefe3df94c07ae01a3fdcac6fbc04824033db85bc",
+  "typed_views": {
+    "tag_training": {
+      "shape": [
+        100,
+        512
+      ],
+      "recipe": "fullsong_first_mid_last10s",
+      "feature_key": "train_fullsong"
+    },
+    "tag_validation": {
+      "shape": [
+        20,
+        512
+      ],
+      "recipe": "fullsong_first_mid_last10s",
+      "feature_key": "validation_fullsong"
+    },
+    "caption_retrieval": {
+      "shape": [
+        140,
+        512
+      ],
+      "recipe": "first120_first_mid_last10s",
+      "feature_key": "retrieval_first120"
+    }
+  },
+  "checks": {
+    "related_tests": 76,
+    "new_tests": 10,
+    "existing_tests": 66,
+    "independent_audit": {
+      "status": "passed",
+      "method": "Same operator independent NumPy vector/score/order counting and typed view/unique position checks; no new production cache imports, old043-047/frozen23/cache54 audit",
+      "all6_vector_blocks_and16_score_metric_blocks_match": true,
+      "view_refs780_unique624_verified_from_source_positions": true,
+      "stable_pairs": 1902822,
+      "near_pairs": 1818,
+      "stable_flips": 0,
+      "max_score_difference": 1.265189013770207e-06,
+      "rank_changes": [
+        {
+          "pool": "expanded140",
+          "model": "alpha-1.0",
+          "mode": "whole",
+          "changed_rank_positions": [
+            111,
+            112
+          ]
+        }
+      ],
+      "top5_set_changes": 0,
+      "top5_order_unchanged": true,
+      "all_prior045_046_047_sets_and_hashes_preserved": true,
+      "historical951_preserved_B047_dispatch_unchanged_from_base": true,
+      "043_044_160_originals_frozen23_cache54_backup_preserved": true,
+      "private_modes700_600": true,
+      "script_sha256": "3e295cd10be6f6a15bd0ea87f89b76ff0794f176097cae8344932bda9c5d20f0"
+    },
+    "actual_consumer": {
+      "status": "passed",
+      "actual_view_shapes": {
+        "tag_training": [
+          100,
+          512
+        ],
+        "tag_validation": [
+          20,
+          512
+        ],
+        "caption_retrieval": [
+          140,
+          512
+        ]
+      },
+      "training_validation_have_no_dev_text_features": true,
+      "wrong_device_model_and_implicit_view_rejected": true,
+      "fit_runs": 0,
+      "cache_sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+    },
+    "consumer_without_model_import": {
+      "status": "passed",
+      "training_rows": 100,
+      "torch_or_CLAP_imported": false,
+      "model_loads": 0,
+      "fit_runs": 0
+    },
+    "repeat_run": {
+      "status": "passed",
+      "exit_code": 1,
+      "expected_error": "FileExistsError",
+      "all_build_artifacts_unchanged": true,
+      "additional_model_load_encoding_or_fit": 0
+    }
+  },
+  "decision": "New private typed feature cache ready for explicit offline CPU consumption; no new fit/model selection/deployment or replacement of old CPU caches.",
+  "B_status": "047-R1/rev1 original assigned task unchanged;048 independent review not yet assigned/approved.",
+  "private_evidence_sha256": {
+    "exit.json": "e89df0eae5ec7db81135aed16463968955c578bcc4f2ec43172eff351f080c17",
+    "related-tests.log": "225a8d7c9aee3cb4a0d24a9575e259e81bff67e33178500e09e33404e0b3475e",
+    "prior-before.json": "6bbb3884a6e35f42cb27eab650f68a11230bda972c4c25fe9ffbfc18ee16f844",
+    "repeat-check.json": "bef14997cc64c900c74c0b4a86441972070fc7007c37d5717ba308cd78408d85",
+    "independent-audit.log": "71230976e8cb09ccd941674b69a6e0762c0689850d441564ed341ed1b3461b2a",
+    "independent-audit.py": "3e295cd10be6f6a15bd0ea87f89b76ff0794f176097cae8344932bda9c5d20f0",
+    "consumer-no-model-check.json": "1b1f8e150d4b6dc558e8e91b177987036c383bf7d5f608940241ce56f1d641fd",
+    "repeat-build.log": "99eaf100129b6005102645679b2f91068465f6a6c56379190682403824a8d89b",
+    "independent-audit.json": "ec5f2538e21f22be4e5b0d2667f920bed01b1630bd2b9b4dbff79c7384ceeffa",
+    "consumer-check.json": "e9c426111896daeb356cbd8342d713e9907f28baae5280a08681d113906d8f30",
+    "invocation.json": "f8d1569cbcee88477c2bf8750bd88f1004054e5cdccc114291264eeb376abe05",
+    "build.log": "faffb5f1ec79295cdbbeff2628f6a299984426cbff76c1ee55a853ac15cde7d9",
+    "build-01/features.npz": "eaea165ccdadaa82bda1618eefe3df94c07ae01a3fdcac6fbc04824033db85bc",
+    "build-01/result.json": "2ce4fef84558d6087431abdbaffcb7090e1f83aaa6dc8f9fd9e1a7c37e012c5b",
+    "build-01/cache.json": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5",
+    "build-01/freeze.json": "a20af4e355aa062e5c716f7e2030abf33ef1bcfec3e73ed64a69fd5633c61589",
+    "final-doc-qa.json": "a463cfddcc9bfd36409717941790fc2f8d2fdc91c4ddadb898350fc30da23db4"
+  }
+}
