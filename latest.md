@@ -1,5 +1,35 @@
 # 账号 A 最新交接
 
+## 当前：MUS-048有界140首MPS缓存ready，CPU typed consumer通过；B047原卡保持
+
+A；2026-10-31 America/Chicago；branch `codex/MUS-048-device-feature-cache`，basecb77a01262799792a1371f605a452b28205e1093，真实构建源码 `8a2401828862c80882e86aef4c79eae9588d8881`；最终文档交付SHA见handoff.source_sha。048 review：实现/真实有界缓存构建完成，工具独立审核待安排，非模型质量/新训练/部署批准。
+
+ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，19:06:45Z/19:15:54Z/19:20:37Z双方fetched、B未变。原047-R1/rev1/d8555fa/baseaaf5e4b任务卡仍assigned未认领，不替换/扩大，不修改047三个源码；048不另派竞争卡，也不冒充B已批准。
+
+E23/config先提交后干净8a24018首次实跑exit0：现有140官方音频/收据/实际EOF/原65536 PCM/48k mono再核；训练100/标签验证20完整EOF首中尾三窗，检索140首min120三窗，780用途引用按同录音精确sample起点去重为624唯一窗口，183tag/24原dev文本重编码（文本SHA/次序保持），新fit/音频下载/保留test输入0。047同MPS校准/环境/源码/模型必须匹配，FP32/no fallback/no TF32/no autocast，strict CPU loader后显式MPS迁移、参数设备/冻结核验；前后输入/源码/模型/环境检查通过。原pooler/meshgrid提示保留，strict无缺键。
+
+全部六向量对照组最大差<=6.59e-7/余弦<=1.12e-11；四原模型×两池×两模式16组得分最大差1.26519e-6，1,902,822稳定候选对翻转0、1818近并列单列。仅expanded140/alpha1/整曲一查询第111/112交换，前5顺序/集合全保持，16组录音宏R1/R5/MRR在1e-12内复现，不叫所有完整rank字节相同或新效果提升。单次构建到写结果前60.70秒，加载5.87/解码19.56/音频SDK19.15/文本1.95；无匹配全量CPU计时，不外推047小批次2.73倍/训练/P95。
+
+parity全通过后新ready manifest绑定独立device/环境/model/data/source/recipe key，旧CPU不覆盖。新consumer显式缓存SHA/expected device/model/view，核通过的parity report/NPZ/shape/norm/身份/弱正tag；三view实际CPU读100train/20val/140检索，train/val不返回dev文字。新进程训练读取不导入Torch/CLAP、不加载模型或fit；错误设备/模型/implicit view均拒绝。它支持后续GPU提特征、CPU拟合路线，本轮没有训练或替换生产索引。
+
+76相关检查passed（10新/66旧）；另独立NumPy不用新生产cache模块，复核624起点/780引用、六向量差、16组得分/稳定次序计数/录音宏指标、第111/112交换与前5保持，非B本人审核。真实重复CLI已有输出在模型前FileExistsError，额外模型加载/编码/fit0、新run全部SHA保持。全045/046/047私有文件集合/hash、043/044/160原判断/23原推理源码/54cache/原版f3b0da1干净保持，历史951保持、B入口与cb77a01逐字相同。048仅ignore.local/a/mus048全0700/0600，原身份/描述/音频/向量/cache不入Git，公开聚合/方法/hash。
+
+无新曲库/Java/Vue/UI/DB/API/锁/依赖安装/模型版本/main变更，无关Maven/build未重复、不称本轮passed；两保留test仍不取音频/文字/评分，141/160不训练选参，不租卡或上传云端。交付新builder/consumer/10检查/E23/config、README/PROJECT/STATUS和MUS-048验证/聚合JSON。后续另预注册训练设计后可用显式tag_training做CPU拟合，当前保持identity，不把cache ready当扩训或质量验收。最终commit后publish/sync回读，远端可读不等于B接收/批准或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
+## MUS-048开始：有界140首MPS特征与明确视图consumer
+
+A；2026-10-31 America/Chicago；branch codex/MUS-048-device-feature-cache，basecb77a01262799792a1371f605a452b28205e1093。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，19:06:45Z双方fetched。B047-R1/rev1原assigned卡保持，不修改其源码或扩大审核，048未获B批准。
+
+E23/config先定：现有140全量MPS重建，训练100/标签验证20完整实际EOF三窗、检索140首min120秒三窗，精确起点去重，780 view-window引用/唯一数实际记录；原24dev描述/183tag同文本重编码。全量对CPU向量/四旧模型两池两模式稳定排序及宏R1/R5/MRR核验通过才写ready manifest，显式expected device/model/view consumer；旧CPU缓存不改、不新增fit/音频/曲库/保留test或部署。现已实现构建/typed consumer与10新合成检查，连原66最终76 passed；待干净提交后freeze/实际全量运行，原045/046/047全部原件/23源码/141+160/模型/cache/原版/UI/Java/DB/main保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-047本机CPU/MPS校准通过，CUDA blocked；接收046限定批准，派发047工具审核
 
 A；2026-10-31 America/Chicago；branch `codex/MUS-047-device-preflight`，baseaaf5e4bbffa61969b3d7bf993b408acec195a818，最终实跑源码 `d8555fa2ee888107cc9fac9e0eda373fd9c2e777`；最终文档交付SHA见handoff.source_sha。047 review：实现与小样本校准完成，工具待独立审核；不叫训练/模型质量/P95或CUDA通过。
