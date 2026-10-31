@@ -45,3 +45,17 @@ def observed_recall(x,prototypes,positives,k=5):
     rp.require(len(values)==len(x),'Positive label rows missing')
     return {'macro_observed_tag_recall_at5':float(np.mean(values)),'tracks':len(values),
             'scope':'training_diagnostic_only_not_precision_or_full_relevance_or_test_accuracy'}
+
+
+def fit_mean(x,y,alpha):
+    """Per-track mean squared norm; sum penalty lambda=N*alpha, invariant to N duplication."""
+    x=np.asarray(x,dtype=np.float64);y=np.asarray(y,dtype=np.float64)
+    rp.require(x.ndim==y.ndim==2 and x.shape==y.shape and x.size and np.isfinite(x).all()and np.isfinite(y).all(),'Matching finite matrices required')
+    rp.require(type(alpha)in(int,float)and np.isfinite(alpha)and alpha>0,'Positive mean-loss alpha required')
+    n,d=x.shape;lam=n*alpha;eye=np.eye(d)
+    if n<d:w,_=fit(x,y,lam);solver='dual'
+    else:w=np.linalg.solve(x.T@x+lam*eye,x.T@y+lam*eye);solver='primal'
+    before=float(np.square(x-y).sum()/n);after=float(np.square(x@w-y).sum()/n+alpha*np.square(w-eye).sum())
+    gradient=(x.T@(x@w-y)+lam*(w-eye))/n
+    rp.require(np.isfinite(w).all()and after<=before+1e-10 and np.max(np.abs(gradient))<1e-7,'Mean-loss optimum failed')
+    return w,{'mean_objective_before':before,'mean_objective_after':after,'N_tracks':n,'alpha':alpha,'sum_lambda':lam,'solver':solver,'max_normal_equation_residual_per_track':float(np.max(np.abs(gradient)))}

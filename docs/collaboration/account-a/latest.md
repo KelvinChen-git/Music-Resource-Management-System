@@ -1,5 +1,21 @@
 # 账号 A 最新交接
 
+## MUS-045比较实现检查点：140真实数据已ready，42检查通过，待一次编码和有限候选比较
+
+A；2026-10-31 America/Chicago；branch codex/MUS-045-mtg-corpus-acquisition；base46b52db，实际采集be880da。ack_peer_feed_sha `0faad731981280a46b37cd617ff6d749962e6da5` / B source `1724630f5f37f8e856c1d12c068d208382763719`。B044用户直派计划审查建议已接收并按R1–R4实施，非正式工具批准；035-R2原卡不变。
+
+140/140（100train/20tagval/20captiondev）官方逐曲SHA/严格206与validator/完整EOF/finite/60旧PCM及新split无精确内容重复，预算charged394,148,675bytes<1.5GiB；技术替补0。captiondev24人写描述配20录音，独立final-caption-test20只metadata、文本不导出/音频下载0。原200tag test也未获取；1k扩展未开始。
+
+新增通用缓存编码/有限候选比较，mean per-track alpha0.1/1/5、lambda=Nalpha，按N/d选等价primal/dual；identity必报，文本不映射。whole聚合后映射，三窗口segment单独；caption使用首120s低码率同视图，77token策略显式，原CSV24dev文本逐条一致。prepare parser修为StringIO保留多行文本，当前冻结源02文本未变、不重新挑样本。
+
+42相关检查passed（10新budget/mean/metric门槛+32原相关），初macOS fixture symlink两项拒绝只修测试路径；预算持久化/并发上限/超时保守费用/截断日志拒绝、均值尺度不随复制N改变、同录音多caption等权/稳定tie/bootstrap与identity回退通过。下一步提交干净比较实现，再固定特征一次编码、三候选拟合与开发门控/原件复核，随后publish/sync。
+
+原141/160/模型/043/044原件与W/Java/UI/DB/原版/main保持，不新增人工标注或部署。
+
+## 上一实现检查点（保留）
+
+# 账号 A 最新交接
+
 ## MUS-045数据门槛实现检查点：接收B计划审查，先小批caption开发，不直接放大1000
 
 A；2026-10-31 America/Chicago；branch codex/MUS-045-mtg-corpus-acquisition；base46b52db8b2999ab015084f423545e4f2cd5c4e03。ack_peer_feed_sha `0faad731981280a46b37cd617ff6d749962e6da5` / B source `1724630f5f37f8e856c1d12c068d208382763719`；06:03:59Z双方fetched。

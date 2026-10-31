@@ -43,4 +43,40 @@ class GateTest(unittest.TestCase):
         w,_=a.fit(x,y,len(x)*1.0);z,_=a.fit(np.repeat(x,10,axis=0),np.repeat(y,10,axis=0),len(x)*10*1.0)
         np.testing.assert_allclose(w,z,atol=1e-12)
 
+
+
+class MeanAndMetricTest(unittest.TestCase):
+    def test_mean_fit_uses_N_not_N_times_dimension(self):
+        x=a.unit([[1,1,0],[0,1,1]]);y=a.unit([[1,0,0],[0,0,1]])
+        w,d=a.fit_mean(x,y,5.0);self.assertEqual(d['sum_lambda'],10);self.assertEqual(d['solver'],'dual')
+        z,e=a.fit_mean(np.repeat(x,10,axis=0),np.repeat(y,10,axis=0),5.0)
+        self.assertEqual(e['solver'],'primal');np.testing.assert_allclose(w,z,atol=1e-12)
+        self.assertAlmostEqual(d['mean_objective_after'],e['mean_objective_after'])
+
+    def test_pair_macro_equal_weights_recordings_with_multiple_captions(self):
+        import caption_metrics as cm
+        ids=list('ABCDEF');queries=list('AAABCDEF');r=cm.paired(np.zeros((8,6)),queries,ids)
+        self.assertAlmostEqual(r['recording_macro']['R5'],5/6);self.assertAlmostEqual(r['query_macro']['R5'],7/8)
+        self.assertAlmostEqual(r['recording_macro']['R1'],1/6)
+
+    def test_paired_missing_recording_or_nonfinite_scores_rejected(self):
+        import caption_metrics as cm
+        with self.assertRaises(ValueError):cm.paired(np.zeros((1,2)),['A'],['A','B'])
+        with self.assertRaises(ValueError):cm.paired(np.full((1,1),np.nan),['A'],['A'])
+
+    def test_identity_fallback_and_predeclared_gain_gate(self):
+        import caption_metrics as cm
+        identity={'whole':{'recording_macro':{'R5':.5,'R1':.3}}}
+        candidate={'alpha':5.0,'whole':{'recording_macro':{'R5':.5,'R1':.3}}}
+        self.assertEqual(cm.choose({'identity':identity,'alpha':candidate},{'alpha':{'paired_bootstrap95_lower':0}}),'identity')
+        candidate['whole']['recording_macro']['R5']=.6
+        self.assertEqual(cm.choose({'identity':identity,'alpha':candidate},{'alpha':{'paired_bootstrap95_lower':-.01}}),'identity')
+        self.assertEqual(cm.choose({'identity':identity,'alpha':candidate},{'alpha':{'paired_bootstrap95_lower':0}}),'alpha')
+
+    def test_bootstrap_resamples_recordings_and_is_deterministic(self):
+        import caption_metrics as cm
+        baseline={'per_recording':{'A':{'R5':0},'B':{'R5':0}}};candidate={'per_recording':{'A':{'R5':1},'B':{'R5':0}}}
+        r=cm.paired_delta(candidate,baseline,2000,45);self.assertEqual(r,cm.paired_delta(candidate,baseline,2000,45))
+        self.assertEqual((r['wins'],r['ties'],r['losses']),(1,1,0));self.assertEqual(r['R5_mean_delta'],.5)
+
 if __name__=='__main__':unittest.main()

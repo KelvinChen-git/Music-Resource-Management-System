@@ -189,3 +189,18 @@ python3 scripts/train_tag_adapter.py --help
 ```
 
 实际运行需已有音频venv和原冻结的绝对HF_HOME；首阶段真实训练记录与限制由MUS-044报告提供，不能把训练loss/已记录tag recall当自然语言检索P@5或泛化提升。
+
+## 小批caption开发门控（MUS-045）
+
+接收B的044计划建议后，先固定100 train/20 tag-validation及SDD validated caption-dev20，另caption-test20仅metadata封存。prepare_caption_gate冻结元数据/技术替补；acquire_caption_gate用flock、append-only预算和逐attempt不可覆盖记录支持恢复，先完整EOF和旧60/new split精确文件与PCM校验。未知tag不作负例；SDD视图为对应录音开头最多120秒的官方低码率派生，非原SDD字节等价benchmark。
+
+evaluate_caption_gate的encode只编码一次并绑定checkpoint/环境/DSP/窗口/来源/文本/源码hash；compare复用特征，对mean-per-track loss的alpha0.1/1/5（sum lambda=Nalpha）加identity对照，按预注册已知caption配对R@5开发门槛/配对录音bootstrap和R@1保留条件选择。文本空间不映射W；whole映射在3窗口归一化均值之后，segment单窗映射作为次要结果，不自动继承whole收益。缺配对不等于语义负例，tag诊断另报seen/rare/unseen及类别支持。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_caption_gate test_tag_adapter test_mtg_dataset test_preflight_mtg -v
+python3 scripts/acquire_caption_gate.py --help
+python3 scripts/evaluate_caption_gate.py encode --help
+python3 scripts/evaluate_caption_gate.py compare --help
+```
+
+043/044原配置和工件保持；本门控无收益则保留identity，不直接拉1000、打开保留test或部署新模型。实际记录见MUS-045报告。

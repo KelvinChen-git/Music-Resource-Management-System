@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Freeze fixed-prefix tag batches and grouped human-caption dev/test metadata."""
 from pathlib import Path
-import argparse,csv,json,sys
+import argparse,csv,json,sys,io
 from collections import defaultdict,Counter
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'services/audio-search'))
 import mtg_dataset as m
@@ -25,7 +25,7 @@ def prepare(config,config_sha256,inputs,plan,output):
     for n in names.values():
         if n['artist_id']in blocked:usednames.update(m.aliases(n['artist']))
     captions=defaultdict(list)
-    for row in csv.DictReader(raw['sdd'].decode('utf8').splitlines()):
+    for row in csv.DictReader(io.StringIO(raw['sdd'].decode('utf8'))):
         if row['is_valid_subset'].lower()in('true','1'):
             tid='track_'+str(int(row['track_id'].removeprefix('track_'))).zfill(7)
             rp.require(isinstance(row['caption'],str)and row['caption'].strip(),'Empty validated caption')
