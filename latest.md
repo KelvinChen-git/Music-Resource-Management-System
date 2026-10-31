@@ -1,5 +1,31 @@
 # 账号 A 最新交接
 
+## 当前：MUS-041现成标注路线/metadata可行性完成，040继续等后两批回执
+
+A；2026-10-30 America/Chicago；branch codex/MUS-041-labeled-data-feasibility；basece1eb6b543880d7ef499428fc1fd0d07b32f68a2。041 review，仅数据可行性完成，adapter/可用训练音频/训练模型均未实现。用户会完成当前四批，后续默认现成标注为主、人工只做有界抽检，当前160/G5/五排名不变。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；开始2026-10-31T02:47:06Z双方fetched，A1dda0e4/sourcece1eb6b。N1准确035-R2/rev1原卡仍assigned，不替换或扩到041。
+
+官方一级来源比较MTG-Jamendo/MusicCaps/SDD/MusicBench/MaxCaps，区分上传者标签、人写caption与增强/生成弱监督，音频权利和代码/metadata许可分开。首选MTG非商业研究train/dev；SDD保留外部caption评测候选，MusicCaps有人工10s描述但只给YT ID/时间，生成caption不当独立人工真值。
+
+实际固定MTG cafd8e20…，base55,609/195tag，split-0 train32,859/val11,101/test11,565、合55,525/183tag，三组track/artist/album ID交集0；源字段/tag子集与许可路径覆盖全过。原开发20 Jamendo source-ID重叠9（7/1/1）、9个作者，后续须排除相关录音/作者；ID不等于别名/work/声学/预训练隔离。train BY/BY-SA URI metadata候选7,997，非已取得可用音频；许可含NC/ND/国家版本/ArtLibre/155未分类URI，不统一改CC BY，整个MTG非商业/metadata CC BY-NC-SA4约束保持。
+
+SDD CSV实际1,106caption/706录音、validated746/547，README546/datasheet547不一致；全706/191作者ID都在MTG test、train/val无交，但项目已知旧作者涉及SDD5录音/9caption，不能直接全量称新盲测。MusicCaps实核5,521唯一YT ID/10秒，AudioSet eval2,858/train2,663。只读结构/ID/标记，不打印/编码caption正文；MusicBench/MaxCaps只核官方卡/列表，规模不冒充实核。
+
+23份官方文档/metadata 31,684,027bytes，新原件/脚本仅ignore.local/a/mus041，0700/0600；public仅方法/聚合/hash/revision。原系统Python首CA失败下载0，现有venv/certifi正常TLS成功，无关闭验证/装依赖；初>30/CC URI断言因30.0/国家版本与ArtLibre调整统计，失败原件保留、未改官方数据。
+
+952旧文件/23冻结源码/五排名/四包/两回执80项/141旧标签/G1/双权重保持；54cache集合/hash、原版f3b0da1干净、8080 PID96842/5175 PID4143保持。音频下载/解码/模型加载训练/040具体评分读取/新指标/DB/API/UI/锁/依赖/main改动0，不重复无关应用测试。
+
+下一步planned显式pin adapter/旧素材与组排除/音频许可字节EOF，先20端到端再目标1–2k研究子集，保留预训练CLAP基线先做轻量适配；loss/负例/未知/预算和新评测另立契约。040当前仍2/4回执报告80/160，完整评分用户保管；当前160只评原五冻结组，解封后若据其调整新模型，只能作development回归，新模型另冻结公开评测，不能称已训练/已有提升。
+
+交付evaluation/MUS-041-labeled-data.md、verification/MUS-041-results.json及必要README/PROJECT/STATUS/A latest；数据一致性/保护/diff/链接JSON检查，提交后publish/sync回读。发布不等于B接收或main合并，无后台轮询。
+
+检查点2026-10-31T02:57:43Z双方再次fetched，B610c03e/source0e8de159未变，N1原卡保持；本轮元数据/文档检查完成，准备提交发布。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-040已收前两批完成回执，2/4批、报告80/160，G5未解封
 
 A；2026-10-30 America/Chicago；branch codex/MUS-040-independent-runner-preflight；本段base3d0cb479756fed19551931d097ad78e810cc199a。仅第2批receipt metadata接收/原字节私有归档与台账，040仍review，工具待独立审核。
