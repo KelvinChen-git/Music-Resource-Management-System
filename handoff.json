@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-31T07:00:29.149Z",
+  "published_at": "2026-10-31T07:09:26.323Z",
   "source_branch": "review/MUS-035-B-output-permissions",
-  "source_sha": "11f7c2a50be7c6287f2f99ccc9b9bec3e9c37612",
+  "source_sha": "5274de0ccdee27e9c432c54ccf8bf1ca20dc9968",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "b86e5cc4c6405f8977aff90c799d86c8ed9bfc07a02fe65f8069e8c6a7889d9a"
+  "report_sha256": "6b7da343108e9a682d30c4a7395064dc8866309b63884efd14e545f76ebf6697"
 }
