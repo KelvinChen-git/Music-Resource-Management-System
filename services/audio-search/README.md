@@ -146,3 +146,21 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search ../Music-Resource-Man
 `holdout_contract.py`标准库验证显式G1 binding/catalog pins、20真实身份/独立副本、8冻结描述与runtime config；`holdout_runner.py freeze`要求干净已提交源码，实际A/B严格加载，仅合成音频/旧通用文本检查512，新描述仅tokenizer长度，保存G2；`run`必须显式G2 SHA，再对20×8完整新编码，保存双权重各whole/segment和title-only log-TF/smoothed-IDF词面控制五组排名。输入/源码/依赖/离线cache/权重前后核验，独占输出/失败保留，不读取qrels或计算成绩。
 
 `holdout_review.py build`在G2后生成四批2描述×20曲、共160项，固定hash呈现/全null/无模型提示；前端新增独立schema、中文可听线索与0–3规则、四字段完成回执。完整判断由标注者本机保管，G5前只提交回执；`seal`仅在labeler侧以显式原包SHA校验本地导出，打印总完成数/合法性/两SHA，不打印评分分布。旧四schema/草稿/播放保持；G2/包/排名准备不等于正式质量验收。真实运行状态另见[第三检查点验证](../../docs/verification/MUS-040-phase03.md)。
+
+## 独立测试G5比较（MUS-042）
+
+`holdout_evaluate.py`只用标准库，先核用户ZIP中四JSON原字节与已发布回执承诺，再核原G2/输入/模型环境/五run工件和四包；独占私有归档及首次解析事件记录后才一次读取完整160评分。按038既定全8等权P@5及全20 IDCG的nDCG@5报告五组、逐query正例数/上限和四个预注册成对比较。原推理代码、权重和排序不变；不训练或加载CLAP，结果不是线上检索或总体质量保证。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search python3 -m unittest test_holdout_evaluate test_review_pack test_evaluate_review -v
+# 实际G5命令须使用原冻结的HF_HOME与已有完整依赖运行时：
+python services/audio-search/holdout_evaluate.py \
+  --archive /absolute/path/to/user-submitted.zip \
+  --gate docs/verification/MUS-040-G5-request.json --gate-sha256 EXPECTED_REQUEST_SHA256 \
+  --freeze .local/a/mus040/phase03/freeze-01/freeze.json \
+  --runs .local/a/mus040/phase03/runs-01 \
+  --packages .local/a/mus040/phase03/packages-01 \
+  --output .local/a/mus042/opening-01
+```
+
+上述路径为本机示意，输出父目录需事先存在并被ignore；重复输出拒绝覆盖。B使用独立合成输入，不接收A私有评分/用户ZIP。`compare`只输出聚合及query代号，不暴露逐曲标签/真实身份/标注代号；完整原件仅0700/0600私有归档。看test后的新模型选参须另设独立评测。

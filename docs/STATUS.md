@@ -852,3 +852,8 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 四批回执齐全、labeler报告160/160；不是A已独立重验评分或听音。只读标准库核对G2 1898f2bd…/447输入/23源码/双checkpoint/安装环境与54缓存/五run commitment d3b03f47…及全部排名和4向量工件/四包通过，未加载模型、未读具体评分。初次环境比对因HF_HOME路径含Sonora/../而与冻结绝对路径字符串不同；路径解析后54文件SHA完全一致，使用原冻结绝对路径重跑完整检查通过，没有修改环境/缓存或绕过校验。
 - 当前G5_ready表示可以请求四份原始完整导出，不是已解封；readable received/opened=0、实际payload核验0、评分独立校验0、质量指标0。现在明确通知用户一次提交四份与回执配套的sonora-judgments JSON，收到后必须先核全四份原字节承诺SHA，再解析任一评分/校验完整160并记录一次打开；不提前只看部分、不补分或改query。完整导出尚缺，评测等待此输入。
 - 041既有标注路线保持；旧141/G1/模型/排名/应用/数据库/API/UI/锁/依赖/备份/main无改动。本轮仅文档与metadata/原件/hash/权限检查，不重复前后端或CLAP测试；提交后publish/sync回读，远端发布不等于B接收或main合并。
+
+### MUS-042范围与占用（G5原始完整导出已由用户提交）
+
+- A从干净3655fb30644968d6213d59540710c744ba4d0700创建codex/MUS-042-independent-evaluation；2026-10-31T04:32:04Z双方feed已fetched，A7bbda1d/source3655fb3，B610c03e/source0e8de159保持，N1原卡不变。ZIP只读目录与四原JSON字节已全部核对回执承诺，无JSON评分解析；ZIP SHA166d21b82e2fc27d881692d94ef807ec3b977d19bb8045c6af4e432457fa1387。
+- 允许新增holdout_evaluate.py与合成测试、E17、模块README、必要README/PROJECT/STATUS/A latest及verification/MUS-042*；私有仅ignore.local/a/mus042。原23冻结源码/五排名/空包/权重/索引/训练/Java/Vue/DB/备份/main只读。实现既定公式/全160严格校验与一次解封，先完成合成验证再读评分；041路线不变，不请求新一轮人工全矩阵。

@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## MUS-042：G5比较工具已实现，真实评分尚未解析
+
+A；2026-10-30 America/Chicago；branch codex/MUS-042-independent-evaluation；base3655fb30644968d6213d59540710c744ba4d0700。用户提交四批ZIP，原字节承诺全4匹配；准备先提交固定比较实现，再记录G5打开与实算。
+
+ack_peer_feed_sha `610c03e17989e934f8f35ec79e6b6063aeea7439` / B source `0e8de159a8d6e02fe1f9e15aec1d1a325866f9b2`；2026-10-31T04:32:04Z双方fetched，A7bbda1d/source3655fb3。N1原卡035-R2/rev1保持assigned，不扩审核。
+
+新增E17、holdout_evaluate.py及11合成用例，只读字节门槛/完整qrels/五组固定P@5/nDCG/成对比较/私有独占归档；原23推理源码不变。49相关检查通过（11新+38既有）；初次macOS临时路径经/var symlink导致fixture两项拒绝，修正fixture的resolve后通过，不放宽安全规则。无评分已解析、无模型训练或推理重跑。
+
+下一步在提交源码下重验冻结输入/五run工件后一次解封全4原JSON、校验160、同操作者另脚本复算、报告真实结果和限制，再publish/sync最终交付。原UI/DB/备份/main不变，041既有标注主训练路线保持。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-040四批回执齐全，统一请求四份原始完整判断；尚未打开评分
 
 A；2026-10-30 America/Chicago；branch codex/MUS-040-completion-receipts；本段base72c386e6d392f4fb1e4af3e4492bc32292220b3f。040仍review，G2/G3/G4已完成、G5具备请求条件，完整判断尚未接收/解封，非评测或训练完成。
