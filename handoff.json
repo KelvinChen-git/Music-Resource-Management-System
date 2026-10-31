@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-31T05:52:21.975Z",
-  "source_branch": "review/MUS-044-B-training-plan",
-  "source_sha": "1724630f5f37f8e856c1d12c068d208382763719",
+  "published_at": "2026-10-31T07:00:29.149Z",
+  "source_branch": "review/MUS-035-B-output-permissions",
+  "source_sha": "11f7c2a50be7c6287f2f99ccc9b9bec3e9c37612",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "091fe2d6f6e1db01a2c5a2504657c74a4c8c99bd463423ce033bcc968737b6a5"
+  "report_sha256": "b86e5cc4c6405f8977aff90c799d86c8ed9bfc07a02fe65f8069e8c6a7889d9a"
 }
