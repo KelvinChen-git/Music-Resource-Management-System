@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-30 America/Chicago）：MUS-041现成标注语料可行性完成（review，仅metadata；尚无adapter/训练音频/训练模型）。branch codex/MUS-041-labeled-data-feasibility/basece1eb6b；推荐MTG非商业研究train/dev，人工后续仅有界抽检；当前040四批/G5/五排名不变，仍2/4回执报告80/160、具体评分未读。官方split/原素材重叠/SDD外部评测候选已核，23文档/metadata31.7MB，无音频下载/训练/应用改动或main合并。
+- 当前工作（2026-10-30 America/Chicago）：MUS-040独立回执收件分支codex/MUS-040-completion-receipts，基于7a98ee0；已收前3批回执、报告120/160（75%），待最后第4批。G5仍关闭、具体评分未接收/打开。041现成标注metadata可行性结论保持（review，尚无adapter/训练音频/训练模型）；后续MTG研究train/dev＋有界人工抽检，不改变040五组冻结对照或把本轮test用于训练。
 
-- 当前检查点（2026-10-30 America/Chicago）：MUS-040 G2/G3/G4完成，review；已收第1、2批完成回执（2/4批、报告80/160项），G5仍关闭，未接收/打开具体评分。准确干净源码1671b134，两权重合成严格512后先冻447输入/源码/环境，再四批各40空包和五组实际排名；每套755片段/20整曲/8文本，共40个全20排名已hash，未读新qrels/无质量指标。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过；初始首批0/40已交付；现第1、2批回执各报告40/40，待第3、4批，完整判断仍由用户自存。原141/G1/phase02/952保护文件/54cache/原版/服务保持，main未合并；N1 B原卡035-R2仍assigned。
+- 当前检查点（2026-10-30 America/Chicago）：MUS-040 G2/G3/G4完成，review；已收第1、2、3批完成回执（3/4批、报告120/160项），G5仍关闭，未接收/打开具体评分。准确干净源码1671b134，两权重合成严格512后先冻447输入/源码/环境，再四批各40空包和五组实际排名；每套755片段/20整曲/8文本，共40个全20排名已hash，未读新qrels/无质量指标。238音频Python/78来源导入/84 Node/build及20首真实浏览器播放通过；初始首批0/40已交付；现第1、2、3批回执各报告40/40，待第4批，完整判断仍由用户自存。原141/G1/phase02/952保护文件/54cache/原版/服务保持，main未合并；N1 B原卡035-R2仍assigned。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -53,7 +53,7 @@
 | MUS-037 补判接收与完整top5比较 | done / A（接收/开发比较完成，非正式模型验收） | codex/MUS-037-supplement-receipt / 49c255c；依赖036 | 3/3固定CLI/原字节归档/独立复算；累计141；whole1.00/segment0.96，284保护输入保持 |
 | MUS-038 独立评测与模型对照方案 | done / A（仅方案设计，未执行测试） | codex/MUS-038-independent-eval-protocol / efd7be5；依赖037 | 仅冻结20新曲×8新query/全160判断方案、复用旧100作dev预检、两checkpoint×两mode和词面对照；不采集/跑模型/生成新包 |
 | MUS-039 独立测试来源与描述冻结 | review / A（G1完成，工具待独立审核） | codex/MUS-039-independent-corpus-freeze / bc653e0；真实收集e668a74 | v2全221框、20条新source-only/9群/20work/8新query；26单测、独立EOF/完整队列通过；未导入/生成标注包/跑模型 |
-| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5已收2/4回执、报告80/160，未读评分；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
+| MUS-040 独立格式与模型预检 | review / A（G2/G3/G4完成，G5已收3/4回执、报告120/160，未读评分；工具待独立审核） | codex/MUS-040-independent-runner-preflight / 74645de；实际新test1671b134，依赖038/039 | 新20真实身份/755片段各双模型/五配置40完整排名；先冻G2、四批各40无提示包/中文规则/回执/20首真实播放；不读qrels或计算质量，N1原B卡不扩范围 |
 | MUS-041 现成标注语料可行性 | review / A（metadata路线完成，训练尚未实现） | codex/MUS-041-labeled-data-feasibility / ce1eb6b，依赖040隔离/用户路线修订 | MTG train32,859/val11,101/test11,565、195原/183split标签和ID隔离/旧9重叠实核；SDD/MusicCaps候选，生成caption不当人工真值；仅metadata，无音频/训练/新人工包 |
 | MUS-033-R1-B 新来源核查复核 | done / B（review_completed / approve_scoped已接收） | review/MUS-033-B-source-review / 10880f8；交付4f57837 | 原字节报告/接收JSON归档，B27/72 Python、68 Node/build/独立15+7及23浏览器断言；均合成范围 |
 | MUS-035-R1-B 两来源离线工具复核 | done / B（限定批准已接收；N1由A修复另卡复核） | review/MUS-035-B-expanded-retrieval / 9797ed4；对比b42b767 | 三新工具/三测试/E8，独立合成输入；不读A原件/跑模型，不外推036新包/UI |
@@ -831,3 +831,16 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 开始2026-10-31T02:47:06Z双方fetched，A1dda0e4/sourcece1eb6b、B610c03e/source0e8de159；已ack，N1准确035-R2原卡仍assigned不扩范围。交付evaluation/MUS-041-labeled-data.md、verification/MUS-041-results.json和必要README/PROJECT/STATUS/A latest。提交后publish/sync，远端可读不等于B批准或main合并。
 
 - 检查点2026-10-31T02:57:43Z双方再次fetched，B610c03e/source0e8de159未变，N1原卡保持；本轮元数据/文档检查完成，准备提交发布。
+
+
+### MUS-040第三批回执收件范围
+
+- 从已发布7a98ee0bf5fe824cc23b8ffbb74ad096c56be602建立独立收件分支codex/MUS-040-completion-receipts；保留041研究结论/metadata原件，040只接第三批四字段回执。允许README当前分支、STATUS/A latest、原completion receipt log与私有phase03/completion-receipts/batch-3归档；不读具体评分/不切用户页面，不改原五排名/包/代码/模型/训练或main。
+- 2026-10-31T03:01:07Z双方fetched，A895018f/source7a98ee0、B610c03e/source0e8de159保持，N1原卡仍assigned不扩范围。当前两个原回执80项不改，新回执必须匹配冻结第三批并通过字段/类型/唯一性及原件检查；G5继续关闭直到第四批回执齐全并核定五runs commitment。
+
+
+### MUS-040第3批完成回执接收（2026-10-30 America/Chicago）
+
+- 用户本次四字段回执dataset bf53151d4d420dfe4621ede2ddef5fc40f733ee86336c94131d804f3f5957e07与已冻结第3批一致；恰四字段/无重复key/SHA语法/整数40/valid_complete_batch/新批次唯一性通过。原回执SHA2e54e80b5ba16600934325d32f997ed7b18f5c6adf042b3822c308a780237049，payload SHAa3c483d18783f8d2daf75ca1338409a00a7538e81fad4bb412c86b6a48d2fc1b仅作用户完整导出的承诺，未读取具体评分或核其实际字节。
+- 私有phase03/completion-receipts/batch-3目录0700/原字节与验证记录0600；下载原件、前两批原件与记录保持。累计3/4批回执、labeler报告120/160（75%），尚缺第4批40项。具体评分接收/打开0、等级分布/新指标0，G5仍关闭；用户保管各批完整JSON，最后回执核定后再统一请求完整导出。
+- G2 1898f2bd…/五runs commitment d3b03f47…/四包/23冻结源码保持；041路线及metadata原件不改，不读取/枚举其他下载或切换用户页面，无代码/模型/排名/训练/DB/API/UI/依赖/备份/main改动。仅分支说明/台账与回执metadata，完成字段/原字节/冻结绑定/保护/diff检查，不重复应用测试或模型运行；提交后publish/sync回读。

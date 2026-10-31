@@ -1,8 +1,8 @@
 {
   "schema": "sonora-independent-completion-receipt-log-v1",
-  "recorded_at_utc": "2026-10-30T23:53:50.475427+00:00",
+  "recorded_at_utc": "2026-10-31T03:01:49.388458+00:00",
   "task": "MUS-040",
-  "status": "two_of_four_receipts_received_G5_closed",
+  "status": "three_of_four_receipts_received_G5_closed",
   "base_source_sha": "1c2cb665586df7c90eb9dfa7f6e32a7d8d1f794e",
   "runner_freeze_sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83",
   "all_runs_commitment_sha256": "d3b03f47be712c9ac8f3aa40d01c1d31430b7cd8e6616809fdde48826271a6c1",
@@ -35,15 +35,28 @@
       "underlying_payload_sha256_verified": false,
       "readable_judgments_opened": false,
       "labels_independently_revalidated": false
+    },
+    {
+      "batch": 3,
+      "receipt": {
+        "dataset_sha256": "bf53151d4d420dfe4621ede2ddef5fc40f733ee86336c94131d804f3f5957e07",
+        "payload_sha256": "a3c483d18783f8d2daf75ca1338409a00a7538e81fad4bb412c86b6a48d2fc1b",
+        "total_completed_count": 40,
+        "validation_status": "valid_complete_batch"
+      },
+      "receipt_file_sha256": "2e54e80b5ba16600934325d32f997ed7b18f5c6adf042b3822c308a780237049",
+      "checks": "exact_four_fields_no_duplicate_keys_valid_types_and_hash_syntax;dataset_matches_frozen_batch3;reported40;original_bytes_archived",
+      "underlying_payload_sha256_verified": false,
+      "readable_judgments_opened": false,
+      "labels_independently_revalidated": false
     }
   ],
   "progress": {
-    "receipts_received": 2,
+    "receipts_received": 3,
     "receipts_required": 4,
-    "reported_completed_pairs": 80,
+    "reported_completed_pairs": 120,
     "required_pairs": 160,
     "pending_batches": [
-      3,
       4
     ],
     "readable_judgments_received": 0,
