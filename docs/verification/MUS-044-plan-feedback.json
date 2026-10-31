@@ -1,0 +1,13 @@
+{
+  "schema": "sonora-plan-review-receipt-v1",
+  "review_id": "MUS-044-PLAN-B",
+  "review_revision": 1,
+  "reviewed_sha": "46b52db8b2999ab015084f423545e4f2cd5c4e03",
+  "peer_feed_sha": "0faad731981280a46b37cd617ff6d749962e6da5",
+  "peer_source_sha": "1724630f5f37f8e856c1d12c068d208382763719",
+  "report_sha256": "569b09b207b9a35d4e9a422de66d81db394c820c07a93a43b0bb5263a5d74c13",
+  "verdict_received": "needs_revision_before_scale_up",
+  "scope": "User-directed training plan review, not formal044 tool approval or035-R2 acceptance",
+  "action": "Accept R1-R4 for MUS045 bounded data/retrieval gate; preserve044 history; no immediate1000 download",
+  "standing035_R2_changed": false
+}

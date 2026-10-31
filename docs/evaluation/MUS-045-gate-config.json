@@ -1,0 +1,75 @@
+{
+  "schema": "sonora-mtg-bounded-caption-dev-gate-v1",
+  "source_plan_sha256": "69d7932ce0b3b828df30fa8fe5e3c730634f6e54daf520012ca48186b9b2bfe0",
+  "source_inputs_sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163",
+  "source_policy_sha256": "1a70282c1c15637ed28e2233b03a3befaaffa4e0ac6868ba362d7209ec1e0d7d",
+  "source_config_sha256": "7865eb81c66a7d30a3a651c903d7fa03ad1fc46afff59a83d2574a0cdc35c927",
+  "sdd_sha256": "fb853b0327394cfdbdc205f712fdb64df70e6fcd3bae3a9d3f1617d54b45ad70",
+  "caption_seed": "MUS-045-SDD-grouped-caption-v1",
+  "counts": {
+    "train": 100,
+    "validation": 20,
+    "caption_dev": 20,
+    "caption_test_reserved": 20
+  },
+  "reserve_counts": {
+    "train": 20,
+    "validation": 4,
+    "caption_dev": 2
+  },
+  "caption_validation_flag": "is_valid_subset=true",
+  "caption_selection": "source-only/hash artist components then recording;one recording per component;all validated captions for dev;reserved test has no text in derived file",
+  "audio_base_url": "https://cdn.freesound.org/mtg-jamendo/raw_30s/audio-low/",
+  "max_track_bytes": 20971520,
+  "max_total_body_bytes": 1610612736,
+  "max_disk_bytes": 2147483648,
+  "workers": 2,
+  "max_download_attempts_per_track": 3,
+  "max_acquisition_seconds": 1800,
+  "alphas": [
+    0.1,
+    1.0,
+    5.0
+  ],
+  "loss": "mean_per_track_squared_norm(XW-Y)+alpha*sum_squared_norm(W-I)",
+  "sum_lambda": "N_tracks*alpha",
+  "solver": "primal_if_N>=D_else_dual;solve_no_inverse",
+  "encoder": "A_frozen_text_unchanged",
+  "dimension": 512,
+  "windows": "first_mid_last10seconds;unit(mean(unit(window_vectors)))",
+  "whole_inference": "unit(unit(mean(unit(window_vectors)))@W)",
+  "segment_inference": "max(unit(window_vector@W) dot unit(unmodified_text))",
+  "primary_selection_mode": "whole_three_same_views",
+  "primary_metric": "recording_macro_known_caption_pair_R_at5",
+  "secondary_metrics": [
+    "R_at1",
+    "MRR",
+    "caption_query_macro_R_at5",
+    "tag_observed_Recall_at5",
+    "three_window_segment_paired_R_at5"
+  ],
+  "selection_rule": "candidate_whole_R5_minus_identity>=0.05 and candidate_whole_R1>=identity and paired_recording_bootstrap_delta_R5_lower95>=0;highest_R5_then_R1_then_larger_alpha;otherwise_identity",
+  "same_recording_captions": "all_validated_queries;known_positive_own_recording;first_average_queries_within_recording_then20_recordings_equal",
+  "unpaired_candidates": "unjudged_semantics_not_confirmed_negative",
+  "tag_unknown": "unknown_not_BCE_negative",
+  "reserved_test_model_input_or_scoring": false,
+  "new_human_labeling_required": false,
+  "caption_audio_view": "first_min(120s,actual_EOF),matching nominal SDD beginning excerpt;official low-bitrate derivative,not byte-identical SDD320kbps",
+  "caption_token_policy": "fixed77token_truncation_for_all;count_and_report;never_drop_queries_by_scores",
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261031,
+  "tag_support_buckets": {
+    "unseen": [
+      0,
+      0
+    ],
+    "rare": [
+      1,
+      4
+    ],
+    "seen": [
+      5,
+      1000000
+    ]
+  }
+}

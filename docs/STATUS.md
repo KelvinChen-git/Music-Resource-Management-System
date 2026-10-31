@@ -895,3 +895,8 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - pool可选接口保留043默认行为；跨split组/规范化作品名/官方低音频SHA隔离后eligible7307/1888/1351，固定train1000/validation200/reserved-test200，creator组件450/106/105，tag172/133/128。只metadata计划，未下载/解码/编码这1400，不叫千首训练已完成；完整别名/声学近重复/版本/预训练隔离仍未知。
 - 32相关检查passed（11新+21既有），初测试类导入使13旧例重复发现，模块引用后按最终32独立计数，未累加。独立NumPy primal512与生产dual20解最大差8.88e-16，正tag均值/目标/训练Recall/1400分组规则均重算一致，同操作者非B。实际重复输出FileExistsError、原模型/特征/结果不变，额外encoder加载/拟合0。
 - 952旧文件/043原件和证据/23原推理源码/54cache集合及SHA/原版干净保持；mtg_dataset可选扩展属本任务明确范围，旧043源码仍由9a92a8c复现。无依赖装改/新音频/Java/UI/DB/部署/main合并。保留初RoBERTa pooler/meshgrid warning，CLAP后strict完整覆盖，无模型警告驱动调参。下一步实际千首训练/验证数据与内容隔离预算，再做有效验证；旧160只作未来development回归边界。05:13:48Z/05:20:57Z双方sync，B610c03e/source0e8de159、035-R2/rev1原卡保持；提交publish/sync回读。
+
+### MUS-045范围修订与占用（接收B新计划审核后）
+
+- 从干净46b52db新建codex/MUS-045-mtg-corpus-acquisition；本轮sync于2026-10-31T06:03:59Z读到B新feed0faad731/source1724630，review_id044-PLAN-B/rev1、reviewed46b52db、用户直派计划审核needs_revision_before_scale_up。已原字节导入/ack，035-R2原卡不动、不当044批准。接受R1自然caption验证/R2 mean alpha/R3通用推理缓存/R4小批真实数据门槛；原044结果不改，不立即全1000下载。
+- 允许新增caption_gate/corpus_gate与相关测试/runner、tag_adapter均值目标与primal等价接口（旧fit行为保持）、E20/参数/必要README/PROJECT/STATUS/A latest、反馈接收与verification/MUS-045*；私有仅.local/a/mus045。目标固定前100train/前20tagval+SDD caption-dev20，保留原200test与新caption-test20；最多三alpha+identity开发验证，不新添人工包或部署。网络/磁盘/时间预算和恢复/替补按E20，若无收益保留identity不扩大。

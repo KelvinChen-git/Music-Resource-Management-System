@@ -432,3 +432,14 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - 保存原样特征/正例prototype/适配器NPZ及训练前后目标值/MSE/正规方程梯度残差/参数变化/输入与代码环境SHA；仅训练sanity，观察标签Recall@5只作训练诊断（分母为该曲已记录tag数），不是缺失标签均为负例的precision、自然语言检索P@5或泛化提升。不得与042指标直接对比。轻量层拟合才计训练，CLAP编码不计训练；本阶段无整库微调/部署/模型切换/Java导入。
 - 运行前冻结数据/窗口/标签模板/单一lambda/源码环境与原A权重；原20 train smoke不能当验证/测试，真实拟合只运行一次，计算复核不改变模型选择。扩展语料与未来训练/验证/测试另行实际下载/内容排除后才可运行，本轮141/160不用于选参或训练。
 - 只写ignore.local/a/mus044，0700/0600独占输出，不覆盖043与旧run。现有API/UI/DB/依赖/双原权重/缓存/原版/main保持；保留非商业研究metadata与逐曲许可。数据计划仍不能证明全别名/翻唱/声学近重复/预训练隔离，新增比较不可冒充B独立审核。适配相关测试、实际训练证据和限制作交付。
+
+### E20. MUS-045：接收B计划审查、小批真实语料与人写caption开发门控
+
+- 接收B用户直派MUS-044-PLAN-B/rev1（reviewed46b52db，peer feed0faad731/source1724630），verdict needs_revision_before_scale_up；它不是044正式工具批准或035-R2认领/关闭。044原20训练结果/配置保留，不立即下载1000；本阶段固定044 train列表前100、validation前20，各后续20/4为技术替补，保留原200 test。替补只因下载/校验/解码/内容重复等技术原因，按冻结顺序及原组限制，不因模型或标签分数改样本。
+- 人写来源固定041 SDD CSV SHA/validated子集；只按metadata/逐曲BY/BY-SA许可/30–600秒/官方低文件SHA、旧60+043 pilot与044全部计划作者credit/作品名和源SHA关系排除，按固定hash作者组件/录音取caption-dev20与final-caption-test20、独立dev技术reserve2，每组1录音；全部相关caption随录音归组。derived test仅metadata，不传caption文本/音频给模型、不评分；源CSV已为本机metadata原件，不把hash当访问控制或自称双盲。统计容量不足时blocked或新明确协议，不挪test补dev。
+- 首轮只获取100train/20tag-val/20caption-dev，总body预算1.5GiB、磁盘2GiB、2下载worker、每音频20MiB/最多3尝试、总1800秒。逐track独占attempt目录、原字节SHA/严格206与validator/实际EOF/finite/同65536规范PCM、append-only费用与结果日志、单进程flock及显式同plan/config恢复；不覆盖partial/原件、没有证明完整的记录不进ready。中断后复核有效receipt/audio再复用；请求失败/崩溃的预算保守按已预留body计费，不能重启清零。只读旧40音频补同规格PCM，加旧20既有pin，以排除旧60 exact-file/PCM以及新split间精确内容重复；仍不冒充全声学近重复/翻唱/预训练排除。
+- 泛化runner另立，不改044 smoke。冻结原A及文本空间，每曲固定3窗口，先unit窗口、mean后unit；拟合均值损失alpha∈[0.1,1,5]，lambda=Ntracks*alpha，identity对照，最多3拟合，N>=D用primal否则dual，复用同一模型/DSP/窗口/数据SHA/文本与源码版本绑定的特征缓存。不把同曲3窗当3独立训练样本。whole=unit(Xwhole W)，text原空间不乘W；segment=各窗口unit(zW)取max，作为独立次要结果，不继承whole收益，不作时间定位/全窗口或参考音频能力声明。
+- 主指标caption-dev已知配对text→audio R@5，候选固定dev20录音，每caption只已知本录音为正、多caption先每录音平均再20录音等权；未配对不等于语义负例，不能报全相关度P@5。另报R@1/MRR/query宏/tag已记录Recall、genre/instrument/mood与训练seen/rare/unseen支持和三窗口segment结果。候选必须whole R5相对identity≥0.05且R1不降，按R5/R1/较大alpha选；否则identity并不扩大。开发结论不当最终test或显著性，不看保留test/141/160评分选参，不自动部署/换索引。
+- 只写ignore.local/a/mus045、0700/0600，保留非商业研究/逐曲许可与所有旧工件/权重/cache/Java/Vue/DB/原版/main。公开只aggregate/方法/hash。新科学问题如centroid监督损失信息、caption不完整真值与小样本不确定性要明示，结果可为无收益，不为造提升改描述或换样本。
+- SDD描述对应录音开头最多2分钟，caption-dev只用完整验证后的低码率源前min(120秒,EOF)三窗口，与训练整曲视图分开；它不是原SDD320kbps音频的字节等价官方benchmark。两模型用完全相同视图/文本，固定77token截断并报告超长数，不因分数删query。
+- 候选门槛还需配对录音bootstrap（seed20261031、2000次）R5差值95%区间下界不为负，仅作本开发样本不确定性描述，非最终显著性声明；tag支持按训练正tag出现次数unseen0/rare1–4/seen>=5分桶。

@@ -1,5 +1,21 @@
 # 账号 A 最新交接
 
+## MUS-045数据门槛实现检查点：接收B计划审查，先小批caption开发，不直接放大1000
+
+A；2026-10-31 America/Chicago；branch codex/MUS-045-mtg-corpus-acquisition；base46b52db8b2999ab015084f423545e4f2cd5c4e03。ack_peer_feed_sha `0faad731981280a46b37cd617ff6d749962e6da5` / B source `1724630f5f37f8e856c1d12c068d208382763719`；06:03:59Z双方fetched。
+
+B用户直派MUS-044-PLAN-B/rev1针对46b52db为needs_revision_before_scale_up，已原字节导入及收件JSON；它不是044工具批准或035-R2认领。接受R1–R4，035-R2/rev1原卡仍assigned不替换，044原配置/20训练结果不改。
+
+E20/config先冻，固定前100train/前20tagval，SDD validated metadata源按旧60+043 pilot+044全部plan关系/许可隔离后150录音/48独立作者组可选；固定caption-dev20/24人写caption、caption-test20仅metadata不导出文本/下载音频，dev reserve2；三窗口前min120s对应SDD名义开头片段，低码率派生不是原SDD320官方benchmark。没有新人工包或1000音频承诺。
+
+新增prepare_caption_gate及锁定/append-only费用/独占attempt/实际EOF的可恢复acquirer。13相关检查通过（5新/8原transport）；初两个fixture经macOS /var symlink受拒，resolve测试路径后通过，不放宽安全规则。下一步提交实现后正常TLS、两worker、1.5GiB charged body/2GiB disk/1800s，获取140并复核旧60同规格PCM；随后用均值loss alpha0.1/1/5+identity及独立caption-dev门槛比较，无收益保留identity不扩大。
+
+原141/160/旧run/权重/cache/Java/Vue/DB/原版/main保持；实际取得/编码/模型选择尚待运行，不能把源metadata当完成。最终报告后publish/sync。
+
+## 上一轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-044首次20首轻量适配器拟合与1000/200/200 metadata计划完成，未验证效果
 
 A；2026-10-31 America/Chicago；branch codex/MUS-044-tag-adapter-training-smoke；base83ebeea8e32d41c9652d4c8dbdf75f24e8024fab，真实工具5bce919（完整SHA见MUS-044-results.json）。044 review，数据计划/训练链路实跑完成、工具待独立审核，不是质量验收或模型部署。
