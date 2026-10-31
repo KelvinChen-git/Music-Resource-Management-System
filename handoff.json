@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-10-31T06:31:33.577505+00:00",
-  "source_branch": "codex/MUS-045-mtg-corpus-acquisition",
-  "source_sha": "e109b5c2ebc0531c059ddca844c63ad1b101ca84",
+  "published_at": "2026-10-31T18:25:46.869336+00:00",
+  "source_branch": "codex/MUS-046-expanded-caption-diagnostic",
+  "source_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "4e7fdcfc2345ab357fbd3f0af64f91c709ddd0081957ebe311ea2372f4c696bc"
+  "report_sha256": "fd67e025f064d8af5134cd31b2624dd724e7625f84338ebba1be1618111d0e26"
 }
