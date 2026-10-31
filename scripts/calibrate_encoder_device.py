@@ -39,6 +39,15 @@ def sources():
             'files': {n: h.file_hash(ROOT/n) for n in SOURCES}}
 
 
+
+def check_bound_files(bindings):
+    """Stream bounded binary bundles; old JSON reader's16MiB ceiling is not a binary limit."""
+    for path, expected in bindings.items():
+        path = h.assets.regular(path)
+        limit = h.PINS['A'][1] if path.suffix == '.pt' else 32*1024*1024 if path.suffix == '.npz' else h.assets.MAX_JSON
+        h.require(0 < path.stat().st_size <= limit and h.file_hash(path) == expected, 'Bound calibration file changed')
+
+
 def setup(torch, device):
     torch.set_num_threads(2); torch.set_num_interop_threads(1); torch.manual_seed(0)
     torch.use_deterministic_algorithms(True)
@@ -174,7 +183,7 @@ def run(*, package, package_sha256, checkpoint, device, output):
         root = Path(package).parent
         inputs = root/'inputs.npz'; reference = root/'reference.npz'
         bound = {Path(package): package_sha256, inputs: p['input_sha256'], reference: p['reference_sha256'], Path(checkpoint): p['model_sha256']}
-        h.assets.recheck(bound)
+        check_bound_files(bound)
         from checkpoint_model import checked_checkpoint, load_checkpoint
         checked_checkpoint(checkpoint, 'A')
         h.require(Path(checkpoint).name == p['model_filename'], 'Calibration checkpoint differs')
@@ -199,7 +208,7 @@ def run(*, package, package_sha256, checkpoint, device, output):
         audio, text, timing = benchmark(sdk, waves, p['prompts'], cfg, torch, device)
         check = calibration.compare(ra, rt, audio, text, cfg)
         save_npz(target/'features.npz', audio=audio, text=text)
-        h.assets.recheck(bound); checked_checkpoint(checkpoint, 'A')
+        check_bound_files(bound); checked_checkpoint(checkpoint, 'A')
         current_env = h.environment(); current_env['device'] = device
         h.require(current_env == env and all(h.file_hash(ROOT/n) == d for n, d in state['files'].items()), 'Runtime environment/source changed')
         result = {'status': check['status'], 'device': device, 'hardware': hardware, 'source_sha': state['sha'],

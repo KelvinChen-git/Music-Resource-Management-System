@@ -66,6 +66,25 @@ class DeviceCalibrationTest(unittest.TestCase):
         self.assertNotEqual(cpu, d.cache_key(**{**args, 'source_sha256': {'driver': 'e'*64}}))
         self.assertEqual(cpu, d.cache_key(**args))
 
+
+    def test_binary_bundle_streams_above_old_json_ceiling(self):
+        from calibrate_encoder_device import check_bound_files
+        from pathlib import Path
+        import tempfile, hashlib
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp).resolve()/'inputs.npz'; raw = b'x'*(17*1024*1024); p.write_bytes(raw)
+            check_bound_files({p: hashlib.sha256(raw).hexdigest()})
+            with self.assertRaises(ValueError): check_bound_files({p: '0'*64})
+
+    def test_bundle_symlink_is_not_followed(self):
+        from calibrate_encoder_device import check_bound_files
+        from pathlib import Path
+        import tempfile, hashlib
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve(); p = root/'data.npz'; p.write_bytes(b'fixture')
+            link = root/'link.npz'; link.symlink_to(p)
+            with self.assertRaises(ValueError): check_bound_files({link: hashlib.sha256(b'fixture').hexdigest()})
+
     def test_cache_rejects_unpinned_input(self):
         with self.assertRaises(ValueError):
             d.cache_key(device='cpu', environment={}, model_sha256='a'*64, input_sha256='bad',
