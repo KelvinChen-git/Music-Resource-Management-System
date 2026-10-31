@@ -1,0 +1,192 @@
+{
+  "schema": "sonora-mtg-adapter-real-preflight-v1",
+  "task": "MUS-043",
+  "status": "adapter_and_twenty_track_transport_decode_complete_training_not_started",
+  "branch": "codex/MUS-043-mtg-adapter-preflight",
+  "base_source_sha": "7b592d200eeafc13d17a57687d12b4541340f05b",
+  "actual_source_sha": "9a92a8ccf86e9bb756f59778159a9bc646bf5904",
+  "MTG_revision": "cafd8e20c265ed84f1e61f1c875327971f43a62f",
+  "policy_sha256": "1a70282c1c15637ed28e2233b03a3befaaffa4e0ac6868ba362d7209ec1e0d7d",
+  "inputs_manifest_sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163",
+  "selection_sha256": "6a338dc43b57fc7d04785d836254ba1b755e2579875ae0839b5acc283a80a28b",
+  "metadata": {
+    "base_tracks": 55609,
+    "split_counts": {
+      "train": 32859,
+      "validation": 11101,
+      "test": 11565
+    },
+    "tag_count": 183,
+    "eligible_train_tracks": 7577,
+    "excluded_train_tracks": 25282,
+    "exclusion_reasons_nonexclusive": {
+      "audio_license_outside_policy": 24862,
+      "metadata_duration_outside_bounds": 576,
+      "prior_work_name": 43,
+      "prior_artist_or_album_id": 331,
+      "prior_creator_name": 331,
+      "prior_recording_id": 7
+    },
+    "raw_name_records_valid": 56637,
+    "raw_name_records_quarantined": 2,
+    "known_prior_source_matches": 9,
+    "prior_artist_ids_blocked": 13,
+    "prior_name_aliases": 40,
+    "SDD_reserved_recordings": 706,
+    "SDD_reserved_artists": 191,
+    "selected_tracks": 20,
+    "selected_artist_ids": 20,
+    "selected_license_families": {
+      "by-sa": 17,
+      "by": 3
+    },
+    "selected_tags": 49,
+    "training_runs": 0,
+    "model_loads": 0,
+    "user_grades_used_for_selection": false
+  },
+  "audio": {
+    "tracks": 20,
+    "source_official_hashes_verified": 20,
+    "actual_EOF_decoded": 20,
+    "segments": 1004,
+    "first_and_tail_windows_checked": 40,
+    "mono_source_tracks": 20,
+    "prior60_exact_byte_duplicates": 0,
+    "prior20_same_decoder_PCM_duplicates": 0,
+    "selected_exact_PCM_duplicates": 0,
+    "models_loaded": 0,
+    "training_runs": 0
+  },
+  "duration_ms": {
+    "minimum": 132327,
+    "maximum": 523183,
+    "total": 5065092
+  },
+  "source_frames_differ_from_header": 0,
+  "tracks_with_padded_tails": 19,
+  "network_body_read_bytes": 77945120,
+  "audio_file_bytes": 65431195,
+  "network_budget_bytes": 268435456,
+  "official_direct_track_fetch": true,
+  "tar_downloads": 0,
+  "download_attempts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "verification": {
+    "related_synthetic_tests_passed": 66,
+    "new_tests": 21,
+    "existing_tests": 45,
+    "independent_audit": {
+      "status": "passed",
+      "method": "separate literal TSV/official SHA/65536-frame EOF/soxr HQ implementation; no Sonora imports; same operator, not B",
+      "selected20_official_train_tags_and_templates_verified": true,
+      "twenty_audio_hashes_source_frames_PCM_and1004_windows_recomputed": true,
+      "body_read_budget_and_private_modes_verified": true,
+      "script_sha256": "f33618586a3fe37b2c677f0431184c7a551a271c57e9702656b8b1c8d1051422"
+    },
+    "preservation": {
+      "status": "passed",
+      "old_protected_files": 952,
+      "frozen_source_files": 23,
+      "frozen_input_files": 447,
+      "cache_files_unchanged": 54,
+      "MUS042_archives_and_results_unchanged": true,
+      "backup_clean_at_original_sha": true
+    },
+    "repeat_output": {
+      "repeat_fetch_exit": 1,
+      "error": "FileExistsError",
+      "existing_artifacts_unchanged": true,
+      "repeat_network_requests": 0
+    },
+    "final_preservation_after_decode": {
+      "status": "passed",
+      "checked_after_actual_decode_and_independent_audit": true,
+      "old_protected_files_unchanged": 952,
+      "private_modes": "0700/0600",
+      "public_aggregate_and_evidence_and_links_verified": true
+    }
+  },
+  "metadata_capture": [
+    {
+      "source_path": "scripts/download/download.py",
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/scripts/download/download.py",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/scripts/download/download.py",
+      "filename": "scripts__download__download.py",
+      "bytes": 7098,
+      "sha256": "a7ed38c74e55cba9398a8a833f34d8a2314c5f743acac8b109faa5ff28232aa8"
+    },
+    {
+      "source_path": "data/raw.meta.tsv",
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/raw.meta.tsv",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/raw.meta.tsv",
+      "filename": "data__raw.meta.tsv",
+      "bytes": 7848074,
+      "sha256": "bb1efa2876536cbe1a8b67db5dda15249ca144f0cff69e481b638803cbdc9aca"
+    },
+    {
+      "source_path": "data/download/raw_30s_audio-low_sha256_tracks.txt",
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/download/raw_30s_audio-low_sha256_tracks.txt",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/download/raw_30s_audio-low_sha256_tracks.txt",
+      "filename": "data__download__raw_30s_audio-low_sha256_tracks.txt",
+      "bytes": 4648197,
+      "sha256": "7b7dcb44af0013d672377b9f9bce91247bf8b961f6a9c4b9527c055608e491ad"
+    },
+    {
+      "source_path": "data/download/raw_30s_audio-low_sha256_tars.txt",
+      "url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/download/raw_30s_audio-low_sha256_tars.txt",
+      "final_url": "https://raw.githubusercontent.com/MTG/mtg-jamendo-dataset/cafd8e20c265ed84f1e61f1c875327971f43a62f/data/download/raw_30s_audio-low_sha256_tars.txt",
+      "filename": "data__download__raw_30s_audio-low_sha256_tars.txt",
+      "bytes": 9000,
+      "sha256": "9c28e6090fac7fae7274296622e8fc8b6e905672c18707ac02c8be716d4623c3"
+    }
+  ],
+  "private_evidence_sha256": {
+    "metadata-02/selection.json": "6a338dc43b57fc7d04785d836254ba1b755e2579875ae0839b5acc283a80a28b",
+    "metadata-02/receipt.json": "c3d1132cc3048151a31bf4b820868d61f62ea1cc33261082cfb33b700ca89fd6",
+    "audio-01/fetch.json": "cd5b76ad4be08c5b61aa7c447501b95d16880fb0860b754d5645cc9cac0ed2fe",
+    "decode-01/decode.json": "f9ba5aded71479e3f9753690a8b7e4b8a63a27e706def5a73d7be1e4b76ee089",
+    "independent-audit.json": "e796adf1edef17faf2ad4a5a9ecb9f02d7df1f5ed58323ffd7e733f8d88a1479",
+    "preservation.json": "187efa24d6a48c43321a44ca5495a755a76dc7bafd0b6cc6db4f7c2b2dddad8d",
+    "repeat-check.json": "146ebea9eaf21945a536c6809824e2d58b709e397c2d794e09e3b018e91e4fa3",
+    "related-tests.log": "6a60b4dfd132903751577b833a8bc92e4d31babf8e1345f5a875e6e283396c9b",
+    "final-preservation-check.json": "1141a7af506a453900bdb8bc937c343580856682694d643ac3db63d7ebf2b529"
+  },
+  "notes": [
+    "Official fixed raw.meta file has56639 physical records; literal TSV yields56637 valid and2 quarantined delimiter rows; default CSV quoting merged records. Original source bytes preserved.",
+    "metadata-01 preceded adding previously consumed metadata/probe bytes to total network budget; metadata-02 uses final policy, identical selected20. No score/query/grade-based reselection.",
+    "First independent32768-frame decode gave same source length but a tiny float difference versus declared65536 algorithm (first-track max1.1920928955078125e-7); original diagnostic preserved. Same declared65536 independent implementation matched all20 PCM hashes; production code/data unchanged."
+  ],
+  "limits": [
+    "Uploader track-level weak labels; missing tags unknown; no interval truth or model-generated music description.",
+    "Known ID/exact normalized names/credit components/work names only; unresolved aliases/versions/acoustic near-duplicates and pretraining overlap not proven absent.",
+    "Noncommercial research metadata terms remain; this is not commercial authorization or a ready training corpus.",
+    "Exact byte check covers all prior60; same-normalization PCM pins cover prior20 only, not all60.",
+    "No acoustic fingerprint/cover/alias completeness or pretraining-unseen proof.",
+    "Data transport/decode preflight is not training or model-quality evaluation.",
+    "Research-only private files; no Java catalog import or UI change, no model loaded/trained or metric improvement claimed.",
+    "7577 is metadata candidate count; only20 audio files were fetched and decoded. No1k–2k training corpus is ready.",
+    "Official validation/test and SDD excluded from this train preflight; no claim of complete independent future evaluation set.",
+    "Current160 subjective grades were not used to select tracks, templates, settings or train a model."
+  ]
+}
