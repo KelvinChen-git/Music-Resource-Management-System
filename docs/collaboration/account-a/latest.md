@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-047本机CPU/MPS校准通过，CUDA blocked；接收046限定批准，派发047工具审核
+
+A；2026-10-31 America/Chicago；branch `codex/MUS-047-device-preflight`，baseaaf5e4bbffa61969b3d7bf993b408acec195a818，最终实跑源码 `d8555fa2ee888107cc9fac9e0eda373fd9c2e777`；最终文档交付SHA见handoff.source_sha。047 review：实现与小样本校准完成，工具待独立审核；不叫训练/模型质量/P95或CUDA通过。
+
+ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，18:48:07Z/18:58:10Z/19:01:40Z双方fetched。046-R1/rev1准确e4e6bfd/basee109b5c approve_scoped已原字节导入和接收JSON，B12原合成+7独立方法passed，真实模型/音频/质量未复现，非045/047批准。旧卡关闭；新 `MUS-047-R1-B/rev1` reviewed d8555fa/baseaaf5e4b已assigned未认领，仅新纯数值/设备/cache/流式边界/12合成检查和静态runner/E22/config，只输出B新047报告与own latest，不需GPU/torch或A私有数据。
+
+E22/config先提交，固定既有train ID前3、完整EOF/PCM核验后首120秒/首中尾9个唯一10秒窗、6原tag模板，非caption/test。独立prepare建立CPU参考包，run显式cpu/mps/cuda:0，原严格CPU loader后显式迁移且核全部参数device/FP32/冻结；no fallback/no autocast/no TF32，设备环境/模型/输入/配方/源码参与独立key，前后数据/模型/源码/环境核验。原23源码/045/046工具未改，包仅ignore.local，不租卡/上传/下载/新fit或换生产cache。
+
+初585421e CPU参考01已通过，首MPS01在模型前误用旧16MiB非MP3 JSON reader，inputs.npz17,280,264bytes及checkpoint超限拒绝；日志/包/失败原样保留。修复d8555fa仅新runner有界流式regular/hash（NPZ32MiB/JSON原限/原checkpoint准确大小）和两回归，不改旧helper/数值阈值。另建CPU参考02，两版CPU数组逐元素相同，唯一实际MPS模型校准02通过。
+
+最终CPU对旧golden向量差1.63e-8；MPS对CPU最大向量差5.07e-7、余弦6.36e-12，整曲/三窗得分差6.39e-7/4.18e-7，全部<1e-4预注册阈值。参考分差>2e-4的稳定候选两两顺序两模式各18对、翻转0/近并列0；两设备key不同。1warmup后3timed，同batch3音频/6文本；9窗热SDK中位CPU656.31ms/MPS240.35ms，比2.73，6文本91.49/41.50ms；只是本小批次编码含CPU DSP/传输，不含解码/下载/加载/训练、不是P95。MPS当前allocated800,590,080bytes是运行后观测非峰值。本机torch2.6/Darwin-arm64无CUDA build/count0，真实cuda:0请求exit2/statusblocked，模型加载/编码/fit0，无CPU回退，不报CUDA性能。
+
+最终66相关检查passed（12新/54旧，不叠加初64）。独立NumPy不用生产calibration复算向量差/余弦/两模式得分/稳定顺序计数/速度比及两版CPU相等，非B本人；真实重复MPS已有输出在模型前FileExistsError，额外模型/编码/fit0，全run SHA保持。全部045/046文件集合/hash、043/044/160原件/23源码/54cache/原版f3b0da1干净保持，历史951保持、唯一授权B入口接收046/改派047。047目录0700/文件0600，原波形/身份/文字/特征/包不入Git。旧141/160不训练选参、两保留test不取音频/描述/评分；无Java/Vue/UI/DB/API/依赖安装/旧模型或main变化，无关Maven/build未重复、不称本轮passed。
+
+交付新校准模块/runner/12新检查/固定参数/E22/B接收与新卡、README/PROJECT/STATUS/验证MUS-047.md和聚合JSON。下一步另立有界MPS特征编码集成，独立设备缓存继续验证；CPU拟合小适配层，CUDA另有实际设备再校准，不凭本小样本租卡或扩训。提交后原子publish/sync回读，远端可读不等于B认领/批准或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
 ## MUS-047开始：接收046限定批准，准备CPU/设备校准
 
 A；2026-10-31 America/Chicago；branch codex/MUS-047-device-preflight，baseaaf5e4bbffa61969b3d7bf993b408acec195a818。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，18:48:07Z双方fetched。

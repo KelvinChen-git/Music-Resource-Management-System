@@ -1,11 +1,11 @@
 {
   "schema": "music-task-dispatch-v1",
   "owner": "b",
-  "status": "waiting",
+  "status": "assigned",
   "claimed_by_b": false,
-  "task_id": null,
-  "assignment_revision": null,
-  "task_card_path": null,
+  "task_id": "MUS-047-R1-B",
+  "assignment_revision": 1,
+  "task_card_path": "docs/collaboration/tasks/MUS-047-R1-B.md",
   "previous_task": {
     "task_id": "MUS-046-R1-B",
     "assignment_revision": 1,
@@ -26,5 +26,13 @@
     "feed_sha": "4b653974056476ca53e77a4097cda5ffda0de090",
     "acceptance_record_path": "docs/verification/MUS-035-N1-B-acceptance.json"
   },
-  "note": "046 limited synthetic/static tool approval accepted. Wait for a new versioned task; no GPU or quality approval."
+  "note": "046 synthetic/static approval received. New047 pure numerical/device/cache/binary-boundary and static runner only; not A real GPU result/quality/deployment certification.",
+  "reviewed_sha": "d8555fa2ee888107cc9fac9e0eda373fd9c2e777",
+  "comparison_base_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
+  "review_branch": "review/MUS-047-B-device-calibration",
+  "allowed_output_paths": [
+    "docs/reviews/MUS-047-B.md",
+    "docs/collaboration/account-b/latest.md"
+  ],
+  "claim_channel": "collab/account-b latest.md"
 }

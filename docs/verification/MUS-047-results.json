@@ -1,0 +1,239 @@
+{
+  "schema": "sonora-device-calibration-summary-v1",
+  "task": "MUS-047",
+  "branch": "codex/MUS-047-device-preflight",
+  "base_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
+  "actual_source_sha": "d8555fa2ee888107cc9fac9e0eda373fd9c2e777",
+  "initial_source_sha": "585421e52be56f22039beb7e938f6707cd5570c7",
+  "status": "CPU_reference_and_MPS_passed_CUDA_blocked",
+  "config_sha256": "0ae18eb1c42e9538403aa221c3d158ba3963618a2c10450652529ff543019cb1",
+  "package_sha256": "019bf2063cd8a2b8fb9832bf5c9f8495a759281a358b387ec9487f5e2f81d41d",
+  "counts": {
+    "train_tracks": 3,
+    "unique_audio_windows": 9,
+    "tag_prompts": 6,
+    "caption_inputs": 0,
+    "test_inputs": 0,
+    "fit_runs": 0,
+    "downloads": 0,
+    "warmup_passes_per_device": 1,
+    "timed_passes_per_device": 3
+  },
+  "CPU_reference": {
+    "timing": {
+      "audio_all9_ms": [
+        657.780957990326,
+        656.3104999950156,
+        651.7095000017434
+      ],
+      "text_all6_ms": [
+        91.48750000167638,
+        90.71108291391283,
+        93.4459159616381
+      ],
+      "median_audio_ms": 656.3104999950156,
+      "median_text_ms": 91.48750000167638,
+      "repeat_max_abs_difference": 0.0,
+      "cuda_peak_allocated_bytes": null,
+      "mps_current_allocated_bytes_after_run": null,
+      "scope": "warm_SDK_encoding_including_CPU_feature_preparation_and_transfer_no_decode_load_or_training;not_P95"
+    },
+    "load_ms": 4751.185292028822,
+    "golden_control": {
+      "status": "passed",
+      "vector_max_abs_difference": 1.6339328529069164e-08,
+      "max_cosine_distance": 0.0,
+      "modes": {
+        "whole": {
+          "score_max_abs_difference": 5.551115123125783e-17,
+          "stable_pairs": 18,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 0
+        },
+        "segment": {
+          "score_max_abs_difference": 0.0,
+          "stable_pairs": 18,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 0
+        }
+      },
+      "scope": "small_fixed_calibration_numerics_not_retrieval_quality_or_training_speed"
+    },
+    "cache_key_sha256": "481ae48c2a031355364734ff48d2f18c0616c45ef75ebf944ea8643f970f657d",
+    "model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "environment_code_sha256": "b7c51667d5ed603a99f3e1153281bf49c79f4af25514d9801356f58008572cd2",
+    "offline_cache_files": 54
+  },
+  "MPS": {
+    "status": "passed",
+    "device": "mps",
+    "hardware": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "torch_available": true,
+      "torch": "2.6.0",
+      "cuda_build": null,
+      "cuda_available": false,
+      "cuda_count": 0,
+      "mps_available": true
+    },
+    "source_sha": "d8555fa2ee888107cc9fac9e0eda373fd9c2e777",
+    "cache_key_sha256": "01f478cdef8687a886cd33cc43b877f5575ec9e374e6dceb5fb7734186709c92",
+    "package_sha256": "019bf2063cd8a2b8fb9832bf5c9f8495a759281a358b387ec9487f5e2f81d41d",
+    "strict": {
+      "id": "A",
+      "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+      "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+      "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+      "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+      "audio_architecture": "HTSAT-base",
+      "fusion": false,
+      "strict_missing": [],
+      "strict_unexpected": [],
+      "removed_nonlearned_position_ids": true,
+      "loader": "torch_weights_only_true_mmap_cpu_strict_v1"
+    },
+    "comparison": {
+      "status": "passed",
+      "vector_max_abs_difference": 5.066394805908203e-07,
+      "max_cosine_distance": 6.356248860583946e-12,
+      "modes": {
+        "whole": {
+          "score_max_abs_difference": 6.393350296396427e-07,
+          "stable_pairs": 18,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 0
+        },
+        "segment": {
+          "score_max_abs_difference": 4.1835566938486224e-07,
+          "stable_pairs": 18,
+          "stable_pair_flips": 0,
+          "near_tie_pairs": 0
+        }
+      },
+      "scope": "small_fixed_calibration_numerics_not_retrieval_quality_or_training_speed"
+    },
+    "timing": {
+      "audio_all9_ms": [
+        231.47937504108995,
+        240.3485419927165,
+        247.35258310101926
+      ],
+      "text_all6_ms": [
+        39.178165956400335,
+        41.50229098740965,
+        41.68812499847263
+      ],
+      "median_audio_ms": 240.3485419927165,
+      "median_text_ms": 41.50229098740965,
+      "repeat_max_abs_difference": 0.0,
+      "cuda_peak_allocated_bytes": null,
+      "mps_current_allocated_bytes_after_run": 800590080,
+      "scope": "warm_SDK_encoding_including_CPU_feature_preparation_and_transfer_no_decode_load_or_training;not_P95"
+    },
+    "load_ms": 5686.6439579753205,
+    "small_batch_audio_speed_ratio_cpu_over_device": 2.7306614575382127,
+    "model_loads": 1,
+    "new_fit_runs": 0,
+    "test_inputs": 0,
+    "limits": [
+      "Device numerical calibration only, not training/model quality or production migration.",
+      "MPS results do not validate CUDA; small warm SDK timing notP95/end-to-end/training speed."
+    ]
+  },
+  "CUDA": {
+    "status": "blocked",
+    "reason": "requested_device_unavailable",
+    "device": "cuda:0",
+    "hardware": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "torch_available": true,
+      "torch": "2.6.0",
+      "cuda_build": null,
+      "cuda_available": false,
+      "cuda_count": 0,
+      "mps_available": true
+    },
+    "model_loads": 0,
+    "encodes": 0,
+    "fits": 0
+  },
+  "tests": {
+    "passed": 66,
+    "new": 12,
+    "existing": 54
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "Same operator independent NumPy float64 score/geometry/stable-order calculations, no production calibration imports; old043-046/frozen23/cache54 integrity audit",
+    "MPS_differences_scores_order_counts_and_speed_ratio_match": true,
+    "CPU_reference02_identical_to_initial01_despite_streaming_fix": true,
+    "CUDA_blocked_zero_model_load_or_encoding": true,
+    "all_prior045_046_file_sets_and_hashes_preserved": true,
+    "historical951_preserved_one_authorized_B_task_closure": true,
+    "043_044_160_originals_frozen23_cache54_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "ffccf3a552ba8277adb59d80316a4d6c75d67662955eb246bfeb1f85fdf5b5a5"
+  },
+  "repeat_run": {
+    "status": "passed",
+    "exit_code": 1,
+    "expected_error": "FileExistsError",
+    "original_MPS_run_artifacts_unchanged": true,
+    "additional_model_loads_encodes_or_fits": 0
+  },
+  "initial_failure": {
+    "initial_cpu_source": "585421e",
+    "initial_cpu_reference": "passed",
+    "initial_mps_exit": 1,
+    "initial_mps_model_loads": 0,
+    "initial_mps_numerical_comparison_executed": false,
+    "cause": "Old holdout_assets.recheck treats every non-MP3 as JSON <=16MiB; inputs.npz is17,280,264bytes and checkpoint also exceeds that cap.",
+    "fix": "Use new bounded streaming hash helper in this standalone device runner, with32MiB NPZ bound and exact pinned model-size bound; no old frozen helper or numerical tolerance changed.",
+    "next": "Commit corrected source and create fresh CPU reference02 and MPS02; preserve first outputs."
+  },
+  "decision": "Isolated MPS numerical calibration passed; keep existing model and production caches. Plan bounded device-aware feature integration separately; no CUDA or training speed claim.",
+  "limits": [
+    "3training recordings/9unique windows/6tag texts only, not representativeness/model-quality validation.",
+    "Small warm SDK encoding includes CPU DSP and transfer, excludes decode/download/model load/training, not P95.",
+    "MPS current memory observed after run is not peak GPU memory; CUDA memory/speed unavailable.",
+    "B046 approval only exact prior synthetic/static tools;047 new card assigned, not approved."
+  ],
+  "private_evidence_sha256": {
+    "mps-invocation.json": "25c3ca60e2c32532163d32b7e220ee32ab2e1a37fbd81ce21f9e42a681e2f289",
+    "mps.log": "cab2753c4fcd290b24a121c544debeb070a4d0bd88500ceb4681c99a99445e67",
+    "related-tests.log": "bdfda3c60fd4373e9ca9ffdea127b3d5efe1fbedfce16d79eee3e484fa0cacf5",
+    "mps-exit.json": "5cc319f54b05a38799195a491c303aa686eab7caccfdbbf1e8b8c07405cb7392",
+    "prepare-02.log": "6331d7543273f4457f6cda27feb72a2fd019166e8f172ffb24a0e75bda5ac999",
+    "runs-02-invocations.json": "31498b92ef843e1b5e560e3dd3044688725cd53f4afb1da7a44039eddd768b57",
+    "prior-before.json": "faca08d30df90a23905527424ade48acd3eb944063084f07d94b9d44f929fd27",
+    "repeat-check.json": "dff05a70f6fb4056b47843189ecb00893426f0a743288d73a6f13c0429e2439a",
+    "independent-audit.log": "fdc28ce8a88c4ee6d230a2df10519bab589da879db85b6c046a8e08448e27b57",
+    "prepare-invocation.json": "a21bfa403874968d8acf68fa063099605ba333a4c27835df9e441626a7f22904",
+    "independent-audit.py": "ffccf3a552ba8277adb59d80316a4d6c75d67662955eb246bfeb1f85fdf5b5a5",
+    "prepare-exit.json": "e89df0eae5ec7db81135aed16463968955c578bcc4f2ec43172eff351f080c17",
+    "initial-device-note.json": "25500fbba70cfb9a4dba084cdc13c6550a6b2911626b40dd785f0a8893ca66cf",
+    "mps-02.log": "310fda182a4da3fcbabdf129d668924c8b6d5de31d89070ec001509faa004513",
+    "prepare.log": "8922eaa6f207f01b0aa4472a54fde415d48d579fdfba2be0b1dc11da7d198985",
+    "runs-02-exits.json": "547ee425ff34e9f784fc53c040ffa181c30b9e5f44814d4ae997180d945626a6",
+    "independent-audit.json": "9a7ea947c0db5b08a89cd709f68c71449e6827f857f47b4bc690cabe790183f7",
+    "related-tests-final.log": "92403eb214ef3675705963aa7c89550522e1db54b2acc7d78148fdce05c2a557",
+    "cuda-01.log": "fa7363ac77dff9781b32bca5f681693798a05f0abfcb827e32d77b13a4bf5f55",
+    "repeat-mps.log": "cd2aad1d4f20c234d4dca7236394b1d11b157924400d03ba69d98487458b3f5e",
+    "mps-02/features.npz": "27149e01db18d5fa1f473a94ba1141f9e8184316bda0a762f758bddebe8bfc04",
+    "mps-02/result.json": "e650f3259605abb1552267b7c1c349e6ea496761edf6c35dd4c52833714bf279",
+    "mps-02/freeze.json": "3550b75584b444662fa449516ea8c2d42c75c1fbcc904018dc510058eea71827",
+    "cuda-01/result.json": "206c3fc79ca39bf2db4789a2ce6b2d939d74a05d40f2e6166b3d44040971b833",
+    "reference-01/inputs.npz": "5bfcc79519d2b72443b7b6a532f7e22234a63595129c585e39cb274ce609d24a",
+    "reference-01/reference.npz": "1278711112b2fbfa20514204ebd2eb0a2eaf83faebc3df7f3c065a7596526478",
+    "reference-01/package.json": "37a6521c687c83651fd8884658c22446160c7c8dea5239c3e3f363ee45e2cae3",
+    "reference-01/freeze.json": "ae25e00f480a4884bbb34dee90b378e56cbf41e4f033a4a3a063963cacd0f3fd",
+    "mps-01/failure.json": "8951b130c893fc926033e8f49209ac6a3fdeafc544b2a72f4a52ceb40713e6dd",
+    "reference-02/inputs.npz": "5bfcc79519d2b72443b7b6a532f7e22234a63595129c585e39cb274ce609d24a",
+    "reference-02/reference.npz": "1278711112b2fbfa20514204ebd2eb0a2eaf83faebc3df7f3c065a7596526478",
+    "reference-02/package.json": "019bf2063cd8a2b8fb9832bf5c9f8495a759281a358b387ec9487f5e2f81d41d",
+    "reference-02/freeze.json": "d52d1b56e5ae60e61337e446d5a0188bf2fba79a98cad54f3d0ad4f329888d78",
+    "final-doc-qa.json": "55e8638828e2baee003588ce7ffbdf8480e9b54231b9681a8fadc68c378a3f62"
+  }
+}
