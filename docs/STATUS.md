@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-11-01 America/Chicago）：codex/MUS-050-caption-source-audit，base已发布ea54ffc。描述训练来源metadata审查完成/review：MusicBench52,768行=5,079来源视频ID，TestA/B同400音频；train/test无ID交叉，但跨MusicCaps eval重叠2,631来源。2,448个非eval/未增强路径仅候选metadata框，音乐作者/作品隔离和音频未就绪。独立计数及旧工件保护passed；新fit/音频/模型加载0，保持identity。下一步先核JamendoMax生成caption与现有研究音频的白名单覆盖/区间/权限，再另定训练。
+- 当前工作（2026-11-01 America/Chicago）：codex/MUS-051-caption-coverage，从干净已发布2e13f61开始。owner A，先冻结现有train100/val20与全部SDD/旧60/已用caption-dev/保留test关系排除，再完整流式核JamendoMax固定生成caption的ID覆盖与合法区间。只输出白名单候选、不存全库正文，不训练或开启项目保留测试描述。
 
-- 当前协作与保护：UTC2026-11-01T05:14:56Z/05:22:08Z双方feed fetched，A36d2ae9/sourceea54ffc，Bde296c7/sourcef0d3ef2未变并ack；047-R1/rev1原assigned卡保持、未认领，无新B批准。050仅README/PROJECT/STATUS/A latest/evaluation与verification新报告，私有.local/a/mus050/0700/0600。20份metadata共97,635,196 bytes<96MiB；单文件因官方JSON结构事先显式修订64→88MiB，总上限不变。旧045–049/141+160/权重/cache/原版/UI/Java/DB/main保持。
+- 当前协作与保护：UTC2026-11-01T05:27:16Z双方feed fetched，A019badc/source2e13f61，Bde296c7/sourcef0d3ef2未变并ack，原047-R1/rev1 assigned卡保持。允许新caption_coverage模块/标准库runner/合成检查、E25/config、README/PROJECT/STATUS/A latest/evaluation与verification051；私有仅ignore.local/a/mus051/0700/0600。全轮metadata body预算1GiB，固定约787MB文件单次GET、SHA/长度核验后才发布完整覆盖，失败留记录无自动重试；不取音频/权重/嵌音频parquet/17GB归档、不安装依赖/训练/云端或改UI/main。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,6 +58,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-051 现有音频caption覆盖 | in_progress / A（冻结白名单/流式工具） | codex/MUS-051-caption-coverage / 2e13f61，依赖050/045 | 全部排除关系先冻结、仅现100train/20val，固定版本SHA/长度单次有界流式扫描、区间/重复/冲突/覆盖完整报；无fit/音频或保留test文字，候选非训练ready |
 | MUS-050 文本音乐训练来源实核 | review / A（metadata完成，描述训练集未ready） | codex/MUS-050-caption-source-audit / ea54ffc，依赖049/041 | 官方20文件/hash/独立计数通过，MB52,768行/5,079来源、eval交叉2,631；2,448候选非ready/JMax494样本有许可冲突，新fit/音频0，先核现音频caption覆盖 |
 | MUS-049 正标签分数CPU训练 | review / A（一次拟合/比较完成，工具独立审核待安排） | codex/MUS-049-positive-score-training / 07f1d27，basee7fea73/依赖048 | 100train/335正tag、CPU666ms/200步未收敛；主整曲MRR.4208→.4203未改善、保留identity，86检查/独立复算/重复保护通过，无追加调参/test/部署 |
 | MUS-048 有界MPS设备特征缓存 | review / A（140真实构建ready，工具独立审核待安排） | codex/MUS-048-device-feature-cache / cb77a01，依赖047校准/045-046数据 | 140双视图/624窗/183tag/24dev文本 ready，76检查/独立复算/实际CPU typed读取与重复保护通过；宏指标/前5保持，仅111/112近并列交换，无fit/下载/test/生产替换 |
@@ -1004,3 +1005,13 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - JamendoMax按文件名固定两个日期样本1,944行/494ID/完全重复1,198行；7ID许可不同、252audio字段不同，禁止下载和NC/ND等保留，不挑最宽松行。样本与现140ID交集0不推全库；caption787,366,586 bytes仅HEAD、正文/完整覆盖0，生成区间文字不当人写真值或整曲目标。LP-MTT仅固定卡片/文本parquet列表、未做真实行数/作者划分审计，不声称22k训练就绪。
 - 同操作者独立标准库流式计数/固定11字符ID/逐字段相等法复核全部三split、eval交叉/2,448框和JMax样本冲突一致，不是B审核或语义质量检查。全045–049文件集合/SHA、043/044原件/160/旧951/23源码/54共享cache/B047入口与base/原版f3b0da1干净保持。无新模型加载/编码/fit/质量评分/项目保留test描述；SDD评测角色不变，原049保持identity。文档QA适用，无关Maven/build/86旧训练检查不重复。
 - 05:22:08Z双方feed再次fetched、B未变并ack，原047-R1/rev1 assigned不改不竞争派卡。下一阶段另预算核JamendoMax caption文件：先冻已有train100/val20身份与所有SDD/旧开发/保留test排除，再核白名单描述覆盖/许可/精确区间/重复，容量够且特征对齐后另立训练；不静默取0.79GB metadata或16.76GB gzip/整库音频。不用当前dev反复搜参或新增人工全组合包，原模型/UI/DB/main保持。见[来源报告](evaluation/MUS-050-caption-data.md)、[验证](verification/MUS-050.md)及[聚合JSON](verification/MUS-050-results.json)。
+
+
+### MUS-051范围与验收（2026-11-01）
+
+- A从干净2e13f61创建codex/MUS-051-caption-coverage；05:27:16Z双方feed成功、B未变并ack。047-R1/rev1原卡不改，旧045–050/141+160/权重/cache/原版/UI/DB/main保持。
+- 新纯标准库流式覆盖工具/runner/合成边界检查，E25/config先冻结。准备时核043原metadata/044组计划/045现有100train20val和实际EOF/收据SHA，排除全部SDD、旧60、caption-dev/保留caption-test、200tag-test的ID/作者credit连通组件/作品/源内容，不能按caption或模型结果改白名单。
+- 固定050同JamendoMax版本，先核官方LFS SHA/完整长度，再单次全流式GET，metadata body总上限1GiB、预先计费、无自动重试，超时/截断/SHA失败则不发布完整覆盖。只保存白名单匹配的原始行与生成caption候选，其他描述不输出、不存全库原件，不输入模型；有限行长/严格ID/finite区间/EOF/重复和冲突核查，coverage不等于训练许可/波形对齐或质量。
+- 范围允许新caption_coverage.py及test、scripts/audit_caption_coverage.py、E25/config、必要README/PROJECT/STATUS/own latest和evaluation/verification/MUS-051*；只ignore.local/a/mus051/0700/0600。实际不解码/编码/模型加载/拟合/新音频、项目保留test描述/评分或Java/Vue/API/依赖/云端/main变化。覆盖不足或权限/对齐未核如实报告，不自动扩音频或搜参数。
+
+- 实现检查点：新caption_coverage/固定runner/12项合成边界检查及E25/config就绪，连既有86最终98 passed。实际白名单预检仍100train/20val、无新增隔离，teacher元数据权利/波形对齐未核。将干净提交后先保存freeze再唯一全量扫描；目前没有新caption覆盖结果或fit，不把测试合成数据当真实语料。

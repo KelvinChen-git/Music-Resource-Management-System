@@ -288,3 +288,8 @@ MUS-049实际完成（2026-11-01）：干净07f1d277f5abdb6ffcdaffc0b07da615b854
 在049主整曲目标未改善后，先核现成文本—音乐来源，未追加训练。20份固定官方metadata/卡片/列表共97,635,196 bytes，正常TLS/文件SHA验证、独立流式计数一致；MusicBench52,768训练行对应5,079来源视频ID而非同等不同作品，TestA/B共享400音频，其train/test ID交集0。跨数据源必须区分split：train中2,631来源属于MusicCaps AudioSet-eval，不能训练后再用该eval冒充无重叠测试。2,448个非eval匹配原未增强路径只为私有候选metadata框，`author_id`是描述作者、没有音乐作者/作品隔离，音频未就绪。
 
 JamendoMax两个固定日期样本1,944行/494ID、1,198重复行且7ID许可URI不一致，禁止下载/NC/ND等不能被整体卡片许可覆盖；样本与现140 ID交集0不外推全库。30秒生成caption文件HEAD约787MB，正文/全量覆盖尚未核，LP-MTT也仅卡片级备选，不冒充人工真值或实际row审计。下一步另立metadata流式预算和现有train/val身份白名单，先排除全部SDD/旧开发/保留test关系，核已有音频能匹配的caption数量、区间、许可冲突后再定训练；不自动取16.76GB MusicBench gzip或整库音频。独立计数/原045–049/hash/模型cache/备份保护通过；新音频/编码/fit/测试评分0、保持identity，B047原卡和SDD评测角色不变。方法与限制见[来源核查](evaluation/MUS-050-caption-data.md)和[验证](verification/MUS-050.md)。
+
+
+## MUS-051：现有研究录音的生成caption覆盖准备（2026-11-01）
+
+在050基础上，先用已用100train/20val与全部SDD/旧60/已用caption-dev/保留caption-test及200tag-test重新核ID、完整作者credit连通组件、作品/已知精确内容关系；120全部保留，不按caption补选。新增纯标准库覆盖模块/固定HTTPS流式runner及12项边界检查，连86既有共98 passed。固定JamendoMax同版本约787MB文本/LFS SHA、任务级1GiB持久预记预算、不存整库正文，仅匹配白名单原行私有保存；15–30秒且不超过实际EOF、重复/冲突/重叠分别报告，完整SHA/长度通过才出完整覆盖。当前只是实现与准备，真实扫描待干净提交后进行，不训练/取音频/打开项目保留test描述；候选仍需逐曲权限与波形区间对齐复核，不能当training_ready。

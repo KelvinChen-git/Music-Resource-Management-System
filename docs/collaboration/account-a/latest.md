@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## MUS-051开始：现有100train/20val的生成caption覆盖，尚未真实扫描
+
+A；2026-11-01 America/Chicago；branch codex/MUS-051-caption-coverage，base2e13f615a6f9ea7a42c2ef73446449a21f35a3c0。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC05:27:16Z双方fetched，B未变。原047-R1/rev1卡assigned未认领不改，无新批准。
+
+E25/config固定050同JamendoMax版本、787366586 bytes/LFS SHA320c09a…，先冻结现有120与全SDD/旧60/dev及保留test身份/作者credit组件/作品/内容关系，预检100train20val均保留。新纯标准库模块/HTTPS流式runner与12项边界检查连既有86最终98 passed；待干净提交后freeze/唯一完整GET。任务级1GiB持久预记budget、失败不清零/不自动重试，只保存白名单原行/生成caption候选，不存整库正文；完整SHA/长度才出coverage。15–30s/实际EOF、重复/同区间冲突/重叠明确报出，候选非training_ready，逐曲teacher许可和版本波形/区间对齐仍未核。
+
+允许新模块/runner/合成检查、E25/config/必要README/PROJECT/STATUS/own latest和051验证；私有只ignore.local/a/mus051/0700/0600。旧045–050/141+160/模型/cache/原版/UI/DB/main只读；无新音频/解码/编码/模型加载/fit/质量评分或项目保留test文字模型输入，不租卡/云端/自动扩训或竞争派B卡。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-050描述训练来源metadata完成；训练集未ready，下一步先核caption覆盖
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-050-caption-source-audit`，base `ea54ffc46627f57b5112ea3cc460d335fab258ff`；最终交付SHA见handoff.source_sha。050 review，文档/metadata审查完成，不是新训练/音频可用性或模型质量验收。

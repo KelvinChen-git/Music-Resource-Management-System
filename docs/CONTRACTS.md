@@ -484,3 +484,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - CPU/NumPy float64 full-batch GD，初始步长1、Armijo1e-4/回退0.5最多20、最多200步，训练梯度max<=1e-8或相对loss变化<=1e-12早停；不以验证/描述分数选epoch/参数。记录loss轨迹、步数、梯度、正标签余弦变化、||W-I||和停止原因；到步数上限须明示未证收敛，loss下降不等于检索提升。最多1fit，无grid/重启选优。
 - 比较identity/旧alpha0.1/1/5与新W，原三W保持。主开发指标140候选整曲录音等权MRR，完整报两池两模式R1/R5/MRR/query宏及标签验证分桶；新W分别相对identity和旧alpha0.1作20录音配对bootstrap（seed20261031049、2000次）。旧alpha0.1是已看046中旧三组最好的MRR，仅作明确开发锚点；其余两旧候选仍全报，不作新盲测或显著性外推。
 - 固定本轮不自动选模/扩训/部署/开保留test。实现数值梯度/正项mask/等权/归一化不靠长度/确定性与优化下降验证；干净提交先freeze，绑定cache/NPZ/原W/参数/源码/NumPy环境，前后重验，独占输出重复在fit前拒绝。W/逐曲细节只私有，公开聚合/hash；CPU训练过程不导入或加载Torch/CLAP，旧缓存及所有评分原件只读。
+
+
+### E25. MUS-051：现有研究音频的生成caption覆盖审计
+
+- base2e13f61，独立codex/MUS-051-caption-coverage。先核043全部源metadata/044组计划/045当前100train20val/官方音频与收据SHA/实际EOF；冻结全SDD、旧60、caption-dev/保留caption-test及200tag-test的录音ID、完整名称表上credit别名连通组件、规范化作品名/源SHA/已知旧PCM排除。新发现跨train/val作者关系两边均隔离，不补选、不按文字/分数更改。只用SDD身份列，不输出其caption或作模型输入；metadata文件可读不是访问隔离或预训练未见证明。
+- 固定JamendoMax13090d7的final_caption30sec.jsonl，787366586 bytes、SHA256 320c09a261b8bea0e9dbeb11b7ec5471582d27d7518c08df7857a80fb445cb7e；config先提交、干净源码先保存allowlist/freeze再请求正文。TLS、只准官方HTTPS/HF跳转、identity编码/完整Content-Length、逐行<=64KiB/对象/正整数ID/JSON finite；全流SHA/长度通过才出完整结果。任务级ignore账本flock、预记全文件body、fsync，总1GiB，无自动重试，失败仍计费；不同输出不能重置预算，已有输出在网络前拒绝。
+- 未列白名单的caption不保存/返回/作监督或模型输入，流式处理会物理读取整文件，不冒充其不存在。只保存匹配白名单的原行作独立核查，不存整库正文；matched生成caption必须有finite合法start/end、15–30秒、end<=原实际EOF、不裁切补标签，非空<=8192字符。精确重复只算一次，同ID/区间不同文字全部隔离，其他重叠区间明确报出；生成来源固定model_generated，未知组合不当确认负例。
+- 完整报白名单排除数、原文件行数/身份数、matched/合法/重复/冲突/越EOF和train/val覆盖录音/creator组件/区间分布，公开仅aggregate/hash。coverage候选不叫training_ready：原MTG许可与收据只证明已用音频来源，JamendoMax逐曲metadata许可/下载标志差异及版本波形/区间对齐仍待核；原048整曲/三窗特征不能视作任意30s caption的已对齐特征。没有新音频/解码/编码/模型加载/fit/质量评分、项目保留test文字模型输入/云端或应用变化，不自动扩训/部署。
+- 标准库模块/runner/适配合成检查、一次有界真实扫描及匹配原行的独立计数复算一起交付。私有仅.local/a/mus051/0700/0600、失败保留；旧045–050/141+160/原权重/54cache/23源码/原版/UI/DB/main不变。B047原assigned卡不扩范围/不竞争派卡，051工具独立审核另待安排。
