@@ -66,6 +66,8 @@ MUS-049已复用MPS特征完成一次CPU正标签逐项分数训练：100首/335
 
 MUS-050已完成描述训练来源的固定metadata实核：MusicBench52,768训练行实际5,079来源视频ID，TestA/B为同400音频；自身train/test ID无交叉，但train含2,631个MusicCaps AudioSet-eval来源，不能混作无重叠测试。2,448个非eval/未增强路径仅是metadata候选框，缺音乐作者/作品关系与就绪音频；JamendoMax两小样本1,944行/494ID且有许可冲突，完整生成caption尚未取。下一步优先审计生成caption与现有研究训练音频的白名单覆盖/区间/权限，再决定训练；本轮只取约93MiB metadata，新fit/音频0，原模型/SDD评测/备份/UI/main保持。见[MUS-050](docs/verification/MUS-050.md)。
 
+MUS-051已完整流式核JamendoMax固定caption文件787MB/SHA：1,812,352行/360,740来源ID，现100train/20val匹配287行；按15–30秒/实际EOF固定规则保留270区间，覆盖train49首/246段、val8首/24段。15短尾和2个约2ms越EOF原样隔离，无重复/冲突/重叠；只保存白名单原行，不落全库正文。98检查/独立原行重建/两种实际重跑保护通过；当前是生成caption候选，逐曲权限与波形版本/区间对齐待核，尚未训练。下一步先做匹配57来源的有界预检，原模型/SDD评测/备份/UI/main保持，见[MUS-051](docs/verification/MUS-051.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

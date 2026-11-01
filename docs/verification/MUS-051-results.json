@@ -1,0 +1,183 @@
+{
+  "schema": "sonora-caption-coverage-result-v1",
+  "status": "coverage_completed_not_training_ready",
+  "summary": {
+    "source_rows": 1812352,
+    "source_unique_ids": 360740,
+    "allowlisted_rows": 287,
+    "rejected_rows_by_reason": {
+      "interval_length_outside_policy": 15,
+      "beyond_verified_EOF": 2
+    },
+    "exact_duplicate_valid_rows": 0,
+    "conflicting_intervals": 0,
+    "conflict_quarantined_unique_rows": 0,
+    "accepted_unique_intervals": 270,
+    "overlapping_interval_pairs": 0,
+    "splits": {
+      "train": {
+        "allowlisted_recordings": 100,
+        "covered_recordings": 49,
+        "covered_creator_components": 42,
+        "accepted_intervals": 246,
+        "intervals_per_recording_histogram": {
+          "0": 51,
+          "1": 20,
+          "6": 5,
+          "2": 1,
+          "8": 6,
+          "5": 2,
+          "11": 2,
+          "4": 3,
+          "7": 5,
+          "14": 2,
+          "15": 2,
+          "9": 1
+        }
+      },
+      "validation": {
+        "allowlisted_recordings": 20,
+        "covered_recordings": 8,
+        "covered_creator_components": 8,
+        "accepted_intervals": 24,
+        "intervals_per_recording_histogram": {
+          "0": 12,
+          "8": 1,
+          "1": 4,
+          "5": 1,
+          "3": 1,
+          "4": 1
+        }
+      }
+    },
+    "label_source": "model_generated",
+    "training_ready": false
+  },
+  "allowlist_summary": {
+    "input_counts": {
+      "train": 100,
+      "validation": 20
+    },
+    "eligible_counts": {
+      "train": 100,
+      "validation": 20
+    },
+    "excluded_reasons_nonexclusive": {},
+    "all_SDD_and_prior_and_reserved_groups_excluded": true,
+    "teacher_metadata_rights_and_waveform_alignment_verified": false,
+    "training_ready": false
+  },
+  "bytes": 787366586,
+  "source_sha256": "320c09a261b8bea0e9dbeb11b7ec5471582d27d7518c08df7857a80fb445cb7e",
+  "physical_lines": 1812352,
+  "source_fully_verified": true,
+  "raw_full_corpus_saved": false,
+  "new_audio": 0,
+  "fits": 0,
+  "matched_source_sha256": "5f1ce6e4a28a70509943ae74a703cbfc30e3b3755ae2d916034d84dba865d698",
+  "candidates_sha256": "90852696a5943fc48926be55218f0240d2f21d8b8c0560837088c98b50de8394",
+  "completed_at_utc": "2026-11-01T05:34:59.991206+00:00",
+  "task": "MUS-051",
+  "branch": "codex/MUS-051-caption-coverage",
+  "base_sha": "2e13f615a6f9ea7a42c2ef73446449a21f35a3c0",
+  "source_sha": "0896ad72f33bfebb726bf89fa2d7d0c05944d606",
+  "date_local": "2026-11-01",
+  "timezone": "America/Chicago",
+  "config_sha256": "68fdd361ab5597ec153b2784ad6db6792a321da65528a17542daf977e9a728aa",
+  "verification": {
+    "related_tests": 98,
+    "new_tests": 12,
+    "existing_tests": 86,
+    "independent_audit": {
+      "status": "passed",
+      "method": "same operator independent matched-source tuple/equality reconstruction; no production scanner import or second download",
+      "all_matched_ids_allowed": true,
+      "all_accepted_records_reconstructed_exactly": true,
+      "time_EOF_rejections_duplicates_conflicts_and_overlap_match": true,
+      "train_validation_coverage_and_component_counts_match": true,
+      "source_SHA_length_and_freeze_receipts_match": true,
+      "one_task_budget_charge_and_no_full_raw_corpus": true,
+      "input_pins_original_audio_and_EOF_match": true,
+      "all_SDD_and_reserved_ID_and_artist_ID_exclusions_match": true,
+      "prior045_to050_file_sets_and_hashes_preserved": true,
+      "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+      "private_modes700_600": true,
+      "script_sha256": "dccfa2f6473581414421b535e6b654500f0e0de6f567cd9fc0f626699375a49f"
+    },
+    "repeat_protection": {
+      "status": "passed",
+      "checks": {
+        "same-output": {
+          "exit_code": 1,
+          "expected_error": "FileExistsError",
+          "additional_body_GETs": 0,
+          "original_run_and_ledger_unchanged": true
+        },
+        "new-output-budget": {
+          "exit_code": 1,
+          "expected_error": "Task-wide body budget exhausted",
+          "additional_body_GETs": 0,
+          "original_run_and_ledger_unchanged": true
+        }
+      }
+    },
+    "final_document_QA": {
+      "status": "passed",
+      "only_seven_expected_document_paths_changed": true,
+      "json_local_links_fences_diff_check": true,
+      "public_aggregate_matches_original_run_and_private_hashes": true,
+      "no_raw_caption_ID_record_or_signed_URL_in_new_public_material": true,
+      "scanner_runner_contract_config_unchanged_since_actual0896ad7": true,
+      "prior045_to050_sets_and_hashes_preserved": true,
+      "B047_dispatch_unchanged": true,
+      "original_backup_clean": true,
+      "private_modes700_600": true,
+      "additional_GETs_or_model_runs_during_QA": 0
+    }
+  },
+  "interpretation": {
+    "teacher_generated_not_human": true,
+    "source_ID_and_EOF_coverage_only_not_waveform_alignment": true,
+    "teacher_metadata_rights_pending": true,
+    "keep_identity": true,
+    "new_human_labels": 0,
+    "next_step": "bounded matched-source metadata/permission and original-audio segment alignment preflight; then freeze a separate training protocol",
+    "short_tail_exclusions": {
+      "count": 15,
+      "span_seconds_min": 10.0,
+      "span_seconds_max": 14.159999999999997
+    },
+    "strict_EOF_exclusions": {
+      "count": 2,
+      "overflow_seconds": [
+        0.0026041666666571928,
+        0.0019374999999968168
+      ]
+    },
+    "no_threshold_relaxation_after_observation": true
+  },
+  "private_evidence_sha256": {
+    "exit.json": "e89df0eae5ec7db81135aed16463968955c578bcc4f2ec43172eff351f080c17",
+    "related-tests.log": "23de929e2614a88aa47002edf7692a1987c782332d8f3fa90b90cb4a4560f5f0",
+    "prior-before.json": "2dac518fb2ab5c666809696c9b9e25f432d85734edbd9238215419e62f6a1cf4",
+    "run.log": "5850366df02891ad806371389107a3fd43312da6d61c6728d4dc749f0fac46da",
+    "network-ledger.jsonl": "fb33ad9d68cd4b58a81388671cef134b4b73eef7ac7f7bff05c616cba3e49fe7",
+    "same-output.log": "ce08f0e26a974e0013f30c0bdfee75773e28057a1bd00b5485f4878340139abd",
+    "repeat-check.json": "472ab1d3c0512d0055cb707c74d6090218bb4d9b2250c73bcebbb1f03f587ae9",
+    "new-output-budget.log": "75fd31242582a67fc7af77ed2ee27bbb82cddee05dc0448746edc375e0a20bc1",
+    "independent-audit.py": "dccfa2f6473581414421b535e6b654500f0e0de6f567cd9fc0f626699375a49f",
+    "source-head.json": "dec2957e6b7dec86daf5abf53a557c5c2e4713d6a7d78df66ec822948b158269",
+    "independent-audit.json": "4d48673114fb32bd53a6f991a3d8b244c9b3b93b125360fab02d83c793544937",
+    "invocation.json": "7e058293a7d6d73724ef7bfdbf6c8968ed7a7c6912c973c423869d73a516e4fd",
+    "allowlist-preflight.json": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83",
+    "run-02-budget-reject/failure.json": "e671d3730fb2a00e9d3124fa1959026a298c0e100783265714e4e14030c3dcad",
+    "run-02-budget-reject/allowlist.json": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83",
+    "run-02-budget-reject/freeze.json": "4c5909e6ebb72062e58a45a39c9b9081b2905e40a4c24321c816d3e0d3b9c2fd",
+    "run-01/candidates.json": "90852696a5943fc48926be55218f0240d2f21d8b8c0560837088c98b50de8394",
+    "run-01/result.json": "89065f098cad9be5f68db722ffbe2c0a5253f2ba4e0d2ce0145a37b336710b1c",
+    "run-01/allowlist.json": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83",
+    "run-01/freeze.json": "f30976071a1e35ca1e0c9af75d3c7598950739cda27be127735cff55e495cbfe",
+    "run-01/matched-source.jsonl": "5f1ce6e4a28a70509943ae74a703cbfc30e3b3755ae2d916034d84dba865d698",
+    "final-doc-qa.json": "20bf2f5bae9cdc46405a6d39d2569b49e7ce0c115b25c0600bd52f9fe209328b"
+  }
+}
