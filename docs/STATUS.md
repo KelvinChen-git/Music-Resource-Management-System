@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- 当前执行：MUS-053 / A / codex/MUS-053-interval-feature-cache，base53d4466。只对052固定37train209/7val23构建描述时间内三10秒窗与原文特征；先冻结配方/源码，MPS编码及3个不同训练作者区间CPU数值抽检通过才ready。录音等权/作者隔离，生成标签局限保留，无fit/下载/test/选模。
+
 - 当前工作（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 
 - 当前协作与保护：UTC2026-11-01T05:53:33Z/06:02:18Z/06:05:33Z双方feed fetched，A3fc648b/source4a534fe，Bde296c7/sourcef0d3ef2未变并ack，047-R1/rev1原assigned卡未认领不改，不外推052批准。052私有.local/a/mus052/0700/0600，metadata+参考正文248,217,846 bytes/持久预记295,525,166<512MiB；参考仅原有歌曲同ID新快照，无新曲库/整库/模型下载。旧045–051/141+160/权重/cache/原版/UI/Java/DB/main保持，052工具独立审核待安排。
@@ -58,6 +60,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-053 时间对应区间特征 | in_progress / A | codex/MUS-053-interval-feature-cache / 53d4466；依赖052/047 | 仅新interval_feature_cache模块/build脚本/合成测试、E27/config/053方法验证及README/PROJECT/STATUS/own latest；私有.local/a/mus053，旧045–052只读，B047原卡/UI/DB/main不改 |
 | MUS-052 描述配对元数据与区间预检 | review / A（有界配对预检通过，未训练） | codex/MUS-052-caption-pair-preflight / 8a8bc73，base4a534fe/依赖051 | 44来源232区间/3参考9anchor通过，110检查/独立复算/重跑保护passed；下一步区间特征，未新CLAP/fit/test或曲库 |
 | MUS-051 现有音频caption覆盖 | review / A（完整扫描完成，候选非训练ready） | codex/MUS-051-caption-coverage / 0896ad7，base2e13f61/依赖050 | train49首246段/val8首24段；98检查/独立原行重建/原目录及换目录预算拒绝通过，下一步核权限和区间对齐，新fit/音频0 |
 | MUS-050 文本音乐训练来源实核 | review / A（metadata完成，描述训练集未ready） | codex/MUS-050-caption-source-audit / ea54ffc，依赖049/041 | 官方20文件/hash/独立计数通过，MB52,768行/5,079来源、eval交叉2,631；2,448候选非ready/JMax494样本有许可冲突，新fit/音频0，先核现音频caption覆盖 |

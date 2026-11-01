@@ -502,3 +502,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - config/源码提交后先freeze再参考GET；在metadata合格train中要求>=3原区间，按固定seed SHA、不同creator组件取最多3来源，不补取验证/外部录音。每个最多20MiB单次请求、正常TLS/HTTPS Jamendo跳转、完整Content-Length/文件SHA/头部与实际EOF；任务级lock+持久body预记，metadata已费计入总额，失败保留无自动重试，不换输出重置已开始参考任务。
 - 原音频重新按旧65536实际EOF/48k mono严格复核PCM pin；参考是当前同ID来源快照，拿不到teacher确切缓存字节，不冒充字节相等。原caption首/中/末3区间各取中心10秒，sample边界四舍五入且必须原EOF内；两音频同scipy resample_poly到8k，固定±250ms搜索归一化互相关，音量增益/DC不影响；所有anchor correlation>=.95且峰lag绝对值<=50ms、整曲实际duration差<=.25秒才报该参考预检passed。不得按声学相似度改crop/阈值/样本或把3条外推全57。
 - 报metadata合格/隔离原因和原270区间过滤、3参考请求/成功或blocked、每条anchor相关/lag/时长差与费用，生成caption仍model_generated，training_ready保持false（新精确区间特征/独立训练方案未做）。只输出合成检查/私有原音频参考/探针数组/聚合hash，不能称语义质量/定位真值、teacher全部版本相同或训练提升；无CLAP/Torch/模型加载/fit/新曲库/云端/UI/DB/main变化，B047原卡保持。
+
+
+## E27：MUS-053 时间对应区间特征（2026-11-01）
+
+只用052固定44来源232个model_generated区间（train37/33组件/209，validation7/7组件/23）。原始音频/PCM/许可、051排除与052预检结果绑定SHA，未满足时不写ready，不重复参考下载或扩大样本。每段原起止必须finite、15–30秒、在实际EOF内；48k样本边界round，区间内first/middle/last10秒，起点去重、单窗unit后均值再unit。不能用整曲或旧首120秒代替该区间，也不声称三窗是逐帧完整编码/teacher版本全等。
+
+原caption逐字输入固定CLAP A，不改写/按得分过滤；SDK 77token截断，保存token长度并聚合披露。录音及creator组件不得跨train/validation；每split权重1/录音数/该录音区间数。仅新MPS/FP32缓存，不自动CPU fallback；复用047校准环境，在首次模型加载前冻结全输入/源码/设备/模型/配方，固定hash选3个不同train组件的区间，CPU编码全部9窗和3原caption作新配方数值抽检，容差maxabs/cosine各1e-4；抽检不冒充全232 CPU复算或检索质量。
+
+新manifest及NPZ独立私有保存，只在全边界/PCM/finite-unit/抽检/输入源码环境复核通过后写ready_for_bounded_pilot。consumer必须显式选train或validation和期望设备/模型，检查manifest/result/key/数组SHA、完整行/分组/权重，返回对应区间音频/文字向量及录音/组件，不返回另一split或原caption、不加载模型。重复输出在模型加载前拒绝，失败保留。特征ready不等于训练方案批准/人工语义真值/质量提升，训练方案仍另冻；本轮fit/新音频/新模型下载/保留测试/评分/部署0。原权重、缓存、原141+160/SDD分界、备份/UI/Java/DB/main及B047原卡保持。

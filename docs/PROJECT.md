@@ -304,3 +304,8 @@ MUS-051实际完成：0896ad72f33bfebb726bf89fa2d7d0c05944d606干净源码首次
 
 
 MUS-052实际完成：干净8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed首次CLI exit0，57来源183 metadata行保守聚合后44通过、13隔离（许可规则12/作品名差2、重叠1），train37录音/33作者组件/209区间、val7录音/7组件/23区间；原051/旧许可和排除关系保留。固定hash/不同作者从合格train且>=3区间取3同ID当前参考MP3，共15.61MB；9个首中末caption中心10s同8k互相关通过，NCC0.998040–0.999936、峰lag0、完整实际时长差0，原PCM pin保持，不改时间/阈值或外推teacher确切缓存/全44/语义质量。metadata+参考实际248,217,846 bytes、持久预记295,525,166<512MiB，原目录/换目录重跑均无额外GET。110检查、独立元数据集合/固定选择/FFT及直接点积复算和旧045–051/hash/54cache/备份保护通过。下一步可对这37train209/7val23构建精确区间特征、保持录音等权和原隔离，再另预注册小训练；本轮无CLAP编码/fit/质量指标，training_ready仍false/teacher版本局限保留，不重复已完成的metadata与3参考，不新增全组合人工包。identity、原版/UI/DB/main和B047原卡保持。见[配对预检](evaluation/MUS-052-pair-preflight.md)与[验证](verification/MUS-052.md)。
+
+
+## MUS-053：时间对应区间特征准备（2026-11-01）
+
+只复用052固定44首232段生成caption，train37/33组件/209与validation7/7组件/23保持隔离。E27/config固定区间内first/mid/last10秒、unit均值、每录音等权，原caption逐字/77token截断明确披露；新MPS FP32编码前冻结来源/环境/模型/配方，以固定hash3不同训练组件/9窗/3文本作CPU数值抽检，全部边界/PCM/完整性通过才写新私有typed cache。14新检查连110既有共124 passed；待干净提交后真实构建，当前没有新编码或fit。旧cache/identity/原141+160/SDD/保留test、B047原卡/原版/UI/DB/main保持，不下载/新人工全矩阵；特征准备完成后另冻小训练方案。

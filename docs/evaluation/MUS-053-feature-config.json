@@ -1,0 +1,72 @@
+{
+  "schema": "sonora-interval-feature-config-v1",
+  "task": "MUS-053",
+  "base_sha": "53d4466f5aa4032e4753ccc98acc50d84b73da55",
+  "corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "legacy_cache": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "preflight": {
+    "path": ".local/a/mus047/mps-02/result.json",
+    "sha256": "e650f3259605abb1552267b7c1c349e6ea496761edf6c35dd4c52833714bf279"
+  },
+  "preflight_freeze": {
+    "path": ".local/a/mus047/mps-02/freeze.json",
+    "sha256": "3550b75584b444662fa449516ea8c2d42c75c1fbcc904018dc510058eea71827"
+  },
+  "original_freeze": {
+    "path": ".local/a/mus040/phase03/freeze-01/freeze.json",
+    "sha256": "1898f2bd0f286f1d1f66f074df552ead78d853002657481801deb3570efd1d83"
+  },
+  "candidates": {
+    "path": ".local/a/mus052/run-01/eligible-candidates.json",
+    "sha256": "d5537f91e906a76e12ad219850a2bc76e1de8c8560035ae22fffa38d3fe7cb82"
+  },
+  "allowlist": {
+    "path": ".local/a/mus051/run-01/allowlist.json",
+    "sha256": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83"
+  },
+  "pair_result": {
+    "path": ".local/a/mus052/run-01/result.json",
+    "sha256": "35d4fddfbe9df19b777341a65412e9b9a86733461bee127350c547128e71b019"
+  },
+  "device": "mps",
+  "dimension": 512,
+  "counts": {
+    "train_recordings": 37,
+    "train_components": 33,
+    "train_intervals": 209,
+    "validation_recordings": 7,
+    "validation_components": 7,
+    "validation_intervals": 23
+  },
+  "sample_rate_hz": 48000,
+  "interval_duration_seconds": [
+    15,
+    30
+  ],
+  "window_samples": 480000,
+  "window_recipe": "inside_interval_first_middle_last10s_unique_starts_unit_mean_then_unit",
+  "weight_recipe": "each_split_recording_equal_then_each_recording_interval_equal",
+  "audio_batch": 3,
+  "text_batch": 6,
+  "dtype": "float32",
+  "autocast": false,
+  "automatic_fallback": false,
+  "text_policy": "exact_raw_caption_CLAP77tokens_truncate_report_not_filter",
+  "cpu_controls": {
+    "count": 3,
+    "seed": "MUS-053-fixed-train-controls-v1",
+    "selection": "hash interval, distinct train creator components, no score selection"
+  },
+  "atol_vector_maxabs": 0.0001,
+  "atol_cosine_distance": 0.0001,
+  "fit_runs": 0,
+  "new_downloads": 0,
+  "test_inputs": 0,
+  "selection_or_deployment": false
+}
