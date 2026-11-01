@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-057音频描述扩样完成，待完整特征与固定参数训练
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-057-caption-data-expansion`，base `37fec0a05fd1c2343abef7ca7b73588751d6aff1`，真实源码 `9a1fff4a08844d9d6989b5b6182f8eea00b37c11`；最终交付SHA见handoff.source_sha。057 review，配对检查完成，工具独立审核待安排，生成弱标签不当人工真值。
+
+新63train/13val全部76官方SHA/完整EOF/PCM去重通过，367完整描述；合计100train539段/20val60段，83/19作者组件。原044框隔离后829/163，固定hash96/20候选，92日期文件（13复用/79新）、96预判合格；3固定train参考9anchor相关.99577309–.99992943、lag0、时长差0，仅当前快照有限检查。任务正文预记1,434,836,418<2GiB，无重试/改seed/模型分数筛选。
+
+165相关检查通过；独立图遍历重建全部框/原行/选序、逐曲独立解码PCM、metadata全行、9anchor及原/换目录拒绝通过。初始测试路径漏scripts的10发现错误已修正；独立复算初版float32累计精度不一致，保留失败脚本/日志后改float64与生产误差0，不改生产/阈值/新下载。旧045–056共663文件及旧951+B快照/23源码/54cache/043044/160/备份f3b0da1保持，新私有700/600。报告docs/evaluation/MUS-057-expansion.md，聚合证据docs/verification/MUS-057-results.json。
+
+下一步固定599区间完整token证明/特征，复用原232、新编码367，再以同alpha1全文本ridge一次扩样对照，旧37权重/旧140人写dev保持，不在同dev续搜loss/alpha。当前CLAP/fit/保留test评分0、training_ready=false；无新人工包/付费GPU/线上部署。离线范围不跑Java/前端build；原版/UI/Java/DB/main保持。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC18:09:52Z/18:21:16Z/18:27:05Z双方fetched，B未变。B047限定批准已在055接收，原派发卡与B报告字节不改，不外推057批准，无新B任务。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-056全文本默认与归一化配对训练完成，保留identity
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-056-fulltext-cosine-training`，base19fab384fd6a0f121e0eeb6404102a3a28522216，真实源码 `ab668808de94b977c5d403d089460d5f070778f9`；最终交付SHA见handoff.source_sha。056 review：一次实际训练/固定比较完成，工具独立审核待安排，无原CLAP微调或正式质量验收。

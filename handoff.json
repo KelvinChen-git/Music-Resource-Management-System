@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-01T17:59:01.577517+00:00",
-  "source_branch": "codex/MUS-056-fulltext-cosine-training",
-  "source_sha": "37fec0a05fd1c2343abef7ca7b73588751d6aff1",
+  "published_at": "2026-11-01T18:27:26.094319+00:00",
+  "source_branch": "codex/MUS-057-caption-data-expansion",
+  "source_sha": "97347bc7bc8e368457527424688e7ed20e3dd9a8",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "2835d47b2c65ec8008cd440b7088a3cc82daa9cc52a31330fc432f2b578d2d6c"
+  "report_sha256": "b3f38200d387832b9d2ee7ba0e109a9623418ff5c34c79256672974ec16548ce"
 }
