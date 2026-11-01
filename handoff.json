@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-01T17:41:45.728436+00:00",
-  "source_branch": "codex/MUS-055-long-caption-control",
-  "source_sha": "19fab384fd6a0f121e0eeb6404102a3a28522216",
+  "published_at": "2026-11-01T17:59:01.577517+00:00",
+  "source_branch": "codex/MUS-056-fulltext-cosine-training",
+  "source_sha": "37fec0a05fd1c2343abef7ca7b73588751d6aff1",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "9e555a5e5a6401927472834842c95adaedd21d9ff6fcae08b7f1aa893b467dab"
+  "report_sha256": "2835d47b2c65ec8008cd440b7088a3cc82daa9cc52a31330fc432f2b578d2d6c"
 }

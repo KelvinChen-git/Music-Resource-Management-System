@@ -1,5 +1,37 @@
 # 账号 A 最新交接
 
+## 当前：MUS-056全文本默认与归一化配对训练完成，保留identity
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-056-fulltext-cosine-training`，base19fab384fd6a0f121e0eeb6404102a3a28522216，真实源码 `ab668808de94b977c5d403d089460d5f070778f9`；最终交付SHA见handoff.source_sha。056 review：一次实际训练/固定比较完成，工具独立审核待安排，无原CLAP微调或正式质量验收。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-01T17:46:26Z/17:53:20Z/17:56:14Z双方fetched、B未变。B047准确限定批准已接收，原派发快照保留，不外推056工具/模型质量、不派新卡。
+
+用户明确“保留全文本”，E30/config/runner检查将完整原token序列保留为后续训练默认：当前055256已验证覆盖全部232/最长178，超限或proof截断失败、不静默退77或改写，旧77原件只读历史。原24人写query11–30token，其048原特征已覆盖全文，未重编码。本轮同37train209/33组件和7val23/alpha1，仅loss音频unit：sum(q||unit(XW)-T||²)+alpha||W-I||F²，正配对/录音等权、不造其他歌真负例；CPU NumPy float64、原CLAP冻结，完整文本cache复用。
+
+E30/config先提交后干净ab66880首次CLI exit0，新候选fit1/旧全文本ridge重训0；107.217ms拟合/379.867ms全流程，262144参数。Armijo12接受步/25objective评估、各step.5，objective1.315548→1.176624，训练配对余弦.342226→.469107。按train relative loss1e-12停止；maxgrad2.134e-8仍高于1e-8，未称梯度条件或非凸全局最优。W/fit保存后才val和dev分析，shared NPZ完整性会读val数组，只有返回209train进solver，无val选步数/参数。
+
+固定3模型(identity/已存全文本ridge/新cosine)、两人写池两mode与2全文本val指标/12组bootstrap全报。主140整曲MRR .447149→.448184（identity .420808），相对ridge+.001035、95%[.000083,.002522]，4胜16平0负，R1.37/R5.49保持；对identity95%[-.004724,.081384]仍含零。它是多轮已看20开发录音上的很小变化，不当新独立test或多轮选择后的正式显著性/部署依据。val精确区间MRR .407273→.396378、差区间[-.034898,.002326]，1胜4平2负/7录音；7录音max保持.622619。生成文字仍弱监督、未知配对未判，结果有升降，继续保留identity，不自动扩训/选模/开保留test。
+
+154相关检查passed（11新/143旧，最终一次）。独立脚本不导入新learner/runner/生产metrics，用另一个投影目标梯度写法和16固定坐标中心差分maxerr3.63e-10，验证既定12步loss/Armijo接受与上一档拒绝，日志路径与原W差1.11e-16；仅既定轨迹核验，无新候选/参数搜索或另一W产物。全部排名/按录音宏与12组bootstrap一致，不冒充B审核或全局最优。
+
+实际全文本consumer train209/val23、各权重和1/256且无encoder导入；同目录FileExistsError、新目录在fit-started claim拒绝，额外fit0，原W/收据/claim集合SHA保持，新探测目录只留freeze/failure。旧045–055全私有集合/hash、951输入+B派发快照/23源码/54离线cache/043044/160及原版f3b0da1干净保持；新.local/a/mus056目录700/文件600，原文/身份/向量/W/逐项排名不入Git，只aggregate/方法/hash。无新模型音频编码/下载/141+160参与fit/保留test/人工包/Java/Vue/UI/DB/API/依赖锁/main/云端，不重复Maven/build。
+
+交付新归一化learner/runner/11检查/E30/config/方法验证与聚合JSON、README/PROJECT/STATUS/own latest。后续优先另定监督数据或评测覆盖工作，不继续在这20已看开发上换loss/alpha/步数挤分；全文本偏好继续适用。最终commit后publish/sync回读，发布不等于B接收/批准056或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
+## MUS-056开始：保留全文本，归一化正配对目标单次训练
+
+A；2026-11-01 America/Chicago；branch codex/MUS-056-fulltext-cosine-training，base19fab384fd6a0f121e0eeb6404102a3a28522216。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC17:46:26Z双方fetched未变，B047已接收、不外推新工具或质量/不派新卡。
+
+用户明确保留全文本，E30将完整token序列/超限拒绝作为后续训练默认，当前055256完整特征只读，不回77或重写。下一假设是把loss中的音频也归一化、对齐检索余弦：同37train209/7val23/alpha1，正配对loss不造负例，CPU固定Armijo200步/训练内停止，新fit仅一次；主140整曲MRR对已存全文本ridge，所有池/mode/val必报，不按已看dev调参。允许STATUS的056新module/runner/测试/E30/config和方法验证/必要文档，私有.local/a/mus056，旧045–055/141+160/备份/UI/DB/main保持。先提交再立即实际训练，不下载/重编码/租卡/开test或自动切模型。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-055完整描述对照完成，截断消除、主指标无新增收益
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-055-long-caption-control`，base338146a81392169b33965bb3bf01179d8f092fc8，实际源码 `635060a8d15d679e51f5dbe88516af209018abfc`；最终交付SHA见handoff.source_sha。055 review：实际文本编码/唯一新fit/固定开发比较完成，工具独立审核待安排，非原CLAP微调或正式质量验收。
