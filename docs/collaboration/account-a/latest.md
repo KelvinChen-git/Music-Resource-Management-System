@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## MUS-056开始：保留全文本，归一化正配对目标单次训练
+
+A；2026-11-01 America/Chicago；branch codex/MUS-056-fulltext-cosine-training，base19fab384fd6a0f121e0eeb6404102a3a28522216。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC17:46:26Z双方fetched未变，B047已接收、不外推新工具或质量/不派新卡。
+
+用户明确保留全文本，E30将完整token序列/超限拒绝作为后续训练默认，当前055256完整特征只读，不回77或重写。下一假设是把loss中的音频也归一化、对齐检索余弦：同37train209/7val23/alpha1，正配对loss不造负例，CPU固定Armijo200步/训练内停止，新fit仅一次；主140整曲MRR对已存全文本ridge，所有池/mode/val必报，不按已看dev调参。允许STATUS的056新module/runner/测试/E30/config和方法验证/必要文档，私有.local/a/mus056，旧045–055/141+160/备份/UI/DB/main保持。先提交再立即实际训练，不下载/重编码/租卡/开test或自动切模型。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-055完整描述对照完成，截断消除、主指标无新增收益
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-055-long-caption-control`，base338146a81392169b33965bb3bf01179d8f092fc8，实际源码 `635060a8d15d679e51f5dbe88516af209018abfc`；最终交付SHA见handoff.source_sha。055 review：实际文本编码/唯一新fit/固定开发比较完成，工具独立审核待安排，非原CLAP微调或正式质量验收。

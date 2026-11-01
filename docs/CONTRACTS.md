@@ -529,3 +529,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 同原CLAP A/环境/MPS FP32，freeze先于模型加载。按固定hash从train短<=77/长>77各3、6不同creator组件取控制：CPU77对原053、CPU256对新MPS256；所有108短描述新256对旧77向量各maxabs/cosine<=1e-4。全部通过才写新text-only overlay manifest/NPZ，不覆盖原缓存；显式consumer绑定baseSHA/rows/key/期望设备模型和256长度，split只返回本组音频/新文字/原权重，完整性验证会读取共享NPZ但val不输入solver。
 
 重用054已存77权重、不重训77；新256只一次相同alpha1拟合，持久fit-started claim阻止换目录二fit，失败保留；W/fit收据先存才分析val及旧dev。主指标人写24查询特征仍原048不变/140整曲宏MRR，新256减已存77，identity另作锚；两人写池两mode完整报告。生成val另交叉3权重(identity/77/256)×2查询文字版本(77/256)×2指标(精确区间/录音max)，避免把查询改变与训练改变混为单一收益。2000次/seed20261101055按录音bootstrap，仅已看开发/小样本描述性结果，不是新盲测。无验证搜参/保留test/自动切换部署/扩训，旧原件/原版/UI/DB/main保持；B047原范围限定接收不外推本轮。
+
+
+## E30：全文本默认与MUS-056归一化配对训练（2026-11-01）
+
+用户明确“保留全文本”。后续训练默认沿用055已验证完整原文token序列/256预算；超256必须失败并另定长度或分段方案，禁止静默截断/退回77/改写原文，历史77工件只读保留。256是本批178最长的已验证编码预算，不是未来任意长文本完整性的承诺。旧24人写query实际11–30token、原048特征已经覆盖全文，继续复用不用重新编码。
+
+本轮唯一假设：054/055未归一化MSE与检索unit(XW)的目标存在差别。固定同37录音209段/33作者组件、全文本T和q=每录音等权、alpha1，只改loss为sum(q||unit(XW)-T||²)+alpha||W-I||F²，等价正配对余弦距离尺度；只已知配对，不把其他录音/区间当负例。原CLAP冻结，CPU float64/2线程，从identity全batch梯度下降/固定Armijo(step1/max200/backtracks20/c1e-4/factor.5)，只训练内grad1e-8或relative loss1e-12停，不用val/开发选步数/参数。归一化目标非凸，停机条件不声称全局最优；达到上限必须披露，不追加步数。
+
+先绑定source/config/cache/W与runtime，持久fit-started claim阻止换目录第二fit，失败保留。先保存新W/fit再分析val7/23全文本与旧人写dev；reader为完整性会物理读取共享NPZ的val，但solver只用train209。两对照identity/055已存全文本ridge不重训，新cosine仅一fit；主固定140整曲录音宏MRR相对全文本ridge，完整两池两mode及2生成val指标/对两锚bootstrap(2000/seed20261101056)必报，不搜alpha/长度、不自动部署/扩训/开保留test。原141+160不用fit、生成文字非人工语义真值；已看dev不称新盲测。

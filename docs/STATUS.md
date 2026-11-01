@@ -4,7 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作：MUS-055 review / A / codex/MUS-055-long-caption-control，base338146a、实际635060a8d15d679e51f5dbe88516af209018abfc。232描述256token完整编码/原124截断消除，CPU长短6控制与108短控制passed；37train209固定alpha1新256唯一fit10.457ms、旧77不重训。主MRR77 .447163→256 .447149，95%差[-.00043860,.00038012]含零，当前无新增主收益、保留identity。143检查/独立token与primal/全部排名16组bootstrap/consumer及两stage跨目录保护passed；旧045–054/备份/UI/main保持。
+- 当前执行：MUS-056 / A / codex/MUS-056-fulltext-cosine-training，base19fab38。用户明确保留全文本：后续训练只用已验证完整token序列，当前256/超限拒绝，不回退77或改原文。固定37train209/7val23和alpha1，仅loss改为归一化音频与完整文本配对距离，单fit/200步预算，不引入未判负例；主固定140整曲MRR相对已存全文本ridge，原模型不自动切换。
+
+- 上轮交付：MUS-055 review / A / codex/MUS-055-long-caption-control，base338146a、实际635060a8d15d679e51f5dbe88516af209018abfc。232描述256token完整编码/原124截断消除，CPU长短6控制与108短控制passed；37train209固定alpha1新256唯一fit10.457ms、旧77不重训。主MRR77 .447163→256 .447149，95%差[-.00043860,.00038012]含零，当前无新增主收益、保留identity。143检查/独立token与primal/全部排名16组bootstrap/consumer及两stage跨目录保护passed；旧045–054/备份/UI/main保持。
 
 - 上轮交付：MUS-054 review / A / codex/MUS-054-caption-adapter-training，base19afdcb、实际4afd75cd2d75ce1aaab8e08aabac21c16a7f6270。已唯一实际fit：37录音209生成caption对、固定alpha1/录音等权CPU13.736ms；7val23/旧20与140人写dev固定比较完成。主MRR .420808→.447163、95%差区间[-.006304,.082660]含零，20池整曲下降，不宣称稳健改善，保持identity。133检查/独立primal及所有排名bootstrap/原目录与换目录禁重passed，原CLAP未微调；旧045–053/备份/UI/main/B047卡保持。
 
@@ -66,6 +68,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-056 全文本归一化配对训练 | in_progress / A | codex/MUS-056-fulltext-cosine-training / 19fab38；依赖055 | 新cosine_caption_adapter模块/runner/合成测试、E30/config/056方法验证与README/PROJECT/STATUS/own latest；私有.local/a/mus056/单fitclaim，旧045–055/备份/UI/DB/main只读 |
 | MUS-055 完整描述长度对照 | review / A（编码/一次fit/固定比较完成） | codex/MUS-055-long-caption-control / 635060a；base338146a/依赖053/054 | 232无截断/CPU长短6+短108控制；主MRR77 .447163→256 .447149无新增收益，143检查/独立复算/consumer与跨目录保护passed，保留identity |
 | MUS-054 生成caption适配层训练 | review / A（一次实际拟合/开发比较完成） | codex/MUS-054-caption-adapter-training / 4afd75c；base19afdcb/依赖053 | 37train209/7val23、alpha1 CPU13.736ms；主MRR .4208→.4472但差区间含零、保留identity；133检查/独立复算/跨目录单fit保护passed，无CLAP微调/test/部署 |
 | MUS-053 时间对应区间特征 | review / A（真实缓存完成，未训练） | codex/MUS-053-interval-feature-cache / 716b3fc；base53d4466/依赖052/047 | 232区间696窗/124检查、CPU3区间数值/独立复算/consumer与重复保护passed；124长caption截断披露，旧045–052/备份/B047卡保持，下一步另冻小训练 |

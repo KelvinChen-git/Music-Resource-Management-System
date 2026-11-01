@@ -1,0 +1,75 @@
+{
+  "schema": "sonora-fulltext-cosine-training-v1",
+  "task": "MUS-056",
+  "base_sha": "19fab384fd6a0f121e0eeb6404102a3a28522216",
+  "task_directory": ".local/a/mus056",
+  "interval_cache": {
+    "path": ".local/a/mus053/build-01/cache.json",
+    "sha256": "fba03908d5492895069361d701902d986ed9e1b41751df8b885541baa141239d"
+  },
+  "fulltext_cache": {
+    "path": ".local/a/mus055/text-01/cache.json",
+    "sha256": "e32727343a3cf0198b9dbcacca3841134823344d3f6929cae6088bbca1cb086e"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "human_text_metadata": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "baseline_result": {
+    "path": ".local/a/mus055/fit-01/result-private.json",
+    "sha256": "7eb056828262fe3e8a61aea6a135b6f6167f6b77939de6ffa2b852358b5c5dca"
+  },
+  "baseline_adapter": {
+    "path": ".local/a/mus055/fit-01/adapter.npz",
+    "sha256": "755d213fa4699d952773558c120f49db0e229e2b8ba74adc282ff87ed2fd4e0e"
+  },
+  "expected_device": "mps",
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "text_policy": "complete_original_token_sequence;overflow_fail_no_truncation",
+  "token_length": 256,
+  "fit_recordings": 37,
+  "fit_components": 33,
+  "fit_intervals": 209,
+  "validation_recordings": 7,
+  "validation_intervals": 23,
+  "dimension": 512,
+  "alpha": 1.0,
+  "loss": "sum_i(q_i*||unit(X_i W)-T_i||^2)+alpha*||W-I||_F^2",
+  "weights": "each_recording_equal_then_each_interval_equal",
+  "optimizer": "float64_full_batch_gradient_descent_Armijo_from_identity",
+  "initial_step": 1.0,
+  "max_steps": 200,
+  "max_backtracks": 20,
+  "armijo": 0.0001,
+  "backtrack_factor": 0.5,
+  "gradient_max_tol": 1e-08,
+  "relative_loss_tol": 1e-12,
+  "seed": 0,
+  "blas_threads": 2,
+  "candidate_fits": 1,
+  "hyperparameter_search": false,
+  "validation_used_for_stopping_or_selection": false,
+  "comparators": [
+    "identity",
+    "fulltext-ridge",
+    "fulltext-cosine"
+  ],
+  "primary_metric": "expanded140_whole_recording_macro_MRR_new_cosine_minus_saved_fulltext_ridge",
+  "human_query_features": "unchanged_complete_11_to30_token_queries",
+  "validation_query_features": "fulltext256_only",
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261101056,
+  "new_model_or_audio_encodes": 0,
+  "new_downloads": 0,
+  "new_test_inputs": 0,
+  "new_human_labels": 0,
+  "decision": "retain_identity_no_automatic_selection_scale_up_or_deployment",
+  "token_proof": {
+    "path": ".local/a/mus055/text-01/token-proof.json",
+    "sha256": "c752b2be3d75a40bfcaaae4d1938bcf5fa2ede96a5a5d6ca875ce169230ba71e"
+  }
+}
