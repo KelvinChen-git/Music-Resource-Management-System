@@ -1,0 +1,1161 @@
+{
+  "schema": "sonora-long-caption-control-delivery-v1",
+  "task": "MUS-055",
+  "base_sha": "338146a81392169b33965bb3bf01179d8f092fc8",
+  "source_sha": "635060a8d15d679e51f5dbe88516af209018abfc",
+  "branch": "codex/MUS-055-long-caption-control",
+  "text_build": {
+    "schema": "sonora-long-caption-build-result-v1",
+    "status": "passed",
+    "source_sha": "635060a8d15d679e51f5dbe88516af209018abfc",
+    "config_sha256": "fcdbfabb0fb90b3f756d4e6122aa1f306fecb8ba2c5fdee5177a6e9564cd0199",
+    "cache_key_sha256": "2a62f0a7bf8ce7411e53805ccb38748fd6107dd840ab517df881cb872734a254",
+    "captions": 232,
+    "truncated_captions": 0,
+    "previously_truncated_captions": 124,
+    "untruncated_tokens_min": 17,
+    "untruncated_tokens_max": 178,
+    "encoded_length": 256,
+    "vector_parity": {
+      "CPU77_to_old77_controls": {
+        "status": "passed",
+        "max_abs_difference": 3.05192722482861e-07,
+        "max_cosine_distance": 2.32269758981829e-12,
+        "vectors": 6
+      },
+      "CPU256_to_MPS256_controls": {
+        "status": "passed",
+        "max_abs_difference": 3.652158371073022e-07,
+        "max_cosine_distance": 2.761457729150152e-12,
+        "vectors": 6
+      },
+      "all_short256_to_old77": {
+        "status": "passed",
+        "max_abs_difference": 2.8910510132401646e-07,
+        "max_cosine_distance": 1.4276357873654888e-12,
+        "vectors": 108
+      }
+    },
+    "strict": {
+      "id": "A",
+      "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+      "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+      "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+      "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+      "audio_architecture": "HTSAT-base",
+      "fusion": false,
+      "strict_missing": [],
+      "strict_unexpected": [],
+      "removed_nonlearned_position_ids": true,
+      "loader": "torch_weights_only_true_mmap_cpu_strict_v1"
+    },
+    "ready_cache_written": true,
+    "long_caption_cosine_to_prefix": {
+      "min": 0.559451550765024,
+      "median": 0.9780050149788864,
+      "max": 0.9990784022898965
+    },
+    "timing_ms": {
+      "model_load": 5930.696792085655,
+      "CPU_controls77_and256": 483.5686660371721,
+      "MPS_all232_text256": 5708.114542067051,
+      "total_including_integrity": 22071.09229103662
+    },
+    "new_audio_encodes": 0,
+    "downloads": 0,
+    "fit_runs": 0,
+    "test_inputs": 0,
+    "limits": [
+      "Text encoding correctness only, not improved semantics or retrieval.",
+      "Six fixed train CPU controls, not full232 CPU parity."
+    ],
+    "CPU_control_untruncated_token_lengths": {
+      "short": [
+        77,
+        21,
+        64
+      ],
+      "long": [
+        108,
+        90,
+        139
+      ]
+    }
+  },
+  "training": {
+    "schema": "sonora-long-caption-fit-result-v1",
+    "status": "one_fixed_fit_and_control_complete",
+    "source_sha": "635060a8d15d679e51f5dbe88516af209018abfc",
+    "config_sha256": "fcdbfabb0fb90b3f756d4e6122aa1f306fecb8ba2c5fdee5177a6e9564cd0199",
+    "text_cache_sha256": "e32727343a3cf0198b9dbcacca3841134823344d3f6929cae6088bbca1cb086e",
+    "adapter_sha256": "755d213fa4699d952773558c120f49db0e229e2b8ba74adc282ff87ed2fd4e0e",
+    "counts": {
+      "fit_runs": 1,
+      "baseline77_refit_runs": 0,
+      "train_recordings": 37,
+      "train_intervals": 209,
+      "validation_recordings": 7,
+      "validation_intervals": 23,
+      "human_dev_recordings": 20,
+      "human_dev_queries": 24,
+      "retrieval_candidates": 140,
+      "new_audio_encodes": 0,
+      "downloads": 0,
+      "test_inputs": 0
+    },
+    "runtime": {
+      "python": "3.12.10",
+      "numpy": "1.26.4",
+      "numpy_code_sha256": "90e84693f8af39ec8f62c40ea5d41a37ba6faa08593970b3bb1278d1e81d4b63",
+      "system": "Darwin",
+      "machine": "arm64",
+      "device": "cpu",
+      "dtype": "float64",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2",
+        "VECLIB_MAXIMUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      }
+    },
+    "fit_ms": 10.45704202260822,
+    "diagnostic": {
+      "objective_before": 1.3155484702448017,
+      "objective_after": 1.1500660008113401,
+      "weighted_squared_error_after": 1.0288021857089733,
+      "identity_prior_penalty": 0.12126381510236693,
+      "alpha": 1.0,
+      "normal_equation_max_abs_residual": 9.795766628406533e-17,
+      "parameter_delta_frobenius": 0.34822954369548836,
+      "parameter_count": 262144,
+      "fit_intervals": 209,
+      "fit_recordings": 37,
+      "solver": "weighted_dual_closed_form",
+      "closed_form_optimum_verified": true,
+      "weighted_paired_cosine_before": 0.34222576487759915,
+      "weighted_paired_cosine_after": 0.4545500385287723
+    },
+    "results": {
+      "identity": {
+        "human_development": {
+          "dev20": {
+            "whole": {
+              "recording_macro": {
+                "R1": 0.54,
+                "R5": 1.0,
+                "MRR": 0.7083333333333333
+              },
+              "query_macro": {
+                "R1": 0.5833333333333334,
+                "R5": 1.0,
+                "MRR": 0.7319444444444444
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 20,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            },
+            "segment": {
+              "recording_macro": {
+                "R1": 0.49000000000000005,
+                "R5": 0.95,
+                "MRR": 0.67625
+              },
+              "query_macro": {
+                "R1": 0.5416666666666666,
+                "R5": 0.9583333333333334,
+                "MRR": 0.7135416666666666
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 20,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          },
+          "expanded140": {
+            "whole": {
+              "recording_macro": {
+                "R1": 0.31,
+                "R5": 0.49000000000000005,
+                "MRR": 0.4208083360138314
+              },
+              "query_macro": {
+                "R1": 0.2916666666666667,
+                "R5": 0.5416666666666666,
+                "MRR": 0.43178472445597055
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 140,
+              "unqueried_candidates": 120,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            },
+            "segment": {
+              "recording_macro": {
+                "R1": 0.22000000000000003,
+                "R5": 0.54,
+                "MRR": 0.3947233414733414
+              },
+              "query_macro": {
+                "R1": 0.25,
+                "R5": 0.5833333333333334,
+                "MRR": 0.4344916734500068
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 140,
+              "unqueried_candidates": 120,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          }
+        },
+        "generated_validation": {
+          "query77": {
+            "exact_interval": {
+              "recording_macro": {
+                "R1": 0.19047619047619047,
+                "R5": 0.5845238095238096,
+                "MRR": 0.3909292466986795
+              },
+              "query_macro": {
+                "R1": 0.08695652173913043,
+                "R5": 0.4782608695652174,
+                "MRR": 0.2815171720862258
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 23,
+              "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+            },
+            "recording_max_interval": {
+              "recording_macro": {
+                "R1": 0.31309523809523804,
+                "R5": 0.8392857142857143,
+                "MRR": 0.5791666666666666
+              },
+              "query_macro": {
+                "R1": 0.2608695652173913,
+                "R5": 0.9130434782608695,
+                "MRR": 0.5507246376811594
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 7,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          },
+          "query256": {
+            "exact_interval": {
+              "recording_macro": {
+                "R1": 0.21904761904761902,
+                "R5": 0.5845238095238096,
+                "MRR": 0.40230152288188004
+              },
+              "query_macro": {
+                "R1": 0.13043478260869565,
+                "R5": 0.4782608695652174,
+                "MRR": 0.30014822134387353
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 23,
+              "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+            },
+            "recording_max_interval": {
+              "recording_macro": {
+                "R1": 0.3416666666666667,
+                "R5": 0.8571428571428571,
+                "MRR": 0.5875
+              },
+              "query_macro": {
+                "R1": 0.30434782608695654,
+                "R5": 0.9565217391304348,
+                "MRR": 0.5688405797101449
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 7,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          }
+        }
+      },
+      "caption77": {
+        "human_development": {
+          "dev20": {
+            "whole": {
+              "recording_macro": {
+                "R1": 0.49000000000000005,
+                "R5": 1.0,
+                "MRR": 0.6775
+              },
+              "query_macro": {
+                "R1": 0.5416666666666666,
+                "R5": 1.0,
+                "MRR": 0.7062499999999999
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 20,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            },
+            "segment": {
+              "recording_macro": {
+                "R1": 0.49000000000000005,
+                "R5": 0.95,
+                "MRR": 0.6838095238095239
+              },
+              "query_macro": {
+                "R1": 0.5416666666666666,
+                "R5": 0.9583333333333334,
+                "MRR": 0.7142857142857143
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 20,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          },
+          "expanded140": {
+            "whole": {
+              "recording_macro": {
+                "R1": 0.37,
+                "R5": 0.49000000000000005,
+                "MRR": 0.4471634082763115
+              },
+              "query_macro": {
+                "R1": 0.375,
+                "R5": 0.5416666666666666,
+                "MRR": 0.4704139513413707
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 140,
+              "unqueried_candidates": 120,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            },
+            "segment": {
+              "recording_macro": {
+                "R1": 0.32,
+                "R5": 0.54,
+                "MRR": 0.451502442002442
+              },
+              "query_macro": {
+                "R1": 0.3333333333333333,
+                "R5": 0.5833333333333334,
+                "MRR": 0.48101393976393975
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 140,
+              "unqueried_candidates": 120,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          }
+        },
+        "generated_validation": {
+          "query77": {
+            "exact_interval": {
+              "recording_macro": {
+                "R1": 0.21904761904761902,
+                "R5": 0.6202380952380953,
+                "MRR": 0.42750401695766016
+              },
+              "query_macro": {
+                "R1": 0.13043478260869565,
+                "R5": 0.5217391304347826,
+                "MRR": 0.3333569163744826
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 23,
+              "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+            },
+            "recording_max_interval": {
+              "recording_macro": {
+                "R1": 0.3988095238095238,
+                "R5": 0.8392857142857143,
+                "MRR": 0.6202380952380953
+              },
+              "query_macro": {
+                "R1": 0.391304347826087,
+                "R5": 0.9130434782608695,
+                "MRR": 0.6115942028985508
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 7,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          },
+          "query256": {
+            "exact_interval": {
+              "recording_macro": {
+                "R1": 0.19047619047619047,
+                "R5": 0.5845238095238096,
+                "MRR": 0.40727324263038545
+              },
+              "query_macro": {
+                "R1": 0.08695652173913043,
+                "R5": 0.4782608695652174,
+                "MRR": 0.3050724637681159
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 23,
+              "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+            },
+            "recording_max_interval": {
+              "recording_macro": {
+                "R1": 0.3988095238095238,
+                "R5": 0.8571428571428571,
+                "MRR": 0.6226190476190476
+              },
+              "query_macro": {
+                "R1": 0.391304347826087,
+                "R5": 0.9565217391304348,
+                "MRR": 0.6173913043478262
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 7,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          }
+        }
+      },
+      "caption256": {
+        "human_development": {
+          "dev20": {
+            "whole": {
+              "recording_macro": {
+                "R1": 0.49000000000000005,
+                "R5": 1.0,
+                "MRR": 0.675
+              },
+              "query_macro": {
+                "R1": 0.5416666666666666,
+                "R5": 1.0,
+                "MRR": 0.7041666666666666
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 20,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            },
+            "segment": {
+              "recording_macro": {
+                "R1": 0.49000000000000005,
+                "R5": 0.95,
+                "MRR": 0.6838095238095239
+              },
+              "query_macro": {
+                "R1": 0.5416666666666666,
+                "R5": 0.9583333333333334,
+                "MRR": 0.7142857142857143
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 20,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          },
+          "expanded140": {
+            "whole": {
+              "recording_macro": {
+                "R1": 0.37,
+                "R5": 0.49000000000000005,
+                "MRR": 0.44714878839327055
+              },
+              "query_macro": {
+                "R1": 0.375,
+                "R5": 0.5416666666666666,
+                "MRR": 0.4704017681055032
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 140,
+              "unqueried_candidates": 120,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            },
+            "segment": {
+              "recording_macro": {
+                "R1": 0.32,
+                "R5": 0.54,
+                "MRR": 0.45205799755799764
+              },
+              "query_macro": {
+                "R1": 0.3333333333333333,
+                "R5": 0.5833333333333334,
+                "MRR": 0.48147690272690274
+              },
+              "recordings": 20,
+              "queries": 24,
+              "candidates": 140,
+              "unqueried_candidates": 120,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          }
+        },
+        "generated_validation": {
+          "query77": {
+            "exact_interval": {
+              "recording_macro": {
+                "R1": 0.21904761904761902,
+                "R5": 0.6202380952380953,
+                "MRR": 0.42750401695766016
+              },
+              "query_macro": {
+                "R1": 0.13043478260869565,
+                "R5": 0.5217391304347826,
+                "MRR": 0.3333569163744826
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 23,
+              "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+            },
+            "recording_max_interval": {
+              "recording_macro": {
+                "R1": 0.3988095238095238,
+                "R5": 0.8392857142857143,
+                "MRR": 0.6202380952380953
+              },
+              "query_macro": {
+                "R1": 0.391304347826087,
+                "R5": 0.9130434782608695,
+                "MRR": 0.6115942028985508
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 7,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          },
+          "query256": {
+            "exact_interval": {
+              "recording_macro": {
+                "R1": 0.19047619047619047,
+                "R5": 0.5845238095238096,
+                "MRR": 0.40727324263038545
+              },
+              "query_macro": {
+                "R1": 0.08695652173913043,
+                "R5": 0.4782608695652174,
+                "MRR": 0.3050724637681159
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 23,
+              "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+            },
+            "recording_max_interval": {
+              "recording_macro": {
+                "R1": 0.3988095238095238,
+                "R5": 0.8571428571428571,
+                "MRR": 0.6226190476190476
+              },
+              "query_macro": {
+                "R1": 0.391304347826087,
+                "R5": 0.9565217391304348,
+                "MRR": 0.6173913043478262
+              },
+              "recordings": 7,
+              "queries": 23,
+              "candidates": 7,
+              "unqueried_candidates": 0,
+              "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+            }
+          }
+        }
+      }
+    },
+    "paired_deltas": {
+      "identity": {
+        "human_development": {
+          "dev20": {
+            "whole": {
+              "R1": {
+                "mean_delta": -0.05,
+                "bootstrap95_lower": -0.15,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 19,
+                "losses": 1
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": -0.03333333333333334,
+                "bootstrap95_lower": -0.09172916666666667,
+                "bootstrap95_upper": 0.0024999999999999996,
+                "wins": 1,
+                "ties": 16,
+                "losses": 3
+              }
+            },
+            "segment": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.007559523809523805,
+                "bootstrap95_lower": -0.0033333333333333435,
+                "bootstrap95_upper": 0.025892857142857145,
+                "wins": 2,
+                "ties": 17,
+                "losses": 1
+              }
+            }
+          },
+          "expanded140": {
+            "whole": {
+              "R1": {
+                "mean_delta": 0.06,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.17,
+                "wins": 2,
+                "ties": 18,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0263404523794392,
+                "bootstrap95_lower": -0.005971281289050063,
+                "bootstrap95_upper": 0.08065294022352472,
+                "wins": 4,
+                "ties": 12,
+                "losses": 4
+              }
+            },
+            "segment": {
+              "R1": {
+                "mean_delta": 0.1,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.25,
+                "wins": 2,
+                "ties": 18,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.057334656084656085,
+                "bootstrap95_lower": -0.00020701058201058275,
+                "bootstrap95_upper": 0.13205338319088317,
+                "wins": 7,
+                "ties": 9,
+                "losses": 4
+              }
+            }
+          }
+        },
+        "generated_validation": {
+          "query77": {
+            "exact_interval": {
+              "R1": {
+                "mean_delta": 0.028571428571428574,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.08571428571428573,
+                "wins": 1,
+                "ties": 6,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.03571428571428571,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.10714285714285714,
+                "wins": 1,
+                "ties": 6,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0365747702589808,
+                "bootstrap95_lower": -0.00033118510562118216,
+                "bootstrap95_upper": 0.09349773242630387,
+                "wins": 3,
+                "ties": 3,
+                "losses": 1
+              }
+            },
+            "recording_max_interval": {
+              "R1": {
+                "mean_delta": 0.08571428571428572,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.2571428571428571,
+                "wins": 1,
+                "ties": 6,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.041071428571428585,
+                "bootstrap95_lower": -0.005357142857142838,
+                "bootstrap95_upper": 0.1285714285714286,
+                "wins": 1,
+                "ties": 5,
+                "losses": 1
+              }
+            }
+          },
+          "query256": {
+            "exact_interval": {
+              "R1": {
+                "mean_delta": -0.028571428571428574,
+                "bootstrap95_lower": -0.08571428571428573,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 6,
+                "losses": 1
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.004971719748505467,
+                "bootstrap95_lower": -0.00278621675943106,
+                "bootstrap95_upper": 0.016995529272315,
+                "wins": 2,
+                "ties": 3,
+                "losses": 2
+              }
+            },
+            "recording_max_interval": {
+              "R1": {
+                "mean_delta": 0.05714285714285715,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.17142857142857146,
+                "wins": 1,
+                "ties": 6,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.03511904761904762,
+                "bootstrap95_lower": -0.004761904761904745,
+                "bootstrap95_upper": 0.09464285714285713,
+                "wins": 2,
+                "ties": 4,
+                "losses": 1
+              }
+            }
+          }
+        }
+      },
+      "caption77": {
+        "human_development": {
+          "dev20": {
+            "whole": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": -0.0024999999999999996,
+                "bootstrap95_lower": -0.007499999999999998,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 19,
+                "losses": 1
+              }
+            },
+            "segment": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              }
+            }
+          },
+          "expanded140": {
+            "whole": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": -1.461988304093595e-05,
+                "bootstrap95_lower": -0.00043859649122807013,
+                "bootstrap95_upper": 0.00038011695906432633,
+                "wins": 1,
+                "ties": 18,
+                "losses": 1
+              }
+            },
+            "segment": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 20,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.000555555555555555,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0016666666666666648,
+                "wins": 1,
+                "ties": 19,
+                "losses": 0
+              }
+            }
+          }
+        },
+        "generated_validation": {
+          "query77": {
+            "exact_interval": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              }
+            },
+            "recording_max_interval": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              }
+            }
+          },
+          "query256": {
+            "exact_interval": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              }
+            },
+            "recording_max_interval": {
+              "R1": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "R5": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              },
+              "MRR": {
+                "mean_delta": 0.0,
+                "bootstrap95_lower": 0.0,
+                "bootstrap95_upper": 0.0,
+                "wins": 0,
+                "ties": 7,
+                "losses": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "original77_controls_reproduced": true,
+    "torch_or_CLAP_imported": false,
+    "decision": "retain_identity_no_automatic_selection_scale_up_or_deployment",
+    "total_ms": 216.44429198931903,
+    "limits": [
+      "Full generated text remains weak supervision, not human semantic truth.",
+      "Previously seen development and seven validation recordings, not a new blind test.",
+      "Query length crossed separately; primary human query features held fixed.",
+      "No original CLAP fine tuning, hyperparameter search or deployment."
+    ]
+  },
+  "verification": {
+    "related_tests_passed": 143,
+    "new_tests": 10,
+    "old_tests": 133,
+    "initial_duplicate_discovery_157_not_counted": true,
+    "independent_audit": {
+      "status": "passed",
+      "method": "same operator independent offline tokenizer, weighted primal and rank-count/bootstrap reconstruction; no new production overlay/runner/learner/metrics imports",
+      "all232_nonpadding_sequences_equal_untruncated_original": true,
+      "fixed6_short_long_distinct_training_creators_match": true,
+      "parity_max_abs": {
+        "CPU77_to_old77_controls": 3.05192722482861e-07,
+        "CPU256_to_MPS256_controls": 3.652158371073022e-07,
+        "all_short256_to_old77": 2.8910510132401646e-07
+      },
+      "primal_W_max_abs_error": 9.992007221626409e-16,
+      "normal_equation_residual": 9.795766628406533e-17,
+      "all3_models_2human_pools_2modes_and2querylength_2valmetrics_match": true,
+      "all16_paired_bootstraps_match": true,
+      "single_new_fit_saved77_not_refit_and_chronology_match": true,
+      "prior045_to054_all_sets_and_hashes_preserved": true,
+      "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+      "B047_original_report_verified": true,
+      "private_modes700_600": true,
+      "script_sha256": "3968f936dda3485d9945f1003f450e986b0f709921b07d4cbdfbe5e840af89bc"
+    },
+    "consumer_and_repeat": {
+      "status": "passed",
+      "views": {
+        "train": {
+          "intervals": 209,
+          "recordings": 37,
+          "creator_components": 33,
+          "sum_weights": 1.0,
+          "token_length": 256,
+          "torch_or_CLAP_imported": false,
+          "raw_caption_returned": false
+        },
+        "validation": {
+          "intervals": 23,
+          "recordings": 7,
+          "creator_components": 7,
+          "sum_weights": 1.0,
+          "token_length": 256,
+          "torch_or_CLAP_imported": false,
+          "raw_caption_returned": false
+        }
+      },
+      "repeat_checks": {
+        "build-same": {
+          "rejected_before_encode_or_fit": true,
+          "exit_code": 1,
+          "extra_encode_or_fit": 0
+        },
+        "build-new": {
+          "rejected_before_encode_or_fit": true,
+          "exit_code": 1,
+          "extra_encode_or_fit": 0
+        },
+        "fit-same": {
+          "rejected_before_encode_or_fit": true,
+          "exit_code": 1,
+          "extra_encode_or_fit": 0
+        },
+        "fit-new": {
+          "rejected_before_encode_or_fit": true,
+          "exit_code": 1,
+          "extra_encode_or_fit": 0
+        }
+      },
+      "original_build_fit_artifacts_and_claims_unchanged": true
+    },
+    "final_doc_QA": {
+      "status": "passed",
+      "private_evidence_and_both_stage_source_hashes_match": true,
+      "B047_original_report_and_assignment_snapshot_preserved": true,
+      "new_public_files_no_real_ID_caption_or_W": true,
+      "new_doc_links_fences_valid": true,
+      "private_modes700_600": true,
+      "zero_truncation_single_fit_and_null_primary_gain_reported": true
+    }
+  },
+  "B047_acceptance_path": "docs/verification/MUS-047-B-acceptance.json",
+  "private_evidence_sha256": {
+    "consumer-repeat-check.log": "f4d344839271c17b5c007d5a694e101c3820e956bc3dc4b683accb534ec40fcd",
+    "initial-tests-duplicate-discovery.log": "4daef501fa5d563bd1890a7bb050dd226486f0be3d09d3898a3b829b78dce0be",
+    "related-tests.log": "abbb5cddde435049dc2729896a7bc8d09b9b8e02aa71c86f495a28d225202f0a",
+    "fit-started.json": "c1acd2b1062cdcb2325661eb6c2f099f7ad8c486ec0f33d65cc0942945747905",
+    "consumer-repeat-check.py": "f555fd94e1ef3c3c3062e890cb0662410151c3d83ff425ea51e0ce1cfcac31fc",
+    "prior-before.json": "0262e8020dc1c233080aadbb5dc665d88a2238367db78119f7b27519f9c1fafe",
+    "test-discovery-note.json": "e263bc1cdedc7c3f91a5a71e92e6659cd93702caa81248787a19de391e4466d0",
+    "fit-repeat-same.log": "8f1ee267486c17ae945c6c685ae065154a02427a5308acc87375132d98ac69bd",
+    "encode-started.json": "4fafaf72444de9d7ebcc342b52417e5fb905fd3e0e01cb4938e853466e4a1cb8",
+    "independent-audit.log": "5a59ebf9b7a230ffd872e5a0db480a8b5a6ac3d7cdf160e0a9aee54829fb90b2",
+    "independent-audit.py": "3968f936dda3485d9945f1003f450e986b0f709921b07d4cbdfbe5e840af89bc",
+    "build-repeat-new.log": "d183a925296fb0193f1283b16d3f14814669ef15225f82ebd602cbc3de577fc1",
+    "fit.log": "d01f7acfdf837961134a5965ca798236d54b210cbe73a7bed27809e299949cf3",
+    "consumer-repeat-check.json": "b8e40982e62d170131333e0e90d7211c178499f1a06fcf8fef77ee9b782b8e9a",
+    "fit-repeat-new.log": "22cf8fa9c111dae4164b612157c0fb0b7053fc912f3941054a909de76e7416af",
+    "independent-audit.json": "13169a27be0d1fbc0e5d680eefabecb146252562c48d093dfed7bfa9696c6bff",
+    "build-repeat-same.log": "6f0d526287f4f9f01e24ad144aeae233c459613f1a664ab3950a62969d6fe5be",
+    "build.log": "65427de424f08627b13a67b74538fe3ef25cccaba20ccfa1af26910cb91c68a7",
+    "repeat-build-new/failure.json": "718d6206b95669499885ce94d1bb0b1f73268aa942b3bfc0210dd41fb9668e71",
+    "repeat-build-new/freeze.json": "3624adb10cdad958ce68b5a6d0e286534b871e5bee8e5286488b6357aa5a65df",
+    "text-01/features.npz": "da3bcb084f63cb3f22ca5ee0c6e0b935236bc78c891633b2ce5e5203466dec02",
+    "text-01/token-proof.json": "c752b2be3d75a40bfcaaae4d1938bcf5fa2ede96a5a5d6ca875ce169230ba71e",
+    "text-01/result.json": "399ccbe93afc6c9204e806e8c6df716c9acac709b08d0109521b8726cdd26390",
+    "text-01/cpu-controls.npz": "325d6a27782f0529009903c1c2e45a2486c0cab7df5d9e02db98fac573fe0261",
+    "text-01/cache.json": "e32727343a3cf0198b9dbcacca3841134823344d3f6929cae6088bbca1cb086e",
+    "text-01/freeze.json": "01cd66e915ef978ac8707e6cf80ed439e812c49f03244656ee4fbdc2e8562159",
+    "repeat-fit-new/failure.json": "47157a13de011644607922b1f780f02f60b552c233fa48a25324df1956ea651d",
+    "repeat-fit-new/freeze.json": "29cb1a4e817ad7bc8e07660b0b908e54527415e6d9acc4b9fdca8d4c5082f55f",
+    "fit-01/result-public.json": "3bb220fdaabc672d28b08c799b824c7dd62f3ec144534fb8863f6b4ab04e96e2",
+    "fit-01/evaluation-open.json": "46e451b35cc03267df26a4be9ec9f8a1e35591197a96021fdfe469968549c756",
+    "fit-01/result-private.json": "7eb056828262fe3e8a61aea6a135b6f6167f6b77939de6ffa2b852358b5c5dca",
+    "fit-01/fit.json": "215a40112628a16ac6ceba272bb95b21f6a29e2af7000f1c350db2e7e818bfa5",
+    "fit-01/adapter.npz": "755d213fa4699d952773558c120f49db0e229e2b8ba74adc282ff87ed2fd4e0e",
+    "fit-01/freeze.json": "c3c17d4437802da631f879e7ba28ab40e5a9afe320bb2e2c0fc0a08aa32d6675",
+    "final-doc-qa.json": "072b37177233d6e507cc42277779f5e97f82c7ca6218a70fda9982a7f25bc978"
+  }
+}

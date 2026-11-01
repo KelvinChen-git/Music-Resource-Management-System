@@ -1,5 +1,27 @@
 # 账号 A 最新交接
 
+## 当前：MUS-055完整描述对照完成，截断消除、主指标无新增收益
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-055-long-caption-control`，base338146a81392169b33965bb3bf01179d8f092fc8，实际源码 `635060a8d15d679e51f5dbe88516af209018abfc`；最终交付SHA见handoff.source_sha。055 review：实际文本编码/唯一新fit/固定开发比较完成，工具独立审核待安排，非原CLAP微调或正式质量验收。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-01T17:28:11Z/17:36:09Z双方fetched。B047-R1/rev1准确d8555fa/baseaaf5e4b的新approve_scoped已核报告0cfe4286/own latest与feed SHA/源差仅两文件/四冻结源与当前字节一致，原字节导入+acceptance JSON、STATUS done。B12原+7独立合成是其报告证据，未读B私有日志/认证真实GPU或048–055/质量；原派发快照保留作历史，不改卡或派新任务。
+
+E29/config先冻，干净635060a build/fit首次各exit0。仅同232原生成caption显式RoBERTa256 tokenizer，实际非pad序列逐条等于原未截断序列、17–178token/原124截断全部消除，不改原文/样本/音频/分组/原CLAP/alpha1。固定hash短train3+长train3、6不同creator CPU控制：CPU77对旧MPS77差3.05e-7、CPU256对新MPS256差3.65e-7；全108短描述新256对旧77差2.89e-7，皆原1e-4阈值内。只新text-only overlay/cache，不覆盖旧缓存；MPS232文本SDK5.708s/含完整性22.071s，非P95或匹配加速比。
+
+独立CPU进程37train209/33组件、录音等权/alpha1加权ridge新256唯一fit10.457ms，旧05477 W只读重训0，262144参数、objective1.315548→1.150066/残差9.80e-17。W/fit收据保存后才分析7val23与旧人写dev，reader完整性会物理读共享NPZ，只有train209进solver；不冒称val字节未读或新盲测。主固定原24人写query特征/140整曲MRR identity.420808、旧77.447163、新256.447149；新减77=-.00001462，95%区间[-.00043860,.00038012]含零，1胜18平1负，R1.37/R5.49保持。当前补全描述无主新增收益，不据此断言长文本永远无关或自动选模。
+
+3W×两人写池两mode完整报，20整曲新256.675低于旧77.6775，140窗口只+.000556；生成val再交叉77/256两查询版本×精确区间/7录音max，两个适配W在同查询版本下val排名指标相同，换查询的差单列，未把输入查询改变当训练收益。所有16组对identity/77的录音配对bootstrap公开聚合；生成文字仍弱监督，未知配对不当真负例，已用开发/小验证不称新独立test。
+
+143去重相关检查passed（10新/133旧）；初157含导入TestCase重复14，改模块导入后只计143、原日志保留，不累加。独立脚本不导入新overlay/runner/生产learner/metrics，离线tokenizer逐条复核232完整序列/hash、6固定控制/三项数值，512维primal对dual差9.99e-16、train209可重建同W；3W×2human池×2mode及3W×2query×2val指标/16组bootstrap全部一致，同操作者复算不是B独立审核。
+
+实际overlay reader train209/val23、各权重和1/256长度，无Torch/CLAP导入或原文返回；build/fit各原目录与换目录重跑均在新编码/fit前拒绝，额外次数0，原产物/claim集合SHA保持，探测新目录只留freeze/failure。旧045–054全私有集合/hash、951输入+B派发快照/23源码/54离线cache/043044/160原件及原版f3b0da1干净保持；新.local/a/mus055目录700/文件600，身份/原文/向量/W/逐项排名不入Git，只aggregate/方法/hash。无新音频编码/下载/保留test/141+160参与fit/人工包/Java/Vue/UI/DB/API/依赖锁/main/云端变化，不重复Maven/build，不按已看dev追加长度/alpha搜索或部署。
+
+交付新overlay/两stage runner/10检查/E29/config/方法验证与聚合JSON、B047原字节接收、README/PROJECT/STATUS/own latest。最终commit后publish/sync回读，发布不等于B接收/批准055或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
 ## MUS-055开始：256完整描述对照；接收B047限定批准
 
 A；2026-11-01 America/Chicago；branch codex/MUS-055-long-caption-control，base338146a81392169b33965bb3bf01179d8f092fc8。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC17:28:11Z fetched。B047-R1/rev1准确d8555fa/baseaaf5e4b限定approve_scoped，报告0cfe4286原字节/own latest/feed和仅两文件diff/四源字节已核并接收；B12原+7独立合成证据，不认证真实GPU或048–055/质量。原派发卡作历史保留、不新派卡。
