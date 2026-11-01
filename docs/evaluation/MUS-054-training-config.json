@@ -1,0 +1,50 @@
+{
+  "schema": "sonora-caption-adapter-training-v1",
+  "task": "MUS-054",
+  "base_sha": "19afdcb2da0d118157d1d337a9f8455900fe1ec2",
+  "task_directory": ".local/a/mus054",
+  "interval_cache": {
+    "path": ".local/a/mus053/build-01/cache.json",
+    "sha256": "fba03908d5492895069361d701902d986ed9e1b41751df8b885541baa141239d"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "prior_identity": {
+    "path": ".local/a/mus049/run-01/result-public.json",
+    "sha256": "d42e99588ffb5f372de88ed5a7a354569b8b28c7456718c1c7604b32aeefe4b3"
+  },
+  "expected_device": "mps",
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "fit_view": "train",
+  "fit_recordings": 37,
+  "fit_components": 33,
+  "fit_intervals": 209,
+  "validation_recordings": 7,
+  "validation_intervals": 23,
+  "dimension": 512,
+  "alpha": 1.0,
+  "loss": "sum_i(q_i*||X_i W-T_i||^2)+alpha*||W-I||_F^2",
+  "weights": "each_recording_equal_then_each_interval_equal",
+  "solver": "float64_weighted_dual_ridge_identity_prior",
+  "text_target": "MUS053_fixed_CLAP77token_prefix_all209_no_filter_no_reencode",
+  "candidate_fits": 1,
+  "hyperparameter_search": false,
+  "validation_used_for_selection": false,
+  "comparators": [
+    "identity",
+    "caption-ridge-1.0"
+  ],
+  "primary_development_metric": "expanded140_whole_recording_macro_MRR",
+  "secondary_metrics": "dev20/expanded140 whole/segment known-pair R1/R5/MRR;23 validation interval exact-pair and7 recording retrieval",
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261101054,
+  "blas_threads": 2,
+  "seed": 0,
+  "new_audio_or_model_encodes": 0,
+  "new_downloads": 0,
+  "test_inputs": 0,
+  "new_human_labels": 0,
+  "decision": "retain_identity_no_automatic_selection_scale_up_or_deployment"
+}

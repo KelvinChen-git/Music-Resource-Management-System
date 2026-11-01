@@ -314,3 +314,8 @@ MUS-052实际完成：干净8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed首次CLI ex
 MUS-053实际完成：干净716b3fcea1902a54fe17a5e4b64db78334ddb28a首次CLI exit0，固定44录音232生成caption区间构建696唯一10秒窗及232音频/文字向量，512维、原PCM/边界与输入源码环境复核passed；train37录音/33组件/209段，validation7/7/23，每录音等权，两个consumer只返回本split且不加载模型/原caption。CPU3训练区间9窗/3文本数值抽检最大差3.01e-7、独立9真实波形重解逐点相同；124相关检查、独立所有行/窗口/权重/聚合/token复算、真实重复输出拒绝和旧045–052/模型/cache/备份保护通过。
 
 重要限制：232原描述17–178token，124条超过77并按冻结SDK规则截断（train110/209、val14/23）；未事后筛除或改写。CPU三文本为49/76/64token均未截断，此抽检不证明所有长caption CPU/MPS一致。新cache只ready_for_bounded_pilot，训练方案未冻结、无fit或质量提升结论。下阶段先明确77token截断对训练目标的边界，再另预注册一次小训练，不能按已看dev继续搜参。原identity/141+160/SDD/保留test/UI/Java/DB/main/B047卡保持，不租卡/下载/新增人工全矩阵。见[验证](verification/MUS-053.md)。
+
+
+## MUS-054：首轮生成caption适配层训练（2026-11-01）
+
+用户询问何时开始，本轮直接执行训练。复用053已准备GPU特征37录音209段，固定每录音等权/alpha1 identity-prior ridge、CPU float64闭式解，原CLAP冻结；原77token前缀全部保留，不按长短筛选。133相关检查passed（9新/124既有），先提交E28/config/源码后唯一fit，持久claim阻止换目录重跑；保存W后分析7val23与旧20/140池已用人写dev。主140整曲宏MRR，固定两个模型，不追加准备轮次/编码/搜参/保留test/自动切换。实际结果见下文。

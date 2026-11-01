@@ -511,3 +511,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 原caption逐字输入固定CLAP A，不改写/按得分过滤；SDK 77token截断，保存token长度并聚合披露。录音及creator组件不得跨train/validation；每split权重1/录音数/该录音区间数。仅新MPS/FP32缓存，不自动CPU fallback；复用047校准环境，在首次模型加载前冻结全输入/源码/设备/模型/配方，固定hash选3个不同train组件的区间，CPU编码全部9窗和3原caption作新配方数值抽检，容差maxabs/cosine各1e-4；抽检不冒充全232 CPU复算或检索质量。
 
 新manifest及NPZ独立私有保存，只在全边界/PCM/finite-unit/抽检/输入源码环境复核通过后写ready_for_bounded_pilot。consumer必须显式选train或validation和期望设备/模型，检查manifest/result/key/数组SHA、完整行/分组/权重，返回对应区间音频/文字向量及录音/组件，不返回另一split或原caption、不加载模型。重复输出在模型加载前拒绝，失败保留。特征ready不等于训练方案批准/人工语义真值/质量提升，训练方案仍另冻；本轮fit/新音频/新模型下载/保留测试/评分/部署0。原权重、缓存、原141+160/SDD分界、备份/UI/Java/DB/main及B047原卡保持。
+
+
+## E28：MUS-054 固定一次生成caption适配层训练（2026-11-01）
+
+复用053 typed train返回的209×512音频/文本、37录音/33作者组件；q=1/37/每录音段数。原文经CLAP前77token的现有向量全部保留，不丢弃110长训练描述/改写/重编码，生成标签不当人工真值。CLAP权重冻结，仅CPU float64拟合512×512 W，文本不映射；固定alpha1.0，目标sum(q||XW-T||²)+alpha||W-I||F²，weighted dual闭式解，一fit无搜索。这个未归一化凸目标不等同检索余弦；检索时unit(XW)。解析残差/目标下降仅证明求解正确，不能称质量提升。
+
+干净源码/config/input/model/cache/source/runtime先冻结，持久fit-started.json独占声明阻止换目录再次fit；失败保留不清claim/不自动重试。先保存W/fit收据再获取validation分析视图和旧140/24人写dev作固定比较。typed reader为完整性会物理读取含val的NPZ数组，但只返回train209参与求解；不冒称val字节此前从未读取。val7/23不参与loss/alpha选择；旧dev已看过，保留test/141+160不用作fit。
+
+主开发指标继续固定140池整曲已知配对recording宏MRR，identity/新W两组必报；次要两池20/140整曲/窗口R1/R5/MRR、validation23精确区间已知配对与7录音max区间检索。除已知配对外语义未判，不把同曲其他区间/其他歌当真负例；validation录音等权，23段不是23独立录音。固定2000次/seed20261101054按录音配对bootstrap仅描述性，不作选择；7条小验证/已看dev不称独立总体效果。即使点估计好也不自动部署/扩训/打开test。原缓存/identity/UI/Java/DB/main/原版/B047卡保持，本轮新下载/CLAP编码/人工包0。

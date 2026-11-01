@@ -4,7 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
+- 当前执行：MUS-054 / A / codex/MUS-054-caption-adapter-training，base19afdcb。直接复用053 GPU区间特征，37录音209段CPU训练加权identity-prior ridge，单alpha1/单fit；原77token前缀全保留，不增准备轮次/编码。先冻结源码与配方再立即fit，7录音23段及旧140池只在W保存后分析，不调参/开test/切模型。
+
+- 上轮交付：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
 
 - 当前同步与保护：UTC06:12:17Z/06:19:21Z/06:20:40Z双方feed fetched，A88d0107/source53d4466、Bde296c7/sourcef0d3ef2未变并ack；原B047卡保持，053独立审核待安排。旧045–052/951+原B卡/23源码/54cache/043044/160/备份f3b0da1保持；新053只私有700/600，无下载/fit/test评分/选模或main合并。
 
@@ -62,6 +64,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-054 生成caption适配层训练 | in_progress / A | codex/MUS-054-caption-adapter-training / 19afdcb；依赖053 | 新weighted_caption_adapter模块/fit runner/合成测试、E28/config与054方法验证和README/PROJECT/STATUS/own latest；私有.local/a/mus054，单fit持久claim、旧045–053/UI/DB/main/B047卡保持 |
 | MUS-053 时间对应区间特征 | review / A（真实缓存完成，未训练） | codex/MUS-053-interval-feature-cache / 716b3fc；base53d4466/依赖052/047 | 232区间696窗/124检查、CPU3区间数值/独立复算/consumer与重复保护passed；124长caption截断披露，旧045–052/备份/B047卡保持，下一步另冻小训练 |
 | MUS-052 描述配对元数据与区间预检 | review / A（有界配对预检通过，未训练） | codex/MUS-052-caption-pair-preflight / 8a8bc73，base4a534fe/依赖051 | 44来源232区间/3参考9anchor通过，110检查/独立复算/重跑保护passed；下一步区间特征，未新CLAP/fit/test或曲库 |
 | MUS-051 现有音频caption覆盖 | review / A（完整扫描完成，候选非训练ready） | codex/MUS-051-caption-coverage / 0896ad7，base2e13f61/依赖050 | train49首246段/val8首24段；98检查/独立原行重建/原目录及换目录预算拒绝通过，下一步核权限和区间对齐，新fit/音频0 |

@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## MUS-054现在开始首次caption适配层训练
+
+A；2026-11-01 America/Chicago；branch codex/MUS-054-caption-adapter-training，base19afdcb2da0d118157d1d337a9f8455900fe1ec2。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC06:25:58Z双方fetched、B未变，047原assigned卡不竞争改写。
+
+用户问何时训练，本轮直接固定053已有GPU特征37train209的单alpha1加权identity-prior ridge/CPU闭式fit，原77token前缀全保留、生成弱标签局限不掩盖。允许STATUS列出054新模块/runner/测试/E28/config/方法验证与必要文档，先提交后立即实际fit，不另做准备轮次。W保存后才分析7val23及旧140已用dev；主140整曲MRR，固定两模型/两池两mode、无搜索/保留test/自动选模部署。持久单fit claim与新私有.local/a/mus054，旧045–053/141+160/原版/UI/DB/main/B047卡保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-053区间缓存完成，44录音232段/696窗，未训练
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-053-interval-feature-cache`，base53d4466f5aa4032e4753ccc98acc50d84b73da55，真实源码 `716b3fcea1902a54fe17a5e4b64db78334ddb28a`；最终交付SHA见handoff.source_sha。053 review：实际特征缓存准备完成，工具独立审核待安排，无新fit/模型质量验收。
