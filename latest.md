@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-058全文本扩样特征与单次训练完成，未获明确提升
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-058-expanded-fulltext-training`，base `97347bc7bc8e368457527424688e7ed20e3dd9a8`，真实源码 `7d910ce65250d5e9f1d43579b9a7b209f631bb3a`；最终交付SHA见handoff.source_sha。058 review，实际特征/fit/固定比较完成，工具独立审核待安排，非总体质量验收。
+
+599原caption17–195token全部256完整，旧232音频与全文本/696窗逐元素保持；新367文字/1101窗，总1797。新train3区间9窗与短长各3文字/6作者CPU-MPS maxabs3.163e-7/1.844e-7/3.865e-7，缓存ready。模型冻结，新100train539配对/83组件、每录音等权/alpha1原weighted dual一次CPU fit26.337ms，旧37全文本ridge不重训，不继续056 loss搜索。生成验证20/60与原7/23分别比较。
+
+主140整曲宏MRR旧37 .447148788→新100 .447216806，差+.00006802、描述性95%[-.00073754,.00088819]含零，2胜16平2负；对identity差区间亦含零。生成20/60精确区间 .371520→.367888、原7/23 .407273→.398997均降；20人写池整曲 .675→.6625。当前没有明确扩量收益，保留identity，不部署/搜alpha/loss/继续只靠数量。报告docs/evaluation/MUS-058-expanded-training.md，完整聚合docs/verification/MUS-058-results.json。
+
+176相关检查（新11）最终零失败错误；首条命令缺导入路径的1发现错误已修正，actual build/fit各一次且都首次exit0。独立599 token/全行权重窗口/CPU输入/所有指标16组bootstrap及primal W差1.221e-15通过；真实consumer不加载模型、两stage原/换目录4拒绝/claim保持。旧045–057共929工件与951+B快照/23源码/54cache/043044/四批160/原版f3b0da1保持，058私有700/600。原CLAP未微调，无新下载/人工包/保留test/云端付费/生产切换；离线范围未跑Java或前端build，原版/UI/Java/DB/main保持。下一步先核监督质量和评测覆盖，不在已看dev继续挤分。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC18:28:48Z/18:37:31Z/18:40:30Z双方fetched，B未变。B047限定批准已在055接收，原派发卡与B正文保持，不外推058批准，无新派卡。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-057音频描述扩样完成，待完整特征与固定参数训练
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-057-caption-data-expansion`，base `37fec0a05fd1c2343abef7ca7b73588751d6aff1`，真实源码 `9a1fff4a08844d9d6989b5b6182f8eea00b37c11`；最终交付SHA见handoff.source_sha。057 review，配对检查完成，工具独立审核待安排，生成弱标签不当人工真值。
