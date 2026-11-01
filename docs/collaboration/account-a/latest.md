@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-053区间缓存完成，44录音232段/696窗，未训练
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-053-interval-feature-cache`，base53d4466f5aa4032e4753ccc98acc50d84b73da55，真实源码 `716b3fcea1902a54fe17a5e4b64db78334ddb28a`；最终交付SHA见handoff.source_sha。053 review：实际特征缓存准备完成，工具独立审核待安排，无新fit/模型质量验收。
+
+ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，UTC2026-11-01T06:12:17Z/06:19:21Z/06:20:40Z双方fetched、B未变，047-R1/rev1原assigned卡未认领、与base字节相同，不竞争派卡或外推053批准。
+
+E27/config先提交后干净716b3fc首次CLI exit0；052固定44来源232个model_generated区间，train37录音/33creator组件/209段，validation7/7/23不改。每段实际EOF内first/mid/last10s，单窗unit/均值unit，696用途引用=696唯一窗口、232音频/原文向量512维；只本机现有CLAP A/MPS FP32、模型冻结、无autocast/fallback/下载。原音频SHA/48k PCM/input/source/env校验通过后新私有cache ready_for_bounded_pilot，不替换旧cache/identity，training_protocol_frozen=false。
+
+固定hash3不同训练组件区间，CPU9窗口/3原文对MPS最大差3.01e-7（窗口2.26e-7/区间1.89e-7/文字3.01e-7）、cosine<=1.68e-12；仅有界数值抽检、不是全部232 CPU/质量证明。MPS音频SDK20.057s/文字2.294s、总含完整性47.599s，无全量CPU对照/P95/加速比，构建产物22,414,359 bytes。
+
+关键限制：232原文17–178token，124超过CLAP77并按冻结规则截断（train110/209、val14/23）；未按结果删样本/改写。CPU三个caption49/76/64token均未截断，不称长caption已CPU比较。生成文字不当人工语义/定位真值，052仅3当前同ID参考相符，仍非teacher确切缓存/全44时序等价。下阶段先明确长描述截断对训练目标的边界，再另预注册一次录音等权的小fit/固定开发比较，不据已看dev继续搜参、扩歌曲或自动部署。
+
+124相关检查passed（14新/110既有，只计最终一次）。同操作者独立脚本不导入新interval模块/runner，重建全部232边界/696绑定/分组录音等权/原文hash/token/key/sourcecommit和输入；向量聚合差0，三原音频独立EOF重解/PCM与9保存控制波形逐点相同；不冒充B独立审核。实际typed consumer读取train209/val23，各权重和1，无Torch/CLAP/原文或另一split；原目录重跑FileExistsError发生在模型加载前，原工件集合/sha保持。不声称换目录任务级禁重，本工具显式新输出可新建缓存。
+
+旧045–052全私有集合/hash、原951/B047/23源码/54cache/043044/四批160及原版f3b0da1干净保持；新.local/a/mus053目录700/文件600，身份/原文/音频/向量不入Git。无新音频/模型下载/fit/质量评分/保留test文字模型输入/人工包/Java/Vue/UI/API/DB/依赖锁/main/云端变化，不重复Maven/build。交付新模块/runner/14检查/E27/config与方法/验证/聚合JSON、README/PROJECT/STATUS/own latest；最终commit后publish/sync回读，发布不等于B接收/批准或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
 ## MUS-053开始：232时间对应区间特征，未运行编码/训练
 
 A；2026-11-01 America/Chicago；branch codex/MUS-053-interval-feature-cache，base53d4466f5aa4032e4753ccc98acc50d84b73da55。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC06:12:17Z双方fetched，B047原assigned卡未变，不外推新批准。

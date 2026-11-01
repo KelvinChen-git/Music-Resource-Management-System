@@ -309,3 +309,8 @@ MUS-052实际完成：干净8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed首次CLI ex
 ## MUS-053：时间对应区间特征准备（2026-11-01）
 
 只复用052固定44首232段生成caption，train37/33组件/209与validation7/7组件/23保持隔离。E27/config固定区间内first/mid/last10秒、unit均值、每录音等权，原caption逐字/77token截断明确披露；新MPS FP32编码前冻结来源/环境/模型/配方，以固定hash3不同训练组件/9窗/3文本作CPU数值抽检，全部边界/PCM/完整性通过才写新私有typed cache。14新检查连110既有共124 passed；待干净提交后真实构建，当前没有新编码或fit。旧cache/identity/原141+160/SDD/保留test、B047原卡/原版/UI/DB/main保持，不下载/新人工全矩阵；特征准备完成后另冻小训练方案。
+
+
+MUS-053实际完成：干净716b3fcea1902a54fe17a5e4b64db78334ddb28a首次CLI exit0，固定44录音232生成caption区间构建696唯一10秒窗及232音频/文字向量，512维、原PCM/边界与输入源码环境复核passed；train37录音/33组件/209段，validation7/7/23，每录音等权，两个consumer只返回本split且不加载模型/原caption。CPU3训练区间9窗/3文本数值抽检最大差3.01e-7、独立9真实波形重解逐点相同；124相关检查、独立所有行/窗口/权重/聚合/token复算、真实重复输出拒绝和旧045–052/模型/cache/备份保护通过。
+
+重要限制：232原描述17–178token，124条超过77并按冻结SDK规则截断（train110/209、val14/23）；未事后筛除或改写。CPU三文本为49/76/64token均未截断，此抽检不证明所有长caption CPU/MPS一致。新cache只ready_for_bounded_pilot，训练方案未冻结、无fit或质量提升结论。下阶段先明确77token截断对训练目标的边界，再另预注册一次小训练，不能按已看dev继续搜参。原identity/141+160/SDD/保留test/UI/Java/DB/main/B047卡保持，不租卡/下载/新增人工全矩阵。见[验证](verification/MUS-053.md)。
