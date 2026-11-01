@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-049完成一次CPU正标签分数训练，主检索未改善，保留identity
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-049-positive-score-training`，basee7fea7329330749669a32ffa668e675629d7cd6b，真实源码 `07f1d277f5abdb6ffcdaffc0b07da615b8548a69`；最终文档交付SHA见handoff.source_sha。049 review：一次真实拟合/开发比较完成，工具独立审核待安排，非模型质量验收或部署批准。
+
+ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC2026-11-01T04:51:13Z/04:59:50Z/05:03:54Z双方fetched，B未变。原047-R1/rev1/d8555fa/baseaaf5e4b卡仍assigned未认领、与base逐字相同，不竞争派卡或扩大、不冒充048/049已获B批准。
+
+E24/config于10月31日晚先冻结提交后首次真实运行exit0：MPS ready cache typed tag_training100、183prototype/335已观察正tag，target=min(1,identity cosine+.05)、unknown mask0、unit(XW)在loss内、每曲正项平均后曲等权，alpha.01/float64 CPU2线程/最多200步固定Armijo。唯一fit不搜参/按val早停；adapter和fit收据先保存，随后20tagval/140候选20录音24已用dev才打开，时序独立核对。不重新编码/加载Torch或CLAP、下载、训练原CLAP或读取保留test。
+
+CPU fit666.17ms、完整缓存拟合/比较971.86ms，非训练规模/P95。目标.0025→.00017065，已知正tag余弦均值.305925→.352448；达到200步上限，gradmax4.45945e-8>1e-8、未标收敛、不加步重跑。140主整曲R1/R5/MRR identity .31/.49/.420808，新W .31/.49/.420281，旧alpha.1 .36/.60/.465839。新−identity MRR−.000527、95%[-.002532,+.000728]，新−旧alpha.1 −.045558、[-.157927,+.046858]；三窗次要改善不冒充主任务收益，五候选两池两模式及全部配对区间/标签分桶公开聚合全报。保留identity、不扩训/部署/开保留test；这里只说明这一个固定正项目标当前没有整曲描述收益，不外推所有tag监督无效。
+
+86相关检查passed（10新/76既有）。同操作者独立逐正项循环复算实际W目标/梯度/正tag余弦，最终W五有限差分误差max4.16e-15；五模型×两池×两模式指标/全部配对区间/五组标签验证观察召回一致，不用新learner或再fit、不是B本人。真实重复CLI已有输出在fit前FileExistsError，额外fit/评估打开0，全部run SHA保持。045–048全部私有集合/hash及043/044/160/23旧源码/54cache/原版f3b0da1干净保持，历史951其余pin不变、唯一授权B入口为上轮变更且本轮字节相同；049目录0700/文件0600，原音频/身份/评分/描述/向量/W仅ignore.local。原141/160不训练选参，无应用/依赖/API/DB/主模型/main或云端变化，无关Maven/build不重复、不称本轮passed。
+
+交付新learner/runner/10检查/E24/config、README/PROJECT/STATUS与验证049报告/聚合JSON。下一阶段优先审查现成文本—音乐描述训练数据的可获取性、许可边界和作者/作品隔离容量，再立训练方案，避免继续在20个已看dev录音上搜参；本轮不追加实验。最终commit后原子publish/sync回读，远端可读不等于B接收/批准或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
 ## MUS-049开始：GPU特征缓存上一组固定CPU正标签分数训练
 
 A；2026-10-31 America/Chicago；branch codex/MUS-049-positive-score-training，basee7fea7329330749669a32ffa668e675629d7cd6b。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，UTC2026-11-01T04:51:13Z双方fetched；客户端仍10月31日晚。B047-R1/rev1原assigned卡不变，不修改047/048原源码或外推049批准。

@@ -62,6 +62,8 @@ MUS-047已建立独立设备校准：固定3训练曲/9窗/6tag，CPU参考与�
 
 MUS-048已完成140首MPS双视图缓存：100训练/20标签验证用整曲实际EOF，140检索用首120秒，780用途引用按起点去重为624窗，另183tag/24dev文本。CPU全量数值及四旧模型两池两模式16组宏R1/R5/MRR复现，前5集合和顺序保持；只有一个查询第111/112名近并列交换，未隐去。76检查/独立复算/实际consumer/重复保护通过，新ready缓存按device/model/view显式读取，CPU可读训练100/验证20且不加载模型/不返回dev文字。没有新训练/下载/保留test/旧缓存替换或部署，B047原审核卡保持，048独立审核待安排，见[MUS-048](docs/verification/MUS-048.md)。
 
+MUS-049已复用MPS特征完成一次CPU正标签逐项分数训练：100首/335已知正tag、唯一alpha.01，拟合约0.67秒。loss下降，但达到200步上限未满足收敛阈值；140候选主整曲MRR由identity0.4208到新W0.4203，未改善，也低于旧alpha0.1的0.4658，继续保留原模型。86检查/独立目标梯度与全部检索指标复算/实际重复保护通过；无追加调参、保留test、下载或部署。下一轮优先审查现成文本—音乐描述训练来源及隔离容量，再立方案；B047原卡保持，原版/UI/main不变。见[MUS-049](docs/verification/MUS-049.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

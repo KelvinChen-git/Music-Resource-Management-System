@@ -1,0 +1,1725 @@
+{
+  "schema": "sonora-positive-score-training-result-v1",
+  "status": "one_fixed_fit_and_development_evaluation_complete",
+  "source_sha": "07f1d277f5abdb6ffcdaffc0b07da615b8548a69",
+  "config_sha256": "983400e94f05acf5976cfe44cea341bc168d531b011c068740870d9d82fecab3",
+  "cache_sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5",
+  "cache_key_sha256": "a0e583e74b6d1b48fdf4983ec33ebd6aeb883124fe84d649da958a896a60e951",
+  "adapter_sha256": "ef18598de5b0b2fd7b6df7771c0c782013617c2d8af070194ff02b3de74ff67e",
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "1.26.4",
+    "numpy_code_sha256": "90e84693f8af39ec8f62c40ea5d41a37ba6faa08593970b3bb1278d1e81d4b63",
+    "system": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "dtype": "float64",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "counts": {
+    "fit_runs": 1,
+    "fit_tracks": 100,
+    "tag_validation_tracks": 20,
+    "caption_dev_recordings": 20,
+    "caption_queries": 24,
+    "retrieval_candidates": 140,
+    "new_model_or_audio_encodes": 0,
+    "reserved_test_inputs": 0,
+    "downloads": 0
+  },
+  "fit_ms": 666.1667920416221,
+  "diagnostic": {
+    "objective_before": 0.0024999999999999996,
+    "objective_after": 0.00017065074068313475,
+    "loss_trace": [
+      0.0024999999999999996,
+      0.000976458404156308,
+      0.00048031838339928165,
+      0.0003065261627182429,
+      0.0002418433996152022,
+      0.0002159181162872356,
+      0.00020429160992492103,
+      0.00019817031758866463,
+      0.0001943120205144868,
+      0.00019148967562290957,
+      0.0001892206603174311,
+      0.00018730202073347955,
+      0.00018563837353644593,
+      0.00018417745366831675,
+      0.00018288561341285012,
+      0.00018173826421839011,
+      0.00018071596209112055,
+      0.00017980266008390584,
+      0.00017898481981551762,
+      0.00017825088451706205,
+      0.000177590920395748,
+      0.00017699634814749804,
+      0.00017645973054471425,
+      0.00017597459940182203,
+      0.00017553531244402784,
+      0.00017513693389639855,
+      0.00017477513432205362,
+      0.00017444610626939997,
+      0.00017414649299205405,
+      0.00017387332802713357,
+      0.00017362398382367409,
+      0.00017339612793669442,
+      0.00017318768556387758,
+      0.00017299680741434504,
+      0.00017282184207247458,
+      0.00017266131216166653,
+      0.00017251389372943812,
+      0.00017237839837095598,
+      0.00017225375768700177,
+      0.0001721390097374636,
+      0.000172033287205338,
+      0.00017193580703087554,
+      0.00017184586131265055,
+      0.00017176280930325497,
+      0.00017168607035315228,
+      0.00017161511767785513,
+      0.00017154947284173986,
+      0.00017148870086708282,
+      0.00017143240588979682,
+      0.00017138022729423124,
+      0.00017133183626865536,
+      0.0001712869327308867,
+      0.00017124524258023763,
+      0.00017120651523766156,
+      0.00017117052144089573,
+      0.0001711370512655932,
+      0.00017110591234707626,
+      0.0001710769282804559,
+      0.00017104993717957374,
+      0.00017102479037756766,
+      0.00017100135125389262,
+      0.0001709794941744099,
+      0.00017095910353269046,
+      0.00017094007288204487,
+      0.000170922304148964,
+      0.00017090570691969664,
+      0.0001708901977926028,
+      0.00017087569978972358,
+      0.00017086214182171494,
+      0.00017084945820092289,
+      0.0001708375881979201,
+      0.00017082647563732744,
+      0.00017081606852916527,
+      0.00017080631873237352,
+      0.0001707971816474772,
+      0.00017078861593568294,
+      0.00017078058326196188,
+      0.00017077304805991614,
+      0.0001707659773164483,
+      0.000170759340374439,
+      0.00017075310875181888,
+      0.00017074725597557243,
+      0.00017074175742935076,
+      0.00017073659021350142,
+      0.00017073173301642423,
+      0.000170727165996277,
+      0.0001707228706721358,
+      0.00017071882982380265,
+      0.00017071502739952232,
+      0.00017071144843094435,
+      0.000170708078954717,
+      0.00017070490594016223,
+      0.0001707019172225294,
+      0.00017069910144136089,
+      0.00017069644798356032,
+      0.00017069394693077113,
+      0.00017069158901072268,
+      0.000170689365552222,
+      0.0001706872684434996,
+      0.00017068529009364183,
+      0.0001706834233968675,
+      0.00017068166169942285,
+      0.00017067999876889037,
+      0.00017067842876572492,
+      0.00017067694621684346,
+      0.00017067554599111003,
+      0.00017067422327657212,
+      0.00017067297355931446,
+      0.0001706717926038074,
+      0.0001706706764346372,
+      0.00017066962131951488,
+      0.00017066862375346938,
+      0.0001706676804441337,
+      0.00017066678829804878,
+      0.00017066594440790395,
+      0.00017066514604065127,
+      0.00017066439062642647,
+      0.00017066367574822,
+      0.000170662999132242,
+      0.00017066235863893615,
+      0.00017066175225458885,
+      0.00017066117808349962,
+      0.00017066063434066539,
+      0.00017066011934494928,
+      0.0001706596315126954,
+      0.00017065916935175924,
+      0.00017065873145592794,
+      0.00017065831649970022,
+      0.00017065792323340076,
+      0.0001706575504786109,
+      0.00017065719712388867,
+      0.00017065686212076165,
+      0.0001706565444799733,
+      0.00017065624326796603,
+      0.00017065595760358467,
+      0.0001706556866549878,
+      0.00017065542963674775,
+      0.00017065518580713527,
+      0.00017065495446556763,
+      0.00017065473495021658,
+      0.00017065452663576138,
+      0.00017065432893128071,
+      0.00017065414127827075,
+      0.0001706539631487854,
+      0.00017065379404368724,
+      0.00017065363349100487,
+      0.00017065348104438807,
+      0.00017065333628165573,
+      0.0001706531988034296,
+      0.0001706530682318498,
+      0.0001706529442093661,
+      0.00017065282639759977,
+      0.0001706527144762728,
+      0.00017065260814220012,
+      0.00017065250710834027,
+      0.00017065241110290061,
+      0.00017065231986849538,
+      0.00017065223316135213,
+      0.0001706521507505637,
+      0.00017065207241738262,
+      0.00017065199795455717,
+      0.0001706519271657041,
+      0.00017065185986471802,
+      0.00017065179587521324,
+      0.0001706517350299981,
+      0.00017065167717057863,
+      0.0001706516221466895,
+      0.0001706515698158524,
+      0.0001706515200429587,
+      0.00017065147269987462,
+      0.00017065142766506944,
+      0.00017065138482326355,
+      0.00017065134406509666,
+      0.00017065130528681356,
+      0.0001706512683899678,
+      0.00017065123328114117,
+      0.0001706511998716791,
+      0.00017065116807743973,
+      0.0001706511378185577,
+      0.00017065110901921923,
+      0.00017065108160745153,
+      0.00017065105551492124,
+      0.00017065103067674648,
+      0.0001706510070313149,
+      0.00017065098452011688,
+      0.00017065096308758318,
+      0.00017065094268093375,
+      0.00017065092325003307,
+      0.00017065090474725444,
+      0.00017065088712735132,
+      0.00017065087034733413,
+      0.00017065085436635588,
+      0.00017065083914560153,
+      0.00017065082464818475,
+      0.00017065081083904906,
+      0.00017065079768487627,
+      0.00017065078515399537,
+      0.0001706507732163018,
+      0.00017065076184317627,
+      0.0001706507510074102,
+      0.00017065074068313475
+    ],
+    "accepted_step_sizes": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "steps": 200,
+    "objective_evaluations": 201,
+    "stop_reason": "step_limit",
+    "convergence_tolerance_reached": false,
+    "max_abs_gradient": 4.459446655725663e-08,
+    "parameter_delta_frobenius": 0.11574856438541924,
+    "fit_tracks": 100,
+    "observed_positive_pairs": 335,
+    "alpha": 0.01,
+    "margin": 0.05,
+    "initial_stats": {
+      "data_loss": 0.0024999999999999996,
+      "mean_observed_positive_cosine": 0.3059253458528746,
+      "mapped_norm_min": 1.0,
+      "mapped_norm_max": 1.0000000000000002
+    },
+    "final_stats": {
+      "data_loss": 3.667343911028054e-05,
+      "mean_observed_positive_cosine": 0.3524479363424162,
+      "mapped_norm_min": 0.9938004415537383,
+      "mapped_norm_max": 1.025988105662858
+    },
+    "parameter_count": 262144,
+    "validation_used_for_early_stopping": false
+  },
+  "results": {
+    "identity": {
+      "dev20": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7083333333333333
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 1.0,
+            "MRR": 0.7319444444444444
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7135416666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4208083360138314
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.43178472445597055
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.22000000000000003,
+            "R5": 0.54,
+            "MRR": 0.3947233414733414
+          },
+          "query_macro": {
+            "R1": 0.25,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4344916734500068
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.15055555555555555
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.1925
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.08333333333333333
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.29999999999999993
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.2962962962962963
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "alpha-0.1": {
+      "dev20": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6663095238095239
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7052579365079366
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 0.9,
+            "MRR": 0.71375
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 0.9166666666666666,
+            "MRR": 0.7447916666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.36,
+            "R5": 0.6,
+            "MRR": 0.4658386752136752
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.6666666666666666,
+            "MRR": 0.4715322293447293
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.38,
+            "R5": 0.6,
+            "MRR": 0.490196262071262
+          },
+          "query_macro": {
+            "R1": 0.4166666666666667,
+            "R5": 0.6666666666666666,
+            "MRR": 0.533496885059385
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.22055555555555553
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.26749999999999996
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.1388888888888889
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.35
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.4166666666666667
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.125
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "alpha-1.0": {
+      "dev20": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 1.0,
+            "MRR": 0.6641666666666667
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 1.0,
+            "MRR": 0.6951388888888889
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.6804166666666667
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.717013888888889
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.37,
+            "R5": 0.49000000000000005,
+            "MRR": 0.44840940921823275
+          },
+          "query_macro": {
+            "R1": 0.375,
+            "R5": 0.5416666666666666,
+            "MRR": 0.47228561879297165
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.37,
+            "R5": 0.54,
+            "MRR": 0.47704212454212447
+          },
+          "query_macro": {
+            "R1": 0.375,
+            "R5": 0.5833333333333334,
+            "MRR": 0.5030906593406593
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.15611111111111112
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.205
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.08333333333333333
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.32499999999999996
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.35185185185185186
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "alpha-5.0": {
+      "dev20": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.7000000000000001
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 1.0,
+            "MRR": 0.725
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7135416666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.42007397458324575
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.43154312696751956
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.4446521164021163
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4760989858906526
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.15611111111111112
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.205
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.08333333333333333
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.32499999999999996
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.35185185185185186
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.3181818181818182
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    },
+    "positive-score-0.01": {
+      "dev20": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.54,
+            "R5": 1.0,
+            "MRR": 0.6975
+          },
+          "query_macro": {
+            "R1": 0.5833333333333334,
+            "R5": 1.0,
+            "MRR": 0.7229166666666668
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.49000000000000005,
+            "R5": 0.95,
+            "MRR": 0.67625
+          },
+          "query_macro": {
+            "R1": 0.5416666666666666,
+            "R5": 0.9583333333333334,
+            "MRR": 0.7135416666666666
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 20,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4202810139207198
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.431715659748748
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.4446521164021163
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4760989858906526
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "tag_validation": {
+        "all:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 116,
+          "macro_observed_Recall_at5": 0.16055555555555556
+        },
+        "all:seen": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 54,
+          "macro_observed_Recall_at5": 0.1925
+        },
+        "all:rare": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 39,
+          "macro_observed_Recall_at5": 0.10185185185185185
+        },
+        "all:unseen": {
+          "eligible_recordings": 10,
+          "observed_positive_labels": 23,
+          "macro_observed_Recall_at5": 0.06666666666666667
+        },
+        "genre:all": {
+          "eligible_recordings": 20,
+          "observed_positive_labels": 49,
+          "macro_observed_Recall_at5": 0.3166666666666666
+        },
+        "genre:seen": {
+          "eligible_recordings": 18,
+          "observed_positive_labels": 28,
+          "macro_observed_Recall_at5": 0.2962962962962963
+        },
+        "genre:rare": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 14,
+          "macro_observed_Recall_at5": 0.36363636363636365
+        },
+        "genre:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.25
+        },
+        "instrument:all": {
+          "eligible_recordings": 14,
+          "observed_positive_labels": 56,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:seen": {
+          "eligible_recordings": 11,
+          "observed_positive_labels": 26,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:rare": {
+          "eligible_recordings": 12,
+          "observed_positive_labels": 21,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "instrument:unseen": {
+          "eligible_recordings": 6,
+          "observed_positive_labels": 9,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:all": {
+          "eligible_recordings": 8,
+          "observed_positive_labels": 11,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:seen": {
+          "eligible_recordings": 0,
+          "observed_positive_labels": 0,
+          "macro_observed_Recall_at5": null
+        },
+        "mood/theme:rare": {
+          "eligible_recordings": 4,
+          "observed_positive_labels": 4,
+          "macro_observed_Recall_at5": 0.0
+        },
+        "mood/theme:unseen": {
+          "eligible_recordings": 5,
+          "observed_positive_labels": 7,
+          "macro_observed_Recall_at5": 0.0
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "identity": {
+      "dev20": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.010833333333333334,
+            "bootstrap95_lower": -0.030000000000000006,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 18,
+            "losses": 2
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          }
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.0005273220931115687,
+            "bootstrap95_lower": -0.002532372598162071,
+            "bootstrap95_upper": 0.0007282562466772963,
+            "wins": 3,
+            "ties": 16,
+            "losses": 1
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.1,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.25,
+            "wins": 2,
+            "ties": 18,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.04992877492877493,
+            "bootstrap95_lower": -0.00014245014245014287,
+            "bootstrap95_upper": 0.12492877492877492,
+            "wins": 2,
+            "ties": 17,
+            "losses": 1
+          }
+        }
+      }
+    },
+    "alpha-0.1": {
+      "dev20": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.05,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.15,
+            "wins": 1,
+            "ties": 19,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.05,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.15,
+            "wins": 1,
+            "ties": 19,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.031190476190476192,
+            "bootstrap95_lower": -0.0050000000000000044,
+            "bootstrap95_upper": 0.08952380952380953,
+            "wins": 3,
+            "ties": 15,
+            "losses": 2
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.25,
+            "bootstrap95_upper": 0.1,
+            "wins": 1,
+            "ties": 17,
+            "losses": 2
+          },
+          "R5": {
+            "mean_delta": 0.05,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.15,
+            "wins": 1,
+            "ties": 19,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.03750000000000001,
+            "bootstrap95_lower": -0.1416666666666667,
+            "bootstrap95_upper": 0.05416666666666666,
+            "wins": 3,
+            "ties": 13,
+            "losses": 4
+          }
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "R1": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.2,
+            "bootstrap95_upper": 0.1,
+            "wins": 1,
+            "ties": 17,
+            "losses": 2
+          },
+          "R5": {
+            "mean_delta": -0.11000000000000001,
+            "bootstrap95_lower": -0.31,
+            "bootstrap95_upper": 0.09,
+            "wins": 1,
+            "ties": 15,
+            "losses": 4
+          },
+          "MRR": {
+            "mean_delta": -0.045557661292955416,
+            "bootstrap95_lower": -0.15792658158834635,
+            "bootstrap95_upper": 0.04685809186728295,
+            "wins": 5,
+            "ties": 7,
+            "losses": 8
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": -0.06,
+            "bootstrap95_lower": -0.22000000000000003,
+            "bootstrap95_upper": 0.1,
+            "wins": 1,
+            "ties": 16,
+            "losses": 3
+          },
+          "R5": {
+            "mean_delta": -0.06,
+            "bootstrap95_lower": -0.17,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 18,
+            "losses": 2
+          },
+          "MRR": {
+            "mean_delta": -0.045544145669145664,
+            "bootstrap95_lower": -0.14683812830687834,
+            "bootstrap95_upper": 0.049526725589225544,
+            "wins": 6,
+            "ties": 7,
+            "losses": 7
+          }
+        }
+      }
+    }
+  },
+  "training_tag_support": {
+    "genre---60s": 0,
+    "genre---70s": 0,
+    "genre---80s": 1,
+    "genre---90s": 0,
+    "genre---acidjazz": 0,
+    "genre---alternative": 8,
+    "genre---alternativerock": 0,
+    "genre---ambient": 9,
+    "genre---atmospheric": 1,
+    "genre---blues": 0,
+    "genre---bluesrock": 0,
+    "genre---bossanova": 1,
+    "genre---breakbeat": 1,
+    "genre---celtic": 0,
+    "genre---chanson": 0,
+    "genre---chillout": 3,
+    "genre---choir": 0,
+    "genre---classical": 11,
+    "genre---classicrock": 0,
+    "genre---club": 3,
+    "genre---contemporary": 4,
+    "genre---country": 0,
+    "genre---dance": 7,
+    "genre---darkambient": 1,
+    "genre---darkwave": 0,
+    "genre---deephouse": 1,
+    "genre---disco": 2,
+    "genre---downtempo": 1,
+    "genre---drumnbass": 1,
+    "genre---dub": 1,
+    "genre---dubstep": 2,
+    "genre---easylistening": 10,
+    "genre---edm": 0,
+    "genre---electronic": 32,
+    "genre---electronica": 2,
+    "genre---electropop": 1,
+    "genre---ethno": 0,
+    "genre---eurodance": 1,
+    "genre---experimental": 5,
+    "genre---folk": 6,
+    "genre---funk": 3,
+    "genre---fusion": 0,
+    "genre---groove": 3,
+    "genre---grunge": 0,
+    "genre---hard": 0,
+    "genre---hardrock": 0,
+    "genre---hiphop": 4,
+    "genre---house": 4,
+    "genre---idm": 0,
+    "genre---improvisation": 0,
+    "genre---indie": 8,
+    "genre---industrial": 2,
+    "genre---instrumentalpop": 5,
+    "genre---instrumentalrock": 1,
+    "genre---jazz": 1,
+    "genre---jazzfusion": 1,
+    "genre---latin": 0,
+    "genre---lounge": 4,
+    "genre---medieval": 0,
+    "genre---metal": 1,
+    "genre---minimal": 1,
+    "genre---newage": 2,
+    "genre---newwave": 0,
+    "genre---orchestral": 2,
+    "genre---pop": 17,
+    "genre---popfolk": 6,
+    "genre---poprock": 0,
+    "genre---postrock": 0,
+    "genre---progressive": 1,
+    "genre---psychedelic": 1,
+    "genre---punkrock": 2,
+    "genre---rap": 3,
+    "genre---reggae": 4,
+    "genre---rnb": 4,
+    "genre---rock": 12,
+    "genre---rocknroll": 1,
+    "genre---singersongwriter": 0,
+    "genre---soul": 0,
+    "genre---soundtrack": 6,
+    "genre---swing": 1,
+    "genre---symphonic": 2,
+    "genre---synthpop": 0,
+    "genre---techno": 2,
+    "genre---trance": 4,
+    "genre---triphop": 1,
+    "genre---world": 4,
+    "genre---worldfusion": 2,
+    "instrument---accordion": 1,
+    "instrument---acousticbassguitar": 0,
+    "instrument---acousticguitar": 1,
+    "instrument---bass": 7,
+    "instrument---beat": 1,
+    "instrument---bell": 0,
+    "instrument---bongo": 0,
+    "instrument---brass": 0,
+    "instrument---cello": 1,
+    "instrument---clarinet": 0,
+    "instrument---classicalguitar": 0,
+    "instrument---computer": 0,
+    "instrument---doublebass": 1,
+    "instrument---drummachine": 4,
+    "instrument---drums": 5,
+    "instrument---electricguitar": 3,
+    "instrument---electricpiano": 2,
+    "instrument---flute": 2,
+    "instrument---guitar": 4,
+    "instrument---harmonica": 0,
+    "instrument---harp": 1,
+    "instrument---horn": 0,
+    "instrument---keyboard": 5,
+    "instrument---oboe": 0,
+    "instrument---orchestra": 0,
+    "instrument---organ": 0,
+    "instrument---pad": 0,
+    "instrument---percussion": 0,
+    "instrument---piano": 11,
+    "instrument---pipeorgan": 1,
+    "instrument---rhodes": 0,
+    "instrument---sampler": 1,
+    "instrument---saxophone": 0,
+    "instrument---strings": 1,
+    "instrument---synthesizer": 5,
+    "instrument---trombone": 0,
+    "instrument---trumpet": 0,
+    "instrument---viola": 0,
+    "instrument---violin": 2,
+    "instrument---voice": 2,
+    "mood/theme---action": 0,
+    "mood/theme---adventure": 0,
+    "mood/theme---advertising": 0,
+    "mood/theme---background": 3,
+    "mood/theme---ballad": 1,
+    "mood/theme---calm": 0,
+    "mood/theme---children": 0,
+    "mood/theme---christmas": 0,
+    "mood/theme---commercial": 0,
+    "mood/theme---cool": 0,
+    "mood/theme---corporate": 1,
+    "mood/theme---dark": 1,
+    "mood/theme---deep": 1,
+    "mood/theme---documentary": 0,
+    "mood/theme---drama": 0,
+    "mood/theme---dramatic": 0,
+    "mood/theme---dream": 2,
+    "mood/theme---emotional": 0,
+    "mood/theme---energetic": 3,
+    "mood/theme---epic": 0,
+    "mood/theme---fast": 0,
+    "mood/theme---film": 4,
+    "mood/theme---fun": 1,
+    "mood/theme---funny": 0,
+    "mood/theme---game": 2,
+    "mood/theme---groovy": 0,
+    "mood/theme---happy": 2,
+    "mood/theme---heavy": 0,
+    "mood/theme---holiday": 0,
+    "mood/theme---hopeful": 0,
+    "mood/theme---inspiring": 2,
+    "mood/theme---love": 3,
+    "mood/theme---meditative": 1,
+    "mood/theme---melancholic": 2,
+    "mood/theme---melodic": 1,
+    "mood/theme---motivational": 1,
+    "mood/theme---movie": 0,
+    "mood/theme---nature": 1,
+    "mood/theme---party": 1,
+    "mood/theme---positive": 2,
+    "mood/theme---powerful": 0,
+    "mood/theme---relaxing": 0,
+    "mood/theme---retro": 0,
+    "mood/theme---romantic": 2,
+    "mood/theme---sad": 3,
+    "mood/theme---sexy": 1,
+    "mood/theme---slow": 0,
+    "mood/theme---soft": 0,
+    "mood/theme---soundscape": 0,
+    "mood/theme---space": 2,
+    "mood/theme---sport": 0,
+    "mood/theme---summer": 0,
+    "mood/theme---trailer": 0,
+    "mood/theme---travel": 0,
+    "mood/theme---upbeat": 1,
+    "mood/theme---uplifting": 0
+  },
+  "decision": "retain_identity_no_automatic_selection_scale_up_or_deployment",
+  "torch_or_CLAP_imported": false,
+  "total_ms": 971.8643330270424,
+  "limits": [
+    "Positive-only uploaded tags are weak labels; unrecorded tags unknown, no complete semantic negatives.",
+    "One preregistered objective/parameter set on previously seen development, not new independent test.",
+    "Step limit without gradient/loss tolerance must not be called converged; loss decrease is not retrieval gain.",
+    "No CLAP fine-tuning, new corpus, full-window localization or production model/cache switch."
+  ],
+  "task": "MUS-049",
+  "branch": "codex/MUS-049-positive-score-training",
+  "base_sha": "e7fea7329330749669a32ffa668e675629d7cd6b",
+  "verification": {
+    "related_tests": 86,
+    "new_tests": 10,
+    "existing_tests": 76,
+    "independent_audit": {
+      "status": "passed",
+      "method": "Same operator independent positive-pair loops for objective/gradient/5 finite differences; count-based ranks/bootstrap and validation recall; no new production learner imports or refit",
+      "objective_gradient_and_mean_positive_cosine_match": true,
+      "five_finalW_finite_difference_max_error": 4.158652673662494e-15,
+      "train_receipt_precedes_val_dev_opening": true,
+      "all5_models2_pools2_modes_metrics_and_all_paired_intervals_match": true,
+      "all5_tag_validation_observed_recall_match": true,
+      "step_limit_correctly_not_marked_converged": true,
+      "all_prior045_to048_file_sets_and_hashes_preserved": true,
+      "historical951_B047_dispatch_original_frozen23_cache54_160_and_backup_preserved": true,
+      "private_modes700_600": true,
+      "script_sha256": "3ed3c8edcec1f3b858d389fe4bc9b79279ddd1772f4560a609d506ee41dc137e"
+    },
+    "repeat_run": {
+      "status": "passed",
+      "expected_error": "FileExistsError",
+      "additional_fit_runs_or_evaluation_openings": 0,
+      "all_original_run_files_unchanged": true,
+      "exit_code": 1
+    },
+    "final_document_QA": "passed"
+  },
+  "interpretation": {
+    "whole_primary_not_improved_over_identity_or_old_alpha01": true,
+    "new_fit_only_training100_known_positive_pairs335": true,
+    "step_limit_not_converged": true,
+    "original_model_retained": true,
+    "scale_up_or_deployment_started": false,
+    "next_step": "Review existing text-music caption training sources, availability and grouped isolation before another training protocol; no extra parameter search on these20 dev recordings.",
+    "B047_original_assignment_unchanged": true
+  },
+  "private_evidence_sha256": {
+    "exit.json": "e89df0eae5ec7db81135aed16463968955c578bcc4f2ec43172eff351f080c17",
+    "related-tests.log": "ee5919ea22989e886e434816f2c714d0b5e6e3c07d4c7b2eb748794938dcbfb3",
+    "prior-before.json": "081f8b2b50ced4b415666ce8fcbe578c6ab39164a771dca3f4099c6bace6e8bf",
+    "run.log": "7bae6e773277f97bed8931eb1f8cd64894a4c1a41f0ef739b93b4a0f7b1ff8d1",
+    "repeat-check.json": "e0246b89686ebfacef93c5ec323b95d0753faef691e5fd9e460f2255a3e7608e",
+    "independent-audit.log": "ca810867cf3d4c909d3f0711e1be69f346d59f6f0aa73dfa7b6cf9f207bc6698",
+    "independent-audit.py": "3ed3c8edcec1f3b858d389fe4bc9b79279ddd1772f4560a609d506ee41dc137e",
+    "repeat-run.log": "d574e134d56af0f8200a37a565a7ea2af1d7df96803e8b71cd3ae7a98fb28709",
+    "independent-audit.json": "8ecfc5209993e12e9292b8a53fdead2e1621e40a5d90c013f0110dcc0b25c7c6",
+    "invocation.json": "9e740e6ee706a3a979957e8a9d871d44ada5c7b343fc27f4403f5e4b97714234",
+    "run-01/result-public.json": "d42e99588ffb5f372de88ed5a7a354569b8b28c7456718c1c7604b32aeefe4b3",
+    "run-01/evaluation-open.json": "bd67dc1dde3be7e8756d514a9e4b5eba398f6ef53626d49a472a8754bf5b975c",
+    "run-01/result-private.json": "3c6501f152396c6827863b83a38249b72bfd5d45b0366516da931c9e545dddb2",
+    "run-01/fit.json": "bed25ed9eb07a09628c66f48731491dedba3b7bf0c18f4ef922e968c0c2a8373",
+    "run-01/adapter.npz": "ef18598de5b0b2fd7b6df7771c0c782013617c2d8af070194ff02b3de74ff67e",
+    "run-01/freeze.json": "0135408dbe1443965013b63e661cb0347494d743f1d8163dd2b40a4e1b58e5f6",
+    "final-doc-qa.json": "3c691bdd6d8fdd0e3d455b6d89a9dbd495bdd3932d2f72476d9803383e1036aa"
+  }
+}
