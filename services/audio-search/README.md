@@ -244,3 +244,17 @@ python3 scripts/build_device_feature_cache.py --help
 ```
 
 实际构建使用现有音频Python环境/绝对HF_HOME、048配置显式SHA与独占ignore.local输出。只记录本次完整解码/SDK编码/总时长；没有匹配全量CPU测速，不能把047小批次2.73倍外推到整个语料或训练。
+
+
+## GPU特征上的CPU正标签分数训练（MUS-049）
+
+train_positive_score是一个预注册单候选实验，调用048 ready_view读取tag_training100，使用原183prototype和已观察正tag，未记录项mask=0保持unknown。不同于旧标签均值目标，逐正tag固定identity余弦+0.05 cap1，loss内unit(XW)避免靠向量长度满足目标，曲内正项平均/曲间等权；alpha.01唯一，NumPy float64/CPU2最多200训练内Armijo步骤，不看验证早停或搜参。
+
+W和fit receipt先写入，再加载20tagval/140检索24已用dev文本，完整报告identity/三个旧W/新W、20/140池、whole/三窗口、主140 whole MRR和新W相对identity/旧alpha.1的配对录音区间。已看dev不是新test，正tag只是弱监督，本实验不自动选模/扩训/部署；loss下降不等于检索提升，达到200步上限不冒充收敛。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_positive_score_adapter test_device_feature_cache test_device_calibration test_expanded_caption test_caption_gate test_tag_adapter test_mtg_dataset test_preflight_mtg
+python3 scripts/train_positive_score.py --help
+```
+
+使用原Python环境，但训练/评估不导入或加载Torch/CLAP；无需重新音频编码/下载。049配置和cache显式SHA、独占ignore.local输出、已提交干净源码/前后NumPy代码与输入哈希检查；原048/旧结果只读。真实训练证据见049验证报告。

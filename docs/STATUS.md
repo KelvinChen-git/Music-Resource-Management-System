@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-10-31 America/Chicago）：codex/MUS-048-device-feature-cache，从已发布cb77a01开始，真实构建源码8a24018。140首MPS双视图缓存已ready：train100/val20完整EOF三窗、检索140首120秒三窗，780用途引用去重为624窗，183tag/24dev文本。六向量组最大差<=6.59e-7、四旧模型两池两模式16组得分最大差1.27e-6，全部录音宏R1/R5/MRR/前5排序与集合保持；唯一近并列交换在一查询第111/112名。任务review（有界实现/真实构建完成，工具独立审核待安排），新fit/下载/保留test/模型选择或生产替换0。
+- 当前工作（客户端2026-10-31 America/Chicago）：codex/MUS-049-positive-score-training，从已发布e7fea73开始。固定一组CPU正标签逐项余弦目标/归一化loss/alpha.01/最多200步，读取048 tag_training100，W先落盘再打开20val/140候选24dev；实现与86相关检查passed（10新/76既有），真实拟合待提交后运行。无搜参/验证早停/重新编码/下载/保留test或自动选模扩训。
 
-- 当前验证与协作：76相关检查passed（10新/66既有）、独立624起点/780引用/向量差与16组得分-稳定次序-宏指标复算通过；1,902,822稳定对翻转0、1818近并列单报。三typed consumer实际读取100/20/140行，训练读取不导入Torch/CLAP、不返回dev文本；错误device/model/view拒绝。重复输出模型前FileExistsError/额外模型编码fit0，全部新文件SHA保持。旧045/046/047集合/hash、043/044/160原判断/23源码/54cache/原版保持，历史951保持，B任务入口与basecb77a01逐字相同。19:06:45Z/19:15:54Z双方feed fetched，Bde296c7/sourcef0d3ef2保持并ack；047-R1/rev1/d8555fa仍原assigned未认领，不改其源码/卡片，不冒充048批准。原版/UI/Java/DB/main保持。
+- 当前协作与保护：UTC2026-11-01T04:51:13Z双方feed fetched，A91062f1/sourcee7fea73，Bde296c7/sourcef0d3ef2保持并ack；047-R1/rev1/d8555fa原assigned卡不改、未认领，不改047/048/旧23源码或外推049批准。旧045-048原件/141+160/权重/cache/原版/UI/Java/DB/main只读；049私有输出仅ignore.local/a/mus049，训练/验证CPU NumPy不导入Torch/CLAP。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,6 +58,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-049 正标签分数CPU训练 | in_progress / A（实现/86检查通过，拟合待做） | codex/MUS-049-positive-score-training / e7fea73，依赖048 typed cache | 100train唯一alpha.01/margin.05/200步，正tag逐项余弦/unknown mask，先W后val-dev，五候选两池两模式，无搜参/test/部署 |
 | MUS-048 有界MPS设备特征缓存 | review / A（140真实构建ready，工具独立审核待安排） | codex/MUS-048-device-feature-cache / cb77a01，依赖047校准/045-046数据 | 140双视图/624窗/183tag/24dev文本 ready，76检查/独立复算/实际CPU typed读取与重复保护通过；宏指标/前5保持，仅111/112近并列交换，无fit/下载/test/生产替换 |
 | MUS-047 设备校准准备 | review / A（CPU/MPS校准通过，工具独立审核待做） | codex/MUS-047-device-preflight / aaf5e4b，依赖046原数据和B限定审核接收 | 3train9窗6tag CPU/MPS通过、9窗656→240ms小批次比2.73，CUDA blocked；66检查/独立复算/设备key与重复保护通过，不训练/下载/test或付费资源 |
 | MUS-046 扩大候选池诊断 | done / A（有界诊断完成；B合成/静态限定批准已接收） | codex/MUS-046-expanded-caption-diagnostic / e109b5c，依赖045 | 140首同首120秒/三窗、24描述/三旧W；两池两模式诊断/54检查/独立复算/原20复现，扩大池有正开发信号但主MRR区间含零，保留identity；无新fit/下载/test |
@@ -966,3 +967,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 六向量块最大差2.44e-7至6.59e-7/余弦<=1.12e-11，16组四模型×两池×两模式得分最大差1.26519e-6<1e-4；1,902,822稳定对零翻转、1818近并列。expanded140/alpha1/整曲中一个查询第111/112名交换，全部前5顺序/集合与宏R1/R5/MRR在1e-12内复现，非全排名字节相同或新质量提升。记录到写结果前总60.70秒（加载5.87/解码19.56/音频SDK19.15/文本1.95），无匹配全量CPU计时，不外推2.73倍/训练/P95。
 - 新ready manifest只在parity全通过后生成；consumer要求显式SHA/device/model/view并核report/NPZ/shape/单位范数/身份与tag。实际CPU读tag_training100、tag_validation20、caption_retrieval140；训练/验证无dev文本，训练读取未导入Torch/CLAP或加载模型，错误设备/模型/implicit view拒绝。没有重拟合或部署。76检查passed（10新/66旧）；另脚本不导入新生产cache模块复算624起点/780引用/六向量组/16组得分次序和指标一致、非B本人。实际重复CLI模型前拒绝、额外模型编码fit0，新run SHA保持。
 - 全045/046/047集合/hash、043/044/160原件/23原源码/54cache/原版f3b0da1干净保持，951其余历史pin保持、B任务入口与cb77a01相同，047-R1/rev1原assigned卡不变；048工具独立审核待安排、不另派竞争卡或扩原审核。048目录0700/文件0600，原身份/描述/向量/cache仅ignore.local，公开聚合/方法/hash。无Java/Vue/DB/API/依赖/曲库/云端/主模型/main变更，无关应用测试不重复。后续另预注册训练设计后可用明确tag_training在CPU拟合，cache ready不是扩训/独立test或质量验收。
+
+
+### MUS-049范围与占用（2026-10-31 America/Chicago）
+
+- A从干净已发布e7fea73建codex/MUS-049-positive-score-training；本轮sync UTC2026-11-01T04:51:13Z（客户端10月31日晚），A91062f1/sourcee7fea73，Bde296c7/sourcef0d3ef2仍未变，ack并保持047-R1/rev1原assigned卡。048/047源码与数据只读，049未获B审核。
+- 接现有MPS typed cache，先冻结E24/config后一组CPU正标签逐项余弦分数目标（identity+0.05 cap1、alpha.01、最多200步训练内GD），只用tag_training100，缺失unknown，避免多个标签先平均；原CLAP冻结。唯一fit不搜索/不按val早停；fit落盘后才加载20tagval/140retrieval24dev，完整五候选两池两模式/配对区间，不自动选模或扩训/开test。
+- 允许新增positive_score_adapter与训练runner/相关合成检查、E24/config/必要README/PROJECT/STATUS/A latest/verification/MUS-049*；私有仅ignore.local/a/mus049。无音频/模型重编码/下载/新人工包或生产变更，原045-048/23源码/141+160/权重/cache/原版/UI/DB/main保持。实际训练待实现和干净提交。
+
+- 实现检查点：positive_score_adapter/独立runner与10项新合成检查（完整数值梯度、unknown零贡献、曲内/曲间权重、归一化尺度不变、目标cap、单调下降、确定性/重复曲不改均值、无效输入/零向量与有界回退），连原76最终86 passed；将提交后冻结一次真实fit，不将实现写成已训练。

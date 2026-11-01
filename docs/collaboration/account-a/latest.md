@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## MUS-049开始：GPU特征缓存上一组固定CPU正标签分数训练
+
+A；2026-10-31 America/Chicago；branch codex/MUS-049-positive-score-training，basee7fea7329330749669a32ffa668e675629d7cd6b。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`，UTC2026-11-01T04:51:13Z双方fetched；客户端仍10月31日晚。B047-R1/rev1原assigned卡不变，不修改047/048原源码或外推049批准。
+
+E24/config先冻结一候选：typed tag_training100完整EOF、已知正tag逐项余弦target=identity+.05 cap1（缺失mask unknown），alpha.01，unit(XW)在loss内、每曲正项平均，再曲等权；NumPy CPU最多200步/固定Armijo训练内早停，唯一fit不搜参。训练W先落盘后才读取20val/140候选24已用dev文本，完整比较identity/三旧W/一新W，两池两模式、主140whole MRR及相对identity/旧alpha.1配对区间，不自动选模/扩训/开test。现已实现独立fit/runner并通过86相关检查（10新/76旧），待干净提交后唯一实跑，非已有新训练结果。无新编码/下载/人工包/应用或main变更，原数据/模型/缓存/备份保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-048有界140首MPS缓存ready，CPU typed consumer通过；B047原卡保持
 
 A；2026-10-31 America/Chicago；branch `codex/MUS-048-device-feature-cache`，basecb77a01262799792a1371f605a452b28205e1093，真实构建源码 `8a2401828862c80882e86aef4c79eae9588d8881`；最终文档交付SHA见handoff.source_sha。048 review：实现/真实有界缓存构建完成，工具独立审核待安排，非模型质量/新训练/部署批准。

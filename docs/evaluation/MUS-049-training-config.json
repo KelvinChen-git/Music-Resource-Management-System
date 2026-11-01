@@ -1,0 +1,60 @@
+{
+  "schema": "sonora-positive-score-training-v1",
+  "task": "MUS-049",
+  "base_sha": "e7fea7329330749669a32ffa668e675629d7cd6b",
+  "cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "prior_result": {
+    "path": ".local/a/mus045/compare-01/result-public.json",
+    "sha256": "c9f287def66b64418d6a2f3154cf88338e6b85c3de2fc7ff07de71815ecbb69a"
+  },
+  "expected_device": "mps",
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "fit_view": "tag_training",
+  "fit_tracks": 100,
+  "validation_tracks": 20,
+  "caption_dev_recordings": 20,
+  "caption_dev_queries": 24,
+  "retrieval_candidates": 140,
+  "dimension": 512,
+  "alpha": 0.01,
+  "positive_cosine_margin": 0.05,
+  "target": "observed positive only:min(1,identity_cosine+0.05);unknown entries masked out",
+  "loss": "mean_tracks(mean_observed_positive((unit(XW) dot unit(tag)-frozen_target)^2))+alpha*sum((W-I)^2)",
+  "optimizer": "float64_full_batch_gradient_descent_with_Armijo",
+  "initial_step": 1.0,
+  "max_steps": 200,
+  "max_backtracks": 20,
+  "armijo": 0.0001,
+  "backtrack_factor": 0.5,
+  "gradient_max_tol": 1e-08,
+  "relative_loss_tol": 1e-12,
+  "seed": 0,
+  "blas_threads": 2,
+  "candidate_fits": 1,
+  "hyperparameter_search": false,
+  "validation_used_for_early_stopping": false,
+  "comparators": [
+    "identity",
+    "alpha-0.1",
+    "alpha-1.0",
+    "alpha-5.0",
+    "positive-score-0.01"
+  ],
+  "primary_development_metric": "expanded140_whole_recording_macro_MRR",
+  "other_metrics": "all5 candidates both20/140 pools whole/3window R1/R5/MRR/query macro;tagval observed recall buckets",
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261031049,
+  "paired_comparisons": [
+    "identity",
+    "alpha-0.1"
+  ],
+  "old_best_anchor_note": "alpha0.1 was best wholeMRR of old3 on already-seen046 dev;all3 old candidates still reported",
+  "decision": "one fixed objective experiment,no automatic model selection/scale-up/test opening/deployment",
+  "new_audio_or_model_encoding": 0,
+  "new_downloads": 0,
+  "test_inputs": 0,
+  "new_human_labels": 0
+}

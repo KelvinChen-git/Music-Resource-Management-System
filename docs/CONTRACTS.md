@@ -474,3 +474,13 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - GPU整窗/聚合向量、三类视图/prototype/text均与045/046原CPU校验：最大绝对差及余弦<=1e-4，整曲/三窗得分差<=1e-4、CPU分差>2e-4的稳定两两次序必须保持，近并列单报；四旧模型/两池两模式的录音宏R1/R5/MRR需在1e-12内复现，否则不发布ready缓存，不放宽阈值或改数据选优。它是设备一致性验证，不作新效果提升/选模或独立test。
 - 只在ignore.local/a/mus048独占0700/0600生成新特征与manifest。key绑定device/环境/模型/数据/源码/配方，所有检查通过后才写ready manifest；失败向量/报告留存但不能被consumer读为ready。consumer需显式缓存SHA、expected_device/model_sha与tag_training/tag_validation/caption_retrieval view，校验manifest与NPZ hash/shape/finite/norm/身份/标签索引，拒绝混设备/混模型/混视图/partial。旧CPU缓存/API不改，不自动替换生产索引。
 - 记录唯一窗口及解码/加载/SDK编码/核验/总时长范围，GPU调用前后同步；原CPU全量未同次计时，不由047小批次2.73比外推全量加速/训练或P95。新cache供后续离线CPU拟合显式读取，当前不训练/部署、不读141/160选参/保留test、不改原版/UI/Java/DB/main。
+
+
+### E24. MUS-049：GPU缓存上的一次CPU正标签分数训练
+
+- 从已发布e7fea73另立codex/MUS-049-positive-score-training，048 typed cache及其source/model/device/完整parity保持。B047-R1/rev1仍原assigned卡，不修改其或048源码，不外推049批准。只新增独立正标签分数适配模块/runner/相关验证、参数及必要文档，私有ignore.local/a/mus049，原版/UI/DB/main不变。
+- docs/evaluation/MUS-049-training-config.json在真实拟合前冻结。只读tag_training100完整EOF特征与183原prototype/已知正tag，先fit落盘后才加载tag_validation20和caption_retrieval140/24已用dev文本；不将缺失tag当负例，不读141/160或两保留test，不编码/下载音频/模型，不扩大训练。
+- 原始CLAP/prototype固定、W从I开始。每个已观察标签单独冻结target=min(1,identity余弦+0.05)，未记录项mask=0而非0目标；每曲先平均其已知正项再100曲等权。损失mean_track mean_positive[(unit(xW)·p-target)^2]+alpha||W-I||²，alpha=0.01唯一候选，归一化在损失内避免只靠增大向量长度满足目标。它是本项目预注册实验设计，不称已验证标准训练改进或全语义监督。
+- CPU/NumPy float64 full-batch GD，初始步长1、Armijo1e-4/回退0.5最多20、最多200步，训练梯度max<=1e-8或相对loss变化<=1e-12早停；不以验证/描述分数选epoch/参数。记录loss轨迹、步数、梯度、正标签余弦变化、||W-I||和停止原因；到步数上限须明示未证收敛，loss下降不等于检索提升。最多1fit，无grid/重启选优。
+- 比较identity/旧alpha0.1/1/5与新W，原三W保持。主开发指标140候选整曲录音等权MRR，完整报两池两模式R1/R5/MRR/query宏及标签验证分桶；新W分别相对identity和旧alpha0.1作20录音配对bootstrap（seed20261031049、2000次）。旧alpha0.1是已看046中旧三组最好的MRR，仅作明确开发锚点；其余两旧候选仍全报，不作新盲测或显著性外推。
+- 固定本轮不自动选模/扩训/部署/开保留test。实现数值梯度/正项mask/等权/归一化不靠长度/确定性与优化下降验证；干净提交先freeze，绑定cache/NPZ/原W/参数/源码/NumPy环境，前后重验，独占输出重复在fit前拒绝。W/逐曲细节只私有，公开聚合/hash；CPU训练过程不导入或加载Torch/CLAP，旧缓存及所有评分原件只读。
