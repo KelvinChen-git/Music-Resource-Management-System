@@ -1,0 +1,438 @@
+{
+  "schema": "sonora-caption-source-audit-v1",
+  "status": "metadata_audit_completed_training_not_ready",
+  "base_sha": "ea54ffc46627f57b5112ea3cc460d335fab258ff",
+  "source_revisions": {
+    "google/MusicCaps": "0a51889b340037bb75a9a0858af2e4ece21f7f89",
+    "amaai-lab/MusicBench": "b141e962aacc19ffd51c15732738040377989203",
+    "amaai-lab/JamendoMaxCaps": "13090d785d071dcd617636deaa4a9775936ac995",
+    "seungheondoh/LP-MusicCaps-MTT": "64c5d14e25b8919c98e58f1e048eb470ba702933"
+  },
+  "capture": {
+    "files": 20,
+    "bytes": 97635196,
+    "body_budget_bytes": 100663296,
+    "single_file_budget_bytes": 92274688,
+    "budget_revision_reason": "MusicBench full original JSON is 85670037 bytes; cap amended before retrieval; total unchanged",
+    "audio_downloaded": 0,
+    "parquet_body_downloaded": 0,
+    "model_loads": 0,
+    "fits": 0
+  },
+  "musiccaps": {
+    "rows": 5521,
+    "unique_video_ids": 5521,
+    "clip_seconds": 10,
+    "audioset_counts": {
+      "True": 2858,
+      "False": 2663
+    },
+    "annotator_ids": 10,
+    "author_id_is_annotator_not_musician": true,
+    "artist_work_isolation_verified": false,
+    "audio_in_release_csv": false
+  },
+  "musicbench": {
+    "splits": {
+      "train": {
+        "rows": 52768,
+        "original_video_ids": 5079,
+        "unique_audio_locations": 42611,
+        "original_unaugmented_locations": 5079,
+        "rows_by_folder": {
+          "data_aug2": 37532,
+          "data": 15236
+        },
+        "rows_per_source_id_histogram": {
+          "14": 3412,
+          "2": 1,
+          "3": 1666
+        },
+        "unique_ids_by_musiccaps_audioset_eval": {
+          "False": 2448,
+          "True": 2631
+        },
+        "alt_caption_exactly_equals_canonical_musiccaps_rows": 6745,
+        "missing_musiccaps_ids": 0,
+        "audioset_flag_mismatch_rows": 0,
+        "artist_work_fields_available": false
+      },
+      "test_A": {
+        "rows": 400,
+        "original_video_ids": 400,
+        "unique_audio_locations": 400,
+        "original_unaugmented_locations": 400,
+        "rows_by_folder": {
+          "data": 400
+        },
+        "rows_per_source_id_histogram": {
+          "1": 400
+        },
+        "unique_ids_by_musiccaps_audioset_eval": {
+          "True": 197,
+          "False": 203
+        },
+        "alt_caption_exactly_equals_canonical_musiccaps_rows": 400,
+        "missing_musiccaps_ids": 0,
+        "audioset_flag_mismatch_rows": 0,
+        "artist_work_fields_available": false
+      },
+      "test_B": {
+        "rows": 400,
+        "original_video_ids": 400,
+        "unique_audio_locations": 400,
+        "original_unaugmented_locations": 400,
+        "rows_by_folder": {
+          "data": 400
+        },
+        "rows_per_source_id_histogram": {
+          "1": 400
+        },
+        "unique_ids_by_musiccaps_audioset_eval": {
+          "True": 197,
+          "False": 203
+        },
+        "alt_caption_exactly_equals_canonical_musiccaps_rows": 200,
+        "missing_musiccaps_ids": 0,
+        "audioset_flag_mismatch_rows": 0,
+        "artist_work_fields_available": false
+      }
+    },
+    "train_test_source_id_intersection": 0,
+    "testA_testB_source_id_intersection": 400,
+    "testA_testB_audio_locations_in_same_order": true,
+    "original_ids_combined": 5479,
+    "musiccaps_ids_not_in_musicbench": 42,
+    "train_overlap_with_musiccaps_audioset_eval_ids": 2631,
+    "canonical_human_non_eval_train_metadata_frame": 2448,
+    "frame_sha256": "589f6716bda38309f2adeb13e37c3e4c6be8bc2386d825e654af88e717c5d3f3",
+    "archive_sizes_from_pinned_tree": {
+      "FMACaps_eval_set.tar.gz": 298277922,
+      "MusicBench.tar.gz": 16757993240
+    },
+    "artist_work_isolation_verified": false,
+    "audio_ready": 0
+  },
+  "jamendomaxcaps": {
+    "sampling": "first two lexicographic dated metadata files only; not representative or complete",
+    "files": {
+      "2008-01-01": {
+        "rows": 944,
+        "unique_track_ids": 248,
+        "unique_artist_ids": 36,
+        "unique_album_ids": 38,
+        "exact_duplicate_rows": 585,
+        "license_uri_counts": {
+          "http://creativecommons.org/licenses/by-nc-nd/3.0/": 289,
+          "http://creativecommons.org/licenses/by-sa/3.0/": 165,
+          "http://creativecommons.org/licenses/by-nc-sa/3.0/": 249,
+          "http://creativecommons.org/licenses/by-nc-nd/2.0/fr/": 54,
+          "http://creativecommons.org/licenses/by-nc-sa/2.0/fr/": 54,
+          "http://creativecommons.org/licenses/by-nc-sa/2.0/de/": 101,
+          "http://creativecommons.org/licenses/by-nc/3.0/": 6,
+          "http://creativecommons.org/licenses/by/3.0/": 26
+        },
+        "download_allowed_rows": 944
+      },
+      "2008-01-06": {
+        "rows": 1000,
+        "unique_track_ids": 246,
+        "unique_artist_ids": 53,
+        "unique_album_ids": 56,
+        "exact_duplicate_rows": 613,
+        "license_uri_counts": {
+          "http://creativecommons.org/licenses/by-nc-sa/3.0/": 401,
+          "http://creativecommons.org/licenses/by-nc-sa/2.0/fr/": 72,
+          "http://creativecommons.org/licenses/by-sa/2.0/de/": 13,
+          "http://creativecommons.org/licenses/by-sa/3.0/": 198,
+          "http://creativecommons.org/licenses/by-nc-nd/2.0/de/": 62,
+          "http://creativecommons.org/licenses/by-nc-nd/2.5/co/": 42,
+          "http://creativecommons.org/licenses/by-nc-nd/3.0/": 111,
+          "http://creativecommons.org/licenses/by-nc-nd/2.0/fr/": 86,
+          "http://creativecommons.org/licenses/by-nc-sa/2.5/pl/": 10,
+          "http://creativecommons.org/licenses/by-nc-sa/2.5/se/": 5
+        },
+        "download_allowed_rows": 971
+      }
+    },
+    "combined_rows": 1944,
+    "combined_unique_track_ids": 494,
+    "crossfile_track_id_intersection": 0,
+    "fields_conflicting_within_source_id": {
+      "artist_id": 0,
+      "license_ccurl": 7,
+      "audiodownload_allowed": 0,
+      "duration": 0,
+      "name": 0,
+      "audio": 252,
+      "audiodownload": 0
+    },
+    "overlap_with_current045_ids": {
+      "train": 0,
+      "validation": 0,
+      "caption_dev": 0
+    },
+    "caption_jsonl_bytes_from_HEAD": 787366586,
+    "caption_body_downloaded": 0,
+    "whole_corpus_caption_join_or_capacity_verified": false,
+    "teacher_captions_not_human_truth": true,
+    "audio_ready": 0
+  },
+  "LP_MusicCaps_MTT": {
+    "evidence": "pinned dataset card and text-parquet file listing only; no row-level audit",
+    "captions": "tag-to-caption synthetic, not expert human truth",
+    "card_train_valid_test_rows": [
+      18706,
+      1825,
+      5329
+    ],
+    "card_warning": "do not use caption_attribute_prediction/pseudo_attribute by default",
+    "actual_split_artist_or_work_isolation_verified": false,
+    "audio_ready": 0
+  },
+  "decision": {
+    "keep_identity": true,
+    "start_training": false,
+    "SDD_kept_evaluation_role": true,
+    "new_project_test_or_existing_judgments_used": false,
+    "preferred_next_action": "bounded stream audit JamendoMaxCaps caption coverage using allowlisted existing MTG training/validation IDs and original segment offsets; exclude all SDD/current development/reserved test groups before output; no audio or fit yet",
+    "human_caption_backup": "MusicCaps canonical captions with 2448 provisional non-eval IDs linked to unaugmented MusicBench training paths; obtain legitimate bounded audio and musician/work identity before use",
+    "no_automatic_17GB_archive_download": true
+  },
+  "limits": [
+    "YouTube IDs isolate source videos, not musicians or musical works; no cross-namespace no-overlap claim with Jamendo/FMA",
+    "Metadata paths, license labels and HTTP HEAD do not establish usable authorized audio or actual EOF",
+    "JamendoMaxCaps sample contains duplicates/heterogeneous permissions; no extrapolation of full capacity",
+    "Generated captions and automatic key/tempo attributes are weak supervision, not new human labels",
+    "No evidence that pretrained CLAP has not seen any proposed source"
+  ],
+  "task": "MUS-050",
+  "branch": "codex/MUS-050-caption-source-audit",
+  "date_local": "2026-11-01",
+  "timezone": "America/Chicago",
+  "verification": {
+    "status": "passed",
+    "method": "independent streaming counts, fixed-width video IDs and equality-based per-source conflict detection; same operator, no primary-audit imports",
+    "MusicBench_all_three_splits_and_source_group_counts_match": true,
+    "MusicCaps_frame2448_and_eval_overlap2631_match": true,
+    "JamendoMaxCaps_sample_counts_and_conflicts_match": true,
+    "prior045_to049_all_file_sets_and_hashes_preserved": true,
+    "old951_B047_dispatch_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "new_audio_or_model_runs": 0,
+    "script_sha256": "c98f213f9bb07571e80b1ebc3acee06b047ecd0fdb933a0b4c450c603d5cf0d2",
+    "final_document_QA": {
+      "status": "passed",
+      "only_seven_expected_document_paths_changed": true,
+      "json_links_fences_and_diff_check": true,
+      "all_original_aggregate_fields_and_private_hashes_match": true,
+      "typed_aggregate_paths_and_exact_source_ID_caption_scan_passed": true,
+      "new_public_material_has_no_raw_ids_captions_rank_or_signed_redirect_URLs": true,
+      "prior045_to049_sets_and_hashes_preserved": true,
+      "old_code_and_B_dispatch_unchanged": true,
+      "original_backup_clean": true,
+      "private_modes700_600": true,
+      "no_new_audio_model_or_training_runs": true,
+      "initial_generic_key_guard_false_positive_preserved": true
+    }
+  },
+  "source_documents": [
+    {
+      "url": "https://huggingface.co/api/datasets/google/MusicCaps",
+      "filename": "google--MusicCaps-info.json",
+      "bytes": 1475,
+      "sha256": "bf69b334ceed64aa8d4f9512e0e02aea05619cc77850597e79b005b08a23119d",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/google/MusicCaps/tree/0a51889b340037bb75a9a0858af2e4ece21f7f89",
+      "filename": "google--MusicCaps-tree.json",
+      "bytes": 499,
+      "sha256": "adb5411f46215fb2a8158923e653ac65e481ba025c7882412665af76feac1684",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/google/MusicCaps/resolve/0a51889b340037bb75a9a0858af2e4ece21f7f89/README.md",
+      "filename": "google--MusicCaps-README.md",
+      "bytes": 5062,
+      "sha256": "694ce36fcc1d208e9b387581709cf7a30294c961d630fcb34f3231680ec8013f",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/MusicBench",
+      "filename": "amaai-lab--MusicBench-info.json",
+      "bytes": 1459,
+      "sha256": "08f4b44fba8b915f55e18053f556835b6f15fa7f34f90d2cc6da132e6527759b",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/MusicBench/tree/b141e962aacc19ffd51c15732738040377989203",
+      "filename": "amaai-lab--MusicBench-tree.json",
+      "bytes": 1717,
+      "sha256": "5137920e7554e80f050f7990259b15cd1fe63669a80b58a3300f106ad6466f57",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/MusicBench/resolve/b141e962aacc19ffd51c15732738040377989203/README.md",
+      "filename": "amaai-lab--MusicBench-README.md",
+      "bytes": 4850,
+      "sha256": "47f17bd41fd3ad898a6cc876bed473b8a95d35a535b130247d42e3423e171c5d",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/JamendoMaxCaps",
+      "filename": "amaai-lab--JamendoMaxCaps-info.json",
+      "bytes": 153848,
+      "sha256": "17290dcf2f0f702efa6f99be2229d372b2b9de406bbfd3a3b6fa0d574ba3d548",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/JamendoMaxCaps/tree/13090d785d071dcd617636deaa4a9775936ac995",
+      "filename": "amaai-lab--JamendoMaxCaps-tree.json",
+      "bytes": 105981,
+      "sha256": "6012c8005bf40550c6cf0c599259af3e20453688009d03612023d786b46654db",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps/resolve/13090d785d071dcd617636deaa4a9775936ac995/README.md",
+      "filename": "amaai-lab--JamendoMaxCaps-README.md",
+      "bytes": 4426,
+      "sha256": "4a459fcb398ae876e7f387edb9f5042f40d6dcaa7a2ea1bd7f58f43d1d2f3b1b",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/seungheondoh/LP-MusicCaps-MTT",
+      "filename": "seungheondoh--LP-MusicCaps-MTT-info.json",
+      "bytes": 1673,
+      "sha256": "156491914182c131345e0f48809b0f06a867d562129b3fade2ab076e77ef2d2b",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/seungheondoh/LP-MusicCaps-MTT/tree/64c5d14e25b8919c98e58f1e048eb470ba702933",
+      "filename": "seungheondoh--LP-MusicCaps-MTT-tree.json",
+      "bytes": 291,
+      "sha256": "037204ff74f40b5cf9e13c172f8a76521fb4849fcd01780c12f97ff552a25643",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/seungheondoh/LP-MusicCaps-MTT/resolve/64c5d14e25b8919c98e58f1e048eb470ba702933/README.md",
+      "filename": "seungheondoh--LP-MusicCaps-MTT-README.md",
+      "bytes": 6202,
+      "sha256": "d71eb90a872134c4c08ed061a451c49e8f184265b83ee239f2588c8a8724c447",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/amaai-lab/MusicBench/parquet",
+      "filename": "MusicBench-parquet-index.json",
+      "bytes": 213,
+      "sha256": "7fb0c82bb6bb74a39b04a3041e1cfa417281672dfe84b32cbd6c505739273edc",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/seungheondoh/LP-MusicCaps-MTT/tree/64c5d14e25b8919c98e58f1e048eb470ba702933/data",
+      "filename": "LP-MTT-data-tree.json",
+      "bytes": 991,
+      "sha256": "e76136e46c2e6a7a9ad448ca3d75b634e88fb192e887c4acc97843fad2a2e888",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/google/MusicCaps/resolve/0a51889b340037bb75a9a0858af2e4ece21f7f89/musiccaps-public.csv",
+      "filename": "google--MusicCaps-musiccaps-public.csv",
+      "bytes": 2939484,
+      "sha256": "8cc109ac507b5e5aed8ea73a5c8f897a9d0793f7397427e000adf4c05f6021c7",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/MusicBench/resolve/b141e962aacc19ffd51c15732738040377989203/MusicBench_test_A.json",
+      "filename": "amaai-lab--MusicBench-MusicBench_test_A.json",
+      "bytes": 517999,
+      "sha256": "c5a84f9f7a1ed8d11c13a36020d85ce7bd9101e6de9a23c66867329b0590770a",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/MusicBench/resolve/b141e962aacc19ffd51c15732738040377989203/MusicBench_test_B.json",
+      "filename": "amaai-lab--MusicBench-MusicBench_test_B.json",
+      "bytes": 590781,
+      "sha256": "de23793fed7a7226a212e895758f25f060e40b8e53714c2da3ae4a6659197507",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/MusicBench/resolve/b141e962aacc19ffd51c15732738040377989203/MusicBench_train.json",
+      "filename": "amaai-lab--MusicBench-MusicBench_train.json",
+      "bytes": 85670037,
+      "sha256": "579d35b724391cb6fd2b0ae181bed074e536f44158e5ebfc0d683d323d23ac26",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps/resolve/13090d785d071dcd617636deaa4a9775936ac995/2008-01-01.jsonl",
+      "filename": "amaai-lab--JamendoMaxCaps-2008-01-01.jsonl",
+      "bytes": 3703133,
+      "sha256": "307e5b44b682aeea46c08c379f67a4ab849cc82336317e17190ded450b7a6266",
+      "status": 200
+    },
+    {
+      "url": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps/resolve/13090d785d071dcd617636deaa4a9775936ac995/2008-01-06.jsonl",
+      "filename": "amaai-lab--JamendoMaxCaps-2008-01-06.jsonl",
+      "bytes": 3925075,
+      "sha256": "32e17c024d90a4e4424778ea2329cff6cac21141dfc403eda3afa63dd56bbc71",
+      "status": 200
+    }
+  ],
+  "private_evidence_sha256": {
+    "seungheondoh--LP-MusicCaps-MTT-tree.json": "037204ff74f40b5cf9e13c172f8a76521fb4849fcd01780c12f97ff552a25643",
+    "capture-progress-18.json": "0779a26fe32bdf2c709c96466b2bc653a13e225d674842a7c1fc32ddf42ed207",
+    "MusicBench-parquet-index.json": "7fb0c82bb6bb74a39b04a3041e1cfa417281672dfe84b32cbd6c505739273edc",
+    "amaai-lab--MusicBench-MusicBench_test_B.json": "de23793fed7a7226a212e895758f25f060e40b8e53714c2da3ae4a6659197507",
+    "audit.json": "1e95f686244a81d935d4d267fed7647bd4abed83facdeb809940f984cf9fc2a9",
+    "capture-progress-02.json": "1b2edfdd7092af47946d7a1cf8b264e4ef687055bb8289a3f9edd159016913de",
+    "capture-progress-14.json": "7858a02300eabea4389b001cfe7a5c51349ad9cdb1d17e7cf1a196313c088314",
+    "amaai-lab--MusicBench-tree.json": "5137920e7554e80f050f7990259b15cd1fe63669a80b58a3300f106ad6466f57",
+    "capture-progress-15.json": "505a5e3be4f9074bd6e7460c40ac3a71c7028d0b47c98ef19ed6dcb2ce15fb66",
+    "capture-progress-03.json": "153055be49ddcafe6f9a687a367f6f6e12139a51bf2d65b3e65c7a8c905e3122",
+    "musiccaps-provisional-frame.json": "589f6716bda38309f2adeb13e37c3e4c6be8bc2386d825e654af88e717c5d3f3",
+    "audit.py": "76397fe183ba898da4f1dec79d74918daa7d8185466094cabf8b502dd27015db",
+    "prior-before.json": "dfd14ae8fe1159bfd5bc6267cae32c6f0665f643c9c08c23b6edac4436713610",
+    "capture-progress-19.json": "5842b7d0ac4dc32988e91a8aa4cca3ef712ef2522c8018cb13768fef935dcb0b",
+    "amaai-lab--JamendoMaxCaps-2008-01-01.jsonl": "307e5b44b682aeea46c08c379f67a4ab849cc82336317e17190ded450b7a6266",
+    "amaai-lab--JamendoMaxCaps-2008-01-06.jsonl": "32e17c024d90a4e4424778ea2329cff6cac21141dfc403eda3afa63dd56bbc71",
+    "capture-progress-04.json": "49b89b3d2a5a15c004608ad0aa5b9db1645278305aed710778364d5ec1b8a00c",
+    "capture-progress-12.json": "2e6d88604b9b5953cd12bed57d85dd1e183e1ef771d627d6132e053e172b1a2f",
+    "seungheondoh--LP-MusicCaps-MTT-info.json": "156491914182c131345e0f48809b0f06a867d562129b3fade2ab076e77ef2d2b",
+    "amaai-lab--MusicBench-README.md": "47f17bd41fd3ad898a6cc876bed473b8a95d35a535b130247d42e3423e171c5d",
+    "sources-phase1.json": "d51c2a46626b5ea7f9ac6a6c7459b23651dda69199675da6ee1ce001e3da8f98",
+    "capture-progress-08.json": "04fd4edb6bd27193499266c519b943ac2c1b906d1f04420ddcea69a9c2b31cc4",
+    "capture-progress-09.json": "67ad7bc99bc0369095e33c50f16906a83f5ba4f0770f85a55d650ea1d29389b7",
+    "amaai-lab--MusicBench-info.json": "08f4b44fba8b915f55e18053f556835b6f15fa7f34f90d2cc6da132e6527759b",
+    "capture-manifest.json": "007a4e5e089d9c393b17cc99f395d39ca33716640aa54fafbaeb4ea9dd0ea5e6",
+    "independent-audit.py": "c98f213f9bb07571e80b1ebc3acee06b047ecd0fdb933a0b4c450c603d5cf0d2",
+    "capture-progress-13.json": "818806eb49e1f2b0e67297d114d48c4f3df0f050ddfc57633bda80587dfb3dc9",
+    "capture-progress-05.json": "382c3feb1cbb852f522e1ce03d3a27262e7baacc332e91e7f5f5d1d8b9316409",
+    "seungheondoh--LP-MusicCaps-MTT-README.md": "d71eb90a872134c4c08ed061a451c49e8f184265b83ee239f2588c8a8724c447",
+    "capture-progress-10.json": "7f668bd03f7b93e68e0c7ef17071dd414f5fd41907ce66732f46dd07904fc3d9",
+    "capture-progress-06.json": "962773b78cded6439bb2db575ad9750ebb8f7c9f161a60ccac30b21e6ffc963d",
+    "google--MusicCaps-info.json": "bf69b334ceed64aa8d4f9512e0e02aea05619cc77850597e79b005b08a23119d",
+    "capture.py": "744134b95b5afd2f9244e2c22ca1d29e9f47c07a3492e3e96d658466f5a3de3f",
+    "amaai-lab--MusicBench-MusicBench_train.json": "579d35b724391cb6fd2b0ae181bed074e536f44158e5ebfc0d683d323d23ac26",
+    "google--MusicCaps-README.md": "694ce36fcc1d208e9b387581709cf7a30294c961d630fcb34f3231680ec8013f",
+    "metadata-head-probes.json": "bf4027fa87a87e91760a42c81d5395abb7dc9a6a618c37820d87f09f9aacb47b",
+    "LP-MTT-data-tree.json": "e76136e46c2e6a7a9ad448ca3d75b634e88fb192e887c4acc97843fad2a2e888",
+    "amaai-lab--JamendoMaxCaps-tree.json": "6012c8005bf40550c6cf0c599259af3e20453688009d03612023d786b46654db",
+    "google--MusicCaps-musiccaps-public.csv": "8cc109ac507b5e5aed8ea73a5c8f897a9d0793f7397427e000adf4c05f6021c7",
+    "capture-progress-07.json": "d405c37f0a19baa8331d03c5a38d39373edaa7e61bd140fe5a84b325f6251bde",
+    "capture-progress-11.json": "b994395dd7f17397be3a8a783391e151577247f228f3ae0474e4d2895dd5f36b",
+    "amaai-lab--JamendoMaxCaps-README.md": "4a459fcb398ae876e7f387edb9f5042f40d6dcaa7a2ea1bd7f58f43d1d2f3b1b",
+    "capture-phase3.py": "7a1ad22cd1c7103a2e4c7df1b8a22d3ca061f77e2b049d2e51b3889048adb220",
+    "capture-progress-20.json": "3ea11f85d7c533e2fee80d00bcc6919379c01d7ee372963a9506ec90487cc603",
+    "independent-audit.json": "9f2f7b7ff9b0c05a8343bdacf43041a2e540555183859635a9d9efe342986ba4",
+    "capture-progress-16.json": "111c7f128e69f6ffe161592f967ec55bcedadb0543dcc04288fa5a63fc3d0697",
+    "google--MusicCaps-tree.json": "adb5411f46215fb2a8158923e653ac65e481ba025c7882412665af76feac1684",
+    "head-probes.py": "0fc67a4c8ce180b9624a8bfdec883ea533d2e7aae017cbcea0665b1fdcd25f22",
+    "amaai-lab--MusicBench-MusicBench_test_A.json": "c5a84f9f7a1ed8d11c13a36020d85ce7bd9101e6de9a23c66867329b0590770a",
+    "capture-progress-01.json": "1ebc43adc457cc3c160347322e750a7543d5ff7d6376de278ee6ec228d150951",
+    "capture-progress-17.json": "d1f5b86184d0da4a17ec0601ba5d26e494dabc712ce0ef14d5df2e6f5ee0fc83",
+    "capture-phase2.py": "191912a6d59dcd033e86f4adde070b8c363a17a4ce7dec48d94ee949f0dc466e",
+    "amaai-lab--JamendoMaxCaps-info.json": "17290dcf2f0f702efa6f99be2229d372b2b9de406bbfd3a3b6fa0d574ba3d548",
+    "document-QA-initial-note.json": "f55b5a18b0a339195e22e94101af793d86a384238bf7653eea45d8f5fe92a0c3",
+    "final-doc-qa.json": "c3216ed27cac5f8caca3d9f967273f1f32b95914f9422f2014d72b27cf1ea86c"
+  }
+}

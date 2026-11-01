@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-049-positive-score-training`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-050-caption-source-audit`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -63,6 +63,8 @@ MUS-047已建立独立设备校准：固定3训练曲/9窗/6tag，CPU参考与�
 MUS-048已完成140首MPS双视图缓存：100训练/20标签验证用整曲实际EOF，140检索用首120秒，780用途引用按起点去重为624窗，另183tag/24dev文本。CPU全量数值及四旧模型两池两模式16组宏R1/R5/MRR复现，前5集合和顺序保持；只有一个查询第111/112名近并列交换，未隐去。76检查/独立复算/实际consumer/重复保护通过，新ready缓存按device/model/view显式读取，CPU可读训练100/验证20且不加载模型/不返回dev文字。没有新训练/下载/保留test/旧缓存替换或部署，B047原审核卡保持，048独立审核待安排，见[MUS-048](docs/verification/MUS-048.md)。
 
 MUS-049已复用MPS特征完成一次CPU正标签逐项分数训练：100首/335已知正tag、唯一alpha.01，拟合约0.67秒。loss下降，但达到200步上限未满足收敛阈值；140候选主整曲MRR由identity0.4208到新W0.4203，未改善，也低于旧alpha0.1的0.4658，继续保留原模型。86检查/独立目标梯度与全部检索指标复算/实际重复保护通过；无追加调参、保留test、下载或部署。下一轮优先审查现成文本—音乐描述训练来源及隔离容量，再立方案；B047原卡保持，原版/UI/main不变。见[MUS-049](docs/verification/MUS-049.md)。
+
+MUS-050已完成描述训练来源的固定metadata实核：MusicBench52,768训练行实际5,079来源视频ID，TestA/B为同400音频；自身train/test ID无交叉，但train含2,631个MusicCaps AudioSet-eval来源，不能混作无重叠测试。2,448个非eval/未增强路径仅是metadata候选框，缺音乐作者/作品关系与就绪音频；JamendoMax两小样本1,944行/494ID且有许可冲突，完整生成caption尚未取。下一步优先审计生成caption与现有研究训练音频的白名单覆盖/区间/权限，再决定训练；本轮只取约93MiB metadata，新fit/音频0，原模型/SDD评测/备份/UI/main保持。见[MUS-050](docs/verification/MUS-050.md)。
 
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 

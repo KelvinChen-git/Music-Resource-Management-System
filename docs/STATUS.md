@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-11-01 America/Chicago）：codex/MUS-049-positive-score-training，base已发布e7fea73，真实源码07f1d277f5abdb6ffcdaffc0b07da615b8548a69。一次100曲/335正tag CPU拟合完成（666.17ms），200步上限未收敛；140池整曲MRR identity.420808→新W.420281、旧alpha.1为.465839，主任务未改善，保持identity。86检查/独立目标梯度与完整检索区间复算/重复保护通过；049 review、工具独立审核待安排。下一步先核现成文本—音乐描述训练数据及隔离容量，不追加搜参/扩训或开保留test。
+- 当前工作（2026-11-01 America/Chicago）：codex/MUS-050-caption-source-audit，base已发布ea54ffc。描述训练来源metadata审查完成/review：MusicBench52,768行=5,079来源视频ID，TestA/B同400音频；train/test无ID交叉，但跨MusicCaps eval重叠2,631来源。2,448个非eval/未增强路径仅候选metadata框，音乐作者/作品隔离和音频未就绪。独立计数及旧工件保护passed；新fit/音频/模型加载0，保持identity。下一步先核JamendoMax生成caption与现有研究音频的白名单覆盖/区间/权限，再另定训练。
 
-- 当前协作与保护：UTC2026-11-01T05:03:54Z双方feed fetched，A91062f1/sourcee7fea73，Bde296c7/sourcef0d3ef2保持并ack；047-R1/rev1/d8555fa原assigned卡不改、未认领，不外推049批准。旧045-048原件/141+160/权重/cache/原版/UI/Java/DB/main保持；049私有输出仅ignore.local/a/mus049，训练/验证CPU NumPy未导入Torch/CLAP。
+- 当前协作与保护：UTC2026-11-01T05:14:56Z/05:22:08Z双方feed fetched，A36d2ae9/sourceea54ffc，Bde296c7/sourcef0d3ef2未变并ack；047-R1/rev1原assigned卡保持、未认领，无新B批准。050仅README/PROJECT/STATUS/A latest/evaluation与verification新报告，私有.local/a/mus050/0700/0600。20份metadata共97,635,196 bytes<96MiB；单文件因官方JSON结构事先显式修订64→88MiB，总上限不变。旧045–049/141+160/权重/cache/原版/UI/Java/DB/main保持。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,6 +58,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-050 文本音乐训练来源实核 | review / A（metadata完成，描述训练集未ready） | codex/MUS-050-caption-source-audit / ea54ffc，依赖049/041 | 官方20文件/hash/独立计数通过，MB52,768行/5,079来源、eval交叉2,631；2,448候选非ready/JMax494样本有许可冲突，新fit/音频0，先核现音频caption覆盖 |
 | MUS-049 正标签分数CPU训练 | review / A（一次拟合/比较完成，工具独立审核待安排） | codex/MUS-049-positive-score-training / 07f1d27，basee7fea73/依赖048 | 100train/335正tag、CPU666ms/200步未收敛；主整曲MRR.4208→.4203未改善、保留identity，86检查/独立复算/重复保护通过，无追加调参/test/部署 |
 | MUS-048 有界MPS设备特征缓存 | review / A（140真实构建ready，工具独立审核待安排） | codex/MUS-048-device-feature-cache / cb77a01，依赖047校准/045-046数据 | 140双视图/624窗/183tag/24dev文本 ready，76检查/独立复算/实际CPU typed读取与重复保护通过；宏指标/前5保持，仅111/112近并列交换，无fit/下载/test/生产替换 |
 | MUS-047 设备校准准备 | review / A（CPU/MPS校准通过，工具独立审核待做） | codex/MUS-047-device-preflight / aaf5e4b，依赖046原数据和B限定审核接收 | 3train9窗6tag CPU/MPS通过、9窗656→240ms小批次比2.73，CUDA blocked；66检查/独立复算/设备key与重复保护通过，不训练/下载/test或付费资源 |
@@ -985,3 +986,21 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 86相关检查passed（10新/76既有）；独立逐正项复算实际W的目标/梯度/均值余弦、五有限差分最大误差4.16e-15，五候选×两池×两模式指标/全部配对区间/标签验证观察召回一致。同操作者复算不是B审核，不重fit；先W后val/dev时序独立核验，真实重复CLI在fit前FileExistsError、额外fit/评估打开0、原run SHA保持。
 - 045–048全部私有集合/SHA、043/044/160原件、旧23源码/54cache/原版f3b0da1干净保持，历史951其余pin不变，B047任务入口与basee7fea73相同。049目录0700/文件0600，原音频/个人身份/评分/描述/向量/W不入Git。无Java/Vue/UI/DB/API/依赖锁/主模型/main或云端变化，无关应用检查不重复。
 - 05:03:54Z双方feed仍fetched，Bde296c7/sourcef0d3ef2未变、ack保持；047-R1/rev1原assigned未认领，不竞争派卡或扩范围，048/049工具独立审核待安排。下一阶段优先核现成文本—音乐描述训练来源的实际可获取性/作者作品隔离容量，再预注册下一方案，避免反复搜当前已看dev。完整方法与结果见[报告](verification/MUS-049.md)和[聚合JSON](verification/MUS-049-results.json)，最终提交后原子publish/sync回读。
+
+
+### MUS-050范围与验收（2026-11-01）
+
+- A基于干净ea54ffc建codex/MUS-050-caption-source-audit；05:14:56Z sync双方成功，Bde296c7/sourcef0d3ef2未变，047-R1/rev1卡保持。承接049结果，优先核现成描述训练数据而非继续在同一dev上搜参。
+- 只读官方MusicCaps/MusicBench/JamendoMaxCaps等一级来源的版本/卡片/有界metadata；网络body总96MiB/单文件64MiB，不下载音频或parquet内嵌音频/归档，不安装依赖/加载模型/训练/新评分或读取保留test描述。SDD维持评测角色；已有dev/test不重新划分为训练。
+- 交付固定源SHA与实际文件hash/字节、实际metadata基准录音数与增强归组/跨split核查（可得时）、音频获取与作者作品隔离尚缺条件、下一轮明确入口。无法核的容量/音频就绪不写passed；聚合公开、原始文本和身份只ignore.local/a/mus050/0700/0600。允许README/PROJECT/STATUS/A latest/evaluation/MUS-050*/verification/MUS-050*，不改应用/旧工具/模型版本/依赖锁/B卡或main。
+
+- metadata获取前预算修订：官方MusicBench_train.json为85,670,037 bytes，超过初设单文件64MiB；为完整统计原录音/增强归组，将单文件上限显式改为88MiB，总body仍96MiB不变。只取该JSON、MusicCaps CSV和小型对照metadata；不下载音频。修订只因文件结构/大小，在未取得训练内容或统计结果前作出，不改变训练/评测协议。LP-MTT仅卡片级备选，本轮不获取parquet。
+
+
+### MUS-050完成：来源去重、跨split关系与下一入口
+
+- 固定MusicCaps0a51889、MusicBenchb141e96、JamendoMax13090d7、LP-MTT64c5d14，正常TLS取得20metadata/卡片/列表97,635,196 bytes，未超过原96MiB总预算；单文件上限在原JSON取得前从64显式改88MiB，最大85,670,037 bytes。源SHA/长度逐一复核，原件/一切caption/身份只ignore.local，0700/0600；无音频/parquet正文/归档/权重下载或依赖安装。
+- MusicCaps5,521个10秒来源视频（AudioSet train2,663/eval2,858）；MusicBench三JSON52,768train/400A/400B全部来源关联/flag一致。训练5,079来源组（3,412×14+1,666×3+1×2）、42,611唯一路径/5,079未增强路径，A/B同400音频、train/test ID交集0。其train含2,631个MC-eval来源，跨split不能混用；两表不提供足够音乐作者/作品身份，描述者author_id不可替代。私有2,448非eval/未增强路径候选框仅metadata、不分正式train/test或称ready；MC canonical caption单独保留来源语义，不把MB全部alt当原人写文字。
+- JamendoMax按文件名固定两个日期样本1,944行/494ID/完全重复1,198行；7ID许可不同、252audio字段不同，禁止下载和NC/ND等保留，不挑最宽松行。样本与现140ID交集0不推全库；caption787,366,586 bytes仅HEAD、正文/完整覆盖0，生成区间文字不当人写真值或整曲目标。LP-MTT仅固定卡片/文本parquet列表、未做真实行数/作者划分审计，不声称22k训练就绪。
+- 同操作者独立标准库流式计数/固定11字符ID/逐字段相等法复核全部三split、eval交叉/2,448框和JMax样本冲突一致，不是B审核或语义质量检查。全045–049文件集合/SHA、043/044原件/160/旧951/23源码/54共享cache/B047入口与base/原版f3b0da1干净保持。无新模型加载/编码/fit/质量评分/项目保留test描述；SDD评测角色不变，原049保持identity。文档QA适用，无关Maven/build/86旧训练检查不重复。
+- 05:22:08Z双方feed再次fetched、B未变并ack，原047-R1/rev1 assigned不改不竞争派卡。下一阶段另预算核JamendoMax caption文件：先冻已有train100/val20身份与所有SDD/旧开发/保留test排除，再核白名单描述覆盖/许可/精确区间/重复，容量够且特征对齐后另立训练；不静默取0.79GB metadata或16.76GB gzip/整库音频。不用当前dev反复搜参或新增人工全组合包，原模型/UI/DB/main保持。见[来源报告](evaluation/MUS-050-caption-data.md)、[验证](verification/MUS-050.md)及[聚合JSON](verification/MUS-050-results.json)。
