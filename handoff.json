@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-10-31T18:43:53.803Z",
-  "source_branch": "review/MUS-046-B-expanded-caption",
-  "source_sha": "f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b",
+  "published_at": "2026-11-01T06:35:44.613Z",
+  "source_branch": "review/MUS-047-B-device-calibration",
+  "source_sha": "5789d4aecfa23e3db1c83bb1a710adbb6220d695",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "1b3aea03e82ab3bd2d4d167371bf104421b058f24c3538c83038f159a89bfd7b"
+  "report_sha256": "058d0a1d3999f48b77f985aec10c708ad377a453e3dc13369259aa0e32ab6c23"
 }
