@@ -1,5 +1,33 @@
 # 账号 A 最新交接
 
+## 当前：MUS-054已完成首轮caption适配训练，保留identity
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-054-caption-adapter-training`，base19afdcb2da0d118157d1d337a9f8455900fe1ec2，实际源码 `4afd75cd2d75ce1aaab8e08aabac21c16a7f6270`；最终交付SHA见handoff.source_sha。054 review：一次真实训练和固定开发比较完成，工具独立审核待安排，无CLAP全量微调/正式质量验收。
+
+ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC2026-11-01T06:25:58Z/06:30:56Z双方fetched、B未变。047-R1/rev1原assigned卡未认领、与base字节相同，不竞争派卡/扩范围或外推054批准。
+
+用户问什么时候训练，本轮直接冻结E28/config/源码后干净4afd75c首次唯一实际fit，不再另开准备轮次。复用053 GPU区间特征37录音/33creator组件/209对，原77token向量全保留（110长train/14长val），每录音等权、固定alpha1、512×512 weighted ridge identity prior、CPU float64 dual闭式，CLAP冻结且无Torch/CLAP导入。拟合13.736ms、全校验与比较257.740ms，262,144参数，objective1.313145→1.148083/normal residual1.03e-16；只是预编码小层时间，非CLAP训练吞吐/P95。
+
+先保存W/fit收据后获取7录音23段val分析和旧24人写dev/20与140候选；train consumer完整性会物理读取共享NPZ的val数组，只有返回209train进入求解，不能称val字节从未读。val录音/作者组件隔离，无val alpha选择/新保留test。固定主140整曲MRR .420808→.447163，差+.026355的95%录音bootstrap[-.006304,.082660]含零，R1 .31→.37/R5 .49保持；140窗口次要MRR .394723→.451502、20池整曲 .708333→.677500下降；生成val23精确区间MRR .390929→.427504，7录音/非人工真值。全部两模型两池两mode及2val指标/6配对bootstrap公开聚合，不以有利次要项替代主结论。历史alpha.1主MRR .465839仍高于新W，仅上下文、非本轮第三预注册模型/追加fit，保留identity，无自动部署/扩训/开test。
+
+133相关检查passed（9新/124旧，最终一次）；同操作者独立512维primal解对照dual差1.33e-15，train209可重建同W、目标残差/所有排名宏指标及6组完整bootstrap一致，不导入新learner/生产metrics，不冒充B审核。sourcecommit/input/runtime/先W后分析时序和持久claim通过；真实同目录重跑FileExistsError，换目录在fit-started.json拒绝且只留freeze/failure、额外fit0，原W/收据/claim集合与SHA保持。
+
+旧045–053全私有集合/hash、951输入/原B047卡/23源码/54cache/043044/160/原版f3b0da1干净保持；新.local/a/mus054目录700/文件600，原文/录音ID/向量/W/逐项排名不入Git，只aggregate/方法/hash。无新下载/音频或模型编码/141+160或保留test参与fit/人工包/Java/Vue/UI/DB/API/依赖锁/main/云端变化，不重复Maven/build。交付新learner/runner/9检查/E28/config/训练方法验证与聚合JSON、README/PROJECT/STATUS/own latest；训练现已实际完成，后续明确改进假设后再立任务，不无休止准备或按已看dev继续搜参。最终commit后publish/sync回读，发布不等于B接收/批准或main合并。
+
+## 实现检查点（历史保留）
+
+# 账号 A 最新交接
+
+## MUS-054现在开始首次caption适配层训练
+
+A；2026-11-01 America/Chicago；branch codex/MUS-054-caption-adapter-training，base19afdcb2da0d118157d1d337a9f8455900fe1ec2。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC06:25:58Z双方fetched、B未变，047原assigned卡不竞争改写。
+
+用户问何时训练，本轮直接固定053已有GPU特征37train209的单alpha1加权identity-prior ridge/CPU闭式fit，原77token前缀全保留、生成弱标签局限不掩盖。允许STATUS列出054新模块/runner/测试/E28/config/方法验证与必要文档，先提交后立即实际fit，不另做准备轮次。W保存后才分析7val23及旧140已用dev；主140整曲MRR，固定两模型/两池两mode、无搜索/保留test/自动选模部署。持久单fit claim与新私有.local/a/mus054，旧045–053/141+160/原版/UI/DB/main/B047卡保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-053区间缓存完成，44录音232段/696窗，未训练
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-053-interval-feature-cache`，base53d4466f5aa4032e4753ccc98acc50d84b73da55，真实源码 `716b3fcea1902a54fe17a5e4b64db78334ddb28a`；最终交付SHA见handoff.source_sha。053 review：实际特征缓存准备完成，工具独立审核待安排，无新fit/模型质量验收。

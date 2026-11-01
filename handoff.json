@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-01T06:23:06.398258+00:00",
-  "source_branch": "codex/MUS-053-interval-feature-cache",
-  "source_sha": "19afdcb2da0d118157d1d337a9f8455900fe1ec2",
+  "published_at": "2026-11-01T06:32:54.837697+00:00",
+  "source_branch": "codex/MUS-054-caption-adapter-training",
+  "source_sha": "338146a81392169b33965bb3bf01179d8f092fc8",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "c9e77c01334fa3a18ae642840057b685b2e24621a75d9cb138e4f093799c9d63"
+  "report_sha256": "b86b7399e0bd294d67d4f6653e9aff1c74e41ce6e8fa568a1b2991d22c048bb3"
 }
