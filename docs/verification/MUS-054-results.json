@@ -1,0 +1,530 @@
+{
+  "schema": "sonora-caption-adapter-training-result-v1",
+  "status": "one_fixed_fit_and_development_evaluation_complete",
+  "source_sha": "4afd75cd2d75ce1aaab8e08aabac21c16a7f6270",
+  "config_sha256": "a0eaf130adff04bf5f957104d48fccef09467f4eb9687b662065e3a83f8cc4d3",
+  "adapter_sha256": "f7d3dd6a9dd755b38af855f441a0c83cd16737ce0aabc59430733bf5c78c1b4f",
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "1.26.4",
+    "numpy_code_sha256": "90e84693f8af39ec8f62c40ea5d41a37ba6faa08593970b3bb1278d1e81d4b63",
+    "system": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "dtype": "float64",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "counts": {
+    "fit_runs": 1,
+    "fit_recordings": 37,
+    "fit_components": 33,
+    "fit_intervals": 209,
+    "validation_recordings": 7,
+    "validation_intervals": 23,
+    "human_dev_recordings": 20,
+    "human_dev_queries": 24,
+    "retrieval_candidates": 140,
+    "new_audio_or_model_encodes": 0,
+    "downloads": 0,
+    "reserved_test_inputs": 0
+  },
+  "fit_ms": 13.735832995735109,
+  "diagnostic": {
+    "objective_before": 1.3131451331396333,
+    "objective_after": 1.1480829541610087,
+    "weighted_squared_error_after": 1.0270586188171493,
+    "identity_prior_penalty": 0.12102433534385945,
+    "alpha": 1.0,
+    "normal_equation_max_abs_residual": 1.0344643978227319e-16,
+    "parameter_delta_frobenius": 0.3478855204573215,
+    "parameter_count": 262144,
+    "fit_intervals": 209,
+    "fit_recordings": 37,
+    "solver": "weighted_dual_closed_form",
+    "closed_form_optimum_verified": true,
+    "weighted_paired_cosine_before": 0.34342743343018334,
+    "weighted_paired_cosine_after": 0.45545655167766075
+  },
+  "results": {
+    "identity": {
+      "human_development": {
+        "dev20": {
+          "whole": {
+            "recording_macro": {
+              "R1": 0.54,
+              "R5": 1.0,
+              "MRR": 0.7083333333333333
+            },
+            "query_macro": {
+              "R1": 0.5833333333333334,
+              "R5": 1.0,
+              "MRR": 0.7319444444444444
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 20,
+            "unqueried_candidates": 0,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          },
+          "segment": {
+            "recording_macro": {
+              "R1": 0.49000000000000005,
+              "R5": 0.95,
+              "MRR": 0.67625
+            },
+            "query_macro": {
+              "R1": 0.5416666666666666,
+              "R5": 0.9583333333333334,
+              "MRR": 0.7135416666666666
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 20,
+            "unqueried_candidates": 0,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          }
+        },
+        "expanded140": {
+          "whole": {
+            "recording_macro": {
+              "R1": 0.31,
+              "R5": 0.49000000000000005,
+              "MRR": 0.4208083360138314
+            },
+            "query_macro": {
+              "R1": 0.2916666666666667,
+              "R5": 0.5416666666666666,
+              "MRR": 0.43178472445597055
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 140,
+            "unqueried_candidates": 120,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          },
+          "segment": {
+            "recording_macro": {
+              "R1": 0.22000000000000003,
+              "R5": 0.54,
+              "MRR": 0.3947233414733414
+            },
+            "query_macro": {
+              "R1": 0.25,
+              "R5": 0.5833333333333334,
+              "MRR": 0.4344916734500068
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 140,
+            "unqueried_candidates": 120,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          }
+        }
+      },
+      "generated_validation": {
+        "exact_interval": {
+          "recording_macro": {
+            "R1": 0.19047619047619047,
+            "R5": 0.5845238095238096,
+            "MRR": 0.3909292466986795
+          },
+          "query_macro": {
+            "R1": 0.08695652173913043,
+            "R5": 0.4782608695652174,
+            "MRR": 0.2815171720862258
+          },
+          "recordings": 7,
+          "queries": 23,
+          "candidates": 23,
+          "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+        },
+        "recording_max_interval": {
+          "recording_macro": {
+            "R1": 0.31309523809523804,
+            "R5": 0.8392857142857143,
+            "MRR": 0.5791666666666666
+          },
+          "query_macro": {
+            "R1": 0.2608695652173913,
+            "R5": 0.9130434782608695,
+            "MRR": 0.5507246376811594
+          },
+          "recordings": 7,
+          "queries": 23,
+          "candidates": 7,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      }
+    },
+    "caption-ridge-1.0": {
+      "human_development": {
+        "dev20": {
+          "whole": {
+            "recording_macro": {
+              "R1": 0.49000000000000005,
+              "R5": 1.0,
+              "MRR": 0.6775
+            },
+            "query_macro": {
+              "R1": 0.5416666666666666,
+              "R5": 1.0,
+              "MRR": 0.7062499999999999
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 20,
+            "unqueried_candidates": 0,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          },
+          "segment": {
+            "recording_macro": {
+              "R1": 0.49000000000000005,
+              "R5": 0.95,
+              "MRR": 0.6838095238095239
+            },
+            "query_macro": {
+              "R1": 0.5416666666666666,
+              "R5": 0.9583333333333334,
+              "MRR": 0.7142857142857143
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 20,
+            "unqueried_candidates": 0,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          }
+        },
+        "expanded140": {
+          "whole": {
+            "recording_macro": {
+              "R1": 0.37,
+              "R5": 0.49000000000000005,
+              "MRR": 0.4471634082763115
+            },
+            "query_macro": {
+              "R1": 0.375,
+              "R5": 0.5416666666666666,
+              "MRR": 0.4704139513413707
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 140,
+            "unqueried_candidates": 120,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          },
+          "segment": {
+            "recording_macro": {
+              "R1": 0.32,
+              "R5": 0.54,
+              "MRR": 0.451502442002442
+            },
+            "query_macro": {
+              "R1": 0.3333333333333333,
+              "R5": 0.5833333333333334,
+              "MRR": 0.48101393976393975
+            },
+            "recordings": 20,
+            "queries": 24,
+            "candidates": 140,
+            "unqueried_candidates": 120,
+            "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+          }
+        }
+      },
+      "generated_validation": {
+        "exact_interval": {
+          "recording_macro": {
+            "R1": 0.21904761904761902,
+            "R5": 0.6202380952380953,
+            "MRR": 0.42750401695766016
+          },
+          "query_macro": {
+            "R1": 0.13043478260869565,
+            "R5": 0.5217391304347826,
+            "MRR": 0.3333569163744826
+          },
+          "recordings": 7,
+          "queries": 23,
+          "candidates": 23,
+          "scope": "generated_exact_interval_pair_only_other_pairs_semantically_unjudged_not_human_test"
+        },
+        "recording_max_interval": {
+          "recording_macro": {
+            "R1": 0.3988095238095238,
+            "R5": 0.8392857142857143,
+            "MRR": 0.6202380952380953
+          },
+          "query_macro": {
+            "R1": 0.391304347826087,
+            "R5": 0.9130434782608695,
+            "MRR": 0.6115942028985508
+          },
+          "recordings": 7,
+          "queries": 23,
+          "candidates": 7,
+          "unqueried_candidates": 0,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "human_development": {
+      "dev20": {
+        "whole": {
+          "R1": {
+            "mean_delta": -0.05,
+            "bootstrap95_lower": -0.15,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 19,
+            "losses": 1
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": -0.030833333333333334,
+            "bootstrap95_lower": -0.08916666666666667,
+            "bootstrap95_upper": 0.004999999999999999,
+            "wins": 1,
+            "ties": 17,
+            "losses": 2
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.007559523809523805,
+            "bootstrap95_lower": -0.0033333333333333435,
+            "bootstrap95_upper": 0.025892857142857145,
+            "wins": 2,
+            "ties": 17,
+            "losses": 1
+          }
+        }
+      },
+      "expanded140": {
+        "whole": {
+          "R1": {
+            "mean_delta": 0.06,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.16999999999999998,
+            "wins": 2,
+            "ties": 18,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.026355072262480135,
+            "bootstrap95_lower": -0.006303638857598396,
+            "bootstrap95_upper": 0.08265959833295357,
+            "wins": 5,
+            "ties": 11,
+            "losses": 4
+          }
+        },
+        "segment": {
+          "R1": {
+            "mean_delta": 0.1,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.25,
+            "wins": 2,
+            "ties": 18,
+            "losses": 0
+          },
+          "R5": {
+            "mean_delta": 0.0,
+            "bootstrap95_lower": 0.0,
+            "bootstrap95_upper": 0.0,
+            "wins": 0,
+            "ties": 20,
+            "losses": 0
+          },
+          "MRR": {
+            "mean_delta": 0.05677910052910053,
+            "bootstrap95_lower": 0.0003536757224257245,
+            "bootstrap95_upper": 0.13064686355311353,
+            "wins": 7,
+            "ties": 9,
+            "losses": 4
+          }
+        }
+      }
+    },
+    "generated_validation": {
+      "exact_interval": {
+        "R1": {
+          "mean_delta": 0.028571428571428574,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.08571428571428573,
+          "wins": 1,
+          "ties": 6,
+          "losses": 0
+        },
+        "R5": {
+          "mean_delta": 0.03571428571428571,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.10714285714285714,
+          "wins": 1,
+          "ties": 6,
+          "losses": 0
+        },
+        "MRR": {
+          "mean_delta": 0.0365747702589808,
+          "bootstrap95_lower": -0.00033118510562118216,
+          "bootstrap95_upper": 0.09349773242630387,
+          "wins": 3,
+          "ties": 3,
+          "losses": 1
+        }
+      },
+      "recording_max_interval": {
+        "R1": {
+          "mean_delta": 0.08571428571428572,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.2571428571428571,
+          "wins": 1,
+          "ties": 6,
+          "losses": 0
+        },
+        "R5": {
+          "mean_delta": 0.0,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.0,
+          "wins": 0,
+          "ties": 7,
+          "losses": 0
+        },
+        "MRR": {
+          "mean_delta": 0.041071428571428585,
+          "bootstrap95_lower": -0.005357142857142838,
+          "bootstrap95_upper": 0.1285714285714286,
+          "wins": 1,
+          "ties": 5,
+          "losses": 1
+        }
+      }
+    }
+  },
+  "identity_control_matches_prior": true,
+  "torch_or_CLAP_imported": false,
+  "decision": "retain_identity_no_automatic_selection_scale_up_or_deployment",
+  "total_ms": 257.7397080603987,
+  "limits": [
+    "Generated captions and only first77 tokens; not human semantic truth.",
+    "Seven validation recordings and previously seen human development; no new independent test.",
+    "Known exact pairs only, other intervals/recordings semantically unjudged.",
+    "One weighted unnormalized ridge objective; no CLAP fine tuning, hyperparameter search or production switch."
+  ],
+  "task": "MUS-054",
+  "base_sha": "19afdcb2da0d118157d1d337a9f8455900fe1ec2",
+  "branch": "codex/MUS-054-caption-adapter-training",
+  "verification": {
+    "related_tests_passed": 133,
+    "new_tests": 9,
+    "independent_audit": {
+      "status": "passed",
+      "method": "same operator independent weighted primal solution/normal equation and rank-count metrics/bootstrap; no new learner or metric imports",
+      "primal_W_max_abs_difference": 1.3322676295501878e-15,
+      "normal_equation_residual": 1.0344643978227319e-16,
+      "all2_models_2human_pools_2modes_and2generated_validation_metrics_match": true,
+      "all6_paired_bootstraps_match": true,
+      "fit_uses_only37_recording209_train_pairs": true,
+      "frozen_inputs_source_commit_and_persistent_single_fit_chronology_match": true,
+      "prior045_to053_all_sets_and_hashes_preserved": true,
+      "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+      "private_modes700_600": true,
+      "script_sha256": "b045f9e90b74b5197de8e00fb89b948244686ff1b9444530892d90d08832c1db"
+    },
+    "repeat_check": {
+      "status": "passed",
+      "checks": {
+        "same-output": {
+          "exit_code": 1,
+          "FileExistsError": true,
+          "new_fit_runs": 0
+        },
+        "new-output": {
+          "exit_code": 1,
+          "FileExistsError": true,
+          "new_fit_runs": 0
+        }
+      },
+      "original_artifact_set_and_hashes_and_single_fit_claim_unchanged": true
+    },
+    "final_doc_QA": {
+      "status": "passed",
+      "private_evidence_source_and_B047_hashes_match": true,
+      "public_no_real_ID_caption_or_weights": true,
+      "new_doc_links_fences_valid": true,
+      "private_modes700_600": true,
+      "single_fit_and_primary_interval_limits_reported": true
+    }
+  },
+  "caption_truncation": {
+    "train": 110,
+    "validation": 14,
+    "at_tokens": 77,
+    "training_examples_not_filtered": true
+  },
+  "historical_context_only": {
+    "prior_alpha0.1_expanded140_whole_MRR": 0.4658386752136752,
+    "source_public_result_sha256": "d42e99588ffb5f372de88ed5a7a354569b8b28c7456718c1c7604b32aeefe4b3",
+    "not_a_new_fit_or_preregistered_third_comparator": true
+  },
+  "private_evidence_sha256": {
+    "related-tests.log": "d92a8cac42e5ebd16e7b0514bd2657f868ae19b29978af38811a282e3ad2e518",
+    "fit-started.json": "9a56a3677500f68dbc50a383e02296de0e4d606489a5df24b3b7e06488a2ac80",
+    "prior-before.json": "86c6789b9efb6b59098bd17d36f2066866748bcfbbe6b1aad9a685a8874acf01",
+    "run.log": "c49cddc94d823c37f0a2a96c993153fa963a14f057fea488c17f3e1bc5479063",
+    "same-output.log": "a91526a9d7c12876c7cc4af92925396598be4c735a27eb4870bb7467ecdd53eb",
+    "repeat-check.json": "5e81f8c1fc62ddeb0e2934e6503ce2c05990c19424eb6e97cbb9fe790f0c15e3",
+    "independent-audit.log": "23633f30d74d832ef11a63aa39fe6c3f04759b42f72cf1c006ed6965ce84b932",
+    "independent-audit.py": "b045f9e90b74b5197de8e00fb89b948244686ff1b9444530892d90d08832c1db",
+    "new-output.log": "0572aab98583268e15c411c8affbd9d6c9924d353a3d70d19671284e2ace52a3",
+    "independent-audit.json": "7f4b9030d7618447e7b59de269cc53740fcf44decb29fba0ea594449908b75c8",
+    "repeat-new-output/failure.json": "ff824122337e8db5f1f82c2052b7117839f7783fea316a5c9e29118458a8681c",
+    "repeat-new-output/freeze.json": "861099e8fdbdea57eb6f791a7aac828b3d3a7eedc12939916d3d1b5b0f0c1b48",
+    "run-01/result-public.json": "fc48c113b9663e7c07d107053c919f48e642ddfe2e70994a9523b39020011ce8",
+    "run-01/evaluation-open.json": "0ab02861cbca8d51923cf29e5ed090bf7f687db112b45afbf888a28509450d81",
+    "run-01/result-private.json": "76e7edf09410530662c3187cd35000c04ca2c9b44b478444e8bf71470d7cfc38",
+    "run-01/fit.json": "2d3d16ed5ff3108b1e980dc1a6c64c2cd76a7e465749d3658737b365a35a1245",
+    "run-01/adapter.npz": "f7d3dd6a9dd755b38af855f441a0c83cd16737ce0aabc59430733bf5c78c1b4f",
+    "run-01/freeze.json": "289c84d726e0866151bc42e1d489b5b760560dc6c9637c065fbe1854fe582b08",
+    "final-doc-qa.json": "c073931f3ff7e2062226bb6439b6071e1f705f0c47a2e0653fcab9cca615e10b"
+  }
+}

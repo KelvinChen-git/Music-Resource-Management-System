@@ -230,3 +230,8 @@ MUS-032已按五描述各4首，从作者Incompetech官网独立收集20首CC BY
 MUS-053实际完成：干净716b3fcea1902a54fe17a5e4b64db78334ddb28a首次CLI exit0，固定44录音232生成caption区间构建696唯一10秒窗及232音频/文字向量，512维、原PCM/边界与输入源码环境复核passed；train37录音/33组件/209段，validation7/7/23，每录音等权，两个consumer只返回本split且不加载模型/原caption。CPU3训练区间9窗/3文本数值抽检最大差3.01e-7、独立9真实波形重解逐点相同；124相关检查、独立所有行/窗口/权重/聚合/token复算、真实重复输出拒绝和旧045–052/模型/cache/备份保护通过。
 
 重要限制：232原描述17–178token，124条超过77并按冻结SDK规则截断（train110/209、val14/23）；未事后筛除或改写。CPU三文本为49/76/64token均未截断，此抽检不证明所有长caption CPU/MPS一致。新cache只ready_for_bounded_pilot，训练方案未冻结、无fit或质量提升结论。下阶段先明确77token截断对训练目标的边界，再另预注册一次小训练，不能按已看dev继续搜参。原identity/141+160/SDD/保留test/UI/Java/DB/main/B047卡保持，不租卡/下载/新增人工全矩阵。见[验证](docs/verification/MUS-053.md)。
+
+
+MUS-054已实际完成首轮文本—音频配对适配训练：干净4afd75cd2d75ce1aaab8e08aabac21c16a7f6270首次唯一fit，37录音/33作者组件/209段、录音等权/固定alpha1的512×512 identity-prior ridge，CPU闭式拟合13.736ms（复用已生成GPU特征，无CLAP全量微调/重编码），解析残差1.03e-16、objective1.313145→1.148083。先存W和fit收据后才分析7录音23段验证及旧20/140池24个人写dev query；共享NPZ为完整性会物理加载val数组，但只有train209输入求解，不作val选择。
+
+主140整曲宏MRR identity0.420808→新0.447163，配对差+.026355的95%描述性区间[-.006304,.082660]仍含零；R1 .31→.37/R5 .49保持。20池整曲MRR .708333→.677500下降，validation23精确区间宏MRR .390929→.427504也只是7录音生成标签；不宣称稳定/总体质量提升，保留identity。历史旧alpha.1同主指标.465839仍高于新W，仅说明历史上下文、非本轮新增候选或调参。133检查/独立primal与全部排名bootstrap复算/同目录及换目录单fit拒绝通过，旧045–053/原141+160/权重/cache/备份/UI/DB/main/B047卡保持。原110训练长caption依前77token全保留，不新增人工包/下载/租卡；原CLAP未微调。见[训练验证](docs/verification/MUS-054.md)。
