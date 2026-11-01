@@ -300,4 +300,7 @@ MUS-051实际完成：0896ad72f33bfebb726bf89fa2d7d0c05944d606干净源码首次
 
 ## MUS-052：匹配来源元数据与参考区间预检准备（2026-11-01）
 
-只处理051固定57来源/270区间。原MTG发布日期映射到53个固定5日metadata文件，232,610,550 bytes正常TLS/Git blob SHA1与长度全部核对，原件只私有。新保守元数据聚合与有界参考预检模块/runner，12新检查连98既有共110 passed；E26/config冻结逐曲全行许可/下载/ID作品/时长规则，不挑宽松行。将干净提交后正式审计，按固定seed从合格train且>=3区间的不同作者组件取最多3同ID当前参考MP3，每个<=20MiB，总body含metadata<=512MiB；3个首/中/末caption的中心10秒同8k互相关、固定±250ms搜索、相关>=.95/lag<=50ms/整曲duration差<=.25秒。不是teacher确切缓存字节、全57或语义质量证明，未新训练/取外部歌曲/CLAP或开test，实际结果待运行。
+只处理051固定57来源/270区间。原MTG发布日期映射到53个固定5日metadata文件，232,610,550 bytes正常TLS/Git blob SHA1与长度全部核对，原件只私有。新保守元数据聚合与有界参考预检模块/runner，12新检查连98既有共110 passed；E26/config冻结逐曲全行许可/下载/ID作品/时长规则，不挑宽松行。方案冻结后在干净提交正式审计，按固定seed从合格train且>=3区间的不同作者组件取最多3同ID当前参考MP3，每个<=20MiB，总body含metadata<=512MiB；3个首/中/末caption的中心10秒同8k互相关、固定±250ms搜索、相关>=.95/lag<=50ms/整曲duration差<=.25秒。不是teacher确切缓存字节、全57或语义质量证明，不新训练/取外部歌曲/CLAP或开test，实际结果见下文。
+
+
+MUS-052实际完成：干净8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed首次CLI exit0，57来源183 metadata行保守聚合后44通过、13隔离（许可规则12/作品名差2、重叠1），train37录音/33作者组件/209区间、val7录音/7组件/23区间；原051/旧许可和排除关系保留。固定hash/不同作者从合格train且>=3区间取3同ID当前参考MP3，共15.61MB；9个首中末caption中心10s同8k互相关通过，NCC0.998040–0.999936、峰lag0、完整实际时长差0，原PCM pin保持，不改时间/阈值或外推teacher确切缓存/全44/语义质量。metadata+参考实际248,217,846 bytes、持久预记295,525,166<512MiB，原目录/换目录重跑均无额外GET。110检查、独立元数据集合/固定选择/FFT及直接点积复算和旧045–051/hash/54cache/备份保护通过。下一步可对这37train209/7val23构建精确区间特征、保持录音等权和原隔离，再另预注册小训练；本轮无CLAP编码/fit/质量指标，training_ready仍false/teacher版本局限保留，不重复已完成的metadata与3参考，不新增全组合人工包。identity、原版/UI/DB/main和B047原卡保持。见[配对预检](evaluation/MUS-052-pair-preflight.md)与[验证](verification/MUS-052.md)。

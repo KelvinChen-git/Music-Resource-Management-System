@@ -68,6 +68,8 @@ MUS-050已完成描述训练来源的固定metadata实核：MusicBench52,768训�
 
 MUS-051已完整流式核JamendoMax固定caption文件787MB/SHA：1,812,352行/360,740来源ID，现100train/20val匹配287行；按15–30秒/实际EOF固定规则保留270区间，覆盖train49首/246段、val8首/24段。15短尾和2个约2ms越EOF原样隔离，无重复/冲突/重叠；只保存白名单原行，不落全库正文。98检查/独立原行重建/两种实际重跑保护通过；当前是生成caption候选，逐曲权限与波形版本/区间对齐待核，尚未训练。下一步先做匹配57来源的有界预检，原模型/SDD评测/备份/UI/main保持，见[MUS-051](docs/verification/MUS-051.md)。
 
+MUS-052已完成57匹配来源逐曲metadata与参考预检：固定53文件/Git blob和长度全核，按全行许可/下载/身份/时长规则保留44来源232区间（train37首209段、val7首23段），13来源因许可规则/作品名差异隔离。固定3个已有训练来源参考MP3、9个中心10秒anchor均通过，NCC0.99804–0.99994、8k网格峰lag0、实际时长差0；不外推teacher确切缓存/全44或语义质量。110检查/独立FFT与直接点积/真实重跑保护通过，下一步可构建对应区间特征再另定训练，不重做本轮预检。参考仅同ID新快照，无新曲库/fit/模型切换，备份/UI/main保持，见[MUS-052](docs/verification/MUS-052.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

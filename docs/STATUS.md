@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，从干净已发布4a534fe开始，owner A。只核051匹配57来源的固定JamendoMax逐曲metadata与有界3个现有录音参考版本/区间，不扩歌曲范围、不训练。按原MTG release日期映射固定5日metadata文件，严格聚合同ID重复/许可/下载/作者作品/时长冲突；在结果前冻结规则与参考样本顺序。
+- 当前工作（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 
-- 当前协作与保护：UTC2026-11-01T05:53:33Z双方feed fetched，A3fc648b/source4a534fe，Bde296c7/sourcef0d3ef2未变并ack；047-R1/rev1原assigned卡保持。允许新caption_pair_preflight模块/CLI/合成检查、E26/config、必要README/PROJECT/STATUS/own latest/052验证与方法；私有.local/a/mus052/0700/0600。总body512MiB，metadata按固定文件长度/版本核、参考MP3最多3×20MiB且仅明确BY/BY-SA/允许下载来源；失败保留、不取整库/模型/云端或改原件/UI/main。
+- 当前协作与保护：UTC2026-11-01T05:53:33Z/06:02:18Z/06:05:33Z双方feed fetched，A3fc648b/source4a534fe，Bde296c7/sourcef0d3ef2未变并ack，047-R1/rev1原assigned卡未认领不改，不外推052批准。052私有.local/a/mus052/0700/0600，metadata+参考正文248,217,846 bytes/持久预记295,525,166<512MiB；参考仅原有歌曲同ID新快照，无新曲库/整库/模型下载。旧045–051/141+160/权重/cache/原版/UI/Java/DB/main保持，052工具独立审核待安排。
 
 - 仓库：`https://github.com/KelvinChen-git/Music-Resource-Management-System`。
 - 最新远端检查（2026-10-19 17:34 America/Chicago）：A 源分支 chore/MUS-008-account-sync@0ba0a96、A feed collab/account-a@d0a8381、B 源分支 review/MUS-001-B-baseline@6e4118c、B feed collab/account-b@05d4e9f 均可读。main 仍为 b81f57c；无 PR / 最终合并。
@@ -58,7 +58,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
-| MUS-052 描述配对元数据与区间预检 | in_progress / A | codex/MUS-052-caption-pair-preflight / 4a534fe，依赖051 | 57固定来源metadata聚合/冲突隔离，最多3已有录音参考版本与精确区间预检，固定阈值无fit/扩歌曲或test输入 |
+| MUS-052 描述配对元数据与区间预检 | review / A（有界配对预检通过，未训练） | codex/MUS-052-caption-pair-preflight / 8a8bc73，base4a534fe/依赖051 | 44来源232区间/3参考9anchor通过，110检查/独立复算/重跑保护passed；下一步区间特征，未新CLAP/fit/test或曲库 |
 | MUS-051 现有音频caption覆盖 | review / A（完整扫描完成，候选非训练ready） | codex/MUS-051-caption-coverage / 0896ad7，base2e13f61/依赖050 | train49首246段/val8首24段；98检查/独立原行重建/原目录及换目录预算拒绝通过，下一步核权限和区间对齐，新fit/音频0 |
 | MUS-050 文本音乐训练来源实核 | review / A（metadata完成，描述训练集未ready） | codex/MUS-050-caption-source-audit / ea54ffc，依赖049/041 | 官方20文件/hash/独立计数通过，MB52,768行/5,079来源、eval交叉2,631；2,448候选非ready/JMax494样本有许可冲突，新fit/音频0，先核现音频caption覆盖 |
 | MUS-049 正标签分数CPU训练 | review / A（一次拟合/比较完成，工具独立审核待安排） | codex/MUS-049-positive-score-training / 07f1d27，basee7fea73/依赖048 | 100train/335正tag、CPU666ms/200步未收敛；主整曲MRR.4208→.4203未改善、保留identity，86检查/独立复算/重复保护通过，无追加调参/test/部署 |
@@ -1034,3 +1034,12 @@ B 独占 `docs/reviews/MUS-001-B.md` 与自己的 `docs/collaboration/account-b/
 - 合成检查与E26/config先冻结，再有界真实metadata与3个已有训练来源参考版本/区间预检；参考顺序固定hash，不按caption语义/模型分数或原判断。只核原已用音频与新同ID可追溯参考，不声称取得teacher确切缓存字节；数值对齐证据有明确样本/限制，无新CLAP/fit/质量评分/保留测试文字模型输入。新输出只ignore.local/a/mus052/0700/0600、不覆盖旧run或租GPU/云端。允许新模块/runner/合成检查、E26/config/必要README/PROJECT/STATUS/A latest及evaluation/verification052。
 
 - 实现检查点：53份metadata原件232,610,550 bytes已正常TLS取得、各Git blob SHA1/长度匹配，capture脚本/plan/hash私有保留；尚未将其逐曲聚合当通过。新增保守reconcile/参考URL/固定hash选择/中心区间sample和归一化相关模块、runner、12项新合成检查，连既有98共110 passed。E26/config先冻结，提交后才真实逐曲审计与最多3同ID参考GET，不先调规则或把合成相关当实际版本对齐。
+
+
+### MUS-052完成：44来源232区间与3参考对齐预检
+
+- metadata53固定文件232,610,550 bytes/各Git blob SHA1/长度及SHA256全部核，私有捕获plan/脚本保留；E26/config/源码先提交后8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed首次CLI exit0。57来源183行聚合保守判44通过、13隔离（许可字段不满足BY/BY-SA规则12、作品名差2、重叠1，artist ID均一致），train37/33组件/209区间、val7/7组件/23区间；不改051候选/旧记录/原split或补选。
+- 固定seed SHA/不同creator/合格train且>=3区间取3当前同ID参考MP3，共15,607,296 bytes，每个<=20MiB，HTTPS/完整长度/文件SHA/实际EOF/原PCM pin核验。首中末caption各中心10秒、48k→8k同resample_poly、±250ms归一化互相关，9/9 NCC0.998040–0.999936、峰lag均0、三首时长差0；原时间/阈值不改，0仅8k网格观测。不是teacher确切缓存字节、全44/57/232或caption语义/模型质量验收。
+- 实际metadata+参考正文248,217,846 bytes，task-wide flock/run_started与持久预算预记295,525,166<512MiB、失败不清零无自动重试。原目录FileExistsError/换目录Reference preflight already attempted，额外参考GET0、原run/ledger SHA保持。110相关检查passed（12新/98既有、不累加初12）；独立脚本不导入新pair模块，Git/SHA/集合政策复算全57裁定/44/232与固定选择一致，9个保存探针独立FFT和直接去均值点积最大误差3.89e-14；不冒充独立重解全部音频或B本人审核。
+- 045–051集合/hash、043/044/160/旧951/23源码/54cache/B047入口与base/原版f3b0da1干净保持；052目录0700/文件0600，原文/身份/参考MP3/探针/caption只ignore.local，公开证据槽位别名隐藏参考ID。汇总阶段系统Python查NumPy失败后改用实际venv读版本，未安装/改产品或重跑预检，说明保留。无新录音ID/Java导入/模型/CLAP或Torch/fit/质量评分/云端/应用或main变化，原141/160及SDD/保留test不输入模型，无关Maven/build不重复。
+- 06:05:33Z双方feed再次fetched、B未变并ack，047-R1/rev1原assigned卡不改、不竞争派卡，052独立工具审核待安排。当前可进入有界区间特征试验：37train209/7val23、原生成标签与录音等权/作者隔离保留，再另立小训练比较；training_ready仍false，teacher版本/少量参考局限继续披露，不重复本轮metadata/3参考、不新增人工全组合或扩音频。identity/原版/UI/DB/main保持。见[配对报告](evaluation/MUS-052-pair-preflight.md)、[验证](verification/MUS-052.md)和[结果JSON](verification/MUS-052-results.json)，最终提交后publish/sync回读。
