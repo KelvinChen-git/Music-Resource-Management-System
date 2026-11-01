@@ -1,0 +1,155 @@
+{
+  "schema": "sonora-caption-expansion-result-v1",
+  "source_sha": "9a1fff4a08844d9d6989b5b6182f8eea00b37c11",
+  "source_fully_verified": true,
+  "frame_counts": {
+    "validation": 163,
+    "train": 829
+  },
+  "selected_counts": {
+    "train": 96,
+    "validation": 20
+  },
+  "preliminary_metadata_eligible": 96,
+  "audio_attempts": 76,
+  "new_counts": {
+    "train": 63,
+    "validation": 13
+  },
+  "new_intervals": 367,
+  "combined_recording_counts": {
+    "train": 100,
+    "validation": 20
+  },
+  "combined_interval_counts": {
+    "train": 539,
+    "validation": 60
+  },
+  "new_intervals_by_split": {
+    "train": 330,
+    "validation": 37
+  },
+  "new_creator_components": {
+    "train": 56,
+    "validation": 12
+  },
+  "audio_failures": 0,
+  "metadata_files": 92,
+  "metadata_reused": 13,
+  "reference_statuses": {
+    "passed": 3
+  },
+  "reference_preflight_passed": true,
+  "budget_reserved_bytes": 1434836418,
+  "max_total_body_bytes": 2147483648,
+  "encoder_loads": 0,
+  "fits": 0,
+  "reserved_test_inputs": 0,
+  "raw_full_corpus_saved": false,
+  "training_ready": false,
+  "label_source": "model_generated",
+  "exact_teacher_artifact_verified": false,
+  "status": "source_pairs_verified_pending_feature_cache",
+  "comparison_base": "37fec0a05fd1c2343abef7ca7b73588751d6aff1",
+  "branch": "codex/MUS-057-caption-data-expansion",
+  "new_official_audio_bytes": 243736908,
+  "new_metadata_body_bytes": 340818206,
+  "reference_body_bytes": 20761362,
+  "metadata_exclusions_nonexclusive": {
+    "license_outside_explicit_BY_BYSA": 19,
+    "artist_or_work_identity_mismatch": 3,
+    "missing_source_metadata": 1,
+    "unresolved_download_source": 1
+  },
+  "actual_interval_rejections": {
+    "interval_length_outside_policy": 6,
+    "beyond_verified_EOF": 4
+  },
+  "combined_creator_components": {
+    "train": 83,
+    "validation": 19
+  },
+  "tests": {
+    "status": "passed",
+    "count": 165,
+    "failures": 0,
+    "errors": 0,
+    "initial_invocation_note": "Initial legacy-test import path omitted scripts (10 discovery errors); corrected both paths, final165 pass. No production runtime/network from initial invocation."
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator separate graph traversal/source-row set reconstruction/standalone soundfile-soxr decoder/direct correlation check, no production imports or second download",
+    "frame_exact_ids_and_full_credit_work_content_isolation_match": true,
+    "hash_candidate_order_and_all_original_caption_bytes_match": true,
+    "all_new_official_SHA_actual_EOF_PCM_and_metadata_rows_match": true,
+    "all_nine_reference_correlations_and_lags_match": true,
+    "reference_correlation_range": [
+      0.995773090025093,
+      0.9999294300360941
+    ],
+    "max_reference_abs_lag_seconds": 0.0,
+    "reference_duration_deltas_seconds": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "task_budget_and_no_encoder_fit_test_match": true,
+    "prior045_to056_file_sets_and_hashes_preserved": true,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "2b39bc45a7bf579954bde0eb4d3c7d80a82dd6995b83dba13fa41710f63e9338"
+  },
+  "audit_precision_note": {
+    "cause": "First independent audit retained float32 probe dtype for cumulative sums; production deliberately converts probes to float64. Second audit explicitly uses float64 after separately verifying raw probes against standalone decoded audio. No production/data/threshold change or second network run.",
+    "initial_audit_max_correlation_error": 4.7070112374258954e-05,
+    "corrected_audit_max_correlation_error": 0.0,
+    "all_lags_unchanged": true,
+    "initial_log_retained": true
+  },
+  "repeat_guard": {
+    "status": "passed",
+    "same_output_rejected": true,
+    "new_output_rejected_before_creation": true,
+    "journal_bytes_unchanged": true,
+    "network_or_model_retry": false,
+    "messages": [
+      "Expansion already attempted; changing output cannot retry",
+      "Expansion already attempted; changing output cannot retry"
+    ]
+  },
+  "not_run": [
+    "CLAP encoding",
+    "adapter training",
+    "held-out test scoring",
+    "frontend build",
+    "Java tests"
+  ],
+  "next_step": "Freeze expanded599-interval fulltext cache/token equality, MPS numerical controls and one fixed alpha1 data-size comparison; unchanged saved37 baseline and human140 pool. No result-based tuning.",
+  "private_evidence_sha256": {
+    "prior-before.json": "130a89b87ba872f2c02cce30a6a71eba2331fdcf1372f9fafb9b08872304747f",
+    "tests.log": "f910bb417c35ae6362af40efccb5e464923b48b66de90254707b8df5c688731b",
+    "test-invocation-note.json": "650a23b2570debdfbe65e855ca03e4bd15327c5f15764f96400ed1995c700cad",
+    "run-01.log": "8f34d04bf6d7881c40bef39204ed7cf2d6e5f1ef1610ed1622344067abb99f7a",
+    "network-ledger.jsonl": "e3fbb4be18b08b69bab501f5d44bbf5b183ec41511584eba50d9170ac7118bbf",
+    "run-01/freeze.json": "c363c6b14d5c05453d675b5b35ab19771b8ee13a84feb6c618276e44edffbba5",
+    "run-01/frame.json": "80c0d2528832c5cfe086a96f7288e3211d73e63449693f7e0d2fb265e9d46a34",
+    "run-01/matched-source.jsonl": "d013478f0fb354574998c72972cc2cd0cd0956955fa53416385f9d326e088c7b",
+    "run-01/selection.json": "3bfe0b71180c4d9c1d5d7c6d0d007307c9ab100c5db8717374a79bb1577935b9",
+    "run-01/provisional-candidates.json": "325abf0f8cfc77c6cfb75315046448682ff79dafc1a2b4584c192e411f2fcde2",
+    "run-01/metadata-plan.json": "4a6fc7b07b090e92f2d694976304f479f8f2e0c9c06ccbe7f34d95652e51d728",
+    "run-01/metadata-manifest.json": "d8405444e4dc00f56d48c0670f4a45f46e58e7fb87dce5c8100f7375f70b727b",
+    "run-01/preliminary-verdicts.json": "126c1d9be3174391383d3291cb84b3c167e693dd6242021b00661354e3601c1d",
+    "run-01/recordings.json": "d689814d01f896197be03413a1237ec192b57e560fc579fb69c208f7ac641f7b",
+    "run-01/eligible-candidates.json": "326254ac1c18de9c88ff356aaeb4abc37bc6193c6395e5e0b12f3b1adfa0bce3",
+    "run-01/reference-plan.json": "b706f4631b102fa4a0d2941afb1df2baa0a9d3ff1dd18702b2538c4ced563d7e",
+    "run-01/result.json": "f76499034dfd79d29ad4726b02d701d1e0f4605f883bf699ee69f9753511befa",
+    "independent-audit.py": "6d87325ff912ef3c87ed920c7390d65d730cc466d189a8953c11838f864974b4",
+    "independent-audit.log": "6b5929f2385ba6045a8feb9d87732774b750e06402b223221c13abe1a891f68d",
+    "independent-audit-v2.py": "2b39bc45a7bf579954bde0eb4d3c7d80a82dd6995b83dba13fa41710f63e9338",
+    "independent-audit-v2.log": "917ae08190d140ed02c64a3d580615d2de03e6fb99b59cbde21d8e243454d5e0",
+    "independent-audit.json": "0cfe03e02a1326ea00026e91f684cf391ad9a8afe6053bc673bc5a41da009ca8",
+    "audit-precision-note.json": "6a06e4a0066505120ffdeebe8aa0764bb51cb85b1e2a7e513212148577ec06b0",
+    "check-repeat.py": "cea4d867bab6242715af3b79df7ab098758632272a1a381928161de2379613d8",
+    "repeat-guard.json": "eb196d9098e44e0d9eaa0f3972a8235725d72e2705a822b4e2902c7c9f16f1d8"
+  }
+}

@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前工作：MUS-057 in_progress / A / codex/MUS-057-caption-data-expansion，base37fec0a。新来源扩样：原044未下载train/val框，完整SDD/旧60/保留测试及作者作品内容隔离；固定hash96/20候选，最多新63train/13val、2GiB持久正文预算，无模型/fit/保留test输入。占用仅新扩样Python/测试、057 config/report、CONTRACTS/STATUS/A latest；原版/UI/main/B原卡保持。
+- 当前工作：MUS-057 review / A / codex/MUS-057-caption-data-expansion，base37fec0a、实际9a1fff4a08844d9d6989b5b6182f8eea00b37c11。有界扩样完成：新63train/13val、367完整描述；合计100train539段/20val60段，83/19作者组件。116固定候选中96元数据合格、76音频尝试全通过官方SHA/实际EOF/PCM去重，3参考9anchor相关.99577–.99993/lag0。165检查、独立重建全部框/PCM/原文/对齐和跨目录保护passed；2GiB内实际预记1,434,836,418。原版/UI/main及旧663文件/缓存保持；无CLAP或fit，下一步完整token与区间特征后固定参数数据量对照，training_ready=false/生成弱标签局限保留。
 
 - 上轮交付：MUS-056 review / A / codex/MUS-056-fulltext-cosine-training，base19fab38、实际ab668808de94b977c5d403d089460d5f070778f9。保留全文本默认/超限拒绝，37train209归一化正配对alpha1单fit107ms/12步按train loss变化停止，梯度2.13e-8未达1e-8、不称全局最优。主MRR全文本ridge .447149→.448184小幅升，生成val精确区间 .407273→.396378下降；154检查/独立梯度路径/全部排名12组bootstrap/跨目录保护passed，仍保留identity。后续改进监督或评测覆盖，避免继续同dev换loss/alpha，全文本不回退。
 
@@ -14,7 +14,7 @@
 
 - 上轮交付：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
 
-- 当前同步与保护：UTC17:46:26Z/17:53:20Z/17:56:14Z双方fetched，Ab154886/source19fab38、B8d43fe4/source806dc9c未变；B047限定批准已接收，原派发快照不改，不外推056质量/不新派卡。旧045–055/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新056私有700/600；无模型音频编码/下载/保留test/UI/DB/main改变。
+- 当前同步与保护：UTC18:09:52Z/18:21:16Z/18:27:05Z双方fetched，A7a309f3/source37fec0a、B8d43fe4/source806dc9c未变并ack；B047限定批准已接收，原派发快照保持，不外推057质量/无新B卡。旧045–056共663文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新057私有700/600；新音频仅私有研究配对，无模型编码/fit/保留test评分/UI/DB/main变化。
 
 - 上轮交付（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 
@@ -70,7 +70,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
-| MUS-057 有界音频描述扩样 | in_progress / A | codex/MUS-057-caption-data-expansion / base37fec0a；依赖044/045/051/052 | 固定源与hash候选、最多新63/13、2GiB；逐曲授权/官方SHA/实际EOF/PCM去重及3参考对齐，全文本原样保留，无CLAP/fit/保留测试或UI变更 |
+| MUS-057 有界音频描述扩样 | review / A（配对检查完成，工具独立审核待安排） | codex/MUS-057-caption-data-expansion / 9a1fff4；base37fec0a，依赖044/045/051/052 | 新63/13与367段；合计100train539/20val60，165检查/独立全框PCM原文/9anchor/重复保护passed；无CLAP或fit，下一步完整文本特征/固定参数扩样对照 |
 | MUS-056 全文本归一化配对训练 | review / A（实际fit与比较完成） | codex/MUS-056-fulltext-cosine-training / ab66880；base19fab38/依赖055 | 全文本默认/37train209单fit12步、主MRR .447149→.448184小升但val片段下降；154检查/独立梯度排名/跨目录保护passed，保留identity |
 | MUS-055 完整描述长度对照 | review / A（编码/一次fit/固定比较完成） | codex/MUS-055-long-caption-control / 635060a；base338146a/依赖053/054 | 232无截断/CPU长短6+短108控制；主MRR77 .447163→256 .447149无新增收益，143检查/独立复算/consumer与跨目录保护passed，保留identity |
 | MUS-054 生成caption适配层训练 | review / A（一次实际拟合/开发比较完成） | codex/MUS-054-caption-adapter-training / 4afd75c；base19afdcb/依赖053 | 37train209/7val23、alpha1 CPU13.736ms；主MRR .4208→.4472但差区间含零、保留identity；133检查/独立复算/跨目录单fit保护passed，无CLAP微调/test/部署 |
