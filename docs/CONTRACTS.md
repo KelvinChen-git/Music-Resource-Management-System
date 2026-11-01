@@ -493,3 +493,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 - 未列白名单的caption不保存/返回/作监督或模型输入，流式处理会物理读取整文件，不冒充其不存在。只保存匹配白名单的原行作独立核查，不存整库正文；matched生成caption必须有finite合法start/end、15–30秒、end<=原实际EOF、不裁切补标签，非空<=8192字符。精确重复只算一次，同ID/区间不同文字全部隔离，其他重叠区间明确报出；生成来源固定model_generated，未知组合不当确认负例。
 - 完整报白名单排除数、原文件行数/身份数、matched/合法/重复/冲突/越EOF和train/val覆盖录音/creator组件/区间分布，公开仅aggregate/hash。coverage候选不叫training_ready：原MTG许可与收据只证明已用音频来源，JamendoMax逐曲metadata许可/下载标志差异及版本波形/区间对齐仍待核；原048整曲/三窗特征不能视作任意30s caption的已对齐特征。没有新音频/解码/编码/模型加载/fit/质量评分、项目保留test文字模型输入/云端或应用变化，不自动扩训/部署。
 - 标准库模块/runner/适配合成检查、一次有界真实扫描及匹配原行的独立计数复算一起交付。私有仅.local/a/mus051/0700/0600、失败保留；旧045–050/141+160/原权重/54cache/23源码/原版/UI/DB/main不变。B047原assigned卡不扩范围/不竞争派卡，051工具独立审核另待安排。
+
+
+### E26. MUS-052：匹配57来源元数据与3条参考版本区间预检
+
+- 从4a534fe独立codex/MUS-052-caption-pair-preflight；只051固定57录音/270区间，不扩来源/挪split/读评分。按043原MTG release date映射以2008-01-01为锚的5日metadata文件，选择与050已核两样本范围一致；53文件232610550 bytes/固定JamendoMax13090d7树对象先成私有plan，正常TLS取原字节并核Git blob SHA1/长度，原行/SHA和捕获脚本记录私有，不按caption或模型更换日期/样本。总body512MiB、metadata<=384MiB，既有045–051/模型/原版只读。
+- 新reconcile聚合同ID所有匹配行；所有原URI须明确BY/BY-SA且规范化scheme后URI唯一、download flag全true、artist ID和规范化作品名与原音频一致、各metadata时长对实际EOF差<=1秒且自身无不同数值。缺失/未知/NC/ND/权限或身份/时长冲突全部隔离，不取首行/较宽松版本；参考下载URL须绑定同Jamendo ID的明确HTTPS mp32端点。原MTG许可/数据整体非商业研究限制保留，不当商用授权。
+- config/源码提交后先freeze再参考GET；在metadata合格train中要求>=3原区间，按固定seed SHA、不同creator组件取最多3来源，不补取验证/外部录音。每个最多20MiB单次请求、正常TLS/HTTPS Jamendo跳转、完整Content-Length/文件SHA/头部与实际EOF；任务级lock+持久body预记，metadata已费计入总额，失败保留无自动重试，不换输出重置已开始参考任务。
+- 原音频重新按旧65536实际EOF/48k mono严格复核PCM pin；参考是当前同ID来源快照，拿不到teacher确切缓存字节，不冒充字节相等。原caption首/中/末3区间各取中心10秒，sample边界四舍五入且必须原EOF内；两音频同scipy resample_poly到8k，固定±250ms搜索归一化互相关，音量增益/DC不影响；所有anchor correlation>=.95且峰lag绝对值<=50ms、整曲实际duration差<=.25秒才报该参考预检passed。不得按声学相似度改crop/阈值/样本或把3条外推全57。
+- 报metadata合格/隔离原因和原270区间过滤、3参考请求/成功或blocked、每条anchor相关/lag/时长差与费用，生成caption仍model_generated，training_ready保持false（新精确区间特征/独立训练方案未做）。只输出合成检查/私有原音频参考/探针数组/聚合hash，不能称语义质量/定位真值、teacher全部版本相同或训练提升；无CLAP/Torch/模型加载/fit/新曲库/云端/UI/DB/main变化，B047原卡保持。

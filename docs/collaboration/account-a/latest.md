@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## MUS-052开始：57匹配来源metadata与最多3参考区间预检
+
+A；2026-11-01 America/Chicago；branch codex/MUS-052-caption-pair-preflight，base4a534febac0df546eb2bf463ef646440e378ff0a。ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC05:53:33Z双方fetched、B未变，047-R1/rev1原assigned卡不改。
+
+只05157来源270候选；原MTG release日期映射53个固定5日metadata文件，232,610,550 bytes正常TLS/各Git blob SHA1与长度核验通过，原件/方法脚本/plan/hash私有保留，尚未逐曲聚合/参考GET。E26/config冻结全行BY/BY-SA且URI一致、download全true/ID作品/时长与原EOF<=1秒等保守规则；新module/runner/12合成检查连98既有110 passed。待干净提交后正式审计，固定hash/不同creator在合格train且>=3区间中取最多3参考，<=3×20MiB/全body含metadata512MiB/持久预算/无自动重试或换目录重启。原caption首中末各中心10s，同8k归一化相关、±250ms搜索，corr>=.95/lag<=50ms/duration差<=.25s才通过该参考快照。
+
+仅已用录音同ID当前参考，不称teacher确切缓存字节、全57/语义质量/训练ready。允许新模块/runner/测试/E26/config/必要README/PROJECT/STATUS/own latest及052方法验证；私有.local/a/mus052/0700/0600，旧045–051/141+160/权重/cache/原版/UI/DB/main保持，不取新歌曲/模型/云端/训练或项目test文字输入，不竞争派B卡。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-051完整生成caption覆盖完成，270区间候选，未训练
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-051-caption-coverage`，base2e13f615a6f9ea7a42c2ef73446449a21f35a3c0，真实源码 `0896ad72f33bfebb726bf89fa2d7d0c05944d606`；最终交付SHA见handoff.source_sha。051 review：实现/完整扫描完成，工具独立审核待安排、非训练ready或模型质量验收。

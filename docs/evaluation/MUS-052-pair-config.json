@@ -1,0 +1,50 @@
+{
+  "schema": "sonora-caption-pair-preflight-v1",
+  "base_sha": "4a534febac0df546eb2bf463ef646440e378ff0a",
+  "metadata_plan": {
+    "path": ".local/a/mus052/metadata-plan.json",
+    "sha256": "7acfcded9d7de5e1212ac50b6609b73fd4bd53049ac52cb69513bb7492571259"
+  },
+  "metadata_manifest": {
+    "path": ".local/a/mus052/metadata-manifest.json",
+    "sha256": "cc5d01f2b877c210bdb5bb823784f9a4dd6ed6b5e2b99f213fe84307a998174c"
+  },
+  "candidates": {
+    "path": ".local/a/mus051/run-01/candidates.json",
+    "sha256": "90852696a5943fc48926be55218f0240d2f21d8b8c0560837088c98b50de8394"
+  },
+  "allowlist": {
+    "path": ".local/a/mus051/run-01/allowlist.json",
+    "sha256": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83"
+  },
+  "dataset": {
+    "path": ".local/a/mus045/source-02/dataset.json",
+    "sha256": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe"
+  },
+  "corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "metadata_directory": ".local/a/mus052/metadata",
+  "task_directory": ".local/a/mus052",
+  "max_total_body_bytes": 536870912,
+  "max_metadata_body_bytes": 402653184,
+  "metadata_duration_tolerance_seconds": 1.0,
+  "reference_count": 3,
+  "reference_seed": "MUS-052-fixed-existing-training-references-v1",
+  "reference_min_caption_intervals": 3,
+  "max_reference_audio_bytes": 20971520,
+  "alignment": {
+    "sample_rate_hz": 48000,
+    "diagnostic_rate_hz": 8000,
+    "search_lag_seconds": 0.25,
+    "max_accepted_lag_seconds": 0.05,
+    "min_normalized_correlation": 0.95,
+    "max_duration_delta_seconds": 0.25,
+    "anchor_selection": "first_middle_last_accepted_caption_intervals,center10s"
+  },
+  "fits": 0,
+  "new_recording_IDs": 0,
+  "teacher_exact_audio_not_available": true,
+  "new_test_or_judgment_inputs": 0
+}
