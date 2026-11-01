@@ -549,3 +549,14 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 全部metadata行沿用052一致许可BY/BY-SA、download true、同作者作品/来源时长±1秒规则，预判时长仅源metadata，下载后必须用实际EOF重判。按固定候选次序、split达标即停，最多76个音频尝试，每曲仅一尝试/官方range+低码率SHA、8MiB上限；最终目标新63train/13val，技术失败或候选不足如实报告实际数量，不变seed/换监督门槛补数。实际解码48k mono float32 PCM与原60/045全140及所有新增去重，原caption重新验证实际EOF/15–30秒/无重叠。固定hash选3个不同train作者、至少3区间的来源，各当前同ID参考first/mid/last10秒，沿用052相关>=.95、峰lag<=.05秒、总时长差<=.25秒；这不是teacher历史精确音频或全曲语义验收。
 
 总正文持久预记2GiB，metadata/参考先预记上限、官方音频每次read先预记；原目录/换目录均不能隐式再跑，失败保留原claim/正文/日志、无自动重试。全流程无torch/CLAP/训练/新人工标注/保留测试模型输入。原caption完整字节及原行SHA保留，新缓存编码另行冻结，仍遵守E30完整token/超限拒绝；生成文字是弱标签，training_ready=false。本轮不更改训练loss/alpha，不用旧20dev挑来源或参数。原045–056工件/原版/141+160/模型缓存/UI/Java/DB/main/B原派发卡保持。
+
+
+## E32：MUS-058 全文本扩样特征与固定数据量训练对照（2026-11-01）
+
+固定057新76录音367区间与旧052/053/055的44录音232区间，canonical录音/时间排序共599，train100/539/83作者组件、validation20/60/19组件。旧232音频/全文本与696窗口逐元素复用，新367区间对应1101个唯一10秒窗口，只编码新增音频/文字；每split重新按录音等权再按该录音区间等权。调用原有区间planner的显式expected参数，不修改旧缓存/消费者/训练实现。新增独立typed consumer绑定明确model/device/配方/key/全部行、权重、token证明、NPZ与成功报告，并只返回指定split；完整性会物理读取共享验证数组/原始metadata，不将它们输入solver。
+
+源码/config/全部新音频和receipt/旧缓存/模型与原MPS环境先冻结，持久encode claim先于Torch/SDK加载。原CLAP A严格CPU加载后冻结，MPS FP32/no autocast/no fallback；所有599原文untruncated token IDs与显式256非pad逐条完全相同、旧232 token SHA相同，否则超限失败，不裁文/删样本/退77。tokenization后、任何编码前固定新训练短<=77和长>77各3/6不同作者的hash文字控制，以及先固定3不同新train作者区间/9窗口音频控制；CPU对新MPS各maxabs/cosine<=1e-4，旧232逐元素相同，全部检查才写新ready缓存。特征ready不当检索质量。
+
+同一次干净源码/config分两个独立进程：新缓存明确SHA供CPU-only fit读取，CLAP/Torch不进入fit进程。只train539/100录音参与固定alpha1原有weighted dual ridge闭式解，目标sum(q||XW-T||²)+alpha||W-I||F²、文本不映射；这是对055已存37train全文本ridge的数据量对照，非056新loss继续调参。唯一fit与encode各有task持久claim，原目录/换目录均禁止隐式再跑；失败原件/claim保持。W/fit收据先保存后分析验证和旧human dev，旧37权重不重训。
+
+三组identity/已存37全文本ridge/新增100全文本ridge，主固定旧140整曲录音宏MRR（新100减旧37）；两池20/140×整曲/窗口全部必报。生成验证另报扩展20/60与原7/23子集，两组精确区间/录音max已知配对；旧7数值/identity与旧37的人写dev须完整复现。原24人写查询已覆盖全文（11–30tokens）与候选池不变。对两个锚固定2000次/seed20261101058按录音bootstrap仅描述性比较，不用验证搜参数、步数或挑来源，不称新盲测/人工相关度分类。生成caption是弱监督，原141+160/保留test不用fit/评分；无新下载/人工包/付费GPU/部署，默认保持identity。原045–057/权重缓存/备份/UI/Java/DB/main/B047卡保持。

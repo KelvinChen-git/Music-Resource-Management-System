@@ -1,0 +1,124 @@
+{
+  "schema": "sonora-expanded-fulltext-training-v1",
+  "task_directory": ".local/a/mus058",
+  "base_sha": "97347bc7bc8e368457527424688e7ed20e3dd9a8",
+  "interval_cache": {
+    "path": ".local/a/mus053/build-01/cache.json",
+    "sha256": "fba03908d5492895069361d701902d986ed9e1b41751df8b885541baa141239d"
+  },
+  "fulltext_cache": {
+    "path": ".local/a/mus055/text-01/cache.json",
+    "sha256": "e32727343a3cf0198b9dbcacca3841134823344d3f6929cae6088bbca1cb086e"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "human_text_metadata": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "baseline_result": {
+    "path": ".local/a/mus055/fit-01/result-private.json",
+    "sha256": "7eb056828262fe3e8a61aea6a135b6f6167f6b77939de6ffa2b852358b5c5dca"
+  },
+  "baseline_adapter": {
+    "path": ".local/a/mus055/fit-01/adapter.npz",
+    "sha256": "755d213fa4699d952773558c120f49db0e229e2b8ba74adc282ff87ed2fd4e0e"
+  },
+  "token_proof": {
+    "path": ".local/a/mus055/text-01/token-proof.json",
+    "sha256": "c752b2be3d75a40bfcaaae4d1938bcf5fa2ede96a5a5d6ca875ce169230ba71e"
+  },
+  "old_candidates": {
+    "path": ".local/a/mus052/run-01/eligible-candidates.json",
+    "sha256": "d5537f91e906a76e12ad219850a2bc76e1de8c8560035ae22fffa38d3fe7cb82"
+  },
+  "old_allowlist": {
+    "path": ".local/a/mus051/run-01/allowlist.json",
+    "sha256": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83"
+  },
+  "old_corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "new_recordings": {
+    "path": ".local/a/mus057/run-01/recordings.json",
+    "sha256": "d689814d01f896197be03413a1237ec192b57e560fc579fb69c208f7ac641f7b"
+  },
+  "new_candidates": {
+    "path": ".local/a/mus057/run-01/eligible-candidates.json",
+    "sha256": "326254ac1c18de9c88ff356aaeb4abc37bc6193c6395e5e0b12f3b1adfa0bce3"
+  },
+  "expansion_result": {
+    "path": ".local/a/mus057/run-01/result.json",
+    "sha256": "f76499034dfd79d29ad4726b02d701d1e0f4605f883bf699ee69f9753511befa"
+  },
+  "expansion_audit": {
+    "path": ".local/a/mus057/independent-audit.json",
+    "sha256": "0cfe03e02a1326ea00026e91f684cf391ad9a8afe6053bc673bc5a41da009ca8"
+  },
+  "model_cache": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "device_freeze": {
+    "path": ".local/a/mus047/mps-02/freeze.json",
+    "sha256": "3550b75584b444662fa449516ea8c2d42c75c1fbcc904018dc510058eea71827"
+  },
+  "device": "mps",
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "dimension": 512,
+  "counts": {
+    "train_recordings": 100,
+    "train_components": 83,
+    "train_intervals": 539,
+    "validation_recordings": 20,
+    "validation_components": 19,
+    "validation_intervals": 60
+  },
+  "token_length": 256,
+  "text_policy": "complete_original_tokens_overflow_fail_no_truncation",
+  "dtype": "float32",
+  "autocast": false,
+  "automatic_fallback": false,
+  "audio_batch": 3,
+  "text_batch": 6,
+  "audio_control_seed": "MUS-058-new-train-audio-controls-v1",
+  "text_control_seed": "MUS-058-new-short-long-text-controls-v1",
+  "audio_control_intervals": 3,
+  "text_controls": {
+    "short": 3,
+    "long": 3
+  },
+  "atol_vector_maxabs": 0.0001,
+  "atol_cosine_distance": 0.0001,
+  "new_intervals": 367,
+  "reused_intervals": 232,
+  "alpha": 1.0,
+  "weights": "each_recording_equal_then_each_interval_equal",
+  "loss": "sum_i(q_i*||X_i W-T_i||^2)+alpha*||W-I||_F^2",
+  "solver": "float64_weighted_dual_ridge_identity_prior",
+  "candidate_fits": 1,
+  "hyperparameter_search": false,
+  "validation_used_for_selection": false,
+  "comparators": [
+    "identity",
+    "saved37-fulltext-ridge",
+    "expanded100-fulltext-ridge"
+  ],
+  "primary_metric": "expanded140_whole_recording_macro_MRR_expanded100_minus_saved37",
+  "validation_views": [
+    "expanded20",
+    "original7"
+  ],
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261101058,
+  "seed": 0,
+  "blas_threads": 2,
+  "new_downloads": 0,
+  "test_inputs": 0,
+  "new_human_labels": 0,
+  "decision": "retain_identity_no_automatic_selection_or_deployment",
+  "expected_new_recordings": 76
+}

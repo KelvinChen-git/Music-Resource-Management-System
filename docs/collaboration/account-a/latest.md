@@ -1,5 +1,13 @@
 # 账号 A 最新交接
 
+## 当前：MUS-058全文本扩样特征与单次固定训练执行中
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-058-expanded-fulltext-training`，base `97347bc7bc8e368457527424688e7ed20e3dd9a8`。E32/config先冻结，保留原文token、旧232逐元素复用，新367编码后固定alpha1一次100/539数据量对照，不续搜loss/alpha；旧37权重/140 dev、原版/UI/main/B原卡保持。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC18:28:48Z双方fetched，B未变。B047批准已接收，不外推058质量，无新派卡。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-057音频描述扩样完成，待完整特征与固定参数训练
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-057-caption-data-expansion`，base `37fec0a05fd1c2343abef7ca7b73588751d6aff1`，真实源码 `9a1fff4a08844d9d6989b5b6182f8eea00b37c11`；最终交付SHA见handoff.source_sha。057 review，配对检查完成，工具独立审核待安排，生成弱标签不当人工真值。
