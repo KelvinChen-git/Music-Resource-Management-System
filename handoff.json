@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-01T05:05:25.408691+00:00",
-  "source_branch": "codex/MUS-049-positive-score-training",
-  "source_sha": "ea54ffc46627f57b5112ea3cc460d335fab258ff",
+  "published_at": "2026-11-01T05:26:09.306438+00:00",
+  "source_branch": "codex/MUS-050-caption-source-audit",
+  "source_sha": "2e13f615a6f9ea7a42c2ef73446449a21f35a3c0",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "3d1e2e900b7a3fbf36548ef8d7d361c8e528ce7e8fae09e2d860cb97f8ebcf55"
+  "report_sha256": "86b5694c04b6286054627e9c4f2e76c3f2b87d0663d8c6c66f6d55ba22bc0f99"
 }

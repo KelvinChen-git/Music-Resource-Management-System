@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-050描述训练来源metadata完成；训练集未ready，下一步先核caption覆盖
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-050-caption-source-audit`，base `ea54ffc46627f57b5112ea3cc460d335fab258ff`；最终交付SHA见handoff.source_sha。050 review，文档/metadata审查完成，不是新训练/音频可用性或模型质量验收。
+
+ack_peer_feed_sha `de296c7adbe2a232dc428edf712e91d0017a1c13` / peer_source_sha `f0d3ef2374462a67e2a23abd94f2bca2c9f91f9b`；UTC2026-11-01T05:14:56Z/05:22:08Z双方fetched、B未变。047-R1/rev1/d8555fa/baseaaf5e4b仍原assigned卡未认领，本轮与base字节相同，不竞争派卡或冒充048/049/050批准。
+
+在049主整曲目标未改善后，优先实核现成caption来源。固定MC0a51889/MBb141e96/JMax13090d7/LP-MTT64c5d14，正常TLS取20官方metadata/卡片/列表共97,635,196 bytes<96MiB；官方原训练JSON85,670,037 bytes在取得正文/统计前显式改单文件预算64→88MiB、总96MiB保持，原始计划/修订留STATUS。没有新音频/parquet正文/归档/权重下载或依赖安装，模型/编码/fit/评分0。
+
+MusicCaps全5,521个10s视频ID，train2,663/eval2,858；MusicBench全52,768train/400A/400B实际训练5,079来源组、42,611路径、5,079未增强路径。组乘数3,412×14+1,666×3+1×2；自身train/test ID交集0、A/B音频路径同序相同400而非800。MB train中2,631个来源来自MusicCaps AudioSet-eval，若以后训练MB不能再把该MC eval全称无重叠测试。两表均缺音乐作者/作品信息，MC author_id是描述撰写者；非eval且未增强路径匹配2,448只保存候选metadata框，未ready、不称不同作品或新训练集。MC canonical human描述与MB生成/修改文字区分，音频归档16,757,993,240 bytes不自动下载。
+
+JMax最早两个日期metadata样本实际1,944行/494ID/重复1,198行、7ID许可URI冲突/252audio字段不同，禁止下载与异质NC/ND等保留，不因整体卡片许可放行逐曲。样本与现140ID无交集不外推全库；787,366,586 bytes区间生成caption只HEAD，正文/全库覆盖未核。LP-MTT只卡片/列表，未做行级/作者划分核验，生成文字不冒充专家真值；SDD维持评测、不挪原dev/test训练。
+
+同操作者独立标准库流式计数、固定11字符来源ID和逐字段相等法复核全部计数/交叉/候选框/冲突相同，不是B独立审核或语义质量证明；20源hash/长度和预算通过。045–049全私有集合/hash、043/044/160/旧951/23源码/54cache/原版f3b0da1干净保持；050目录0700/文件0600，原caption/身份/候选框和HEAD签名跳转信息不入Git，只公开aggregate/方法/固定源URL/hash。原141/160不作训练选择，新项目保留test文字/评分未读，无Java/Vue/UI/DB/API/依赖锁/主模型/main或云端变化，无关Maven/build/86旧训练检查不重复。
+
+允许并交付README/PROJECT/STATUS/own latest、evaluation/MUS-050-caption-data.md、verification/MUS-050.md及聚合JSON；最终commit后publish/sync回读。下一阶段另定metadata流式预算，先冻结已有train100/val20身份白名单与全部SDD/旧开发/保留test关系排除，再核JMax caption覆盖/许可/区间/重复；有足够容量且特征对齐后再立训练方案。当前不追加调参/扩训/全矩阵人工包、不静默取0.79GB caption或16.76GB归档，保持identity。远端发布不等于B接收/批准或main合并。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-049完成一次CPU正标签分数训练，主检索未改善，保留identity
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-049-positive-score-training`，basee7fea7329330749669a32ffa668e675629d7cd6b，真实源码 `07f1d277f5abdb6ffcdaffc0b07da615b8548a69`；最终文档交付SHA见handoff.source_sha。049 review：一次真实拟合/开发比较完成，工具独立审核待安排，非模型质量验收或部署批准。
