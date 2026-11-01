@@ -1,0 +1,67 @@
+{
+  "schema": "sonora-long-caption-control-v1",
+  "task": "MUS-055",
+  "base_sha": "338146a81392169b33965bb3bf01179d8f092fc8",
+  "task_directory": ".local/a/mus055",
+  "interval_cache": {
+    "path": ".local/a/mus053/build-01/cache.json",
+    "sha256": "fba03908d5492895069361d701902d986ed9e1b41751df8b885541baa141239d"
+  },
+  "candidates": {
+    "path": ".local/a/mus052/run-01/eligible-candidates.json",
+    "sha256": "d5537f91e906a76e12ad219850a2bc76e1de8c8560035ae22fffa38d3fe7cb82"
+  },
+  "model_cache": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "baseline_result": {
+    "path": ".local/a/mus054/run-01/result-private.json",
+    "sha256": "76e7edf09410530662c3187cd35000c04ca2c9b44b478444e8bf71470d7cfc38"
+  },
+  "baseline_adapter": {
+    "path": ".local/a/mus054/run-01/adapter.npz",
+    "sha256": "f7d3dd6a9dd755b38af855f441a0c83cd16737ce0aabc59430733bf5c78c1b4f"
+  },
+  "device": "mps",
+  "dimension": 512,
+  "token_length": 256,
+  "baseline_token_length": 77,
+  "text_batch": 6,
+  "dtype": "float32",
+  "automatic_fallback": false,
+  "autocast": false,
+  "control_seed": "MUS-055-short-long-training-controls-v1",
+  "controls": {
+    "short_train": 3,
+    "long_train": 3,
+    "distinct_creator_components": 6
+  },
+  "atol_vector_maxabs": 0.0001,
+  "atol_cosine_distance": 0.0001,
+  "alpha": 1.0,
+  "weights": "each_recording_equal_then_each_interval_equal",
+  "candidate_fits": 1,
+  "primary_metric": "expanded140_whole_recording_macro_MRR_new256_minus_saved77",
+  "human_query_text_features": "unchanged_MUS048_24texts",
+  "validation_query_lengths": [
+    77,
+    256
+  ],
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261101055,
+  "hyperparameter_search": false,
+  "fit_recordings": 37,
+  "fit_intervals": 209,
+  "validation_recordings": 7,
+  "validation_intervals": 23,
+  "new_audio_encodes": 0,
+  "new_downloads": 0,
+  "new_test_inputs": 0,
+  "new_human_labels": 0,
+  "decision": "retain_identity_no_automatic_selection_scale_up_or_deployment"
+}

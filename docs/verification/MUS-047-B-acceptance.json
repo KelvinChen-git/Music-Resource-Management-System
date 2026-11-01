@@ -1,0 +1,28 @@
+{
+  "task_id": "MUS-047-R1-B",
+  "assignment_revision": 1,
+  "review_status": "review_completed",
+  "verdict": "approve_scoped",
+  "a_acceptance": "accepted",
+  "accepted_on": "2026-11-01 America/Chicago",
+  "reviewed_sha": "d8555fa2ee888107cc9fac9e0eda373fd9c2e777",
+  "comparison_base_sha": "aaf5e4bbffa61969b3d7bf993b408acec195a818",
+  "assignment_source_sha": "338146a81392169b33965bb3bf01179d8f092fc8",
+  "b_feed_sha": "8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8",
+  "b_source_sha": "806dc9c8b518db748ced7b02611fcc0b0863068f",
+  "b_ack_peer_feed_sha": "09c24cd9ee9b2636e216dd7038175568259b5c0b",
+  "report_path": "docs/collaboration/imports/account-b/2026-11-01-MUS-047-review.md",
+  "report_sha256": "0cfe428687ce6ffa499ee89c435137b43c00050f356fe0f99ca1c35f53420cbb",
+  "b_reported": {
+    "native_synthetic_methods_passed": 12,
+    "independent_methods_passed": 7,
+    "actual_Torch_CLAP_MPS_CUDA_or_A_private_files_reproduced": false,
+    "private_evidence_available_to_A": false,
+    "publication": "sequential_non_atomic"
+  },
+  "limits": [
+    "Exact synthetic/static device calibration tool scope only; not048-055 or real device/model quality approval.",
+    "Original report bytes archived; relative links retain B source-directory context.",
+    "Assignment snapshot retained unchanged; STATUS records accepted completion; no new B task assigned."
+  ]
+}

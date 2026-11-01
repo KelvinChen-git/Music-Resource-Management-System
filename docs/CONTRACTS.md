@@ -520,3 +520,12 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 干净源码/config/input/model/cache/source/runtime先冻结，持久fit-started.json独占声明阻止换目录再次fit；失败保留不清claim/不自动重试。先保存W/fit收据再获取validation分析视图和旧140/24人写dev作固定比较。typed reader为完整性会物理读取含val的NPZ数组，但只返回train209参与求解；不冒称val字节此前从未读取。val7/23不参与loss/alpha选择；旧dev已看过，保留test/141+160不用作fit。
 
 主开发指标继续固定140池整曲已知配对recording宏MRR，identity/新W两组必报；次要两池20/140整曲/窗口R1/R5/MRR、validation23精确区间已知配对与7录音max区间检索。除已知配对外语义未判，不把同曲其他区间/其他歌当真负例；validation录音等权，23段不是23独立录音。固定2000次/seed20261101054按录音配对bootstrap仅描述性，不作选择；7条小验证/已看dev不称独立总体效果。即使点估计好也不自动部署/扩训/打开test。原缓存/identity/UI/Java/DB/main/原版/B047卡保持，本轮新下载/CLAP编码/人工包0。
+
+
+## E29：MUS-055 77/256完整描述有界对照（2026-11-01）
+
+固定052原232生成caption/053音频与录音作者分组、054 alpha1加权ridge；只改变文本编码长度77→256，不重写/按结果删样本/新音频或原CLAP微调。77是当前SDK默认截断长度，RoBERTa分支可显式传tokenizer；新长度需实际前向与数值验证，不把支持更长等同质量改善。所有untruncated token IDs须与256非pad序列逐条相等、232长度<=256/原文SHA与053顺序一致，否则不写ready。
+
+同原CLAP A/环境/MPS FP32，freeze先于模型加载。按固定hash从train短<=77/长>77各3、6不同creator组件取控制：CPU77对原053、CPU256对新MPS256；所有108短描述新256对旧77向量各maxabs/cosine<=1e-4。全部通过才写新text-only overlay manifest/NPZ，不覆盖原缓存；显式consumer绑定baseSHA/rows/key/期望设备模型和256长度，split只返回本组音频/新文字/原权重，完整性验证会读取共享NPZ但val不输入solver。
+
+重用054已存77权重、不重训77；新256只一次相同alpha1拟合，持久fit-started claim阻止换目录二fit，失败保留；W/fit收据先存才分析val及旧dev。主指标人写24查询特征仍原048不变/140整曲宏MRR，新256减已存77，identity另作锚；两人写池两mode完整报告。生成val另交叉3权重(identity/77/256)×2查询文字版本(77/256)×2指标(精确区间/录音max)，避免把查询改变与训练改变混为单一收益。2000次/seed20261101055按录音bootstrap，仅已看开发/小样本描述性结果，不是新盲测。无验证搜参/保留test/自动切换部署/扩训，旧原件/原版/UI/DB/main保持；B047原范围限定接收不外推本轮。

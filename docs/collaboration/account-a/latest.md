@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## MUS-055开始：256完整描述对照；接收B047限定批准
+
+A；2026-11-01 America/Chicago；branch codex/MUS-055-long-caption-control，base338146a81392169b33965bb3bf01179d8f092fc8。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC17:28:11Z fetched。B047-R1/rev1准确d8555fa/baseaaf5e4b限定approve_scoped，报告0cfe4286原字节/own latest/feed和仅两文件diff/四源字节已核并接收；B12原+7独立合成证据，不认证真实GPU或048–055/质量。原派发卡作历史保留、不新派卡。
+
+按用户继续，只改同232原文编码长度77→256，复用原音频/作者分组/alpha1，CPU长短各3不同creator控制与全108短描述77一致性通过才新私有overlay ready。新256唯一fit对已存05477/identity，主固定人写140整曲MRR，val两文字长度交叉分报；原CLAP不微调、不扩库/下载/搜参/保留test/部署。允许STATUS的055模块/runner/测试/E29/config/方法验证及必要文档/B047导入接收，私有.local/a/mus055/700/600，先提交再运行，旧045–054/141+160/备份/UI/main保持。
+
+## 上轮交接（历史保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-054已完成首轮caption适配训练，保留identity
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-054-caption-adapter-training`，base19afdcb2da0d118157d1d337a9f8455900fe1ec2，实际源码 `4afd75cd2d75ce1aaab8e08aabac21c16a7f6270`；最终交付SHA见handoff.source_sha。054 review：一次真实训练和固定开发比较完成，工具独立审核待安排，无CLAP全量微调/正式质量验收。
