@@ -538,3 +538,14 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 本轮唯一假设：054/055未归一化MSE与检索unit(XW)的目标存在差别。固定同37录音209段/33作者组件、全文本T和q=每录音等权、alpha1，只改loss为sum(q||unit(XW)-T||²)+alpha||W-I||F²，等价正配对余弦距离尺度；只已知配对，不把其他录音/区间当负例。原CLAP冻结，CPU float64/2线程，从identity全batch梯度下降/固定Armijo(step1/max200/backtracks20/c1e-4/factor.5)，只训练内grad1e-8或relative loss1e-12停，不用val/开发选步数/参数。归一化目标非凸，停机条件不声称全局最优；达到上限必须披露，不追加步数。
 
 先绑定source/config/cache/W与runtime，持久fit-started claim阻止换目录第二fit，失败保留。先保存新W/fit再分析val7/23全文本与旧人写dev；reader为完整性会物理读取共享NPZ的val，但solver只用train209。两对照identity/055已存全文本ridge不重训，新cosine仅一fit；主固定140整曲录音宏MRR相对全文本ridge，完整两池两mode及2生成val指标/对两锚bootstrap(2000/seed20261101056)必报，不搜alpha/长度、不自动部署/扩训/开保留test。原141+160不用fit、生成文字非人工语义真值；已看dev不称新盲测。
+
+
+## E31：MUS-057 源数据扩样（2026-11-01）
+
+从044已冻结1000train/200val计划的未用来源中扩展，保持官方split，先按051完整names credit闭包排除SDD全部身份/作者、旧60及保留dev/test的身份/作者/作品/字节SHA；加上045已有120训练验证的ID/作品/字节排除，全部现有与新增的作者/作品/字节跨split关系双边隔离，作者总录音上限4。早于2008固定日期锚或不在固定revision日期树中的来源直接隔离，先写框/输入/源码/config hash再联网。
+
+对同一固定787,366,586-byte caption源完整一次GET验证SHA，仅存允许框匹配原行，不保存整库。预扫描仅使用600秒解码上界，不能称实际EOF；15–30秒非冲突区间存在后，按seed固定hash取最多96train/20val候选，与文字内容/模型分数无关。按2008-01-01五日映射冻结全部候选metadata文件，匹配固定revision Git blob SHA1/长度及本地SHA256；052同文件只读复用，新增metadata预留上限512MiB，超限失败不自适应缩小。
+
+全部metadata行沿用052一致许可BY/BY-SA、download true、同作者作品/来源时长±1秒规则，预判时长仅源metadata，下载后必须用实际EOF重判。按固定候选次序、split达标即停，最多76个音频尝试，每曲仅一尝试/官方range+低码率SHA、8MiB上限；最终目标新63train/13val，技术失败或候选不足如实报告实际数量，不变seed/换监督门槛补数。实际解码48k mono float32 PCM与原60/045全140及所有新增去重，原caption重新验证实际EOF/15–30秒/无重叠。固定hash选3个不同train作者、至少3区间的来源，各当前同ID参考first/mid/last10秒，沿用052相关>=.95、峰lag<=.05秒、总时长差<=.25秒；这不是teacher历史精确音频或全曲语义验收。
+
+总正文持久预记2GiB，metadata/参考先预记上限、官方音频每次read先预记；原目录/换目录均不能隐式再跑，失败保留原claim/正文/日志、无自动重试。全流程无torch/CLAP/训练/新人工标注/保留测试模型输入。原caption完整字节及原行SHA保留，新缓存编码另行冻结，仍遵守E30完整token/超限拒绝；生成文字是弱标签，training_ready=false。本轮不更改训练loss/alpha，不用旧20dev挑来源或参数。原045–056工件/原版/141+160/模型缓存/UI/Java/DB/main/B原派发卡保持。

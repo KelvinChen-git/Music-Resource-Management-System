@@ -1,0 +1,88 @@
+{
+  "schema": "sonora-caption-expansion-v1",
+  "base_sha": "2e13f615a6f9ea7a42c2ef73446449a21f35a3c0",
+  "source": {
+    "sha256": "320c09a261b8bea0e9dbeb11b7ec5471582d27d7518c08df7857a80fb445cb7e",
+    "bytes": 787366586,
+    "url": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps/resolve/13090d785d071dcd617636deaa4a9775936ac995/final_caption30sec.jsonl",
+    "revision": "13090d785d071dcd617636deaa4a9775936ac995"
+  },
+  "inputs": {
+    "path": ".local/a/mus043/inputs.json",
+    "sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163"
+  },
+  "plan": {
+    "path": ".local/a/mus044/plan-01/plan.json",
+    "sha256": "69d7932ce0b3b828df30fa8fe5e3c730634f6e54daf520012ca48186b9b2bfe0"
+  },
+  "dataset": {
+    "path": ".local/a/mus045/source-02/dataset.json",
+    "sha256": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe"
+  },
+  "corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "prior_pcm": {
+    "path": ".local/a/mus045/corpus/prior60.json",
+    "sha256": "ac6949d1fc799a45a8ad73fefb0730b03b0ba8edcdf1042251cff29c4971cddb"
+  },
+  "max_total_body_bytes": 2147483648,
+  "budget_ledger": ".local/a/mus057/network-ledger.jsonl",
+  "max_line_bytes": 65536,
+  "min_interval_seconds": 15,
+  "max_interval_seconds": 30,
+  "new_audio": 76,
+  "fits": 0,
+  "save_unknown_caption_text": false,
+  "no_auto_retry": true,
+  "test_descriptions_as_model_input": 0,
+  "task_directory": ".local/a/mus057",
+  "max_metadata_body_bytes": 536870912,
+  "candidate_counts": {
+    "train": 96,
+    "validation": 20
+  },
+  "new_audio_targets": {
+    "train": 63,
+    "validation": 13
+  },
+  "max_audio_attempts": 76,
+  "max_track_bytes": 8388608,
+  "reference_count": 3,
+  "max_reference_audio_bytes": 20971520,
+  "selection_seed": "MUS-057-source-only-expansion-v1",
+  "audio_base_url": "https://cdn.freesound.org/mtg-jamendo/raw_30s/audio-low/",
+  "encoder_loads": 0,
+  "fulltext_policy": "retain original bytes; no encoding in this phase; future untruncated token equality required; overflow must fail",
+  "tree": {
+    "path": ".local/a/mus050/amaai-lab--JamendoMaxCaps-tree.json",
+    "sha256": "6012c8005bf40550c6cf0c599259af3e20453688009d03612023d786b46654db"
+  },
+  "old_eligible": {
+    "path": ".local/a/mus052/run-01/eligible-candidates.json",
+    "sha256": "d5537f91e906a76e12ad219850a2bc76e1de8c8560035ae22fffa38d3fe7cb82"
+  },
+  "old_allowlist": {
+    "path": ".local/a/mus051/run-01/allowlist.json",
+    "sha256": "754d83ce040935c9803ff123e6ccbc6a32c63a20ec94e4e6c2194402eb0c9b83"
+  },
+  "cached_metadata_plan": {
+    "path": ".local/a/mus052/metadata-plan.json",
+    "sha256": "7acfcded9d7de5e1212ac50b6609b73fd4bd53049ac52cb69513bb7492571259"
+  },
+  "cached_metadata_manifest": {
+    "path": ".local/a/mus052/metadata-manifest.json",
+    "sha256": "cc5d01f2b877c210bdb5bb823784f9a4dd6ed6b5e2b99f213fe84307a998174c"
+  },
+  "cached_metadata_directory": ".local/a/mus052/metadata",
+  "alignment": {
+    "sample_rate_hz": 48000,
+    "diagnostic_rate_hz": 8000,
+    "search_lag_seconds": 0.25,
+    "max_accepted_lag_seconds": 0.05,
+    "min_normalized_correlation": 0.95,
+    "max_duration_delta_seconds": 0.25,
+    "anchor_selection": "first_middle_last_accepted_caption_intervals,center10s"
+  }
+}

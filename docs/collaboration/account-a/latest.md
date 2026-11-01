@@ -1,5 +1,13 @@
 # 账号 A 最新交接
 
+## 当前：MUS-057有界音频描述扩样执行中
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-057-caption-data-expansion`，base `37fec0a05fd1c2343abef7ca7b73588751d6aff1`。范围与E31/config先冻结，最多新63train/13val、2GiB持久预算、全文本原样保留，无模型/fit/test/UI/main改动。B047限定批准已在055接收，原卡与B正文不变，无新增B任务。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC18:09:52Z同步双方fetched、B未变。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-056全文本默认与归一化配对训练完成，保留identity
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-056-fulltext-cosine-training`，base19fab384fd6a0f121e0eeb6404102a3a28522216，真实源码 `ab668808de94b977c5d403d089460d5f070778f9`；最终交付SHA见handoff.source_sha。056 review：一次实际训练/固定比较完成，工具独立审核待安排，无原CLAP微调或正式质量验收。
