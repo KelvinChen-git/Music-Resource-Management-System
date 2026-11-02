@@ -1,5 +1,25 @@
 # 账号 A 最新交接
 
+## 当前：MUS-063六曲音频预检完成，可进入特征构建
+
+A；2026-11-02 America/Chicago；branch codex/MUS-063-six-source-preflight，base d88d4c3f3610b69cc7bc5494b87c0cc0b17ed5d5，实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf；最终交付SHA见handoff.source_sha。review仅六曲音频ready，非模型/语义质量或训练验收，工具独立B审核待安排。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T06:09:17Z/06:21:37Z双方fetched、B未变。B047限定批准已在055接收，原卡/报告快照保持，不外推063/无新派发。
+
+E37/config/source/runtime先冻，干净7ce3c15首轮6曲全通过，无失败/重试/补选。官方低码率原字节12,429,114，六个1byte探测+完整range总12,429,120，持久128MiB预算内/单曲20MiB/一次。原历史BY/BYSA身份/作者标题/路径/官方SHA/notice核匹配，重算061全credit隔离及8候选保持，062原6组/7有效描述不变。6实际EOF/48k mono、87.048–247.824秒、最大metadata时长差.052792秒、201窗口与12首尾边界/paddingpassed；首min120秒视图1曲短于120保留真实终点。
+
+旧60+pilot20+140+76共296引用/295不同bytes与同协议PCM，新6对旧及彼此精确重复0。精确键只对冻结decoder/runtime/DSP/65536帧读取协议有效，不当不同编码/偏移/变速/翻唱/别名全覆盖；历史许可不是当前在线权利或SDD320kbps确切版本证明。新catalog/MP3/transport/receipt只私有，公开聚合/hash。无新caption正文抽取、CLAP/Torch加载、编码、fit、评分、人工包或封存test音频。
+
+86相关检查passed（15新71旧含8 EOF边界）。独立程序不导入生产preflight/decoder，核原source/runtime/CA、全部6传输与旧内容池、按冻结64K实现重解6全曲/首120 PCM和201/12边界全匹配。首次独立改32K读的精确hash假设失败；同字节32K与64K最大采样差6.329967e-5，独立64K全复现。保留失败脚本/日志与双分块诊断，只纠正核查协议假设，未改原音频/catalog、重跑生产或加事后容差。A同操作方独立实现非B审核。
+
+真实同目录/换目录两次重跑均在新输出/网络/解码前拒绝，原claim/账本/MP3/catalog/结果hash保持、额外获取0。旧045–062全部1052文件集合/hash、历史951+B047快照/23源码/54offline cache/043044/160及相邻原版f3b0da1干净保持；新063目录700文件600。无UI/Java/DB/API/依赖锁/main变化，未重复Maven/build。
+
+下一任务另冻完整7描述与同首120秒特征、无截断token证明及CPU/MPS数值检查，再按062既定identity/已存100ridge/146池、新6主whole MRR、次要R1/R5/segment和旧20控制作小development对照；无新fit/正式验收或封存test。当前audio_ready_for_feature_build=true，semantic_caption_audio_match_verified=false；identity/全文本/原判断与模型cache保持。最终commit后publish/sync回读，发布不等于B接收/批准或main合并。
+
+## 准备检查点（保留）
+
+# 账号 A 最新交接
+
 ## MUS-063：六曲音频预检准备
 
 A；2026-11-02 America/Chicago；branch codex/MUS-063-six-source-preflight，base d88d4c3f3610b69cc7bc5494b87c0cc0b17ed5d5。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T06:09:17Z双方fetched、B未变，047限定批准已接收、原卡保持，无新派发或批准。

@@ -1,0 +1,148 @@
+{
+  "source_sha": "7ce3c1510bdeb3156a907efd47b88c616e61e8cf",
+  "summary": {
+    "recordings": 6,
+    "creator_components": 6,
+    "validated_caption_queries": 7,
+    "official_audio_sha_matches": 6,
+    "actual_EOF_decodes": 6,
+    "first_tail_windows_checked": 12,
+    "whole_song_windows": 201,
+    "prior_and_new_exact_byte_duplicates": 0,
+    "prior_and_new_normalized_PCM_duplicates": 0,
+    "body_reserved_bytes": 12429120,
+    "audio_bytes": 12429114,
+    "prior_content": {
+      "record_references": 296,
+      "unique_audio_hashes": 295,
+      "unique_pcm_hashes": 295,
+      "reused_references": 1
+    },
+    "audio_ready_for_feature_build": true,
+    "semantic_caption_audio_match_verified": false,
+    "operations": {
+      "caption_bodies_extracted": 0,
+      "encodes": 0,
+      "models_loaded": 0,
+      "fits": 0,
+      "scores": 0,
+      "reserved_test_audio": 0,
+      "new_manual_labels": 0
+    }
+  },
+  "catalog_sha256": "aba124a249ec0967fda72b630ddb7004b22e29712036c57294a0320dca000b2d",
+  "task": "MUS-063",
+  "status": "six_development_audio_ready_for_feature_build_not_model_quality_acceptance",
+  "base_sha": "d88d4c3f3610b69cc7bc5494b87c0cc0b17ed5d5",
+  "actual_source_sha": "7ce3c1510bdeb3156a907efd47b88c616e61e8cf",
+  "tests": {
+    "status": "passed",
+    "total": 86,
+    "new": 15,
+    "related_existing": 71,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_supplement_preflight test_caption_source_audit test_human_caption_capacity test_mtg_dataset test_preflight_mtg test_caption_gate test_research_corpus.SourceEOFDecodeTests -v",
+    "not_run": [
+      "Java tests and frontend build: offline audio preflight only"
+    ]
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent implementation using the pinned65536 actual-EOF decode, direct interval/padding arithmetic and transport/prior-set reconstruction; no production preflight or decoder imports",
+    "all_source_input_runtime_and_CA_pins_match": true,
+    "all6_official_SHA_transport_receipts_match": true,
+    "all6_independent_canonical65536_PCM_and_first120_PCM_match": true,
+    "cross_chunk_diagnostic": {
+      "same_compressed_bytes_and_frame_counts": true,
+      "different32768_hashes": 6,
+      "canonical65536_matches_saved": 6,
+      "max32_vs64_sample_abs_difference": 6.329967436613515e-05,
+      "no_cross_chunk_tolerance_was_used_as_acceptance_gate": true
+    },
+    "all201_windows_12_first_tail_bounds_match": true,
+    "all296_prior_references295_distinct_hashes_and_zero_new_collisions_match": true,
+    "body_budget_charge_before_reads_and12_charged_reads_match": true,
+    "actual_header_frame_disagreements": 0,
+    "max_abs_metadata_actual_duration_delta_seconds": 0.05279166666667834,
+    "old045_to062_files_preserved": 1052,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "4b328e42e62d6f1bb26c5e348f139ebf9c10ad1144a2806311d063821f80ca51"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "same_and_new_directory_checks": [
+      {
+        "output": "run-01",
+        "blocked_before_output_network_or_decode": true
+      },
+      {
+        "output": "guard-new",
+        "blocked_before_output_network_or_decode": true
+      }
+    ],
+    "original_claim_ledger_audio_catalog_and_results_unchanged": true,
+    "extra_downloads_or_decodes": 0
+  },
+  "execution": {
+    "production_run_attempts": 1,
+    "download_attempts_per_frozen_track": 1,
+    "completed_tracks": 6,
+    "failed_tracks": 0,
+    "production_status": "completed_first_attempt",
+    "first_independent_check_status": "failed_alternate32768_PCM_bit_equality_assumption",
+    "independent_resolution": "Independent implementation of the pinned65536 protocol reproduces all6 whole and first120 hashes exactly. Original failed checker/log and both-chunk diagnostic retained. Production input/audio/catalog not rewritten or rerun.",
+    "cross_chunk_tolerance_added": false,
+    "automatic_replacements": 0
+  },
+  "aggregate_audio_properties": {
+    "min_actual_duration_seconds": 87.048,
+    "max_actual_duration_seconds": 247.8236875,
+    "max_abs_metadata_duration_delta_seconds": 0.05279166666667834,
+    "recordings_shorter_than120_seconds": 1
+  },
+  "next_step": "Freeze complete seven original descriptions and same first120 audio views, build CPU/MPS-checked features, then run the already fixed identity/saved100 ridge comparison on146 candidates; no fit or reserved test.",
+  "limitations": [
+    "Rights are pinned historical per-track MTG BY/BY-SA identity records, not a fresh current legal availability assertion or SDD320kbps byte-version proof.",
+    "Canonical PCM hashes require the frozen decoder/runtime and65536 frame block protocol; alternate read chunking produced low-bit numeric differences and is not a comparable exact hash key.",
+    "Exact bytes/PCM and conservative credit/work filtering are not exhaustive near-duplicate, transcoding, offset, tempo, cover or alias isolation.",
+    "No new caption bodies extracted and semantic alignment with the precise low-file excerpt remains unverified; no model quality score in this task.",
+    "Six development components do not support formal quality acceptance or pretraining-unseen claims."
+  ],
+  "private_evidence_sha256": {
+    "diagnose-pcm.log": "c272106635459cfd8e1907dc78331e4cfac61ac6b2b41215e91d7629748ea339",
+    "diagnose-pcm.py": "6fa711e33a036f92484e203e7193a7c7a80dcf0dc2aa486b2321dcb54b9d0cda",
+    "independent-audit-v2.log": "3af1e8dd2c6affc42047d13de4532b867f26ca7725d8714ea0b9cc2fcb7e1049",
+    "independent-audit-v2.py": "4b328e42e62d6f1bb26c5e348f139ebf9c10ad1144a2806311d063821f80ca51",
+    "independent-audit.json": "c90a0684e5e0355ab0bfe27fbacdabde67e7393ee540e5c53fe8526dba99b623",
+    "independent-audit.log": "db3fc2615b4f554b655ab56eda63d37ec127651b8b3f33b540070e6eeebaf22d",
+    "independent-audit.py": "8477271f3dd5b055e54b2766447b73d81959a27b3e25301118cd17ada2ba15c9",
+    "network-ledger.jsonl": "5de2c45c52aae18f4ca8c0973d49d5059e30ae654f64c77ce906e226e3d36ba2",
+    "preflight-started.json": "9af7d201a845006d3cb3c74580feb8ef28418593e99f8fd9800be9974043981a",
+    "prior-before.json": "b1e1ac0a73b24c9b5d710f8f4db8274a08cfd4e5ddc573b4e79b8b2b414b7483",
+    "repeat-guards.json": "119c1f35ec3a8faf6d8482c843cb424c535d7e6fedd7d0fa53c03fef6f0dfff8",
+    "run-01/attempts.json": "5caddda9aea5f321d5945ea9953faba71580c3d0c098b4bf00029b88a9245484",
+    "run-01/catalog.json": "aba124a249ec0967fda72b630ddb7004b22e29712036c57294a0320dca000b2d",
+    "run-01/freeze.json": "cf6ca122fab5800d6714df42d8033a1fc4a1bda8945184b62e7d72d063897ca7",
+    "run-01/result-public.json": "3b48cb53f8f8206d347cb4059797e05cc884477f0d5247fdcee0cf8485ee36e1",
+    "run-01/track_0011841/audio.mp3": "496897671ea69c1e1206f3869986428bbfd2ef5c922b61d2860d736c65447061",
+    "run-01/track_0011841/receipt.json": "0de3ba32dc4a4ff2270584470c4c95b1b8142b15f5609fd7427c758db6ceee47",
+    "run-01/track_0011841/transport.json": "4d5859f503750a10db05ae4e30bcee8a3d206d661e847076b2eb94cdf9951224",
+    "run-01/track_0043419/audio.mp3": "43437d206f341582c79bb5b0bc5dbcde577b3b44d69c2bcae30791a1ca206c72",
+    "run-01/track_0043419/receipt.json": "629f1346debbfd4c0d7a8b41dcd088f3eaba2615ebfeeaefa15f57bee89372b4",
+    "run-01/track_0043419/transport.json": "b78727310044e954d203e3aba049ee54acf9087f0d2bd2b82d1d84477a74a570",
+    "run-01/track_0617329/audio.mp3": "25e547ae01ea898fca36e89f31b86032d05bd8ee9a6e8b0caafd7c5837fcfc9e",
+    "run-01/track_0617329/receipt.json": "9381afae465f0194da739f82d8e9ce6418c6f6db6249af5484df787706ca982c",
+    "run-01/track_0617329/transport.json": "4c597b0aced9a639692cacfef158ecac3098f8a32e75a65dd67b8a13d6201cb3",
+    "run-01/track_1007274/audio.mp3": "bd9e81e75b3d51ebaa06646f48d60b187c0076d6681e5f827646308070b0b4d7",
+    "run-01/track_1007274/receipt.json": "8f6e76467f47004e5a0f75bd2cfba1fe06e0ee760ef97cf9626ae4bcc76ba31e",
+    "run-01/track_1007274/transport.json": "a58339e86fd5f386a4b7fa5cc855378910377f238c8c427f1962480ff22cf8c1",
+    "run-01/track_1055022/audio.mp3": "a587b992203e8581c20832a44a67c76b6321edcb5ea1df14b970bc259f0d334f",
+    "run-01/track_1055022/receipt.json": "7a621b8cd85a7454f16cabe12289638d094b8fb4c8b0a3ecc5764399930ad539",
+    "run-01/track_1055022/transport.json": "6b9d96eb271cd8b5af4e410e5801e50f6e9faee3e351bb307de7da4b6a8966f0",
+    "run-01/track_1060600/audio.mp3": "28a10a9c59409fc4a888924aef155d258182e85e60f47c024fe7917fb5f5f67e",
+    "run-01/track_1060600/receipt.json": "32be9c7434ac76fe6d4ee7322abf69f644546b27a2ec12e79ad829957cc20e1f",
+    "run-01/track_1060600/transport.json": "0096d3e988716d1b3ae52e8ff416209d5e6b5a6f05ed04683cec07bd62abe140",
+    "run-01.log": "b020b064affff96652bbeb5993a39848c980a1bd659b524adc52ee2a39edfb99",
+    "tests.log": "31ceee6f5de40d42e92e63a485fd83a09dadefde815d6bf2dd7f4a8278e7b88b"
+  }
+}

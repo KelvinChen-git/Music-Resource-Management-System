@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- MUS-063 / A / in_progress：`codex/MUS-063-six-source-preflight`，based88d4c3。只按062冻结6曲做有界官方low音频/历史身份许可映射、SHA/完整EOF/48k mono及首尾片段检查，精确bytes/PCM对旧60+043pilot20+045140+05776及新6去重；不声称声学近重复/翻唱全覆盖。允许新 `services/audio-search/supplement_preflight.py`、`scripts/preflight_supplement.py`、`scripts/test_supplement_preflight.py`、E37/config/方法验证JSON与README/PROJECT/STATUS/own latest；私有.local/a/mus063。固定单曲20MiB、全128MiB持久body预算、1次/曲、无重试/补选；源/config/runtime先freeze，原目录或换目录不得绕过任务claim。无caption正文/编码/fit/评分/保留test/Java导入或新人工包，保留原版/UI/DB/main/B047卡，完成后另冻特征和两模型146池比较。
+- 当前工作：MUS-063 review / A / codex/MUS-063-six-source-preflight，based88d4c3、实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf。062六曲首次获取/官方SHA/完整EOF/原历史身份许可全部passed，12.429MB/持久128MiB预算内、6组/7描述、201窗口/12首尾，旧296引用295唯一bytes/PCM与新6无精确重复。86检查/独立固定64K协议重解/两实际拒绝/旧1052工件passed；32K独立哈希失败及数值诊断原件保留，未改数据或加事后容差。audio_ready_for_feature_build=true，非语义/质量验收；正文/编码/fit/评分/新人工包/封存test0。下一步另冻完整7文本与CPU/MPS特征及原两模型146池比较，原版/UI/DB/main/B047卡保持。范围063新preflight module/runner/tests、E37/config/方法JSON与必要台账；私有.local/a/mus063。
 
-- 当前工作：MUS-062 review / A / codex/MUS-062-human-source-audit，base9c6d690、实际69847dfac292e27190b1ba34c08044b8fade9f11。13来源文件5.08MB/TLS/MD5/commit passed；WikiMuTe人写web模型抽取非直接听音真值、YT8M原Adobe研究许可/缺音乐作者和音频权利、MuChin中文须另协议，未自动切库。061原8/6组中固定hash每组1首，已冻6曲/7既有描述/6作品SHA、旧140不交叉的补充dev元数据计划，不凑20/不松规则/不动封存。63检查/独立投影集合与六曲选择/真实两拒绝/旧1007工件passed；独立核查Commons页ID假设失败原件保留、生产首轮完成。下一步另冻音频/PCM及完整文本特征和固定identity/100ridge两模型146池比较，当前audio_ready/新fit/评分/人工包均0。范围062新module/runner/test/E36/config/方法JSON及必要文档，私有.local/a/mus062；原版/UI/DB/main/B047卡保持。
+- 上轮交付：MUS-062 review / A / codex/MUS-062-human-source-audit，base9c6d690、实际69847dfac292e27190b1ba34c08044b8fade9f11。13来源文件5.08MB/TLS/MD5/commit passed；WikiMuTe人写web模型抽取非直接听音真值、YT8M原Adobe研究许可/缺音乐作者和音频权利、MuChin中文须另协议，未自动切库。061原8/6组中固定hash每组1首，已冻6曲/7既有描述/6作品SHA、旧140不交叉的补充dev元数据计划，不凑20/不松规则/不动封存。63检查/独立投影集合与六曲选择/真实两拒绝/旧1007工件passed；独立核查Commons页ID假设失败原件保留、生产首轮完成。下一步另冻音频/PCM及完整文本特征和固定identity/100ridge两模型146池比较，当前audio_ready/新fit/评分/人工包均0。范围062新module/runner/test/E36/config/方法JSON及必要文档，私有.local/a/mus062；原版/UI/DB/main/B047卡保持。
 
 - 上轮交付：MUS-061 review / A / codex/MUS-061-human-caption-capacity，base8a33700、实际格式修复31a950c5a0a01589f52eca77839d1fc6b8393b46。固定SDD有效547曲/746描述，经来源权利→153/224、已用分配→39/47、封存完整关系→8/10/6组件；容量不足新20独立开发，原test保持，不松规则/不fit。48检查/独立全图及集合计数/两claim四拒绝/旧991工件passed；初次数字ID失败及原件保留。无下载/编码/评分/新选样或人工包，下一步另核现成人写来源后再冻有界dev。允许新module/runner/test/E35/config及显式repair/方法验证、README/PROJECT/STATUS/own latest；私有.local/a/mus061，B047原卡/原版/UI/DB/main保持。
 
@@ -26,7 +26,7 @@
 
 - 上轮交付：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
 
-- 当前同步与保护：UTC2026-11-02T05:42:43Z/05:55:54Z双方fetched，Aefd5747/source9c6d690、B8d43fe4/source806dc9c未变并ack；B047限定批准已接收，原派发卡与报告保持，不外推062批准/无新B卡。旧045–061共1007文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新062私有700/600；无新音频/编码/保留test/UI/DB/main变化。
+- 当前同步与保护：UTC2026-11-02T06:09:17Z/06:21:37Z双方fetched，A0f24895/sourced88d4c3、B8d43fe4/source806dc9c未变并ack；B047限定批准已接收，原派发卡与报告保持，不外推063批准/无新B卡。旧045–062共1052文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新063私有700/600；无新编码/保留test/UI/DB/main变化。
 
 - 上轮交付（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 
@@ -82,6 +82,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-063 六曲补充开发音频预检 | review / A（六曲音频ready，非模型质量验收） | codex/MUS-063-six-source-preflight / 7ce3c15；based88d4c3 | 六曲SHA/EOF/295旧内容精确去重、86检查/独立64K PCM与两拒绝passed；32K核查失败原件保留，无fit/test，下一步全文本特征与146池比较 |
 | MUS-062 外部人写来源与六组开发计划 | review / A（审计/metadata选择完成，非音频或效果就绪） | codex/MUS-062-human-source-audit / 69847df；base9c6d690 | 13文件/63检查/独立计数选择与两拒绝passed；固定6曲/7描述/6组计划，原许可隔离不松，无fit/test，下一步另冻预检和146池比较 |
 | MUS-061 人写描述元数据容量 | review / A（审计完成，剩余不足新20开发） | codex/MUS-061-human-caption-capacity / 31a950c；base8a33700 | 8曲/10有效描述/6credit组；48检查/独立全图集合/四拒绝passed，格式失败原件保留，无新fit/test，后续另核人写来源 |
 | MUS-060 残差中心化训练对照 | review / A（一次fit/比较完成，未支持提升） | codex/MUS-060-centered-residual-training / d0b7947；base82d652a，依赖058/059 | 共同方向89.79%→2.89%，主MRR .447217→.420200下降；204检查/独立dual/24bootstrap/单fit保护passed，原模型保持，停止该线调参 |
