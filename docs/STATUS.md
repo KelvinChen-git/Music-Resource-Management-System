@@ -4,9 +4,9 @@
 
 ## Git 与交付状态
 
-- MUS-064 / A / in_progress：`codex/MUS-064-supplement-retrieval`，base29873e1。按062/063已冻6曲/7全文本构建新typed特征，旧140/24query/624窗逐元素复用；全18新窗/6聚合/7文本CPU/MPS控制、256完整token证明，失败不重跑或fallback。另CPU进程只比较identity/058已存100ridge，146同视图池，新6主whole宏MRR，旧20控制/两mode全报；原140控制须复现058。允许新 `services/audio-search/supplement_features.py`、`scripts/run_supplement_retrieval.py`、`scripts/test_supplement_features.py`、E38/config/方法与验证JSON、README/PROJECT/STATUS/own latest；私有.local/a/mus064。源码/config/输入/环境先freeze，各encode/evaluate独立任务claim；无新fit/下载/封存test/新人工包/模型切换，保留全文本、原版/UI/DB/main/B047卡。
+- 当前工作：MUS-064 / A / review；`codex/MUS-064-supplement-retrieval`，base29873e1、实际46044c87951a3fa322831047d802d0ce0ff5f24e。干净46044c87951a3fa322831047d802d0ce0ff5f24e首次build/evaluate exit0，新6曲/7原全文本17–58token零截断、18窗/6聚合/7文本CPU-MPS全控制maxabs3.48e-7；原140/624窗/24文本逐元素复用，146候选。主新6whole宏MRR identity .455568→已存100ridge .491042，差+.035474/95%描述性区间[-.000336,.105086]含零，2胜3平1负；新6segment MRR .463384→.442402下降。原140两模型两mode精确复现058，旧20在146池分开控制全报；不作稳定改善或正式显著结论，继续保留identity。64检查（17新/47旧）、独立全文/18波形/全数值/两模型三池两mode四bootstrap、真实CPU consumer与四次跨目录拒绝passed；首次合成临时目录symlink失败保留，真实运行前已修fixture。旧045–063全部1087文件/历史951+B/23源码54cache/043044/160/相邻原版保持；无新fit/下载/人工包/封存test/UI/DB/main/B047卡变化。下一阶段应先解决可核人写监督规模与独立评测隔离，当前六曲已看开发，不再反复搜参。 范围新supplement_features/runner/tests、E38/config/报告JSON、README/PROJECT/STATUS/own latest，私有.local/a/mus064；原CLAP未微调、无新B派发。
 
-- 当前工作：MUS-063 review / A / codex/MUS-063-six-source-preflight，based88d4c3、实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf。062六曲首次获取/官方SHA/完整EOF/原历史身份许可全部passed，12.429MB/持久128MiB预算内、6组/7描述、201窗口/12首尾，旧296引用295唯一bytes/PCM与新6无精确重复。86检查/独立固定64K协议重解/两实际拒绝/旧1052工件passed；32K独立哈希失败及数值诊断原件保留，未改数据或加事后容差。audio_ready_for_feature_build=true，非语义/质量验收；正文/编码/fit/评分/新人工包/封存test0。下一步另冻完整7文本与CPU/MPS特征及原两模型146池比较，原版/UI/DB/main/B047卡保持。范围063新preflight module/runner/tests、E37/config/方法JSON与必要台账；私有.local/a/mus063。
+- 上轮交付：MUS-063 review / A / codex/MUS-063-six-source-preflight，based88d4c3、实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf。062六曲首次获取/官方SHA/完整EOF/原历史身份许可全部passed，12.429MB/持久128MiB预算内、6组/7描述、201窗口/12首尾，旧296引用295唯一bytes/PCM与新6无精确重复。86检查/独立固定64K协议重解/两实际拒绝/旧1052工件passed；32K独立哈希失败及数值诊断原件保留，未改数据或加事后容差。audio_ready_for_feature_build=true，非语义/质量验收；正文/编码/fit/评分/新人工包/封存test0。下一步另冻完整7文本与CPU/MPS特征及原两模型146池比较，原版/UI/DB/main/B047卡保持。范围063新preflight module/runner/tests、E37/config/方法JSON与必要台账；私有.local/a/mus063。
 
 - 上轮交付：MUS-062 review / A / codex/MUS-062-human-source-audit，base9c6d690、实际69847dfac292e27190b1ba34c08044b8fade9f11。13来源文件5.08MB/TLS/MD5/commit passed；WikiMuTe人写web模型抽取非直接听音真值、YT8M原Adobe研究许可/缺音乐作者和音频权利、MuChin中文须另协议，未自动切库。061原8/6组中固定hash每组1首，已冻6曲/7既有描述/6作品SHA、旧140不交叉的补充dev元数据计划，不凑20/不松规则/不动封存。63检查/独立投影集合与六曲选择/真实两拒绝/旧1007工件passed；独立核查Commons页ID假设失败原件保留、生产首轮完成。下一步另冻音频/PCM及完整文本特征和固定identity/100ridge两模型146池比较，当前audio_ready/新fit/评分/人工包均0。范围062新module/runner/test/E36/config/方法JSON及必要文档，私有.local/a/mus062；原版/UI/DB/main/B047卡保持。
 
@@ -28,7 +28,7 @@
 
 - 上轮交付：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
 
-- 当前同步与保护：UTC2026-11-02T06:09:17Z/06:21:37Z双方fetched，A0f24895/sourced88d4c3、B8d43fe4/source806dc9c未变并ack；B047限定批准已接收，原派发卡与报告保持，不外推063批准/无新B卡。旧045–062共1052文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新063私有700/600；无新编码/保留test/UI/DB/main变化。
+- 当前同步与保护：UTC2026-11-02T22:13:26Z/22:15:56Z双方fetched，A fd4918cf/source29873e1、B8d43fe4/source806dc9c未变并ack；B047准确限定批准已接收，不外推064/无新卡。旧045–063共1087文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新064私有700/600；最终publish/sync另见固定feed，发布不等于B接收或main合并。
 
 - 上轮交付（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 

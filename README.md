@@ -261,4 +261,4 @@ MUS-059已只读诊断扩样停滞：599描述未发现整段重复或固定5gra
 
 MUS-060已按固定方案完成train100/539残差中心化单fit：全文本/特征/alpha1/录音权重保持，只用train残差均值，CPU23.836ms；共同方向更新能量89.79%→2.89%，但主140整曲MRR旧100 .447217→新 .420200、R1 .37→.31，未支持提升假设，继续保留identity。20池整曲恢复到identity，完整两池/两验证子集均披露；不能挑次要改善宣称成功。204检查/独立训练mu与dual/全部排名24bootstrap/实际二fit拒绝passed，原045–059/全文本/备份/UI/main保持。停止这条去均值消融的参数追加，下一步优先核查现成人写描述的评测覆盖与隔离，原保留test封存，见[中心化对照报告](docs/evaluation/MUS-060-centered-residual.md)。
 
-MUS-064已准备六曲/七全文本特征与固定146候选对照，原140缓存复用、全新向量CPU/MPS核查；只比较identity与已存100ridge，不fit/开封存test或新增人工包。实际成绩待执行，见[本轮方法](docs/evaluation/MUS-064-six-source-retrieval.md)。
+MUS-064已完成六曲/七原全文本与146候选固定对照，CPU/MPS与旧140复用核查通过。新6整曲MRR .455568→.491042但差区间含零，片段MRR下降，当前不支持稳定提升，继续identity；64检查/独立排名统计/四次重复拒绝passed，零新fit/下载/封存test/人工包，见[检索报告](docs/evaluation/MUS-064-six-source-retrieval.md)。

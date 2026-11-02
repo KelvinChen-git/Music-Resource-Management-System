@@ -1,0 +1,564 @@
+{
+  "status": "fixed_two_model_supplement_comparison_complete",
+  "source_sha": "46044c87951a3fa322831047d802d0ce0ff5f24e",
+  "config_sha256": "9196991cfefc003f01b06b0c904e5741e0468c3f4b679c7fdf00bb51c27be9e4",
+  "supplement_cache_sha256": "cb5f6ad84d69641dd516135c9335fa5e6f8aa80d02f10d9ce2f8d23a0ebdfe73",
+  "counts": {
+    "old_candidates": 140,
+    "new_candidates": 6,
+    "combined_candidates": 146,
+    "old_queries": 24,
+    "new_queries": 7,
+    "old_query_recordings": 20,
+    "new_query_recordings": 6,
+    "old_windows": 624,
+    "new_windows": 18
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "1.26.4",
+    "numpy_code_sha256": "90e84693f8af39ec8f62c40ea5d41a37ba6faa08593970b3bb1278d1e81d4b63",
+    "system": "Darwin",
+    "machine": "arm64",
+    "device": "cpu",
+    "dtype": "float64",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "VECLIB_MAXIMUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "results": {
+    "identity": {
+      "new6": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.6666666666666666,
+            "MRR": 0.4555679149672476
+          },
+          "query_macro": {
+            "R1": 0.2857142857142857,
+            "R5": 0.7142857142857143,
+            "MRR": 0.4500105937814503
+          },
+          "recordings": 6,
+          "queries": 7,
+          "candidates": 146,
+          "unqueried_candidates": 140,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.6666666666666666,
+            "MRR": 0.4633838383838384
+          },
+          "query_macro": {
+            "R1": 0.2857142857142857,
+            "R5": 0.7142857142857143,
+            "MRR": 0.45075757575757575
+          },
+          "recordings": 6,
+          "queries": 7,
+          "candidates": 146,
+          "unqueried_candidates": 140,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "old20_control": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4197005665902725
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.43086158326967144
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 146,
+          "unqueried_candidates": 126,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.22000000000000003,
+            "R5": 0.54,
+            "MRR": 0.3934262034262034
+          },
+          "query_macro": {
+            "R1": 0.25,
+            "R5": 0.5833333333333334,
+            "MRR": 0.43341072507739176
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 146,
+          "unqueried_candidates": 126,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "old20_original140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.31,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4208083360138314
+          },
+          "query_macro": {
+            "R1": 0.2916666666666667,
+            "R5": 0.5416666666666666,
+            "MRR": 0.43178472445597055
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.22000000000000003,
+            "R5": 0.54,
+            "MRR": 0.3947233414733414
+          },
+          "query_macro": {
+            "R1": 0.25,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4344916734500068
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      }
+    },
+    "saved100-fulltext-ridge": {
+      "new6": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.4166666666666667,
+            "R5": 0.6666666666666666,
+            "MRR": 0.49104166666666665
+          },
+          "query_macro": {
+            "R1": 0.42857142857142855,
+            "R5": 0.7142857142857143,
+            "MRR": 0.5101785714285715
+          },
+          "recordings": 6,
+          "queries": 7,
+          "candidates": 146,
+          "unqueried_candidates": 140,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4424019607843137
+          },
+          "query_macro": {
+            "R1": 0.2857142857142857,
+            "R5": 0.5714285714285714,
+            "MRR": 0.40896358543417366
+          },
+          "recordings": 6,
+          "queries": 7,
+          "candidates": 146,
+          "unqueried_candidates": 140,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "old20_control": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.37,
+            "R5": 0.49000000000000005,
+            "MRR": 0.4465843275876171
+          },
+          "query_macro": {
+            "R1": 0.375,
+            "R5": 0.5416666666666666,
+            "MRR": 0.47076471743412535
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 146,
+          "unqueried_candidates": 126,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.45301193346883
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4822718493192631
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 146,
+          "unqueried_candidates": 126,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      },
+      "old20_original140": {
+        "whole": {
+          "recording_macro": {
+            "R1": 0.37,
+            "R5": 0.49000000000000005,
+            "MRR": 0.44721680622009574
+          },
+          "query_macro": {
+            "R1": 0.375,
+            "R5": 0.5416666666666666,
+            "MRR": 0.47129178296119084
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        },
+        "segment": {
+          "recording_macro": {
+            "R1": 0.32,
+            "R5": 0.54,
+            "MRR": 0.45361138861138867
+          },
+          "query_macro": {
+            "R1": 0.3333333333333333,
+            "R5": 0.5833333333333334,
+            "MRR": 0.4827713952713953
+          },
+          "recordings": 20,
+          "queries": 24,
+          "candidates": 140,
+          "unqueried_candidates": 120,
+          "scope": "known_pair_only_unpaired_semantics_unjudged_development_not_final_test"
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "new6": {
+      "whole": {
+        "R1": {
+          "mean_delta": 0.08333333333333333,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.25,
+          "wins": 1,
+          "ties": 5,
+          "losses": 0
+        },
+        "R5": {
+          "mean_delta": 0.0,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.0,
+          "wins": 0,
+          "ties": 6,
+          "losses": 0
+        },
+        "MRR": {
+          "mean_delta": 0.03547375169941911,
+          "bootstrap95_lower": -0.0003360215053763438,
+          "bootstrap95_upper": 0.10508620689655174,
+          "wins": 2,
+          "ties": 3,
+          "losses": 1
+        }
+      },
+      "segment": {
+        "R1": {
+          "mean_delta": 0.0,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.0,
+          "wins": 0,
+          "ties": 6,
+          "losses": 0
+        },
+        "R5": {
+          "mean_delta": -0.08333333333333333,
+          "bootstrap95_lower": -0.25,
+          "bootstrap95_upper": 0.0,
+          "wins": 0,
+          "ties": 5,
+          "losses": 1
+        },
+        "MRR": {
+          "mean_delta": -0.020981877599524662,
+          "bootstrap95_lower": -0.08348187759952465,
+          "bootstrap95_upper": 0.013888888888888886,
+          "wins": 1,
+          "ties": 3,
+          "losses": 2
+        }
+      }
+    },
+    "old20_control": {
+      "whole": {
+        "R1": {
+          "mean_delta": 0.06,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.17,
+          "wins": 2,
+          "ties": 18,
+          "losses": 0
+        },
+        "R5": {
+          "mean_delta": 0.0,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.0,
+          "wins": 0,
+          "ties": 20,
+          "losses": 0
+        },
+        "MRR": {
+          "mean_delta": 0.026883760997344585,
+          "bootstrap95_lower": -0.005702574759047282,
+          "bootstrap95_upper": 0.08327721380303131,
+          "wins": 5,
+          "ties": 11,
+          "losses": 4
+        }
+      },
+      "segment": {
+        "R1": {
+          "mean_delta": 0.1,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.25,
+          "wins": 2,
+          "ties": 18,
+          "losses": 0
+        },
+        "R5": {
+          "mean_delta": 0.0,
+          "bootstrap95_lower": 0.0,
+          "bootstrap95_upper": 0.0,
+          "wins": 0,
+          "ties": 20,
+          "losses": 0
+        },
+        "MRR": {
+          "mean_delta": 0.05958573004262659,
+          "bootstrap95_lower": 0.002451552877199429,
+          "bootstrap95_upper": 0.1349769841269841,
+          "wins": 8,
+          "ties": 8,
+          "losses": 4
+        }
+      }
+    }
+  },
+  "original140_controls_reproduced": true,
+  "operations": {
+    "downloads": 0,
+    "fits": 0,
+    "reserved_test_inputs": 0,
+    "new_manual_labels": 0
+  },
+  "decision": "retain_identity_no_automatic_selection_or_deployment",
+  "torch_or_CLAP_imported": false,
+  "total_ms": 311.72929098829627,
+  "limits": [
+    "Six source components/7 existing human captions, small development supplement, not formal significance or final test.",
+    "Only known paired recording is judged; other tracks are semantically unjudged.",
+    "Old20 is repeatedly seen development; report146 control separately.",
+    "No new fit, parameter selection, corpus replacement or automatic model switch."
+  ],
+  "task": "MUS-064",
+  "base_sha": "29873e11f5316cd25fdb978c77052c91ccf76d2c",
+  "actual_source_sha": "46044c87951a3fa322831047d802d0ce0ff5f24e",
+  "feature_build": {
+    "status": "passed",
+    "source_sha": "46044c87951a3fa322831047d802d0ce0ff5f24e",
+    "config_sha256": "9196991cfefc003f01b06b0c904e5741e0468c3f4b679c7fdf00bb51c27be9e4",
+    "cache_key_sha256": "c34d1d384e2696057e18d492bff97d631f0f62be1206a1ba12422abc2af0bd3a",
+    "ready_cache_written": true,
+    "counts": {
+      "old_candidates": 140,
+      "new_candidates": 6,
+      "combined_candidates": 146,
+      "old_queries": 24,
+      "new_queries": 7,
+      "old_query_recordings": 20,
+      "new_query_recordings": 6,
+      "old_windows": 624,
+      "new_windows": 18
+    },
+    "vector_parity": {
+      "all18_windows": {
+        "status": "passed",
+        "max_abs_difference": 3.480059140026359e-07,
+        "max_cosine_distance": 2.0239365738916604e-12,
+        "vectors": 18
+      },
+      "all6_whole": {
+        "status": "passed",
+        "max_abs_difference": 1.9411439650465767e-07,
+        "max_cosine_distance": 9.058309657916652e-13,
+        "vectors": 6
+      },
+      "all7_texts256": {
+        "status": "passed",
+        "max_abs_difference": 3.315551513061177e-07,
+        "max_cosine_distance": 2.8752555891742304e-12,
+        "vectors": 7
+      },
+      "short_CPU77_to256": {
+        "status": "passed",
+        "max_abs_difference": 0.0,
+        "max_cosine_distance": 0.0,
+        "vectors": 7
+      }
+    },
+    "untruncated_tokens_min": 17,
+    "untruncated_tokens_max": 58,
+    "token_length": 256,
+    "truncated_captions": 0,
+    "CPU_controls": {
+      "audio_windows": 18,
+      "whole": 6,
+      "texts256": 7,
+      "short_text77": 7
+    },
+    "reused_exact": {
+      "whole": 140,
+      "windows": 624,
+      "texts": 24
+    },
+    "strict": {
+      "id": "A",
+      "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+      "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+      "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+      "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+      "audio_architecture": "HTSAT-base",
+      "fusion": false,
+      "strict_missing": [],
+      "strict_unexpected": [],
+      "removed_nonlearned_position_ids": true,
+      "loader": "torch_weights_only_true_mmap_cpu_strict_v1"
+    },
+    "operations": {
+      "downloads": 0,
+      "fits": 0,
+      "reserved_test_inputs": 0,
+      "new_manual_labels": 0
+    },
+    "timing_ms": {
+      "model_load": 9695.2955420129,
+      "CPU_controls": 1872.832708992064,
+      "MPS_audio_and_text": 666.4096669992432,
+      "total_including_integrity": 25387.135667027906
+    }
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent selected original-text tokenizer, fixed65536 audio slices, vector parity, rank-count metrics and recording bootstrap; no production feature/learner imports or model encoding",
+    "source_input_config_and_cache_key_pins_match": true,
+    "all7_original_texts_full_token_sequences_match": true,
+    "all18_independent_raw_windows_match": true,
+    "all140_whole624_windows24_old_texts_elementwise_exact": true,
+    "all6_whole_aggregates_match": true,
+    "CPU_MPS_control_maxabs": {
+      "all18_windows": 3.480059140026359e-07,
+      "all6_whole": 1.9411439650465767e-07,
+      "all7_texts256": 3.315551513061177e-07,
+      "short_CPU77_to256": 0.0
+    },
+    "all2_models3_pools2_modes_and4_bootstraps_match": true,
+    "original140_controls_exact058": true,
+    "prior045_to063_all1087_files_preserved": true,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "no_torch_or_CLAP_import": true,
+    "private_modes700_600": true,
+    "script_sha256": "20be7078566976dc91ecf134d063f894d325b3dc19a466b0e7b549bdd139a4a7"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "actual_refusals": [
+      {
+        "stage": "build",
+        "directory": "build-01",
+        "exit": 1,
+        "refused_before_output": true
+      },
+      {
+        "stage": "build",
+        "directory": "build-forbidden",
+        "exit": 1,
+        "refused_before_output": true
+      },
+      {
+        "stage": "evaluate",
+        "directory": "evaluate-01",
+        "exit": 1,
+        "refused_before_output": true
+      },
+      {
+        "stage": "evaluate",
+        "directory": "evaluate-forbidden",
+        "exit": 1,
+        "refused_before_output": true
+      }
+    ],
+    "all_original_claims_cache_and_results_unchanged": true,
+    "cpu_only_typed_consumer_loaded": true,
+    "original_NumPy_runtime_matches058": true,
+    "torch_or_CLAP_imported": false,
+    "extra_encode_evaluate_or_fit": 0
+  },
+  "tests": {
+    "status": "passed",
+    "total": 64,
+    "new": 17,
+    "related_existing": 47,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_supplement_features test_device_feature_cache test_long_caption_features test_expanded_caption test_supplement_preflight -v",
+    "initial_fixture_failure": "First 63-test synthetic run had one error/one failure because unresolved macOS /var temporary roots traverse symlinks. Resolve only test fixture roots; originals retained; no production attempt existed. Final64 passed before source freeze.",
+    "not_run": [
+      "Java tests and frontend build: offline Python feature/evaluation only"
+    ]
+  },
+  "private_evidence_sha256": {
+    "build-01/cache.json": "cb5f6ad84d69641dd516135c9335fa5e6f8aa80d02f10d9ce2f8d23a0ebdfe73",
+    "build-01/control-inputs.npz": "923b92532c154e8f3b16d241b46952b3f7b07d850af441664bb417bfedcccd3e",
+    "build-01/cpu-controls.npz": "f8348c7b37e5b0a99fd891ab38e8ee788a817869464bc1ba3ff38741558f4f07",
+    "build-01/features.npz": "ba0a43d0f2b67a2ab14cbec95273cc5c85270f557a258ec7b4a6cfe17f90c344",
+    "build-01/freeze.json": "e89ec3ad35dd1297071f9293d2bed7144fd761f3d554e53c98020251f59be63b",
+    "build-01/queries-private.json": "9fc4c48672b08e4f89de1b65bbc587db518faea780e45c609123a4b25229e772",
+    "build-01/result.json": "a6511679c1191a1342c6fc6af9eaeacd420414be498185f2ae14be8e006d0da5",
+    "build-01/token-proof.json": "2c2bd225a9fabcfafc4d46097fd035a1574853cfc6e7d4faccd9cec5c1a77f56",
+    "build-01-refusal.log": "d1928a8c790d9a2a23f5751b3069cddd8532b1fc6c16efcb4e8776f0babea5b8",
+    "build-forbidden-refusal.log": "d1928a8c790d9a2a23f5751b3069cddd8532b1fc6c16efcb4e8776f0babea5b8",
+    "build.log": "68ebc4039b41a9298bc499540c440dd508d951f0f93454c4800a9754e5ecd5ba",
+    "encode-started.json": "8e12248d1b6edaaf86f6e9df2c7b8c8600f51dabfc302060c1389af617a65d2d",
+    "evaluate-01/evaluation-open.json": "21baf1486a455b970b823ec778099d89098dbe45eb4b98ce929f7f2697aabecb",
+    "evaluate-01/freeze.json": "c14eaac770cd1c1b6ad7a9e86450e31219647fa4067697ca9234868be3d58834",
+    "evaluate-01/result-private.json": "bb44dcc7ae749555b5069440cf855174e56cf7fbc984576f3403cecd6d03d169",
+    "evaluate-01/result-public.json": "89678efc663d236aa7a1826a800a88a6194df3e6826a52a11154f64f9456c791",
+    "evaluate-01-refusal.log": "4e06bb1e82679729e783d979e898dab890a1fcdb67111cd438104123733a8b27",
+    "evaluate-forbidden-refusal.log": "4e06bb1e82679729e783d979e898dab890a1fcdb67111cd438104123733a8b27",
+    "evaluate-started.json": "da95e608eade6ab8140ca305b3dd4dd0ca173a05774f6fa14c8986e72d71f228",
+    "evaluate.log": "02a4f7e9b2dc0da695556d580473fa44e1ae880fac0cb6942947b712696a5535",
+    "guard-audit.json": "170d0a4b74a7ed714312e563691b2447a3e6a774d8745ed5d836e8a23ac08d41",
+    "independent-audit.json": "3d64cd4a027448f1e4e390d8acaebf5213de3f78261a442fe27b1ffbaf19b99d",
+    "independent-audit.log": "34ed6b92c181082b6ff4bce12cf618654abeabcc31e9802e51d021f766012e5a",
+    "independent-audit.py": "20be7078566976dc91ecf134d063f894d325b3dc19a466b0e7b549bdd139a4a7",
+    "prior-before.json": "449eefe9255870aaa3af76324daacfe6a5c193cb703173e90442107a14bd3dcc",
+    "tests-final.log": "083f918319efb278d487d47c7b0dc07c735fd518622b714295fec962f52d0959",
+    "tests-pre-freeze.log": "8f87184049cfe2f061d75fad325509fab28ac9062785e6ce8a6f0b7826745c8e",
+    "tests.log": "602472809036b4d2c9a7a9486c71027c6ba6c4c2088d740935795bd639fb302e"
+  }
+}
