@@ -28,35 +28,38 @@ def validate(cfg):
 
 def selection_proof(raw):
     lines = raw.decode('utf8').splitlines()
-    matches = [line for line in lines if 'highest average mAP score' in line and 'Clotho' in line
-               and 'AudioCaps' in line and 'checkpoints' in line]
+    matches = []
+    for i,line in enumerate(lines):
+        if 'highest average mAP score' in line and 'checkpoints' in line:
+            passage = line if 'Clotho' in line and 'AudioCaps' in line else '\n'.join(lines[i:i+2])
+            if 'Clotho' in passage and 'AudioCaps' in passage: matches.append(passage)
     h.require(len(matches) == 1 and 'music_audioset_epoch_15_esc_90.14.pt' in raw.decode('utf8'),
               'Pinned current-A checkpoint-selection provenance missing')
     return {'current_A_checkpoint_named': True, 'Clotho_in_checkpoint_selection_metric': True,
             'AudioCaps_in_checkpoint_selection_metric': True, 'exact_training_membership_established': False,
-            'selection_line_sha256': hashlib.sha256(matches[0].encode()).hexdigest()}
+            'selection_passage_sha256': hashlib.sha256(matches[0].encode()).hexdigest()}
 
 
 def run(config, config_sha256, output):
     cfg = h.assets.document(config, config_sha256); validate(cfg); task = ROOT/cfg['task_directory']
     repair = cfg.get('repair')
     revision = repair.get('revision', 1) if repair else 0
-    h.require(revision in (0,1,2), 'Only frozen format-repair revisions supported')
-    claim_name = ('repair-v2-started.json' if revision == 2 else 'repair-started.json') if repair else 'audit-started.json'
+    h.require(revision in (0,1,2,3), 'Only frozen format-repair revisions supported')
+    claim_name = (f'repair-v{revision}-started.json' if revision >= 2 else 'repair-started.json') if repair else 'audit-started.json'
     h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/claim_name).exists(),
               'Audit already attempted or invalid output; no new-directory retry')
     if repair:
         original = h.assets.document(ROOT/repair['original_config']['path'], repair['original_config']['sha256'])
         oldclaim = h.assets.document(task/'audit-started.json', repair['original_claim_sha256'])
         failure = h.assets.document(task/'run-01/failure.json', repair['original_failure_sha256'])
-        h.require(repair['policy'] == ('quarantine_missing_or_uploader_mismatch_keep_all_identity_edges' if revision == 2 else 'known_Not_found_NA_quarantine_retain_uploader_closure')
+        h.require(repair['policy'] == ('quarantine_missing_or_uploader_mismatch_keep_all_identity_edges' if revision >= 2 else 'known_Not_found_NA_quarantine_retain_uploader_closure')
                   and oldclaim['config_sha256'] == repair['original_config']['sha256']
                   and failure == {'error_type':'ValueError','error':'Bound source/name/uploader required'}
                   and not (task/'run-01/result-private.json').exists()
                   and original['inputs'] == cfg['inputs'] and original['music_tags'] == cfg['music_tags']
                   and original['audio_license_families'] == cfg['audio_license_families'],
                   'Only explicit incomplete-source format repair without source/selection changes allowed')
-        if revision == 2:
+        if revision >= 2:
             previous = repair['previous_repair']
             oldcfg = h.assets.document(ROOT/previous['config']['path'], previous['config']['sha256'])
             claim = h.assets.document(task/'repair-started.json', previous['claim_sha256'])
@@ -64,6 +67,14 @@ def run(config, config_sha256, output):
             h.require(oldcfg['inputs'] == cfg['inputs'] and claim['config_sha256'] == previous['config']['sha256']
                       and failed == {'error_type':'ValueError','error':'Freesound ID/uploader URL binding differs'}
                       and not (task/'repair-01/result-private.json').exists(), 'Pinned first repair failure required')
+        if revision == 3:
+            previous = repair['previous_v2']
+            oldcfg = h.assets.document(ROOT/previous['config']['path'], previous['config']['sha256'])
+            claim = h.assets.document(task/'repair-v2-started.json', previous['claim_sha256'])
+            failed = h.assets.document(task/'repair-v2-01/failure.json', previous['failure_sha256'])
+            h.require(oldcfg['inputs'] == cfg['inputs'] and claim['config_sha256'] == previous['config']['sha256']
+                      and failed == {'error_type':'ValueError','error':'Pinned current-A checkpoint-selection provenance missing'}
+                      and not (task/'repair-v2-01/result-private.json').exists(), 'Pinned provenance-line parsing failure required')
     h.require(not subprocess.check_output(['git','status','--porcelain'],cwd=ROOT).strip(), 'Committed clean source required')
     target = h.private_output(output)
     try:
@@ -76,11 +87,16 @@ def run(config, config_sha256, output):
             bound[str((ROOT/repair['original_config']['path']).absolute())] = repair['original_config']['sha256']
             bound[str(task/'audit-started.json')] = repair['original_claim_sha256']
             bound[str(task/'run-01/failure.json')] = repair['original_failure_sha256']
-        if revision == 2:
+        if revision >= 2:
             previous = repair['previous_repair']
             bound[str((ROOT/previous['config']['path']).absolute())] = previous['config']['sha256']
             bound[str(task/'repair-started.json')] = previous['claim_sha256']
             bound[str(task/'repair-01/failure.json')] = previous['failure_sha256']
+        if revision == 3:
+            previous = repair['previous_v2']
+            bound[str((ROOT/previous['config']['path']).absolute())] = previous['config']['sha256']
+            bound[str(task/'repair-v2-started.json')] = previous['claim_sha256']
+            bound[str(task/'repair-v2-01/failure.json')] = previous['failure_sha256']
         freeze = {'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
                   'source_sha256':{n:h.file_hash(ROOT/n) for n in SOURCES}, 'input_sha256':bound,
                   'config_sha256':config_sha256,'created_at_utc':h.now(),'python':platform.python_version(),'system':platform.system()}

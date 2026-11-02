@@ -115,6 +115,17 @@ class ClothoCapacityTests(unittest.TestCase):
             with patch.object(runner,'ROOT',root),patch.object(runner.h.assets,'document',return_value=cfg):
                 with self.assertRaisesRegex(ValueError,'already attempted'):runner.run(root/'config','0'*64,task/'new')
             self.assertFalse((task/'new').exists())
+    def test_two_adjacent_README_lines_preserve_checkpoint_selection_proof(self):
+        raw=b'music_audioset_epoch_15_esc_90.14.pt\nThe checkpoints list uses highest average mAP score.\nThe average uses AudioCaps and Clotho.'
+        self.assertTrue(runner.selection_proof(raw)['Clotho_in_checkpoint_selection_metric'])
+        with self.assertRaises(ValueError):runner.selection_proof(raw.replace(b'\nThe average',b'\nUnrelated paragraph.\nThe average'))
+    def test_third_repair_claim_refuses_another_directory(self):
+        cfg=json.loads(Path('docs/evaluation/MUS-065-provenance-repair-config.json').read_text())
+        with tempfile.TemporaryDirectory()as tmp:
+            root=Path(tmp).resolve();task=root/cfg['task_directory'];task.mkdir(parents=True);(task/'repair-v3-started.json').write_text('{}')
+            with patch.object(runner,'ROOT',root),patch.object(runner.h.assets,'document',return_value=cfg):
+                with self.assertRaisesRegex(ValueError,'already attempted'):runner.run(root/'config','0'*64,task/'new')
+            self.assertFalse((task/'new').exists())
     def test_persistent_claim_refuses_new_directory_before_output(self):
         cfg=json.loads(Path('docs/evaluation/MUS-065-source-config.json').read_text())
         with tempfile.TemporaryDirectory()as tmp:

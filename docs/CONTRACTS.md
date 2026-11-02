@@ -657,3 +657,5 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 065显式格式修复：首轮def5a6c被19条官方sound_id=Not found/sound_link=NA拒绝，run-01/原audit claim与失败保持。仅接受该成对marker为未解析来源，不合并所有缺失ID，保留各自uploader参与闭包且永不进候选；其他坏ID/错配URL仍拒绝。原输入/tag/rights/模型零操作不变；另repair config绑定原config/claim/failure SHA，独立repair-started单attempt，原claim不能重置，非按结果换规则。
 
 065第二显式修复：f66fbf8首次repair被2条manufacturer与URL uploader的重音拼写不一致拒绝，repair-01/claim/失败保持。不静默去重音认同一人；保留原字段及URL的两个uploader键作保守闭包边（只会扩大排除），该行不能进候选；已知sound ID仍保留其闭包边。除19条缺失与2条不一致外仍严格拒绝坏host/URL ID。已单独核所有原文件无其他schema/offset/duplicate/caption-key缺失；v2 config绑定两次原失败链，repair-v2-started单次，不改tag/rights/split/输入或按成绩选择。
+
+065出处解析修复：0b88fe6的v2在原README证据核查失败，程序错误要求checkpoint选择说明和四分数公式处于单行；准确固定来源实际为相邻两行。保留第三次失败/claim，只修相邻两行解析，不改Clotho数据/选择/统计规则；测试已覆盖同一行、相邻两行和断开无关段落拒绝，另直接核原已pin README。v3 config绑定此前全部链/新repair-v3单次，不重置任何旧claim、不增加来源或模型评分。
