@@ -1,0 +1,47 @@
+{
+  "schema": "sonora-human-caption-capacity-v1",
+  "task_directory": ".local/a/mus061",
+  "policy": {
+    "validated_only": true,
+    "allowed_license_families": [
+      "by",
+      "by-sa"
+    ],
+    "duration_bounds_seconds": [
+      30,
+      600
+    ],
+    "one_recording_per_creator_component": true,
+    "unseen_caption_body_used": false,
+    "new_partition_selected": false
+  },
+  "operations": {
+    "downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "scored_queries": 0,
+    "test_caption_inputs": 0
+  },
+  "inputs": {
+    "inputs": {
+      "path": ".local/a/mus043/inputs.json",
+      "sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163"
+    },
+    "plan": {
+      "path": ".local/a/mus044/plan-01/plan.json",
+      "sha256": "69d7932ce0b3b828df30fa8fe5e3c730634f6e54daf520012ca48186b9b2bfe0"
+    },
+    "dataset": {
+      "path": ".local/a/mus045/source-02/dataset.json",
+      "sha256": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe"
+    },
+    "pilot": {
+      "path": ".local/a/mus043/metadata-02/selection.json",
+      "sha256": "6a338dc43b57fc7d04785d836254ba1b755e2579875ae0839b5acc283a80a28b"
+    },
+    "expanded": {
+      "path": ".local/a/mus057/run-01/recordings.json",
+      "sha256": "d689814d01f896197be03413a1237ec192b57e560fc579fb69c208f7ac641f7b"
+    }
+  }
+}

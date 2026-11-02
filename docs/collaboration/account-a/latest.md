@@ -1,5 +1,15 @@
 # 账号 A 最新交接
 
+## MUS-061：人写描述元数据容量准备
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-061-human-caption-capacity`，base `8a337002d8f500114865405aa321c972f4e5f07e`。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T05:31:59Z双方fetched，B047已接收、原卡保持，无新B派发或本轮批准。
+
+060不支持中心化提升，停止该路线。061只核固定SDD剩余metadata容量，源CSV结构解析后不保留/观察caption或familiarity正文；全names credit闭包，排除旧60/pilot/全部044计划/045已用备用封存/057扩样，valid flag+原test+BY/BYSA/30–600s/官方SHA。只报告录音/有效caption/独立组件上界与冲突，不选样/下载/编码/fit/评分或新人工包。14新检查/45相关passed，真实审计待干净提交执行；旧045–060共991文件已私有快照。范围见STATUS/E35/config，原全文本/identity/备份/UI/DB/main保持。
+
+## 上轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-060残差中心化对照完成，未支持主检索提升
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-060-centered-residual-training`，base `82d652aade7edf24cb6bb296059f212d7cae7336`，真实源码 `d0b7947c417c62f402b7b73fd92c58d0e4bd8c75`；最终交付SHA见handoff.source_sha。060 review，实际单fit与比较完成，工具独立审核待安排，非总体质量验收。

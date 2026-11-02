@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- MUS-061 / A / in_progress：`codex/MUS-061-human-caption-capacity`，base `8a337002d8f500114865405aa321c972f4e5f07e`。只核固定SDD的身份/有效标记/既有分组与许可元数据；全MTG credit连通闭包，排除旧60、043 pilot、044全1400计划、045当前dev/备用与封存test、057扩样关系，输出未用候选容量而不选样。允许新 `services/audio-search/human_caption_capacity.py`、`scripts/audit_human_caption_capacity.py`、`scripts/test_human_caption_capacity.py`、E35/config/方法与验证JSON、README/PROJECT/STATUS/own latest；私有 `.local/a/mus061`。不访问caption正文作特征/内容审阅、不下载/编码/fit/评分/打开保留test标签，不更改B卡或既有分组；完成metadata后另冻新dev计划。
+
 - 当前工作：MUS-060 review / A / codex/MUS-060-centered-residual-training，base82d652a、实际d0b7947c417c62f402b7b73fd92c58d0e4bd8c75。原100/539全文本/alpha1/录音权重，train-only残差均值CPU23.836ms单fit；共同方向更新能量89.79%→2.89%，主140 MRR旧100 .447217→新 .420200、R1 .37→.31，当前不支持去均值提升，保持identity。204检查/独立mu与dual/全指标24bootstrap/实际持久单fit保护passed，旧976工件/原版/UI/main保持；停止该路线调参，下一步核现成人写评测覆盖/隔离，保留test封存。
 
 - 上轮交付：MUS-059 review / A / codex/MUS-059-supervision-diagnostic，base363f0b1、实际修复f473827ba2a33ef726dc4ec319f5344987ad2b82。599词面无整段/固定近重复，新100更新共同残差方向能量89.79%；配对与异曲均分同步上升、相对差异改善小。train43/val11仅1合格区间，同曲对照支持57/9；人写与训练表达长度/词面差异不当语义错证据。192检查/独立全统计/两claim跨目录保护passed；原查询顺序预检失败、单区间统计失败与显式修复全部保留。下一步另冻共同残差均值分离的一次训练内对照；本轮无fit/编码/标签编辑/保留test，旧955工件/原版/UI/main保持。
