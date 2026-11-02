@@ -1,0 +1,191 @@
+{
+  "status": "bounded_source_metadata_probe_complete_not_training_ready",
+  "source_sha": "4218f737e4bca3494083558561be5fe20312869b",
+  "config_sha256": "cfc09622dd19681ebfd136f8b98970681e9350e120836304d58799e815a38e0f",
+  "source_counts": {
+    "MusicCaps": 5521,
+    "AudioSet_train": 2663,
+    "AudioSet_eval": 2858,
+    "provisional_non_eval_unaugmented": 2448
+  },
+  "selected_probes": 20,
+  "attempted_probes": 20,
+  "outcomes": {
+    "metadata_available": 20
+  },
+  "oembed_metadata_available": 20,
+  "music_artist_work_verified": 0,
+  "media_license_verified": 0,
+  "actual_audio_verified": 0,
+  "audio_ready": 0,
+  "training_ready": 0,
+  "data_api_license_investigation": "blocked_no_authenticated_API_record_in_this_run",
+  "data_api_called": false,
+  "documents": {
+    "videos_api": {
+      "status": 200,
+      "bytes": 293702,
+      "body_sha256": "1f4426a398c599bafa15ac3d71a582209fe09e0252597d4702873b8908028b96",
+      "oversize": false,
+      "transport_error": null
+    },
+    "api_setup": {
+      "status": 200,
+      "bytes": 132689,
+      "body_sha256": "d5eb9113110c06d7f12e63f6d6f01413a7d53c6c385a16352d567620acabcc65",
+      "oversize": false,
+      "transport_error": null
+    },
+    "license_help": {
+      "status": 200,
+      "bytes": 1048577,
+      "body_sha256": "49af472385381dcea766feccb485df45e72201548ae3bf94aab06a8365793b36",
+      "oversize": true,
+      "transport_error": null
+    },
+    "terms": {
+      "status": 200,
+      "bytes": 33844,
+      "body_sha256": "e0929463d1a7f5d3e61d5951d95ef93d945c1033cd1556b582d16b3c420d7665",
+      "oversize": false,
+      "transport_error": null
+    }
+  },
+  "reserved_body_bytes": 5505048,
+  "captured_body_bytes": 1525435,
+  "stopped_after_consecutive_access_errors": false,
+  "operations": {
+    "audio_downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "project_reserved_test_inputs": 0,
+    "new_manual_labels": 0,
+    "paid_resources": 0
+  },
+  "decision": "do_not_download_MusicCaps_media_or_expand_training_from_unverified_sources",
+  "limits": [
+    "oEmbed metadata success is not proof of playable or downloadable media, license or artist/work identity.",
+    "author_id is caption writer; uploader/channel is not necessarily music creator.",
+    "AudioSet split flag is not project train/development/test isolation.",
+    "20 fixed candidate probes are not a full5521 availability or rights estimate; no failed-slot replacement.",
+    "No MusicCaps caption/body used as a model input, no final test or model-quality claim."
+  ],
+  "source_evidence_sha256": "be6d7f55db8245dbaea82363ff04b026b4add6bc48139b0ea82a70fba647d8b4",
+  "task": "MUS-066",
+  "base_sha": "4780f09ee73829ff82d970a2ef4435cda133968a",
+  "actual_source_sha": "4218f737e4bca3494083558561be5fe20312869b",
+  "tests": {
+    "status": "passed",
+    "total": 29,
+    "new": 14,
+    "related_existing": 15,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_musiccaps_source_probe test_caption_source_audit -v",
+    "not_run": [
+      "Java tests and frontend build: offline/source metadata Python only"
+    ]
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent fixed hash selection, returned metadata iframe binding, evidence states, persistent budget/stop and preservation audit; no production probe imports or network requests",
+    "all5521_original2663_2858_and2448_bindings_match": true,
+    "all20_fixed_seed_source_choices_match": true,
+    "all_actual_receipts_status_bytes_SHA_and_unknown_rights_states_match": true,
+    "pre_request_budget_single_URL_attempt_and_access_stop_match": true,
+    "no_audio_API_model_or_final_test_input": true,
+    "prior045_to065_all1170_files_preserved": true,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "e45a03cf61939b110dd2994f5d0503a89b65a0c970f9a3b684eb286618d41b82"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "actual_refusals": [
+      {
+        "output": "run-01",
+        "exit": 1,
+        "refused_before_output_or_network": true
+      },
+      {
+        "output": "forbidden-new",
+        "exit": 1,
+        "refused_before_output_or_network": true
+      }
+    ],
+    "claim_network_ledger_raw_responses_and_results_unchanged": true,
+    "extra_requests": 0
+  },
+  "capture_completeness": {
+    "full_document_responses": 3,
+    "bounded_partial_document_responses": 1,
+    "partial_name": "license_help",
+    "partial_body_bytes": 1048577,
+    "no_recapture_or_budget_increase": true,
+    "all20_probe_JSON_responses_complete": true
+  },
+  "private_evidence_sha256": {
+    "forbidden-new-refusal.log": "bd74db27629433ae152edf7c12fa61aa57a2d600faff0209c16626399fe0ddd0",
+    "guard-audit.json": "89e7db1338308157f500282b278ba0648b4b8f8919ff04d54eee5ad1232ec214",
+    "independent-audit.json": "b1e9e9292b9667db53dadf0a4ebec159a6c00031f3d257a01acb5bc93277de9a",
+    "independent-audit.log": "0e9b9488f39bc49e0b496df8dc0bd899a75f4cc67d6f0e68382a023310ac6b5f",
+    "independent-audit.py": "e45a03cf61939b110dd2994f5d0503a89b65a0c970f9a3b684eb286618d41b82",
+    "network-ledger.jsonl": "55a7b86d57a8e6873a0410aec573c2a755afd24fc113c57ed87610a80da63a68",
+    "prior-before.json": "d384f15d462b25600bc52fd0f7ac94d93fac1e57a1ad030e2728e907221d675b",
+    "probe-started.json": "fe5e279b40df6a04e5512b2d8b3d9d299022e11c03f6283982db4b7aa932e964",
+    "probe.log": "171802613fcdf25e2c326004dac6230d7b65c460650b50378456695c7f0dcd08",
+    "run-01/document-api_setup.body": "d5eb9113110c06d7f12e63f6d6f01413a7d53c6c385a16352d567620acabcc65",
+    "run-01/document-api_setup.receipt.json": "9c37ac50d08e812956df79ca39ec9f2c019bed303b8bf8485ac16ead75314d25",
+    "run-01/document-license_help.body": "49af472385381dcea766feccb485df45e72201548ae3bf94aab06a8365793b36",
+    "run-01/document-license_help.receipt.json": "5541221716793d930fac9587b8a739ff19c11a101db0b6be527c0518a9f73bcf",
+    "run-01/document-terms.body": "e0929463d1a7f5d3e61d5951d95ef93d945c1033cd1556b582d16b3c420d7665",
+    "run-01/document-terms.receipt.json": "d5603b76428741dd4ffbe892cce3dd1cffeceda7a087bf30f45933a67e88af4d",
+    "run-01/document-videos_api.body": "1f4426a398c599bafa15ac3d71a582209fe09e0252597d4702873b8908028b96",
+    "run-01/document-videos_api.receipt.json": "2c620497d769462f3d34face8c0466c31948a8d787e6edd6d683ab395ada4db6",
+    "run-01/freeze.json": "f0e676998eb2f2927aeb82eb34daf86d54ef01b8f2f1ca9cf17af8f764952610",
+    "run-01/probe-01.body": "bd203a139f627a211e20f19d7e6d4ced83157cb6b2d586ce82f9a755b2b62d60",
+    "run-01/probe-01.receipt.json": "7608fb501f9978dc915e9caf6b56d9fdfd1db9124ad36227914a93b8c99f28eb",
+    "run-01/probe-02.body": "7c43faee50c85652946e7703f30ef056b8401bbec6db0b2faf0553817d4097a9",
+    "run-01/probe-02.receipt.json": "3565ca51bc444bb66fea508b693ad73f836c4936ae1a487142e3ba01f5e361cc",
+    "run-01/probe-03.body": "79b04cef67063a8b9dbfe475a977802e2ef52bdfea5988e901bfbecb55da43ad",
+    "run-01/probe-03.receipt.json": "cfeb93ef4cd464be20f5200cc7da0fed01fbd146525c3d2cd1d6769a07b2957b",
+    "run-01/probe-04.body": "0dbee2bb0240e29bbe67bb21c6a3cbc3d25add9bcf195bf8c90c2f250a107f41",
+    "run-01/probe-04.receipt.json": "73debc0f91f140c01edf5ec205118fe679b11610da4cbea36cd8cdb1adc022dc",
+    "run-01/probe-05.body": "35a3de8017ac6ef77cc9c322b19e684810e0b01641071cb4260880720897c509",
+    "run-01/probe-05.receipt.json": "5baf3b405510b44dd9db2c3449ae9cbce001d423a3908688b7711e5903930f59",
+    "run-01/probe-06.body": "d9ce8fcd9380a9b46af23a9f798f161544ac8ff43572692ada6dc269809002a0",
+    "run-01/probe-06.receipt.json": "6376bf84792d17baac6a0255966ad6fb64ad46b2cc1aaddabeb7b2546dbffe91",
+    "run-01/probe-07.body": "dbdc2304cd500f35e2c909236d6983aef9dfd2fdf79fb8d22acf8702588fb08a",
+    "run-01/probe-07.receipt.json": "0a98bff28b091416295705bde377a186fd280244aae1e177bebf26796a574797",
+    "run-01/probe-08.body": "8e8d187bf526270d60e9d914ac499af7d3b21e5507d45fefda5e1cd766646735",
+    "run-01/probe-08.receipt.json": "ff051426fac1eac2c8f80ac3e626ef3b4085d5af867bf1903c6ad35e4af148cc",
+    "run-01/probe-09.body": "60b6b4af0a213281499eb2c1044c550b299fc2fad8608aeb809414997354c887",
+    "run-01/probe-09.receipt.json": "0251b254328fc0e4a3d9e3802e8033f49cc70ef0c47f6c9b589ebb80bdab0137",
+    "run-01/probe-10.body": "0d61ac65b526100cb5971e7f3163be92b567b81a33889d43c1b8435458f2f30f",
+    "run-01/probe-10.receipt.json": "af4b8d512a148dd96d7eb7cba027976b0e44a5f693e86d5451fecf82e2f18a59",
+    "run-01/probe-11.body": "ac9824646a73142e9f5136446a8c632d5761b676343ad5fcc5fa06dbeff9db10",
+    "run-01/probe-11.receipt.json": "bc8e0e7615f0082071a8f45229e6f76a8a67f0f45d63f1d1e95310afd6825e1a",
+    "run-01/probe-12.body": "b2b8f5165166ce004f724526892a94248dbba49445d00603c1715b79dff79ca1",
+    "run-01/probe-12.receipt.json": "4edd4d24bc3c6774185836adcd83cf430b6829a41641da8be1f21a0e017b27c4",
+    "run-01/probe-13.body": "47e1074d9909444f88ef41d80da098d4d8e598e3d3138a6b468c83b10fb903bf",
+    "run-01/probe-13.receipt.json": "03eae91410ca0aadc40db68e2a8bb485c7ac72b29d510c32efd2319f1bac0e67",
+    "run-01/probe-14.body": "dd211d46a32f6a28ee83c0cf1e2cb37a055b66df23f1e1ecc03925b599162c31",
+    "run-01/probe-14.receipt.json": "7a35ea93e7bdee2360161caed91bcfc89dea42982c868341086aae6e8d992e79",
+    "run-01/probe-15.body": "4b21bda0a1c0522e04a076287264dcb9f0e2b21abbc6796223b6e1efa82c84fe",
+    "run-01/probe-15.receipt.json": "f6729969a95022172ed4f12f2c36278bfc14623f55f0527697cb745bc6fd6905",
+    "run-01/probe-16.body": "e8b15c71d111b892cf89e1dbbec53222f3875a09b71db07c2280659533c891e0",
+    "run-01/probe-16.receipt.json": "738630bdcc0b3f92b6d0128762024bac2e26a7c212921c26e8736578f2f0302e",
+    "run-01/probe-17.body": "cc3ced195a1f218364ca1fbee560396ba5abb331f670d28ebed2b2a742413149",
+    "run-01/probe-17.receipt.json": "c775749738aa2bc712d2ee07e5bef2426d85384a71649c7d19533ee9363cd763",
+    "run-01/probe-18.body": "3a3cd22556f1f54161529ef0e4fc411c63f8e6554c5d6d5bebb7cabcd88103dc",
+    "run-01/probe-18.receipt.json": "ab98caf902bd39a2a492252dd7cde897be0bd827168936ee49281724c90a3d7c",
+    "run-01/probe-19.body": "c5eb02533f6b9b694cd692897d52c693f1c18fb37b254daa1a5e8dbd27e8651a",
+    "run-01/probe-19.receipt.json": "c3b1d32a6f46af80909d7c2db038895c6005a7da3811962fcd99b35870b04105",
+    "run-01/probe-20.body": "5bcfdd6ad8c648517e25dcb70c5520e597b2609f4b4fad39ec0e7a188ee135f5",
+    "run-01/probe-20.receipt.json": "ecefc6e824de1c7809ee1055f0fdb13359e0acd5492606cd6555f2b15058ded3",
+    "run-01/probe-plan.json": "dfbb97e6c16fd56bfa6f4239bfeb605df420dbb878fd4bbd78454d2f726cdfbd",
+    "run-01/result-public.json": "8201a819cf37f2ba0b01bfd10f9b82f59fea9d5637a31429a87cfa9baafb3429",
+    "run-01/source-evidence-private.json": "be6d7f55db8245dbaea82363ff04b026b4add6bc48139b0ea82a70fba647d8b4",
+    "run-01-refusal.log": "bd74db27629433ae152edf7c12fa61aa57a2d600faff0209c16626399fe0ddd0",
+    "tests-pre-freeze.log": "ec9c4d3f451784679bf3c7d90831835586323273bed33b451550c149f5d75e84",
+    "tests.log": "1f9cf5b2f4ea3f3c29d9efe9c4eb352d9022ec2c8a8dc40046a1d72f196f5ca2"
+  }
+}

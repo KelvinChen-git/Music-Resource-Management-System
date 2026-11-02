@@ -265,4 +265,4 @@ MUS-064已完成六曲/七原全文本与146候选固定对照，CPU/MPS与旧14
 
 MUS-065已审计Clotho三split 5929段：固定音乐/乐器tag训练19→音频BY/BYSA6→来源与上传者隔离后仅1段/5描述，不足音乐扩训主库，停止该路线。57检查/独立图与计数/8拒绝passed；三次原失败与显式修复链保留，未取音频/fit/新人工任务。Clotho还参与CLAP检查点选择，不当全新独立评测，见[容量报告](docs/evaluation/MUS-065-clotho-capacity.md)。
 
-MUS-066准备MusicCaps固定20来源的公开metadata抽查，分开记录可访问、许可和音乐作者/音频核验；不把oEmbed成功当训练就绪，不取音频或新fit，见[来源核查](docs/evaluation/MUS-066-musiccaps-source-audit.md)。
+MUS-066已完成MusicCaps固定20来源的公开metadata抽查，20/20可读取；许可、音乐作者/作品与实际音频仍未核，训练就绪0，不取音频/fit。29检查/独立收据状态与两禁重passed，4官方说明中1份超限仅存部分响应，未扩大预算。下一步先补权利与来源证据，见[来源核查](docs/evaluation/MUS-066-musiccaps-source-audit.md)。

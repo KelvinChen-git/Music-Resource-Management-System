@@ -384,3 +384,5 @@ MUS-065已完成Clotho v2.1人写研究训练候选容量：6来源文件2,636,9
 ## MUS-066：MusicCaps来源可用性与权利证据准备（2026-11-02）
 
 复用050固定2448非AudioSet-eval原未增强框，不重取caption库。固定hash20来源只查公开oEmbed元数据，四官方说明另快照；严格分开metadata可用/音乐作者身份/许可/真实10秒音频，不从caption author_id或embeddable等推导通过。E40/config/source先提交后单claim执行，无音频/模型/fit/新人工包，identity/完整文本与原版UI/main保持。
+
+MUS-066已完成MusicCaps固定20来源metadata抽查：干净4218f737e4bca3494083558561be5fe20312869b首次exit0，050原2448非AudioSet-eval/未增强框固定hash20，20/20官方oEmbed HTTP200/JSON/provider/同videoID与uploader绑定通过；这仅是metadata可读取，不证明可播放/可下载或训练许可。逐源许可、音乐人/作品和真实音频均未核，audio_ready/training_ready0，未调用Data API，许可API记录调查blocked。4说明+20probe共24请求，预记5505048<8MiB/正文1525435bytes，无redirect/重试/替补；license_help超过1MiB只保留1048577bytes部分响应，其余3说明/20JSON完整，不扩预算或重取。29检查14新15旧/独立选择收据与状态计数/两实际禁重passed，旧045–065共1170工件及原版/模型cache/历史951+B047/23源码54cache/043044/160保持。无音频/编码/fit/新人工包/保留test/付费资源/UI/DB/main/B047卡变化，identity/全文本保持。 见[来源审计](evaluation/MUS-066-musiccaps-source-audit.md)。
