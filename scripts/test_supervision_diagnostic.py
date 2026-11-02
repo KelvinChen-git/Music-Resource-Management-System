@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 import numpy as np
 import supervision_diagnostic as m
-from diagnose_supervision import validate, run
+from diagnose_supervision import validate, run, bound_human_texts
 import holdout_contract as h
 
 
@@ -91,6 +91,17 @@ class SupervisionDiagnosticTests(unittest.TestCase):
         with patch('diagnose_supervision.h.assets.document',return_value=c),patch('diagnose_supervision.validate'),patch('diagnose_supervision.subprocess.check_output',return_value=b''),patch('pathlib.Path.exists',return_value=True),patch('diagnose_supervision.h.private_output')as output:
             with self.assertRaisesRegex(ValueError,'already attempted'):run(config='config',config_sha256='a'*64,output=h.ROOT/'.local/a/mus059/other')
             output.assert_not_called()
+
+    def test_human_texts_follow_original_query_order_not_new_pool_order(self):
+        rows=[{'source_track_id':str(i),'split':'caption_dev'}for i in range(20)]
+        source={'selected':{'caption_dev':[{'source_track_id':str(i),'captions':[{'text':f'original{i}-{j}'}for j in range(2 if i<4 else 1)]}for i in range(20)]}}
+        texts=[q['text']for r in source['selected']['caption_dev']for q in r['captions']]
+        tracks=[r['source_track_id']for r in source['selected']['caption_dev']for q in r['captions']]
+        original={'rows':rows,'query_text_sha256':[h.digest(t.encode())for t in texts],'query_tracks':tracks}
+        pool={'rows':list(reversed(rows)),'query_text_sha256':original['query_text_sha256'],'query_tracks':tracks}
+        self.assertEqual(bound_human_texts(source,original,pool),texts)
+        pool['query_tracks']=list(reversed(tracks))
+        with self.assertRaises(ValueError):bound_human_texts(source,original,pool)
 
 
 if __name__=='__main__':unittest.main()

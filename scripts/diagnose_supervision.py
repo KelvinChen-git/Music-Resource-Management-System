@@ -37,6 +37,19 @@ def validate(c):
               and c['automatic_selection_or_deployment'] is False, 'Fixed descriptive no-learning protocol required')
 
 
+def bound_human_texts(dataset, original_meta, retrieval_meta):
+    dev = {r['source_track_id']: r for r in dataset['selected']['caption_dev']}
+    # The MPS retrieval pool is sorted independently; query order stays with the original cache.
+    texts = [q['text'] for r in original_meta['rows'] if r['split'] == 'caption_dev'
+             for q in dev[r['source_track_id']]['captions']]
+    tracks = [r['source_track_id'] for r in original_meta['rows'] if r['split'] == 'caption_dev'
+              for q in dev[r['source_track_id']]['captions']]
+    h.require(len(texts) == 24 and [h.digest(t.encode()) for t in texts] == retrieval_meta['query_text_sha256']
+              == original_meta['query_text_sha256'] and tracks == retrieval_meta['query_tracks']
+              == original_meta['query_tracks'], 'Only existing complete24 bound development texts required')
+    return texts
+
+
 def run(*, config, config_sha256, output):
     c = h.assets.document(config, config_sha256); validate(c)
     h.require(not subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip(), 'Clean committed diagnostic required')
@@ -72,10 +85,7 @@ def run(*, config, config_sha256, output):
                   and docs['baseline_result']['adapter_sha256'] == c['baseline_adapter']['sha256'], 'Saved model identity differs')
         retrieval = features.ready_view(ROOT/c['retrieval_cache']['path'], c['retrieval_cache']['sha256'],
                          expected_device='mps', expected_model_sha256=c['expected_model_sha256'], view='caption_retrieval')
-        dev = {r['source_track_id']: r for r in docs['human_dataset']['selected']['caption_dev']}
-        human = [q['text'] for r in docs['retrieval_cache']['rows'] if r['split'] == 'caption_dev' for q in dev[r['source_track_id']]['captions']]
-        h.require(len(human) == 24 and [h.digest(t.encode()) for t in human] == docs['retrieval_cache']['query_text_sha256']
-                  == docs['human_text_metadata']['query_text_sha256'], 'Only existing complete24 development texts required')
+        human = bound_human_texts(docs['human_dataset'], docs['human_text_metadata'], docs['retrieval_cache'])
         original_ids = {r['id'] for r in docs['old_cache']['rows']}
         subsets = {'train100': [i for i, r in enumerate(rows) if r['split'] == 'train'],
                    'original37': [i for i, r in enumerate(rows) if r['split'] == 'train' and r['id'] in original_ids],
