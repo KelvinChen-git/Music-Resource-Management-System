@@ -575,3 +575,14 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 源码/config/input/CPU NumPy运行时先冻结，task持久diagnostic claim防止换目录反复修改阈值/隐式重跑；纯CPU缓存运算、不导入Torch/CLAP。只发布聚合和私有证据hash，原句、5gram正文、近重复对及逐查询名次留私有，不生成新人工包。结论以描述统计和限定推断表达，audible semantic correctness仍未验证；后续训练需另冻假设，当前保持identity/原版/UI/Java/DB/main/B047卡。
 
 059执行修复记录：68878c0预检将原24查询误按新候选排序读取，SHA拦截、无freeze/claim；c3e70f6已修复原缓存顺序。该版实际诊断在单区间合法录音上失败，原run-02/freeze、failure和diagnostic-started claim保持原字节，无结果/新fit。新的显式repair config原样继承所有原输入/子集/阈值，只添加钉住的原config/claim/freeze/failure与单区间支持规则：所有录音仍进跨曲/geometry；同曲异区间量只在至少两区间的录音间重新等权，同时披露支持数/覆盖率，无支持返回null。仅准上述准确失败的一次diagnostic-repair-started独占修复，先核原输入hash、无旧完成结果，禁止通用重跑/重置旧claim/更改阈值或来源。保留两个失败目录和日志，修复结果独立输出；不把修复冒称首轮成功。
+
+
+## E34：MUS-060 训练残差中心化单次对照（2026-11-01）
+
+复用058全部599完整描述特征（17–195原词元、256无截断）、100train539/83作者组件与20val60/19组件，单区间来源全部保留，原文/向量/权重/候选池不变。唯一新假设来自059：正配对ridge更新主要沿共同残差方向。训练q仍每录音等权再区间等权，R=T-X，仅用train539算mu=sum(qR)，目标sum(q||X(W-I)-(R-mu)||²)+alpha||W-I||F²、alpha1固定；X不居中，不给标签加新负例，不把mu从推理结果再扣一遍。只更新512×512适配W、原CLAP/文字不改，推理仍unit(XW)与原文字向量。
+
+纯CPU float64/2线程，primal闭式解一次，无lambda/中心化强度/子集搜索；mu仅训练、中心化目标加权均值接近0、正规方程残差/新目标下降必须通过，目标值不能跨不同目标直接比较为质量收益。已有identity/055已存37全文本ridge/058已存100全文本ridge均不重训；唯一新centered100与三锚完整报告。原始输入/源码/config/NumPy runtime先冻结，持久fit claim禁止原目录或换目录二fit，失败保持原件/claim且不自动重试；W、mu和fit收据先保存再分析validation/人写dev。完整性会物理读共享验证数组与token证明，但solver/均值只用train539。
+
+主指标旧140整曲recording宏MRR新centered100减已存100；次要两池20/140×整曲/窗口R1/R5/MRR、生成val20/60和原7/23两个子集的精确区间/录音max，三旧锚结果必须完整复现058。固定2000次/seed20261102060按录音配对bootstrap，仅已看dev描述性区间，不能称新盲测或正式显著性。另复用059定义，仅描述train100/val20已知配对与未判其他歌曲/区间的差值、共同残差方向投影能量；同曲统计按多区间支持57/9曲条件等权，不按这些诊断选模型/删除来源。
+
+本轮不编码/下载/改文本标签/开保留test/新增人工包或付费GPU，默认仍保持identity，不自动部署。新W与训练mu只存私有目录，发布聚合/方法/hash，不发真实ID/正文/逐项排名。独立验证训练mu/dual等价解/目标正规方程/全部排名和24组bootstrap、chronology及实际单fit保护，保留旧045–059全部工件与原版/UI/Java/DB/main/B047原卡。结果若不支持假设如实记录，不在该dev上追加参数试验。

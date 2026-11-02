@@ -4,7 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作：MUS-059 review / A / codex/MUS-059-supervision-diagnostic，base363f0b1、实际修复f473827ba2a33ef726dc4ec319f5344987ad2b82。599词面无整段/固定近重复，新100更新共同残差方向能量89.79%；配对与异曲均分同步上升、相对差异改善小。train43/val11仅1合格区间，同曲对照支持57/9；人写与训练表达长度/词面差异不当语义错证据。192检查/独立全统计/两claim跨目录保护passed；原查询顺序预检失败、单区间统计失败与显式修复全部保留。下一步另冻共同残差均值分离的一次训练内对照；本轮无fit/编码/标签编辑/保留test，旧955工件/原版/UI/main保持。
+- 当前工作：MUS-060 in_progress / A / codex/MUS-060-centered-residual-training，base82d652a。占用新中心化residual learner/runner/测试、060 config/report/results及README/CONTRACTS/STATUS/A latest；原100/539全文本/alpha1/录音权重，train-only mu单fit，对照已存100/37与identity，不变数据/负标签/保留test/UI/main。
+
+- 上轮交付：MUS-059 review / A / codex/MUS-059-supervision-diagnostic，base363f0b1、实际修复f473827ba2a33ef726dc4ec319f5344987ad2b82。599词面无整段/固定近重复，新100更新共同残差方向能量89.79%；配对与异曲均分同步上升、相对差异改善小。train43/val11仅1合格区间，同曲对照支持57/9；人写与训练表达长度/词面差异不当语义错证据。192检查/独立全统计/两claim跨目录保护passed；原查询顺序预检失败、单区间统计失败与显式修复全部保留。下一步另冻共同残差均值分离的一次训练内对照；本轮无fit/编码/标签编辑/保留test，旧955工件/原版/UI/main保持。
 
 - 上轮交付：MUS-058 review / A / codex/MUS-058-expanded-fulltext-training，base97347bc、实际7d910ce65250d5e9f1d43579b9a7b209f631bb3a。599完整token/旧232逐元素复用/新367 MPS、1797窗/CPU控制passed；100train539固定alpha1单fit26.337ms。主140宏MRR旧37 .447149→新100 .447217、差CI[-.000738,.000888]含零，生成验证精确区间与20池整曲下降，当前无明确扩样收益，保留identity。176检查/独立token与primal/全部排名16组bootstrap/typed consumer和两stage跨目录保护passed，旧929文件/原版/UI/main保持。无搜参/保留test/部署；下一步先改进监督证据与评测覆盖，不继续仅扩量或同dev调参。
 
@@ -74,6 +76,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-060 残差中心化训练对照 | in_progress / A | codex/MUS-060-centered-residual-training / base82d652a；依赖058/059 | 原100/539训练均值/alpha1单fit，三旧锚全部复现/两人写池两验证视图、独立dual/24bootstrap/持久保护；完整文本/原版/UI/main保持 |
 | MUS-059 监督与评测覆盖诊断 | review / A（只读诊断完成，修复原件保留） | codex/MUS-059-supervision-diagnostic / f473827；base363f0b1，依赖058 | 共同方向89.79%/无固定近重复/单区间43+11；192检查、独立全统计及原+repair保护passed，无fit或自动语义标签，下一步另冻残差中心化对照 |
 | MUS-058 全文本扩样固定训练 | review / A（特征/单fit与比较完成） | codex/MUS-058-expanded-fulltext-training / 7d910ce；base97347bc，依赖057/055 | 599完整token/176检查，100/539固定alpha1单fit；主MRR .447149→.447217无明确增益，生成val下降，保留identity；独立primal/16组bootstrap/两stage保护passed |
 | MUS-057 有界音频描述扩样 | review / A（配对检查完成，工具独立审核待安排） | codex/MUS-057-caption-data-expansion / 9a1fff4；base37fec0a，依赖044/045/051/052 | 新63/13与367段；合计100train539/20val60，165检查/独立全框PCM原文/9anchor/重复保护passed；无CLAP或fit，下一步完整文本特征/固定参数扩样对照 |

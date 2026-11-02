@@ -1,5 +1,13 @@
 # 账号 A 最新交接
 
+## 当前：MUS-060训练残差中心化固定对照执行中
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-060-centered-residual-training`，base `82d652aade7edf24cb6bb296059f212d7cae7336`。E34/config先冻结：原100/539全文本特征/alpha1/录音权重，mu仅训练求取、一次CPU拟合，不加未判负标签/不删单区间来源。三已存锚/两人写池两验证视图全部报告，失败原件/claim保持；原版/UI/main/B047卡保持。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T05:11:42Z双方fetched，B未变。B047限定批准已接收，不外推060/无新派卡。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-059监督与评测覆盖诊断完成，当前模型保持
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-059-supervision-diagnostic`，base `363f0b14fe6d78705065d2d884f4433cd374cc2f`，实际修复源码 `f473827ba2a33ef726dc4ec319f5344987ad2b82`；最终交付SHA见handoff.source_sha。059 review，工具独立审核待安排，仅描述统计/限定推断，不当语义质量验证。

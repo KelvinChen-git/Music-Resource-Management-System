@@ -1,0 +1,89 @@
+{
+  "schema": "sonora-centered-residual-training-v1",
+  "task_directory": ".local/a/mus060",
+  "base_sha": "82d652aade7edf24cb6bb296059f212d7cae7336",
+  "expanded_cache": {
+    "path": ".local/a/mus058/build-01/cache.json",
+    "sha256": "c88c3613a2ad3c78be1c141461a3a6a7e747e1d7bf66c88af5f1056571e0fce9"
+  },
+  "uncentered_adapter": {
+    "path": ".local/a/mus058/fit-01/adapter.npz",
+    "sha256": "e903f5497633c0410b98dfc07733a2089f3130194341fef371cf19835e3bb748"
+  },
+  "uncentered_result": {
+    "path": ".local/a/mus058/fit-01/result-private.json",
+    "sha256": "3ff1f78b3e9ddb6734c489ce6791851c75090f52fda0345e9e3104484f968e08"
+  },
+  "original37_adapter": {
+    "path": ".local/a/mus055/fit-01/adapter.npz",
+    "sha256": "755d213fa4699d952773558c120f49db0e229e2b8ba74adc282ff87ed2fd4e0e"
+  },
+  "original37_result": {
+    "path": ".local/a/mus055/fit-01/result-private.json",
+    "sha256": "7eb056828262fe3e8a61aea6a135b6f6167f6b77939de6ffa2b852358b5c5dca"
+  },
+  "old_cache": {
+    "path": ".local/a/mus053/build-01/cache.json",
+    "sha256": "fba03908d5492895069361d701902d986ed9e1b41751df8b885541baa141239d"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "human_text_metadata": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "token_proof": {
+    "path": ".local/a/mus058/build-01/token-proof.json",
+    "sha256": "fa5e252eed13129e333694b4cd5638c9b7690a212feac01adf658d7f4b483d84"
+  },
+  "diagnostic_result": {
+    "path": ".local/a/mus059/run-03/result.json",
+    "sha256": "8e3a14776772c9e17eed14e8091962642e23db67948b60d455956e4d9e800f80"
+  },
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "counts": {
+    "train_recordings": 100,
+    "train_components": 83,
+    "train_intervals": 539,
+    "validation_recordings": 20,
+    "validation_components": 19,
+    "validation_intervals": 60
+  },
+  "dimension": 512,
+  "token_length": 256,
+  "text_policy": "complete_original_tokens_no_reencoding_no_truncation",
+  "alpha": 1.0,
+  "residual_centering": "mu=sum_train(q*(T-X));Y=(T-X)-mu;X_not_centered;no_inference_mean_subtraction",
+  "loss": "sum_i(q_i*||X_i*(W-I)-((T_i-X_i)-mu_train)||^2)+alpha*||W-I||_F^2",
+  "solver": "float64_weighted_primal_ridge_identity_prior",
+  "weights": "each_recording_equal_then_each_interval_equal",
+  "candidate_fits": 1,
+  "hyperparameter_search": false,
+  "validation_used_for_centering_or_selection": false,
+  "comparators": [
+    "identity",
+    "saved37-fulltext-ridge",
+    "saved100-fulltext-ridge",
+    "centered100-fulltext-ridge"
+  ],
+  "primary_metric": "expanded140_whole_recording_macro_MRR_centered100_minus_saved100",
+  "validation_views": [
+    "expanded20",
+    "original7"
+  ],
+  "diagnostic_views": [
+    "train100",
+    "validation20"
+  ],
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261102060,
+  "seed": 0,
+  "blas_threads": 2,
+  "new_encodes": 0,
+  "downloads": 0,
+  "test_inputs": 0,
+  "label_edits": 0,
+  "decision": "retain_identity_no_automatic_selection_or_deployment"
+}
