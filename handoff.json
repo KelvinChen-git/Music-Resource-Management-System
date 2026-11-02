@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-02T05:20:46.327481+00:00",
-  "source_branch": "codex/MUS-060-centered-residual-training",
-  "source_sha": "8a337002d8f500114865405aa321c972f4e5f07e",
+  "published_at": "2026-11-02T05:41:27.400965+00:00",
+  "source_branch": "codex/MUS-061-human-caption-capacity",
+  "source_sha": "9c6d690bd9054599f4c7f1382729180e9c3731ad",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "59dad5100456c9e0a56e82039c73c6d125f1f2293c8e40d098061a26187c44d9"
+  "report_sha256": "a28e2b3847a83f8fc7f9550eb3ad7f561d3a24cac9125849206dcdaab1df813c"
 }
