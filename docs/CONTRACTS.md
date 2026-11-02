@@ -653,3 +653,5 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 公开只聚合/hash/方法，私人目录700/600保存原元数据、源URL/许可、计数绑定的候选清单。只输出metadata候选，不声称audio_ready/training_ready或独立benchmark。检查当前CLAP是否曾用Clotho选checkpoint；未知的跨来源作者/作品/声学重复与预训练交集保留。无新fit/模型输入/音频归档/商用部署/人工任务/保留test/UI/DB/main；旧045–064集合/hash与原版/B047卡保持。
 
 065另捕获CLAP官方README固定Git commit1fd4c37df5ffbfcfbad5415c170bc66cf94c9994（单文件2MiB预记，总12MiB<16MiB），只核当前A命名/Clotho与AudioCaps用于checkpoint选择的原说明，不把它当精确训练成员证明。该源同样绑定本地SHA/config。
+
+065显式格式修复：首轮def5a6c被19条官方sound_id=Not found/sound_link=NA拒绝，run-01/原audit claim与失败保持。仅接受该成对marker为未解析来源，不合并所有缺失ID，保留各自uploader参与闭包且永不进候选；其他坏ID/错配URL仍拒绝。原输入/tag/rights/模型零操作不变；另repair config绑定原config/claim/failure SHA，独立repair-started单attempt，原claim不能重置，非按结果换规则。

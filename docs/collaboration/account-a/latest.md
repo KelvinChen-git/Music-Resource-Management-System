@@ -8,6 +8,8 @@ ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `
 
 只捕获Clotho v2.1 LICENSE/三metadata/dev captions及CLAP准确commit README，正常TLS/官方MD5与SHA；各2MiB/任务16MiB内，原音频/val和eval caption不取。固定music/instrument whole tag、不看正文语义，按所有split同source/uploader闭包排除跨split，BY/BYSA音频、caption仅实验非商业用途分开报告。Clotho曾用于CLAP选checkpoint，不冒充全新独立测试；本轮无模型/音频/fit/质量分/人工包/封存test，候选仅metadata。旧045–064共1115文件已快照，原版/UI/DB/main保持。
 
+格式修复检查点：def5a6c首轮因官方19条sound_id=Not found/sound_link=NA而失败，run-01/原claim保持。显式repair-config绑定原config/claim/failure，只把准确marker隔离，保留各自uploader闭包，未按caption/分数改规则；另持久repair claim禁重复。52检查20新32旧passed，首次codec拼写错误合成日志保留。实际修复运行待提交后执行。
+
 ## 上一轮交接（保留）
 
 

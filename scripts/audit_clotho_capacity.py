@@ -39,8 +39,21 @@ def selection_proof(raw):
 
 def run(config, config_sha256, output):
     cfg = h.assets.document(config, config_sha256); validate(cfg); task = ROOT/cfg['task_directory']
-    h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/'audit-started.json').exists(),
+    repair = cfg.get('repair')
+    claim_name = 'repair-started.json' if repair else 'audit-started.json'
+    h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/claim_name).exists(),
               'Audit already attempted or invalid output; no new-directory retry')
+    if repair:
+        original = h.assets.document(ROOT/repair['original_config']['path'], repair['original_config']['sha256'])
+        oldclaim = h.assets.document(task/'audit-started.json', repair['original_claim_sha256'])
+        failure = h.assets.document(task/'run-01/failure.json', repair['original_failure_sha256'])
+        h.require(repair['policy'] == 'known_Not_found_NA_quarantine_retain_uploader_closure'
+                  and oldclaim['config_sha256'] == repair['original_config']['sha256']
+                  and failure == {'error_type':'ValueError','error':'Bound source/name/uploader required'}
+                  and not (task/'run-01/result-private.json').exists()
+                  and original['inputs'] == cfg['inputs'] and original['music_tags'] == cfg['music_tags']
+                  and original['audio_license_families'] == cfg['audio_license_families'],
+                  'Only explicit incomplete-source format repair without source/selection changes allowed')
     h.require(not subprocess.check_output(['git','status','--porcelain'],cwd=ROOT).strip(), 'Committed clean source required')
     target = h.private_output(output)
     try:
@@ -49,11 +62,15 @@ def run(config, config_sha256, output):
             path = ROOT/pin['path']; h.require(h.file_hash(path) == pin['sha256'], 'Pinned source changed')
             bound[str(path.absolute())] = pin['sha256']
             if 'md5' in pin: h.require(hashlib.md5(h.assets.read(path)).hexdigest() == pin['md5'], 'Official source MD5 mismatch')
+        if repair:
+            bound[str((ROOT/repair['original_config']['path']).absolute())] = repair['original_config']['sha256']
+            bound[str(task/'audit-started.json')] = repair['original_claim_sha256']
+            bound[str(task/'run-01/failure.json')] = repair['original_failure_sha256']
         freeze = {'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
                   'source_sha256':{n:h.file_hash(ROOT/n) for n in SOURCES}, 'input_sha256':bound,
                   'config_sha256':config_sha256,'created_at_utc':h.now(),'python':platform.python_version(),'system':platform.system()}
         h.write_json(target/'freeze.json',freeze)
-        h.write_json(task/'audit-started.json',{'started_at_utc':h.now(),'source_sha':freeze['source_sha'],
+        h.write_json(task/claim_name,{'started_at_utc':h.now(),'source_sha':freeze['source_sha'],
                      'config_sha256':config_sha256,'output':str(target),'maximum_attempts':1,'fits':0})
         value = source.analyze({split:h.assets.read(ROOT/cfg['inputs'][split]['path']) for split in source.SPLITS},
                                h.assets.read(ROOT/cfg['inputs']['captions_development']['path']))

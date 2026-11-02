@@ -74,6 +74,31 @@ class ClothoCapacityTests(unittest.TestCase):
         self.assertTrue(runner.selection_proof(raw)['Clotho_in_checkpoint_selection_metric'])
         self.assertFalse(runner.selection_proof(raw)['exact_training_membership_established'])
         with self.assertRaises(ValueError):runner.selection_proof(b'Clotho')
+    def test_known_missing_source_retains_uploader_bridge_and_cannot_be_candidate(self):
+        missing=self.row(7,'same');missing.update(sound_id='Not found',sound_link='NA')
+        raw,cap=self.fixture();raw['validation']=self.csv([missing])
+        value=c.analyze(raw,cap)
+        self.assertEqual(value['split_summary']['validation']['missing_source_binding_all_clips'],1)
+        self.assertEqual(value['split_summary']['validation']['source_bound_BY_BYSA_music_clips'],0)
+        self.assertEqual([r['sound_id']for r in value['training_candidates']],['2'])
+        self.assertEqual(value['cross_split_component_clips'],2)
+    def test_unrelated_missing_source_markers_do_not_merge_components(self):
+        a=self.row(1,'x');b=self.row(2,'y')
+        for row in [a,b]:row.update(sound_id='Not found',sound_link='NA')
+        raw,cap=self.fixture();raw['validation']=self.csv([a]);raw['evaluation']=self.csv([b]);v=c.analyze(raw,cap)
+        self.assertEqual(v['cross_split_components'],0)
+    def test_missing_ID_without_exact_official_link_marker_is_not_accepted(self):
+        row=self.row(1);row['sound_id']='Not found'
+        with self.assertRaises(ValueError):c.metadata(self.csv([row]),'development')
+    def test_repair_claim_also_blocks_new_directory(self):
+        cfg=json.loads(Path('docs/evaluation/MUS-065-source-config.json').read_text());cfg['repair']={}
+        # An actual repair descriptor is truthy and only its claim is consulted first.
+        cfg['repair']={'policy':'known_Not_found_NA_quarantine_retain_uploader_closure'}
+        with tempfile.TemporaryDirectory()as tmp:
+            root=Path(tmp).resolve();task=root/cfg['task_directory'];task.mkdir(parents=True);(task/'repair-started.json').write_text('{}')
+            with patch.object(runner,'ROOT',root),patch.object(runner.h.assets,'document',return_value=cfg):
+                with self.assertRaisesRegex(ValueError,'already attempted'):runner.run(root/'config','0'*64,task/'new')
+            self.assertFalse((task/'new').exists())
     def test_persistent_claim_refuses_new_directory_before_output(self):
         cfg=json.loads(Path('docs/evaluation/MUS-065-source-config.json').read_text())
         with tempfile.TemporaryDirectory()as tmp:
