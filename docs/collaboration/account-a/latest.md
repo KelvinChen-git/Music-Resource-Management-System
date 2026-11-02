@@ -2,6 +2,8 @@
 
 ## 当前：MUS-065 Clotho人写研究训练容量准备
 
+第二修复检查点：f66fbf8首repair遇2条manufacturer与URL uploader重音差异，原repair-01/claim保留；不静默认同一人，两个uploader键皆入保守闭包、该行不能进候选，已知sound边仍保留。其余schema/offset/caption键诊断完整，无新素材/文字改动；v2-config绑定两失败链，另单次claim。55检查23新32旧passed，待提交后实际v2 audit。
+
 A；2026-11-02 America/Chicago；branch codex/MUS-065-human-source-capacity，base77aabf4d3d77b99e4876b77a7f07c11b5222874f。E39/config先提交后实际audit，当前仅来源捕获、统计未执行。
 
 ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:19:40Z双方fetched，A06467f31/source77aabf4，B未变。047准确限定批准已接收，不外推065/无新派发，原B卡保持。

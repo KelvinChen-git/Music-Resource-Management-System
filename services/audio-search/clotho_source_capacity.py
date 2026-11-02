@@ -50,13 +50,16 @@ def metadata(raw, split):
         require(name and '/' not in name and '\\' not in name and name not in ('.', '..')
                 and user.strip(), 'Bound source/name/uploader required')
         unresolved = sid == 'Not found' and row['sound_link'] == 'NA'
+        link_user = None
         if not unresolved:
             require(re.fullmatch('[0-9]+', sid) is not None and int(sid) > 0, 'Bound source/name/uploader required')
             sid = str(int(sid)); url = urlsplit(row['sound_link'])
-            expected = f'/people/{user}/sounds/{sid}'
+            match = re.fullmatch(r'/people/([^/]+)/sounds/([0-9]+)/?', unquote(url.path))
             require(url.scheme in ('http', 'https') and url.netloc in ('freesound.org', 'www.freesound.org')
-                    and unquote(url.path).rstrip('/').casefold() == expected.casefold() and not url.query and not url.fragment,
+                    and match is not None and str(int(match[2])) == sid and not url.query and not url.fragment,
                     'Freesound ID/uploader URL binding differs')
+            link_user = match[1].casefold()
+        uploader_mismatch = link_user is not None and link_user != user.casefold()
         offsets = None
         if row['start_end_samples']:
             offsets = json.loads(row['start_end_samples'])
@@ -64,7 +67,9 @@ def metadata(raw, split):
                     and 0 <= offsets[0] < offsets[1], 'Two ordered source sample offsets required')
         hits = sorted(set(normalize(t) for t in row['keywords'].split(';')) & set(TAGS))
         result.append({**row, 'split': split, 'sound_id': sid, 'uploader_key': user.casefold(), 'source_sample_offsets': offsets,
-                       'source_resolved': not unresolved, 'music_tag_hits': hits, 'explicit_music_tag': bool(set(hits) & {'music', 'musical'}),
+                       'source_id_known': not unresolved, 'source_resolved': not unresolved and not uploader_mismatch,
+                       'source_binding_reason': 'missing_source_ID_and_URL' if unresolved else 'uploader_field_URL_mismatch' if uploader_mismatch else 'bound',
+                       'uploader_keys': sorted({user.casefold()} | ({link_user} if link_user else set())), 'music_tag_hits': hits, 'explicit_music_tag': bool(set(hits) & {'music', 'musical'}),
                        'license_family': license_family(row['license'])})
     require(len({r['file_name'] for r in result}) == len(result), 'Duplicate filename within split')
     return result, encoding
@@ -93,13 +98,13 @@ def analyze(raw_by_split, captions):
         return i
     seen = {}
     for i, row in enumerate(rows):
-        for key in ([('source', row['sound_id'])] if row['source_resolved'] else []) + [('uploader', row['uploader_key'])]:
+        for key in ([('source', row['sound_id'])] if row['source_id_known'] else []) + [('uploader', user) for user in row['uploader_keys']]:
             if key in seen: parent[find(i)] = find(seen[key])
             else: seen[key] = i
     groups = defaultdict(list)
     for i, row in enumerate(rows): groups[find(i)].append(row)
     for values in groups.values():
-        identity = '\n'.join(sorted({(r['sound_id'] if r['source_resolved'] else r['split']+'|'+r['file_name'])+'|'+r['uploader_key'] for r in values}))
+        identity = '\n'.join(sorted({(r['sound_id'] if r['source_id_known'] else r['split']+'|'+r['file_name'])+'|'+r['uploader_key'] for r in values}))
         key = hashlib.sha256(identity.encode()).hexdigest()
         splits = sorted({r['split'] for r in values})
         for row in values: row.update(component=key, component_splits=splits, cross_split_component=len(splits) > 1)
@@ -110,8 +115,9 @@ def analyze(raw_by_split, captions):
         rights = [r for r in music if r['license_family'] in ('by', 'by-sa')]
         bound = [r for r in rights if r['source_resolved']]
         isolated = [r for r in bound if not r['cross_split_component']]
-        summary[split] = {'metadata_clips': len(allrows), 'unique_source_recordings': len({r['sound_id'] for r in allrows if r['source_resolved']}),
-            'uploader_keys': len({r['uploader_key'] for r in allrows}),
+        summary[split] = {'metadata_clips': len(allrows), 'unique_source_recordings': len({r['sound_id'] for r in allrows if r['source_id_known']}),
+            'uploader_keys': len({u for r in allrows for u in r['uploader_keys']}),
+            'source_binding_reasons': dict(sorted(Counter(r['source_binding_reason'] for r in allrows).items())),
             'all_clips_license_families': dict(sorted(Counter(r['license_family'] for r in allrows).items())),
             'music_tag_clips': len(music), 'explicit_music_tag_clips': sum(r['explicit_music_tag'] for r in music),
             'instrument_tag_only_clips': sum(not r['explicit_music_tag'] for r in music),
@@ -130,6 +136,6 @@ def analyze(raw_by_split, captions):
         'all_components': len(groups), 'cross_split_components': sum(len({r['split'] for r in v}) > 1 for v in groups.values()),
         'cross_split_component_clips': sum(r['cross_split_component'] for r in rows),
         'development_caption_pairs': sum(counts.values()), 'training_candidate_caption_pairs': len(candidates)*5,
-        'training_candidates': candidates, 'metadata_components': [{k:r[k] for k in ('split','file_name','sound_id','source_resolved','uploader_key','component','cross_split_component')} for r in rows],
+        'training_candidates': candidates, 'metadata_components': [{k:r[k] for k in ('split','file_name','sound_id','source_resolved','source_id_known','uploader_key','uploader_keys','component','cross_split_component')} for r in rows],
         'training_ready': False, 'audio_ready': False, 'independent_benchmark_ready': False,
         'body_semantics_used': False, 'operations': dict.fromkeys(('audio_downloads','encodes','fits','quality_scores','reserved_test_inputs','new_manual_labels'),0)}

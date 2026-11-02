@@ -51,7 +51,7 @@ class ClothoCapacityTests(unittest.TestCase):
         caps,_=c.caption_structure(self.captions(['caf\u00e9.wav']));self.assertIn(v[0]['file_name'],caps)
     def test_unknown_schema_extra_column_or_bad_source_binding_refused(self):
         row=self.row(1)
-        for key,value in [('sound_id','no'),('sound_link','https://freesound.org/people/b/sounds/1'),('file_name','../x'),('manufacturer','')]:
+        for key,value in [('sound_id','no'),('sound_link','https://freesound.org/people/a/sounds/2'),('file_name','../x'),('manufacturer','')]:
             r={**row,key:value}
             with self.assertRaises(ValueError):c.metadata(self.csv([r]),'development')
         with self.assertRaises(ValueError):c.metadata(self.csv([row]).replace(b'keywords',b'caption'),'development')
@@ -96,6 +96,22 @@ class ClothoCapacityTests(unittest.TestCase):
         cfg['repair']={'policy':'known_Not_found_NA_quarantine_retain_uploader_closure'}
         with tempfile.TemporaryDirectory()as tmp:
             root=Path(tmp).resolve();task=root/cfg['task_directory'];task.mkdir(parents=True);(task/'repair-started.json').write_text('{}')
+            with patch.object(runner,'ROOT',root),patch.object(runner.h.assets,'document',return_value=cfg):
+                with self.assertRaisesRegex(ValueError,'already attempted'):runner.run(root/'config','0'*64,task/'new')
+            self.assertFalse((task/'new').exists())
+    def test_uploader_mismatch_is_quarantined_but_both_keys_bridge_splits(self):
+        row=self.row(1,'Jose');row['sound_link']='https://freesound.org/people/José/sounds/1/'
+        raw,cap=self.fixture();raw['development']=self.csv([row]);raw['validation']=self.csv([self.row(8,'José')]);cap=self.captions(['1.wav'])
+        v=c.analyze(raw,cap);self.assertEqual(v['training_candidates'],[]);self.assertEqual(v['cross_split_component_clips'],2)
+        self.assertEqual(v['split_summary']['development']['source_binding_reasons'],{'uploader_field_URL_mismatch':1})
+    def test_distinct_uploader_aliases_never_silently_normalize_into_accepted_identity(self):
+        row=self.row(1,'Jose');row['sound_link']='https://freesound.org/people/José/sounds/1/'
+        values,_=c.metadata(self.csv([row]),'development');self.assertFalse(values[0]['source_resolved']);self.assertTrue(values[0]['source_id_known'])
+        self.assertEqual(values[0]['uploader_keys'],['jose','josé'])
+    def test_second_repair_claim_cannot_be_reset_by_new_directory(self):
+        cfg=json.loads(Path('docs/evaluation/MUS-065-format-repair-v2-config.json').read_text())
+        with tempfile.TemporaryDirectory()as tmp:
+            root=Path(tmp).resolve();task=root/cfg['task_directory'];task.mkdir(parents=True);(task/'repair-v2-started.json').write_text('{}')
             with patch.object(runner,'ROOT',root),patch.object(runner.h.assets,'document',return_value=cfg):
                 with self.assertRaisesRegex(ValueError,'already attempted'):runner.run(root/'config','0'*64,task/'new')
             self.assertFalse((task/'new').exists())
