@@ -1,0 +1,83 @@
+{
+  "schema": "sonora-six-development-audio-preflight-v1",
+  "task_directory": ".local/a/mus063",
+  "inputs": {
+    "plan": {
+      "path": ".local/a/mus062/run-01/supplement-plan.json",
+      "sha256": "28051f7d6f874633bf538f7e1e5919aa63c84522d98608bf901239a51eaea52e"
+    },
+    "plan_verification": {
+      "path": "docs/verification/MUS-062-results.json",
+      "sha256": "ef109cf836cd1f4c35c3530754f039af4930e4b759c9a2837040fff61f58465d"
+    },
+    "capacity": {
+      "path": ".local/a/mus061/run-02/result-private.json",
+      "sha256": "b96265ea15f1f42bb701c649f7e6e0be40e457270d9e70d2ea96f8dcff3fb482"
+    },
+    "capacity_config": {
+      "path": "docs/evaluation/MUS-061-capacity-repair-config.json",
+      "sha256": "4170f967d5a57a891227369d61be10dda38970ca455e78770cf9b0a20131a341"
+    },
+    "source_inputs": {
+      "path": ".local/a/mus043/inputs.json",
+      "sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163"
+    },
+    "dataset": {
+      "path": ".local/a/mus045/source-02/dataset.json",
+      "sha256": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe"
+    },
+    "future_plan": {
+      "path": ".local/a/mus044/plan-01/plan.json",
+      "sha256": "69d7932ce0b3b828df30fa8fe5e3c730634f6e54daf520012ca48186b9b2bfe0"
+    },
+    "pilot": {
+      "path": ".local/a/mus043/metadata-02/selection.json",
+      "sha256": "6a338dc43b57fc7d04785d836254ba1b755e2579875ae0839b5acc283a80a28b"
+    },
+    "prior60": {
+      "path": ".local/a/mus045/corpus/prior60.json",
+      "sha256": "ac6949d1fc799a45a8ad73fefb0730b03b0ba8edcdf1042251cff29c4971cddb"
+    },
+    "prior140": {
+      "path": ".local/a/mus045/corpus/catalog-1.json",
+      "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+    },
+    "prior76": {
+      "path": ".local/a/mus057/run-01/recordings.json",
+      "sha256": "d689814d01f896197be03413a1237ec192b57e560fc579fb69c208f7ac641f7b"
+    },
+    "pilot_fetched": {
+      "path": ".local/a/mus043/audio-01/fetch.json",
+      "sha256": "cd5b76ad4be08c5b61aa7c447501b95d16880fb0860b754d5645cc9cac0ed2fe"
+    },
+    "pilot_decoded": {
+      "path": ".local/a/mus043/decode-01/decode.json",
+      "sha256": "f9ba5aded71479e3f9753690a8b7e4b8a63a27e706def5a73d7be1e4b76ee089"
+    }
+  },
+  "audio_base_url": "https://cdn.freesound.org/mtg-jamendo/raw_30s/audio-low/",
+  "max_track_bytes": 20971520,
+  "max_total_body_bytes": 134217728,
+  "max_download_attempts_per_track": 1,
+  "fixed_recordings": 6,
+  "fixed_validated_captions": 7,
+  "max_actual_duration_delta_seconds": 2.0,
+  "duration_bounds_seconds": [
+    30,
+    600
+  ],
+  "decoder": "65536_actual_EOF_48k_mono_float32le",
+  "retrieval_clip_seconds": 120,
+  "rights_scope": "pinned_historical_MTG_per_track_BY_or_BYSA;not_fresh_current_rights_or_SDD320kbps_byte_identity",
+  "duplicate_scope": "exact_official_bytes_and_same_decoder_PCM_old60_pilot20_old140_new76_and_within_new6",
+  "automatic_replacements": false,
+  "operations": {
+    "caption_bodies_extracted": 0,
+    "encodes": 0,
+    "models_loaded": 0,
+    "fits": 0,
+    "scores": 0,
+    "reserved_test_audio": 0,
+    "new_manual_labels": 0
+  }
+}

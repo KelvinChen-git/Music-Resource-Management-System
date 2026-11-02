@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- MUS-063 / A / in_progress：`codex/MUS-063-six-source-preflight`，based88d4c3。只按062冻结6曲做有界官方low音频/历史身份许可映射、SHA/完整EOF/48k mono及首尾片段检查，精确bytes/PCM对旧60+043pilot20+045140+05776及新6去重；不声称声学近重复/翻唱全覆盖。允许新 `services/audio-search/supplement_preflight.py`、`scripts/preflight_supplement.py`、`scripts/test_supplement_preflight.py`、E37/config/方法验证JSON与README/PROJECT/STATUS/own latest；私有.local/a/mus063。固定单曲20MiB、全128MiB持久body预算、1次/曲、无重试/补选；源/config/runtime先freeze，原目录或换目录不得绕过任务claim。无caption正文/编码/fit/评分/保留test/Java导入或新人工包，保留原版/UI/DB/main/B047卡，完成后另冻特征和两模型146池比较。
+
 - 当前工作：MUS-062 review / A / codex/MUS-062-human-source-audit，base9c6d690、实际69847dfac292e27190b1ba34c08044b8fade9f11。13来源文件5.08MB/TLS/MD5/commit passed；WikiMuTe人写web模型抽取非直接听音真值、YT8M原Adobe研究许可/缺音乐作者和音频权利、MuChin中文须另协议，未自动切库。061原8/6组中固定hash每组1首，已冻6曲/7既有描述/6作品SHA、旧140不交叉的补充dev元数据计划，不凑20/不松规则/不动封存。63检查/独立投影集合与六曲选择/真实两拒绝/旧1007工件passed；独立核查Commons页ID假设失败原件保留、生产首轮完成。下一步另冻音频/PCM及完整文本特征和固定identity/100ridge两模型146池比较，当前audio_ready/新fit/评分/人工包均0。范围062新module/runner/test/E36/config/方法JSON及必要文档，私有.local/a/mus062；原版/UI/DB/main/B047卡保持。
 
 - 上轮交付：MUS-061 review / A / codex/MUS-061-human-caption-capacity，base8a33700、实际格式修复31a950c5a0a01589f52eca77839d1fc6b8393b46。固定SDD有效547曲/746描述，经来源权利→153/224、已用分配→39/47、封存完整关系→8/10/6组件；容量不足新20独立开发，原test保持，不松规则/不fit。48检查/独立全图及集合计数/两claim四拒绝/旧991工件passed；初次数字ID失败及原件保留。无下载/编码/评分/新选样或人工包，下一步另核现成人写来源后再冻有界dev。允许新module/runner/test/E35/config及显式repair/方法验证、README/PROJECT/STATUS/own latest；私有.local/a/mus061，B047原卡/原版/UI/DB/main保持。

@@ -612,3 +612,18 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 后续比较也先固定：仅identity与已存058的100曲全文本ridge，无新fit；候选池旧140+新6共146，新6按录音等权whole MRR差为主、R1/R5及segment为次、旧20 query在146池只作控制。模型W/hash在本轮pin但不加载；原20封存test/160判断不输入，6组只作小型development诊断，不称正式显著性或部署依据。本轮不执行这次比较；音频/编码与评分须在后续独立冻结任务实际通过后才有结果。
 
 合成schema/URL/精确decimal区间/冲突与确定性组选择、独立原文件列投影和全部集合计数/固定六曲选择、实际重复保护与旧045–061全文件保护通过后才记完成。原版、全文本、identity、UI/Java/DB/main/B047卡不改，公开仅方法/聚合与证据hash。
+
+
+## E37：MUS-063 六曲开发补充音频预检（2026-11-02）
+
+只获取062冻结六曲，不读取新caption正文/编码/fit/质量评分或项目封存test音频。先核062原plan/hash/summary与已发布063输入pin；重算061全names credit闭包及已用/分配/封存排除，确认原8候选保持，再核选定6组/6作品/6官方SHA、7有效描述、原官方test身份、base/names作者标题/原路径、逐曲历史BY/BYSA原URI/notice、官方low路径和哈希。当前是固定历史metadata映射核验，不冒称在线当前权利或SDD 320kbps原字节一致证明，不把metadata时长当实际解码。
+
+正式网络前在干净提交freeze源码/config/全部输入及NumPy/SoundFile/librosa/soxr/SciPy/Numba/llvmlite/certifi版本和py/so/dylib代码hash、libsndfile/OpenSSL，再创建任务级preflight claim。固定官方HTTPS单曲low文件，复用既有严格206/Range/表示validator/长度与逐曲SHA流程，单曲20MiB、全128MiB持久body先记账再read、1次/曲、无全归档/fallback/自动重试。任务claim禁止原目录或换目录重启、并发只允许一个成功领取；失败文件/收据/账本/claim保持，六个固定slot分别记录，必须6/6通过才有ready catalog，组内余2不替补。
+
+解码复用65536实际EOF读法，源MP3 8k–192k/单或双声道/实际30–600秒，float32均值单声道与soxr_hq到48k、整数ceil长度，不信MP3 header估计裁掉或补出样本。实际时长和原metadata差<=2秒；全finite/非全零波形、首尾10秒/5秒hop边界和右侧补零核验，记录整曲及首min(120秒,实际EOF)的PCM SHA，实际view不越界。音频检验保持样本/原文件，不做音质/风格语义确认。
+
+用旧60、043pilot20、045全140、057实际76的钉住同decoder PCM/音频SHA（296来源引用，允许旧素材自身重复引用）先建精确排除集，新6对旧和彼此都拒绝同bytes或同标准化PCM。这里不宣称不同编码/偏移/变速/翻唱的完整声学近重复检测，作者/作品闭包亦非穷尽别名证明；这些限制保持公开，不把未检测当无重叠。
+
+本轮只落私有MP3/传输/完整EOF/片段收据、尝试清单与6/6 catalog。结尾复核所有源/config/runtime hash，不导入Torch/CLAP。公开聚合/证据SHA、合成传输/固定来源/边界/重复/失败保护检查、独立真实波形重解/全部传输与计数、同/新目录实际拒绝和旧045–062全文件保护。原源/全文本/权重/cache、141+160判断、原版/UI/Java/DB/main与B047卡保持；不导入Java或给用户新标注包。
+
+6/6 ready仅表示可构建同视图特征，不是训练就绪/质量通过。后续另冻完整原7文本与同首120秒特征/CPU数值检查及062既定identity对已存100ridge/146池比较；不因本轮下载成败更改选曲、模型/主指标或旧封存20。

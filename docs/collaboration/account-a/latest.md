@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## MUS-063：六曲音频预检准备
+
+A；2026-11-02 America/Chicago；branch codex/MUS-063-six-source-preflight，base d88d4c3f3610b69cc7bc5494b87c0cc0b17ed5d5。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T06:09:17Z双方fetched、B未变，047限定批准已接收、原卡保持，无新派发或批准。
+
+063仅062固定6曲/6组/7有效描述，不看新正文/编码/fit/评分或封存test。重算原8候选全credit与全部排除、选中6逐曲历史身份/许可/官方SHA；然后单曲20MiB、全128MiB持久body先记账，严格HTTPS206/validator/SHA，一次/曲、不重试补选。完整实际EOF/48k mono/首尾padding/首min120秒PCM，和旧60+pilot20+140+76共296引用/295不同bytes/PCM精确去重；不冒称完整近重复或当前在线权利证明。
+
+E37/config/source/runtime先冻后获取，任务claim禁止换目录再跑；86相关检查passed（15新71旧），旧045–062共1052文件快照完成。真实获取待干净提交执行；本轮无Torch/CLAP/训练/质量验收，后续另冻7全文本特征和062原两模型146池比较。原素材、模型/cache、141+160判断、原版/UI/Java/DB/main和B047卡保持。
+
+## 上轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-062来源审计完成，已冻六组小补充development元数据
 
 A；2026-11-02 America/Chicago（始于11-01）；branch codex/MUS-062-human-source-audit，base9c6d690bd9054599f4c7f1382729180e9c3731ad，实际69847dfac292e27190b1ba34c08044b8fade9f11；最终SHA见handoff.source_sha。review仅元数据/计划完成，工具B审核待安排，非音频/质量验收。
