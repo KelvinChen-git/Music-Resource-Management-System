@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## 当前：MUS-060残差中心化对照完成，未支持主检索提升
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-060-centered-residual-training`，base `82d652aade7edf24cb6bb296059f212d7cae7336`，真实源码 `d0b7947c417c62f402b7b73fd92c58d0e4bd8c75`；最终交付SHA见handoff.source_sha。060 review，实际单fit与比较完成，工具独立审核待安排，非总体质量验收。
+
+原100/539/83组件、全文本/特征/alpha1/录音权重不变，train-only mu中心化残差，一次CPU primal23.836ms。中心化目标均值max1.02e-16、正规方程1.08e-18；共同方向更新能量89.79%→2.89%，主140整曲MRR旧100 .447216806→新 .420199665、差-.02701714/95%[-.08254727,.00603761]含零，R1 .37→.31；对identity .420808亦无改善。20池整曲恢复到identity，完整人写两池两mode/生成val20/60与原7/23均报，不挑次要改善。保持identity、不采用新W/不追加中心化强度或alpha搜索。共同方向能量高不能当噪声证明，直接去均值移走部分有用对齐；当前固定消融未解区分问题。报告docs/evaluation/MUS-060-centered-residual.md，聚合docs/verification/MUS-060-results.json。
+
+204检查（新12）首次passed，实际fit首次exit0/唯一1，旧W不重训。独立逐录音训练mu与dual W最大差各1.11e-16，完整4模型指标/分数对照/24组bootstrap与保存后评测时序通过；真实原/换目录二fit拒绝、claim字节保持/无Torch。旧045–059共976工件与951+B快照/23源码/54cache/043044/160/备份f3b0da1保持，新060私有700/600。无CLAP微调/新编码下载/标签编辑/人工包/保留test/云端付费/生产切换，离线范围未跑Java/前端build，UI/Java/DB/main保持。下一步先核现成人写描述的评测覆盖/隔离容量，原保留测试继续封存，不继续同dev小调参。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T05:11:42Z/05:17:53Z/05:20:27Z双方fetched，B未变。B047原限定批准保持，不外推060质量/无新派卡。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-059监督与评测覆盖诊断完成，当前模型保持
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-059-supervision-diagnostic`，base `363f0b14fe6d78705065d2d884f4433cd374cc2f`，实际修复源码 `f473827ba2a33ef726dc4ec319f5344987ad2b82`；最终交付SHA见handoff.source_sha。059 review，工具独立审核待安排，仅描述统计/限定推断，不当语义质量验证。
