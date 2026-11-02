@@ -1,5 +1,31 @@
 # 账号 A 最新交接
 
+## 当前：MUS-064六曲全文本与固定检索比较完成
+
+A；2026-11-02 America/Chicago；branch codex/MUS-064-supplement-retrieval，base29873e11f5316cd25fdb978c77052c91ccf76d2c，实际干净46044c87951a3fa322831047d802d0ce0ff5f24e；最终交付SHA见handoff.source_sha。review，小development诊断完成，原CLAP未微调、新fit0；工具独立B审核未安排。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:13:26Z/22:15:56Z双方fetched，A fd4918cf/source29873e1，B未变。B047准确限定批准已接收，原卡/归档保持，不外推064/不新派发。
+
+MUS-064实际完成：干净46044c87951a3fa322831047d802d0ce0ff5f24e首次build/evaluate exit0，新6曲/7原全文本17–58token零截断、18窗/6聚合/7文本CPU-MPS全控制maxabs3.48e-7；原140/624窗/24文本逐元素复用，146候选。主新6whole宏MRR identity .455568→已存100ridge .491042，差+.035474/95%描述性区间[-.000336,.105086]含零，2胜3平1负；新6segment MRR .463384→.442402下降。原140两模型两mode精确复现058，旧20在146池分开控制全报；不作稳定改善或正式显著结论，继续保留identity。64检查（17新/47旧）、独立全文/18波形/全数值/两模型三池两mode四bootstrap、真实CPU consumer与四次跨目录拒绝passed；首次合成临时目录symlink失败保留，真实运行前已修fixture。旧045–063全部1087文件/历史951+B/23源码54cache/043044/160/相邻原版保持；无新fit/下载/人工包/封存test/UI/DB/main/B047卡变化。下一阶段应先解决可核人写监督规模与独立评测隔离，当前六曲已看开发，不再反复搜参。
+
+原首min120秒的三窗聚合称whole，segment仅三窗最大相似度，无时间定位人工真值。所有其他候选语义未判定，六组不是正式新20或最终测试，CLAP预训练/全部别名/音频版本重叠未证明。保持原完整文本256/超限失败、identity，旧全文本/训练权重/缓存/所有判断只读。完整数值/限制见docs/evaluation/MUS-064-six-source-retrieval.md与docs/verification/MUS-064-results.json。未重复Java/Vue build（离线Python范围）。
+
+首次合成63项因macOS /var临时目录软链有1error/1failure，修测试根resolve后64通过，原日志保留；真实编码/评测无失败或重跑，四个拒绝仅测试持久claim。A同操作方独立实现核查非B审核。提交明确文件后publish/sync回读本源；远端发布不等于B已接收/批准，不合并main。
+
+## 准备检查点（保留）
+
+
+## 当前：MUS-064六曲全文本特征与固定检索对照准备
+
+A；2026-11-02 America/Chicago；branch codex/MUS-064-supplement-retrieval，base29873e11f5316cd25fdb978c77052c91ccf76d2c。E38/config/源码先提交；实际编码/检索评分未执行。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:02:12Z同步双方fetched，A fd4918cf/source29873e1，B未变。B047限定批准已接收，不外推064或派新卡。
+
+6新曲/7原全文本，256完整token证明/all18新窗+6聚合+7文本CPU/MPS核查，原140/624窗/24文本逐元素复用。另CPU固定两模型identity/058已存100ridge、146池、新6whole宏MRR与两mode/旧20控制，原140须复现；零新fit/下载/人工包/封存test/模型切换。各阶段任务级持久claim禁止换目录重复，失败保留，旧1087文件已快照。原版/UI/Java/DB/main/B卡保持；准备完成不代表实际质量通过。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-063六曲音频预检完成，可进入特征构建
 
 A；2026-11-02 America/Chicago；branch codex/MUS-063-six-source-preflight，base d88d4c3f3610b69cc7bc5494b87c0cc0b17ed5d5，实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf；最终交付SHA见handoff.source_sha。review仅六曲音频ready，非模型/语义质量或训练验收，工具独立B审核待安排。
