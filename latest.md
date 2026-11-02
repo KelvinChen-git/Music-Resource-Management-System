@@ -1,5 +1,33 @@
 # 账号 A 最新交接
 
+## 当前：MUS-066 MusicCaps固定20来源metadata抽查完成，权利证据未齐
+
+A；2026-11-02 America/Chicago；branch codex/MUS-066-musiccaps-source-audit，base4780f09ee73829ff82d970a2ef4435cda133968a，实际干净4218f737e4bca3494083558561be5fe20312869b；最终交付SHA见handoff.source_sha。review仅metadata诊断，无新训练/音频就绪/模型质量结论。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:43:48Z/22:48:39Z/22:49:55Z双方fetched，A1c17648/source4780f09，B未变。B047准确限定批准已接收，不外推066/无新派发，原卡保持。
+
+MUS-066已完成MusicCaps固定20来源metadata抽查：干净4218f737e4bca3494083558561be5fe20312869b首次exit0，050原2448非AudioSet-eval/未增强框固定hash20，20/20官方oEmbed HTTP200/JSON/provider/同videoID与uploader绑定通过；这仅是metadata可读取，不证明可播放/可下载或训练许可。逐源许可、音乐人/作品和真实音频均未核，audio_ready/training_ready0，未调用Data API，许可API记录调查blocked。4说明+20probe共24请求，预记5505048<8MiB/正文1525435bytes，无redirect/重试/替补；license_help超过1MiB只保留1048577bytes部分响应，其余3说明/20JSON完整，不扩预算或重取。29检查14新15旧/独立选择收据与状态计数/两实际禁重passed，旧045–065共1170工件及原版/模型cache/历史951+B047/23源码54cache/043044/160保持。无音频/编码/fit/新人工包/保留test/付费资源/UI/DB/main/B047卡变化，identity/全文本保持。
+
+API调查blocked只指本轮无status.license记录，标准YOUTUBE_API_KEY项未配置；不扫描或打印其他秘密、不创建项目/付费资源，本轮不调用Data API。oEmbed的author是上传者/频道非音乐作者，MusicCaps author_id是文字撰写者，AudioSet split非项目独立隔离；metadata成功不批准音频获取。未知许可不当确定不允许/违法，也不直接宣称MusicCaps不可用。
+
+独立标准库核5521/2663_2858/2448原绑定、20hash选择、24返回字节/hash/视频绑定/未知权利状态与预算/访问停止，全匹配，无额外联网或模型导入。原/新目录两拒绝均先于新输出/网络，claim/账本/响应结果保持；A同操作方独立实现非B审核。首次真实run无失败，文档license_help超限作为明确部分抓取保留，不伪称全完整源。29测试14新15旧 passed；未重复Java/Vue build（metadata Python范围）。
+
+方法/完整状态见docs/evaluation/MUS-066-musiccaps-source-audit.md与docs/verification/MUS-066-results.json。下一步补逐源许可与音乐作者/作品、允许取得路径，然后再决定有界10秒音频预检；不把配置API凭据本身视作许可通过，不自动下载16.76GB归档或扩成5521访问，不向用户派全组合标注。提交明确文件后publish/sync回读；发布不等于B接收/批准或main合并。
+
+## 准备检查点（保留）
+
+
+## 当前：MUS-066 MusicCaps固定20来源metadata与权利证据准备
+
+A；2026-11-02 America/Chicago；branch codex/MUS-066-musiccaps-source-audit，base4780f09ee73829ff82d970a2ef4435cda133968a。E40/config/source先提交后执行；目前仅准备和合成检查，真实网络抽查未执行。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:43:48Z双方fetched，A1c17648/source4780f09，B未变。B047准确限定批准已接收，不外推066/无新派发，原卡保持。
+
+复用050原5521 MusicCaps CSV/2448非eval且有未增强路径候选；seed hash20，禁止caption语义/模型/访问结果驱动选择与替补。只查YouTube oEmbed及4官方说明，8MiB持久预记，正常TLS/无redirect/每URL一次，连续3访问或网络错误停止。metadata成功不推许可、音乐作者、可播放或训练就绪；本轮不调用DataAPI，不印密钥/新建付费资源、音频归档/编码/fit/用户人工包/封存test。旧045–065共1170文件已快照，原版/UI/DB/main/全文本/identity保持。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-065 Clotho容量审计完成，不作为音乐扩训主库
 
 A；2026-11-02 America/Chicago；branch codex/MUS-065-human-source-capacity，base77aabf4d3d77b99e4876b77a7f07c11b5222874f，实际完成源码b6f69c973a4511726ac07865f5de85eee5b7427c；最终交付SHA见handoff.source_sha。review，只有metadata容量诊断，无模型提升/训练就绪结论。
