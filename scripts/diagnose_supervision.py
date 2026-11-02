@@ -50,11 +50,32 @@ def bound_human_texts(dataset, original_meta, retrieval_meta):
     return texts
 
 
+def attempt_file(c, task):
+    if 'repair_of' not in c: return 'diagnostic-started.json'
+    h.require(c.get('repair_reason') == 'single_interval_statistics_required'
+              and c.get('missing_temporal_policy') == 'all_sources_cross_song;temporal_only_supported_recordings;unsupported_null_with_coverage',
+              'Only explicit single-interval diagnostic repair allowed')
+    pins = c['repair_of']; docs = {k: h.assets.document(ROOT/v['path'], v['sha256']) for k, v in pins.items()}
+    h.require(set(pins) == {'original_config', 'claim', 'failed_freeze', 'failure'}
+              and {k: v for k, v in c.items() if k not in ('repair_of', 'repair_reason', 'missing_temporal_policy')} == docs['original_config'],
+              'Repair cannot change inputs, subsets or thresholds')
+    old = docs['failed_freeze']; claim = docs['claim']; failure = docs['failure']
+    olddir = (ROOT/pins['failed_freeze']['path']).parent
+    h.require(ROOT/pins['claim']['path'] == task/'diagnostic-started.json'
+              and claim['source_sha'] == old['source_sha'] and claim['config_sha256'] == old['config_sha256'] == pins['original_config']['sha256']
+              and (ROOT/pins['failure']['path']).parent == olddir and not (olddir/'result.json').exists()
+              and failure['error_type'] == 'ValueError' and failure['error'] == 'At least2 recordings with2 intervals each required',
+              'Pinned original failed attempt required; no generic rerun bypass')
+    for name, pin in old['input_sha256'].items(): h.require(h.file_hash(name) == pin, 'Original failed inputs changed')
+    return 'diagnostic-repair-started.json'
+
+
 def run(*, config, config_sha256, output):
     c = h.assets.document(config, config_sha256); validate(c)
     h.require(not subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip(), 'Clean committed diagnostic required')
     task = ROOT/c['task_directory']
-    h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/'diagnostic-started.json').exists(),
+    attempt = attempt_file(c, task)
+    h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/attempt).exists(),
               'Task-local diagnostic already attempted or invalid output; no new-directory restart')
     target = h.private_output(output)
     try:
@@ -67,6 +88,8 @@ def run(*, config, config_sha256, output):
             meta = docs[name]; directory = (ROOT/c[name]['path']).parent
             bound[str(directory/'features.npz')] = meta['feature_sha256']
             bound[str(directory/'result.json')] = meta.get('result_sha256', meta.get('parity_report_sha256'))
+        if 'repair_of' in c:
+            bound.update({str((ROOT/pin['path']).absolute()): pin['sha256'] for pin in c['repair_of'].values()})
         for n, pin in bound.items(): h.require(h.file_hash(n) == pin, 'Bound inputs changed')
         args = {'cache': ROOT/c['expanded_cache']['path'], 'cache_sha256': c['expanded_cache']['sha256'],
                 'expected_device': 'mps', 'expected_model_sha256': c['expected_model_sha256']}
@@ -97,7 +120,7 @@ def run(*, config, config_sha256, output):
         state = {'source_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                  'source_sha256': source, 'input_sha256': bound, 'config_sha256': config_sha256, 'runtime': runtime, 'created_at_utc': h.now()}
         h.write_json(target/'freeze.json', state)
-        h.write_json(task/'diagnostic-started.json', {'source_sha': state['source_sha'], 'config_sha256': config_sha256,
+        h.write_json(task/attempt, {'source_sha': state['source_sha'], 'config_sha256': config_sha256,
                      'started_at_utc': h.now(), 'maximum_attempts': 1, 'fits': 0})
         lexical, private_lexical, vocabulary = d.text_audit(texts, rows, n=c['ngram_n'],
                      prevalence=c['common_ngram_min_train_recording_fraction'], near=c['near_duplicate_jaccard'])
@@ -133,6 +156,7 @@ def run(*, config, config_sha256, output):
                   'score_contrasts': contrasts, 'ridge_attribution': attribution, 'saved_updates_comparison': updates,
                   'language_coverage': language, 'evaluation_coverage': coverage, 'fits': 0, 'encodes': 0, 'downloads': 0,
                   'label_edits': 0, 'test_inputs': 0, 'semantic_label_quality_verified': False,
+                  'explicit_failed_attempt_repair': 'repair_of' in c,
                   'decision': 'retain_identity_no_automatic_data_filtering_or_new_training',
                   'limits': ['Heuristic text repetition and embedding geometry cannot verify audible semantic correctness.',
                              'All alternative song/interval pairs remain unjudged, not labeled negatives.',

@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 import numpy as np
 import supervision_diagnostic as m
-from diagnose_supervision import validate, run, bound_human_texts
+from diagnose_supervision import validate, run, bound_human_texts, attempt_file
 import holdout_contract as h
 
 
@@ -102,6 +102,24 @@ class SupervisionDiagnosticTests(unittest.TestCase):
         self.assertEqual(bound_human_texts(source,original,pool),texts)
         pool['query_tracks']=list(reversed(tracks))
         with self.assertRaises(ValueError):bound_human_texts(source,original,pool)
+
+    def test_single_interval_sources_remain_in_geometry_and_cross_recording_scores(self):
+        x=np.eye(2)[[0,0,1]];ids=['a','a','b'];r=m.geometry(x,ids)
+        self.assertEqual(r['recordings'],2);self.assertEqual(r['recordings_with_one_interval'],1)
+        self.assertEqual(r['mean_within_recording_distinct_interval_cosine'],1)
+        s=m.score_contrasts(x,x,ids,np.eye(2))
+        self.assertEqual(s['known_pair_cosine'],1);self.assertEqual(s['temporal_comparison_recordings'],1)
+        self.assertEqual(s['temporal_comparison_recording_fraction'],.5)
+        self.assertEqual(s['known_minus_other_same_recording_interval_mean'],0)
+
+    def test_no_temporal_alternatives_returns_null_with_zero_coverage(self):
+        x=np.eye(2);ids=['a','b'];r=m.geometry(x,ids);s=m.score_contrasts(x,x,ids,np.eye(2))
+        self.assertIsNone(r['mean_within_recording_distinct_interval_cosine'])
+        self.assertIsNone(s['known_minus_other_same_recording_interval_mean'])
+        self.assertEqual(s['temporal_comparison_recording_fraction'],0)
+
+    def test_generic_repair_bypass_rejected(self):
+        with self.assertRaisesRegex(ValueError,'Only explicit'):attempt_file({'repair_of':{}},h.ROOT/'.local/a/mus059')
 
 
 if __name__=='__main__':unittest.main()

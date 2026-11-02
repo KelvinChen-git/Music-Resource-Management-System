@@ -79,13 +79,14 @@ def geometry(x, ids):
     covariance = centered.T@(q[:, None]*centered)
     trace = float(np.trace(covariance)); square = float(np.square(covariance).sum())
     groups = [x[[i for i, tid in enumerate(ids) if tid == key]] for key in sorted(set(ids))]
-    require(len(groups) >= 2 and all(len(z) >= 2 for z in groups), 'At least2 recordings with2 intervals each required')
-    within = [(float(np.square(z.sum(axis=0)).sum())-len(z))/(len(z)*(len(z)-1)) for z in groups]
+    require(len(groups) >= 2, 'At least2 recordings required')
+    within = [(float(np.square(z.sum(axis=0)).sum())-len(z))/(len(z)*(len(z)-1)) for z in groups if len(z) >= 2]
     means = np.stack([z.mean(axis=0) for z in groups]); n = len(means)
     cross = (float(np.square(means.sum(axis=0)).sum())-float(np.square(means).sum()))/(n*(n-1))
     return {'recordings': len(set(ids)), 'intervals': len(ids), 'mean_vector_norm': float(np.linalg.norm(mean)),
             'centered_variance_trace': trace, 'centered_participation_ratio': trace*trace/square if square > 1e-24 else 0.,
-            'mean_within_recording_distinct_interval_cosine': float(np.mean(within)),
+            'mean_within_recording_distinct_interval_cosine': float(np.mean(within)) if within else None,
+            'recordings_with_multiple_intervals': len(within), 'recordings_with_one_interval': len(groups)-len(within),
             'mean_between_distinct_recordings_cosine': cross}
 
 
@@ -111,16 +112,19 @@ def ridge_attribution(x, text, ids, w, alpha=1.):
 def score_contrasts(audio, text, ids, w):
     q = recording_weights(ids); x = unit(np.asarray(audio)@w); t = unit(text); scores = t@x.T
     require(scores.shape == (len(ids), len(ids)), 'Aligned known interval pairs required')
-    labels = np.array(ids); target = np.diag(scores); other_mean = []; other_max = []; temporal = []
+    labels = np.array(ids); target = np.diag(scores); other_mean = []; other_max = []; temporal = []; temporal_ix = []
     for i, row in enumerate(scores):
         other = labels != ids[i]; same = (labels == ids[i]) & (np.arange(len(ids)) != i)
-        require(other.any() and same.any(), 'At least2 recordings and2 intervals each required')
+        require(other.any(), 'At least2 recordings required')
         other_mean.append(float(row[other]@q[other]/q[other].sum())); other_max.append(float(row[other].max()))
-        temporal.append(float(row[same].mean()))
+        if same.any(): temporal.append(float(row[same].mean())); temporal_ix.append(i)
+    temporal_weights = q[temporal_ix]/q[temporal_ix].sum() if temporal_ix else None
     return {'known_pair_cosine': float(q@target), 'other_recording_mean_cosine': float(q@other_mean),
             'known_minus_other_recording_mean': float(q@(target-other_mean)),
             'known_minus_best_other_recording': float(q@(target-other_max)),
-            'known_minus_other_same_recording_interval_mean': float(q@(target-temporal)),
+            'known_minus_other_same_recording_interval_mean': float(temporal_weights@(target[temporal_ix]-temporal)) if temporal_ix else None,
+            'temporal_comparison_recordings': len({ids[i] for i in temporal_ix}),
+            'temporal_comparison_recording_fraction': float(q[temporal_ix].sum()),
             'scope': 'Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy.'}
 
 

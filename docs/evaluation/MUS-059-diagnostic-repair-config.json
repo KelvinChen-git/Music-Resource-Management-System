@@ -1,0 +1,105 @@
+{
+  "schema": "sonora-supervision-diagnostic-v1",
+  "task_directory": ".local/a/mus059",
+  "base_sha": "363f0b14fe6d78705065d2d884f4433cd374cc2f",
+  "old_candidates": {
+    "path": ".local/a/mus052/run-01/eligible-candidates.json",
+    "sha256": "d5537f91e906a76e12ad219850a2bc76e1de8c8560035ae22fffa38d3fe7cb82"
+  },
+  "new_candidates": {
+    "path": ".local/a/mus057/run-01/eligible-candidates.json",
+    "sha256": "326254ac1c18de9c88ff356aaeb4abc37bc6193c6395e5e0b12f3b1adfa0bce3"
+  },
+  "old_corpus": {
+    "path": ".local/a/mus045/corpus/catalog-1.json",
+    "sha256": "a6ecd80357a30bb33e72526276532e3e9be9671176542316a66f5a718124e0d3"
+  },
+  "new_recordings": {
+    "path": ".local/a/mus057/run-01/recordings.json",
+    "sha256": "d689814d01f896197be03413a1237ec192b57e560fc579fb69c208f7ac641f7b"
+  },
+  "baseline_adapter": {
+    "path": ".local/a/mus055/fit-01/adapter.npz",
+    "sha256": "755d213fa4699d952773558c120f49db0e229e2b8ba74adc282ff87ed2fd4e0e"
+  },
+  "baseline_result": {
+    "path": ".local/a/mus055/fit-01/result-private.json",
+    "sha256": "7eb056828262fe3e8a61aea6a135b6f6167f6b77939de6ffa2b852358b5c5dca"
+  },
+  "retrieval_cache": {
+    "path": ".local/a/mus048/build-01/cache.json",
+    "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+  },
+  "human_text_metadata": {
+    "path": ".local/a/mus045/features-01/cache.json",
+    "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+  },
+  "expanded_cache": {
+    "path": ".local/a/mus058/build-01/cache.json",
+    "sha256": "c88c3613a2ad3c78be1c141461a3a6a7e747e1d7bf66c88af5f1056571e0fce9"
+  },
+  "expanded_adapter": {
+    "path": ".local/a/mus058/fit-01/adapter.npz",
+    "sha256": "e903f5497633c0410b98dfc07733a2089f3130194341fef371cf19835e3bb748"
+  },
+  "expanded_result": {
+    "path": ".local/a/mus058/fit-01/result-private.json",
+    "sha256": "3ff1f78b3e9ddb6734c489ce6791851c75090f52fda0345e9e3104484f968e08"
+  },
+  "old_cache": {
+    "path": ".local/a/mus053/build-01/cache.json",
+    "sha256": "fba03908d5492895069361d701902d986ed9e1b41751df8b885541baa141239d"
+  },
+  "human_dataset": {
+    "path": ".local/a/mus045/source-02/dataset.json",
+    "sha256": "a4c5e0a3da9e6b01ed6d7154abb4843c763d22d34905db88813f415e712fbebe"
+  },
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "dimension": 512,
+  "subsets": [
+    "train100",
+    "original37",
+    "new63",
+    "validation20"
+  ],
+  "ngram_n": 5,
+  "common_ngram_min_train_recording_fraction": 0.2,
+  "near_duplicate_jaccard": 0.8,
+  "sentence_split": "punctuation_boundary_whitespace",
+  "heuristics_only_not_semantic_labels": true,
+  "label_edits": 0,
+  "fits": 0,
+  "new_encodes": 0,
+  "downloads": 0,
+  "test_inputs": 0,
+  "candidate_models": [
+    "identity",
+    "saved37-fulltext-ridge",
+    "expanded100-fulltext-ridge"
+  ],
+  "geometry": "recording_equal_unit_mean_centered_trace_participation_ratio",
+  "score_contrasts": "paired_interval_vs_recording_equal_other_recordings_and_other_same_recording_intervals_unjudged",
+  "ridge_attribution": "saved_delta_normal_equation_rhs_mean_centered_decomposition_no_solve",
+  "alpha": 1.0,
+  "automatic_selection_or_deployment": false,
+  "repair_reason": "single_interval_statistics_required",
+  "missing_temporal_policy": "all_sources_cross_song;temporal_only_supported_recordings;unsupported_null_with_coverage",
+  "repair_of": {
+    "original_config": {
+      "path": "docs/evaluation/MUS-059-diagnostic-config.json",
+      "sha256": "cda95f22406c534d842b66f13530336a2eea325f031334ef98189081056e465c"
+    },
+    "claim": {
+      "path": ".local/a/mus059/diagnostic-started.json",
+      "sha256": "17bad28adcb464c255b53581c3594287ef40fe3955ce04fc4ecedd7d3fe3ac1e"
+    },
+    "failed_freeze": {
+      "path": ".local/a/mus059/run-02/freeze.json",
+      "sha256": "623999d1b624f423d87d82f35e423b54d278824a6e05b5be0cbc2b09a0779b23"
+    },
+    "failure": {
+      "path": ".local/a/mus059/run-02/failure.json",
+      "sha256": "3dd8441dc592992afc682d7de978bfddf88445fd33431242c2f06d27f7ad77fd"
+    }
+  }
+}

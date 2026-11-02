@@ -573,3 +573,5 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 三个原模型identity/旧37/新100在四子集的已知配对余弦、其他录音等权平均/最大分数、同录音其他区间均分与差值全部报告；其他组合语义未判，不能称真负例/分类准确率。人写dev只复算旧37→100已有整曲排序的known-pair名次/R1/R5阈值/top5集合顺序/全序变化，连同058已发布MRR差展示指标覆盖和分辨情况，不添加新质量选择规则/打开160或SDD保留test。
 
 源码/config/input/CPU NumPy运行时先冻结，task持久diagnostic claim防止换目录反复修改阈值/隐式重跑；纯CPU缓存运算、不导入Torch/CLAP。只发布聚合和私有证据hash，原句、5gram正文、近重复对及逐查询名次留私有，不生成新人工包。结论以描述统计和限定推断表达，audible semantic correctness仍未验证；后续训练需另冻假设，当前保持identity/原版/UI/Java/DB/main/B047卡。
+
+059执行修复记录：68878c0预检将原24查询误按新候选排序读取，SHA拦截、无freeze/claim；c3e70f6已修复原缓存顺序。该版实际诊断在单区间合法录音上失败，原run-02/freeze、failure和diagnostic-started claim保持原字节，无结果/新fit。新的显式repair config原样继承所有原输入/子集/阈值，只添加钉住的原config/claim/freeze/failure与单区间支持规则：所有录音仍进跨曲/geometry；同曲异区间量只在至少两区间的录音间重新等权，同时披露支持数/覆盖率，无支持返回null。仅准上述准确失败的一次diagnostic-repair-started独占修复，先核原输入hash、无旧完成结果，禁止通用重跑/重置旧claim/更改阈值或来源。保留两个失败目录和日志，修复结果独立输出；不把修复冒称首轮成功。
