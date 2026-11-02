@@ -1,5 +1,13 @@
 # 账号 A 最新交接
 
+## 当前：MUS-059监督与评测覆盖只读诊断执行中
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-059-supervision-diagnostic`，base `363f0b14fe6d78705065d2d884f4433cd374cc2f`。E33/config先冻结，不改全文本/标签、不做新fit或编码；检查措辞重复、录音等权特征及已存ridge共同方向与既有dev覆盖。原版/UI/main/B047原卡保持。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T04:29:25Z双方fetched，B未变。B047限定批准已接收，不外推059/无新派卡。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-058全文本扩样特征与单次训练完成，未获明确提升
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-058-expanded-fulltext-training`，base `97347bc7bc8e368457527424688e7ed20e3dd9a8`，真实源码 `7d910ce65250d5e9f1d43579b9a7b209f631bb3a`；最终交付SHA见handoff.source_sha。058 review，实际特征/fit/固定比较完成，工具独立审核待安排，非总体质量验收。

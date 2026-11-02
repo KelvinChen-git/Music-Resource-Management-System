@@ -4,7 +4,9 @@
 
 ## Git 与交付状态
 
-- 当前工作：MUS-058 review / A / codex/MUS-058-expanded-fulltext-training，base97347bc、实际7d910ce65250d5e9f1d43579b9a7b209f631bb3a。599完整token/旧232逐元素复用/新367 MPS、1797窗/CPU控制passed；100train539固定alpha1单fit26.337ms。主140宏MRR旧37 .447149→新100 .447217、差CI[-.000738,.000888]含零，生成验证精确区间与20池整曲下降，当前无明确扩样收益，保留identity。176检查/独立token与primal/全部排名16组bootstrap/typed consumer和两stage跨目录保护passed，旧929文件/原版/UI/main保持。无搜参/保留test/部署；下一步先改进监督证据与评测覆盖，不继续仅扩量或同dev调参。
+- 当前工作：MUS-059 in_progress / A / codex/MUS-059-supervision-diagnostic，base363f0b1。占用新只读诊断模块/runner/测试、059 config/results/report及README/CONTRACTS/STATUS/A latest；固定599描述重复措辞/录音等权geometry/已存ridge共同方向与旧dev覆盖，无新训练/编码/标签编辑/保留test/部署，全文本/原版/UI/main保持。
+
+- 上轮交付：MUS-058 review / A / codex/MUS-058-expanded-fulltext-training，base97347bc、实际7d910ce65250d5e9f1d43579b9a7b209f631bb3a。599完整token/旧232逐元素复用/新367 MPS、1797窗/CPU控制passed；100train539固定alpha1单fit26.337ms。主140宏MRR旧37 .447149→新100 .447217、差CI[-.000738,.000888]含零，生成验证精确区间与20池整曲下降，当前无明确扩样收益，保留identity。176检查/独立token与primal/全部排名16组bootstrap/typed consumer和两stage跨目录保护passed，旧929文件/原版/UI/main保持。无搜参/保留test/部署；下一步先改进监督证据与评测覆盖，不继续仅扩量或同dev调参。
 
 - 上轮交付：MUS-057 review / A / codex/MUS-057-caption-data-expansion，base37fec0a、实际9a1fff4a08844d9d6989b5b6182f8eea00b37c11。有界扩样完成：新63train/13val、367完整描述；合计100train539段/20val60段，83/19作者组件。116固定候选中96元数据合格、76音频尝试全通过官方SHA/实际EOF/PCM去重，3参考9anchor相关.99577–.99993/lag0。165检查、独立重建全部框/PCM/原文/对齐和跨目录保护passed；2GiB内实际预记1,434,836,418。原版/UI/main及旧663文件/缓存保持；无CLAP或fit，下一步完整token与区间特征后固定参数数据量对照，training_ready=false/生成弱标签局限保留。
 
@@ -72,6 +74,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
+| MUS-059 监督与评测覆盖诊断 | in_progress / A | codex/MUS-059-supervision-diagnostic / base363f0b1；依赖058 | 固定词面规则/四子集geometry与配对对照/已存W代数/既有dev排名覆盖，纯CPU/无新fit或语义自动标签，独立复算/持久保护 |
 | MUS-058 全文本扩样固定训练 | review / A（特征/单fit与比较完成） | codex/MUS-058-expanded-fulltext-training / 7d910ce；base97347bc，依赖057/055 | 599完整token/176检查，100/539固定alpha1单fit；主MRR .447149→.447217无明确增益，生成val下降，保留identity；独立primal/16组bootstrap/两stage保护passed |
 | MUS-057 有界音频描述扩样 | review / A（配对检查完成，工具独立审核待安排） | codex/MUS-057-caption-data-expansion / 9a1fff4；base37fec0a，依赖044/045/051/052 | 新63/13与367段；合计100train539/20val60，165检查/独立全框PCM原文/9anchor/重复保护passed；无CLAP或fit，下一步完整文本特征/固定参数扩样对照 |
 | MUS-056 全文本归一化配对训练 | review / A（实际fit与比较完成） | codex/MUS-056-fulltext-cosine-training / ab66880；base19fab38/依赖055 | 全文本默认/37train209单fit12步、主MRR .447149→.448184小升但val片段下降；154检查/独立梯度排名/跨目录保护passed，保留identity |
