@@ -1,5 +1,22 @@
 # 账号 A 最新交接
 
+## 当前：MUS-065 Clotho容量审计完成，不作为音乐扩训主库
+
+A；2026-11-02 America/Chicago；branch codex/MUS-065-human-source-capacity，base77aabf4d3d77b99e4876b77a7f07c11b5222874f，实际完成源码b6f69c973a4511726ac07865f5de85eee5b7427c；最终交付SHA见handoff.source_sha。review，只有metadata容量诊断，无模型提升/训练就绪结论。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:19:40Z/22:25:02Z/22:30:20Z双方fetched，A06467f31/source77aabf4，B未变。047准确限定批准已接收，不外推065/无新派发，原B卡保持。
+
+MUS-065已完成Clotho v2.1人写研究训练候选容量：6来源文件2,636,946bytes/正常TLS/官方MD5，实际三metadata共5929段。固定whole音乐/乐器tag训练19段→BY/BYSA6→完整来源绑定6→跨split全sound/uploader闭包排除后1段/1组件/5描述，不足音乐扩训主库，停止此路线、不取音频。三split共2181组件、638跨组涉及3998段；原19缺ID/2拼写冲突保留排除边不进候选，CC0另报不等于权利不允许。CLAP用Clotho/AudioCaps检索选checkpoint，不能冒充全新独立benchmark；精确预训练成员未知。57检查25新32旧、独立CSV/图/全部计数与官方capture、8次实际claim拒绝passed，旧1115文件/历史951+B/23源码54cache/043044/160/原版保持。三次失败与显式修复链保留，实际完成源码b6f69c973a4511726ac07865f5de85eee5b7427c，不称首轮成功。无音频/编码/fit/质量分/新人工包/封存test/UI/DB/main/B047卡变化，identity/原全文本保持。
+
+原dev3839行/19195条caption仅结构完整性检查，val/eval caption正文与所有音频归档未取，候选仅metadata、不含正文。固定21whole tag非全部实际音乐穷尽；音乐tag不保证完整歌曲、对应caption语义，上传者不等于穷尽作者/作品身份。原caption实验非商业限制独立于音频CC，不把此库用于产品服务或宣称全新独立评测。
+
+执行链def5a6c的19缺ID失败→f66fbf8的2 uploader拼写冲突失败→0b88fe6错误要求README两句在单行失败→b6f69c9相邻两行出处解析修复完成；四claim及所有原件只读保留，未改数据/tag/rights/split、不作静默同人归并或按模型选择。初次合成48项12 codec拼写errors亦保留，最终57 passed不是首轮全过。A同操作方独立图遍历/计数非B审核。
+
+方法及完整计数见docs/evaluation/MUS-065-clotho-capacity.md与docs/verification/MUS-065-results.json。下一阶段核专门音乐人写来源（优先MusicCaps）的逐源权利、音频可用性与独立划分，不能把文字许可当音频授权、来源不明镜像当现成合法曲库，不增加用户全组合标注。未重复Java/Vue build（metadata-only范围）。提交明确文件后publish/sync回读；发布不等于B接收/批准或main合并。
+
+## 准备检查点（保留）
+
+
 ## 当前：MUS-065 Clotho人写研究训练容量准备
 
 第二修复检查点：f66fbf8首repair遇2条manufacturer与URL uploader重音差异，原repair-01/claim保留；不静默认同一人，两个uploader键皆入保守闭包、该行不能进候选，已知sound边仍保留。其余schema/offset/caption键诊断完整，无新素材/文字改动；v2-config绑定两失败链，另单次claim。55检查23新32旧passed，待提交后实际v2 audit。

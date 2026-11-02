@@ -263,4 +263,4 @@ MUS-060已按固定方案完成train100/539残差中心化单fit：全文本/特
 
 MUS-064已完成六曲/七原全文本与146候选固定对照，CPU/MPS与旧140复用核查通过。新6整曲MRR .455568→.491042但差区间含零，片段MRR下降，当前不支持稳定提升，继续identity；64检查/独立排名统计/四次重复拒绝passed，零新fit/下载/封存test/人工包，见[检索报告](docs/evaluation/MUS-064-six-source-retrieval.md)。
 
-MUS-065正在核Clotho人写音乐相关训练候选容量及同sound/uploader跨split隔离；短片段不当完整曲库，Clotho曾参与当前CLAP检查点选择，不能直接称全新独立评测。未取音频/fit或新增人工任务，见[本轮审计](docs/evaluation/MUS-065-clotho-capacity.md)。
+MUS-065已审计Clotho三split 5929段：固定音乐/乐器tag训练19→音频BY/BYSA6→来源与上传者隔离后仅1段/5描述，不足音乐扩训主库，停止该路线。57检查/独立图与计数/8拒绝passed；三次原失败与显式修复链保留，未取音频/fit/新人工任务。Clotho还参与CLAP检查点选择，不当全新独立评测，见[容量报告](docs/evaluation/MUS-065-clotho-capacity.md)。

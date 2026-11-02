@@ -1,0 +1,330 @@
+{
+  "split_summary": {
+    "development": {
+      "metadata_clips": 3839,
+      "unique_source_recordings": 3830,
+      "uploader_keys": 1684,
+      "source_binding_reasons": {
+        "bound": 3829,
+        "missing_source_ID_and_URL": 8,
+        "uploader_field_URL_mismatch": 2
+      },
+      "all_clips_license_families": {
+        "by": 1572,
+        "by-nc": 541,
+        "cc0": 1577,
+        "unknown": 149
+      },
+      "music_tag_clips": 19,
+      "explicit_music_tag_clips": 3,
+      "instrument_tag_only_clips": 16,
+      "music_tag_audio_license_families": {
+        "by": 6,
+        "by-nc": 6,
+        "cc0": 6,
+        "unknown": 1
+      },
+      "BY_BYSA_music_tag_clips": 6,
+      "missing_source_binding_all_clips": 10,
+      "missing_source_binding_BY_BYSA_music_clips": 0,
+      "source_bound_BY_BYSA_music_clips": 6,
+      "cross_split_component_excluded_BY_BYSA_clips": 5,
+      "isolated_BY_BYSA_music_tag_clips": 1,
+      "isolated_unique_sources": 1,
+      "isolated_components": 1,
+      "isolated_explicit_music_tag_clips": 1,
+      "missing_source_offsets_all": 1186
+    },
+    "validation": {
+      "metadata_clips": 1045,
+      "unique_source_recordings": 1039,
+      "uploader_keys": 674,
+      "source_binding_reasons": {
+        "bound": 1039,
+        "missing_source_ID_and_URL": 6
+      },
+      "all_clips_license_families": {
+        "by": 431,
+        "by-nc": 154,
+        "cc0": 415,
+        "unknown": 45
+      },
+      "music_tag_clips": 8,
+      "explicit_music_tag_clips": 1,
+      "instrument_tag_only_clips": 7,
+      "music_tag_audio_license_families": {
+        "by": 2,
+        "by-nc": 1,
+        "cc0": 4,
+        "unknown": 1
+      },
+      "BY_BYSA_music_tag_clips": 2,
+      "missing_source_binding_all_clips": 6,
+      "missing_source_binding_BY_BYSA_music_clips": 0,
+      "source_bound_BY_BYSA_music_clips": 2,
+      "cross_split_component_excluded_BY_BYSA_clips": 1,
+      "isolated_BY_BYSA_music_tag_clips": 1,
+      "isolated_unique_sources": 1,
+      "isolated_components": 1,
+      "isolated_explicit_music_tag_clips": 1,
+      "missing_source_offsets_all": 282
+    },
+    "evaluation": {
+      "metadata_clips": 1045,
+      "unique_source_recordings": 1040,
+      "uploader_keys": 664,
+      "source_binding_reasons": {
+        "bound": 1040,
+        "missing_source_ID_and_URL": 5
+      },
+      "all_clips_license_families": {
+        "by": 422,
+        "by-nc": 140,
+        "cc0": 452,
+        "unknown": 31
+      },
+      "music_tag_clips": 8,
+      "explicit_music_tag_clips": 2,
+      "instrument_tag_only_clips": 6,
+      "music_tag_audio_license_families": {
+        "by": 1,
+        "by-nc": 2,
+        "cc0": 5
+      },
+      "BY_BYSA_music_tag_clips": 1,
+      "missing_source_binding_all_clips": 5,
+      "missing_source_binding_BY_BYSA_music_clips": 0,
+      "source_bound_BY_BYSA_music_clips": 1,
+      "cross_split_component_excluded_BY_BYSA_clips": 1,
+      "isolated_BY_BYSA_music_tag_clips": 0,
+      "isolated_unique_sources": 0,
+      "isolated_components": 0,
+      "isolated_explicit_music_tag_clips": 0,
+      "missing_source_offsets_all": 306
+    }
+  },
+  "csv_encodings": {
+    "development": "iso-8859-1",
+    "validation": "iso-8859-1",
+    "evaluation": "utf-8-sig",
+    "development_captions": "utf-8-sig"
+  },
+  "all_metadata_clips": 5929,
+  "all_components": 2181,
+  "cross_split_components": 638,
+  "cross_split_component_clips": 3998,
+  "development_caption_pairs": 19195,
+  "training_candidate_caption_pairs": 5,
+  "training_ready": false,
+  "audio_ready": false,
+  "independent_benchmark_ready": false,
+  "body_semantics_used": false,
+  "operations": {
+    "audio_downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "quality_scores": 0,
+    "reserved_test_inputs": 0,
+    "new_manual_labels": 0
+  },
+  "checkpoint_provenance": {
+    "current_A_checkpoint_named": true,
+    "Clotho_in_checkpoint_selection_metric": true,
+    "AudioCaps_in_checkpoint_selection_metric": true,
+    "exact_training_membership_established": false,
+    "selection_passage_sha256": "f6a1dbb30808bacbca956bce761507c5251e9d8f4ed37c7874c0e6e2cda91a03"
+  },
+  "caption_license": {
+    "source_sha256": "4701019c81918fc205f6c675508efd4e4eff81339aa2660a632bd67fd0baffbf",
+    "experimental_noncommercial_only": true,
+    "original_notice_must_be_retained": true,
+    "commercial_services_or_results_not_authorized_by_this_license": true
+  },
+  "status": "source_capacity_complete_not_selected_for_music_training",
+  "source_sha": "b6f69c973a4511726ac07865f5de85eee5b7427c",
+  "config_sha256": "ab9fe62432a96469c1b038dfb2aed8e96a8638b24f587729d675160607a6268a",
+  "torch_or_CLAP_imported": false,
+  "training_candidate_clips": 1,
+  "private_result_sha256": "22669fee06bed85fcd2805aa4f968813c5c24aa95ffd1ec6ae09ac1f30db58b5",
+  "task": "MUS-065",
+  "base_sha": "77aabf4d3d77b99e4876b77a7f07c11b5222874f",
+  "actual_source_sha": "b6f69c973a4511726ac07865f5de85eee5b7427c",
+  "decision": "do_not_download_Clotho_audio_or_expand_train_from_this_source_under_current_protocol",
+  "tests": {
+    "status": "passed",
+    "total": 57,
+    "new": 25,
+    "related_existing": 32,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_clotho_capacity test_caption_source_audit test_human_caption_capacity -v",
+    "initial_synthetic_failure": "Unknown codec spelling utf8-sig caused12 errors in48 synthetic tests; corrected to utf-8-sig before production. Original log kept.",
+    "not_run": [
+      "Java tests and frontend build: metadata-only Python audit"
+    ]
+  },
+  "attempt_history": [
+    {
+      "source_sha": "def5a6c33b4602d6d4eeb9e0cee7f90ed7e7d689",
+      "output": "run-01",
+      "status": "failed_original_preserved",
+      "reason": "19 official Not found/NA source markers"
+    },
+    {
+      "source_sha": "f66fbf8",
+      "output": "repair-01",
+      "status": "failed_original_preserved",
+      "reason": "2 metadata-uploader/URL-uploader diacritic conflicts"
+    },
+    {
+      "source_sha": "0b88fe6",
+      "output": "repair-v2-01",
+      "status": "failed_original_preserved",
+      "reason": "provenance parser incorrectly expected two adjacent README statements on one line"
+    },
+    {
+      "source_sha": "b6f69c973a4511726ac07865f5de85eee5b7427c",
+      "output": "repair-v3-01",
+      "status": "complete",
+      "reason": "explicitly pinned source-format and provenance repairs; unchanged sources/tags/rights/splits"
+    }
+  ],
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent positional CSV, graph traversal, rights classification, caption binding and capture/preservation reconstruction; no production audit imports",
+    "all_metadata5929_rows_and2181_components_match": true,
+    "all638_cross_split_components3998_clips_match": true,
+    "all_split_stage_and_license_counts_match": true,
+    "all3839_training_caption_bindings19195_pairs_match": true,
+    "one_metadata_candidate5_captions_match": true,
+    "all19_missing_sources2_uploader_conflicts_retained_for_exclusion_match": true,
+    "official_MD5_TLS_capture_6files2636946bytes_match": true,
+    "checkpoint_selection_passage_hash_match": true,
+    "prior045_to064_all1115_files_preserved": true,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "no_torch_CLAP_or_production_audit_import": true,
+    "script_sha256": "3eed2e97768646e010b3bcaf8b22d16ad9df29f781fabe053cf7562ed4f64740"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "actual_refusals": [
+      {
+        "config": "docs/evaluation/MUS-065-source-config.json",
+        "output": "run-01",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-source-config.json",
+        "output": "forbidden-0",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-format-repair-config.json",
+        "output": "repair-01",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-format-repair-config.json",
+        "output": "forbidden-1",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-format-repair-v2-config.json",
+        "output": "repair-v2-01",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-format-repair-v2-config.json",
+        "output": "forbidden-2",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-provenance-repair-config.json",
+        "output": "repair-v3-01",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      },
+      {
+        "config": "docs/evaluation/MUS-065-provenance-repair-config.json",
+        "output": "forbidden-3",
+        "exit": 1,
+        "refused_before_output_or_audit": true
+      }
+    ],
+    "all4_original_claims_failures_or_results_unchanged": true,
+    "extra_audits": 0
+  },
+  "capture": {
+    "files": 6,
+    "bytes": 2636946,
+    "reserved_bytes": 12582912,
+    "maximum_bytes": 16777216,
+    "normal_TLS": true,
+    "all5_Zenodo_official_MD5_match": true,
+    "CLAP_Git_commit": "1fd4c37df5ffbfcfbad5415c170bc66cf94c9994",
+    "audio_files": 0,
+    "validation_evaluation_caption_files": 0
+  },
+  "private_evidence_sha256": {
+    "CLAP-capture-plan.json": "3e0ae0cb1ebb1b8408c474dcc41439eab08e902b94fa60e47c05709c368dd80e",
+    "audit-provenance-repair.log": "5155cde7eaf7a17b46abbdaaa78bf0386e0afca3222b8fc5a207eae9e9e065b0",
+    "audit-repair-v2.log": "0eaccfabaca604d84d0ec07c45f0de00e149109bed80793f3c011bc4d823cd5b",
+    "audit-repair.log": "41af3fc74851eede2006b7350ce28d6c03d4b8e8bd650397cff75ff9224e05e5",
+    "audit-started.json": "cbf50ab49d41a1d8c3bf9d62476a98d79374616fe97bb47a31e72d2236f10968",
+    "audit.log": "d2023ef28973457117d9f6bcad9971b04b5aea05e38def6b45edaac46fa14a6c",
+    "capture-ledger.jsonl": "6b99be1cde22aa64d7a822e2d14f044b5f47c975c3607cf5d0dead54d73a47a1",
+    "capture-plan.json": "14956d90d3e92e7125bbceae2cafbd60784785374e11dabcd469f71e984aa4f6",
+    "diagnose-development.json": "737d713436b609946c2822aabcbf531c630df4cdbf1c08b4de77764f3656635e",
+    "diagnose-evaluation.json": "ea02d342ea18ad6b94b654ed0441a122431e3d51e4288bbf5ab2153015f49aaf",
+    "diagnose-remaining-structure.json": "73c8fdd2151c955c41e946ace862a99b2611d3a28e561d97f0c403a4c3cb18e0",
+    "diagnose-url.json": "c291562afcf186e61e183b949d2641385e834fd9b4d2b3cdb752cd28fdfab202",
+    "diagnose-validation.json": "d4307a1930285bc2169e0b5ce368c487d2a11a81d094abf24d6143ea980ee927",
+    "forbidden-0-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "forbidden-1-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "forbidden-2-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "forbidden-3-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "guard-audit.json": "05b5d35ce07c60864e614e56b2ebb7fc39cd438f3229b8b2c07a1fe74ba526e9",
+    "independent-audit.json": "e03ae50f4512ea2200b690a5cf663e6c3d43d4c334e9f6776750857f6a879e68",
+    "independent-audit.log": "6698731032ca672728260cacc3553cb8a5cc3d8d242cac3ce51843402c958999",
+    "independent-audit.py": "3eed2e97768646e010b3bcaf8b22d16ad9df29f781fabe053cf7562ed4f64740",
+    "prior-before.json": "f4f29e4054f8000f6d6f99292e034f9a07b85b5924c0b8677d2c6dcf1b0c525b",
+    "repair-01/failure.json": "1878bc13199d06348610971e42d6069764c6792b499905a017955b82923e1876",
+    "repair-01/freeze.json": "0a5fc020ca027b150568fa9fea7d24c3ec5d1ae2496cbe23c1370f31cea8654b",
+    "repair-01-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "repair-started.json": "c08cf4ca13227bde4a9e22efca626e1a203e1dfb7efadea23aaab6e8f70b04ac",
+    "repair-v2-01/failure.json": "19830ca5c0939edd5035eb3076fee7320f9cfa28282cf9e8900ca0f4052b5187",
+    "repair-v2-01/freeze.json": "7acf945b2857084336a163d55df68ffd3dd1a367248c4ee4239508a52e5653f1",
+    "repair-v2-01-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "repair-v2-started.json": "03d59241a7e2503ae9cf23293e0443d2e5546cbb4fcba4d8db3db12baa259c48",
+    "repair-v3-01/freeze.json": "a0e50ff3a8920ac6023edb578e82a3d02843419e4e7d09b8d790d9700547f9cd",
+    "repair-v3-01/result-private.json": "22669fee06bed85fcd2805aa4f968813c5c24aa95ffd1ec6ae09ac1f30db58b5",
+    "repair-v3-01/result-public.json": "4b4ddb4322faa9630e2f08f2ebb96653f183fd226502b7ef359a245d596b88a4",
+    "repair-v3-01-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "repair-v3-started.json": "476d6c8458af8e87396ec8b518ff0bc4a943d4e6c0d696a62d4874abcb65d8f4",
+    "run-01/failure.json": "6de6e60d947bf866170584615072dc1927c449c84e9805531ed6b107098835e1",
+    "run-01/freeze.json": "34fc24c9e2711b330d5cc3f6ff759bfa8ac2dcf32da44e0224d54b26e87e5427",
+    "run-01-refusal.log": "1bde37b6015eac06aebbef121950703f00e16fc89a82b4fda6e7075d54785826",
+    "source/CLAP-README.md": "5e168ab0512160e5e9e461c17a74988b6d32b14f2a54f6dcbf61268166b70ad9",
+    "source/CLAP-README.receipt.json": "48b422a83ebde8450519c55a997932447a00357026ac1a1bf96f5935ed308840",
+    "source/LICENSE": "4701019c81918fc205f6c675508efd4e4eff81339aa2660a632bd67fd0baffbf",
+    "source/LICENSE.receipt.json": "f91ac1f90bd86065604a21cac447815e97763b5c65fafd10da16c8afb57d415f",
+    "source/clotho_captions_development.csv": "df2e5b92060b4bb23311f8b3a7f82241d900b9c4f62b0cc467ac2ce5e9c52886",
+    "source/clotho_captions_development.csv.receipt.json": "990024f60afca551056b5fefe68e3d897c7085b5a7789f78b1f2483b49a6ca87",
+    "source/clotho_metadata_development.csv": "b054a8d9d0f88436e7cf6341c82a70e9e975c3b3ddd560d9b04f2cd5fdc75949",
+    "source/clotho_metadata_development.csv.receipt.json": "9afbd48d9733227d3e8f524d6b26530e032bf3c0fa2ddf9cbf54e20d96167c2f",
+    "source/clotho_metadata_evaluation.csv": "1b8a7c184d3b6472a57a21c4c38ff13ba0613e6014a9bf4379251387f435aa70",
+    "source/clotho_metadata_evaluation.csv.receipt.json": "e8b98aba0b126d9303337e4d71be46162ebcab19f938b712e7e5ad859ef1f334",
+    "source/clotho_metadata_validation.csv": "066026ae1bc20277614ae9d4fffea085d959f0b5e40120751b8d3e717f5faa97",
+    "source/clotho_metadata_validation.csv.receipt.json": "441cb500bd33b0589075f74bbc23bd7d9b1bf1f4786db243264f3de7225e77ea",
+    "tests-final.log": "6d44c76a68a5599130d005d126738372c561694367693b5c6f23492de184017b",
+    "tests-provenance-repair.log": "89073f3cd137cdafc4edc9a4eec0e7fe9cb07aa74c45f28b98a43d67a238568f",
+    "tests-repair-v2.log": "1e6b70bf43d7c1bb74919305a232ee9a4b628f00c8cdcdd87c80f6d3972266c0",
+    "tests-repair.log": "ce8115727621a6f3cdde6c8e82e31c5aa97b918fe6b29c2ae0c9214228fa9390",
+    "tests.log": "30765f25a73e87bf885eba80fc23751333be2f8234c9ba5281378340bc42c82f"
+  }
+}

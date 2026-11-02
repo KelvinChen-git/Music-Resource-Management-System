@@ -377,3 +377,5 @@ MUS-064实际完成：干净46044c87951a3fa322831047d802d0ce0ff5f24e首次build/
 ## MUS-065：Clotho人写研究训练来源准备（2026-11-02）
 
 064六组不足稳定改善证据，先核另一个直接人写描述来源Clotho的音乐相关metadata、音频/文字各自许可及全split sound/uploader闭包。规则/config先提交后统计，不按caption语义或模型分数取样，不取val/eval正文或音频，训练候选不当新benchmark/完整曲库。CLAP已用Clotho检索选checkpoint，独立评测限制须公开；原identity/全文本/UI/main保持。
+
+MUS-065已完成Clotho v2.1人写研究训练候选容量：6来源文件2,636,946bytes/正常TLS/官方MD5，实际三metadata共5929段。固定whole音乐/乐器tag训练19段→BY/BYSA6→完整来源绑定6→跨split全sound/uploader闭包排除后1段/1组件/5描述，不足音乐扩训主库，停止此路线、不取音频。三split共2181组件、638跨组涉及3998段；原19缺ID/2拼写冲突保留排除边不进候选，CC0另报不等于权利不允许。CLAP用Clotho/AudioCaps检索选checkpoint，不能冒充全新独立benchmark；精确预训练成员未知。57检查25新32旧、独立CSV/图/全部计数与官方capture、8次实际claim拒绝passed，旧1115文件/历史951+B/23源码54cache/043044/160/原版保持。三次失败与显式修复链保留，实际完成源码b6f69c973a4511726ac07865f5de85eee5b7427c，不称首轮成功。无音频/编码/fit/质量分/新人工包/封存test/UI/DB/main/B047卡变化，identity/原全文本保持。 见[容量报告](evaluation/MUS-065-clotho-capacity.md)。
