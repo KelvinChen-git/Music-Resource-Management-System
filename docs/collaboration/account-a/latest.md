@@ -1,5 +1,16 @@
 # 账号 A 最新交接
 
+## 当前：MUS-066 MusicCaps固定20来源metadata与权利证据准备
+
+A；2026-11-02 America/Chicago；branch codex/MUS-066-musiccaps-source-audit，base4780f09ee73829ff82d970a2ef4435cda133968a。E40/config/source先提交后执行；目前仅准备和合成检查，真实网络抽查未执行。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:43:48Z双方fetched，A1c17648/source4780f09，B未变。B047准确限定批准已接收，不外推066/无新派发，原卡保持。
+
+复用050原5521 MusicCaps CSV/2448非eval且有未增强路径候选；seed hash20，禁止caption语义/模型/访问结果驱动选择与替补。只查YouTube oEmbed及4官方说明，8MiB持久预记，正常TLS/无redirect/每URL一次，连续3访问或网络错误停止。metadata成功不推许可、音乐作者、可播放或训练就绪；本轮不调用DataAPI，不印密钥/新建付费资源、音频归档/编码/fit/用户人工包/封存test。旧045–065共1170文件已快照，原版/UI/DB/main/全文本/identity保持。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-065 Clotho容量审计完成，不作为音乐扩训主库
 
 A；2026-11-02 America/Chicago；branch codex/MUS-065-human-source-capacity，base77aabf4d3d77b99e4876b77a7f07c11b5222874f，实际完成源码b6f69c973a4511726ac07865f5de85eee5b7427c；最终交付SHA见handoff.source_sha。review，只有metadata容量诊断，无模型提升/训练就绪结论。

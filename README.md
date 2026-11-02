@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-065-human-source-capacity`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-066-musiccaps-source-audit`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -264,3 +264,5 @@ MUS-060已按固定方案完成train100/539残差中心化单fit：全文本/特
 MUS-064已完成六曲/七原全文本与146候选固定对照，CPU/MPS与旧140复用核查通过。新6整曲MRR .455568→.491042但差区间含零，片段MRR下降，当前不支持稳定提升，继续identity；64检查/独立排名统计/四次重复拒绝passed，零新fit/下载/封存test/人工包，见[检索报告](docs/evaluation/MUS-064-six-source-retrieval.md)。
 
 MUS-065已审计Clotho三split 5929段：固定音乐/乐器tag训练19→音频BY/BYSA6→来源与上传者隔离后仅1段/5描述，不足音乐扩训主库，停止该路线。57检查/独立图与计数/8拒绝passed；三次原失败与显式修复链保留，未取音频/fit/新人工任务。Clotho还参与CLAP检查点选择，不当全新独立评测，见[容量报告](docs/evaluation/MUS-065-clotho-capacity.md)。
+
+MUS-066准备MusicCaps固定20来源的公开metadata抽查，分开记录可访问、许可和音乐作者/音频核验；不把oEmbed成功当训练就绪，不取音频或新fit，见[来源核查](docs/evaluation/MUS-066-musiccaps-source-audit.md)。

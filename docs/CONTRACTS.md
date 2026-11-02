@@ -659,3 +659,14 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 065第二显式修复：f66fbf8首次repair被2条manufacturer与URL uploader的重音拼写不一致拒绝，repair-01/claim/失败保持。不静默去重音认同一人；保留原字段及URL的两个uploader键作保守闭包边（只会扩大排除），该行不能进候选；已知sound ID仍保留其闭包边。除19条缺失与2条不一致外仍严格拒绝坏host/URL ID。已单独核所有原文件无其他schema/offset/duplicate/caption-key缺失；v2 config绑定两次原失败链，repair-v2-started单次，不改tag/rights/split/输入或按成绩选择。
 
 065出处解析修复：0b88fe6的v2在原README证据核查失败，程序错误要求checkpoint选择说明和四分数公式处于单行；准确固定来源实际为相邻两行。保留第三次失败/claim，只修相邻两行解析，不改Clotho数据/选择/统计规则；测试已覆盖同一行、相邻两行和断开无关段落拒绝，另直接核原已pin README。v3 config绑定此前全部链/新repair-v3单次，不重置任何旧claim、不增加来源或模型评分。
+
+
+## E40：MUS-066 MusicCaps来源可用性与证据分层（2026-11-02）
+
+复用050固定MusicCaps原CSV/官方卡与已核2448个非AudioSet-eval、存在MusicBench未增强路径的metadata框；核050公开证据对私有框的SHA，不能以caption作者author_id代音乐人、AudioSet flag代项目独立划分。按SHA256(seed+换行+videoID)排序取20，seed=MUS-066-MusicCaps-source-probe-v1，无caption内容/模型分数/许可/访问成败驱动补选。原作者/作品及跨来源关系仍未知，不取AudioSet-eval caption或项目保留20/160模型输入。
+
+源码/config/输入/正常TLS CA/runtime先冻结后单probe-started claim。公开YouTube oEmbed只查metadata，四份官方说明只快照（MusicCaps原卡复用）；每URL一次、无重试/替换/redirect/yt-dlp/音视频/整归档。文档正文各1MiB，20probe各64KiB，读取最多上限+1用于溢出判定且账本预记上限+1，总8MiB。连续3个网络错误或401/403/429/5xx停止余项，其他HTTP错误单列、不当歌曲不存在；原/新目录不可再跑，失败原件保留。
+
+HTTP200/JSON/YouTube provider/iframe src同videoID/author URL通过才标oEmbed metadata可用；html只解析、不可执行/渲染。返回uploader/channel信息不是音乐作者/作品确认，oEmbed不含可靠status.license，licensedContent/embeddable/标题CC等不能提升许可。缺许可API记录与对应身份/实际10秒音频核查均保留unknown，audio_ready/training_ready=false；不把文字CC许可或MusicBench归档发布当原音频授权，不据未知许可下非法结论。
+
+本轮不调用YouTube Data API、不创建付费资源/密钥、不读取/打印秘密，不声称全5521视频可用容量或训练许可结论；API许可调查前提缺失单列blocked，metadata审计可完成。逐源URL/原响应/作者字段仅私有700/600，公开聚合/hash。结束核1170旧工件/原版/历史与模型cache/B047卡，不改UI/Java/DB/API/依赖/main、不新增人工任务。

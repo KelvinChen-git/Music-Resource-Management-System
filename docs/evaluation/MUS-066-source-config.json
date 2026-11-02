@@ -1,0 +1,50 @@
+{
+  "schema": "sonora-musiccaps-source-probe-v1",
+  "task_directory": ".local/a/mus066",
+  "inputs": {
+    "musiccaps": {
+      "path": ".local/a/mus050/google--MusicCaps-musiccaps-public.csv",
+      "sha256": "8cc109ac507b5e5aed8ea73a5c8f897a9d0793f7397427e000adf4c05f6021c7"
+    },
+    "frame": {
+      "path": ".local/a/mus050/musiccaps-provisional-frame.json",
+      "sha256": "589f6716bda38309f2adeb13e37c3e4c6be8bc2386d825e654af88e717c5d3f3"
+    },
+    "musiccaps_card": {
+      "path": ".local/a/mus050/google--MusicCaps-README.md",
+      "sha256": "694ce36fcc1d208e9b387581709cf7a30294c961d630fcb34f3231680ec8013f"
+    },
+    "musicbench_card": {
+      "path": ".local/a/mus050/amaai-lab--MusicBench-README.md",
+      "sha256": "47f17bd41fd3ad898a6cc876bed473b8a95d35a535b130247d42e3423e171c5d"
+    },
+    "prior_verification": {
+      "path": "docs/verification/MUS-050-results.json",
+      "sha256": "2d8e259b13e9a0da7f3a2d9486353fc4fa634468a319c0a0aca8e8fa9511e97c"
+    }
+  },
+  "selection_seed": "MUS-066-MusicCaps-source-probe-v1",
+  "probe_count": 20,
+  "per_probe_bytes": 65536,
+  "per_document_bytes": 1048576,
+  "body_budget_bytes": 8388608,
+  "stop_after_consecutive_transport_or_access_errors": 3,
+  "redirects": false,
+  "retries": 0,
+  "replacements": 0,
+  "call_data_api": false,
+  "documents": {
+    "videos_api": "https://developers.google.com/youtube/data/reference/rest/v3/videos",
+    "api_setup": "https://developers.google.com/youtube/data/getting-started",
+    "license_help": "https://support.google.com/youtube/answer/2797468?hl=en",
+    "terms": "https://www.youtube.com/static?template=terms"
+  },
+  "operations": {
+    "audio_downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "project_reserved_test_inputs": 0,
+    "new_manual_labels": 0,
+    "paid_resources": 0
+  }
+}
