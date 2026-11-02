@@ -1,0 +1,556 @@
+{
+  "task": "MUS-059",
+  "branch": "codex/MUS-059-supervision-diagnostic",
+  "comparison_base": "363f0b14fe6d78705065d2d884f4433cd374cc2f",
+  "source_sha": "f473827ba2a33ef726dc4ec319f5344987ad2b82",
+  "diagnostic": {
+    "schema": "sonora-supervision-diagnostic-result-v1",
+    "status": "descriptive_diagnostic_complete",
+    "source_sha": "f473827ba2a33ef726dc4ec319f5344987ad2b82",
+    "config_sha256": "b75bdbaeecf83708d27a83592fb959c709c4630f17ea634ea7667838784440fb",
+    "lexical": {
+      "train_only_dictionary_recordings": 100,
+      "common_5gram_types": 47,
+      "exact_normalized_duplicates": {
+        "all_interval_pairs": 0,
+        "cross_recording_pairs": 0,
+        "cross_recording_affected_recordings": 0
+      },
+      "near_duplicate_5gram_jaccard": {
+        "all_interval_pairs": 0,
+        "cross_recording_pairs": 0,
+        "cross_recording_affected_recordings": 0
+      },
+      "repeated_sentence_types_across_recordings": 22,
+      "splits": {
+        "train": {
+          "recordings": 100,
+          "captions": 539,
+          "word_count": {
+            "mean": 65.21575543002749,
+            "min": 12.0,
+            "median_unweighted": 63.0,
+            "max": 147.0
+          },
+          "common_train_5gram_token_coverage": {
+            "mean": 0.18385714961597524,
+            "min": 0.0,
+            "median_unweighted": 0.18181818181818182,
+            "max": 0.46296296296296297
+          }
+        },
+        "validation": {
+          "recordings": 20,
+          "captions": 60,
+          "word_count": {
+            "mean": 60.89369047619047,
+            "min": 40.0,
+            "median_unweighted": 62.5,
+            "max": 109.0
+          },
+          "common_train_5gram_token_coverage": {
+            "mean": 0.18432194833769983,
+            "min": 0.0,
+            "median_unweighted": 0.14087301587301587,
+            "max": 0.4444444444444444
+          }
+        }
+      },
+      "scope": "Repeated wording, not incorrect semantic labels; no edits or exclusions."
+    },
+    "geometry": {
+      "train100": {
+        "audio": {
+          "recordings": 100,
+          "intervals": 539,
+          "mean_vector_norm": 0.6323533016055145,
+          "centered_variance_trace": 0.6001293019486054,
+          "centered_participation_ratio": 19.275716343675935,
+          "mean_within_recording_distinct_interval_cosine": 0.8435047511467894,
+          "recordings_with_multiple_intervals": 57,
+          "recordings_with_one_interval": 43,
+          "mean_between_distinct_recordings_cosine": 0.3945942376043396
+        },
+        "text": {
+          "recordings": 100,
+          "intervals": 539,
+          "mean_vector_norm": 0.664184446919582,
+          "centered_variance_trace": 0.558859020470129,
+          "centered_participation_ratio": 13.581213356051922,
+          "mean_within_recording_distinct_interval_cosine": 0.6588767218401076,
+          "recordings_with_multiple_intervals": 57,
+          "recordings_with_one_interval": 43,
+          "mean_between_distinct_recordings_cosine": 0.4371820275403692
+        }
+      },
+      "original37": {
+        "audio": {
+          "recordings": 37,
+          "intervals": 209,
+          "mean_vector_norm": 0.6334554060842604,
+          "centered_variance_trace": 0.598734248502625,
+          "centered_participation_ratio": 16.506985148631482,
+          "mean_within_recording_distinct_interval_cosine": 0.8684036149064077,
+          "recordings_with_multiple_intervals": 23,
+          "recordings_with_one_interval": 14,
+          "mean_between_distinct_recordings_cosine": 0.38662815576791926
+        },
+        "text": {
+          "recordings": 37,
+          "intervals": 209,
+          "mean_vector_norm": 0.6749397128003708,
+          "centered_variance_trace": 0.5444563840849533,
+          "centered_participation_ratio": 12.484541680618712,
+          "mean_within_recording_distinct_interval_cosine": 0.6931935664585689,
+          "recordings_with_multiple_intervals": 23,
+          "recordings_with_one_interval": 14,
+          "mean_between_distinct_recordings_cosine": 0.44502826670631557
+        }
+      },
+      "new63": {
+        "audio": {
+          "recordings": 63,
+          "intervals": 330,
+          "mean_vector_norm": 0.6350731982973719,
+          "centered_variance_trace": 0.596682032804347,
+          "centered_participation_ratio": 16.81454721861081,
+          "mean_within_recording_distinct_interval_cosine": 0.8266614021329298,
+          "recordings_with_multiple_intervals": 34,
+          "recordings_with_one_interval": 29,
+          "mean_between_distinct_recordings_cosine": 0.395004888347568
+        },
+        "text": {
+          "recordings": 63,
+          "intervals": 330,
+          "mean_vector_norm": 0.664503216044308,
+          "centered_variance_trace": 0.5584354758667718,
+          "centered_participation_ratio": 12.961919753788523,
+          "mean_within_recording_distinct_interval_cosine": 0.6356623857746779,
+          "recordings_with_multiple_intervals": 34,
+          "recordings_with_one_interval": 29,
+          "mean_between_distinct_recordings_cosine": 0.43525945534321914
+        }
+      },
+      "validation20": {
+        "audio": {
+          "recordings": 20,
+          "intervals": 60,
+          "mean_vector_norm": 0.6176721156304477,
+          "centered_variance_trace": 0.618481157572607,
+          "centered_participation_ratio": 11.23918706635033,
+          "mean_within_recording_distinct_interval_cosine": 0.8452410885791327,
+          "recordings_with_multiple_intervals": 9,
+          "recordings_with_one_interval": 11,
+          "mean_between_distinct_recordings_cosine": 0.35187645310037335
+        },
+        "text": {
+          "recordings": 20,
+          "intervals": 60,
+          "mean_vector_norm": 0.677481950553113,
+          "centered_variance_trace": 0.5410182066747493,
+          "centered_participation_ratio": 9.606173037018554,
+          "mean_within_recording_distinct_interval_cosine": 0.6567818281843082,
+          "recordings_with_multiple_intervals": 9,
+          "recordings_with_one_interval": 11,
+          "mean_between_distinct_recordings_cosine": 0.4370240326032468
+        }
+      }
+    },
+    "score_contrasts": {
+      "train100": {
+        "identity": {
+          "known_pair_cosine": 0.35098217347533994,
+          "other_recording_mean_cosine": 0.17558857659333116,
+          "known_minus_other_recording_mean": 0.175393596882009,
+          "known_minus_best_other_recording": -0.14106383024118516,
+          "known_minus_other_same_recording_interval_mean": 0.013657427407124322,
+          "temporal_comparison_recordings": 57,
+          "temporal_comparison_recording_fraction": 0.5699999999999998,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "saved37-fulltext-ridge": {
+          "known_pair_cosine": 0.45479442284968313,
+          "other_recording_mean_cosine": 0.26649010733878714,
+          "known_minus_other_recording_mean": 0.18830431551089594,
+          "known_minus_best_other_recording": -0.1476541267707098,
+          "known_minus_other_same_recording_interval_mean": 0.014469230825441904,
+          "temporal_comparison_recordings": 57,
+          "temporal_comparison_recording_fraction": 0.5699999999999998,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "expanded100-fulltext-ridge": {
+          "known_pair_cosine": 0.4532813665430487,
+          "other_recording_mean_cosine": 0.2643324019709946,
+          "known_minus_other_recording_mean": 0.1889489645720543,
+          "known_minus_best_other_recording": -0.14817528961930676,
+          "known_minus_other_same_recording_interval_mean": 0.014558949717978947,
+          "temporal_comparison_recordings": 57,
+          "temporal_comparison_recording_fraction": 0.5699999999999998,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        }
+      },
+      "original37": {
+        "identity": {
+          "known_pair_cosine": 0.3422257648775992,
+          "other_recording_mean_cosine": 0.16703737162450813,
+          "known_minus_other_recording_mean": 0.17518839325309093,
+          "known_minus_best_other_recording": -0.1087297318493097,
+          "known_minus_other_same_recording_interval_mean": 0.011585114042601001,
+          "temporal_comparison_recordings": 23,
+          "temporal_comparison_recording_fraction": 0.6216216216216216,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "saved37-fulltext-ridge": {
+          "known_pair_cosine": 0.45455003852877224,
+          "other_recording_mean_cosine": 0.262668502360863,
+          "known_minus_other_recording_mean": 0.19188153616790934,
+          "known_minus_best_other_recording": -0.10791409680256468,
+          "known_minus_other_same_recording_interval_mean": 0.012382808555179528,
+          "temporal_comparison_recordings": 23,
+          "temporal_comparison_recording_fraction": 0.6216216216216216,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "expanded100-fulltext-ridge": {
+          "known_pair_cosine": 0.44552855575279815,
+          "other_recording_mean_cosine": 0.25615471803609635,
+          "known_minus_other_recording_mean": 0.18937383771670196,
+          "known_minus_best_other_recording": -0.11181024462232585,
+          "known_minus_other_same_recording_interval_mean": 0.012269538206552643,
+          "temporal_comparison_recordings": 23,
+          "temporal_comparison_recording_fraction": 0.6216216216216216,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        }
+      },
+      "new63": {
+        "identity": {
+          "known_pair_cosine": 0.3561248261438546,
+          "other_recording_mean_cosine": 0.17942696543093814,
+          "known_minus_other_recording_mean": 0.17669786071291665,
+          "known_minus_best_other_recording": -0.12821442817050696,
+          "known_minus_other_same_recording_interval_mean": 0.015059286447831255,
+          "temporal_comparison_recordings": 34,
+          "temporal_comparison_recording_fraction": 0.5396825396825397,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "saved37-fulltext-ridge": {
+          "known_pair_cosine": 0.4549379501492654,
+          "other_recording_mean_cosine": 0.26744208549849163,
+          "known_minus_other_recording_mean": 0.1874958646507737,
+          "known_minus_best_other_recording": -0.1378300255993302,
+          "known_minus_other_same_recording_interval_mean": 0.015880634125913506,
+          "temporal_comparison_recordings": 34,
+          "temporal_comparison_recording_fraction": 0.5396825396825397,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "expanded100-fulltext-ridge": {
+          "known_pair_cosine": 0.4578346046262121,
+          "other_recording_mean_cosine": 0.26785429975290337,
+          "known_minus_other_recording_mean": 0.18998030487330858,
+          "known_minus_best_other_recording": -0.13620219306793285,
+          "known_minus_other_same_recording_interval_mean": 0.016107669269826146,
+          "temporal_comparison_recordings": 34,
+          "temporal_comparison_recording_fraction": 0.5396825396825397,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        }
+      },
+      "validation20": {
+        "identity": {
+          "known_pair_cosine": 0.3326420465733887,
+          "other_recording_mean_cosine": 0.16090056242803372,
+          "known_minus_other_recording_mean": 0.17174148414535506,
+          "known_minus_best_other_recording": -0.0828000253050894,
+          "known_minus_other_same_recording_interval_mean": 0.022712590156886862,
+          "temporal_comparison_recordings": 9,
+          "temporal_comparison_recording_fraction": 0.45,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "saved37-fulltext-ridge": {
+          "known_pair_cosine": 0.4272071584414341,
+          "other_recording_mean_cosine": 0.24541350604953616,
+          "known_minus_other_recording_mean": 0.18179365239189788,
+          "known_minus_best_other_recording": -0.08866541614680078,
+          "known_minus_other_same_recording_interval_mean": 0.02368548611442156,
+          "temporal_comparison_recordings": 9,
+          "temporal_comparison_recording_fraction": 0.45,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        },
+        "expanded100-fulltext-ridge": {
+          "known_pair_cosine": 0.4258923203232888,
+          "other_recording_mean_cosine": 0.24344481705861326,
+          "known_minus_other_recording_mean": 0.18244750326467551,
+          "known_minus_best_other_recording": -0.08845089232003117,
+          "known_minus_other_same_recording_interval_mean": 0.023725347126852044,
+          "temporal_comparison_recordings": 9,
+          "temporal_comparison_recording_fraction": 0.45,
+          "scope": "Alternatives semantically unjudged; contrasts are not relevance/negative-label accuracy."
+        }
+      }
+    },
+    "ridge_attribution": {
+      "saved37": {
+        "delta_frobenius": 0.34822954369548675,
+        "normal_equation_maxabs": 9.80118763926896e-17,
+        "rhs_norm": 0.4770809578997199,
+        "mean_outer_rhs_norm": 0.453974533829419,
+        "centered_rhs_norm": 0.13158411266461495,
+        "mean_centered_rhs_cosine": 0.03514627555092995,
+        "rhs_to_mean_cosine": 0.9612608043091284,
+        "saved_update_energy_in_common_residual_target_direction": 0.874128778504152,
+        "scope": "Algebra of saved W and training normal-equation RHS; no solve or new candidate fit."
+      },
+      "expanded100": {
+        "delta_frobenius": 0.3334953407020546,
+        "normal_equation_maxabs": 8.229094489164979e-17,
+        "rhs_norm": 0.458796175871063,
+        "mean_outer_rhs_norm": 0.44104841976803116,
+        "centered_rhs_norm": 0.11412854615416723,
+        "mean_centered_rhs_cosine": 0.029252272650654765,
+        "rhs_to_mean_cosine": 0.968593380870385,
+        "saved_update_energy_in_common_residual_target_direction": 0.8978581747995462,
+        "scope": "Algebra of saved W and training normal-equation RHS; no solve or new candidate fit."
+      }
+    },
+    "saved_updates_comparison": {
+      "delta_difference_frobenius": 0.0907914336434524,
+      "delta_direction_cosine": 0.9654448240337272,
+      "original37_new63_text_mean_direction_cosine": 0.9733588148646586
+    },
+    "language_coverage": {
+      "train100": {
+        "recordings": 100,
+        "captions": 539,
+        "word_count": {
+          "mean": 65.21575543002749,
+          "min": 12.0,
+          "median_unweighted": 63.0,
+          "max": 147.0
+        },
+        "CLAP_token_count": {
+          "mean": 82.24551663859017,
+          "min": 17.0,
+          "median_unweighted": 79.0,
+          "max": 195.0
+        },
+        "word_occurrence_OOV_from_train": {
+          "mean": 0.0,
+          "min": 0.0,
+          "median_unweighted": 0.0,
+          "max": 0.0
+        },
+        "scope": "Lexical coverage only; OOV or length difference does not establish semantic domain failure."
+      },
+      "original37": {
+        "recordings": 37,
+        "captions": 209,
+        "word_count": {
+          "mean": 63.32125112125114,
+          "min": 12.0,
+          "median_unweighted": 62.0,
+          "max": 147.0
+        },
+        "CLAP_token_count": {
+          "mean": 79.26860496860495,
+          "min": 17.0,
+          "median_unweighted": 79.0,
+          "max": 178.0
+        },
+        "word_occurrence_OOV_from_train": {
+          "mean": 0.0,
+          "min": 0.0,
+          "median_unweighted": 0.0,
+          "max": 0.0
+        },
+        "scope": "Lexical coverage only; OOV or length difference does not establish semantic domain failure."
+      },
+      "new63": {
+        "recordings": 63,
+        "captions": 330,
+        "word_count": {
+          "mean": 66.32840081772153,
+          "min": 17.0,
+          "median_unweighted": 63.0,
+          "max": 146.0
+        },
+        "CLAP_token_count": {
+          "mean": 83.99386158762908,
+          "min": 46.0,
+          "median_unweighted": 79.0,
+          "max": 195.0
+        },
+        "word_occurrence_OOV_from_train": {
+          "mean": 0.0,
+          "min": 0.0,
+          "median_unweighted": 0.0,
+          "max": 0.0
+        },
+        "scope": "Lexical coverage only; OOV or length difference does not establish semantic domain failure."
+      },
+      "validation20": {
+        "recordings": 20,
+        "captions": 60,
+        "word_count": {
+          "mean": 60.89369047619047,
+          "min": 40.0,
+          "median_unweighted": 62.5,
+          "max": 109.0
+        },
+        "CLAP_token_count": {
+          "mean": 76.43214285714285,
+          "min": 47.0,
+          "median_unweighted": 80.0,
+          "max": 132.0
+        },
+        "word_occurrence_OOV_from_train": {
+          "mean": 0.010855948793361735,
+          "min": 0.0,
+          "median_unweighted": 0.01380952380952381,
+          "max": 0.06521739130434782
+        },
+        "scope": "Lexical coverage only; OOV or length difference does not establish semantic domain failure."
+      },
+      "human_dev20": {
+        "recordings": 20,
+        "captions": 24,
+        "word_count": {
+          "mean": 14.930000000000001,
+          "min": 8.0,
+          "median_unweighted": 14.0,
+          "max": 24.0
+        },
+        "CLAP_token_count": {
+          "mean": 20.380000000000003,
+          "min": 11.0,
+          "median_unweighted": 20.0,
+          "max": 30.0
+        },
+        "word_occurrence_OOV_from_train": {
+          "mean": 0.21091246232267907,
+          "min": 0.0,
+          "median_unweighted": 0.1810897435897436,
+          "max": 0.5
+        },
+        "scope": "Lexical coverage only; OOV or length difference does not establish semantic domain failure."
+      }
+    },
+    "evaluation_coverage": {
+      "human_recordings": 20,
+      "human_queries": 24,
+      "candidate_recordings": 140,
+      "unqueried_candidate_recordings": 120,
+      "known_positive_pair_per_query": 1,
+      "other_pairs_are_human_judged_negatives": false,
+      "ranking_changes_37_to100": {
+        "queries": 24,
+        "paired_rank_changed_queries": 4,
+        "top5_set_changed_queries": 2,
+        "top5_order_changed_queries": 9,
+        "full_order_changed_queries": 24,
+        "paired_rank_threshold_R1_changed_queries": 0,
+        "paired_rank_threshold_R5_changed_queries": 0
+      },
+      "already_published_MRR_delta": {
+        "mean_delta": 6.801782682512234e-05,
+        "bootstrap95_lower": -0.0007375377287304273,
+        "bootstrap95_upper": 0.0008881932654216079,
+        "wins": 2,
+        "ties": 16,
+        "losses": 2
+      },
+      "scope": "Previously seen human development only; no held-out labels opened."
+    },
+    "fits": 0,
+    "encodes": 0,
+    "downloads": 0,
+    "label_edits": 0,
+    "test_inputs": 0,
+    "semantic_label_quality_verified": false,
+    "explicit_failed_attempt_repair": true,
+    "decision": "retain_identity_no_automatic_data_filtering_or_new_training",
+    "limits": [
+      "Heuristic text repetition and embedding geometry cannot verify audible semantic correctness.",
+      "All alternative song/interval pairs remain unjudged, not labeled negatives.",
+      "Algebra is descriptive of two saved ridge models, not causal proof or a new candidate.",
+      "Same previously seen development; no selection, new learner, encoder or held-out test."
+    ]
+  },
+  "tests": {
+    "passed": 192,
+    "failures": 0,
+    "errors": 0,
+    "new_tests": 16
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent word-position enumeration/Gram eigenvalue geometry/recording-loop score contrasts/centered residual RHS/SHA-keyed human ordering and lexsort ranks; no production diagnostic imports, learner or new model",
+    "all599_text_heuristics_and_train_only_phrase_dictionary_match": true,
+    "all4_subsets_geometry_and3_saved_model_contrasts_match": true,
+    "single_interval_sources_retained_and_conditional_temporal_coverage_match": true,
+    "both_saved_ridge_rhs_and_common_direction_energy_match": true,
+    "original24_query_SHA_order_and_all_rank_change_counts_match": true,
+    "original_preflight_failure_and_pinned_explicit_repair_chain_preserved": true,
+    "prior045_to058_all955_files_preserved": true,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "7779f71b5f1a277cac6de1fd326bf6caf79446b678998dc82face5cd758b6276"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "normal_and_repair_claims_same_and_new_outputs_rejected": true,
+    "original_and_repair_claims_bytes_preserved": true,
+    "new_directories_not_created": true,
+    "torch_CLAP_not_imported": true,
+    "rejections": 4,
+    "script_sha256": "221002a357e7a170c27ce7f8dba0212ab2983320894161b7ea9a76a6c912ddef"
+  },
+  "attempt_history": [
+    {
+      "source": "68878c0",
+      "output": "run-01",
+      "status": "preflight_failed_before_freeze_or_claim",
+      "reason": "Human query order used new candidate order; original text SHA guard rejected."
+    },
+    {
+      "source": "c3e70f6",
+      "output": "run-02",
+      "status": "diagnostic_failed_after_claim_no_ready_result",
+      "reason": "Diagnostic incorrectly assumed every recording had at least2 valid intervals."
+    },
+    {
+      "source": "f473827ba2a33ef726dc4ec319f5344987ad2b82",
+      "output": "run-03",
+      "status": "explicit_pinned_repair_complete",
+      "reason": "Original inputs and thresholds retained; single-interval sources preserved in cross-song statistics, temporal comparisons conditional with support counts. Original claims/failures not overwritten."
+    }
+  ],
+  "not_run": [
+    "new adapter fit or linear solve",
+    "CLAP/audio/text encoding",
+    "human relevance or localization label validation",
+    "held-out test scoring",
+    "Java tests and frontend build (offline diagnostic only)",
+    "deployment"
+  ],
+  "private_evidence_sha256": {
+    "prior-before.json": "79cf4abeb79e5d2023a78f8b53085b810fcd064cc9c00550f5b4462fc01ef572",
+    "tests.log": "34bbca2b3469b5edbc94feb77216d7dc1d558425ea0b76e2152be6a4df8e9c09",
+    "tests-after-order-fix.log": "ba6e6e42bb0ce69b81cc99cdf96ad38454977ba722d0e04cfe01ea54c0a7d384",
+    "tests-after-single-interval-fix.log": "b66ca171cd5feb76c5b0966966ffce0b8e04708cd168d2acc0f650ec397a95f5",
+    "preflight-order-check.log": "964a6e289a7d22b87953de8817408ba740f0199a411d551e0c4c28a50a6bcc3d",
+    "run-01.log": "ea9b5717979bf5fd6275e651139d062bcdf01128987b4978909fc3aa0865812a",
+    "run-01/failure.json": "92decfed611b632a5f85bb4932c06464e4867c7ed4c03cfc2990e7967fed936d",
+    "run-02.log": "b380c9bac5797f66f935045b86c000b756e103e2d4528b3d82c48a82e6f991c0",
+    "run-02/freeze.json": "623999d1b624f423d87d82f35e423b54d278824a6e05b5be0cbc2b09a0779b23",
+    "run-02/failure.json": "3dd8441dc592992afc682d7de978bfddf88445fd33431242c2f06d27f7ad77fd",
+    "diagnostic-started.json": "17bad28adcb464c255b53581c3594287ef40fe3955ce04fc4ecedd7d3fe3ac1e",
+    "diagnostic-repair-started.json": "60488a18f16b60fe965d79c0edcec38e393ba19b7a3381a2b1e35b325e03e6a9",
+    "run-03.log": "b8fb67e545a9b33642ff921286085480149cc351ca8c0f1472d04005779d5a09",
+    "run-03/freeze.json": "91aa619699a72224ad710ddd70b8ba13416499a7bd2935ccf7dcf1801413d464",
+    "run-03/private-details.json": "bd54184b72ee23a0ba4520aa5933c0bd01262581249696e09c317c1d669a33ba",
+    "run-03/result.json": "8e3a14776772c9e17eed14e8091962642e23db67948b60d455956e4d9e800f80",
+    "independent-audit.py": "7779f71b5f1a277cac6de1fd326bf6caf79446b678998dc82face5cd758b6276",
+    "independent-audit.log": "dd5c71e3350188a6051ec162b1ef2016978c70c5e9f4bebbbff9a3b5636a90a9",
+    "independent-audit.json": "99a795849e929248b30b171e23662b47b9569cc6a77d49d0fabdf5936f363e4b",
+    "check-guards.py": "221002a357e7a170c27ce7f8dba0212ab2983320894161b7ea9a76a6c912ddef",
+    "repeat-guards.json": "06b006228d2615b3ed6d33fcd2993249cd11815eb1369c9598bcd9b4da70046d"
+  }
+}

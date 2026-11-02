@@ -4,7 +4,7 @@
 
 ## Git 与交付状态
 
-- 当前工作：MUS-059 in_progress / A / codex/MUS-059-supervision-diagnostic，base363f0b1。占用新只读诊断模块/runner/测试、059 config/results/report及README/CONTRACTS/STATUS/A latest；固定599描述重复措辞/录音等权geometry/已存ridge共同方向与旧dev覆盖，无新训练/编码/标签编辑/保留test/部署，全文本/原版/UI/main保持。
+- 当前工作：MUS-059 review / A / codex/MUS-059-supervision-diagnostic，base363f0b1、实际修复f473827ba2a33ef726dc4ec319f5344987ad2b82。599词面无整段/固定近重复，新100更新共同残差方向能量89.79%；配对与异曲均分同步上升、相对差异改善小。train43/val11仅1合格区间，同曲对照支持57/9；人写与训练表达长度/词面差异不当语义错证据。192检查/独立全统计/两claim跨目录保护passed；原查询顺序预检失败、单区间统计失败与显式修复全部保留。下一步另冻共同残差均值分离的一次训练内对照；本轮无fit/编码/标签编辑/保留test，旧955工件/原版/UI/main保持。
 
 - 上轮交付：MUS-058 review / A / codex/MUS-058-expanded-fulltext-training，base97347bc、实际7d910ce65250d5e9f1d43579b9a7b209f631bb3a。599完整token/旧232逐元素复用/新367 MPS、1797窗/CPU控制passed；100train539固定alpha1单fit26.337ms。主140宏MRR旧37 .447149→新100 .447217、差CI[-.000738,.000888]含零，生成验证精确区间与20池整曲下降，当前无明确扩样收益，保留identity。176检查/独立token与primal/全部排名16组bootstrap/typed consumer和两stage跨目录保护passed，旧929文件/原版/UI/main保持。无搜参/保留test/部署；下一步先改进监督证据与评测覆盖，不继续仅扩量或同dev调参。
 
@@ -18,7 +18,7 @@
 
 - 上轮交付：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
 
-- 当前同步与保护：UTC18:28:48Z/18:37:31Z/18:40:30Z双方fetched，A1d1c49f/source97347bc、B8d43fe4/source806dc9c未变并ack；B047限定批准已接收，原派发卡与报告保持，不外推058质量/无新B卡。旧045–057共929文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新058私有700/600；无新下载/保留test/UI/DB/main变化。
+- 当前同步与保护：UTC2026-11-02T04:29:25Z/04:43:43Z/04:46:07Z双方fetched，Ac46f1b1/source363f0b1、B8d43fe4/source806dc9c未变并ack；B047限定批准已接收，原派发卡与报告保持，不外推059批准/无新B卡。旧045–058共955文件/951+B快照/23源码/54cache/043044/160/原版f3b0da1保持，新059私有700/600；无新下载/模型/保留test/UI/DB/main变化。
 
 - 上轮交付（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 
@@ -74,7 +74,7 @@
 | MUS-042 G5接收与固定五组比较 | done / A（接收/比较完成，非总体质量验收；工具待独立审核） | codex/MUS-042-independent-evaluation / 3655fb3；实际865a7ed，依赖038/039/040 | 四原字节核回执/160合法/单次解封/五组P@5与全20 IDCG nDCG/四预注册对照；49相关检查和独立复算通过，952旧文件保持；无训练/切模型/线上接入 |
 | MUS-043 MTG标签adapter与20首预检 | review / A（工具/真实数据链路完成，未训练） | codex/MUS-043-mtg-adapter-preflight / 7b592d2；实际9a92a8c，依赖041/042隔离 | 固定split/183tag/已用60与SDD排除、7,577 metadata候选，20作者/20首/49tag/20官方SHA与EOF/1,004窗口；66检查及独立复算通过；只私有研究目录，无Java导入/模型训练 |
 | MUS-044 分组metadata与轻量训练试运行 | review / A（首次拟合完成，未验证效果） | codex/MUS-044-tag-adapter-training-smoke / 83ebeea；真实5bce919，依赖043 | 1000/200/200仅metadata，20实际train/60窗口/固定lambda100拟合512线性残差；32检查/独立解一致，训练Recall不变；原CLAP冻结、无部署/泛化结论 |
-| MUS-059 监督与评测覆盖诊断 | in_progress / A | codex/MUS-059-supervision-diagnostic / base363f0b1；依赖058 | 固定词面规则/四子集geometry与配对对照/已存W代数/既有dev排名覆盖，纯CPU/无新fit或语义自动标签，独立复算/持久保护 |
+| MUS-059 监督与评测覆盖诊断 | review / A（只读诊断完成，修复原件保留） | codex/MUS-059-supervision-diagnostic / f473827；base363f0b1，依赖058 | 共同方向89.79%/无固定近重复/单区间43+11；192检查、独立全统计及原+repair保护passed，无fit或自动语义标签，下一步另冻残差中心化对照 |
 | MUS-058 全文本扩样固定训练 | review / A（特征/单fit与比较完成） | codex/MUS-058-expanded-fulltext-training / 7d910ce；base97347bc，依赖057/055 | 599完整token/176检查，100/539固定alpha1单fit；主MRR .447149→.447217无明确增益，生成val下降，保留identity；独立primal/16组bootstrap/两stage保护passed |
 | MUS-057 有界音频描述扩样 | review / A（配对检查完成，工具独立审核待安排） | codex/MUS-057-caption-data-expansion / 9a1fff4；base37fec0a，依赖044/045/051/052 | 新63/13与367段；合计100train539/20val60，165检查/独立全框PCM原文/9anchor/重复保护passed；无CLAP或fit，下一步完整文本特征/固定参数扩样对照 |
 | MUS-056 全文本归一化配对训练 | review / A（实际fit与比较完成） | codex/MUS-056-fulltext-cosine-training / ab66880；base19fab38/依赖055 | 全文本默认/37train209单fit12步、主MRR .447149→.448184小升但val片段下降；154检查/独立梯度排名/跨目录保护passed，保留identity |
