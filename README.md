@@ -72,6 +72,8 @@ MUS-052已完成57匹配来源逐曲metadata与参考预检：固定53文件/Git
 
 MUS-061已核现有人写SDD剩余容量：547有效曲经许可/时长/既有与封存完整关系筛后仅8首/10描述/6作者组件，不能新建20首独立dev；48检查/独立全图计数和四重复拒绝passed，初次数字ID失败及修复原件保留。停止060中心化路线，保留identity与sealed test；下一步另核人写来源，不放宽原规则或追加同dev调参。无下载/编码/fit/新标注，见[容量报告](docs/evaluation/MUS-061-human-caption-capacity.md)。
 
+MUS-062已核其他人写来源，WikiMuTe为web模型抽取配对、YT8M缺音乐作者/音频权利且原Adobe研究许可、MuChin需另中文协议，未直接切库。现按原规则从061剩余6个credit组各hash取1首，已冻6曲/7既有描述的小补充dev元数据计划，未取音频/编码/fit或评分。63检查/独立全计数和选择/两重复拒绝passed，下一步有界预检后固定两模型146池比较；不凑20/不改封存test，见[来源与补充计划](docs/evaluation/MUS-062-human-source-audit.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。

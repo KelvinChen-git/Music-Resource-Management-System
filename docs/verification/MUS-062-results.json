@@ -1,0 +1,222 @@
+{
+  "source_sha": "69847dfac292e27190b1ba34c08044b8fade9f11",
+  "wikimute": {
+    "source_rows": 10200,
+    "projected_rows": 8608,
+    "unique_files": 7533,
+    "unique_audio_urls": 7533,
+    "unique_article_ids": 7497,
+    "duplicate_file_article_url_rows": 26,
+    "files_with_conflicting_audio_urls": 0,
+    "urls_shared_by_multiple_filenames": 0,
+    "articles_containing_multiple_files": 737,
+    "audio_url_wiki_namespaces": {
+      "commons": 1065,
+      "en": 6468
+    },
+    "quarantined_rows_by_reason": {
+      "invalid_file_or_page_id": 1592
+    },
+    "caption_bodies_used": false,
+    "clip_human_verification_established": false,
+    "artist_work_fields_present": false,
+    "per_audio_rights_established": false,
+    "audio_ready": 0
+  },
+  "yt8m_train": {
+    "source_train_rows": 1000,
+    "source_train_video_ids": 1000,
+    "unique_clips": 1000,
+    "duplicate_clip_rows": 0,
+    "musiccaps_video_id_overlap": 0,
+    "musiccaps_exact_clip_overlap": 0,
+    "musicbench_training_video_id_overlap": 0,
+    "artist_work_fields_present": false,
+    "original_audio_distributed_with_csv": false,
+    "per_audio_rights_established": false,
+    "caption_bodies_used": false,
+    "audio_ready": 0
+  },
+  "supplement": {
+    "selected_recordings": 6,
+    "creator_components": 6,
+    "validated_caption_queries": 7,
+    "same_component_omitted_recordings": 2,
+    "audio_ready": 0,
+    "caption_bodies_extracted": false,
+    "sealed_test_used": false,
+    "selection_uses_scores_or_text_semantics": false
+  },
+  "supplement_plan_sha256": "28051f7d6f874633bf538f7e1e5919aa63c84522d98608bf901239a51eaea52e",
+  "operations": {
+    "audio_downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "scores": 0,
+    "project_reserved_test_inputs": 0,
+    "new_manual_labels": 0
+  },
+  "capture": {
+    "body_budget_bytes": 33554432,
+    "reserved_body_bytes": 20971520,
+    "actual_captured_bytes": 5083052,
+    "audio_downloads": 0
+  },
+  "task": "MUS-062",
+  "status": "source_metadata_audit_and_six_development_plan_completed_not_audio_ready",
+  "base_sha": "9c6d690bd9054599f4c7f1382729180e9c3731ad",
+  "source_revisions": {
+    "WikiMuTe_github": "246cba20d6a11edc2be91432bf1dfa5d4aca8b1b",
+    "MuChin_github": "be09ac633cfc4792100e7c2d2c88fdbc71bf33cf",
+    "WikiMuTe_Zenodo_record": 10223363,
+    "YT8M_Zenodo_record": 8040754
+  },
+  "raw_wikimute_identity_counts": {
+    "rows": 10200,
+    "unique_files_before_page_projection": 8832,
+    "unique_audio_urls_before_page_projection": 8832,
+    "missing_pageid_rows": 0,
+    "Commons_namespace_rows_outside_EN_page_projection": 1592,
+    "raw_page_namespace_counts": {
+      "en": 8608,
+      "commons": 1592
+    },
+    "all_source_unique_audio_url_namespaces": {
+      "commons": 2364,
+      "en": 6468
+    }
+  },
+  "source_classification": {
+    "WikiMuTe": "human_web_text_automatically_extracted_and_paired;not_direct_human_audio_clip_gold",
+    "YT8M_MusicTextClips": "human_audio_caption;original_Adobe_noncommercial_research_license;musician_work_identity_and_audio_rights_pending",
+    "MuChin": "human_Chinese_descriptions_official_card_only;lawful_audio_access_and_language_protocol_pending"
+  },
+  "future_comparison": {
+    "status": "plan_only_no_model_inputs_or_scores",
+    "models": [
+      "identity",
+      "saved100-fulltext-ridge"
+    ],
+    "candidate_pool": "existing140_plus_new6_same_first120_view",
+    "primary": "new6_recording_macro_whole_MRR_saved100_minus_identity",
+    "secondary": [
+      "new6_whole_R1_R5",
+      "new6_segment_R1_R5_MRR",
+      "old20_queries_on146_candidates_control"
+    ],
+    "fulltext_policy": "preserve_original_complete_text;256_tokens_with_untruncated_proof_or_fail",
+    "new_fit_runs": 0,
+    "formal_quality_acceptance": false,
+    "audio_acquisition_and_encoding_require_separate_frozen_task": true
+  },
+  "tests": {
+    "status": "passed",
+    "total": 63,
+    "new": 15,
+    "related_existing": 48,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_caption_source_audit test_human_caption_capacity test_mtg_dataset test_preflight_mtg test_caption_gate -v",
+    "not_run": [
+      "Java and frontend build: source metadata-only changes"
+    ]
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent indexed CSV projection, set arithmetic and direct per-component hash minimum; no production audit imports or candidate scores",
+    "all_source_pins_official_MD5_git_sources_and13_receipts_verified": true,
+    "persistent32MiB_budget20MiB_reserved_and_no_repeated_URLs": true,
+    "all_wikimute_and_youtube_aggregates_and_projections_match": true,
+    "raw_wikimute_identity_counts": {
+      "rows": 10200,
+      "unique_files_before_page_projection": 8832,
+      "unique_audio_urls_before_page_projection": 8832,
+      "missing_pageid_rows": 0,
+      "Commons_namespace_rows_outside_EN_page_projection": 1592,
+      "raw_page_namespace_counts": {
+        "en": 8608,
+        "commons": 1592
+      }
+    },
+    "all6_selected7_query_counts_and_2_omissions_match": true,
+    "old045_to061_files_preserved": 1007,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "cd1ea0ad31d2bcfd50b7ef5f697d3cd2e4941c0b865159691348bf256d8e83a8"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "same_and_new_directory_checks": [
+      {
+        "output": "run-01",
+        "blocked_before_new_audit_or_output": true
+      },
+      {
+        "output": "guard-new",
+        "blocked_before_new_audit_or_output": true
+      }
+    ],
+    "original_claim_plan_and_results_unchanged": true,
+    "extra_audits_or_selections": 0
+  },
+  "execution": {
+    "production_audit_and_selection_attempts": 1,
+    "production_status": "completed_first_attempt",
+    "failed_original_or_repair_production_runs": 0,
+    "independent_checker_initial_failure": "Mistaken assertion that1592 unsupported page IDs were missing; all are commons:<numeric> namespace. Checker corrected, original failed log and script retained, primary EN projection and six plan unchanged.",
+    "model_or_audio_processing_runs": 0
+  },
+  "limitations": [
+    "WikiMuTe main parser is an EN article-page projection. Its1592 rejected Commons page-namespace rows are valid source data outside that projection, not invalid official annotations. Raw all-source counts are separately reported.",
+    "Zero YouTube ID overlap does not prove musician/work isolation or legal availability of source audio.",
+    "Six credit components and7 captions form a small development supplement, not a new20-recording benchmark or formal quality acceptance.",
+    "No new caption bodies extracted, encoded, rewritten or summarized; all original text retained.",
+    "All6 audio actual EOF, PCM/near duplicate and bounded rights/source checks are pending.",
+    "Source metadata reflects pinned captures, not exhaustive rights or CLAP pretraining-independence certification."
+  ],
+  "private_evidence_sha256": {
+    "audit-started.json": "990becca0b3961d2cbee5c822c8cf702f6295c8cac76d169a732de1354565558",
+    "capture-manifest.json": "822769dab994598276441f6ed363a9fbf6f569f3801984a67c85dcc67708189a",
+    "capture-phase2.py": "7a607c12d560e13fd94c2c9c52a61d0dc84d7a32acc9c6a40fcc63df8969fea5",
+    "capture.py": "ebfeccda4dd471c3b7e480451fcb364d732f9da177d5c1a08cc28f5edafa13cb",
+    "independent-audit-v2.log": "aa0c9cf1e2303a11120b74c7c9cd6077985c54cfd6b5590fc07a50ddd8b788e7",
+    "independent-audit-v2.py": "cd1ea0ad31d2bcfd50b7ef5f697d3cd2e4941c0b865159691348bf256d8e83a8",
+    "independent-audit.json": "50d88c48ed7e23b8ec5eda489ee8c4f4d745b5874f6e515dcff0b14eaaa1c26e",
+    "independent-audit.log": "5e6bd1e35d22492bda94fa9ff7e3ad2989f941272024e40fcdb5e89ff7d4dccd",
+    "independent-audit.py": "4b71b491b936f74ed6e270caf4e2cdd9871d60bcd935801ac7d7b70f3ca587e3",
+    "muchin-README.md": "591201fa7c23cd503934e5f8ffd2d9e37d785e828fad8d07a79450d01fa4b084",
+    "muchin-README.md.receipt.json": "f6a69e61dc3c09ae06da6815fbe7dba2df4a153399ea2bf0450be99972422786",
+    "muchin-commit.json": "f54b189472dc772e98d7eae8efcdebb8dc4570d777abf2c26e38030b3e7ab9eb",
+    "muchin-commit.json.receipt.json": "f97852505f3212e824508f392e16cce1008209153273b1b349eddd925131b229",
+    "prior-before.json": "b60165e20b7d5b3ab6e7e8776e695344323db5c9f08d72076fde50d6c89fb7fe",
+    "raw-wiki-identity-counts.json": "59d49dc07a8cbc76249e2a610e58e41a70aba231874f63190318601dc56a2cfe",
+    "repeat-guards.json": "d364b22d7051dcf2ea5b83c886ee5eb877ebfbc1b34f1f868bcc6d1002f225dd",
+    "requests.jsonl": "8c6241258a0c732cf33e42b7a4ecfb1f6149e933b04a7f5d8e9ff7ffbadc9e15",
+    "run-01/freeze.json": "5fedb575604f2468e668a0c70d0aad87b2774b4ce8b4b0fc85d0ba1d5db3e020",
+    "run-01/result-public.json": "655caa7445fda0382bb1a2b4432de4a144e73e969b16e0fdfad96accd8252cef",
+    "run-01/source-projections.json": "88c99ec53fe572e5d81aa2c1c30baa309f119e5a34fbcd413e4d72f2a3fc6ee3",
+    "run-01/supplement-plan.json": "28051f7d6f874633bf538f7e1e5919aa63c84522d98608bf901239a51eaea52e",
+    "run-01.log": "8ea58be33bba6663a0042ab1594509d1ab7da816a4ceba4c507e28a89a8e791f",
+    "tests.log": "d392ef6ae1585ce430325987d150a8a7921772cc5c542d14796a36b956a587a1",
+    "wikimute-LICENSE": "e8ec96346292e26090073401a87aa5979310ac86ec4b85247a2df7904adf467e",
+    "wikimute-LICENSE.receipt.json": "13f0735232c4766c2966f8292e15416bf949f674e7d3fa04165b841d41d7af4d",
+    "wikimute-README.md": "e829e2f88f54f70b9a87698eb3885e4697f840bb8f337dd69407f13f049b3c41",
+    "wikimute-README.md.receipt.json": "25209f1eb1169d157c32b4452c3c58f0701023b7ceda689afd80e0e4773560cf",
+    "wikimute-all.csv": "0887c60dd49e8b61bfb9ecb1610cf96c21db040b738d65dbcec7a0f87464aeff",
+    "wikimute-all.csv.receipt.json": "563887866f429de882b9c803ad5a52a2ed856f020e045456309d56a800199583",
+    "wikimute-commit.json": "5d13fe821819571d69d5583891c9be63d3d3c135ab3f38ac569b8aa969101f22",
+    "wikimute-commit.json.receipt.json": "1877a6aa694e36cb3700a3305030675351d361ddb5b75386d793bc0469eeea42",
+    "wikimute-paper.html": "dd40852861b423a19a33272911f02c092d4f9efb5f39c6697a19114d8679cf25",
+    "wikimute-paper.html.receipt.json": "b0143cab0cee36c397d80bb4cd086545bb6097c8d5b873380271e779716be96e",
+    "wikimute-record.json": "ecd37f16703e0697a7036a2c6b62649b68c82ac25be2a7be8b32409e9e9f9363",
+    "wikimute-record.json.receipt.json": "86b7ae9d53fd263f000b67db8db708fde35e5a5a087a886767b310c05acaaa90",
+    "wikimute-wikimute.py": "5987068696736661385acb1498b8737769bc3117f6308c6b141b287ef69dafa9",
+    "wikimute-wikimute.py.receipt.json": "20d7bd448effd346b51988278b7a411b59ce1b5df0e87b4b735cd1c723d253ca",
+    "yt8m-LICENSE.txt": "33a3f503287525f311fcf9d5b91b4bcdcb19ecb44c7a56d90894fd8585fa8ac7",
+    "yt8m-LICENSE.txt.receipt.json": "be0e20e1bd15686dbe9a28d7dbbb88dd6fb0b0ac33f5052c15344e5207719203",
+    "yt8m-README.md": "c1b5272a307aa48955aef6eb85bd5b6592e03a150a4862a44cd6baf081df553b",
+    "yt8m-README.md.receipt.json": "cef857df87cdf443a06447cfa6f14f0f71aa299f261844152463f040a2204a6f",
+    "yt8m-record.json": "bc763d746eb04d80b0cb15e5c67a49af6f2eec837d156adbbf0a93cd8ab571d5",
+    "yt8m-record.json.receipt.json": "b660925ea9207d449506f7c29fa9b4ce8710c1f0804eae9ad6449d5b5d12000c",
+    "yt8m-train.csv": "7966878d5a5a2ab96f02354a7520c6d9afe2ee1910f5ed4d499c0f739c2cac5e",
+    "yt8m-train.csv.receipt.json": "e53aa7999563bc303756bce2f78e7b35c376389caeb75f30e9466ef08a94df21"
+  }
+}
