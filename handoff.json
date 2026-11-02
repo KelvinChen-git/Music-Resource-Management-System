@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-01T18:40:41.197437+00:00",
-  "source_branch": "codex/MUS-058-expanded-fulltext-training",
-  "source_sha": "363f0b14fe6d78705065d2d884f4433cd374cc2f",
+  "published_at": "2026-11-02T04:46:34.396597+00:00",
+  "source_branch": "codex/MUS-059-supervision-diagnostic",
+  "source_sha": "82d652aade7edf24cb6bb296059f212d7cae7336",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "d907906d9a774259ec328ee586969fb282e3db6bfb1ecd9638a169f3d75112a7"
+  "report_sha256": "d5d53e43b8504aa07a8291c5bd286cc58a60d7f7f21b9442f98734fb1178fc85"
 }

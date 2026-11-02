@@ -1,5 +1,19 @@
 # 账号 A 最新交接
 
+## 当前：MUS-059监督与评测覆盖诊断完成，当前模型保持
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-059-supervision-diagnostic`，base `363f0b14fe6d78705065d2d884f4433cd374cc2f`，实际修复源码 `f473827ba2a33ef726dc4ec319f5344987ad2b82`；最终交付SHA见handoff.source_sha。059 review，工具独立审核待安排，仅描述统计/限定推断，不当语义质量验证。
+
+599描述整段/5gram Jaccard>=.8近重复0；22跨曲重复句型、常用5gram词位置覆盖约18.39%。新100已存W更新共同残差方向能量89.79%，RHS mean方向余弦.96859，已知配对和异曲平均分同步上升，差值仅 .175394→.188949，旧37→100仅+.000645。train43/val11仅一个有效描述区间，全部保留跨曲统计，同曲区分仅57/9曲有支持；不等于音频不完整。训练描述65.22词/82.25token，人写14.93词/20.38token；本批英文词典OOV21.09%只表示训练未见词，非CLAP不认识/语义失配证明。24人写全序均变但known-pair名次仅4条变，R1/R5阈值0变化，MRR仍很小。报告docs/evaluation/MUS-059-supervision-diagnostic.md，聚合docs/verification/MUS-059-results.json。
+
+192检查（新16）最终passed，独立词位置/Gram特征值/逐录音对照/中心化RHS/原SHA查询序和全部名次变化复算一致；原与repair两claim四次跨目录拒绝、原字节保持。68878c0预检顺序错误于freeze/claim前失败；c3e70f6单区间错误前提在诊断失败；原日志/failure/claim全留。显式repair config钉原输入/claim/freeze/failure、不改阈值/来源，f473827一次修复完成，非首轮成功。不导入Torch/CLAP，无新fit/solve/编码/下载/标签修改/人工包/保留test/部署。旧045–058共955工件与旧951+B/23源码/54cache/043044/160/原版f3b0da1保持，新私有700/600，UI/Java/DB/main不改；离线范围未跑Java/前端。
+
+下一步另冻一个训练内残差均值分离对照，保持原100/539全文本/alpha1/录音权重，检验相对差异而不添未判负标签；不先删通用句子/单区间来源，不预设收益/切模型。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`，B source `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T04:29:25Z/04:43:43Z/04:46:07Z双方fetched，B未变。B047原限定批准保持，不外推059质量/无新派卡。
+
+## 上轮交接（保留）
+
 ## 当前：MUS-058全文本扩样特征与单次训练完成，未获明确提升
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-058-expanded-fulltext-training`，base `97347bc7bc8e368457527424688e7ed20e3dd9a8`，真实源码 `7d910ce65250d5e9f1d43579b9a7b209f631bb3a`；最终交付SHA见handoff.source_sha。058 review，实际特征/fit/固定比较完成，工具独立审核待安排，非总体质量验收。
