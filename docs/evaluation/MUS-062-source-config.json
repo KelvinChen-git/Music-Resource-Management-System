@@ -1,0 +1,80 @@
+{
+  "schema": "sonora-human-source-audit-and-six-dev-plan-v1",
+  "task_directory": ".local/a/mus062",
+  "source_policies": {
+    "wikimute": "web_human_text_automatically_extracted_not_human_clip_gold;unfiltered_all_only",
+    "yt8m": "canonical_Adobe_research_only_not_CC;train_metadata_only_no_audio_rights_assumption",
+    "muchin": "official_card_only_Chinese_role_and_audio_rights_pending"
+  },
+  "selection_seed": "MUS-062-unused-SDD-six-components-v1",
+  "supplement_recordings": 6,
+  "allow_original_rule_relaxation": false,
+  "inputs": {
+    "capture_manifest": {
+      "path": ".local/a/mus062/capture-manifest.json",
+      "sha256": "822769dab994598276441f6ed363a9fbf6f569f3801984a67c85dcc67708189a"
+    },
+    "wikimute": {
+      "path": ".local/a/mus062/wikimute-all.csv",
+      "sha256": "0887c60dd49e8b61bfb9ecb1610cf96c21db040b738d65dbcec7a0f87464aeff"
+    },
+    "yt8m_train": {
+      "path": ".local/a/mus062/yt8m-train.csv",
+      "sha256": "7966878d5a5a2ab96f02354a7520c6d9afe2ee1910f5ed4d499c0f739c2cac5e"
+    },
+    "musiccaps": {
+      "path": ".local/a/mus050/google--MusicCaps-musiccaps-public.csv",
+      "sha256": "8cc109ac507b5e5aed8ea73a5c8f897a9d0793f7397427e000adf4c05f6021c7"
+    },
+    "musicbench_train": {
+      "path": ".local/a/mus050/amaai-lab--MusicBench-MusicBench_train.json",
+      "sha256": "579d35b724391cb6fd2b0ae181bed074e536f44158e5ebfc0d683d323d23ac26"
+    },
+    "capacity": {
+      "path": ".local/a/mus061/run-02/result-private.json",
+      "sha256": "b96265ea15f1f42bb701c649f7e6e0be40e457270d9e70d2ea96f8dcff3fb482"
+    },
+    "capacity_verification": {
+      "path": "docs/verification/MUS-061-results.json",
+      "sha256": "fac05c6e00e96fd08a79426f618cbb0f4abe2815f64d9d5c50bf7833919083b1"
+    },
+    "source_inputs": {
+      "path": ".local/a/mus043/inputs.json",
+      "sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163"
+    },
+    "retrieval_cache": {
+      "path": ".local/a/mus048/build-01/cache.json",
+      "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+    },
+    "saved100_adapter": {
+      "path": ".local/a/mus058/fit-01/adapter.npz",
+      "sha256": "e903f5497633c0410b98dfc07733a2089f3130194341fef371cf19835e3bb748"
+    }
+  },
+  "future_comparison": {
+    "status": "plan_only_no_model_inputs_or_scores",
+    "models": [
+      "identity",
+      "saved100-fulltext-ridge"
+    ],
+    "candidate_pool": "existing140_plus_new6_same_first120_view",
+    "primary": "new6_recording_macro_whole_MRR_saved100_minus_identity",
+    "secondary": [
+      "new6_whole_R1_R5",
+      "new6_segment_R1_R5_MRR",
+      "old20_queries_on146_candidates_control"
+    ],
+    "fulltext_policy": "preserve_original_complete_text;256_tokens_with_untruncated_proof_or_fail",
+    "new_fit_runs": 0,
+    "formal_quality_acceptance": false,
+    "audio_acquisition_and_encoding_require_separate_frozen_task": true
+  },
+  "operations": {
+    "audio_downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "scores": 0,
+    "project_reserved_test_inputs": 0,
+    "new_manual_labels": 0
+  }
+}

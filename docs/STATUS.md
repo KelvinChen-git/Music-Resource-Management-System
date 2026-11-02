@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- MUS-062 / A / in_progress：`codex/MUS-062-human-source-audit`，base9c6d690。只核其他现成人写来源：优先WikiMuTe原all.csv身份/URL字段与有界媒体metadata、YouTube8M-MusicTextClips的原始许可和train身份字段，MuChin仅官方卡/文件树核限制；不观察caption正文或打开项目保留test。允许新source metadata module/runner/tests（实际需要时）、062配置/方法/验证、README/PROJECT/STATUS/own latest；私有.local/a/mus062。正常TLS、持久32MiB正文预记预算、无整库音频；固定抽样metadata最多16，样本不外推全库。禁止新fit/模型评分/自动音频取用/新人工包/更改旧分组或B卡。062范围增补：外部来源若不能作直接人工clip benchmark，则按新E36固定规则把061剩余6个独立作者组各取1首，冻结为6曲补充development元数据计划；不凑20、不松BY/BYSA和隔离、不取正文/音频、不动封存test，不称正式验收。先提交固定方法后实际选择。
+
 - 当前工作：MUS-061 review / A / codex/MUS-061-human-caption-capacity，base8a33700、实际格式修复31a950c5a0a01589f52eca77839d1fc6b8393b46。固定SDD有效547曲/746描述，经来源权利→153/224、已用分配→39/47、封存完整关系→8/10/6组件；容量不足新20独立开发，原test保持，不松规则/不fit。48检查/独立全图及集合计数/两claim四拒绝/旧991工件passed；初次数字ID失败及原件保留。无下载/编码/评分/新选样或人工包，下一步另核现成人写来源后再冻有界dev。允许新module/runner/test/E35/config及显式repair/方法验证、README/PROJECT/STATUS/own latest；私有.local/a/mus061，B047原卡/原版/UI/DB/main保持。
 
 - 上轮交付：MUS-060 review / A / codex/MUS-060-centered-residual-training，base82d652a、实际d0b7947c417c62f402b7b73fd92c58d0e4bd8c75。原100/539全文本/alpha1/录音权重，train-only残差均值CPU23.836ms单fit；共同方向更新能量89.79%→2.89%，主140 MRR旧100 .447217→新 .420200、R1 .37→.31，当前不支持去均值提升，保持identity。204检查/独立mu与dual/全指标24bootstrap/实际持久单fit保护passed，旧976工件/原版/UI/main保持；停止该路线调参，下一步核现成人写评测覆盖/隔离，保留test封存。

@@ -599,3 +599,16 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 干净提交后冻结source/config/inputs/runtime，再创建任务持久audit claim；失败原件保留，禁止换目录隐式重试。合成隔离边界、独立全图连通与全部集合/计数复算、实际重复保护和旧045–060全文件保护后才记完成。仅聚合及证据hash发布，原全文本偏好、identity、备份/UI/Java/DB/main及B047原卡保持。下一步另冻有界新增development计划，不在原20开发上继续搜去均值强度，也不打开保留test为新方案选参。
 
 061实际格式修复：8eb8c6e第一次审计在SDD纯数字ID上失败，原freeze/failure/claim/run日志全部保留。原CSV还有332条空valid flag，按旧045原规则其不为true，保持未验证，不提升为有效。新增仅支持ASCII纯数字或原前缀整数ID，以及空flag=false的格式适配；未知非空flag/负数/小数/Unicode数字仍拒绝。显式repair config钉住原config/claim/freeze/failure，继承所有输入/隔离/权利规则不变，只准audit-repair-started一次，禁止重置原claim/泛化修复或换目录再跑；未产出原轮容量结果，不冒称首轮成功。
+
+
+## E36：MUS-062 外部人写来源审计与六组补充开发计划（2026-11-01）
+
+正常TLS捕获WikiMuTe固定Zenodo10223363原all.csv（官方MD5）、YouTube8M-MusicTextClips固定Zenodo8040754原license/readme/train.csv（官方MD5），WikiMuTe/MuChin官方GitHub commit与准确commit文档、WikiMuTe论文/示例代码。私有持久32MiB body预记账，每URL最多一次、失败保留不重置；本轮13文件约5.08MB，预记20MiB，无音频。来源正文原件只私有；CSV投影仅读file/pageid/audio_url/page_url和video_id/start/end，原caption/aspects/text等语义正文不显示/提取/编码，项目封存test不打开。WikiMuTe all为未按跨模态分数筛选版，不用filtered_sf/mc作为独立人工真值；论文表明其human web文本由DistilBERT提取，非逐clip直接人工确认。YouTube8M采用原Adobe研究许可，不沿用二手CC标签；视频ID与10秒偏移交集分开，不假设音乐作者或音频权利。MuChin仅官方卡限制，未取中文描述/音频或自动翻译。
+
+外部来源当前未满足直接人工clip/逐曲权利/作者作品隔离前提，仍保持原库和模型。为推进有限的新覆盖，本轮另冻六曲source-only development补充计划：从061准确已发布8候选/6全局credit组件及原固定SDD身份/有效标记，按seed MUS-062-unused-SDD-six-components-v1的SHA256(seed+换行+track_id)每组件取最低1首，不看正文/模型或描述条数选择；组内余2不作失败后自动替换。要求6组/6作品/6官方SHA、与旧140录音不交叉，保留原BY/BYSA、30–600秒、旧全部关系排除和封存20完整关系。061历史“未选择/不足新20”结果保持，062仅单独设计六曲小补充，不外推正式效果验收或新独立大样本测试。
+
+本轮源码/config/source与输入SHA在干净提交后freeze，持久audit claim后仅运行一次元数据审计/选择，禁止换目录重跑。新plan记录6身份/许可/官方路径及全部有效描述条数，不取caption正文/音频/特征或模型分数，不发布真实ID。后续另任务先冻结逐曲有界音频/完整EOF/官方SHA/PCM和隔离核验预算，再构造同首120秒/同原全文本视图。任何失败保留不按结果补选；完整文本256原词元证明或超限拒绝，不静默截断。
+
+后续比较也先固定：仅identity与已存058的100曲全文本ridge，无新fit；候选池旧140+新6共146，新6按录音等权whole MRR差为主、R1/R5及segment为次、旧20 query在146池只作控制。模型W/hash在本轮pin但不加载；原20封存test/160判断不输入，6组只作小型development诊断，不称正式显著性或部署依据。本轮不执行这次比较；音频/编码与评分须在后续独立冻结任务实际通过后才有结果。
+
+合成schema/URL/精确decimal区间/冲突与确定性组选择、独立原文件列投影和全部集合计数/固定六曲选择、实际重复保护与旧045–061全文件保护通过后才记完成。原版、全文本、identity、UI/Java/DB/main/B047卡不改，公开仅方法/聚合与证据hash。

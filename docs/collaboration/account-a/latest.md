@@ -1,5 +1,17 @@
 # 账号 A 最新交接
 
+## MUS-062：外部来源审计与六组开发计划准备
+
+A；2026-11-01 America/Chicago；branch codex/MUS-062-human-source-audit，base9c6d690bd9054599f4c7f1382729180e9c3731ad。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`，UTC2026-11-02T05:42:43Z双方fetched，B未变、047已接收/原卡保持，无新派发或批准。
+
+正常TLS捕获13官方文档/metadata 5,083,052 bytes，32MiB持久预算预记20MiB。WikiMuTe web人写/模型提取配对非直接人工clip真值，YouTube8M原Adobe研究许可缺音乐作者/作品与音频权利，MuChin中文/音频条件需另定，不自动切库。仅source列投影、统计视频/精确clip交叉；不观察caption语义，YT test.csv/Wiki模型筛选版/项目reserved test未取。
+
+E36/config在真实选择前固定：061剩余8/6组每组按固定hash选1首，原BY/BYSA/时长/全部排除保持、组内余2不自动替补；只是新6曲development metadata，无凑20或正式验收。未来只比较identity/已存100全文本ridge、新6主MRR/旧140+6同视图146/旧20控制，另任务先核音频/PCM与全文本编码，当前不执行。63相关检查passed（15新48旧），旧045–061全部1007文件已快照，待干净提交一次审计/计划生成。原模型/全文本/备份/UI/DB/main/B卡保持。
+
+## 上轮交接（保留）
+
+# 账号 A 最新交接
+
 ## 当前：MUS-061人写描述容量审计完成，剩余不足新20开发
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-061-human-caption-capacity`，base `8a337002d8f500114865405aa321c972f4e5f07e`，实际成功修复源码 `31a950c5a0a01589f52eca77839d1fc6b8393b46`；最终交付SHA见handoff.source_sha。review仅本次元数据容量完成，工具B独立审核待安排，无模型质量验收。
