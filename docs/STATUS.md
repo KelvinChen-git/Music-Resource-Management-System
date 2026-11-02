@@ -4,6 +4,8 @@
 
 ## Git 与交付状态
 
+- MUS-064 / A / in_progress：`codex/MUS-064-supplement-retrieval`，base29873e1。按062/063已冻6曲/7全文本构建新typed特征，旧140/24query/624窗逐元素复用；全18新窗/6聚合/7文本CPU/MPS控制、256完整token证明，失败不重跑或fallback。另CPU进程只比较identity/058已存100ridge，146同视图池，新6主whole宏MRR，旧20控制/两mode全报；原140控制须复现058。允许新 `services/audio-search/supplement_features.py`、`scripts/run_supplement_retrieval.py`、`scripts/test_supplement_features.py`、E38/config/方法与验证JSON、README/PROJECT/STATUS/own latest；私有.local/a/mus064。源码/config/输入/环境先freeze，各encode/evaluate独立任务claim；无新fit/下载/封存test/新人工包/模型切换，保留全文本、原版/UI/DB/main/B047卡。
+
 - 当前工作：MUS-063 review / A / codex/MUS-063-six-source-preflight，based88d4c3、实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf。062六曲首次获取/官方SHA/完整EOF/原历史身份许可全部passed，12.429MB/持久128MiB预算内、6组/7描述、201窗口/12首尾，旧296引用295唯一bytes/PCM与新6无精确重复。86检查/独立固定64K协议重解/两实际拒绝/旧1052工件passed；32K独立哈希失败及数值诊断原件保留，未改数据或加事后容差。audio_ready_for_feature_build=true，非语义/质量验收；正文/编码/fit/评分/新人工包/封存test0。下一步另冻完整7文本与CPU/MPS特征及原两模型146池比较，原版/UI/DB/main/B047卡保持。范围063新preflight module/runner/tests、E37/config/方法JSON与必要台账；私有.local/a/mus063。
 
 - 上轮交付：MUS-062 review / A / codex/MUS-062-human-source-audit，base9c6d690、实际69847dfac292e27190b1ba34c08044b8fade9f11。13来源文件5.08MB/TLS/MD5/commit passed；WikiMuTe人写web模型抽取非直接听音真值、YT8M原Adobe研究许可/缺音乐作者和音频权利、MuChin中文须另协议，未自动切库。061原8/6组中固定hash每组1首，已冻6曲/7既有描述/6作品SHA、旧140不交叉的补充dev元数据计划，不凑20/不松规则/不动封存。63检查/独立投影集合与六曲选择/真实两拒绝/旧1007工件passed；独立核查Commons页ID假设失败原件保留、生产首轮完成。下一步另冻音频/PCM及完整文本特征和固定identity/100ridge两模型146池比较，当前audio_ready/新fit/评分/人工包均0。范围062新module/runner/test/E36/config/方法JSON及必要文档，私有.local/a/mus062；原版/UI/DB/main/B047卡保持。

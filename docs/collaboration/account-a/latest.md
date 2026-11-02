@@ -1,5 +1,16 @@
 # 账号 A 最新交接
 
+## 当前：MUS-064六曲全文本特征与固定检索对照准备
+
+A；2026-11-02 America/Chicago；branch codex/MUS-064-supplement-retrieval，base29873e11f5316cd25fdb978c77052c91ccf76d2c。E38/config/源码先提交；实际编码/检索评分未执行。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:02:12Z同步双方fetched，A fd4918cf/source29873e1，B未变。B047限定批准已接收，不外推064或派新卡。
+
+6新曲/7原全文本，256完整token证明/all18新窗+6聚合+7文本CPU/MPS核查，原140/624窗/24文本逐元素复用。另CPU固定两模型identity/058已存100ridge、146池、新6whole宏MRR与两mode/旧20控制，原140须复现；零新fit/下载/人工包/封存test/模型切换。各阶段任务级持久claim禁止换目录重复，失败保留，旧1087文件已快照。原版/UI/Java/DB/main/B卡保持；准备完成不代表实际质量通过。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-063六曲音频预检完成，可进入特征构建
 
 A；2026-11-02 America/Chicago；branch codex/MUS-063-six-source-preflight，base d88d4c3f3610b69cc7bc5494b87c0cc0b17ed5d5，实际7ce3c1510bdeb3156a907efd47b88c616e61e8cf；最终交付SHA见handoff.source_sha。review仅六曲音频ready，非模型/语义质量或训练验收，工具独立B审核待安排。

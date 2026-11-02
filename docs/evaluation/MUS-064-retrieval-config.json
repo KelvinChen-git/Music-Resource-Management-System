@@ -1,0 +1,96 @@
+{
+  "schema": "sonora-six-supplement-retrieval-v1",
+  "task_directory": ".local/a/mus064",
+  "inputs": {
+    "plan": {
+      "path": ".local/a/mus062/run-01/supplement-plan.json",
+      "sha256": "28051f7d6f874633bf538f7e1e5919aa63c84522d98608bf901239a51eaea52e"
+    },
+    "plan_config": {
+      "path": "docs/evaluation/MUS-062-source-config.json",
+      "sha256": "0d14dc906b8511cc3f639fc1777fb6b3cc706cc02bb309a738652c5c6c87a736"
+    },
+    "corpus": {
+      "path": ".local/a/mus063/run-01/catalog.json",
+      "sha256": "aba124a249ec0967fda72b630ddb7004b22e29712036c57294a0320dca000b2d"
+    },
+    "preflight_verification": {
+      "path": "docs/verification/MUS-063-results.json",
+      "sha256": "90e00f0401b58ee977afe142ce341071613dd17473da1bd6cd8d8e63e7714fe3"
+    },
+    "source_inputs": {
+      "path": ".local/a/mus043/inputs.json",
+      "sha256": "47af7e6bc23a36e0455a8e7a0f5c45970d2a1dba986b9db58a0c5664feceb163"
+    },
+    "old_cache": {
+      "path": ".local/a/mus048/build-01/cache.json",
+      "sha256": "2f3c3c54c7e040443b52fe77b3bf194243e6b92eb5cc7199ca0f0831aeb691f5"
+    },
+    "model_cache": {
+      "path": ".local/a/mus045/features-01/cache.json",
+      "sha256": "c13409ae4de1142c9dfec1601b7533da579609ee87bfd02d184bb731cdef7ca2"
+    },
+    "device_freeze": {
+      "path": ".local/a/mus047/mps-02/freeze.json",
+      "sha256": "3550b75584b444662fa449516ea8c2d42c75c1fbcc904018dc510058eea71827"
+    },
+    "saved100_adapter": {
+      "path": ".local/a/mus058/fit-01/adapter.npz",
+      "sha256": "e903f5497633c0410b98dfc07733a2089f3130194341fef371cf19835e3bb748"
+    },
+    "saved100_result": {
+      "path": ".local/a/mus058/fit-01/result-private.json",
+      "sha256": "3ff1f78b3e9ddb6734c489ce6791851c75090f52fda0345e9e3104484f968e08"
+    }
+  },
+  "expected_model_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "device": "mps",
+  "dimension": 512,
+  "dtype": "float32",
+  "autocast": false,
+  "automatic_fallback": false,
+  "audio_batch": 3,
+  "text_batch": 6,
+  "token_length": 256,
+  "text_policy": "exact_original_UTF8_text_and_untruncated_token_equality_or_fail",
+  "audio_policy": "canonical65536_EOF48k_mono;first_min120_seconds;first_mid_last10s;unit_mean_unit",
+  "CPU_controls": "all18_new_audio_windows_all6_aggregates_all7_texts256;short_CPU77_vs256_when_applicable",
+  "atol_vector_maxabs": 0.0001,
+  "atol_cosine_distance": 0.0001,
+  "counts": {
+    "old_candidates": 140,
+    "new_candidates": 6,
+    "combined_candidates": 146,
+    "old_queries": 24,
+    "new_queries": 7,
+    "old_query_recordings": 20,
+    "new_query_recordings": 6,
+    "old_windows": 624,
+    "new_windows": 18
+  },
+  "models": [
+    "identity",
+    "saved100-fulltext-ridge"
+  ],
+  "primary_metric": "new6_recording_macro_whole_MRR_saved100_minus_identity",
+  "query_pools": [
+    "new6",
+    "old20_control"
+  ],
+  "retrieval_modes": [
+    "whole",
+    "segment"
+  ],
+  "original140_control_must_reproduce": true,
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20261102064,
+  "blas_threads": 2,
+  "seed": 0,
+  "operations": {
+    "downloads": 0,
+    "fits": 0,
+    "reserved_test_inputs": 0,
+    "new_manual_labels": 0
+  },
+  "decision": "retain_identity_no_automatic_selection_or_deployment"
+}
