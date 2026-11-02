@@ -597,3 +597,5 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 只报告剩余录音/有效描述/credit组件的容量；每组件一首的组件数仅上界，需同时报告组件间同作品或同SHA冲突，不把caption条数当独立样本数。候选ID和排除关系仅私有；本轮不实际分配新dev/test、不导出未见正文、不获取音频/PCM、不编码/fit/评分。元数据许可是固定历史快照，音频版本、实际EOF、PCM/近重复、逐曲权利仍需后续有界核验，不称audio_ready/预训练未见或完整相关度真值。
 
 干净提交后冻结source/config/inputs/runtime，再创建任务持久audit claim；失败原件保留，禁止换目录隐式重试。合成隔离边界、独立全图连通与全部集合/计数复算、实际重复保护和旧045–060全文件保护后才记完成。仅聚合及证据hash发布，原全文本偏好、identity、备份/UI/Java/DB/main及B047原卡保持。下一步另冻有界新增development计划，不在原20开发上继续搜去均值强度，也不打开保留test为新方案选参。
+
+061实际格式修复：8eb8c6e第一次审计在SDD纯数字ID上失败，原freeze/failure/claim/run日志全部保留。原CSV还有332条空valid flag，按旧045原规则其不为true，保持未验证，不提升为有效。新增仅支持ASCII纯数字或原前缀整数ID，以及空flag=false的格式适配；未知非空flag/负数/小数/Unicode数字仍拒绝。显式repair config钉住原config/claim/freeze/failure，继承所有输入/隔离/权利规则不变，只准audit-repair-started一次，禁止重置原claim/泛化修复或换目录再跑；未产出原轮容量结果，不冒称首轮成功。

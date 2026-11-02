@@ -9,6 +9,8 @@ from review_pack import require
 
 
 def identity(value, prefix):
+    if isinstance(value, str) and value.isascii() and value.isdigit():
+        value = prefix + '_' + value
     return prefix + '_' + m.source_id(value, prefix).zfill(7 if prefix == 'track' else 6)
 
 
@@ -20,7 +22,7 @@ def sdd_metadata(raw):
         require(row['caption_id'] not in seen, 'Duplicate caption identifier')
         seen.add(row['caption_id'])
         flag = row['is_valid_subset'].lower()
-        require(flag in ('true', 'false', '1', '0'), 'Unknown validation flag')
+        require(flag in ('true', 'false', '1', '0', ''), 'Unknown validation flag')
         result.append({'track_id': identity(row['track_id'], 'track'),
                        'artist_id': identity(row['artist_id'], 'artist'),
                        'validated': flag in ('true', '1')})

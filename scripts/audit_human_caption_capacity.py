@@ -18,6 +18,23 @@ SOURCES = ('scripts/audit_human_caption_capacity.py', 'services/audio-search/hum
            'scripts/holdout_assets.py')
 
 
+def attempt_file(cfg, task):
+    if 'repair_of' not in cfg: return 'audit-started.json'
+    pins = cfg['repair_of']
+    h.require(set(pins) == {'original_config', 'claim', 'freeze', 'failure'}
+              and cfg.get('repair_reason') == 'numeric_source_ids_and_blank_nonvalidated_flags', 'Only pinned source-format repair allowed')
+    old = {k: h.assets.document(ROOT/v['path'], v['sha256']) for k, v in pins.items()}
+    h.require({k: v for k, v in cfg.items() if k not in ('repair_of', 'repair_reason')} == old['original_config']
+              and ROOT/pins['claim']['path'] == task/'audit-started.json'
+              and old['claim']['source_sha'] == old['freeze']['source_sha']
+              and old['freeze']['config_sha256'] == pins['original_config']['sha256']
+              and old['failure'] == {'error_type': 'ValueError', 'error': 'Invalid source identifier'}
+              and (ROOT/pins['failure']['path']).parent == (ROOT/pins['freeze']['path']).parent
+              and not ((ROOT/pins['freeze']['path']).parent/'result-private.json').exists(), 'Exact failed source-format audit required')
+    for path, pin in old['freeze']['input_sha256'].items(): h.require(h.file_hash(path) == pin, 'Original failed input mutated')
+    return 'audit-repair-started.json'
+
+
 def run(config, config_sha256, output):
     cfg = h.assets.document(config, config_sha256)
     h.require(cfg['schema'] == 'sonora-human-caption-capacity-v1'
@@ -28,7 +45,8 @@ def run(config, config_sha256, output):
               and cfg['operations'] == dict.fromkeys(('downloads', 'encodes', 'fits', 'scored_queries', 'test_caption_inputs'), 0),
               'Fixed source-only audit policy required')
     task = ROOT/cfg['task_directory']
-    h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/'audit-started.json').exists(),
+    attempt = attempt_file(cfg, task)
+    h.require(Path(output).absolute().is_relative_to(task.absolute()) and not (task/attempt).exists(),
               'Task metadata audit already attempted or invalid output')
     h.require(not subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip(), 'Clean committed audit required')
     target = h.private_output(output)
@@ -36,6 +54,8 @@ def run(config, config_sha256, output):
         docs = {k: h.assets.document(ROOT/v['path'], v['sha256']) for k, v in cfg['inputs'].items()}
         pins = {str((ROOT/v['path']).absolute()): v['sha256'] for v in cfg['inputs'].values()}
         pins[str(Path(config).absolute())] = config_sha256
+        if 'repair_of' in cfg:
+            pins.update({str((ROOT/v['path']).absolute()): v['sha256'] for v in cfg['repair_of'].values()})
         raw = {}
         for k, v in docs['inputs']['files'].items():
             raw[k] = h.assets.read(ROOT/v['path'], 40*1024*1024)
@@ -46,7 +66,7 @@ def run(config, config_sha256, output):
                   'source_sha256': {n: h.file_hash(ROOT/n) for n in SOURCES}, 'input_sha256': pins,
                   'runtime': {'python': sys.version}, 'operations': cfg['operations']}
         h.write_json(target/'freeze.json', freeze)
-        h.write_json(task/'audit-started.json', {'started_at_utc': h.now(), 'source_sha': source, 'maximum_attempts': 1})
+        h.write_json(task/attempt, {'started_at_utc': h.now(), 'source_sha': source, 'maximum_attempts': 1})
         # No caption/familiarity content is retained, compared, printed or passed to models.
         rows = capacity.sdd_metadata(raw['sdd'])
         names, malformed = m.names(raw['names'])

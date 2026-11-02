@@ -38,6 +38,21 @@ class CapacityTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.sdd_metadata(b'caption_id,track_id,is_valid_subset,artist_id\n1,track_1,maybe,artist_2\n')
 
+    def test_original_numeric_ids_and_blank_flags_are_not_validated(self):
+        rows = c.sdd_metadata(b'caption_id,track_id,is_valid_subset,artist_id\n1,1,,2\n2,1,True,2\n')
+        self.assertEqual([r['validated'] for r in rows], [False, True])
+        self.assertEqual(rows[0]['track_id'], 'track_0000001')
+        self.assertEqual(rows[0]['artist_id'], 'artist_000002')
+
+    def test_identifier_float_negative_and_unicode_digits_rejected(self):
+        for value in ('1.0', '-1', '１２', ''):
+            with self.assertRaises(ValueError): c.identity(value, 'track')
+
+    def test_generic_repair_cannot_reset_original_claim(self):
+        import audit_human_caption_capacity as runner
+        with self.assertRaisesRegex(ValueError, 'Only pinned'):
+            runner.attempt_file({'repair_of': {}}, Path('unused'))
+
     def test_full_metadata_bridge_and_source_id_resolve_components(self):
         out = c.measure(*self.fixture(), {'sealed': [{'source_track_id': 'track_0000001'}]})
         self.assertEqual([r['source_track_id'] for r in out['eligible']], ['track_0000003'])
