@@ -1,0 +1,189 @@
+{
+  "summary": {
+    "source_caption_rows": 1106,
+    "source_recordings": 706,
+    "validated_caption_rows": 746,
+    "validated_recordings": 547,
+    "source_artist_ids": 191,
+    "all_name_metadata_credit_components": 3540,
+    "eligible_recordings": 8,
+    "eligible_validated_captions": 10,
+    "independent_credit_components_upper_bound": 6,
+    "captions_if_one_recording_per_component_min": 7,
+    "captions_if_one_recording_per_component_max": 8,
+    "cross_component_shared_work_keys": 0,
+    "cross_component_shared_official_audio_hashes": 0,
+    "excluded_recordings": 698,
+    "exclusion_reasons_nonexclusive": {
+      "audio_license_outside_policy": 519,
+      "duration_outside_policy": 6,
+      "no_validated_caption": 159,
+      "pilot_and_planned1400:work_name": 13,
+      "prior60:credit_component": 5,
+      "sealed_caption_test:credit_component": 37,
+      "sealed_caption_test:id": 20,
+      "sealed_caption_test:official_audio_sha": 20,
+      "sealed_caption_test:work_name": 20,
+      "used_or_allocated_development:credit_component": 148,
+      "used_or_allocated_development:id": 22,
+      "used_or_allocated_development:official_audio_sha": 22,
+      "used_or_allocated_development:work_name": 22
+    },
+    "eligible_caption_count_histogram": {
+      "1": 6,
+      "2": 2
+    },
+    "eligible_recordings_per_component_histogram": {
+      "1": 5,
+      "3": 1
+    },
+    "blocked_group_sizes": {
+      "prior60": {
+        "recordings": 20,
+        "credit_components": 13,
+        "work_keys": 60,
+        "audio_hashes": 60
+      },
+      "pilot_and_planned1400": {
+        "recordings": 1417,
+        "credit_components": 664,
+        "work_keys": 1417,
+        "audio_hashes": 1417
+      },
+      "used_or_allocated_development": {
+        "recordings": 242,
+        "credit_components": 262,
+        "work_keys": 242,
+        "audio_hashes": 242
+      },
+      "sealed_caption_test": {
+        "recordings": 20,
+        "credit_components": 20,
+        "work_keys": 20,
+        "audio_hashes": 20
+      }
+    },
+    "source_only_not_audio_ready": true,
+    "candidate_selection_performed": false,
+    "caption_content_reviewed_or_encoded": false,
+    "malformed_name_rows_quarantined": 2
+  },
+  "source_sha": "31a950c5a0a01589f52eca77839d1fc6b8393b46",
+  "operations": {
+    "downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "scored_queries": 0,
+    "test_caption_inputs": 0
+  },
+  "private_result_sha256": "b96265ea15f1f42bb701c649f7e6e0be40e457270d9e70d2ea96f8dcff3fb482",
+  "task": "MUS-061",
+  "status": "metadata_capacity_completed_not_new_dataset_ready",
+  "base_sha": "8a337002d8f500114865405aa321c972f4e5f07e",
+  "actual_source_sha": "31a950c5a0a01589f52eca77839d1fc6b8393b46",
+  "tests": {
+    "status": "passed",
+    "total": 48,
+    "new": 17,
+    "related_existing": 31,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts:services/audio-search ../Music-Resource-Management-System/.local/a/clap-venv/bin/python -m unittest test_human_caption_capacity test_mtg_dataset test_preflight_mtg test_caption_gate -v",
+    "not_run": [
+      "Java tests and frontend build: offline metadata-only change"
+    ]
+  },
+  "attempts": {
+    "original_source_sha": "8eb8c6ef83a0178e89286f7ab29864ffea8fc09f",
+    "original_status": "failed_before_capacity_result",
+    "original_error": "Invalid source identifier",
+    "repair_source_sha": "31a950c5a0a01589f52eca77839d1fc6b8393b46",
+    "repair_status": "completed",
+    "repair_scope": "ASCII numeric or prefixed source IDs; blank validation flag remains nonvalidated; original sources and thresholds unchanged",
+    "original_failure_and_claim_preserved": true
+  },
+  "independent_audit": {
+    "status": "passed",
+    "method": "same operator independent standard-library indexed metadata projection, bipartite DFS credit graph, all candidate/exclusion sets and aggregate reconstruction; not independent B review",
+    "all_source_and_config_pins_match": true,
+    "all8_candidates_and698_exclusion_sets_match": true,
+    "all_aggregate_counts_and_component_bounds_match": true,
+    "sequential_attrition": {
+      "validated": {
+        "recordings": 547,
+        "validated_captions": 746,
+        "credit_components": 169
+      },
+      "metadata_rights_duration_SHA": {
+        "recordings": 153,
+        "validated_captions": 224,
+        "credit_components": 49
+      },
+      "prior60_and_allocations": {
+        "recordings": 39,
+        "validated_captions": 47,
+        "credit_components": 26
+      },
+      "sealed_test_relations": {
+        "recordings": 8,
+        "validated_captions": 10,
+        "credit_components": 6
+      }
+    },
+    "old045_to060_files_preserved": 991,
+    "old951_B047_frozen23_cache54_043044_160_and_backup_preserved": true,
+    "private_modes700_600": true,
+    "script_sha256": "bbf2e69358ed2361d33dfbd30f8ec54a39305fbc30e3f0e51ca5b1b0813cd168"
+  },
+  "repeat_guards": {
+    "status": "passed",
+    "actual_same_and_new_output_original_and_repair_rejections": [
+      {
+        "config": "MUS-061-capacity-config.json",
+        "output": "run-01",
+        "rejected_before_output": true
+      },
+      {
+        "config": "MUS-061-capacity-config.json",
+        "output": "retry-original",
+        "rejected_before_output": true
+      },
+      {
+        "config": "MUS-061-capacity-repair-config.json",
+        "output": "run-02",
+        "rejected_before_output": true
+      },
+      {
+        "config": "MUS-061-capacity-repair-config.json",
+        "output": "retry-repair",
+        "rejected_before_output": true
+      }
+    ],
+    "prior_claims_freezes_failures_results_unchanged": true,
+    "extra_audits": 0
+  },
+  "decision": "Insufficient current-policy unused credit groups for a new20 development set. Keep sealed test, identity and all captions intact; do not fit or widen the old dev search. Audit another human-caption source before freezing any new development selection.",
+  "limitations": [
+    "Pinned historical metadata rights, not a fresh legal availability assertion.",
+    "Audio actual EOF, PCM and near-duplicate checks pending; not audio_ready.",
+    "One known paired recording per description, no exhaustive query-track relevance judgments.",
+    "Credit grouping uses exact normalized metadata, not exhaustive alias resolution or pretraining independence.",
+    "CSV bytes physically parsed/hash-checked; caption and familiarity body columns never inspected as semantic content or encoded."
+  ],
+  "private_evidence_sha256": {
+    "audit-repair-started.json": "ecc763b514524d0ecdc8bd2f56cc787f197ae874abb120fbfdd4285291bb0994",
+    "audit-started.json": "25be9735c0543b2d81043da61833dfcc5a63dbb17321612fde5cae45297d4e0d",
+    "independent-audit.json": "fea8a79d3531d6d4016c37c838d991dd2a1f9dd6e7d5879ff4f2ff0ff6faeda2",
+    "independent-audit.log": "ea944cf661ded514fea172146b9d9e446ef9790f34bcaa462451fd4428c71cd0",
+    "independent-audit.py": "bbf2e69358ed2361d33dfbd30f8ec54a39305fbc30e3f0e51ca5b1b0813cd168",
+    "prior-before.json": "5243aa35712471a2cc124212646291c997d291f37436350a4bf86b849ac7fe5d",
+    "repeat-guards.json": "59a469c9403b6201bd75689ed98d5595afe607dd1f23e43c9f1d49c9bec5c459",
+    "run-01/failure.json": "64d433610a70ba3cb9b3c167245a3c195e51b6c36378049578c3807dcf1bd028",
+    "run-01/freeze.json": "bfb74207cc5343b70d2df99e55c2ee00c4339db5176a01c4d0f62accc0798cc9",
+    "run-01.log": "079bdeadaf09165c48593ada95b6180c92b8eeb25c24b6989a2cd779a351149b",
+    "run-02/freeze.json": "2bffa35c80914b65e8b6b85e66e31429eee1054299ec8a26e02dacad3a1bb226",
+    "run-02/result-private.json": "b96265ea15f1f42bb701c649f7e6e0be40e457270d9e70d2ea96f8dcff3fb482",
+    "run-02/result-public.json": "76b0168ea0e6140dbcb434fe180c22f000f539405f68a70b94156df1f64849d3",
+    "run-02.log": "16d418af22e1afa3aa8d3ebf9a7eafa2e137c18f4d316aa780fb35c9c1971e5d",
+    "tests-final.log": "178c5def9e1b6abc9f12a4289ae5f4671ad4a1ff7d7b60467cd9707a18eb125c",
+    "tests.log": "0955a09d3f815711b692bfb03b2116b30d095f5f16d4d7e970daae2903c2faa8"
+  }
+}

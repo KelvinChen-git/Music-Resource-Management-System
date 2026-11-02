@@ -1,5 +1,23 @@
 # 账号 A 最新交接
 
+## 当前：MUS-061人写描述容量审计完成，剩余不足新20开发
+
+A；2026-11-01 America/Chicago；branch `codex/MUS-061-human-caption-capacity`，base `8a337002d8f500114865405aa321c972f4e5f07e`，实际成功修复源码 `31a950c5a0a01589f52eca77839d1fc6b8393b46`；最终交付SHA见handoff.source_sha。review仅本次元数据容量完成，工具B独立审核待安排，无模型质量验收。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T05:31:59Z/05:38:51Z双方fetched，B047限定批准已在055接收，原报告/派发快照保持，不外推061或派新卡。
+
+060中心化不支持提升，停止该线。061只核043固定输入/044全1400/045已用与备用封存/043 pilot/057实际扩样，全names credit闭包先建再排除ID/组件/作品/官方SHA；valid true、原test、BY/BYSA/30–600秒。SDD原CSV1,106行/706曲，746有效描述/547曲；依次权利来源153曲224描述49组件、已用分配39/47/26、封存完整关系8/10/6。8曲每组件一首上界6曲、7–8描述，跨组件作品/SHA冲突0。不能新建20独立dev，没选样/下载/编码/fit/质量评分或新人工包；caption/familiarity只在CSV字节结构解析中经过，不显示或作语义内容/模型输入，sealed正文未提取/编码。
+
+首次8eb8c6e在纯数字ID失败，无结果；原run-01/freeze/failure/claim保持。仅兼容ASCII数字/前缀整数ID、332空flag仍为非验证，未知标记/负数/小数/Unicode数字拒绝；显式repair config钉住4原件继承原规则，干净31a950c的run-02完成，repair claim独立一次，非通用重试。48相关检查passed（17新31旧）；独立标准库按列投影+二部DFS图重建全部8候选/698排除/全部聚合和逐阶段计数匹配，A同操作方独立算法，不冒充B审核。两配置实际同/新目录4拒绝，额外审计0、原claim/失败/结果hash保持。
+
+旧045–060全部991文件集合/hash、历史951+B047快照/23源码/54offline cache/043044/160/相邻原版f3b0da1干净保持；新061目录700文件600。只提交新容量module/runner/test、E35/原与修复config/方法/聚合JSON及必要台账；无UI/Java/DB/API/依赖锁/main变化，不重复Maven/build。来源许可是固定历史metadata，实际EOF/PCM/近重复仍未做，非audio_ready、全相关度真值或预训练无重叠。
+
+下一步另核现成人写来源的许可/作者作品和音频可得性，再冻结有界新development；保持原20封存test、identity和全文本，不靠放宽现行规则/同20dev搜参挤分。最终提交后publish/sync回读，发布不等于B接收/批准或main合并。
+
+## 实现检查点（保留）
+
+# 账号 A 最新交接
+
 ## MUS-061：人写描述元数据容量准备
 
 A；2026-11-01 America/Chicago；branch `codex/MUS-061-human-caption-capacity`，base `8a337002d8f500114865405aa321c972f4e5f07e`。ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T05:31:59Z双方fetched，B047已接收、原卡保持，无新B派发或本轮批准。

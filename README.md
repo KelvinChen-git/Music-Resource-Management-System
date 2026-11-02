@@ -70,6 +70,8 @@ MUS-051已完整流式核JamendoMax固定caption文件787MB/SHA：1,812,352行/3
 
 MUS-052已完成57匹配来源逐曲metadata与参考预检：固定53文件/Git blob和长度全核，按全行许可/下载/身份/时长规则保留44来源232区间（train37首209段、val7首23段），13来源因许可规则/作品名差异隔离。固定3个已有训练来源参考MP3、9个中心10秒anchor均通过，NCC0.99804–0.99994、8k网格峰lag0、实际时长差0；不外推teacher确切缓存/全44或语义质量。110检查/独立FFT与直接点积/真实重跑保护通过，下一步可构建对应区间特征再另定训练，不重做本轮预检。参考仅同ID新快照，无新曲库/fit/模型切换，备份/UI/main保持，见[MUS-052](docs/verification/MUS-052.md)。
 
+MUS-061已核现有人写SDD剩余容量：547有效曲经许可/时长/既有与封存完整关系筛后仅8首/10描述/6作者组件，不能新建20首独立dev；48检查/独立全图计数和四重复拒绝passed，初次数字ID失败及修复原件保留。停止060中心化路线，保留identity与sealed test；下一步另核人写来源，不放宽原规则或追加同dev调参。无下载/编码/fit/新标注，见[容量报告](docs/evaluation/MUS-061-human-caption-capacity.md)。
+
 新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。
