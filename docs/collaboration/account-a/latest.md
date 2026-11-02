@@ -1,5 +1,16 @@
 # 账号 A 最新交接
 
+## 当前：MUS-065 Clotho人写研究训练容量准备
+
+A；2026-11-02 America/Chicago；branch codex/MUS-065-human-source-capacity，base77aabf4d3d77b99e4876b77a7f07c11b5222874f。E39/config先提交后实际audit，当前仅来源捕获、统计未执行。
+
+ack_peer_feed_sha `8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8` / peer_source_sha `806dc9c8b518db748ced7b02611fcc0b0863068f`；UTC2026-11-02T22:19:40Z双方fetched，A06467f31/source77aabf4，B未变。047准确限定批准已接收，不外推065/无新派发，原B卡保持。
+
+只捕获Clotho v2.1 LICENSE/三metadata/dev captions及CLAP准确commit README，正常TLS/官方MD5与SHA；各2MiB/任务16MiB内，原音频/val和eval caption不取。固定music/instrument whole tag、不看正文语义，按所有split同source/uploader闭包排除跨split，BY/BYSA音频、caption仅实验非商业用途分开报告。Clotho曾用于CLAP选checkpoint，不冒充全新独立测试；本轮无模型/音频/fit/质量分/人工包/封存test，候选仅metadata。旧045–064共1115文件已快照，原版/UI/DB/main保持。
+
+## 上一轮交接（保留）
+
+
 ## 当前：MUS-064六曲全文本与固定检索比较完成
 
 A；2026-11-02 America/Chicago；branch codex/MUS-064-supplement-retrieval，base29873e11f5316cd25fdb978c77052c91ccf76d2c，实际干净46044c87951a3fa322831047d802d0ce0ff5f24e；最终交付SHA见handoff.source_sha。review，小development诊断完成，原CLAP未微调、新fit0；工具独立B审核未安排。

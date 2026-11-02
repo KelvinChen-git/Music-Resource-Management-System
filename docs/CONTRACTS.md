@@ -640,3 +640,16 @@ MUS-002 候选实跑补充：固定 music_audioset checkpoint、HTSAT-base / no 
 另独立CPU NumPy进程只评identity与058已存100曲全文本ridge，不fit或搜参。主指标沿用062：新6录音宏whole MRR saved100减identity；新6 R1/R5与segment、旧20在146池的两mode控制分开全报，不合并26曲。旧20原140池对两模型两mode须精确复现058。录音bootstrap2000/seed20261102064，六组仅描述性区间；其他候选语义未判定，不作真实负例。评测也先冻结/持久claim，原目录和换目录禁重复；不因结果自动切换模型，identity保持。
 
 无下载/新fit/保留20或160测试输入/新人工任务/云端GPU/部署。raw正文、身份、音频、向量、W与逐曲排名仅私有.local/a/mus064(700/600)，公开聚合/hash/方法。先快照旧045–063全部文件集合/hash，结束核原版/历史证据/模型缓存/B047原卡；B047批准不外推064。
+
+
+## E39：MUS-065 Clotho人写训练候选容量（2026-11-02）
+
+仅取Clotho官方固定Zenodo4783391/v2.1的LICENSE、三split metadata与development captions；5文件各2MiB/总16MiB持久预记、每URL一次、正常TLS/官方MD5/本地SHA，无音频/val或eval正文/模型。先捕获固定来源，再提交统计源码与config/hash，持久单audit claim后实际统计；失败保留不换目录隐式重跑。
+
+只按来源keywords选择：固定whole-tag标准化（casefold，把非ASCII字母数字转空格并合空格），候选tag集合为music,musical,piano,guitar,violin,cello,orchestra,orchestral,saxophone,trumpet,trombone,clarinet,flute,drum,drums,drumming,percussion,accordion,ukulele,synth,synthesizer。不按caption语义、模型相似度或此前dev分数筛。显式区分music/musical与仅乐器tag的容量，标签不证明实际是完整音乐或对应caption涵盖音乐。
+
+按三官方split全部元数据的同Freesound sound ID或同manufacturer/uploader建立闭包；跨split组件双边排除，不搬移官方split或把metadata身份闭包等同全部作者/作品真值。同sound不同区间/文件不算独立录音。沿用BY/BY-SA音频URI规则，保留原URI/未知家族，caption自有Tampere许可独立核对，仅本地实验非商业研究候选，不能把音频CC当captionCC或产品授权。development每文件恰好5个非空caption，计数不读取/显示正文语义，不截断/重写；val/eval正文不取。
+
+公开只聚合/hash/方法，私人目录700/600保存原元数据、源URL/许可、计数绑定的候选清单。只输出metadata候选，不声称audio_ready/training_ready或独立benchmark。检查当前CLAP是否曾用Clotho选checkpoint；未知的跨来源作者/作品/声学重复与预训练交集保留。无新fit/模型输入/音频归档/商用部署/人工任务/保留test/UI/DB/main；旧045–064集合/hash与原版/B047卡保持。
+
+065另捕获CLAP官方README固定Git commit1fd4c37df5ffbfcfbad5415c170bc66cf94c9994（单文件2MiB预记，总12MiB<16MiB），只核当前A命名/Clotho与AudioCaps用于checkpoint选择的原说明，不把它当精确训练成员证明。该源同样绑定本地SHA/config。

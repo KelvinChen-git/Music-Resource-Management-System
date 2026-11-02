@@ -2,7 +2,7 @@
 
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-064-supplement-retrieval`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-065-human-source-capacity`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -262,3 +262,5 @@ MUS-059已只读诊断扩样停滞：599描述未发现整段重复或固定5gra
 MUS-060已按固定方案完成train100/539残差中心化单fit：全文本/特征/alpha1/录音权重保持，只用train残差均值，CPU23.836ms；共同方向更新能量89.79%→2.89%，但主140整曲MRR旧100 .447217→新 .420200、R1 .37→.31，未支持提升假设，继续保留identity。20池整曲恢复到identity，完整两池/两验证子集均披露；不能挑次要改善宣称成功。204检查/独立训练mu与dual/全部排名24bootstrap/实际二fit拒绝passed，原045–059/全文本/备份/UI/main保持。停止这条去均值消融的参数追加，下一步优先核查现成人写描述的评测覆盖与隔离，原保留test封存，见[中心化对照报告](docs/evaluation/MUS-060-centered-residual.md)。
 
 MUS-064已完成六曲/七原全文本与146候选固定对照，CPU/MPS与旧140复用核查通过。新6整曲MRR .455568→.491042但差区间含零，片段MRR下降，当前不支持稳定提升，继续identity；64检查/独立排名统计/四次重复拒绝passed，零新fit/下载/封存test/人工包，见[检索报告](docs/evaluation/MUS-064-six-source-retrieval.md)。
+
+MUS-065正在核Clotho人写音乐相关训练候选容量及同sound/uploader跨split隔离；短片段不当完整曲库，Clotho曾参与当前CLAP检查点选择，不能直接称全新独立评测。未取音频/fit或新增人工任务，见[本轮审计](docs/evaluation/MUS-065-clotho-capacity.md)。

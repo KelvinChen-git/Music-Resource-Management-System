@@ -1,0 +1,85 @@
+{
+  "schema": "sonora-clotho-source-capacity-v1",
+  "task_directory": ".local/a/mus065",
+  "inputs": {
+    "development": {
+      "path": ".local/a/mus065/source/clotho_metadata_development.csv",
+      "sha256": "b054a8d9d0f88436e7cf6341c82a70e9e975c3b3ddd560d9b04f2cd5fdc75949",
+      "md5": "170d20935ecfdf161ce1bb154118cda5"
+    },
+    "validation": {
+      "path": ".local/a/mus065/source/clotho_metadata_validation.csv",
+      "sha256": "066026ae1bc20277614ae9d4fffea085d959f0b5e40120751b8d3e717f5faa97",
+      "md5": "2e010427c56b1ce6008b0f03f41048ce"
+    },
+    "evaluation": {
+      "path": ".local/a/mus065/source/clotho_metadata_evaluation.csv",
+      "sha256": "1b8a7c184d3b6472a57a21c4c38ff13ba0613e6014a9bf4379251387f435aa70",
+      "md5": "13946f054d4e1bf48079813aac61bf77"
+    },
+    "captions_development": {
+      "path": ".local/a/mus065/source/clotho_captions_development.csv",
+      "sha256": "df2e5b92060b4bb23311f8b3a7f82241d900b9c4f62b0cc467ac2ce5e9c52886",
+      "md5": "d4090b39ce9f2491908eebf4d5b09bae"
+    },
+    "license": {
+      "path": ".local/a/mus065/source/LICENSE",
+      "sha256": "4701019c81918fc205f6c675508efd4e4eff81339aa2660a632bd67fd0baffbf",
+      "md5": "38d422ac8a2c9c35c288232576e2e810"
+    },
+    "clap_readme": {
+      "path": ".local/a/mus065/source/CLAP-README.md",
+      "sha256": "5e168ab0512160e5e9e461c17a74988b6d32b14f2a54f6dcbf61268166b70ad9"
+    },
+    "capture-plan.json": {
+      "path": ".local/a/mus065/capture-plan.json",
+      "sha256": "14956d90d3e92e7125bbceae2cafbd60784785374e11dabcd469f71e984aa4f6"
+    },
+    "CLAP-capture-plan.json": {
+      "path": ".local/a/mus065/CLAP-capture-plan.json",
+      "sha256": "3e0ae0cb1ebb1b8408c474dcc41439eab08e902b94fa60e47c05709c368dd80e"
+    },
+    "capture-ledger.jsonl": {
+      "path": ".local/a/mus065/capture-ledger.jsonl",
+      "sha256": "6b99be1cde22aa64d7a822e2d14f044b5f47c975c3607cf5d0dead54d73a47a1"
+    }
+  },
+  "music_tags": [
+    "music",
+    "musical",
+    "piano",
+    "guitar",
+    "violin",
+    "cello",
+    "orchestra",
+    "orchestral",
+    "saxophone",
+    "trumpet",
+    "trombone",
+    "clarinet",
+    "flute",
+    "drum",
+    "drums",
+    "drumming",
+    "percussion",
+    "accordion",
+    "ukulele",
+    "synth",
+    "synthesizer"
+  ],
+  "audio_license_families": [
+    "by",
+    "by-sa"
+  ],
+  "closure": "same_sound_id_or_casefolded_uploader_all3splits_exclude_cross_split_both_sides",
+  "encoding": "utf8_sig_then_iso88591_if_decode_error",
+  "role": "metadata_training_candidates_only_no_new_independent_benchmark",
+  "operations": {
+    "audio_downloads": 0,
+    "encodes": 0,
+    "fits": 0,
+    "quality_scores": 0,
+    "reserved_test_inputs": 0,
+    "new_manual_labels": 0
+  }
+}
