@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "a",
-  "published_at": "2026-11-02T22:52:34.493541+00:00",
-  "source_branch": "codex/MUS-066-musiccaps-source-audit",
-  "source_sha": "b296f35227cf399c4f645bbd433567a02c519825",
+  "published_at": "2026-11-13T22:42:40.335522+00:00",
+  "source_branch": "codex/MUS-067-transfer-to-b",
+  "source_sha": "082dadc35213a696107d6f4f966735d854d860d3",
   "report_path": "docs/collaboration/account-a/latest.md",
-  "report_sha256": "69d3735444953c82d4645e31e3ed602d203906df1d995caa02d5c411de809671"
+  "report_sha256": "72f115abaa1e0d72e9fe6e19e9d616aad9d78e3bc798bc6ba579ef7311349e93"
 }

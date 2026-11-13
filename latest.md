@@ -1,5 +1,21 @@
 # 账号 A 最新交接
 
+## 当前：MUS-067-B 暂由 B 全权负责后续开发
+
+- 用户授权：2026-11-13 America/Chicago，暂时把开发任务完全转交 B。A 发布后暂停开发和台账写入，B 认领后负责开发、验证、集成、任务分支发布和唯一台账；用户明确再次移交前不自动归还职责。用户仍保留最终合并决定。
+- task_id / assignment_revision / owner / task_status：`MUS-067-B` / `1` / `b` / `assigned`。本报告是 A 授权发布，不是 B 领取确认。
+- 产品基线 `codex/MUS-066-musiccaps-source-audit` @ `b296f35227cf399c4f645bbd433567a02c519825`；本卡 `assignment_source_sha` 以本次 `handoff.json` 所指移交提交为准。B 在独立 checkout 从该移交提交启动 `codex/MUS-067-b-development`，先发布 B 认领及状态台账，再开发。
+- 固定任务入口 `docs/collaboration/tasks/account-b.json`；卡片 `docs/collaboration/tasks/MUS-067-B.md`；认领后看 `collab/account-b` 的 `handoff.source_sha` 所指 `docs/STATUS.md`，不以此 A 快照覆盖 B 的后续状态。
+- `ack_peer_feed_sha: 8d43fe4d4dfefff2cd34f10d07e8fe44fbfee7d8`；`peer_source_sha: 806dc9c8b518db748ced7b02611fcc0b0863068f`。本轮同步成功。既有 MUS-047 限定复核已接收，本次是完整开发移交，无需重复复审。
+
+进度：起始源码与此前已发布的 MUS-066 一致，工作区干净。Java/Vue 管理、鉴权上传/试听有既往运行证据；本轮新版曲库/审阅页返回 HTTP 200，原版 5173 与 A 后端 8080 拒绝连接，未新验完整业务。Python 已完成离线检索和 146 首候选对照；适配层未证实稳定提升，保留 identity 和全文本。在线 discovery 待接入。MusicCaps 固定 20 个公开元数据来源均可读取，逐源许可/作者/音频仍缺证据，训练就绪为 0。
+
+B 首先验证自己的端口、数据库、上传与模型环境，然后优先打通鉴权文字检索与结果试听，来源/训练扩展另记。不改界面整体设计。A 的私有音频、向量、数据库、缓存、凭据、原始判断不随 Git 传输；双方各自环境隔离，不把 A 的结果当 B 实跑。原版保留在 `f3b0da1`，本轮只有交接文档，无业务、模型或运行数据变化；不推送/合并 main。已执行范围是 Git/同步核对、页面 HTTP 探测和文档校验，未重跑应用构建或训练。
+
+B 只需在自己的会话按 [固定入口](https://github.com/KelvinChen-git/Music-Resource-Management-System/blob/collab/account-a/latest.md) 领取，无需用户复制报告正文。交接协议不自动启动 B 会话。
+
+## MUS-066 及更早交接（历史）
+
 ## 当前：MUS-066 MusicCaps固定20来源metadata抽查完成，权利证据未齐
 
 A；2026-11-02 America/Chicago；branch codex/MUS-066-musiccaps-source-audit，base4780f09ee73829ff82d970a2ef4435cda133968a，实际干净4218f737e4bca3494083558561be5fe20312869b；最终交付SHA见handoff.source_sha。review仅metadata诊断，无新训练/音频就绪/模型质量结论。
