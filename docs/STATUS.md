@@ -1,10 +1,15 @@
 # 项目状态与交接
 
-最后更新：2026-11-13（America/Chicago）。**A 已暂停开发及台账写入；全部后续开发与集成职责移交 B，等待 B 从固定入口认领。** B 发布认领回执后，唯一现行台账转由 B 在自己的交付源码维护；本文件在 A 移交分支上的版本是移交快照。再次改变归属需用户明确指示。
+最后更新：2026-11-13（America/Chicago）。**当前开发与集成负责人：B（MUS-067-B/revision1，claimed）。A 已暂停开发和台账写入；B 负责后续开发、验证、阶段发布与本唯一台账，直至用户明确再次移交。** 本台账的现行版本由 collab/account-b 的 handoff.source_sha 固定；用户保留最终合并决定。
 
 ## Git 与交付状态
 
-- 本轮交接：**[MUS-067-B / revision 1](collaboration/tasks/MUS-067-B.md)**，`assigned`，A 不代认领。A 发布分支 `codex/MUS-067-transfer-to-b`；B 从 A `handoff.source_sha` 在独立环境创建 `codex/MUS-067-b-development`。产品基线 `b296f35227cf399c4f645bbd433567a02c519825`，当前移交仅文档；B 发布认领后独立维护台账、开发、测试及交付，用户保留合并决定。
+- **B 领取检查点：** task_id MUS-067-B/revision1；active_owner b；分支 codex/MUS-067-b-development，从移交源码 082dadc35213a696107d6f4f966735d854d860d3 开始；产品基线 b296f35227cf399c4f645bbd433567a02c519825。ack A feed 45b366229170f3af00456ba96fbada5946e5f61e。有效认领需 B source/feed 均发布并回读；不能把下方 A 原 assigned 快照当 B 后续状态。
+- **MUS-067-CP1 / B / in_progress：** 优先鉴权文字检索、候选片段与 JWT 媒体试听最小闭环；先盘点隔离环境并冻结 discovery-v0 的首版文本子集/内部检索绑定，再实现和验证。初始占用 music/ 的 discovery controller/service/DTO/config 与测试、web/ SonoraLibrary 及新增搜索 API/helper/测试、services/audio-search/ 新在线检索模块及测试、scripts/ 验证脚本、CONTRACTS/PROJECT/README/verification/本 STATUS/own latest；实现前细化实际文件。保留当前整体界面/旧管理链路；不改 A feed/派发/历史报告，不直接推或合并 main。
+- **B 环境首查：** 系统 Java21、Node24；无系统 mysql/mysqld/Docker，B 私有 runtime-tools/maven 缓存和 web/node_modules 存在，待验证是否可用；NumPy/FastAPI/uvicorn 可导入，torch/soundfile/laion_clap 缺失。端口/库/上传与模型资产尚待核验，不沿用 A 私有资产或实跑结论。真实 CLAP 链路当前 blocked，可先交明确标记的测试替身和闭环契约/代码，不能称真实检索效果 passed。
+- **执行边界：** 不以新训练/参考音频上传/扩库/整体 UI 重做作为前置；无付费资源/保留测试调参。原 frozen identity/全文本保持。后续任务由 B 串行拆分并在此记录，单阶段完成不自动归还 A。
+
+- A 原始授权快照（assigned 状态仅发布前历史）：**[MUS-067-B / revision 1](collaboration/tasks/MUS-067-B.md)**，`assigned`，A 不代认领。A 发布分支 `codex/MUS-067-transfer-to-b`；B 从 A `handoff.source_sha` 在独立环境创建 `codex/MUS-067-b-development`。产品基线 `b296f35227cf399c4f645bbd433567a02c519825`，当前移交仅文档；B 发布认领后独立维护台账、开发、测试及交付，用户保留合并决定。
 - 2026-11-13 16:28（America/Chicago）双方固定入口同步通过：A `6c39b967` / `b296f35`，B `8d43fe4d` / `806dc9c`。B 最新仍为已接收的 MUS-047 限定复核，无新待整合报告。起始 A 工作区干净，原版工作区 `f3b0da1` 干净；远端 `main` 为 `b81f57c`，不合并或推送 main。
 - 接手基线：音乐管理/播放/审阅有既往本地验证；本轮新版曲库及审阅页 HTTP 200，原版端口 5173 与本机后端 8080 拒绝连接，当前完整应用链路未验。本轮无产品修改；未重跑 Java、Vue、模型和训练。离线检索 146 首候选已比较，100 录音适配层无稳定改善证据，继续冻结原模型；在线 discovery 待接入。MusicCaps 20/20 公开元数据可读取，许可/作者/音频未知，训练扩展未就绪。
 - B 第一检查点：先恢复自己的隔离环境，再按契约完成一条鉴权文字检索、候选时间范围和试听的最小闭环；已有业务与界面继续保留。来源权利和训练扩展并列待办，缺任何前提如实记 blocked。A 私有 `.local`、音频/模型/数据库、凭据和原始标注不随代码交付。
