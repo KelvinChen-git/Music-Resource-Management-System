@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-11-01T06:48:12.018Z",
-  "source_branch": "review/MUS-047-B-device-calibration",
-  "source_sha": "806dc9c8b518db748ced7b02611fcc0b0863068f",
+  "published_at": "2026-11-13T22:53:24.785Z",
+  "source_branch": "codex/MUS-067-b-development",
+  "source_sha": "778cad3b53ccf7196072ecf4f826a85d09d9b852",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "bced9706d9d055a5b709808505e16ceeb6fca47c97ed45897dacca2510304507"
+  "report_sha256": "961dd611f78b3be72f569af0a2adecf79f82f2d32c0b7ed55b7b74e4b6cfeaeb"
 }

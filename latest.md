@@ -1,24 +1,17 @@
-# Account B — MUS-047 device-calibration review completed
+# Account B — MUS-067 development handover claimed
 
-- task_id / assignment_revision / owner / slot：MUS-047-R1-B / 1 / b / B。
-- status：review_completed；verdict：approve_scoped；限定合成数值/设备策略/cache/流式边界及静态runner，无范围内阻塞发现。
-- source_branch：review/MUS-047-B-device-calibration；交付source SHA见同次feed handoff。
-- reviewed_sha：d8555fa2ee888107cc9fac9e0eda373fd9c2e777。
-- comparison_base_sha：aaf5e4bbffa61969b3d7bf993b408acec195a818。
-- assignment_source_sha：338146a81392169b33965bb3bf01179d8f092fc8（本次A固定入口，047/rev1原卡保持）。
-- ack_peer_feed_sha：09c24cd9ee9b2636e216dd7038175568259b5c0b。
-- claimed source/feed：5789d4aecfa23e3db1c83bb1a710adbb6220d695 / 3750d46f3fa612f9b98bc8b9d22a01d8c744a2d9，先发布精确回读再测。
-- report：[docs/reviews/MUS-047-B.md](../../reviews/MUS-047-B.md)；report_sha256：0cfe428687ce6ffa499ee89c435137b43c00050f356fe0f99ca1c35f53420cbb。
-- 只修改上述报告与own latest，交付后释放两文件占用。
+- task_id / assignment_revision / task_status：MUS-067-B / 1 / claimed。
+- active_owner / slot：b / B；B 接管开发、验证、集成、发布与唯一 STATUS，直到用户明确再次移交；A 已暂停写入。
+- source_branch：codex/MUS-067-b-development；认领提交见同次feed handoff.source_sha。
+- base_sha：b296f35227cf399c4f645bbd433567a02c519825（产品实现基线）。
+- assignment_source_sha：082dadc35213a696107d6f4f966735d854d860d3（实际启动点，直接继承base）。
+- ack_peer_feed_sha：45b366229170f3af00456ba96fbada5946e5f61e。
+- 唯一现行台账：本次及后续B feed.source_sha内docs/STATUS.md；不再以A旧快照覆盖。
 
-原12项NumPy/标准库测试与B独立7项检查均首轮exit0/0失败错误跳过，无产品或测试修复，不加计内部子例或A66项。独立FP32(9,512)/(6,512)数值/整曲与三窗分数/余弦/稳定次序一致，1e-4附近一ULP区分通过与失败，近并列实际反转仍单列；稳定翻转和异常向量拒绝。10组合成inventory与8缓存变体/独立canonical SHA一致，不是实际设备验证。
+独立B clone原分支/提交806dc9c保持且工作区干净；从准确移交提交建立开发分支，已读固定入口、任务卡、五份指令及建议discovery契约，确认原047限定审核已由A接收，不重复复审。先发布领取source/feed并精确回读，再开始产品开发；CLI优先，若写入不可用沿用GitHub接口顺序发布，明确非原子。
 
-B真实17,280,264-byte NPZ超过旧16MiB可stream校验并回读；32MiB容量接受/+1拒绝，JSON仍16MiB/+1拒绝，symlink/祖先/hardlink/目录/空文件和变更pin拒绝。权重准确size/SHA由旧checkpoint guard静态核对，未读真实权重。原小文件helpers未改。
+首检查点MUS-067-CP1：先盘点自身隔离端口/数据库/上传/依赖/模型，冻结并实现Java鉴权文字查询→Python精确候选片段→Vue JWT试听的最小闭环，保留当前设计/旧业务。占用与验收范围见STATUS顶部；公共接口先更契约再编码。验证至少覆盖正常/空/无效输入、时间范围、索引模型版本、删除/拒审/越权不返回且不可取媒体。真实模型/资产缺失可先交明确标记替身，真实CLAP仍blocked，不把替身或A数字当实跑效果。
 
-静态核对独占输出172行先于inventory174/package179/load198，freeze194行先于严格CPU加载，再显式迁移/全参数device/FP32/冻结；Torch2.6旧精度与2.9新ieee分支、no autocast/TF32、同步/1warmup3timed、设备/本机环境独立key及前后输入/模型/源码复核。参考官方版本源码/API，不冒充真实Torch/GPU/CLAP或跨主机路径实跑。
+初查：Java21/Node24、B本地runtime-tools/maven缓存与web/node_modules存在；系统无MySQL/Docker，实际工具/端口/库待核；NumPy/FastAPI/uvicorn有，torch/soundfile/laion_clap缺。A的数据库、音频、模型、向量、凭据和原判断不随Git交接，不读取A运行目录，不自开付费服务。在线discovery当前未接入，146候选/100录音适配研究无稳定提升，identity/全文本保持，MusicCaps训练就绪0。
 
-命令：PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=services/audio-search:scripts python3 -m unittest test_device_calibration -v；PYTHONDONTWRITEBYTECODE=1 python3 .local/b/runtime/review047.py；git diff --check。Python3.12.14/NumPy2.3.5，B无Torch但本卡合成检查不blocked；不安装依赖或模型shim。私有verified-evidence.json SHA256 2852fc889ed40f4e5a1ceebd698f30912ed70ce7f807fbf23091191fb165e1db，未上传，不假设A能读。
-
-未读A音频/描述/特征/权重/旧141或160评分，不下载/训练/租卡/上传云端/启动服务或执行保留test/真实设备计时；A MPS约2.73倍仅其9窗热SDK实测，非B或训练/P95/CUDA认证。046原字节接收已核；054真实小fit/主区间含零/保留identity仅状态同步，本卡不扩到048–054或模型质量。B无产品/API/schema/配置/锁/真实数据/模型/索引或main变化。
-
-下一步A精确接收报告并串行更新STATUS；本卡无待修产品项，实际GPU路径仍未验证。GitHub接口顺序发布source再自身feed，非原子，须回读报告及两个feed文件，交付SHA/实际发布状态以handoff/回执为准；发布不等于A接收或main合并。交付后释放占用，无后台轮询。
+本认领只改STATUS和own latest，产品/API/数据/模型/索引未改，未运行应用或真实模型，不推/合并main。B保留后续开发职责和占用；无后台轮询。
