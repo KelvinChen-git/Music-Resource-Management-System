@@ -2,7 +2,7 @@
 
 ## 目标与事实边界
 
-在现有音乐资源管理系统上增量开发“多模态音乐检索与片段定位”。保留 Java / Spring Boot、MySQL 和 Vue 主应用；Python 检索处理模块尚未实现。先读代码，再决定修改点。
+在现有音乐资源管理系统上增量开发“多模态音乐检索与片段定位”。保留 Java / Spring Boot、MySQL 和 Vue 主应用；Python 离线检索模块已实现，在线 discovery 尚未接入。先读代码，再决定修改点。
 
 每个新会话按顺序阅读：
 1. 本文件。
@@ -11,7 +11,7 @@
 4. `docs/CONTRACTS.md`：现有行为与待实现契约。
 5. `docs/STATUS.md`：任务、占用范围和交接。
 
-固定跨账号入口见 `docs/collaboration/README.md`。远端启用后，读取本地旧台账之前先执行 `python3 scripts/collab.py sync --account a`（B 用 b），或通过 GitHub 读取 `collab/account-a` / `collab/account-b` 分支根目录的 `handoff.json` 与 `latest.md`。按 A feed 的 source_sha 阅读当前台账，不默认 main 或自己的旧 clone 已包含最新状态。旧审核基线缺脚本时按 `docs/collaboration/BOOTSTRAP_B.md` 提取本机副本。
+固定跨账号入口见 `docs/collaboration/README.md`。读取本地旧台账之前先执行 `python3 scripts/collab.py sync --account a`（B 用 b），或通过 GitHub 核对 `collab/account-a` / `collab/account-b` 分支根目录的 `handoff.json` 与 `latest.md`。A feed 提供角色移交记录；认领后按当前负责人自己的 feed `source_sha` 阅读唯一现行台账，不默认 main 或旧 clone 已包含最新状态。旧基线缺脚本时按 `docs/collaboration/BOOTSTRAP_B.md` 提取本机副本。
 
 只将有实现证据的功能标为 implemented，有运行证据的检查标为 passed。目标简历中的完成时态、2,000 首、约 70,000 片段、120 条评估查询、300ms P95 或 10% 提升均不是已测成果。
 
@@ -32,6 +32,7 @@
 - 双方分别维护 `docs/collaboration/account-a/latest.md` / `account-b/latest.md`，只在自己的 feed 写入；读到对方报告后记录 `ack_peer_feed_sha`。历史报告导入与本人主动发布区分，不能冒充对方确认。
 - 公共 API、数据库迁移、依赖锁文件、启动配置和模型版本由集成负责人协调。修改前先更新对应契约并通知依赖任务。
 - 角色移交必须写入台账；记录占用不构成自动文件锁。任务停滞时先确认再接管，不按时间推测另一方已停止。
+- MUS-067 起 A 暂停开发和台账写入；B 在自己的固定 feed 发布有效认领后，独立负责后续开发、验证、发布及 `docs/STATUS.md`。阶段完成不归还职责；只有用户明确指定再次移交才切换。用户仍决定是否合并，B 不代写 A feed。
 - 禁止 force push、擅自合并或删除其他任务分支。默认交付为可审核提交 / PR；由用户决定最终合并。
 - 同机并行要隔离端口、数据库和上传目录。向量索引分别写入；原始音频、模型缓存可只读共享，不能并发原地修改。
 

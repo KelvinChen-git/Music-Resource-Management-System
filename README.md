@@ -1,8 +1,10 @@
 # SONORA · Music Discovery Platform
 
+**开发交接（2026-11-13）：** A 暂停开发，[MUS-067-B](docs/collaboration/tasks/MUS-067-B.md) 已准备为 B 接管后续开发的固定入口。产品实现基线仍为 `codex/MUS-066-musiccaps-source-audit@b296f35`；B 从移交提交开启自己的任务分支，认领后由 B 的 feed 指向唯一现行 [STATUS](docs/STATUS.md)。以下 A 环境信息是历史验证和本机配置，不能作为 B 的运行地址或当前服务可用证据。
+
 ## 当前开发入口：Sonora 副本
 
-用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用，后续前端开发使用 **`Music-Sonora` 工作目录；当前开发分支 `codex/MUS-066-musiccaps-source-audit`**。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 页面作为保留版，不在两个目录同时修改前端。
+用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用；A 的开发副本为 **`Music-Sonora`**，移交前的产品分支为 `codex/MUS-066-musiccaps-source-audit`。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 配置作为保留版，不在两个目录同时修改前端。
 
 新版本机入口：**http://127.0.0.1:5175/music**。它通过代理连接现有 A 后端 8080，使用原登录账号和已有曲库；本次没有复制或迁移数据库，也没有启动另一个 Java 服务。原服务仍是 MUS-014 运行版本，不把较新源码当作已运行版本。
 
@@ -76,7 +78,7 @@ MUS-062已核其他人写来源，WikiMuTe为web模型抽取配对、YT8M缺音�
 
 MUS-063已将062固定六曲全部取回并通过官方SHA/完整EOF/48k mono与首尾片段检查，共12.429MB；对旧295不同音频及彼此无精确bytes/同协议PCM重复。86检查/独立64K重解/两重跑拒绝及旧1052文件保护passed；32K读取导致的低位波形差异及失败原件已记录，未改音频。六曲仅ready供特征构建，尚无新正文编码/fit/模型成绩或人工包，下一步完整7文本与固定两模型146池比较，见[音频预检](docs/evaluation/MUS-063-six-source-preflight.md)。
 
-新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。当前集成负责人为账号 A；由 A 串行维护 STATUS。
+新会话按顺序阅读 [AGENTS](AGENTS.md) → 本文件 → [PROJECT](docs/PROJECT.md) → [CONTRACTS](docs/CONTRACTS.md) → [STATUS](docs/STATUS.md)。先同步固定入口，按当前有效认领记录找到唯一现行台账；B 认领 MUS-067-B 后由 B 串行维护 STATUS。
 
 两账号固定交接见 [collaboration/README.md](docs/collaboration/README.md)：开始时 `python3 scripts/collab.py sync --account a`，结束提交后 `python3 scripts/collab.py publish --account a`，B 用 `b`。采用每账号独立交接分支，保留任务分支 / 精确 SHA，不自动合并。A/B 远端 feed 已可互读；早期A连接阻塞为历史；后续原生Git原子publish/sync已有成功记录。每次以本轮结果为准，发布不等于对方接收或审核。
 

@@ -2,6 +2,8 @@
 
 同一 GitHub 仓库是固定入口，两边继续使用独立 clone / worktree。ChatGPT 的聊天、Library 和本地路径不会因使用同一个项目名称而跨账号共享。
 
+**2026-11-13：用户已授权暂由 B 接手后续开发和集成。** A 发布 [MUS-067-B](tasks/MUS-067-B.md) 后暂停开发与台账写入。B 自己发布有效认领后，唯一现行台账是 B feed `handoff.source_sha` 所指的 `docs/STATUS.md`。A 的发布作为授权和历史快照保留；B 阶段交付无需再由 A 整合。再次改变角色由用户明确指定，最终合并决定仍归用户。
+
 仓库：<https://github.com/KelvinChen-git/Music-Resource-Management-System>。
 
 **启用状态：远端交接已启用。** 2026-10-19 A 原生 git publish / sync 已成功，B feed 05d4e9f 可读取；MUS-012 验收已发布为d7c9faa / feed5592274。GitHub读取连接先前push=false不代表原生git当前仍不能写。任务发布仅说明远端可读，B须通过自己的feed主动确认；本机B槽测试不能代替独立B账号审核。B首轮环境为Linux `/workspace`，不能将A的macOS路径当共享目录。
@@ -13,10 +15,10 @@
 | `collab/account-a` 分支根目录 `latest.md`、`handoff.json` | A | 最新 A 交接，以及准确源码分支 / SHA / 报告哈希 |
 | `collab/account-b` 分支根目录 `latest.md`、`handoff.json` | B | 最新 B 交接，格式相同 |
 | 源码任务分支 `docs/collaboration/account-a/latest.md` | A | A 用于发布的报告；任务、测试、阻塞、下一步及已读 B feed SHA |
-| 源码任务分支 `docs/collaboration/account-b/latest.md` | B | B 用于发布的报告；包括审核针对的 SHA、运行结果和占用释放 |
-| A 源码任务分支 `docs/STATUS.md` | 当前集成负责人 A | 唯一任务台账；B 通过自己的 feed 汇报，不能直接争写 |
-| A 源码任务分支 `docs/collaboration/tasks/account-b.json` | A | B 当前待领取任务、修订号、固定审核 SHA 与任务卡路径 |
-| A 源码任务分支 `docs/collaboration/tasks/MUS-012-R1-B.md` | A | 当前 B 审核任务的范围、允许路径、验收及回传要求 |
+| 源码任务分支 `docs/collaboration/account-b/latest.md` | B | B 用于发布的报告；包括认领或当前职责、运行结果和占用 |
+| 当前负责人发布源码的 `docs/STATUS.md` | 当前集成负责人 | 唯一任务台账；MUS-067-B 有效认领后指向 B 源码，A 版本留作移交快照 |
+| A 发布源码的 `docs/collaboration/tasks/account-b.json` | A | A 发出的任务或移交授权、修订号、准确基线及任务卡路径 |
+| `docs/collaboration/tasks/MUS-067-B.md` | A | 本次开发接管的授权、启动方式、待办和验收 |
 | `docs/collaboration/imports/` | 导入人，保留来源 | 历史交付原文，不能冒充当前任务审核或对方发布 |
 | 各 clone `.local/collaboration/inbox/account-{a,b}/` | 本机同步程序 | 只读使用的接收缓存；不提交、不当共享目录 |
 
@@ -34,7 +36,7 @@
 ```bash
 python3 scripts/collab.py sync --account a
 # 只在 exit 0 后查看 receipt.status=fetched 的 latest.md / handoff.json。
-# 先读对方报告，再按其中 source_sha 查阅源码 / STATUS / 任务卡。
+# 先读两份报告，核对任务授权与认领，再按当前负责人报告中的 source_sha 查阅 STATUS。
 # 开发、验证，更新自己的报告；在任务分支只提交本任务的明确文件。
 python3 scripts/collab.py publish --account a
 ```
@@ -65,12 +67,11 @@ python3 scripts/collab.py publish --account a
 导入 B 的第一份报告见 [原文](imports/account-b/2026-10-19-baseline-review.md) 和 [整合说明](B-INITIAL-REVIEW.md)。它基于 b81f57c；针对 7ab0d39 的 MUS-001-R1已有B交付6e4118c，后端补证仍blocked；当前新审核以固定任务入口为准。A 本轮不修改 B 独占的 `docs/reviews/MUS-001-B.md` 或伪造 B feed。
 
 
-## 固定领取 B 任务
+## 固定领取与角色移交
 
-1. B每次开始先sync并校验A feed，再从其handoff.source_sha读取 `docs/collaboration/tasks/account-b.json`，按task_card_path读完整卡片。缺脚本的首次接入见 [BOOTSTRAP_B.md](BOOTSTRAP_B.md)。无需用户每轮复制任务正文。
-2. 派发由A写入，认领和完成由B在自己的feed确认。A派发状态assigned不意味着B已认领；B先发布claimed与task_id、assignment_revision、reviewed_sha、assignment_source_sha、实际ack_peer_feed_sha，再执行任务。
-3. B以task_id + assignment_revision检查自己的历史：在途继续，已完成不重复；A feed变更本身不是新任务。固定reviewed_sha与发布任务卡的source_sha是两种不同输入，不混用。
-4. A每轮结束发布自身结果时同步维护B任务入口。有在途任务就保留；只有确需调整时才增加修订或发布新task_id，并在交接说明原因。无可分配工作则明确waiting，不让B猜测下一步或自行抢占源码。
-5. B完成后发布自己的报告，A下次sync读取、处理发现并串行更新STATUS。B不能修改A固定任务入口、STATUS或擅自扩大写入范围。
+1. 首次领取从 A `handoff.source_sha` 读取固定任务入口 `docs/collaboration/tasks/account-b.json` 和对应任务卡。B 使用独立环境，缺脚本按 [BOOTSTRAP_B.md](BOOTSTRAP_B.md) 接入。B 以 `task_id` / `assignment_revision` 核对历史；同一授权已认领则从自己的最新发布继续。
+2. `assigned` 只表示 A 已派发。B 在自己的 feed 发布 `claimed`、任务和修订、`assignment_source_sha` 与实际 `ack_peer_feed_sha`。普通审核卡从 `reviewed_sha` 开始并回报其准确值；开发移交从任务卡的 `start_ref` 启动，并回报 `base_sha` 与 `active_owner`。MUS-067-B 的 `start_ref` 是发布该卡的源码 SHA。
+3. 普通审核时，B 交独立报告，由当时的集成负责人维护台账。MUS-067-B 是角色移交：认领提交同时更新 B 源码中的 `docs/STATUS.md`；此后 B 独立采用自己的 feed 发布任务与结果。后续报告保留 `active_owner: b`、MUS-067-B 授权 ID/修订及认领凭据，使跨任务发布仍可追溯。A 只读，不能用旧快照恢复写入；同步失败记 `blocked`，不根据缓存或时间推定角色已变更。
+4. 角色移交不变更 Git 权限、账号凭据或私有文件归属。A 与 B 只写自己的 feed，不擅自推送或合并 `main`。B 可独立创建任务分支和提交 PR；阶段任务完成不改变角色。
 
-MUS-012-R1-B已完成request_changes；当前新卡片是 [MUS-013-R1-B](tasks/MUS-013-R1-B.md)，固定入口JSON为准。该机制只在会话运行时执行，没有创建轮询进程或定时任务，也不会自动启动B的聊天。首次仍需用户启动B并发一次固定入口指令。
+这套机制在会话运行时生效，不会自动启动 B 的会话。B 启动后按固定入口领取即可，无需用户搬运任务正文。

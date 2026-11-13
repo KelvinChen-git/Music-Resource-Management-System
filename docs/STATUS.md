@@ -1,10 +1,15 @@
 # 项目状态与交接
 
-最后更新：2026-11-02（America/Chicago）。当前集成负责人：**账号 A**。STATUS 仅由当前集成负责人串行更新；账号 B 的报告由 A 整合。
+最后更新：2026-11-13（America/Chicago）。**A 已暂停开发及台账写入；全部后续开发与集成职责移交 B，等待 B 从固定入口认领。** B 发布认领回执后，唯一现行台账转由 B 在自己的交付源码维护；本文件在 A 移交分支上的版本是移交快照。再次改变归属需用户明确指示。
 
 ## Git 与交付状态
 
-- 当前工作：MUS-066 / A / review；`codex/MUS-066-musiccaps-source-audit`，base4780f09。干净4218f737e4bca3494083558561be5fe20312869b首次exit0，050原2448非AudioSet-eval/未增强框固定hash20，20/20官方oEmbed HTTP200/JSON/provider/同videoID与uploader绑定通过；这仅是metadata可读取，不证明可播放/可下载或训练许可。逐源许可、音乐人/作品和真实音频均未核，audio_ready/training_ready0，未调用Data API，许可API记录调查blocked。4说明+20probe共24请求，预记5505048<8MiB/正文1525435bytes，无redirect/重试/替补；license_help超过1MiB只保留1048577bytes部分响应，其余3说明/20JSON完整，不扩预算或重取。29检查14新15旧/独立选择收据与状态计数/两实际禁重passed，旧045–065共1170工件及原版/模型cache/历史951+B047/23源码54cache/043044/160保持。无音频/编码/fit/新人工包/保留test/付费资源/UI/DB/main/B047卡变化，identity/全文本保持。 范围musiccaps_source_probe/module、runner/tests、E40/config/报告JSON、README/PROJECT/STATUS/own latest；私有.local/a/mus066。下一步先补逐源许可记录/音乐人关系与允许取得途径，不直接扩量训练或大归档。
+- 本轮交接：**[MUS-067-B / revision 1](collaboration/tasks/MUS-067-B.md)**，`assigned`，A 不代认领。A 发布分支 `codex/MUS-067-transfer-to-b`；B 从 A `handoff.source_sha` 在独立环境创建 `codex/MUS-067-b-development`。产品基线 `b296f35227cf399c4f645bbd433567a02c519825`，当前移交仅文档；B 发布认领后独立维护台账、开发、测试及交付，用户保留合并决定。
+- 2026-11-13 16:28（America/Chicago）双方固定入口同步通过：A `6c39b967` / `b296f35`，B `8d43fe4d` / `806dc9c`。B 最新仍为已接收的 MUS-047 限定复核，无新待整合报告。起始 A 工作区干净，原版工作区 `f3b0da1` 干净；远端 `main` 为 `b81f57c`，不合并或推送 main。
+- 接手基线：音乐管理/播放/审阅有既往本地验证；本轮新版曲库及审阅页 HTTP 200，原版端口 5173 与本机后端 8080 拒绝连接，当前完整应用链路未验。本轮无产品修改；未重跑 Java、Vue、模型和训练。离线检索 146 首候选已比较，100 录音适配层无稳定改善证据，继续冻结原模型；在线 discovery 待接入。MusicCaps 20/20 公开元数据可读取，许可/作者/音频未知，训练扩展未就绪。
+- B 第一检查点：先恢复自己的隔离环境，再按契约完成一条鉴权文字检索、候选时间范围和试听的最小闭环；已有业务与界面继续保留。来源权利和训练扩展并列待办，缺任何前提如实记 blocked。A 私有 `.local`、音频/模型/数据库、凭据和原始标注不随代码交付。
+
+- 上轮交付：MUS-066 / A / review；`codex/MUS-066-musiccaps-source-audit`，base4780f09。干净4218f737e4bca3494083558561be5fe20312869b首次exit0，050原2448非AudioSet-eval/未增强框固定hash20，20/20官方oEmbed HTTP200/JSON/provider/同videoID与uploader绑定通过；这仅是metadata可读取，不证明可播放/可下载或训练许可。逐源许可、音乐人/作品和真实音频均未核，audio_ready/training_ready0，未调用Data API，许可API记录调查blocked。4说明+20probe共24请求，预记5505048<8MiB/正文1525435bytes，无redirect/重试/替补；license_help超过1MiB只保留1048577bytes部分响应，其余3说明/20JSON完整，不扩预算或重取。29检查14新15旧/独立选择收据与状态计数/两实际禁重passed，旧045–065共1170工件及原版/模型cache/历史951+B047/23源码54cache/043044/160保持。无音频/编码/fit/新人工包/保留test/付费资源/UI/DB/main/B047卡变化，identity/全文本保持。 范围musiccaps_source_probe/module、runner/tests、E40/config/报告JSON、README/PROJECT/STATUS/own latest；私有.local/a/mus066。下一步先补逐源许可记录/音乐人关系与允许取得途径，不直接扩量训练或大归档。
 
 - 上轮交付：MUS-065 / A / review；`codex/MUS-065-human-source-capacity`，base77aabf4。6来源文件2,636,946bytes/正常TLS/官方MD5，实际三metadata共5929段。固定whole音乐/乐器tag训练19段→BY/BYSA6→完整来源绑定6→跨split全sound/uploader闭包排除后1段/1组件/5描述，不足音乐扩训主库，停止此路线、不取音频。三split共2181组件、638跨组涉及3998段；原19缺ID/2拼写冲突保留排除边不进候选，CC0另报不等于权利不允许。CLAP用Clotho/AudioCaps检索选checkpoint，不能冒充全新独立benchmark；精确预训练成员未知。57检查25新32旧、独立CSV/图/全部计数与官方capture、8次实际claim拒绝passed，旧1115文件/历史951+B/23源码54cache/043044/160/原版保持。三次失败与显式修复链保留，实际完成源码b6f69c973a4511726ac07865f5de85eee5b7427c，不称首轮成功。无音频/编码/fit/质量分/新人工包/封存test/UI/DB/main/B047卡变化，identity/原全文本保持。 范围clotho_source_capacity/runner/tests、E39/原与显式修复config/报告JSON、README/PROJECT/STATUS/own latest，私有.local/a/mus065；下一步只核专门音乐人写配对来源的权利/可用性/隔离，不据旧26开发继续搜参，不新派B卡。
 
@@ -32,7 +37,7 @@
 
 - 上轮交付：MUS-053 review / A / codex/MUS-053-interval-feature-cache，base53d4466、实际716b3fcea1902a54fe17a5e4b64db78334ddb28a。44来源232区间/696窗新MPS缓存ready_for_bounded_pilot，train37/209、val7/23与录音等权保持；124检查/CPU3区间抽检/独立复算/consumer/重跑保护passed。124描述超77token截断（train110/val14），CPU3文本未截断，局限显式；下一步另冻小训练，当前无fit/质量结论，identity/原版/UI/main保持。
 
-- 当前同步与保护：UTC2026-11-02T22:43:48Z/22:48:39Z/22:49:55Z双方fetched，A1c17648/source4780f09、B8d43fe4/source806dc9c未变并ack；B047准确限定批准已接收，不外推066或新派发。旧1170工件/原版/cache/160保持，新066私有700/600。最终发布需sync回读，远端可读不等于B接收/批准或main合并。
+- MUS-066 历史同步与保护：UTC2026-11-02T22:43:48Z/22:48:39Z/22:49:55Z双方fetched，A1c17648/source4780f09、B8d43fe4/source806dc9c未变并ack；B047准确限定批准已接收，不外推066或新派发。旧1170工件/原版/cache/160保持，新066私有700/600。最终发布需sync回读，远端可读不等于B接收/批准或main合并。
 
 - 上轮交付（2026-11-01 America/Chicago）：codex/MUS-052-caption-pair-preflight，base4a534fe、实际8a8bc73eccb4a15edb14aecff1b0dd4f6a5aefed。逐曲metadata/3参考预检完成/review：57中44通过232区间（train37/209、val7/23），13来源按许可/作品名规则隔离；3当前同ID参考9anchor相关0.99804–0.99994、8k峰lag0、实际时长差0。110检查/独立FFT与直接点积复算/实际重跑保护passed。下一步构建对应区间特征、录音等权，再另立小训练；本轮无CLAP/fit/质量评分，保持identity，training_ready=false/teacher版本局限仍保留。
 
@@ -66,7 +71,7 @@
 
 ## 任务与占用
 
-状态仅 todo / in_progress / blocked / review / done。A / B 为当前角色；未最终合并不自动代表所有内容完成。
+状态仅 todo / in_progress / blocked / review / done。领取状态 `assigned` / `claimed` 另记在交接记录。A / B 为临时角色；以下旧条目保留其历史归属，当前职责以本页顶部和有效认领为准。
 
 | 任务 | 状态 / owner | 分支 / 基线 / 依赖 | 允许修改与验收 |
 |---|---|---|---|
