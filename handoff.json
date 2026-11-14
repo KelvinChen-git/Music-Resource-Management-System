@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-11-13T22:53:24.785Z",
+  "published_at": "2026-11-14T00:25:35.986245+00:00",
   "source_branch": "codex/MUS-067-b-development",
-  "source_sha": "778cad3b53ccf7196072ecf4f826a85d09d9b852",
+  "source_sha": "85537787606a138f0747cc8f776637c43745e0b7",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "961dd611f78b3be72f569af0a2adecf79f82f2d32c0b7ed55b7b74e4b6cfeaeb"
+  "report_sha256": "7f77f7e62b0a1c6cd7005844592a45aee2ead33f864675e025042c2fe0e2bfd2"
 }
