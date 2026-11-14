@@ -1,0 +1,693 @@
+{
+  "schema": "music-verification-v1",
+  "task_id": "MUS-067-B",
+  "assignment_revision": 1,
+  "checkpoint": "MUS-067-CP1",
+  "checkpoint_status": "review",
+  "active_owner": "b",
+  "ownership_retained_until": "explicit_user_reassignment",
+  "recorded_at": "2026-11-14T00:16:12.570438+00:00",
+  "source_branch": "codex/MUS-067-b-development",
+  "base_sha": "b296f35227cf399c4f645bbd433567a02c519825",
+  "assignment_source_sha": "082dadc35213a696107d6f4f966735d854d860d3",
+  "ack_peer_feed_sha": "45b366229170f3af00456ba96fbada5946e5f61e",
+  "claim_source_sha": "778cad3b53ccf7196072ecf4f826a85d09d9b852",
+  "claim_feed_sha": "e4e7af89582013f599b997feb403733591041b76",
+  "tested_tree_boundary": "Final delivery source_sha is in this publication handoff; tests ran on B worktree after contract f5d730b, with implementation hashes below. Documentation changed afterwards.",
+  "publication": {
+    "mode": "source_then_feed_non_atomic_GitHub_API",
+    "native_cli_push": "failed_exit1_git_push128",
+    "exact_final_sha": "handoff.source_sha + post-publication readback receipt",
+    "main_push_or_merge": false
+  },
+  "environment": {
+    "slot": "b",
+    "database": "music_dev_b",
+    "ports": {
+      "java": 8081,
+      "frontend": 5174,
+      "mysql": 3308,
+      "worker": 8091
+    },
+    "jdk": "Corretto 17.0.21",
+    "maven": "wrapper 3.9.9",
+    "node": "22.23.3",
+    "mysql": "Community 8.0.41 native",
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "isolated_namespace_supervisor": true,
+    "owned_services_stopped": true,
+    "credentials_or_media_in_git": false
+  },
+  "verification": {
+    "java_default": {
+      "status": "passed",
+      "tests": 345,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "classes": 15
+    },
+    "python_discovery": {
+      "status": "passed",
+      "tests": 14
+    },
+    "node_utils_stores": {
+      "status": "passed",
+      "tests": 89
+    },
+    "vue_build": {
+      "status": "passed",
+      "nonblocking_warning": "chunk >500kB"
+    },
+    "real_HTTP_SQL_Range": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "real login USER67001",
+          "passed": true
+        },
+        {
+          "name": "real login USER67002",
+          "passed": true
+        },
+        {
+          "name": "real login ADMIN67003",
+          "passed": true
+        },
+        {
+          "name": "anonymous search401 envelope",
+          "passed": true
+        },
+        {
+          "name": "real Java Python search explicitly synthetic",
+          "passed": true
+        },
+        {
+          "name": "JSON no-store",
+          "passed": true
+        },
+        {
+          "name": "valid clips 670101",
+          "passed": true
+        },
+        {
+          "name": "valid clips 670102",
+          "passed": true
+        },
+        {
+          "name": "valid clips 670103",
+          "passed": true
+        },
+        {
+          "name": "actual authorized Range206 bytes32",
+          "passed": true
+        },
+        {
+          "name": "media no-store",
+          "passed": true
+        },
+        {
+          "name": "anonymous media401",
+          "passed": true
+        },
+        {
+          "name": "bad input400",
+          "passed": true
+        },
+        {
+          "name": "unsupported mode400",
+          "passed": true
+        },
+        {
+          "name": "duplicate JSON400",
+          "passed": true
+        },
+        {
+          "name": "actual category filter",
+          "passed": true
+        },
+        {
+          "name": "actual SQL tag ALL",
+          "passed": true
+        },
+        {
+          "name": "actual SQL tag ANY",
+          "passed": true
+        },
+        {
+          "name": "empty results200",
+          "passed": true
+        },
+        {
+          "name": "pending excluded for actor0",
+          "passed": true
+        },
+        {
+          "name": "pending preview404 actor0",
+          "passed": true
+        },
+        {
+          "name": "pending excluded for actor1",
+          "passed": true
+        },
+        {
+          "name": "pending preview404 actor1",
+          "passed": true
+        },
+        {
+          "name": "pending excluded for actor2",
+          "passed": true
+        },
+        {
+          "name": "pending preview404 actor2",
+          "passed": true
+        },
+        {
+          "name": "legacy owner pending access preserved",
+          "passed": true
+        },
+        {
+          "name": "rejected excluded for actor0",
+          "passed": true
+        },
+        {
+          "name": "rejected preview404 actor0",
+          "passed": true
+        },
+        {
+          "name": "rejected excluded for actor1",
+          "passed": true
+        },
+        {
+          "name": "rejected preview404 actor1",
+          "passed": true
+        },
+        {
+          "name": "rejected excluded for actor2",
+          "passed": true
+        },
+        {
+          "name": "rejected preview404 actor2",
+          "passed": true
+        },
+        {
+          "name": "deleted excluded for actor0",
+          "passed": true
+        },
+        {
+          "name": "deleted preview404 actor0",
+          "passed": true
+        },
+        {
+          "name": "deleted excluded for actor1",
+          "passed": true
+        },
+        {
+          "name": "deleted preview404 actor1",
+          "passed": true
+        },
+        {
+          "name": "deleted excluded for actor2",
+          "passed": true
+        },
+        {
+          "name": "deleted preview404 actor2",
+          "passed": true
+        },
+        {
+          "name": "stale index excluded before topk",
+          "passed": true
+        },
+        {
+          "name": "stale preview409",
+          "passed": true
+        },
+        {
+          "name": "locked viewer search403",
+          "passed": true
+        },
+        {
+          "name": "locked viewer media403",
+          "passed": true
+        },
+        {
+          "name": "preview restored200",
+          "passed": true
+        }
+      ]
+    },
+    "real_browser": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "real login keeps Sonora library and adds description panel",
+          "passed": true
+        },
+        {
+          "name": "three real API results disclose synthetic mode",
+          "passed": true
+        },
+        {
+          "name": "relevance order and time labels visible",
+          "passed": true
+        },
+        {
+          "name": "actual MP3 plays with shared footer preview metadata",
+          "passed": true
+        },
+        {
+          "name": "only one audio element playing",
+          "passed": true
+        },
+        {
+          "name": "resume reacquires permission and rejects withdrawn track",
+          "passed": true
+        },
+        {
+          "name": "seek stays within clip and stops at end",
+          "passed": true
+        },
+        {
+          "name": "category filter is applied by live API",
+          "passed": true
+        },
+        {
+          "name": "unavailable semantic query is an explicit fixture error",
+          "passed": true
+        },
+        {
+          "name": "mobile description form has no horizontal overflow",
+          "passed": true
+        },
+        {
+          "name": "logout clears preview and removes search results",
+          "passed": true
+        },
+        {
+          "name": "discovery requests carry JWT without URL credentials",
+          "passed": true
+        },
+        {
+          "name": "no uncaught browser exceptions",
+          "passed": true
+        }
+      ],
+      "page_error_count": 0,
+      "network": [
+        {
+          "path": "/api/discovery/search",
+          "status": 200,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/tracks/670101/media",
+          "status": 200,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/tracks/670101/media",
+          "status": 404,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/tracks/670101/media",
+          "status": 200,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/search",
+          "status": 200,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/search",
+          "status": 503,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/search",
+          "status": 200,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        },
+        {
+          "path": "/api/discovery/tracks/670101/media",
+          "status": 200,
+          "hasBearer": true,
+          "noJwtInUrl": true
+        }
+      ]
+    },
+    "version_faults": {
+      "status": "passed",
+      "checks": [
+        {
+          "key": "index_version",
+          "http_status": 503
+        },
+        {
+          "key": "model_version",
+          "http_status": 503
+        }
+      ]
+    },
+    "stack": {
+      "scope": "one_namespace_real_services_synthetic_media_and_vectors",
+      "status": "passed",
+      "stages": [
+        "mysql ready",
+        "worker ready synthetic",
+        "java ready",
+        "frontend ready",
+        "native-smoke passed",
+        "browser passed",
+        "index_version mismatch503",
+        "model_version mismatch503"
+      ],
+      "semantic_model_runs": 0,
+      "owned_services_stopped": true
+    }
+  },
+  "fixture": {
+    "engine_kind": "synthetic_fixture",
+    "index_version": "mus067-synthetic-v1",
+    "model_version": "synthetic-text-v1",
+    "dimension": 512,
+    "tracks": 3,
+    "segments": 18,
+    "accounts": 3,
+    "container_duration_ms": [
+      25032,
+      25032,
+      25032
+    ],
+    "queries": [
+      "synthetic tone 440",
+      "synthetic tone 660",
+      "synthetic tone 880"
+    ],
+    "manifest_sha256": "3f13fba8dd3013263c969c341f898e7b3c8bae79a2975d5ccf1556d2b319ff59",
+    "feature_sha256": "78894caf250f801a619e578d68f40fabe820302b7d534fbee4cf942f785c5e5e",
+    "audio_embedding_runs": 0,
+    "vectors": "fixed orthogonal coordinates; not derived from MP3"
+  },
+  "real_CLAP": {
+    "status": "blocked",
+    "runs": 0,
+    "target_model": "clap-A-fae3e9c0-identity-fulltext256-v1",
+    "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "missing": [
+      "torch/audio/CLAP dependencies",
+      "trusted checkpoint and offline tokenizer/model cache",
+      "reproducible licensed audio",
+      "real audio-to-online-index builder and verified index"
+    ]
+  },
+  "not_executed": [
+    "real model/audio encoding",
+    "semantic quality/human evaluation",
+    "A private 146-track reproduction",
+    "training/finetuning",
+    "held-out test",
+    "reference audio upload",
+    "P95/concurrency/load",
+    "Docker",
+    "production deployment",
+    "main merge"
+  ],
+  "retained_failures": [
+    "JDK/JRE and Maven proxy/CA blocks",
+    "Mockito self-attachment; then 4 fixture restub errors",
+    "live-01 synthetic password did not meet login UI policy",
+    "live-02 wrong categoryid/tagid instead of categoryId/tagId",
+    "direct Python test import path before script self-location"
+  ],
+  "modified_files": [
+    "AGENTS.md",
+    "README.md",
+    "docs/CONTRACTS.md",
+    "docs/PROJECT.md",
+    "docs/STATUS.md",
+    "docs/collaboration/account-b/latest.md",
+    "docs/verification/MUS-067.json",
+    "docs/verification/MUS-067.md",
+    "music/src/main/java/com/taffy/music/discovery/DiscoveryClient.java",
+    "music/src/main/java/com/taffy/music/discovery/DiscoveryController.java",
+    "music/src/main/java/com/taffy/music/discovery/DiscoveryException.java",
+    "music/src/main/java/com/taffy/music/discovery/DiscoveryProperties.java",
+    "music/src/main/java/com/taffy/music/discovery/DiscoveryQuery.java",
+    "music/src/main/java/com/taffy/music/discovery/DiscoveryService.java",
+    "music/src/main/java/com/taffy/music/interceptor/JwtAuthenticationInterceptor.java",
+    "music/src/main/java/com/taffy/music/mapper/DiscoveryTagMapper.java",
+    "music/src/main/resources/application-local.yml",
+    "music/src/test/java/DiscoveryHttpTest.java",
+    "scripts/discovery_browser.cjs",
+    "scripts/discovery_fixture.py",
+    "scripts/discovery_smoke.py",
+    "scripts/make_discovery_fixture.py",
+    "scripts/maven_local.py",
+    "scripts/test_discovery.py",
+    "services/audio-search/discovery_index.py",
+    "services/audio-search/discovery_server.py",
+    "web/src/api/discovery.js",
+    "web/src/components/DiscoverySearch.vue",
+    "web/src/components/SonoraPlayer.vue",
+    "web/src/utils/discovery.js",
+    "web/src/utils/discovery.test.js",
+    "web/src/utils/reviewAudio.js",
+    "web/src/views/SonoraLibrary.vue"
+  ],
+  "tested_implementation_files": [
+    {
+      "path": "music/src/main/java/com/taffy/music/discovery/DiscoveryClient.java",
+      "sha256": "f232d5b9182d225cdf0f1ece087b33413fb0c1bf5ae28706177132c39018c62f",
+      "bytes": 3273
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/discovery/DiscoveryController.java",
+      "sha256": "53c591c4b508b677614a320beb078a104d12643b76711069c67c87ec921dfae4",
+      "bytes": 3717
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/discovery/DiscoveryException.java",
+      "sha256": "52280d0ce3c785f3668d4147146905d2dbc5f7ab2e9b9af3777ca95e58b2bfb9",
+      "bytes": 606
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/discovery/DiscoveryProperties.java",
+      "sha256": "0c7d6528ecee7b3528a3ef95020eccb0b30b670742c8373a860d3ed0377e6865",
+      "bytes": 522
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/discovery/DiscoveryQuery.java",
+      "sha256": "e6218d750b97df20c191c2e6d9aaa4da9e7d87c912d49ac2ba0e66784adcf3a3",
+      "bytes": 3188
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/discovery/DiscoveryService.java",
+      "sha256": "5895de9aae1b652e2b71ef94559742f9f728f838c7cf8b20ad2dd2bec7bb8e7d",
+      "bytes": 13063
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/interceptor/JwtAuthenticationInterceptor.java",
+      "sha256": "d5ece6b96eef18ed123fad45058da4c76464b9609df34e8dfa7a4615cb2e6a76",
+      "bytes": 4225
+    },
+    {
+      "path": "music/src/main/java/com/taffy/music/mapper/DiscoveryTagMapper.java",
+      "sha256": "6e313a597aaf4c648140f95eabb91c5349cdd32f95f66fe7b596c8e404a49c55",
+      "bytes": 540
+    },
+    {
+      "path": "music/src/main/resources/application-local.yml",
+      "sha256": "4f689f96911df03bd2cf7dcfddd244aa719c297c6c4363b20062f9f46f17a88f",
+      "bytes": 1537
+    },
+    {
+      "path": "music/src/test/java/DiscoveryHttpTest.java",
+      "sha256": "cdf261111461cb8d7f1cc197d545729230c470769dfc2001eff2f2fa2e292f34",
+      "bytes": 12410
+    },
+    {
+      "path": "scripts/discovery_browser.cjs",
+      "sha256": "ba3c6023d9a21279a901d34d99b7685fc97a0ba48bb36e09b2b24a9231a24ada",
+      "bytes": 9629
+    },
+    {
+      "path": "scripts/discovery_fixture.py",
+      "sha256": "add41c334d38c0086d93c2d9cc1335e1c9219bcbaaab4a453965ae838923d752",
+      "bytes": 6420
+    },
+    {
+      "path": "scripts/discovery_smoke.py",
+      "sha256": "d0e3d81361128cf298340257cba3f60357c912902a9b6676f962ac84b5af0b1e",
+      "bytes": 8555
+    },
+    {
+      "path": "scripts/make_discovery_fixture.py",
+      "sha256": "4a7b0f04c15cc4442ba70874efc5431b921dd41a99de868700b47189c1a10056",
+      "bytes": 2972
+    },
+    {
+      "path": "scripts/maven_local.py",
+      "sha256": "22ed850e777ce7b94c8a436399b2b101c23863fd8b10522aa0b5bafb7ed86d75",
+      "bytes": 3345
+    },
+    {
+      "path": "scripts/test_discovery.py",
+      "sha256": "5c13b006dd5810b6002fcdae687956d8c5de4ef36de88bdf9f9275facb313032",
+      "bytes": 8173
+    },
+    {
+      "path": "services/audio-search/discovery_index.py",
+      "sha256": "5c18e0652f2283db04b152f627a77f31afe364dc03836d846538ca7b8cd250c5",
+      "bytes": 12064
+    },
+    {
+      "path": "services/audio-search/discovery_server.py",
+      "sha256": "0c473474e2b434e1559dd4919999a57451a3d55925913adc8471ea9283516546",
+      "bytes": 4805
+    },
+    {
+      "path": "web/src/api/discovery.js",
+      "sha256": "7c2aed53596da9fc3dcde2e84b58c820779fc4d3fb2b19d642a6d3f9868c73d6",
+      "bytes": 166
+    },
+    {
+      "path": "web/src/components/DiscoverySearch.vue",
+      "sha256": "73d27afe7a26bb39db4cd721b91bc148b081ac7e2ae7b71b1f58264589a524f5",
+      "bytes": 9490
+    },
+    {
+      "path": "web/src/components/SonoraPlayer.vue",
+      "sha256": "d0977241362447ddd384e4f3497dd488675c51e38dde3c2bb5a1b2dc8b362ab5",
+      "bytes": 5639
+    },
+    {
+      "path": "web/src/utils/discovery.js",
+      "sha256": "619cbaf07d83a8c2c28b5cecc99f9679d57d09831ab92001c044b748b7d51a75",
+      "bytes": 2334
+    },
+    {
+      "path": "web/src/utils/discovery.test.js",
+      "sha256": "b7689da47f49ecf3f1f33be7a20642d5228506f3ba28daa35767350d3d3da9a4",
+      "bytes": 2465
+    },
+    {
+      "path": "web/src/utils/reviewAudio.js",
+      "sha256": "7019a3e6ba963805b14a1f0838d4b52c05db200494a4856e0ae86a9192b4391d",
+      "bytes": 8279
+    },
+    {
+      "path": "web/src/views/SonoraLibrary.vue",
+      "sha256": "c9fbba0b5030eb86ff5a66cfbbf58e1f70dd5f9c67d67b6e13c55e8ed7a933bb",
+      "bytes": 14770
+    }
+  ],
+  "private_evidence_hashes": [
+    {
+      "path": ".local/b/verification/MUS-067/python-corrected.log",
+      "sha256": "ffa00b722ba5c684a4e785ba0910ec0ca8b8039bbaa6fb1adc4fca6646452e26",
+      "bytes": 113,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/java-final.log",
+      "sha256": "3a2d4ebb97b145b33a77cf00090414d76a3ebbe8d090234a123c3c81d60c59d0",
+      "bytes": 98437,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/node-final.log",
+      "sha256": "111fbfbdeff2da97669acc3c9dffe9ca7dd58ca78fad9909f327870608241564",
+      "bytes": 22634,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/web-build-corrected.log",
+      "sha256": "e15cb4ac6f4342f286953c781383c6fba5b3b4f89a792a1e08483cfaf7b7a403",
+      "bytes": 4656,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/sync-checkpoint.log",
+      "sha256": "caa3a645f3bf4b220ec9ea00967359a6b35fce835606368e4b5ae33dc303645a",
+      "bytes": 519,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-04/stack.json",
+      "sha256": "cf4f0a7c70c2f9c74bd4f72b688bf4ec64beee9f0f26ddfbeb7a7c3deb2cce0f",
+      "bytes": 379,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-04/smoke.json",
+      "sha256": "28d2601254e1ff91f73a334f33b541e9545ee5da39743b31352eb1c74e28bcbb",
+      "bytes": 3373,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-04/browser-public/browser.json",
+      "sha256": "c896bdf36112fda958bf741da32aab9b40852b19ed457ac0a0a1ed3a442f1d8c",
+      "bytes": 2420,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-04/browser-public/mobile.png",
+      "sha256": "89c13628b99995ed5c5baeb5f7d2900988df55866c2604ca375a517aea9242d1",
+      "bytes": 237454,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-04/browser-public/desktop.png",
+      "sha256": "90c5740e989d31dd435c23fac84e23009aaa02b1ec9ced1f421ad88a5e6e0000",
+      "bytes": 427964,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/initial-java-inline-failure.xml",
+      "sha256": "0c8209cb6e9b936d4bcf04c101f2ddb62f4c3de7834e0f31792b48c02ecd377e",
+      "bytes": 95589,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/initial-java-fixture-failure.xml",
+      "sha256": "5173b96cd8a8870218aa70563d81d7623f5ea932cadaa553196c58892027934c",
+      "bytes": 51966,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-01/stack.json",
+      "sha256": "62c7048c0cfe687daa9c325badee80a0b309ac97171f05322c9ae04ff91c1267",
+      "bytes": 342,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/live-02/stack.json",
+      "sha256": "58c2ef5d869a3ef3ac3dd489b6d8f1a534e65481584479aba0230f5b2dfa40d3",
+      "bytes": 360,
+      "not_transferred_in_git": true
+    },
+    {
+      "path": ".local/b/verification/MUS-067/python-final.log",
+      "sha256": "b5874e0a0a1d0681316144780e75bd5210f7d8c43798daf2f00b6759c3179218",
+      "bytes": 287,
+      "not_transferred_in_git": true
+    }
+  ],
+  "next_step": {
+    "task_id": "MUS-068",
+    "owner": "b",
+    "status": "blocked_on_assets",
+    "goal": "trusted model/cache/dependency and licensed audio readiness, provenance-bearing real index export, frozen identity/fulltext online run; no new training prerequisite"
+  },
+  "file_occupancy": "CP1 product paths released as read-only delivery after publication; B retains coordinator/status ownership, registers next task before edits"
+}

@@ -6,7 +6,7 @@
 
 示例：“找节奏明显、适合赛车集锦的器乐”，或“找与这段参考音频氛围接近的曲目”。音乐语义相似与“同一录音识别”不同；首版不承担翻唱识别或版权判定。
 
-事实基线：2026-10-19 核对提交 `b81f57c79e1cefb96c2055df4ae438aa24fb475c`。当前有 Java / Vue 管理、上传、审核、分类标签、播放与回收站代码；没有 CLAP、Python 检索模块和片段索引。现状证据及运行结果在 README / STATUS。
+历史初始基线是 2026-10-19 的 `b81f57c79e1cefb96c2055df4ae438aa24fb475c`，当时只有 Java / Vue 管理系统。此后已实现 Python 离线研究检索；2026-11-14 UTC 的 MUS-067-CP1 又增量接入在线文字查询和片段试听。B 隔离环境已用自生成媒体和显式合成向量验证闭环，真实 CLAP / 真实音频索引及正式语义质量仍未由 B 验证。当前负责人 B，A 暂停，唯一现行状态见 B 固定 feed 对应 STATUS；证据见 [MUS-067](verification/MUS-067.md)。
 
 ## 2. 第一轮成功标准
 
@@ -36,11 +36,11 @@
 | D-001 | 本文采用的开发基线 | 保留 Java / Spring Boot + MySQL + Vue，新增 Python 音频检索边界；避免重写已有管理系统 |
 | D-002 | 本文采用的开发基线 | Java 是面向浏览器和权限的唯一入口；Python 内部服务不直接暴露给浏览器 |
 | D-003 | 本文采用的开发基线 | 先小语料精确搜索；是否引入 ANN / 独立向量数据库由测量决定 |
-| D-004 | 候选，MUS-002 验证 | CLAP 音乐 checkpoint；必须记录准确 checkpoint、来源、哈希、依赖、设备与许可，不把 BEATs 分类模型当成同一个检索编码器 |
-| D-005 | 建议契约，MUS-002 冻结 | 10 秒窗口、5 秒步长；单声道；采样率以最终 checkpoint 的预处理要求为准；端点见 CONTRACTS |
+| D-004 | 离线已验证；B 在线实模 blocked | 保留冻结 CLAP A / identity / fulltext256；适配研究未证明稳定收益。B 真实在线运行须 checkpoint、离线缓存和音频/索引资产另行就绪，不将合成联调当接入证据 |
+| D-005 | 离线 recipe 与 E41 子集 | 已有离线预处理/时间规则保留；在线索引显式记录有效毫秒时间、内容指纹及模型版本。CP1 合成夹具用 10 秒/5 秒含尾窗；真实音频建索引另验证，不能以夹具证明预处理正确 |
 | D-006 | 本文采用的开发基线 | 旧 `/music-resources` 保持兼容；新增 `/discovery`；统一 JSON envelope |
-| D-007 | 建议策略，MUS-001 / 002 核验 | 共享 discovery 只返回 approved 且未删除资源；旧匿名媒体路由先核验修正，不能直接依赖其可见性 |
-| D-008 | 未确定 | Python 版本、包锁、服务框架、索引格式、持久任务机制、部署环境；通过 spike 后记录决定，不默认引入 Celery / Redis / pgvector |
+| D-007 | E41 已实现且合成真库验证 | discovery 只返回 approved / 未删除 / 完成上传的资源，搜索前后和取媒体时重验账号与可见性；owner/admin 的 pending/rejected 同样排除，旧管理媒体权限保留 |
+| D-008 | CP1 子集已实现 | Python 3.12 + NumPy、stdlib loopback HTTP、私有 manifest.json / features.npz 精确排序；无新增锁、队列、ANN 或向量库。真实模型依赖/生产部署/索引生成作业仍须单独验证 |
 
 “开发基线”表示后续设计遵循的方向，不表示已经有实现。修改方向时在本表增加日期、理由、影响任务及替代方案；当前集成负责人协调后续任务。
 
@@ -386,3 +386,12 @@ MUS-065已完成Clotho v2.1人写研究训练候选容量：6来源文件2,636,9
 复用050固定2448非AudioSet-eval原未增强框，不重取caption库。固定hash20来源只查公开oEmbed元数据，四官方说明另快照；严格分开metadata可用/音乐作者身份/许可/真实10秒音频，不从caption author_id或embeddable等推导通过。E40/config/source先提交后单claim执行，无音频/模型/fit/新人工包，identity/完整文本与原版UI/main保持。
 
 MUS-066已完成MusicCaps固定20来源metadata抽查：干净4218f737e4bca3494083558561be5fe20312869b首次exit0，050原2448非AudioSet-eval/未增强框固定hash20，20/20官方oEmbed HTTP200/JSON/provider/同videoID与uploader绑定通过；这仅是metadata可读取，不证明可播放/可下载或训练许可。逐源许可、音乐人/作品和真实音频均未核，audio_ready/training_ready0，未调用Data API，许可API记录调查blocked。4说明+20probe共24请求，预记5505048<8MiB/正文1525435bytes，无redirect/重试/替补；license_help超过1MiB只保留1048577bytes部分响应，其余3说明/20JSON完整，不扩预算或重取。29检查14新15旧/独立选择收据与状态计数/两实际禁重passed，旧045–065共1170工件及原版/模型cache/历史951+B047/23源码54cache/043044/160保持。无音频/编码/fit/新人工包/保留test/付费资源/UI/DB/main/B047卡变化，identity/全文本保持。 见[来源审计](evaluation/MUS-066-musiccaps-source-audit.md)。
+
+
+## MUS-067-CP1：B 独立环境与在线文字查询（2026-11-14 UTC）
+
+B 已通过有效 source/feed 认领，继续承担开发、验证、集成协调、发布和唯一台账，不因一个阶段完成归还 A。启动点为移交 `082dadc35213a696107d6f4f966735d854d860d3`（产品父基线 `b296f35`），领取源码 `778cad3` / B feed `e4e7af8`，已读 A feed `45b366229170f3af00456ba96fbada5946e5f61e`。E41 先以独立契约提交冻结，再实现 Java 权限入口、Python 精确索引及 Vue 片段试听。
+
+首阶段代码完成并以显式合成夹具通过 345 Java / 89 Node / 14 Python 检查、43 真库 HTTP/SQL/Range、13 真实浏览器检查和两项实际版本错误注入。保留 Sonora 布局和原音乐管理链路，新增文字查询、分类/标签、两种排序及有效片段时间。接口默认禁用，合成模式双边 opt-in 并显著披露；无训练、参考音频上传、真实模型或真实音乐质量结论。JDK 17 / Maven / 原生 MySQL 的 B 环境阻塞已解决，不再把历史 DNS 或缺 MySQL 写成当前阻塞。
+
+下一阶段由 B 继续推进 MUS-068：核验可用/可授权复现的 checkpoint、离线缓存和合法音频，建立带内容及预处理证明的真实索引导出，再实跑冻结 identity/fulltext256 在线链路。当前资产和模型依赖缺失，真实链路 blocked；不以新增训练、扩库或沿用 A 数字代替。详见 [实施与复验证据](verification/MUS-067.md)。

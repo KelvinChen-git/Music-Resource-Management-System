@@ -1,7 +1,8 @@
 import { sha256, reviewId, checkRange } from './reviewPack.js'
 
 /** Each start reacquires authorized bytes. No cached URL can resume across starts. */
-export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () => {}, urls = URL }) {
+export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () => {}, urls = URL,
+  mediaUrl = row => `/api/music-resources/${row.track_id}/file` }) {
   let generation = 0, request = null, objectUrl = '', timer = null, teardown = () => {}
   let lastPlayback = null, refresh = () => {}
   const state = { phase: 'idle', positionMs: 0, trackId: '', verified: false, error: '', rangeStartMs: 0, rangeEndMs: 0 }
@@ -25,7 +26,7 @@ export function createReviewAudio({ audio, fetchMedia, onState, beforePlay = () 
       if (!Number.isSafeInteger(row.content_bytes) || row.content_bytes < 1 || row.content_bytes > 30 * 1024 * 1024) throw new Error('音频大小超出允许范围。')
       lastPlayback = { row: { ...row }, range: [...range], requestRange: [...range] }
       beforePlay(); emit({ phase: 'loading', trackId: row.track_id, positionMs, rangeStartMs: range[0], rangeEndMs: range[1] })
-      const response = await fetchMedia(`/api/music-resources/${row.track_id}/file`, { signal })
+      const response = await fetchMedia(mediaUrl(row), { signal })
       if (!current()) return
       const declared = response.headers.get('content-length')
       if (declared !== null && Number(declared) !== row.content_bytes) throw new Error('音频字节数与标注包不一致。')

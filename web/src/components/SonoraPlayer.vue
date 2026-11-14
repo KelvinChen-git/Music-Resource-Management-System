@@ -8,6 +8,7 @@ const audio = ref(null)
 const queueOpen = ref(false)
 const seekPreview = ref(null)
 const review = computed(() => player.reviewSession)
+const reviewLabel = computed(() => review.value?.song?.discovery ? '检索片段' : '试听审阅')
 const song = computed(() => review.value?.song || player.current)
 const playing = computed(() => review.value ? review.value.phase === 'playing' : player.playing)
 const loading = computed(() => review.value ? review.value.phase === 'loading' : player.loading)
@@ -29,7 +30,7 @@ onBeforeUnmount(() => { player.reset(); player.attach(null) })
     <div class="now">
       <div class="now-art" v-if="song" v-html="coverFor(song)"></div>
       <div class="now-art empty-art" v-else><Icon name="play" /></div>
-      <div class="now-info"><div class="now-title">{{ song?.title || '让音乐，从这里开始。' }}</div><div class="now-artist">{{ song?.artist || '选择一首歌，开始聆听' }}{{ review ? ' · 试听审阅' : '' }}</div></div>
+      <div class="now-info"><div class="now-title">{{ song?.title || '让音乐，从这里开始。' }}</div><div class="now-artist">{{ song?.artist || '选择一首歌，开始聆听' }}{{ review ? ' · '+reviewLabel : '' }}</div></div>
       <button v-if="song" class="icon-btn like-now" :class="{selected:player.favoriteSet.has(String(song.musicid))}" :aria-pressed="player.favoriteSet.has(String(song.musicid))" aria-label="收藏当前歌曲" @click="player.toggleFavorite(song)"><Icon name="heart" /></button>
     </div>
     <div class="player-center">
@@ -42,7 +43,7 @@ onBeforeUnmount(() => { player.reset(); player.attach(null) })
       </div>
       <div class="progress"><span>{{ formatTime(position) }}</span><input type="range" min="0" max="100" step="0.1" :disabled="review ? !review.verified || loading : !player.duration" :value="progress" aria-label="播放进度" @input="seekPreview=Number($event.target.value)" @change="seek($event.target.value)" @pointercancel="seekPreview=null"><span>{{ formatTime(end) }}</span></div>
     </div>
-    <div class="player-right"><span class="preview-note">{{ review ? '试听审阅' : loading?'加载音频':playing?'正在播放':'SONORA' }}</span><button class="icon-btn" :aria-label="player.volume?'静音':'取消静音'" @click="player.setVolume(player.volume?0:70)"><Icon name="volume" /></button><input type="range" min="0" max="100" :value="player.volume" aria-label="音量" @input="player.setVolume($event.target.value)"><button class="icon-btn" aria-label="打开播放队列" @click="queueOpen=true"><Icon name="list" /></button></div>
+    <div class="player-right"><span class="preview-note">{{ review ? reviewLabel : loading?'加载音频':playing?'正在播放':'SONORA' }}</span><button class="icon-btn" :aria-label="player.volume?'静音':'取消静音'" @click="player.setVolume(player.volume?0:70)"><Icon name="volume" /></button><input type="range" min="0" max="100" :value="player.volume" aria-label="音量" @input="player.setVolume($event.target.value)"><button class="icon-btn" aria-label="打开播放队列" @click="queueOpen=true"><Icon name="list" /></button></div>
     <audio ref="audio" :loop="player.loop" @timeupdate="player.sync" @loadedmetadata="player.sync" @play="player.sync" @pause="player.sync" @ended="player.advance()" @error="player.error='音频加载失败，请重新选择歌曲。'"></audio>
     <div v-if="error" class="player-error" role="alert"><span>{{ error }}</span><button aria-label="关闭播放错误提示" @click="dismissError">×</button></div>
   </footer>

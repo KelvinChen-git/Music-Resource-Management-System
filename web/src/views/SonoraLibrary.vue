@@ -5,6 +5,7 @@ import { getMusicList, getMusicDetail } from '@/api/music'
 import { useSonoraPlayer } from '@/stores/sonoraPlayer'
 import { coverFor, durationOf, formatTime } from '@/utils/sonoraArt'
 import Icon from '@/components/SonoraIcon.vue'
+import DiscoverySearch from '@/components/DiscoverySearch.vue'
 const route=useRoute(), router=useRouter(), player=useSonoraPlayer()
 const songs=ref([]), total=ref(0), page=ref(1), limit=ref(8), loading=ref(false), failure=ref('')
 const layout=ref('grid'), sort=ref('recent'), genre=ref('全部'), collection=ref(null)
@@ -74,6 +75,7 @@ onMounted(async()=>{
 <template>
   <section class="pageintro"><div><div class="eyebrow">A SPACE FOR YOUR SOUND</div><h1>{{ titles[0] }}</h1><p>{{ titles[1] }}</p></div><router-link class="upload-btn" to="/upload" aria-label="导入音乐"><Icon name="upload" /><span>导入音乐</span></router-link></section>
   <section class="hero-layout" v-if="!route.query.keyword && !route.query.genre && route.path==='/music'"><div class="hero"><div class="hero-copy"><div class="eyebrow">THE EVENING COLLECTION · VOL. 01</div><h2>音量调低一点，<br>世界慢下来。</h2><p>把忙碌留在门外。<br>让温柔的人声与松弛的节拍，陪你度过这一刻。</p><div class="hero-actions"><button class="primary" @click="playFirst" :disabled="!songs.length"><svg class="icon small" style="fill:currentColor;stroke:none"><use href="#i-play"/></svg>播放精选</button><button class="hero-link" @click="collection?.scrollIntoView({behavior:'smooth'})">浏览曲库<svg class="icon small"><use href="#i-arrow"/></svg></button></div></div><div class="hero-art" aria-hidden="true"><div class="record"></div><div class="sleeve"><div class="circle"></div><div class="hill"></div><div class="hill second"></div><small>SLOWER / SOFTER</small></div></div><div class="hero-bottom"><span></span> CURATED WITH CARE</div></div><div class="feature-stack"><button class="feature" @click="collection?.scrollIntoView({behavior:'smooth'})"><div class="eyebrow">FRESH IN YOUR LIBRARY</div><h3>新声音，刚刚抵达。</h3><p>探索最近添加的音乐</p><svg class="icon"><use href="#i-arrow"/></svg></button><button class="feature alt" @click="router.push('/artists')"><div class="eyebrow">ARTIST SPOTLIGHT</div><h3>熟悉的声音。</h3><p>Post Malone &amp; Drake · 歌曲资料</p><svg class="icon"><use href="#i-arrow"/></svg></button></div></section>
+  <DiscoverySearch v-if="route.path==='/music'" />
   <section ref="collection" class="sonora-collection">
     <div class="section-heading"><h2>{{ titles[2] }} <span class="count-badge">{{ artistMode?2:total }}</span></h2><button class="link" @click="resetFilters">清除筛选</button></div>
     <template v-if="artistMode">

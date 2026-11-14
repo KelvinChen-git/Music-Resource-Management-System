@@ -1,13 +1,23 @@
 # 项目状态与交接
 
-最后更新：2026-11-13（America/Chicago）。**当前开发与集成负责人：B（MUS-067-B/revision1，claimed）。A 已暂停开发和台账写入；B 负责后续开发、验证、阶段发布与本唯一台账，直至用户明确再次移交。** 本台账的现行版本由 collab/account-b 的 handoff.source_sha 固定；用户保留最终合并决定。
+最后更新：2026-11-14（UTC）。**当前开发与集成负责人：B（MUS-067-B/revision1，认领已发布并回读）。A 暂停开发和台账写入；B 负责后续开发、验证、阶段发布与本唯一台账，直至用户明确再次移交。** 现行版本由 collab/account-b 的 handoff.source_sha 固定；阶段完成不归还 A，用户保留最终合并决定。
 
-## Git 与交付状态
+## 当前 B 检查点与交付
 
-- **B 领取检查点：** task_id MUS-067-B/revision1；active_owner b；分支 codex/MUS-067-b-development，从移交源码 082dadc35213a696107d6f4f966735d854d860d3 开始；产品基线 b296f35227cf399c4f645bbd433567a02c519825。ack A feed 45b366229170f3af00456ba96fbada5946e5f61e。有效认领需 B source/feed 均发布并回读；不能把下方 A 原 assigned 快照当 B 后续状态。
-- **MUS-067-CP1 / B / in_progress：** 优先鉴权文字检索、候选片段与 JWT 媒体试听最小闭环；先盘点隔离环境并冻结 discovery-v0 的首版文本子集/内部检索绑定，再实现和验证。初始占用 music/ 的 discovery controller/service/DTO/config 与测试、web/ SonoraLibrary 及新增搜索 API/helper/测试、services/audio-search/ 新在线检索模块及测试、scripts/ 验证脚本、CONTRACTS/PROJECT/README/verification/本 STATUS/own latest；实现前细化实际文件。保留当前整体界面/旧管理链路；不改 A feed/派发/历史报告，不直接推或合并 main。
-- **B 环境首查：** 系统 Java21、Node24；无系统 mysql/mysqld/Docker，B 私有 runtime-tools/maven 缓存和 web/node_modules 存在，待验证是否可用；NumPy/FastAPI/uvicorn 可导入，torch/soundfile/laion_clap 缺失。端口/库/上传与模型资产尚待核验，不沿用 A 私有资产或实跑结论。真实 CLAP 链路当前 blocked，可先交明确标记的测试替身和闭环契约/代码，不能称真实检索效果 passed。
-- **执行边界：** 不以新训练/参考音频上传/扩库/整体 UI 重做作为前置；无付费资源/保留测试调参。原 frozen identity/全文本保持。后续任务由 B 串行拆分并在此记录，单阶段完成不自动归还 A。
+- **授权 / 来源：** task_id MUS-067-B/revision1；active_owner b；独立分支 codex/MUS-067-b-development，实际启动点 082dadc35213a696107d6f4f966735d854d860d3，产品基线 b296f35227cf399c4f645bbd433567a02c519825。ack A feed 45b366229170f3af00456ba96fbada5946e5f61e；已发布领取 source 778cad3b53ccf7196072ecf4f826a85d09d9b852 / B feed e4e7af89582013f599b997feb403733591041b76。检查点 sync 双方 fetched、exit0，未出现重新移交。
+- **MUS-067-CP1 / B / review：** 已冻结 E41 并实现 Java 鉴权文字查询→Python 精确候选/片段→Vue JWT 时间段试听；正常/空/无效、筛选、版本、内容、删除/拒审/越权与退出清理验证完成。保留整体 Sonora 与旧业务。**仅合成夹具闭环已验证，真实 CLAP / 音乐索引与语义质量 blocked。** 详见 [MUS-067](verification/MUS-067.md) / [聚合证据](verification/MUS-067.json)。实际交付 SHA 由本次 B feed.source_sha 给出；不能在自身提交内预填 SHA。
+- **本轮 B 实跑：** 完整 JDK17 + wrapper Maven3.9.9 默认测试345（新增13）、Node22测试89/build、Python14、原生MySQL/Java/Python真HTTP/SQL/Range43、无mock真实浏览器13、真实index/model不符两项503均通过。3首生成MP3/18窗口、3个合成账号；模型运行0。Maven代理/CA/JDK/进程附加与MySQL阻塞已解决，原失败保留；Compose/真实模型/质量/负载/部署未跑。本轮自启服务均已停止。
+- **接口 / 版本：** 新POST /api/discovery/search与GET /api/discovery/tracks/{id}/media，默认禁用，版本/内容绑定及approved-only；无迁移或锁变更。fixture index mus067-synthetic-v1 / model synthetic-text-v1，双边显式合成开关、页面披露；原CLAP A/identity/全文本保持，无训练/参考上传/保留test调参。
+- **交付范围 / 占用：** music 新discovery包/mapper/test、JWT新路由头和401、local可选配置；Python两新模块及fixture/Maven/验证脚本；Vue新panel/API/helper/test、Library增量/reviewAudio可选URL/Player标识；AGENTS/README/PROJECT/CONTRACTS/本STATUS/verification/own latest。CP1发布后上述产品文件占用释放为可审核交付；B保留负责人及唯一台账职责。A feed/派发/历史报告不改，不推main、不自动合并。
+- **发布路径：** native CLI push已失败；沿用授权GitHub方式顺序发布source和B feed，非原子，逐项回读校验；最终source/feed/推送状态另附发布回执。不能仅有本地commit就称送达。
+
+| 当前阶段 | 状态 / owner | 依赖与下一步 |
+|---|---|---|
+| MUS-067-B 接管与首闭环 | in_progress / B（CP1 review） | 接管持续有效；本阶段代码和合成证据交付，用户决定最终合并 |
+| MUS-068 真实 identity 在线索引与复验 | blocked / B | 缺模型/音频依赖、可信checkpoint/离线cache、可复现合法音频及真实索引；先补证据/导出工具，再实跑，不另起训练 |
+| 训练扩展 / MusicCaps | blocked / B 后续协调 | 20个公开metadata可读不等于权利/音频可用；训练就绪0，维持identity与原评测隔离 |
+
+## 移交前历史（以下状态不覆盖上方现行 B 结果）
 
 - A 原始授权快照（assigned 状态仅发布前历史）：**[MUS-067-B / revision 1](collaboration/tasks/MUS-067-B.md)**，`assigned`，A 不代认领。A 发布分支 `codex/MUS-067-transfer-to-b`；B 从 A `handoff.source_sha` 在独立环境创建 `codex/MUS-067-b-development`。产品基线 `b296f35227cf399c4f645bbd433567a02c519825`，当前移交仅文档；B 发布认领后独立维护台账、开发、测试及交付，用户保留合并决定。
 - 2026-11-13 16:28（America/Chicago）双方固定入口同步通过：A `6c39b967` / `b296f35`，B `8d43fe4d` / `806dc9c`。B 最新仍为已接收的 MUS-047 限定复核，无新待整合报告。起始 A 工作区干净，原版工作区 `f3b0da1` 干净；远端 `main` 为 `b81f57c`，不合并或推送 main。

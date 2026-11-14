@@ -1,8 +1,24 @@
 # SONORA · Music Discovery Platform
 
-**开发交接（2026-11-13）：** A 暂停开发，[MUS-067-B](docs/collaboration/tasks/MUS-067-B.md) 已准备为 B 接管后续开发的固定入口。产品实现基线仍为 `codex/MUS-066-musiccaps-source-audit@b296f35`；B 从移交提交开启自己的任务分支，认领后由 B 的 feed 指向唯一现行 [STATUS](docs/STATUS.md)。以下 A 环境信息是历史验证和本机配置，不能作为 B 的运行地址或当前服务可用证据。
+**当前状态（2026-11-14 UTC）：** B 已接管开发、验证、发布和唯一 [STATUS](docs/STATUS.md)，A 暂停。B 分支 `codex/MUS-067-b-development`，现行源码由 `collab/account-b` 根目录 `handoff.json` 固定。MUS-067-CP1 已打通登录后的文字查询 → Java 审核/权限过滤 → Python 精确片段排序 → Vue 时间段试听；B 本轮使用自生成 MP3 和显式合成向量验证，**真实 CLAP、真实音乐索引和语义质量仍 blocked**。用户保留最终合并决定。
 
-## 当前开发入口：Sonora 副本
+## B 的文字检索检查点（MUS-067-CP1）
+
+`/music` 保留 Sonora 曲库，增量添加描述、片段/整曲方式、分类与标签筛选和片段试听。接口默认禁用；只有显式设置 `MUSIC_DISCOVERY_ENABLED`、内部共享密钥、索引/模型版本才启用。Python 只监听回环地址；公开接口继续由 Java 校验 JWT、账号、审核与删除状态。合成模式须 Python `--allow-synthetic` 和 Java `MUSIC_DISCOVERY_ALLOW_SYNTHETIC=true` 双方显式开启，页面会标记“合成联调模式 · 未运行语义模型”。
+
+| 本轮 B 验证 | 结果 |
+|---|---|
+| Java 17 默认测试 / package | 345 项，0 失败/错误/跳过；含新增 13 项 HTTP 边界测试 |
+| Node 22 工具/播放器测试，Vue build | 89 项通过，构建通过；已有大 bundle 警告 |
+| Python 精确索引 / loopback HTTP | 14 项通过，未加载真实模型 |
+| 原生 MySQL + Java/Python HTTP/SQL/Range | 43 项通过，3 首生成 MP3 / 18 窗口 / 3 个测试账号 |
+| Chromium 真实登录、试听、撤权、退出、移动视图 | 13 项通过；另做索引/模型版本不符两项真实 503 注入 |
+
+运行环境为 B 独立 clone / slot B：Java `8081`、Vue `5174`、MySQL `3308`、worker `8091`，库 `music_dev_b`，媒体与索引只写本 clone `.local/b/`。本轮服务已停止，不把这些地址写成持续可访问入口。完整契约、配置、启动及复验命令见 [MUS-067](docs/verification/MUS-067.md) 和 [CONTRACTS E41](docs/CONTRACTS.md#e41-mus-067-cp1b-接管后的鉴权文字检索闭环)。原生 MySQL 和完整 JDK 17 已实际运行；可选 `scripts/maven_local.py` 使用当前进程代理与平台 CA 解决 Maven 下载阻塞，不修改系统 DNS、pom 或锁文件。真实 CLAP 需要另备可信 checkpoint、离线 RoBERTa 缓存、兼容依赖、合法音频和对应真实索引，当前不自动下载、不回退伪向量。
+
+## A 的 Sonora 环境记录（移交前历史）
+
+以下地址、目录和旧验证数字属于 A 的历史环境，不作为 B 服务状态或 B 复现证据。
 
 用户已确认 MUS-018 设计。MUS-019 将新版界面接入真正的 Vue 应用；A 的开发副本为 **`Music-Sonora`**，移交前的产品分支为 `codex/MUS-066-musiccaps-source-audit`。原 `Music-Resource-Management-System` 目录停留在 `design/MUS-018-ui-preview@f3b0da1`，其旧 `web/` 与原 5173 配置作为保留版，不在两个目录同时修改前端。
 

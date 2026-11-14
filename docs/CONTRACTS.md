@@ -153,7 +153,7 @@ Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没
 
 ## B. 建议的公开 discovery-v0 契约（尚未实现）
 
-MUS-067-CP1 先冻结以下文字查询子集；首阶段代码与证据见 E41。音频查询、hybrid/metadata 模式和索引作业仍为建议，不因文字子集接入而标为完成。
+MUS-067-CP1 先冻结并已实现以下文字查询子集；合成真库/浏览器验证通过，真实 CLAP 仍 blocked，代码与证据见 E41 及 [MUS-067](verification/MUS-067.md)。音频查询、hybrid/metadata 模式和索引作业仍为建议，不因文字子集接入而标为完成。
 
 ### B1. 搜索
 
@@ -410,7 +410,7 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 浏览器`POST /api/discovery/search`沿用JWT，严格拒绝未知/重复字段，JSON体至多8KiB。仅`query:{kind:"text",text:...}`（trim后1–1000字符，完整token<=256，不静默截断）、`retrieval_mode:segment|whole_track`（默认segment）、`top_k:1..20`（默认10）、可选`filters:{category_id:null|十进制字符串,tag_ids:[十进制字符串],tag_match:all|any}`。tag去重最多32个，ID为正整数且不超Java Long；其他query/mode返回400，不回退元数据搜索。
 - Java当前数据库强制账号存在/未锁定、资源approved且is_deleted=false，分类精确匹配和tag all/any；owner/admin的pending/rejected也不进入discovery。当前候选最多5000，超出明确503而非截断。上传须完成/未删除，内容MD5和bytes与索引绑定。先传可见`(track_id,content_md5,content_bytes)`给内部精确搜索，再重新读取账号/资源/过滤与内容绑定，防止旧索引或推理期间撤权进入返回；可能因此少于top_k，不补未经复核候选。
 - 成功沿用Result envelope；data含request_id/index_version/model_version/retrieval_mode/engine_kind/timings_ms/results。每首返回当前Java title/artist，字符串track_id、duration_ms/content_bytes/content_md5/content_sha256、有限score及最多3个不重叠片段（segment_id/start_ms/end_ms/score），0<=start<end<=duration，按score与稳定ID/时间排序。whole_track为归一化片段均值identity对照，segment为最大窗口分；无结果200/results=[]，分数不是概率。模型/索引版本由固定后端配置核验，不由浏览器任选。
-- `GET /api/discovery/tracks/{id}/media?content_md5=...&content_sha256=...`每次重验登录/approved/未删除及完成上传，指纹不符409；返回前流式核验真实SHA256并再检查可见性。复用Range/206、private/no-store/Vary Authorization；JWT不进URL。前端携JWT fetch、验完整bytes/SHA256、创建Blob，在区间seek/终点停止/释放URL；新开始或恢复重新授权取字节，退出/换账号/切离组件释放。已交付字节不能追溯撤销。旧owner pending媒体权限保持原契约。
+- `GET /api/discovery/tracks/{id}/media?content_md5=...&content_sha256=...`每次重验登录/approved/未删除及完成上传，指纹不符409；返回前流式核验真实SHA256，并按目标track重新检查资源/完成上传与内容绑定（不扫描整个候选库）。复用Range/206、private/no-store/Vary Authorization；JWT不进URL。前端携JWT fetch、验完整bytes/SHA256、创建Blob，在区间seek/终点停止/释放URL；新开始或恢复重新授权取字节，退出/换账号/切离组件释放。已交付字节不能追溯撤销。旧owner pending媒体权限保持原契约。
 - 新路由错误用正确HTTP+Result envelope，data含request_id/error_type：400输入/不支持模式，401未登录，403锁定，404不可见媒体，409内容过期，413请求过大，503禁用/索引模型不可用/版本不符/worker错误。不得返回worker路径、凭据或堆栈；媒体请求也no-store。
 - Python仅loopback、独立8091及共享随机Bearer key；Java固定内部URL，不访问用户URL/路径、不转发用户JWT。`POST /internal/search`限2MiB，接受允许候选与期望index/model版本；响应上限64KiB，维数/finite/norm/ID/时间/hash/版本核验。只对可见且内容绑定的行做NumPy精确排序，无ANN/向量数据库/队列扩展。
 - 索引`sonora-discovery-index-v1`为私有manifest.json+features.npz（显式SHA256、512维、无pickle、有限单位向量、唯一track/segment、有效时间/指纹，最多5000轨/100000片段，NPZ<=512MiB）。whole等于归一化片段均值；生产模型为固定A checkpoint/identity/fulltext256。CLI显式本机checkpoint与offline cache，复用strict CPU loader和完整token策略；缺资产失败，不联网回退、截断或伪造向量。真实CLAP在B缺资产时保持blocked。

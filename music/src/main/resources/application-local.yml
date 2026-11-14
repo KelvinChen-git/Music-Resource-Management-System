@@ -41,3 +41,10 @@ upload:
   temp-path: ${MUSIC_UPLOAD_TEMP_PATH}
   allowed-types: mp3,jpg,jpeg,png
   chunk-size: 5242880
+discovery:
+  enabled: ${MUSIC_DISCOVERY_ENABLED:false}
+  allow-synthetic: ${MUSIC_DISCOVERY_ALLOW_SYNTHETIC:false}
+  url: ${MUSIC_DISCOVERY_URL:http://127.0.0.1:8091}
+  secret: ${MUSIC_DISCOVERY_SECRET:}
+  index-version: ${MUSIC_DISCOVERY_INDEX_VERSION:}
+  model-version: ${MUSIC_DISCOVERY_MODEL_VERSION:}

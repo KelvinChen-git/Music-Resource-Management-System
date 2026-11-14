@@ -21,7 +21,8 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
         UserContext.clear();
         String path = request.getRequestURI().substring(request.getContextPath().length());
         if (path.equals("/uploads") || path.startsWith("/uploads/") || path.startsWith("/file/download/")
-                || path.matches("/music-resources/[^/]+/file") || path.equals("/music-resources/export-music-files")) {
+                || path.matches("/music-resources/[^/]+/file") || path.equals("/music-resources/export-music-files")
+                || path.startsWith("/discovery/")) {
             response.setHeader("Cache-Control", "private, no-store");
             response.setHeader("Vary", "Authorization");
             response.setHeader("X-Content-Type-Options", "nosniff");
@@ -40,13 +41,13 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
         // 非匿名接口，必须验证token
         String token = extractToken(request);
         if (token == null) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            unauthorized(path, response);
             return false;
         }
 
         // 验证token
         if (!jwtUtil.validateToken(token)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            unauthorized(path, response);
             return false;
         }
 
@@ -54,6 +55,15 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
         setUserContext(token);
         
         return true;
+    }
+
+    private void unauthorized(String path, HttpServletResponse response) throws java.io.IOException {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        if (path.startsWith("/discovery/")) {
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write("{\"code\":401,\"message\":\"请先登录\",\"data\":{\"error_type\":\"unauthorized\",\"request_id\":\""
+                    + java.util.UUID.randomUUID() + "\"}}");
+        }
     }
     
     /**
