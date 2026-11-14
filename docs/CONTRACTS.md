@@ -153,6 +153,8 @@ Vue 播放 fetch、列表下载与文件管理下载均携带存储的 JWT；没
 
 ## B. 建议的公开 discovery-v0 契约（尚未实现）
 
+MUS-067-CP1 先冻结以下文字查询子集；首阶段代码与证据见 E41。音频查询、hybrid/metadata 模式和索引作业仍为建议，不因文字子集接入而标为完成。
+
 ### B1. 搜索
 
 `POST /api/discovery/search`，沿用登录 JWT。首版不分页，返回 top_k 个不同 track；top_k 为 1–20，默认 10。每个 track 最多 3 个经去重的片段，片段按相关性降序。
@@ -401,6 +403,19 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 前端只新增新schema严格校验、中文线索/规则、批次/保管提示及完成回执导出；原评分/播放器/草稿/旧四schema保留。来源为LOC两provider，rights_url使用官方对应/use页面，不造CC0 URI；整曲完整JWT/bytes/SHA验证后可按新LOC已知provider较短实际浏览器终点播放，包时长不改。无模型名/排序/分数/建议展示，原版UI布局不重做。
 - labeler端可导出完整/部分判断自行保管；只有该批40全合法已判时可导出四字段完成回执dataset_sha256/payload_sha256/total_completed_count/validation_status。回执hash针对同一exportReviewPack实际字节，其他个人字段/等级分布/正文路径不得提前回传；CLI标签校验仅labeler侧读取基包+本地导出、可只打印允许回执。A在G5前不打开可读qrels，模型五runs全部持久化hash与160合法完成回执齐全后再记录一次解封。新包工具/页面校验不认证身份或听音，也不是访问控制。
 - 新输出仅ignore.local/a/mus040/phase03，0700/0600、不覆盖、不写数据库/服务/线上模型。实际新test模型run/评分仍须独立记录，不因G2/包已准备声称模型质量、定位、显著性或MUS-002/discovery-v0完成。B N1原在途卡不扩到本增量。
+
+### E41. MUS-067-CP1：B 接管后的鉴权文字检索闭环
+
+- owner/coordinator B，基于移交082dadc/产品b296f35；A暂停，无其他正在写入的依赖任务。B串行实现Java/Python/Vue并维护唯一STATUS。先冻结本子集再编码，不变更旧管理、上传、媒体或整体Sonora设计；不切模型、不训练或迁移schema。
+- 浏览器`POST /api/discovery/search`沿用JWT，严格拒绝未知/重复字段，JSON体至多8KiB。仅`query:{kind:"text",text:...}`（trim后1–1000字符，完整token<=256，不静默截断）、`retrieval_mode:segment|whole_track`（默认segment）、`top_k:1..20`（默认10）、可选`filters:{category_id:null|十进制字符串,tag_ids:[十进制字符串],tag_match:all|any}`。tag去重最多32个，ID为正整数且不超Java Long；其他query/mode返回400，不回退元数据搜索。
+- Java当前数据库强制账号存在/未锁定、资源approved且is_deleted=false，分类精确匹配和tag all/any；owner/admin的pending/rejected也不进入discovery。当前候选最多5000，超出明确503而非截断。上传须完成/未删除，内容MD5和bytes与索引绑定。先传可见`(track_id,content_md5,content_bytes)`给内部精确搜索，再重新读取账号/资源/过滤与内容绑定，防止旧索引或推理期间撤权进入返回；可能因此少于top_k，不补未经复核候选。
+- 成功沿用Result envelope；data含request_id/index_version/model_version/retrieval_mode/engine_kind/timings_ms/results。每首返回当前Java title/artist，字符串track_id、duration_ms/content_bytes/content_md5/content_sha256、有限score及最多3个不重叠片段（segment_id/start_ms/end_ms/score），0<=start<end<=duration，按score与稳定ID/时间排序。whole_track为归一化片段均值identity对照，segment为最大窗口分；无结果200/results=[]，分数不是概率。模型/索引版本由固定后端配置核验，不由浏览器任选。
+- `GET /api/discovery/tracks/{id}/media?content_md5=...&content_sha256=...`每次重验登录/approved/未删除及完成上传，指纹不符409；返回前流式核验真实SHA256并再检查可见性。复用Range/206、private/no-store/Vary Authorization；JWT不进URL。前端携JWT fetch、验完整bytes/SHA256、创建Blob，在区间seek/终点停止/释放URL；新开始或恢复重新授权取字节，退出/换账号/切离组件释放。已交付字节不能追溯撤销。旧owner pending媒体权限保持原契约。
+- 新路由错误用正确HTTP+Result envelope，data含request_id/error_type：400输入/不支持模式，401未登录，403锁定，404不可见媒体，409内容过期，413请求过大，503禁用/索引模型不可用/版本不符/worker错误。不得返回worker路径、凭据或堆栈；媒体请求也no-store。
+- Python仅loopback、独立8091及共享随机Bearer key；Java固定内部URL，不访问用户URL/路径、不转发用户JWT。`POST /internal/search`限2MiB，接受允许候选与期望index/model版本；响应上限64KiB，维数/finite/norm/ID/时间/hash/版本核验。只对可见且内容绑定的行做NumPy精确排序，无ANN/向量数据库/队列扩展。
+- 索引`sonora-discovery-index-v1`为私有manifest.json+features.npz（显式SHA256、512维、无pickle、有限单位向量、唯一track/segment、有效时间/指纹，最多5000轨/100000片段，NPZ<=512MiB）。whole等于归一化片段均值；生产模型为固定A checkpoint/identity/fulltext256。CLI显式本机checkpoint与offline cache，复用strict CPU loader和完整token策略；缺资产失败，不联网回退、截断或伪造向量。真实CLAP在B缺资产时保持blocked。
+- 允许显式`synthetic_fixture`编码器、自生成MP3/固定查询向量作接手联调，使用独立fixture模型/索引版本。Python须显式fixture参数，Java默认禁用且显式allow-synthetic才接收，响应及页面显著标记“合成联调，非语义模型”；不得冒充自然语言质量。真实模式保持identity/全文本，无新增训练、参考上传/保留test/付费资源。
+- 本阶段占用：新增music/.../discovery/**和测试、JwtAuthenticationInterceptor的discovery401/缓存头小增量、application-local.yml可选禁用默认配置；新增Python discovery_index/discovery_server/测试及fixture工具；新增Vue DiscoverySearch/搜索API/helper/测试，SonoraLibrary增量、reviewAudio可选mediaUrl、SonoraPlayer仅检索试听标识；关联README/PROJECT/STATUS/verification/B latest。依赖锁/旧冻结研究源码/A feed及派发不改。验收分别记录原生测试、HTTP/SQL/Range和浏览器合成闭环，真实CLAP/质量/P95不外推。
 
 ## F. 契约变更
 
