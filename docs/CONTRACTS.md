@@ -417,6 +417,15 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 允许显式`synthetic_fixture`编码器、自生成MP3/固定查询向量作接手联调，使用独立fixture模型/索引版本。Python须显式fixture参数，Java默认禁用且显式allow-synthetic才接收，响应及页面显著标记“合成联调，非语义模型”；不得冒充自然语言质量。真实模式保持identity/全文本，无新增训练、参考上传/保留test/付费资源。
 - 本阶段占用：新增music/.../discovery/**和测试、JwtAuthenticationInterceptor的discovery401/缓存头小增量、application-local.yml可选禁用默认配置；新增Python discovery_index/discovery_server/测试及fixture工具；新增Vue DiscoverySearch/搜索API/helper/测试，SonoraLibrary增量、reviewAudio可选mediaUrl、SonoraPlayer仅检索试听标识；关联README/PROJECT/STATUS/verification/B latest。依赖锁/旧冻结研究源码/A feed及派发不改。验收分别记录原生测试、HTTP/SQL/Range和浏览器合成闭环，真实CLAP/质量/P95不外推。
 
+### E42. MUS-068：真实音频索引构建与证明
+
+- owner B；base8553778；本轮只扩 Python 离线构建/内部加载边界，Java公开请求/响应、Vue、schema、模型与旧研究规则不变。完整冻结范围和有界资产准备见 [MUS-068计划](verification/MUS-068-plan.md)。
+- 新私有 sonora-discovery-catalog-v1：每轨绑定十进制Java Long字符串ID、音频basename、bytes/MD5/SHA256、来源/许可及原证明；只读本slot文件，严格拒绝身份重复/链接/路径越界/内容或证明变更。来源声明和hash绑定不能单独证明版权许可；本轮仅以实际官方快照核准的小量development音乐作运行探针。
+- soundfile按块至实际EOF，8–192kHz/1–2声道/<=600秒，mono平均、soxr_hq一次48kHz、10s/5s确定窗口与尾段/右补零；输出时间为有效样本毫秒，不含pad。显式记录header与实际帧数，不能静默裁剪。recipe=discovery-soundfile-eof-soxr_hq-mono48k-zero10s-hop5s-v1。
+- 固定CLAP A/HTSAT-base/no fusion/CPU FP32、identity/fulltext256；生产CLI只接受显式本地checkpoint/cache，复用restricted/strict loader，缺失失败。输出512维单位片段，整曲=unit(mean(segments))，与E41两mode一致；无训练/ANN/查询截断。
+- E41 manifest保留，clap_identity新增必需build_proof_sha256并核build-proof.json的SHA/schema/模型/recipe/数据/特征/逐窗口边界。旧synthetic_fixture不需要该生产证明，仍双边显式启用；不得把mock构建当真实模型通过。
+- 新输出仅ignored .local/b且目录独占，0700/0600；先产特征/证明、重校输入和验证loader，最后激活manifest。失败无可消费manifest，失败/成功输出都不可重用或覆盖；不会自动切换运行服务索引。实际模型/音乐/HTTP探针与合成测试分别报告，不能外推质量或Java/Vue新集成。
+
 ## F. 契约变更
 
 MUS-002 冻结时记录版本、日期、负责人与 fixtures 位置。修改字段、时间单位、可见性、索引身份或错误语义前：列出生产者 / 消费者，更新本文及 fixtures，协调两个任务，再实现与验证。旧接口与新契约存在差异时显式适配，不静默更改旧用户流程。

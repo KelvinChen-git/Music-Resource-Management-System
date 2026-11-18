@@ -1,8 +1,12 @@
 # 项目状态与交接
 
-最后更新：2026-11-14（UTC）。**当前开发与集成负责人：B（MUS-067-B/revision1，认领已发布并回读）。A 暂停开发和台账写入；B 负责后续开发、验证、阶段发布与本唯一台账，直至用户明确再次移交。** 现行版本由 collab/account-b 的 handoff.source_sha 固定；阶段完成不归还 A，用户保留最终合并决定。
+最后更新：2026-11-18（America/Chicago）。**当前开发与集成负责人：B（MUS-067-B/revision1，认领已发布并回读）。A 暂停开发和台账写入；B 负责后续开发、验证、阶段发布与本唯一台账，直至用户明确再次移交。** 现行版本由 collab/account-b 的 handoff.source_sha 固定；阶段完成不归还 A，用户保留最终合并决定。
 
 ## 当前 B 检查点与交付
+
+- **MUS-068 / B / in_progress：** 用户选择网页云端开发；新独立clone/slot B、branch codex/MUS-068-real-discovery-index、base85537787606a138f0747cc8f776637c43745e0b7。GitHub push=true且任务分支创建成功；A/B feed45b3662/a2ec41d已取并sync，B仍全权负责。先冻结[E42及计划](verification/MUS-068-plan.md)，再实现真实音频索引导出/构建证明和故障验证；有界准备固定A/离线cache/两首既有development音乐，真实运行状态另记，不把067历史数字当本云端复现。
+- **068占用：** 新Python discovery_build、build/test/runtime脚本；窄改discovery_index/server（生产构建证明/完整文本）；README/PROJECT/CONTRACTS/本STATUS/verification/MUS-068*/own latest。Java/Vue/schema/旧研究源码/依赖锁/A feed/派发不占用。资产仅B ignored私有目录、总下载<=6GiB、不读A或Mac目录。
+
 
 - **授权 / 来源：** task_id MUS-067-B/revision1；active_owner b；独立分支 codex/MUS-067-b-development，实际启动点 082dadc35213a696107d6f4f966735d854d860d3，产品基线 b296f35227cf399c4f645bbd433567a02c519825。ack A feed 45b366229170f3af00456ba96fbada5946e5f61e；已发布领取 source 778cad3b53ccf7196072ecf4f826a85d09d9b852 / B feed e4e7af89582013f599b997feb403733591041b76。检查点 sync 双方 fetched、exit0，未出现重新移交。
 - **MUS-067-CP1 / B / review：** 已冻结 E41 并实现 Java 鉴权文字查询→Python 精确候选/片段→Vue JWT 时间段试听；正常/空/无效、筛选、版本、内容、删除/拒审/越权与退出清理验证完成。保留整体 Sonora 与旧业务。**仅合成夹具闭环已验证，真实 CLAP / 音乐索引与语义质量 blocked。** 详见 [MUS-067](verification/MUS-067.md) / [聚合证据](verification/MUS-067.json)。实际交付 SHA 由本次 B feed.source_sha 给出；不能在自身提交内预填 SHA。
@@ -14,7 +18,7 @@
 | 当前阶段 | 状态 / owner | 依赖与下一步 |
 |---|---|---|
 | MUS-067-B 接管与首闭环 | in_progress / B（CP1 review） | 接管持续有效；本阶段代码和合成证据交付，用户决定最终合并 |
-| MUS-068 真实 identity 在线索引与复验 | blocked / B | 缺模型/音频依赖、可信checkpoint/离线cache、可复现合法音频及真实索引；先补证据/导出工具，再实跑，不另起训练 |
+| MUS-068 真实 identity 在线索引与复验 | in_progress / B（实模尚未通过） | E42/计划已冻结；实现导出与验证，并有界准备独立云端资产；若下载/依赖失败如实blocked，不另起训练 |
 | 训练扩展 / MusicCaps | blocked / B 后续协调 | 20个公开metadata可读不等于权利/音频可用；训练就绪0，维持identity与原评测隔离 |
 
 ## 移交前历史（以下状态不覆盖上方现行 B 结果）
