@@ -1,9 +1,9 @@
 {
   "schema": "music-handoff-v1",
   "account": "b",
-  "published_at": "2026-11-19T00:08:10.834783+00:00",
+  "published_at": "2026-11-19T00:43:28.168Z",
   "source_branch": "codex/MUS-068-real-discovery-index",
-  "source_sha": "173763ca3da0f9b9ab84e95893b2189f27c52a45",
+  "source_sha": "659a46953a93c83e966d2e8e1e4e36dd48379046",
   "report_path": "docs/collaboration/account-b/latest.md",
-  "report_sha256": "60692f725fdd03cffa53ce5be52c373f520b11a29adb20a234281a9316e3bb3d"
+  "report_sha256": "7278a5c56311f338d1cc2fed3d54975d75374b848a6440a538c31f26b36df6aa"
 }
