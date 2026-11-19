@@ -6,7 +6,7 @@
 
 示例：“找节奏明显、适合赛车集锦的器乐”，或“找与这段参考音频氛围接近的曲目”。音乐语义相似与“同一录音识别”不同；首版不承担翻唱识别或版权判定。
 
-历史初始基线是 2026-10-19 的 `b81f57c79e1cefb96c2055df4ae438aa24fb475c`，当时只有 Java / Vue 管理系统。此后已实现 Python 离线研究检索；2026-11-14 UTC 的 MUS-067-CP1 又增量接入在线文字查询和片段试听。B 隔离环境已用自生成媒体和显式合成向量验证闭环，真实 CLAP / 真实音频索引及正式语义质量仍未由 B 验证。当前负责人 B，A 暂停，唯一现行状态见 B 固定 feed 对应 STATUS；证据见 [MUS-067](verification/MUS-067.md)。
+历史初始基线是 2026-10-19 的 `b81f57c79e1cefb96c2055df4ae438aa24fb475c`，当时只有 Java / Vue 管理系统。此后已实现 Python 离线研究检索；2026-11-14 UTC 的 MUS-067-CP1 又增量接入在线文字查询和片段试听。B 在 MUS-067 先用合成媒体/向量验证 Java/Vue 闭环，MUS-068 又在独立云端以固定 CLAP A 和两首真实音乐生成74片段，验证生产索引与内部HTTP。Java/Vue实模整链路与正式语义质量尚未由 B 验收。当前负责人 B，A 暂停，唯一现行状态见 B 固定 feed 对应 STATUS；证据见 [MUS-067](verification/MUS-067.md)。
 
 ## 2. 第一轮成功标准
 
@@ -36,8 +36,8 @@
 | D-001 | 本文采用的开发基线 | 保留 Java / Spring Boot + MySQL + Vue，新增 Python 音频检索边界；避免重写已有管理系统 |
 | D-002 | 本文采用的开发基线 | Java 是面向浏览器和权限的唯一入口；Python 内部服务不直接暴露给浏览器 |
 | D-003 | 本文采用的开发基线 | 先小语料精确搜索；是否引入 ANN / 独立向量数据库由测量决定 |
-| D-004 | 离线已验证；B 在线实模 blocked | 保留冻结 CLAP A / identity / fulltext256；适配研究未证明稳定收益。B 真实在线运行须 checkpoint、离线缓存和音频/索引资产另行就绪，不将合成联调当接入证据 |
-| D-005 | 离线 recipe 与 E41 子集 | 已有离线预处理/时间规则保留；在线索引显式记录有效毫秒时间、内容指纹及模型版本。CP1 合成夹具用 10 秒/5 秒含尾窗；真实音频建索引另验证，不能以夹具证明预处理正确 |
+| D-004 | 离线及B真实Python worker已验证；整链路/质量待验 | 保留冻结 CLAP A / identity / fulltext256；068独立云端2首/74片段/HTTP通过，不外推Java/Vue实模验收、研究质量或适配收益 |
+| D-005 | 离线 recipe、E41/E42 子集 | 在线索引记录有效毫秒时间、内容指纹及模型版本；068以两首真实EOF解码验证10秒/5秒含尾窗与右补零，并与冻结reader逐样本一致。Java/Vue真实试听边界仍待069验收 |
 | D-006 | 本文采用的开发基线 | 旧 `/music-resources` 保持兼容；新增 `/discovery`；统一 JSON envelope |
 | D-007 | E41 已实现且合成真库验证 | discovery 只返回 approved / 未删除 / 完成上传的资源，搜索前后和取媒体时重验账号与可见性；owner/admin 的 pending/rejected 同样排除，旧管理媒体权限保留 |
 | D-008 | CP1 子集已实现 | Python 3.12 + NumPy、stdlib loopback HTTP、私有 manifest.json / features.npz 精确排序；无新增锁、队列、ANN 或向量库。真实模型依赖/生产部署/索引生成作业仍须单独验证 |
@@ -394,4 +394,13 @@ B 已通过有效 source/feed 认领，继续承担开发、验证、集成协�
 
 首阶段代码完成并以显式合成夹具通过 345 Java / 89 Node / 14 Python 检查、43 真库 HTTP/SQL/Range、13 真实浏览器检查和两项实际版本错误注入。保留 Sonora 布局和原音乐管理链路，新增文字查询、分类/标签、两种排序及有效片段时间。接口默认禁用，合成模式双边 opt-in 并显著披露；无训练、参考音频上传、真实模型或真实音乐质量结论。JDK 17 / Maven / 原生 MySQL 的 B 环境阻塞已解决，不再把历史 DNS 或缺 MySQL 写成当前阻塞。
 
-下一阶段由 B 继续推进 MUS-068：核验可用/可授权复现的 checkpoint、离线缓存和合法音频，建立带内容及预处理证明的真实索引导出，再实跑冻结 identity/fulltext256 在线链路。当前资产和模型依赖缺失，真实链路 blocked；不以新增训练、扩库或沿用 A 数字代替。详见 [实施与复验证据](verification/MUS-067.md)。
+该067历史检查点的下一步是 MUS-068：核验 checkpoint、离线缓存和合法音频，建立真实索引导出并实跑冻结 identity/fulltext256；当时资产缺失，真实链路 blocked。此阻塞的本轮解决情况见下节，不以新增训练、扩库或沿用 A 数字代替。067原范围见 [实施与复验证据](verification/MUS-067.md)。
+
+
+## MUS-068：真实音频在线索引与云端模型复验（2026-11-18 America/Chicago）
+
+用户选择网页云端开发。B从准确8553778新建codex/MUS-068-real-discovery-index，先发布6539631/E42/有界计划，后以已发布且干净173763c实跑。实际固定A权重与RoBERTa/cache已核，两个既有development录音Morning和Take the Lead当前官方来源/CC BY4/原字节证明入B私有目录，未连接Mac或读取A资产。
+
+新增真实EOF索引导出、生产构建证明与cache绑定、实际完整token验证和显式资产准备命令。2首/74真实片段构建、63项真实worker断言、5个CLI/失败案例和2首冻结reader PCM逐元素对照通过；64 Python单测/回归通过。两个短query和100-token长描述只做运行/数值检查，不是新标注或质量验收。旧研究/训练/保留test/Java/Vue/schema/锁保持，无新fit、ANN或基础设施扩展。
+
+本轮解除B真实模型资产/编码/索引/worker的旧阻塞；下一项MUS-069由B继续在隔离Java/MySQL/Vue中绑定真实资源ID、完成上传审核和鉴权试听验收。模型质量、人评/定位准确率、扩样训练仍独立待办，不把两曲运行成功当总体效果。原067及A的历史数据/测试结论保持其原范围，证据见 [MUS-068](verification/MUS-068.md)。

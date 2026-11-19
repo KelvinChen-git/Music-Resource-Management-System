@@ -1,8 +1,35 @@
 # SONORA · Music Discovery Platform
 
-**当前状态（2026-11-14 UTC）：** B 已接管开发、验证、发布和唯一 [STATUS](docs/STATUS.md)，A 暂停。B 分支 `codex/MUS-067-b-development`，现行源码由 `collab/account-b` 根目录 `handoff.json` 固定。MUS-067-CP1 已打通登录后的文字查询 → Java 审核/权限过滤 → Python 精确片段排序 → Vue 时间段试听；B 本轮使用自生成 MP3 和显式合成向量验证，**真实 CLAP、真实音乐索引和语义质量仍 blocked**。用户保留最终合并决定。
+**当前状态（2026-11-18 America/Chicago）：** B 继续负责开发、验证、发布和唯一 [STATUS](docs/STATUS.md)，A 暂停。当前任务分支 `codex/MUS-068-real-discovery-index`，以 `collab/account-b/handoff.json` 的 source_sha 为准。MUS-067 已接通 Java/Vue 文字检索和片段试听的合成闭环；**MUS-068 又完成真实音频索引导出、冻结 CLAP A 的独立云端实跑和 Python worker 验证**。真实模型的 Java/Vue 整链路和正式语义质量仍待验收，用户决定最终合并。
 
-## B 的文字检索检查点（MUS-067-CP1）
+## 当前 B 云端检查点：真实 CLAP / 音频索引（MUS-068）
+
+新增 MP3 实际 EOF → 单声道/48kHz/soxr_hq → 确定的10秒/5秒窗口与尾段补零 → 固定 CLAP A CPU FP32 → 512维片段及整曲精确索引。生产索引绑定内容、来源证明、预处理、模型/cache、源码和有效时间；worker 在启动时拒绝不完整或不一致的证明，生产构建/运行不会联网下载或回退合成向量。
+
+| 本轮 B 云端实际验证 | 结果 |
+|---|---|
+| 固定 A + 两首已知 development 音乐 | 2 首真实 MP3 / 74 个真实片段向量，索引构建通过 |
+| 文本/HTTP/排名复算/权限候选与版本边界 | 63 项断言通过；两短描述+100-token长描述，两种检索方式；>256 token 明确400 |
+| Python 单测与回归 | 64 项通过：构建23、原检索14、冻结预处理/loader19、显式资产工具8 |
+| 正式 worker CLI 与失败保护 | 5 个案例通过；重复成功/失败输出、内容不符、重算hash仍为partial的证明均拒绝，原索引未变 |
+| 预处理对照 | 两首新导出与原冻结 EOF reader 的 PCM 逐元素相同，最大差0；同操作者另实现复算，非A/B独立批准 |
+
+模型实跑准确代码为 `173763ca3da0f9b9ab84e95893b2189f27c52a45`，当时工作区干净。后续仅补显式资产准备工具/文档，推理与索引代码未变。Python socket 审计未见外部连接尝试，worker均已停止；本轮没有重建 Java/MySQL/Vue 或使用 Mac 本机资产。完整实际命令、失败和证据见 [MUS-068](docs/verification/MUS-068.md)。无训练、参考音频上传、人评、质量/P95或生产部署结论。
+
+独立云端恢复可使用已有 [requirements-spike.txt](services/audio-search/requirements-spike.txt) 准备私有 Python venv，再显式调用：
+
+```sh
+# 必须先准备 venv 和父目录；首次下载约2.87GB，输出必须全新。
+.local/b/mus068/venv/bin/python scripts/prepare_discovery_assets.py --slot b --download --output .local/b/mus068/assets-new
+# 已有本轮资产时只读校验，不联网、不加载神经模型：
+.local/b/mus068/venv/bin/python scripts/prepare_discovery_assets.py --slot b --verify-only --output .local/b/mus068/assets
+```
+
+资产计划固定权重/cache/两曲内容 pins；运行时不调用准备工具。通用准备工具已通过8项假HTTP/文件保护测试及本轮真实资产只读校验，未为测试重新下载整包；本轮实际首次获取收据单列保留。Java public API 与 Sonora 布局保持 E41；下一步 MUS-069 在新的 B 隔离环境做真实资源 ID/上传审核/Java gateway/Vue 试听整链路。
+
+## MUS-067 的文字检索与试听记录（历史合成闭环）
+
+以下345/89/14/43/13为067历史验证，不计入本轮068。
 
 `/music` 保留 Sonora 曲库，增量添加描述、片段/整曲方式、分类与标签筛选和片段试听。接口默认禁用；只有显式设置 `MUSIC_DISCOVERY_ENABLED`、内部共享密钥、索引/模型版本才启用。Python 只监听回环地址；公开接口继续由 Java 校验 JWT、账号、审核与删除状态。合成模式须 Python `--allow-synthetic` 和 Java `MUSIC_DISCOVERY_ALLOW_SYNTHETIC=true` 双方显式开启，页面会标记“合成联调模式 · 未运行语义模型”。
 

@@ -4,13 +4,15 @@
 
 ## 当前 B 检查点与交付
 
-- **MUS-068 / B / in_progress：** 用户选择网页云端开发；新独立clone/slot B、branch codex/MUS-068-real-discovery-index、base85537787606a138f0747cc8f776637c43745e0b7。GitHub push=true且任务分支创建成功；A/B feed45b3662/a2ec41d已取并sync，B仍全权负责。先冻结[E42及计划](verification/MUS-068-plan.md)，再实现真实音频索引导出/构建证明和故障验证；有界准备固定A/离线cache/两首既有development音乐，真实运行状态另记，不把067历史数字当本云端复现。
-- **068实施检查点：** 契约计划已发布 source6539631d4a7bfb679fb8e1653cd5647083f9005b / B feed462c147b12cfa79d55931787b8c94a13e0c6037b并回读。新增构建/证明/实际token校验代码已完成，23项显式单测与旧14检索回归通过（均非CLAP实跑），pip check通过；固定A权重SHA、RoBERTa缓存和两首既有development音频已获取，约2.867GB。原冻结预处理/loader回归因SDK eager分词器离线缓存缺失被阻塞，已在计划固定辅助tokenizer版本、禁止其神经权重和隐式联网；补缓存后再跑。当前真实CLAP编码/worker实跑仍0，接下来冻结干净源码再执行，失败输出保留。
-- **068占用：** 新Python discovery_build、build/test/runtime脚本；窄改discovery_index/server（生产构建证明/完整文本）；README/PROJECT/CONTRACTS/本STATUS/verification/MUS-068*/own latest。Java/Vue/schema/旧研究源码/依赖锁/A feed/派发不占用。资产仅B ignored私有目录、总下载<=6GiB、不读A或Mac目录。
-
+- **MUS-068 / B / review：** 网页云端独立clone/slot B，branch codex/MUS-068-real-discovery-index，base85537787606a138f0747cc8f776637c43745e0b7。先发布契约6539631/feed462c147，再发布实现173763ca3da0f9b9ab84e95893b2189f27c52a45/feedde5feb6；干净173763c首次真实构建与运行通过。ack A feed45b366229170f3af00456ba96fbada5946e5f61e，检查点双方同步未重新移交。详见[报告](verification/MUS-068.md)/[聚合证据](verification/MUS-068.json)/[资产pins](verification/MUS-068-assets.json)。
+- **068实际完成：** 真实MP3实际EOF/48k-soxr_hq/10s-5s/补零 → 固定A CPU FP32/identity → 512维精确索引；绑定内容/来源/模型/cache/源码/有效边界，验证后最后激活manifest；完整token实际ID/非pad检查、版本/内容/可见允许集合过滤。新增显式下载/只读资产命令，运行服务不下载。Java/Vue/schema/旧研究代码/锁/A feed和派发未改；没有读取Mac/A私有运行目录。
+- **068本轮B证据：** 两首真实开发音乐/74片段；构建命令38.24秒，独立runtime命令21.95秒（非P95）；64 Python测试/回归、63真实模型/HTTP断言、5个正式CLI/失败案例、2首冻结EOF reader PCM最大差0、真实资产只读校验均通过。100-token描述完整，>256拒400。构建/runtime/正式CLI均Python socket外部尝试0，所有worker停止；同操作方复算，非A独立审核或质量提升。
+- **068资产/模型：** B私有venv，既有requirements顶层版本/官方CPU wheel；A fae3e9c0（完整SHA见JSON）+固定RoBERTa、SDK import的BERT/BART只取分词器小文件/别名refs，不下载或运行其神经模型。模型/音频/cache约2.87GB，64个测试不含模型实跑；真实模型阶段另记。两曲来自已知development且同作者，未读保留test、未训练/调参/新做人评，不外推146曲研究。
+- **068失败保留：** 首次EOF测试float64 fixture与实际float32差1.86e-9，改fixture后严格相等；首个冻结回归在SDK辅助tokenizer导入前被阻塞，补固定缓存后19通过；首次CLI故障harness缺脚本sys.path导致ModuleNotFoundError，不算有效拒绝证据，修验证harness后5案例通过。原日志/部分目录保持，无生产模型/预处理容差放宽。
+- **068交付/占用：** 只改新discovery_build、窄改index/server、新build/test/runtime/prepare脚本、必要AGENTS/README/PROJECT/CONTRACTS/本STATUS/verification/own latest。CP发布后产品实施占用释放为可审核交付；B保留负责人和唯一台账，下一阶段重新登记。CLI push128，API顺序source后B feed非原子、分别回读；准确最终SHA由本次handoff给出。不推main、不自动合并。
 
 - **授权 / 来源：** task_id MUS-067-B/revision1；active_owner b；独立分支 codex/MUS-067-b-development，实际启动点 082dadc35213a696107d6f4f966735d854d860d3，产品基线 b296f35227cf399c4f645bbd433567a02c519825。ack A feed 45b366229170f3af00456ba96fbada5946e5f61e；已发布领取 source 778cad3b53ccf7196072ecf4f826a85d09d9b852 / B feed e4e7af89582013f599b997feb403733591041b76。检查点 sync 双方 fetched、exit0，未出现重新移交。
-- **MUS-067-CP1 / B / review：** 已冻结 E41 并实现 Java 鉴权文字查询→Python 精确候选/片段→Vue JWT 时间段试听；正常/空/无效、筛选、版本、内容、删除/拒审/越权与退出清理验证完成。保留整体 Sonora 与旧业务。**仅合成夹具闭环已验证，真实 CLAP / 音乐索引与语义质量 blocked。** 详见 [MUS-067](verification/MUS-067.md) / [聚合证据](verification/MUS-067.json)。实际交付 SHA 由本次 B feed.source_sha 给出；不能在自身提交内预填 SHA。
+- **MUS-067-CP1 / B / review（历史）：** E41 Java鉴权文字查询→Python精确候选/片段→Vue JWT试听以合成夹具验证，源码85537787606a138f0747cc8f776637c43745e0b7。正常/空/无效、筛选、版本、内容、删除/拒审/越权与退出清理均属原067范围；当时真实CLAP/音乐索引blocked，068已解除Python实模阻塞，真实Java/Vue及语义质量仍待验。详见 [MUS-067](verification/MUS-067.md) / [聚合证据](verification/MUS-067.json)，不能把当前feed SHA当067原交付SHA。
 - **本轮 B 实跑：** 完整 JDK17 + wrapper Maven3.9.9 默认测试345（新增13）、Node22测试89/build、Python14、原生MySQL/Java/Python真HTTP/SQL/Range43、无mock真实浏览器13、真实index/model不符两项503均通过。3首生成MP3/18窗口、3个合成账号；模型运行0。Maven代理/CA/JDK/进程附加与MySQL阻塞已解决，原失败保留；Compose/真实模型/质量/负载/部署未跑。本轮自启服务均已停止。
 - **接口 / 版本：** 新POST /api/discovery/search与GET /api/discovery/tracks/{id}/media，默认禁用，版本/内容绑定及approved-only；无迁移或锁变更。fixture index mus067-synthetic-v1 / model synthetic-text-v1，双边显式合成开关、页面披露；原CLAP A/identity/全文本保持，无训练/参考上传/保留test调参。
 - **交付范围 / 占用：** music 新discovery包/mapper/test、JWT新路由头和401、local可选配置；Python两新模块及fixture/Maven/验证脚本；Vue新panel/API/helper/test、Library增量/reviewAudio可选URL/Player标识；AGENTS/README/PROJECT/CONTRACTS/本STATUS/verification/own latest。CP1发布后上述产品文件占用释放为可审核交付；B保留负责人及唯一台账职责。A feed/派发/历史报告不改，不推main、不自动合并。
@@ -19,7 +21,8 @@
 | 当前阶段 | 状态 / owner | 依赖与下一步 |
 |---|---|---|
 | MUS-067-B 接管与首闭环 | in_progress / B（CP1 review） | 接管持续有效；本阶段代码和合成证据交付，用户决定最终合并 |
-| MUS-068 真实 identity 在线索引与复验 | in_progress / B（实模尚未通过） | E42/计划已冻结；实现导出与验证，并有界准备独立云端资产；若下载/依赖失败如实blocked，不另起训练 |
+| MUS-068 真实 identity 在线索引与复验 | review / B（Python真实链路通过） | 固定A/2首/74片段/真实HTTP与严格失败保护通过；Java/Vue实模整链路和质量不外推 |
+| MUS-069 真实资源ID与Java/Vue整链路 | todo / B | 基于068源码/资产，先建隔离Java/MySQL/Vue、绑定真实上传/审核ID并重建新版本索引，再实测鉴权检索/试听/撤回；不改主设计或训练 |
 | 训练扩展 / MusicCaps | blocked / B 后续协调 | 20个公开metadata可读不等于权利/音频可用；训练就绪0，维持identity与原评测隔离 |
 
 ## 移交前历史（以下状态不覆盖上方现行 B 结果）

@@ -9,7 +9,9 @@
 
 ## 允许范围与占用
 
-新增 services/audio-search/discovery_build.py，scripts/build_discovery_index.py、test_discovery_build.py、verify_discovery_runtime.py；必要窄改 discovery_index.py / discovery_server.py 以绑定真实构建证明及完整文本验证，复用原 checkpoint_model.py / preprocess.py 的冻结参数，不改旧研究源码或模型版本。允许更新 README、PROJECT、CONTRACTS、唯一 STATUS、verification/MUS-068* 和 own latest。Java/Vue/数据库/API/依赖锁/A feed/派发/历史报告不改；本任务不重跑无关 Java/Vue全套，不把旧结果当新执行。
+新增 services/audio-search/discovery_build.py，scripts/build_discovery_index.py、test_discovery_build.py、verify_discovery_runtime.py；必要窄改 discovery_index.py / discovery_server.py 以绑定真实构建证明及完整文本验证，复用原 checkpoint_model.py / preprocess.py 的冻结参数，不改旧研究源码或模型版本。允许更新 AGENTS、README、PROJECT、CONTRACTS、唯一 STATUS、verification/MUS-068* 和 own latest。Java/Vue/数据库/API/依赖锁/A feed/派发/历史报告不改；本任务不重跑无关 Java/Vue全套，不把旧结果当新执行。
+
+为满足独立云端环境重建，补充允许 scripts/prepare_discovery_assets.py、scripts/test_discovery_assets.py 及 docs/verification/MUS-068-assets.json：固定本轮已核权重/cache/两曲内容pins，只在显式--download且输出全新时获取；--verify-only不得联网或修改已有资产。运行服务/构建不自动下载，现有模型/索引/查询算法不变。原私有获取和运行证据保留，新准备工具不冒充已经重下全部资产；另做本地guard测试与既有资产只读校验。
 
 ## 冻结验收与内部契约 E42
 

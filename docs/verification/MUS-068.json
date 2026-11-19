@@ -1,0 +1,1082 @@
+{
+  "schema": "music-verification-mus068-v1",
+  "task_id": "MUS-068",
+  "task_revision": 1,
+  "owner": "b",
+  "slot": "B",
+  "status": "review",
+  "date": "2026-11-18",
+  "timezone": "America/Chicago",
+  "scope": "real_CLAP_audio_index_text_HTTP_on_two_fixed_development_recordings_not_semantic_quality",
+  "authority": {
+    "task": "MUS-067-B",
+    "revision": 1,
+    "active_owner": "b",
+    "A_paused": true,
+    "B_retains_development_validation_publication_and_STATUS": true,
+    "user_retains_final_merge": true,
+    "ack_peer_feed_sha": "45b366229170f3af00456ba96fbada5946e5f61e",
+    "peer_source_sha": "082dadc35213a696107d6f4f966735d854d860d3"
+  },
+  "source": {
+    "branch": "codex/MUS-068-real-discovery-index",
+    "base_sha": "85537787606a138f0747cc8f776637c43745e0b7",
+    "plan_source_sha": "6539631d4a7bfb679fb8e1653cd5647083f9005b",
+    "plan_feed_sha": "462c147b12cfa79d55931787b8c94a13e0c6037b",
+    "executed_source_sha": "173763ca3da0f9b9ab84e95893b2189f27c52a45",
+    "executed_B_feed_sha": "de5feb676a71aa5c41b4b4bcc98279aa585c8b66",
+    "executed_worktree_clean": true,
+    "final_delivery_sha_location": "collab/account-b:handoff.json source_sha",
+    "core_paths_unchanged_since_real_run": {
+      "services/audio-search/discovery_build.py": "6a7c43a407b99dd20f6fa425dd9677d0112f385ba8876b91283e863f8f1d943a",
+      "services/audio-search/discovery_index.py": "e1bd107a5e3d25fe4a106a39606dc4a0971834ea96b450b66f6548f1e67009bf",
+      "services/audio-search/discovery_server.py": "e9857e99edb0ca820383ec4e68dbe22ea4072233a68d8fe7bca13de8e9161cdc",
+      "services/audio-search/checkpoint_model.py": "11eb7f591aa06a224d2e6f7892b4c83df9c282ae80e69bbea920d75da2f86a19",
+      "services/audio-search/probe.py": "90df87c284cd6c44443c87e16aa8ae02b9d04393571e3519cb09588e1f342fed",
+      "services/audio-search/preprocess.py": "3027f7c027ee1a79fc9e418e24b37bebfc2c1ca28a62001eb55b738c035c57df",
+      "scripts/build_discovery_index.py": "6cee167cea9621dfa3496a829f428e9a184fc7a46b5837501d68956370254ba8",
+      "scripts/test_discovery_build.py": "e5453a1b00a9d871e245fa4a751216bcc7067b2834b5f0e67e331a7750df2147",
+      "scripts/verify_discovery_runtime.py": "f7e07ddf2ad19a3ce7c7805b2fb66d39c41588336818cd12d734f46e953a1f0d"
+    },
+    "post_run_changes": "explicit_asset_setup_tool_and_tests_plan_and_final_documentation_only",
+    "post_run_tool_sha256": {
+      "scripts/prepare_discovery_assets.py": "c59cddd2760f610329db97fb5318bb3754f5d65919ecbfdf1d13dc4a750dd7d8",
+      "scripts/test_discovery_assets.py": "8b9b814779ece9ba796501e3d9a36c10df31b2cb24a0f1a4c516767fd069db8b",
+      "docs/verification/MUS-068-assets.json": "4b613fb5d4ed4d083af9001f47b368200e1b556f62b1922235fe60019f258cdd"
+    },
+    "frozen_paths_unchanged_from_base": [
+      "services/audio-search/checkpoint_model.py",
+      "services/audio-search/probe.py",
+      "services/audio-search/preprocess.py",
+      "services/audio-search/requirements-spike.txt"
+    ],
+    "modified_files": [
+      "AGENTS.md",
+      "README.md",
+      "docs/CONTRACTS.md",
+      "docs/PROJECT.md",
+      "docs/STATUS.md",
+      "docs/collaboration/account-b/latest.md",
+      "docs/verification/MUS-068-assets.json",
+      "docs/verification/MUS-068-plan.md",
+      "docs/verification/MUS-068.json",
+      "docs/verification/MUS-068.md",
+      "scripts/build_discovery_index.py",
+      "scripts/prepare_discovery_assets.py",
+      "scripts/test_discovery_assets.py",
+      "scripts/test_discovery_build.py",
+      "scripts/verify_discovery_runtime.py",
+      "services/audio-search/discovery_build.py",
+      "services/audio-search/discovery_index.py",
+      "services/audio-search/discovery_server.py"
+    ]
+  },
+  "environment": {
+    "location": "independent_B_web_cloud_Linux_clone",
+    "Mac_connected": false,
+    "A_private_directories_read": false,
+    "runtime": {
+      "python": "3.12.14",
+      "packages": {
+        "numpy": "1.26.4",
+        "soundfile": "0.13.1",
+        "librosa": "0.11.0",
+        "soxr": "1.1.0",
+        "torch": "2.6.0+cpu",
+        "torchaudio": "2.6.0+cpu",
+        "torchvision": "0.21.0+cpu",
+        "transformers": "4.51.3",
+        "laion-clap": "1.1.7"
+      },
+      "working_tree_dirty": false
+    },
+    "pip_check": "passed",
+    "full_pip_freeze_sha256": "8ab1bc79865a84adb2789a71dd3f74103b018b866dd0ae6ac6d3cf5aa2f841d4",
+    "system_packages_or_old_locks_changed": false
+  },
+  "model": {
+    "id": "A",
+    "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "checkpoint_filename": "music_audioset_epoch_15_esc_90.14.pt",
+    "checkpoint_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+    "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "audio_architecture": "HTSAT-base",
+    "fusion": false,
+    "strict_missing": [],
+    "strict_unexpected": [],
+    "removed_nonlearned_position_ids": true,
+    "loader": "torch_weights_only_true_mmap_cpu_strict_v1",
+    "device": "cpu",
+    "dtype": "float32",
+    "adapter": "identity",
+    "text_policy": "fulltext256_no_truncation_actual_ID_EOS_mask_check",
+    "dimensions": 512,
+    "audio_window_samples": 480000,
+    "audio_encode_batch_size": 2,
+    "SDK_audio_quantization": "float32_to_int16_to_float32_use_tensor_false",
+    "separate_real_model_processes": 3,
+    "audio_model_processes": 1,
+    "auxiliary_tokenizer_revisions": {
+      "bert": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "bart": "aadd2ab0ae0c8268c7c9693540e9904811f36177"
+    },
+    "auxiliary_neural_weights_downloaded_or_run": false,
+    "offline_cache_files": {
+      "roberta/config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+      "roberta/vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655",
+      "roberta/merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+      "roberta/model.safetensors": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+      "roberta/tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+      "roberta/tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+      "import-bert/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "import-bert/config.json": "7160e1553ad2ca51d8c1cb066be533db31826e12d173824c1bb0cb1a4f187d20",
+      "import-bert/tokenizer.json": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98",
+      "import-bert/tokenizer_config.json": "a025160ef0431f1a392f6f050c1310f4c5d9fb6f275932dbccba73c4d214bf10",
+      "import-bert/refs-main": "2cddf5a9b63cbf6d5c80c1f9c5ceee322cd0a5d614774e6daf7e37e99ad94d94",
+      "import-roberta/vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655",
+      "import-roberta/merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+      "import-roberta/config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+      "import-roberta/tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+      "import-roberta/tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+      "import-roberta/refs-main": "11c68c3e779c25a0bbefd88f7bbd5cb82d1bc8b5beeaa988df782fa888f9ce83",
+      "import-bart/vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655",
+      "import-bart/merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+      "import-bart/config.json": "c4022c931216afcb778991477332e5312aca8be478027ee3a8bf34b7004c44e2",
+      "import-bart/tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+      "import-bart/refs-main": "ddd2ec46c3897a91ad2bf4aea0fbf2de749e5ff9d0cb29ca8887623be4c0af19"
+    },
+    "cache_pin_count": 22
+  },
+  "data": {
+    "partition": "development_source_candidates_not_held_out",
+    "preselected_before_scores": true,
+    "same_author": true,
+    "tracks": [
+      {
+        "track_id": "680001",
+        "content_bytes": 3068475,
+        "content_md5": "a6e429ea154914e742824400a4219f7f",
+        "content_sha256": "25a18be2e8b47ee75c336d9e27ac709bf71f0409806d696ab49ea2bddc113d80",
+        "duration_ms": 153312,
+        "source_frames": 6761088,
+        "declared_source_frames": 6771806,
+        "source_sample_rate_hz": 44100,
+        "source_channels": 2,
+        "decoded_samples": 7359008,
+        "pcm_sha256": "96751f6076b0144416569fba1abd47b63f6d34c98c16dec565a270d98f93129a",
+        "source_proof_sha256": "59d689aae75539159e2b05a76a90dea264d8d58dda2a9a6dd573101cd26c1aeb",
+        "evidence_sha256": [
+          "54802ad340562624b9d1c9c97aa9f005e2b9bf79001f8a1a07ed857e68b2164a",
+          "479019ed42fd8384c63c04bd95dc6d0e0e0da505ddd6f567a13018c724f8416d",
+          "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        ],
+        "windows": 30,
+        "source_id": "USUAN2300003",
+        "title": "Morning",
+        "artist": "Kevin MacLeod",
+        "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN2300003",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "Morning — Kevin MacLeod (incompetech.com), CC BY 4.0",
+        "java_database_binding": "not_yet_bound_controlled_Python_catalog_ID"
+      },
+      {
+        "track_id": "680002",
+        "content_bytes": 8987716,
+        "content_md5": "5f5ff4b0ee894c3a7f7b77c89103bd0f",
+        "content_sha256": "f2fb95ce220ba962687715fef807d9215317388e804c84a09fb4eae7997d65fa",
+        "duration_ms": 224640,
+        "source_frames": 10782720,
+        "declared_source_frames": 10785259,
+        "source_sample_rate_hz": 48000,
+        "source_channels": 2,
+        "decoded_samples": 10782720,
+        "pcm_sha256": "c4f69ce758d9f6877af89706df6375d78711e335997fc12b1b0e6abdd91ac52b",
+        "source_proof_sha256": "76661ab95b91a333617fb5fc425e127d73717400505012c4ba67cc624f6524c8",
+        "evidence_sha256": [
+          "54802ad340562624b9d1c9c97aa9f005e2b9bf79001f8a1a07ed857e68b2164a",
+          "479019ed42fd8384c63c04bd95dc6d0e0e0da505ddd6f567a13018c724f8416d",
+          "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        ],
+        "windows": 44,
+        "source_id": "USUAN1100695",
+        "title": "Take the Lead",
+        "artist": "Kevin MacLeod",
+        "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100695",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "Take the Lead — Kevin MacLeod (incompetech.com), CC BY 4.0",
+        "java_database_binding": "not_yet_bound_controlled_Python_catalog_ID"
+      }
+    ],
+    "held_out_read": false,
+    "human_labels_created": false,
+    "raw_files_in_Git": false,
+    "attribution_note": "Kevin MacLeod / incompetech.com / CC BY 4.0; original audio unchanged; captured source statements and hashes are not automatic copyright authentication"
+  },
+  "index": {
+    "status": "built_real_audio_index",
+    "engine_kind": "clap_identity",
+    "index_version": "mus068-clap-a-identity-v1",
+    "model_version": "clap-A-fae3e9c0-identity-fulltext256-v1",
+    "tracks": 2,
+    "segments": 74,
+    "manifest_sha256": "49aafb30426646936a0d3d3b82bba3871a9d1e0b99c83820d35b06e0b43790bb",
+    "feature_sha256": "b435475058b8dc1c2090ff3c4e443c65362565dedb8e1e7695033d2a3fbda666",
+    "build_proof_sha256": "b93b6de5acee4f1eaf930779d0357a21c718eec860d7cdd08484b8ec066a6036",
+    "elapsed_ms": 36883.70733199963,
+    "preprocessing_version": "discovery-soundfile-eof-soxr_hq-mono48k-zero10s-hop5s-v1",
+    "catalog_sha256": "c5ffecafde9aa9f58e2b530824212cc16d69a42da62c4356c51bd6fa3ca2c913",
+    "index_files_unchanged_after_faults": {
+      "model-ready.json": "1e63b7e62f1e0bb3fece750491fd580e13d1e0b1850ae05209aa0d7520f507e9",
+      "track-progress-680001.json": "3462ef7e323b0e1228de7d5b2f0e61a7da1ca50ecae8c2d79240545279055750",
+      "track-progress-680002.json": "d4569d2e877547c885faf1334d1baaf065194414b9a4d6dac6682c16f0f1e020",
+      "manifest.json": "49aafb30426646936a0d3d3b82bba3871a9d1e0b99c83820d35b06e0b43790bb",
+      "result.json": "921d0db59f55fb5656654aa2fddf09e046238deef98af7356d7cb204553f96cb",
+      "build-proof.json": "b93b6de5acee4f1eaf930779d0357a21c718eec860d7cdd08484b8ec066a6036",
+      "features.npz": "b435475058b8dc1c2090ff3c4e443c65362565dedb8e1e7695033d2a3fbda666"
+    },
+    "raw_vectors_or_generated_manifest_committed": false,
+    "actual_Java_DB_resource_IDs": false
+  },
+  "validation": {
+    "unit_regression_total": 64,
+    "unit_suites": [
+      {
+        "command": "python scripts/test_discovery_build.py -v",
+        "passed": 23,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "scope": "explicit_fake_SDK_and_generated_MP3_controls",
+        "evidence": ".local/b/mus068/verification/build-tests-final.log"
+      },
+      {
+        "command": "python scripts/test_discovery.py",
+        "passed": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "scope": "existing_fixture_regression",
+        "evidence": ".local/b/mus068/verification/discovery-tests-final.log"
+      },
+      {
+        "command": "PYTHONPATH=services/audio-search python -m unittest test_preprocess test_checkpoint_model",
+        "passed": 19,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "scope": "frozen_preprocessing_and_explicit_synthetic_weight_loader_units",
+        "evidence": ".local/b/mus068/verification/frozen-regression-02.log"
+      },
+      {
+        "command": "python scripts/test_discovery_assets.py -v",
+        "passed": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "scope": "fake_HTTP_complete_setup_and_failure_guards",
+        "evidence": ".local/b/mus068/verification/asset-setup-tests-final.log"
+      }
+    ],
+    "real_build_and_runtime": {
+      "source_sha": "173763ca3da0f9b9ab84e95893b2189f27c52a45",
+      "source_clean": true,
+      "status": "passed",
+      "stages": [
+        {
+          "name": "real-build-01",
+          "started_at": "2026-11-19T00:09:55.959723+00:00",
+          "command": [
+            "$REPO/.local/b/mus068/venv/bin/python",
+            "$REPO/.local/b/mus068/offline_entry.py",
+            "$REPO/.local/b/mus068/verification/build-network-audit-01.json",
+            "scripts/build_discovery_index.py",
+            "--slot",
+            "b",
+            "--catalog",
+            "$REPO/.local/b/mus068/assets/music/catalog.json",
+            "--audio-root",
+            "$REPO/.local/b/mus068/assets/music",
+            "--checkpoint",
+            "$REPO/.local/b/mus068/assets/model/music_audioset_epoch_15_esc_90.14.pt",
+            "--offline-cache",
+            "$REPO/.local/b/mus068/assets/hf-cache",
+            "--output",
+            "$REPO/.local/b/mus068/index-01",
+            "--index-version",
+            "mus068-clap-a-identity-v1",
+            "--batch-size",
+            "2"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 38.235574051000185,
+          "peak_child_rss_kib": 2358388
+        },
+        {
+          "name": "real-runtime-01",
+          "started_at": "2026-11-19T00:10:34.196140+00:00",
+          "command": [
+            "$REPO/.local/b/mus068/venv/bin/python",
+            "$REPO/.local/b/mus068/offline_entry.py",
+            "$REPO/.local/b/mus068/verification/runtime-network-audit-01.json",
+            "scripts/verify_discovery_runtime.py",
+            "--slot",
+            "b",
+            "--catalog",
+            "$REPO/.local/b/mus068/assets/music/catalog.json",
+            "--audio-root",
+            "$REPO/.local/b/mus068/assets/music",
+            "--checkpoint",
+            "$REPO/.local/b/mus068/assets/model/music_audioset_epoch_15_esc_90.14.pt",
+            "--offline-cache",
+            "$REPO/.local/b/mus068/assets/hf-cache",
+            "--index",
+            "$REPO/.local/b/mus068/index-01/manifest.json",
+            "--output",
+            "$REPO/.local/b/mus068/runtime-01"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 21.950355477999892,
+          "peak_child_rss_kib": 2411564
+        }
+      ]
+    },
+    "real_runtime_assertions": 63,
+    "runtime_assertions_are_not_queries_or_quality_samples": true,
+    "real_query_mode_groups": 6,
+    "fixed_text_token_proofs": [
+      {
+        "untruncated_tokens": 8,
+        "encoded_nonpad_tokens": 8,
+        "input_ids_sha256": "68495dc911471d00672aa2d3807e21a9ef30dcf2f39720f8091d7d23f4b119fa"
+      },
+      {
+        "untruncated_tokens": 9,
+        "encoded_nonpad_tokens": 9,
+        "input_ids_sha256": "7c2d946974785ebabaf920bd570e7a64ac306f1bcefd60efb0c44c05c01394ae"
+      },
+      {
+        "untruncated_tokens": 100,
+        "encoded_nonpad_tokens": 100,
+        "input_ids_sha256": "3242e3c2d433199b9a135a252009c1008b7cbd79c3e9d4d3ed20bae53ccb8ee7"
+      }
+    ],
+    "runtime_checks": [
+      {
+        "name": "catalog matches independently opened index proof",
+        "passed": true
+      },
+      {
+        "name": "index and input content identities match",
+        "passed": true
+      },
+      {
+        "name": "actual MP3 EOF and resampled PCM 680001",
+        "passed": true
+      },
+      {
+        "name": "actual MP3 EOF and resampled PCM 680002",
+        "passed": true
+      },
+      {
+        "name": "strict real CPU FP32 identity model and matching cache",
+        "passed": true
+      },
+      {
+        "name": "complete long text exceeds77 and fits256 without truncation",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "real text query 0/segment",
+        "passed": true
+      },
+      {
+        "name": "independent cosine ranks 0/segment",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 0/segment/680001",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 0/segment/680002",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "real text query 0/whole_track",
+        "passed": true
+      },
+      {
+        "name": "independent cosine ranks 0/whole_track",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 0/whole_track/680001",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 0/whole_track/680002",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "real text query 1/segment",
+        "passed": true
+      },
+      {
+        "name": "independent cosine ranks 1/segment",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 1/segment/680002",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 1/segment/680001",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "real text query 1/whole_track",
+        "passed": true
+      },
+      {
+        "name": "independent cosine ranks 1/whole_track",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 1/whole_track/680002",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 1/whole_track/680001",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "real text query 2/segment",
+        "passed": true
+      },
+      {
+        "name": "independent cosine ranks 2/segment",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 2/segment/680001",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 2/segment/680002",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "real text query 2/whole_track",
+        "passed": true
+      },
+      {
+        "name": "independent cosine ranks 2/whole_track",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 2/whole_track/680001",
+        "passed": true
+      },
+      {
+        "name": "real clip bounds/nonoverlap 2/whole_track/680002",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "worker authentication required",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "empty whitelist avoids model encoding",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "current whitelist filters before topk",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "stale indexed content excluded",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "actual worker rejects index_version",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "actual worker rejects model_version",
+        "passed": true
+      },
+      {
+        "name": "bounded HTTP response",
+        "passed": true
+      },
+      {
+        "name": "HTTP response is no-store",
+        "passed": true
+      },
+      {
+        "name": "actual tokenizer rejects over256 without truncation",
+        "passed": true
+      }
+    ],
+    "quality_labels_present": false,
+    "fault_and_production_CLI_cases": [
+      {
+        "name": "repeat-success",
+        "exit_code": 1,
+        "model_modules_loaded": {
+          "torch": false,
+          "laion_clap": false,
+          "transformers": false
+        }
+      },
+      {
+        "name": "bad-content-before-model",
+        "exit_code": 1,
+        "model_modules_loaded": {
+          "torch": false,
+          "laion_clap": false,
+          "transformers": false
+        }
+      },
+      {
+        "name": "repeat-failure",
+        "exit_code": 1,
+        "model_modules_loaded": {
+          "torch": false,
+          "laion_clap": false,
+          "transformers": false
+        }
+      },
+      {
+        "name": "worker-rehashed-partial-proof",
+        "exit_code": 1,
+        "model_modules_loaded": {
+          "torch": false,
+          "laion_clap": false,
+          "transformers": false
+        }
+      },
+      {
+        "name": "production-CLI-real-query",
+        "http_status": 200,
+        "engine_kind": "clap_identity",
+        "tracks": 2
+      }
+    ],
+    "fault_case_total": 5,
+    "frozen_PCM_comparison": {
+      "status": "passed",
+      "checks": 2,
+      "rows": [
+        {
+          "track_id": "680001",
+          "samples": 7359008,
+          "pcm_sha256": "96751f6076b0144416569fba1abd47b63f6d34c98c16dec565a270d98f93129a",
+          "max_absolute_difference": 0.0,
+          "frozen_offline_reader": "research_corpus.decode_source_mono",
+          "operator": "b_same_operator_separate_implementation_not_account_A_review"
+        },
+        {
+          "track_id": "680002",
+          "samples": 10782720,
+          "pcm_sha256": "c4f69ce758d9f6877af89706df6375d78711e335997fc12b1b0e6abdd91ac52b",
+          "max_absolute_difference": 0.0,
+          "frozen_offline_reader": "research_corpus.decode_source_mono",
+          "operator": "b_same_operator_separate_implementation_not_account_A_review"
+        }
+      ]
+    },
+    "network_audit": {
+      "build": {
+        "external_attempts": [],
+        "loopback_connections": 0,
+        "guard": "Python socket audit; offline HF flags separately enforced"
+      },
+      "runtime": {
+        "external_attempts": [],
+        "loopback_connections": 13,
+        "guard": "Python socket audit; offline HF flags separately enforced"
+      },
+      "production_cli": {
+        "external_attempts": [],
+        "loopback_connections": 0,
+        "guard": "Python socket audit; offline HF flags separately enforced",
+        "model_modules_loaded": {
+          "torch": true,
+          "laion_clap": true,
+          "transformers": true
+        }
+      },
+      "asset_verify_only": {
+        "external_attempts": [],
+        "loopback_connections": 0,
+        "guard": "Python socket audit; offline HF flags separately enforced",
+        "model_modules_loaded": {
+          "torch": false,
+          "laion_clap": false,
+          "transformers": false
+        }
+      }
+    },
+    "network_audit_limit": "Python socket audit and HF/Transformers offline flags; not an operating-system-wide network audit",
+    "all_owned_workers_stopped": true,
+    "asset_setup": {
+      "plan_sha256": "4b613fb5d4ed4d083af9001f47b368200e1b556f62b1922235fe60019f258cdd",
+      "verify_only_real_assets": "passed_no_network_or_model_import",
+      "public_generic_download_CLI_reexecuted_against_live_full_bundle": false,
+      "original_live_acquisition": "private bounded fixed-pin setup; original receipts hashed below",
+      "asset_budget_bytes": 4294967296,
+      "overall_preplanned_download_budget_bytes": 6442450944,
+      "auxiliary_tokenizer_download_bytes": 3410908,
+      "approx_asset_size_GB": 2.87,
+      "fake_HTTP_setup_test_total": 8,
+      "complete_fake_bundle_flow_included": true
+    }
+  },
+  "retained_failures": [
+    {
+      "stage": "initial_build_units",
+      "result": "1_of_21_failed",
+      "reason": "fixture float64 versus actual decoder float32, max_difference_1.86e-9",
+      "change": "fixture explicitly float32; strict equality retained; final 23 pass"
+    },
+    {
+      "stage": "initial_frozen_regression",
+      "result": "tests_not_started_import_blocked",
+      "reason": "SDK eager auxiliary tokenizer offline caches absent",
+      "change": "fixed versioned small tokenizer files and aliases; old code unchanged; final 19 pass"
+    },
+    {
+      "stage": "private_fault_harness_01",
+      "result": "failed_not_counted_as_rejection_evidence",
+      "reason": "runpy did not add script directory to sys.path; ModuleNotFoundError",
+      "change": "private harness corrected sys.path and strict expected JSON checks; new faults-02 five cases pass; old outputs preserved"
+    },
+    {
+      "stage": "native_Git_publish",
+      "result": "push128",
+      "reason": "native push transport failed; GitHub API write capability succeeded",
+      "change": "sequential API source then own feed; non-atomic; CAS and exact readbacks required"
+    }
+  ],
+  "nonblocking_model_warnings": [
+    "PyTorch meshgrid compatibility warning",
+    "RoBERTa preload pooler initialization warning; complete strict A checkpoint subsequently loaded, no missing/unexpected keys"
+  ],
+  "evidence_files": [
+    {
+      "path": ".local/b/mus068/assets/asset-receipts.json",
+      "bytes": 5941,
+      "sha256": "a450af96c96f5a8ce84fc2610dd6cb29c76b8a9bba0fb56983e17cd6fcb44e53",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/assets/import-tokenizer-receipts.json",
+      "bytes": 2378,
+      "sha256": "9d45bd4f43edbc0c1b6766c13269dffc4b8868a4ef585437a0f839c04d576f38",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/assets/metadata-receipts.json",
+      "bytes": 1204,
+      "sha256": "aad002f440b695c36f07de0a8442e54d4b5690726d2e5f8dec62ff6c8520fb0b",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/assets/music/catalog.json",
+      "bytes": 878,
+      "sha256": "c5ffecafde9aa9f58e2b530824212cc16d69a42da62c4356c51bd6fa3ca2c913",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/faults-02/result.json",
+      "bytes": 1743,
+      "sha256": "8226bcdc862528ca1bf76216b548c38b280fce53829329239c916561805ab66d",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/faults-02/worker-cli-audit.json",
+      "bytes": 232,
+      "sha256": "81e09e719f253fe328bc29024db9d8afebbdeba5a18bca7445718041e6e27e98",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/index-01/build-proof.json",
+      "bytes": 18472,
+      "sha256": "b93b6de5acee4f1eaf930779d0357a21c718eec860d7cdd08484b8ec066a6036",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/index-01/model-ready.json",
+      "bytes": 2835,
+      "sha256": "1e63b7e62f1e0bb3fece750491fd580e13d1e0b1850ae05209aa0d7520f507e9",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/index-01/result.json",
+      "bytes": 522,
+      "sha256": "921d0db59f55fb5656654aa2fddf09e046238deef98af7356d7cb204553f96cb",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/offline_entry.py",
+      "bytes": 989,
+      "sha256": "d486215e10eed454ef410892aa660828c6a93dd18a2d08a939ccaaf41ab368d3",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/offline_entry_v3.py",
+      "bytes": 1213,
+      "sha256": "5c86ea046431fbb9c914b9e98948f4a17deed9e2111ddbf28a9b8f7f281cd07b",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/run_real.py",
+      "bytes": 2356,
+      "sha256": "0acaebad002b4e9cb7eb41a5f42ba4ff945581d3739c07c9e1ceb9290b88a15e",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/runtime-01/result.json",
+      "bytes": 8359,
+      "sha256": "fc5462a2f51a65e2865bbd5545953dc17b0240ad1fab4049a8fb05d027a0333f",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/asset-metadata.log",
+      "bytes": 2819,
+      "sha256": "ad4b63c53708de2ca4c00ed77f160e787e8bceeb52bae08d6347fbe2f50e894e",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/asset-setup-tests-final.log",
+      "bytes": 1170,
+      "sha256": "2dba82cdc103f1bd218196cb008c674a642271092fa278b8c22ed6322f1ec1dd",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/asset-setup-tests.log",
+      "bytes": 995,
+      "sha256": "20ee4e8f2bc8a3de215d333a2a1ca6e635bdd8ee03a3b019ae7edeab32067acd",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/asset-verify-network.json",
+      "bytes": 235,
+      "sha256": "37f36d264fd6f53b7fe36eba6ba107cc49541c4fa656b825a32061a674f25895",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/asset-verify-only.log",
+      "bytes": 257,
+      "sha256": "c22ebdffac7cc863033c9a8b116371ac965a0b0609d4ec2d6ae21dce5b9d9da0",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/build-network-audit-01.json",
+      "bytes": 131,
+      "sha256": "6cafffa4b960080985919b4abe0dc5796b63e5617bcd7b2c2b3a7263c1d91702",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/build-tests-01.log",
+      "bytes": 4591,
+      "sha256": "8e1fc845e47ff9458c77172f926f8128a720912607ff4e9a57c4e9bcd5744c6c",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/build-tests-02.log",
+      "bytes": 2998,
+      "sha256": "d2e181ae882037ab2a7bac9645777a2fa4455c7a3fa7f7088a9c2923b176df94",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/build-tests-03.log",
+      "bytes": 3280,
+      "sha256": "56b6adbea044dba86d6358cbb09e2983c0a4b444bc6efd3ad2128cdcacaaa649",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/build-tests-final.log",
+      "bytes": 3280,
+      "sha256": "3cb7644dd202b744873ca1120e5ba502251c023050aeeef66203024f57ac3f1b",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/discovery-regression-01.log",
+      "bytes": 113,
+      "sha256": "b85047bbed0ceb94e7847aeb6d129a02310e620c46aa682862c59efcea10e404",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/discovery-tests-final.log",
+      "bytes": 113,
+      "sha256": "90f23e713569d9922065a25dec3586c93d60ca89e341e9fe0ecf8210aeb6c1ae",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/faults-01.log",
+      "bytes": 404,
+      "sha256": "d6231694b53677166bb403259c80c6050c4d1b44809654f906e1a39bc7b17448",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/faults-02.log",
+      "bytes": 175,
+      "sha256": "2e27cb49f4605daea18e80e0d98398c006398820d54b50a93625c43c605517f7",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/frozen-model-preprocess-regression.log",
+      "bytes": 3042,
+      "sha256": "8d370cf4d5320332b38b9211c8b230c4b9f7c0f495fdce1dde3c17c307172848",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/frozen-regression-02.log",
+      "bytes": 119,
+      "sha256": "2f246b515a1268b68b98b4cc8760c25487c14f825b88e4464df2c3c2e8ccadb0",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/implementation-publication-input.json",
+      "bytes": 1867,
+      "sha256": "9aef9e84e8f0d9660912e1e14c67e7565d7abe3e2c716a022e8ac90a159d54bb",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/import-tokenizer-setup.log",
+      "bytes": 114,
+      "sha256": "bdaca054ccfa0e71bd74c602d6e6831d5cc881afa4ad9d68e33bbedaaa753181",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pcm-parity.json",
+      "bytes": 743,
+      "sha256": "bf278639a02788c81183f2a24a4ca62d2e48e276abb7793eee0010bb7d86d971",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pcm-parity.log",
+      "bytes": 59,
+      "sha256": "22ac22d980de7973c1421da92d391382c97aefee078533b67ae6b51aa00be92f",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pip-clap.json",
+      "bytes": 1058703,
+      "sha256": "a6dfd8325712ac737c3a89aa23f8b25028516a44d841c82e4b3bcbf864ec0168",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pip-clap.log",
+      "bytes": 29533,
+      "sha256": "984824cfd8b316f7daae2d24460197a1818adf98bc40bf3ab6cf2f3568ec788c",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pip-cpu.json",
+      "bytes": 125869,
+      "sha256": "418b8f4aaaf87e2af13e85f487f993fd01708b72b58f03b36899d6ab0da6e3a7",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pip-cpu.log",
+      "bytes": 5007,
+      "sha256": "b8b75b89079142b214dae0b22e767c4981738301b993f42e267eb16c7c976e24",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/pip-freeze.txt",
+      "bytes": 1583,
+      "sha256": "8ab1bc79865a84adb2789a71dd3f74103b018b866dd0ae6ac6d3cf5aa2f841d4",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/prepare-assets.log",
+      "bytes": 3918,
+      "sha256": "63a656b5049f968853a563d77d1171dc05ab2e800382ddcd676ccc136e33f3c8",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/publish-plan-cli.log",
+      "bytes": 141,
+      "sha256": "9100778c7b63971c1cb00f713a80c3c77c55eaa93e269bb5c1667d4831961525",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/real-build-01.log",
+      "bytes": 1162,
+      "sha256": "bc9c26a49ebd375be8169e7fe79c1fda84815864270117c7a36251665dfd60ba",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/real-run-01.json",
+      "bytes": 2772,
+      "sha256": "dfe92cd67019aa3b00d520133c42f9469b175db518ac5ebc2d3b6520b56306d8",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/real-runtime-01.log",
+      "bytes": 773,
+      "sha256": "76bdbf0753b19b1c82349483879a468182b843091f2a8eca03490bba611ec70b",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/runtime-network-audit-01.json",
+      "bytes": 132,
+      "sha256": "0e5fa32fb96abd2ae358ca71eb6a915c45f1219e94f23015ccc722b007fbacd3",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verification/sync-before-report.log",
+      "bytes": 519,
+      "sha256": "6bcb96a2c5fc285bd2aef3e5af0a189c32a9a8735d985d770af61366a6ad0e27",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verify_faults_02.py",
+      "bytes": 6649,
+      "sha256": "1a1e9f90b134010d249a6209583527d9c64c2ea66443d574714775f466715107",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    },
+    {
+      "path": ".local/b/mus068/verify_pcm_parity.py",
+      "bytes": 1523,
+      "sha256": "c7c177bf886c57b94677a787b64fe18478cec7296ad3c87392d1812e87965a50",
+      "availability": "B_private_ignored_not_committed_or_transferred"
+    }
+  ],
+  "evidence_availability": "hashes and summaries are public; originals are private B ignored files and are not transferred by Git; recreate with pinned assets in another environment",
+  "not_executed": [
+    "Java_Maven_MySQL_Vue_browser_this_cloud_environment",
+    "real_Java_resource_upload_approval_binding_and_gateway_browser_playback",
+    "current_real_multiuser_visibility_deletion_rejection_end_to_end",
+    "human_relevance_or_localization_quality",
+    "held_out_evaluation",
+    "training_finetuning_or_adapter_selection",
+    "reference_audio_upload",
+    "ANN_or_extra_infrastructure",
+    "P95_load_or_production_deployment",
+    "main_merge"
+  ],
+  "historical_MUS067_results_not_new_runs": {
+    "Java": 345,
+    "Node": 89,
+    "Python": 14,
+    "HTTP": 43,
+    "browser": 13
+  },
+  "publication": {
+    "method": "GitHub_API_sequential_source_then_B_feed_non_atomic",
+    "native_CLI_push_exit_code": 128,
+    "final_exact_source_feed_and_readback": "recorded_in_handoff_and_publication_receipt_after_commit",
+    "main_unchanged_expected_sha": "b81f57c79e1cefb96c2055df4ae438aa24fb475c",
+    "force_push_or_final_merge": false,
+    "implementation_paths_release": "after_successful_source_and_feed_readback",
+    "B_STATUS_ownership_retained": true
+  },
+  "next_task": {
+    "id": "MUS-069",
+    "owner": "b",
+    "status": "todo",
+    "goal": "isolated_Java_MySQL_Vue_with_real_upload_approved_DB_IDs_new_index_and_gateway_UI_permission_verification",
+    "requires_A_resume": false
+  }
+}
