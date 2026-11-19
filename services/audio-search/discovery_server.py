@@ -84,6 +84,7 @@ def main():
             require(not args.allow_synthetic and args.checkpoint and args.offline_cache,
                     'Explicit checkpoint and offline cache required', 503, 'model_unavailable')
             encoder = ClapTextEncoder(args.checkpoint, args.offline_cache)
+            encoder.verify_index(index)
         server = make_server(index, encoder, os.environ.get('MUSIC_DISCOVERY_SECRET', ''), args.port)
         print(json.dumps({'status': 'listening', 'host': '127.0.0.1', 'port': server.server_port,
                           'engine_kind': index.meta['engine_kind'], 'index_version': index.meta['index_version'],

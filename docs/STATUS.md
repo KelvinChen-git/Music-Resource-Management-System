@@ -5,6 +5,7 @@
 ## 当前 B 检查点与交付
 
 - **MUS-068 / B / in_progress：** 用户选择网页云端开发；新独立clone/slot B、branch codex/MUS-068-real-discovery-index、base85537787606a138f0747cc8f776637c43745e0b7。GitHub push=true且任务分支创建成功；A/B feed45b3662/a2ec41d已取并sync，B仍全权负责。先冻结[E42及计划](verification/MUS-068-plan.md)，再实现真实音频索引导出/构建证明和故障验证；有界准备固定A/离线cache/两首既有development音乐，真实运行状态另记，不把067历史数字当本云端复现。
+- **068实施检查点：** 契约计划已发布 source6539631d4a7bfb679fb8e1653cd5647083f9005b / B feed462c147b12cfa79d55931787b8c94a13e0c6037b并回读。新增构建/证明/实际token校验代码已完成，23项显式单测与旧14检索回归通过（均非CLAP实跑），pip check通过；固定A权重SHA、RoBERTa缓存和两首既有development音频已获取，约2.867GB。原冻结预处理/loader回归因SDK eager分词器离线缓存缺失被阻塞，已在计划固定辅助tokenizer版本、禁止其神经权重和隐式联网；补缓存后再跑。当前真实CLAP编码/worker实跑仍0，接下来冻结干净源码再执行，失败输出保留。
 - **068占用：** 新Python discovery_build、build/test/runtime脚本；窄改discovery_index/server（生产构建证明/完整文本）；README/PROJECT/CONTRACTS/本STATUS/verification/MUS-068*/own latest。Java/Vue/schema/旧研究源码/依赖锁/A feed/派发不占用。资产仅B ignored私有目录、总下载<=6GiB、不读A或Mac目录。
 
 

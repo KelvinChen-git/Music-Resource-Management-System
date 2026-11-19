@@ -24,6 +24,7 @@
 
 - 新建 B 私有 Python venv，使用既有 requirements-spike.txt 的准确顶层版本；CPU wheel来源为官方 PyTorch与PyPI，不升级旧锁，不做系统安装或关闭TLS。
 - 只尝试固定CLAP A文件（HF lukewys/laion_clap revision b3708341862f581175dba5c356a4ebf74a9b6651、2352471003 bytes、完整SHA），以及固定FacebookAI/roberta-base revision e2da8e2f811d1448a5b465c236feacd80ffbac7b的必要cache。固定pins校验后才允许restricted weights_only/strict loader。
+- 2026-11-18导入预检发现laion-clap1.1.7的training/data.py会在import时构造BERT、RoBERTa别名和BART三个分词器（未参与本A/RoBERTa推理的额外模型分支）。补充固定的必要离线分词器缓存：google-bert/bert-base-uncased revision86b5e0934494bd15c9632b12f734a8a67f723594与facebook/bart-base revisionaadd2ab0ae0c8268c7c9693540e9904811f36177，只取tokenizer/config文件（合计上限8MiB），不取BERT/BART神经权重。RoBERTa别名从已核同revision缓存复制。旧import阻塞原件保留，不mock真实编码器、不修改旧研究模块或切模型；新增cache文件及别名refs纳入构建/查询指纹校验，仍包含在总6GiB预算内。
 - 音乐最多2首，固定复用既有development_source_candidates_not_held_out的USUAN2300003 Morning与USUAN1100695 Take the Lead；从当前官方Incompetech元数据、作品页及CC BY4.0证明核验后获取。每文件<=30MiB，许可/身份/访问不通过就记录blocked，不自动换曲或扩库。保留attribution/原字节与获取收据；不读项目保留test/原标注，不声明来源独立或新增评测集。
 - 总下载预算6GiB（模型/缓存/CPU依赖/两音频），无付费服务/新密钥/秘密扫描；持久文件仅本slot。网络/资源失败的具体状态和原件保留，不靠换模型或替身伪装通过。
 - 固定运行探针文本为 Calm acoustic guitar music. 与 Energetic instrumental rock music.，另做>77且<=256完整token及>256拒绝探针；只验模型/索引/允许候选/时间/HTTP契约，不根据排名换数据或调参，不宣称质量提高。

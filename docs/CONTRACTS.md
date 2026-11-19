@@ -423,6 +423,7 @@ MUS-033真实浏览器补充：Morning同一已核SHA MP3的soundfile时长15355
 - 新私有 sonora-discovery-catalog-v1：每轨绑定十进制Java Long字符串ID、音频basename、bytes/MD5/SHA256、来源/许可及原证明；只读本slot文件，严格拒绝身份重复/链接/路径越界/内容或证明变更。来源声明和hash绑定不能单独证明版权许可；本轮仅以实际官方快照核准的小量development音乐作运行探针。
 - soundfile按块至实际EOF，8–192kHz/1–2声道/<=600秒，mono平均、soxr_hq一次48kHz、10s/5s确定窗口与尾段/右补零；输出时间为有效样本毫秒，不含pad。显式记录header与实际帧数，不能静默裁剪。recipe=discovery-soundfile-eof-soxr_hq-mono48k-zero10s-hop5s-v1。
 - 固定CLAP A/HTSAT-base/no fusion/CPU FP32、identity/fulltext256；生产CLI只接受显式本地checkpoint/cache，复用restricted/strict loader，缺失失败。输出512维单位片段，整曲=unit(mean(segments))，与E41两mode一致；无训练/ANN/查询截断。
+- 构建与查询还绑定实际离线cache文件SHA：固定RoBERTa模型/分词器，以及SDK import所需的BERT/BART分词器和RoBERTa别名refs。辅助分词器分别固定86b5e093/aadd2ab0，仅必要小文件、不下载或运行其神经模型；详情见计划的导入预检补充。worker拒绝构建/查询cache不一致，真实文本校验实际非padding token，超256明确拒绝。
 - E41 manifest保留，clap_identity新增必需build_proof_sha256并核build-proof.json的SHA/schema/模型/recipe/数据/特征/逐窗口边界。旧synthetic_fixture不需要该生产证明，仍双边显式启用；不得把mock构建当真实模型通过。
 - 新输出仅ignored .local/b且目录独占，0700/0600；先产特征/证明、重校输入和验证loader，最后激活manifest。失败无可消费manifest，失败/成功输出都不可重用或覆盖；不会自动切换运行服务索引。实际模型/音乐/HTTP探针与合成测试分别报告，不能外推质量或Java/Vue新集成。
 
